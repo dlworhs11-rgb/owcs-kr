@@ -1,12 +1,15 @@
 // Site-wide language (한국어 / 日本語 / EN). The pages are written in Korean; in ja/en this walks the page text
 // (and keeps watching it, since the pages re-render every second) and swaps every Korean string for its translation.
-// The choice is kept in this browser (localStorage 'owcs-lang') so every page opens in the same language.
+// Until a language is picked it follows the browser's language. The choice is kept in this browser (localStorage 'owcs-lang') so every page opens in the same language.
 // ?lang=ja|en|ko also sets it.
 (function () {
   var KEY = 'owcs-lang';
   var q = new URLSearchParams(location.search).get('lang');
   var lang = 'ko';
-  try { if (/^(ko|ja|en)$/.test(q)) localStorage.setItem(KEY, q); lang = localStorage.getItem(KEY) || 'ko'; } catch (e) { if (q) lang = q; }
+  // first visit: follow the browser language (Japanese -> 日本語, Korean -> 한국어, anything else -> EN); a choice made on the site wins
+  var nav = (navigator.languages && navigator.languages[0] || navigator.language || 'ko').toLowerCase();
+  var guess = /^ja/.test(nav) ? 'ja' : /^ko/.test(nav) ? 'ko' : 'en';
+  try { if (/^(ko|ja|en)$/.test(q)) localStorage.setItem(KEY, q); lang = localStorage.getItem(KEY) || guess; } catch (e) { lang = q || guess; }
   if (!/^(ko|ja|en)$/.test(lang)) lang = 'ko';
 
   // [korean, japanese, english]
