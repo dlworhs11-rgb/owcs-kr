@@ -9,8 +9,10 @@ KST = datetime.timezone(datetime.timedelta(hours=9))
 ICS_FILE = 'owcs-kr-upcoming.ics'   # calendar subscription: matches not played yet (rebuilt by cloud_live.py every ~10 min)
 
 
-def soop_vods():
-    """match day -> SOOP replay (one VOD per broadcast day, titled '... KOREA STAGE 3 - Week W Day D'), cached 30 min"""
+def soop_vods(matches=(), stage=None, year=None):
+    """match day -> SOOP replay, one VOD per broadcast day, titled '2026 OWCS ASIA l KOREA STAGE 3 - Week W Day D'
+    (regular season and the seeding / LCQ week) or '... STAGE 3 - PLAYOFFS DAY D'. Day D is the D-th match day of
+    that week / of the playoffs in `matches` (owcs-data.js matches: day, week, phase). Titles cached 30 min."""
     cache = os.path.join(HERE, 'data', 'soop_vods.json')
     data = None
     if os.path.exists(cache) and time.time() - os.path.getmtime(cache) < 1800:
@@ -29,13 +31,20 @@ def soop_vods():
             if os.path.exists(cache):
                 with open(cache, encoding='utf-8') as f:
                     data = json.load(f)
+    days = {}   # 'po' or week number -> match days in order
+    for m in matches:
+        days.setdefault('po' if m.get('phase') == 'po' else m.get('week'), set()).add(m['day'])
+    days = {k: sorted(v) for k, v in days.items()}
     out = {}
-    week1 = datetime.date(2026, 10, 2)          # Week 1 Day 1 (Friday)
     for v in sorted(data or [], key=lambda v: v['no']):
-        m = re.search(r'STAGE 3 - Week (\d+) Day (\d+)', v['title'])
-        if m:
-            d = week1 + datetime.timedelta(days=7 * (int(m.group(1)) - 1) + int(m.group(2)) - 1)
-            out[d.isoformat()] = f"https://vod.sooplive.com/player/{v['no']}"
+        t = v['title'].upper()
+        m = re.search(r'(\d{4}) OWCS\b.*\bKOREA STAGE (\d+)\s*-\s*(?:WEEK (\d+) DAY (\d+)|(?:PLAYOFFS?|FINALS?) DAY (\d+))', t)
+        if not m or (stage and int(m.group(2)) != stage) or (year and int(m.group(1)) != year):
+            continue
+        key, n = (int(m.group(3)), int(m.group(4))) if m.group(3) else ('po', int(m.group(5)))
+        ds = days.get(key, [])
+        if 0 < n <= len(ds):
+            out[ds[n - 1]] = f"https://vod.sooplive.com/player/{v['no']}"
     return out
 
 
@@ -79,10 +88,18 @@ def upcoming_ics(data, now=None, team=None):
         t0 = datetime.datetime.fromisoformat(m['date'])
         if m.get('played') or t0 <= now or (team and team not in (m['a'], m['b'])):
             continue
-        lines += ['BEGIN:VEVENT', f"UID:owcs-{m['id']}@owcskr.fan", f'DTSTAMP:{stamp}', f'DTSTART:{utc(t0)}',
-                  f'DTEND:{utc(t0 + datetime.timedelta(hours=2))}',
-                  'SUMMARY:' + esc(f"[OWCS KR] {names.get(m['a'], m['a'])} vs {names.get(m['b'], m['b'])}"),
-                  'DESCRIPTION:' + esc(f"{data['stage']} {m['week']}주차 · SOOP owesports 생중계 https://www.sooplive.com/station/owesports"),
+        label = m.get('label') or f"{m['week']}주차"
+        vs = f"{names.get(m['a'], m['a'])} vs {names.get(m['b'], m['b'])}"
+        if 'TBD' in (m['a'], m['b']):
+            vs = (m.get('round') or label) + (f" · {names.get(m['a'], m['a'])} vs 미정" if m['a'] != 'TBD' else ' · 대진 미정')
+        # no start time on Liquipedia yet: all-day entry on that day (moves to the real time once it is announced)
+        when = ([f"DTSTART;VALUE=DATE:{m['day'].replace('-', '')}",
+                 f"DTEND;VALUE=DATE:{(datetime.date.fromisoformat(m['day']) + datetime.timedelta(days=1)).strftime('%Y%m%d')}"]
+                if m.get('tbd') else [f'DTSTART:{utc(t0)}', f'DTEND:{utc(t0 + datetime.timedelta(hours=2))}'])
+        lines += ['BEGIN:VEVENT', f"UID:owcs-{m['id']}@owcskr.fan", f'DTSTAMP:{stamp}', *when,
+                  'SUMMARY:' + esc(f"[OWCS KR] {vs}"),
+                  'DESCRIPTION:' + esc(f"{data['stage']} {label}" + (' · 시작 시간 발표 전' if m.get('tbd') else '')
+                                       + ' · SOOP owesports 생중계 https://www.sooplive.com/station/owesports'),
                   'LOCATION:' + esc('WDG STUDIO HONGDAE · SOOP owesports'), 'END:VEVENT']
     lines.append('END:VCALENDAR')
     return '\r\n'.join(lines) + '\r\n'

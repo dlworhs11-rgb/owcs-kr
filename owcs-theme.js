@@ -72,6 +72,29 @@
       '@media (min-width:900px){#dc-root ' + D + ' > section[data-today]{padding-left:max(8px, calc(50% - 728px)) !important;padding-right:max(8px, calc(50% - 728px)) !important}}'
     ].join('\n');
   }
+  // "B" background (home page): one warm paper sheet with fine hatching from the top bar to the footer; sections
+  // lose their own fills, edge lines and glows and are told apart by spacing only. ?bg=old shows the previous look.
+  if (/Home/.test(decodeURIComponent(location.pathname)) && new URLSearchParams(location.search).get('bg') !== 'old') {
+    var H = 'html[data-owcs-bgb] ';
+    document.documentElement.setAttribute('data-owcs-bgb', '');
+    css += '\n' + [
+      'html[data-owcs-bgb],html[data-owcs-bgb] body{background:#F1EDE5 !important}',
+      H + '#dc-root [data-screen-label]{--sheet:#F1EDE5;--hatch:rgba(60,45,25,.045);background:var(--sheet) repeating-linear-gradient(135deg, var(--hatch) 0 1px, transparent 1px 11px) fixed !important}',
+      H + '#dc-root [style*="--paper: #16161C"] [data-screen-label]{--sheet:#13110E;--hatch:rgba(255,255,255,.03)}',   /* dark mode */
+      'html[data-owcs-bgb]:has([style*="--paper: #16161C"]),html[data-owcs-bgb]:has([style*="--paper: #16161C"]) body{background:#13110E !important}',
+      H + '#dc-root [data-screen-label] section,' + H + '#dc-root [data-screen-label] footer,' + H + '#dc-root [data-screen-label] > div:first-child,' + H + '#dc-root [data-screen-label] > header{background:transparent !important;background-image:none !important}',
+      H + '[data-owcs-bg]::before,' + H + '[data-owcs-bg]::after{display:none !important}',
+      // today: content back to the normal column; the dark screens (stream, score, map rows) stay as cards
+      H + '[data-tm="light"] section[data-today] [data-tbox]{background:transparent !important;background-image:none !important;padding:0 !important;border-radius:0 !important;color:inherit !important}',
+      '@media (min-width:900px){' + H + '#dc-root [data-screen-label] > section[data-today]{padding:96px max(56px, calc(50% - 680px)) 104px !important}}',
+      '@media (max-width:899.98px){' + H + '#dc-root [data-screen-label] > section[data-today]{padding:36px 20px 40px !important}}',
+      H + '[data-tm="light"] section[data-today] [data-tcard] a{color:var(--ink,#0B0B0F) !important;border-color:color-mix(in srgb, var(--ink,#0B0B0F) 25%, transparent) !important}',
+      // footer on the sheet: ink text instead of white
+      H + 'footer{color:var(--ink,#0B0B0F) !important;border-top:0 !important}',
+      H + 'footer [style*="color: rgb(255, 255, 255)"]{color:var(--ink,#0B0B0F) !important}',
+      H + 'footer [style*="color: rgb(138, 138, 147)"],' + H + 'footer [style*="color: rgb(181, 181, 189)"],' + H + 'footer [style*="color: rgb(201, 201, 209)"]{color:var(--mute,#55555C) !important}'
+    ].join('\n');
+  }
   var st = document.createElement('style');
   st.textContent = css;
   document.head.appendChild(st);

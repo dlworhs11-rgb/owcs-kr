@@ -143,7 +143,7 @@ body.ticket-page footer{background:#0B0B0F;color:#8A8A93;border:0}
     <h1 class="disp">WDG STUDIO<br>HONGDAE</h1>
     <p>서울 마포구 상수동 72-1, 홍익대학교 잔다리홀 B1. 정규 리그부터 플레이오프까지 모든 경기를 현장에서 볼 수 있어요.</p>
     <div class="chips">
-      <span class="chip">기간 <b>10.02 (금) – 11.22 (일)</b></span>
+      <span class="chip">기간 <b id="period">10.02 (금) – 11.08 (일)</b></span>
       <span class="chip">금 <b>17:00–23:00</b></span>
       <span class="chip">토·일 <b>15:00–21:00</b></span>
       <span class="chip">만 15세 이상</span>
@@ -159,7 +159,7 @@ body.ticket-page footer{background:#0B0B0F;color:#8A8A93;border:0}
     <div class="grid2">
       <div class="card">
         <dl class="facts">
-          <dt>대회 기간</dt><dd>10월 2일(금) – 11월 22일(일)</dd>
+          <dt>대회 기간</dt><dd id="periodLong">10월 2일(금) – 11월 8일(일)</dd>
           <dt>대회 시간</dt><dd><div class="dots"><span>금</span><span></span><span>17:00 – 23:00</span></div><div class="dots"><span>토, 일</span><span></span><span>15:00 – 21:00</span></div></dd>
           <dt>대회 장소</dt><dd>WDG STUDIO HONGDAE<small>서울 마포구 상수동 72-1, 홍익대학교 잔다리홀 B1</small></dd>
           <dt>관람 시간</dt><dd>360분</dd>
@@ -303,34 +303,70 @@ var ROWS = [
   ['WEEK 4 DAY 2', '2026-10-24', '토', '15:00', '2026-10-14T18:00', '2026-10-24T19:00'],
   ['WEEK 4 DAY 3', '2026-10-25', '일', '15:00', '2026-10-14T19:00', '2026-10-25T19:00']
 ];
+// seeding deciders / LCQ and playoffs: match days from owcs-data.js (Liquipedia schedule), sales open on the Wednesday
+// before each block at 17 / 18 / 19시 for day 1 / 2 / 3 (official notice: 10.28 and 11.04). Without owcs-data.js the
+// days below are used. Start time = first match of the day once Liquipedia has it, sales close 4 h after the start.
+var BLOCKS = [{ k: 'seed', name: 'SEEDING · LCQ', days: ['2026-10-30', '2026-10-31', '2026-11-01'] },
+              { k: 'po', name: 'PLAYOFFS', days: ['2026-11-06', '2026-11-07', '2026-11-08'] }];
+var DOWS = ['일', '월', '화', '수', '목', '금', '토'];
 var kst = function (s) { return new Date(s + ':00+09:00').getTime(); };
 var md = function (s) { return s.slice(5, 7) + '.' + s.slice(8, 10); };
+var pad = function (n) { return String(n).padStart(2, '0'); };
+var ymd = function (ms) { var d = new Date(ms + 9 * 3600e3); return d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate()); };
+var dowOf = function (day) { return DOWS[new Date(day + 'T12:00:00+09:00').getUTCDay()]; };
 var q = new URLSearchParams(location.search);
 var now = q.get('date') ? kst(q.get('date') + 'T' + (q.get('time') || '12:00')) : Date.now();
-var body = document.getElementById('tickets'), next = null;
-ROWS.forEach(function (r) {
-  var start = kst(r[1] + 'T' + r[3]), open = kst(r[4]), close = kst(r[5]);
-  var st = now < open ? ['오픈 예정', 'b-soon'] : now <= close ? (now >= start ? ['경기 중', 'b-live'] : ['판매 중', 'b-open']) : ['마감', 'b-closed'];
-  if (!next && now <= close) next = { r: r, st: st, open: open };
-  var tr = document.createElement('tr');
-  if (next && next.r === r) tr.className = 'today';
-  tr.innerHTML = '<td class="wk">' + md(r[1]) + ' (' + r[2] + ')<small>STAGE 3 ' + r[0] + '</small></td><td class="n">' + r[3] + '</td><td>' + md(r[4]) + ' ' + r[4].slice(11) + '</td><td>' + md(r[5]) + ' ' + r[5].slice(11) + '</td><td><span class="badge ' + st[1] + '">' + st[0] + '</span></td>';
-  body.appendChild(tr);
-});
-if (next) {
-  var r = next.r;
-  document.getElementById('nextTitle').textContent = md(r[1]) + ' (' + r[2] + ') ' + r[3] + ' · ' + r[0];
-  var sub = next.st[0] === '오픈 예정' ? '판매 오픈 ' + md(r[4]) + ' ' + r[4].slice(11) : '판매 마감 ' + md(r[5]) + ' ' + r[5].slice(11);
-  // matchups for that day from owcs-data.js when it is next to this page
-  if (window.OWCS) {
-    var ms = window.OWCS.matches.filter(function (m) { return m.day === r[1]; });
-    if (ms.length) sub += ' · ' + ms.map(function (m) { return m.time + ' ' + m.a + ' vs ' + m.b; }).join(' / ');
-  }
-  document.getElementById('nextSub').innerHTML = '<span class="badge ' + next.st[1] + '">' + next.st[0] + '</span> &nbsp;' + sub;
-} else {
-  document.getElementById('nextTitle').textContent = 'SEEDING · PLAYOFFS';
-  document.getElementById('nextSub').textContent = '정규 리그 판매가 끝났어요. 시드 결정전·LCQ는 10.28, 플레이오프는 11.04 오픈이에요.';
+function playoffRows(D) {
+  var out = [];
+  BLOCKS.forEach(function (b) {
+    var ms = D ? D.matches.filter(function (m) { return b.k === 'po' ? m.phase === 'po' : m.phase === 'seed' || m.phase === 'lcq'; }) : [];
+    var days = ms.length ? ms.map(function (m) { return m.day; }).filter(function (d, i, a) { return a.indexOf(d) === i; }).sort() : b.days;
+    var first = new Date(days[0] + 'T12:00:00+09:00').getTime(), back = (new Date(first + 9 * 3600e3).getUTCDay() + 4) % 7 || 7;
+    var wed = ymd(first - back * 86400e3);
+    days.forEach(function (day, i) {
+      var known = ms.filter(function (m) { return m.day === day && !m.tbd; }).map(function (m) { return m.time; }).sort()[0] || '';
+      var close = known ? ymd(kst(day + 'T' + known) + 4 * 3600e3) + 'T' + new Date(kst(day + 'T' + known) + 13 * 3600e3).toISOString().slice(11, 16) : '';
+      out.push([b.name + ' DAY ' + (i + 1), day, dowOf(day), known, wed + 'T' + (17 + Math.min(i, 2)) + ':00', close]);
+    });
+  });
+  return out;
 }
+function draw() {
+  var D = window.OWCS;
+  var stage = D && D.stageNo ? 'STAGE ' + D.stageNo : 'STAGE 3';
+  // 대회 기간: first regular-season day to the last playoff day
+  var from = D ? D.stageRange[0] : '2026-10-02', to = D ? D.stageEnd || D.stageRange[1] : '2026-11-08';
+  document.getElementById('period').textContent = md(from) + ' (' + dowOf(from) + ') – ' + md(to) + ' (' + dowOf(to) + ')';
+  document.getElementById('periodLong').textContent = +from.slice(5, 7) + '월 ' + +from.slice(8) + '일(' + dowOf(from) + ') – ' + +to.slice(5, 7) + '월 ' + +to.slice(8) + '일(' + dowOf(to) + ')';
+  var rows = ROWS.concat(playoffRows(D));
+  var body = document.getElementById('tickets'), next = null;
+  body.innerHTML = '';
+  rows.forEach(function (r) {
+    // no start time yet: the match day counts as on sale until the end of that day
+    var start = kst(r[1] + 'T' + (r[3] || '23:59')), open = kst(r[4]), close = r[5] ? kst(r[5]) : kst(r[1] + 'T23:59');
+    var st = now < open ? ['오픈 예정', 'b-soon'] : now <= close ? (now >= start ? ['경기 중', 'b-live'] : ['판매 중', 'b-open']) : ['마감', 'b-closed'];
+    if (!next && now <= close) next = { r: r, st: st, open: open };
+    var tr = document.createElement('tr');
+    if (next && next.r === r) tr.className = 'today';
+    tr.innerHTML = '<td class="wk">' + md(r[1]) + ' (' + r[2] + ')<small>' + stage + ' ' + r[0] + '</small></td><td class="n">' + (r[3] || '발표 전') + '</td><td>' + md(r[4]) + ' ' + r[4].slice(11) + '</td><td>' + (r[5] ? md(r[5]) + ' ' + r[5].slice(11) : md(r[1]) + ' 경기 후') + '</td><td><span class="badge ' + st[1] + '">' + st[0] + '</span></td>';
+    body.appendChild(tr);
+  });
+  if (next) {
+    var r = next.r;
+    document.getElementById('nextTitle').textContent = md(r[1]) + ' (' + r[2] + ') ' + (r[3] ? r[3] + ' ' : '') + '· ' + r[0];
+    var sub = next.st[0] === '오픈 예정' ? '판매 오픈 ' + md(r[4]) + ' ' + r[4].slice(11) : r[5] ? '판매 마감 ' + md(r[5]) + ' ' + r[5].slice(11) : '판매 마감 ' + md(r[1]) + ' 경기 후';
+    // matchups for that day from owcs-data.js when it is next to this page
+    if (D) {
+      var ms = D.matches.filter(function (m) { return m.day === r[1] && !(m.a === 'TBD' && m.b === 'TBD'); });
+      if (ms.length) sub += ' · ' + ms.map(function (m) { return (m.tbd ? '' : m.time + ' ') + m.a + ' vs ' + m.b; }).join(' / ');
+    }
+    document.getElementById('nextSub').innerHTML = '<span class="badge ' + next.st[1] + '">' + next.st[0] + '</span> &nbsp;' + sub;
+  } else {
+    document.getElementById('nextTitle').textContent = '다음 스테이지';
+    document.getElementById('nextSub').textContent = '이번 스테이지 직관 판매가 모두 끝났어요. 다음 스테이지 일정이 나오면 여기에 표시돼요.';
+  }
+}
+draw();
 </script>
 <script src="./owcs-data.js"></script>
 <script src="./owcs-i18n.js"></script>
@@ -338,12 +374,8 @@ if (next) {
 <script src="./owcs-dark.js"></script>
 <script src="./owcs-theme-wise.js"></script>
 <script>
-// owcs-data.js loads after the first paint; fill in the matchups once it is there
-if (window.OWCS && document.getElementById('nextSub').textContent.indexOf(' vs ') < 0) {
-  var d = document.getElementById('nextTitle').textContent.slice(0, 5).replace('.', '-');
-  var ms = window.OWCS.matches.filter(function (m) { return m.day.slice(5) === d; });
-  if (ms.length) document.getElementById('nextSub').insertAdjacentText('beforeend', ' · ' + ms.map(function (m) { return m.time + ' ' + m.a + ' vs ' + m.b; }).join(' / '));
-}
+// owcs-data.js loads after the first paint: redraw with its playoff days, start times and matchups
+if (window.OWCS) draw();
 </script>
 </body>
 </html>

@@ -71,6 +71,12 @@
     ['플레이오프 직행은 어렵지만 라스트 찬스 예선은 확정이에요.', 'プレーオフ直行は難しいですが、ラストチャンス予選は確定です。', 'Direct playoffs are out of reach, but the LCQ is secured.'],
     ['최소 라스트 찬스 예선은 확정이에요.', '少なくともラストチャンス予選は確定です。', 'At least the LCQ is secured.'],
     ['경기 기준', '試合基準', 'matches'],
+    // playoffs (seeding deciders / LCQ / bracket)
+    ['플레이오프 대진표', 'プレーオフ トーナメント表', 'Playoff bracket'], ['대진표 · 지난 시즌 보기', 'トーナメント表 · 過去シーズン', 'Bracket · past seasons'], ['시드 결정전', 'シード決定戦', 'Seeding deciders'],
+    ['시드 결정전 순위', 'シード決定戦 順位', 'Seeding standings'], ['승자조 결승', '勝者側決勝', 'Upper final'], ['패자조 준결승', '敗者側準決勝', 'Lower semifinal'], ['패자조 결승', '敗者側決勝', 'Lower final'],
+    ['8강', '準々決勝', 'Quarterfinal'], ['4강', '準決勝', 'Semifinal'], ['결승', '決勝', 'Final'], ['3위 결정전', '3位決定戦', 'Third place'], ['결승 · 3위전', '決勝 · 3位決定戦', 'Final · 3rd place'],
+    ['진행 중', '進行中', 'In progress'], ['미정', '未定', 'TBD'], ['시간 미정', '時間未定', 'Time TBD'], ['시작 시간 발표 전', '開始時間は未発表', 'Start time TBA'], ['발표 전', '未発表', 'TBA'],
+    ['이번 스테이지 일정이 모두 끝났어요', '今ステージの日程はすべて終了しました', 'This stage is over'],
     // player
     ['지금 방송 중', '配信中', 'Live now'], ['개인 방송', '個人配信', 'Stream'], ['등록된 방송 없음', '登録された配信なし', 'No stream listed'], ['방송 보러가기 →', '配信を見る →', 'Watch stream →'], ['방송국 가기 →', 'チャンネルへ →', 'Go to channel →'],
     ['보러가기 →', '見る →', 'Watch →'], ['치지직 채널', 'CHZZKチャンネル', 'CHZZK channel'], ['SOOP 방송국', 'SOOPチャンネル', 'SOOP channel'], ['디스코드 서버', 'Discordサーバー', 'Discord server'], ['선수 문서', '選手ページ', 'Player page'],
@@ -169,6 +175,8 @@
     [/^판매 (오픈|마감) /, function (m, k) { return (k === '오픈' ? (J ? '販売開始 ' : 'Sale opens ') : (J ? '販売締切 ' : 'Sale closes ')); }],
     [/^마지막 확인 /, J ? '最終確認 ' : 'Last checked '],
     [/^(\d+)승 (\d+)패 · /, J ? '$1勝 $2敗 · ' : '$1W $2L · '],
+    [/ · 대진 미정$/, J ? ' · 対戦未定' : ' · matchup TBD'],
+    [/^정규 리그가 끝났어요 · /, J ? 'レギュラーシーズン終了 · ' : 'Regular season over · '],
     [/ 정규 리그 (\d+)주차$/, J ? ' レギュラーシーズン 第$1週' : ' regular season · week $1'],
     [/^2026 OWCS KR 스테이지 (\d)/, '2026 OWCS KR STAGE $1'],
     [/코리아 스테이지 (\d)/g, J ? 'コリア ステージ$1' : 'Korea Stage $1'],

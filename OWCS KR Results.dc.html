@@ -151,13 +151,15 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 
 <sc-if value="{{ d.bracket }}">
 <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:24px"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:36px">{{ lastTitle }}</div><div style="display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600"><span style="background:#C6FF33;padding:2px 10px;border-radius:6px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:20px">CHAMPION</span>{{ champion }}</div></div>
-<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px;padding:28px;border-radius:24px;background:#F6F6F3">
+<sc-if value="{{ hasBkTabs }}"><div style="display:flex;gap:6px;margin:-8px 0 20px"><sc-for list="{{ bkTabs }}" as="bt" hint-placeholder-count="2"><button onClick="{{ bt.go }}" style="height:36px;padding:0 14px;border-radius:999px;border:1px solid {{ bt.bd }};background:{{ bt.bg }};color:{{ bt.fg }};font:inherit;font-size:13px;font-weight:700;cursor:pointer">{{ bt.label }}</button></sc-for></div></sc-if>
+<div style="display:grid;grid-template-columns:repeat({{ bkCols }},minmax(0,1fr));gap:22px;padding:28px;border-radius:24px;background:#F6F6F3">
 <sc-for list="{{ lastBracket }}" as="col" hint-placeholder-count="4">
 <div style="display:flex;flex-direction:column">
 <div style="font-size:14px;font-weight:700;color:#55555C;margin-bottom:14px">{{ col.title }}</div>
 <div style="flex:1;min-height:360px;display:flex;flex-direction:column;justify-content:space-around;gap:16px">
 <sc-for list="{{ col.matches }}" as="m" hint-placeholder-count="1">
-<div style="background:#fff;border:1px solid #E1E1DB;border-radius:14px;overflow:hidden">
+<div style="background:#fff;border:{{ m.bd }};border-radius:14px;overflow:hidden">
+<div style="display:flex;justify-content:space-between;gap:8px;padding:6px 14px;font-size:12px;color:#6B6B72;border-bottom:1px solid #F0F0EB"><span>{{ m.when }}</span><span style="font-weight:700;color:{{ m.tagC }}">{{ m.tag }}</span></div>
 <sc-for list="{{ m.rows }}" as="r" hint-placeholder-count="2">
 <div style="display:grid;grid-template-columns:6px minmax(0,1fr) 40px;align-items:center;gap:12px;height:52px;padding-right:14px;border-bottom:1px solid #F0F0EB"><span style="height:100%;background:{{ r.c }}"></span><span style="font-size:15px;font-weight:{{ r.w }};color:{{ r.t }}">{{ r.n }}</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:24px;text-align:right;color:{{ r.t }}">{{ r.s }}</span></div>
 </sc-for>
@@ -167,6 +169,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 </div>
 </sc-for>
 </div>
+<sc-if value="{{ hasSeeding }}"><div style="margin-top:{{ seedGap }};padding:20px 22px;border-radius:20px;background:#F6F6F3"><div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px"><span style="font-size:15px;font-weight:700">시드 결정전 순위</span><span style="font-size:12px;color:#6B6B72">{{ seedNote }}</span></div><sc-for list="{{ seeding }}" as="sd" hint-placeholder-count="4"><div style="display:grid;grid-template-columns:28px 5px minmax(0,1fr) auto;align-items:center;gap:10px;height:40px;border-top:1px solid #E6E6E1"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px">{{ sd.r }}</span><span style="height:22px;background:{{ sd.c }}"></span><span style="font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ sd.n }}</span><span style="font-size:13px;color:#55555C">{{ sd.rec }}</span></div></sc-for></div></sc-if>
 </sc-if>
 
 <sc-if value="{{ d.cases }}">
@@ -307,13 +310,15 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 </sc-if>
 <sc-if value="{{ m.bracket }}">
 <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:14px;font-weight:600"><span style="background:#C6FF33;padding:1px 8px;border-radius:6px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px">CHAMPION</span>{{ champion }}</div>
+<sc-if value="{{ hasBkTabs }}"><div style="display:flex;gap:6px;margin:0 0 16px;flex-wrap:wrap"><sc-for list="{{ bkTabs }}" as="bt" hint-placeholder-count="2"><button onClick="{{ bt.go }}" style="height:36px;padding:0 14px;border-radius:999px;border:1px solid {{ bt.bd }};background:{{ bt.bg }};color:{{ bt.fg }};font:inherit;font-size:13px;font-weight:700;cursor:pointer">{{ bt.label }}</button></sc-for></div></sc-if>
 <div style="display:flex;flex-direction:column;gap:22px">
 <sc-for list="{{ lastBracket }}" as="col" hint-placeholder-count="4">
 <div>
 <div style="font-size:13px;font-weight:700;color:#55555C;margin-bottom:8px">{{ col.title }}</div>
 <div style="display:flex;flex-direction:column;gap:8px">
 <sc-for list="{{ col.matches }}" as="mm" hint-placeholder-count="1">
-<div style="border:1px solid #E1E1DB;border-radius:12px;overflow:hidden">
+<div style="border:{{ mm.bd }};border-radius:12px;overflow:hidden">
+<div style="display:flex;justify-content:space-between;gap:8px;padding:6px 14px;font-size:12px;color:#6B6B72;border-bottom:1px solid #F0F0EB"><span>{{ mm.when }}</span><span style="font-weight:700;color:{{ mm.tagC }}">{{ mm.tag }}</span></div>
 <sc-for list="{{ mm.rows }}" as="r" hint-placeholder-count="2"><div style="display:grid;grid-template-columns:5px minmax(0,1fr) 32px;align-items:center;gap:10px;height:46px;padding-right:12px;border-bottom:1px solid #F0F0EB"><span style="height:100%;background:{{ r.c }}"></span><span style="font-size:14px;font-weight:{{ r.w }};color:{{ r.t }}">{{ r.n }}</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;text-align:right;color:{{ r.t }}">{{ r.s }}</span></div></sc-for>
 </div>
 </sc-for>
@@ -321,6 +326,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 </div>
 </sc-for>
 </div>
+<sc-if value="{{ hasSeeding }}"><div style="margin-top:{{ seedGap }};padding:20px 22px;border-radius:20px;background:#F6F6F3"><div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px"><span style="font-size:15px;font-weight:700">시드 결정전 순위</span><span style="font-size:12px;color:#6B6B72">{{ seedNote }}</span></div><sc-for list="{{ seeding }}" as="sd" hint-placeholder-count="4"><div style="display:grid;grid-template-columns:28px 5px minmax(0,1fr) auto;align-items:center;gap:10px;height:40px;border-top:1px solid #E6E6E1"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px">{{ sd.r }}</span><span style="height:22px;background:{{ sd.c }}"></span><span style="font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ sd.n }}</span><span style="font-size:13px;color:#55555C">{{ sd.rec }}</span></div></sc-for></div></sc-if>
 </sc-if>
 <sc-if value="{{ m.cases }}">
 <sc-for list="{{ cases }}" as="c" hint-placeholder-count="8">
@@ -353,7 +359,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 // Data: window.OWCS from owcs-data.js (built by build_owcs_data.py).
-const D = window.OWCS || { teams: [], matches: [], standings: [], history: [], lastStage: { columns: [] }, playoffs: 4, lcq: 8, stage: '', sources: '', tiebreak: '' };
+const D = window.OWCS || { teams: [], matches: [], standings: [], history: [], lastStage: { columns: [] }, bracket: null, stageRange: ['', ''], playoffs: 4, lcq: 8, stage: '', sources: '', tiebreak: '' };
 const TEAM = Object.fromEntries(D.teams.map((t) => [t.a, t]));
 const NAME = (a) => (TEAM[a] || { n: a }).n;
 const col = (a) => (TEAM[a] || { color: '#C9C9CF' }).color;
@@ -366,8 +372,13 @@ const pad = (n) => String(n).padStart(2, '0');
 const kst = (iso) => new Date(new Date(iso).getTime() + 9 * 3600e3);
 const md = (iso) => { const d = kst(iso); return pad(d.getUTCMonth() + 1) + '.' + pad(d.getUTCDate()); };
 const mdw = (iso) => md(iso) + ' (' + DOWS[kst(iso).getUTCDay()] + ')';
-const STAGE = D.stage.replace(/^2026 OWCS KR /, '');
-const TABS = [{ k: 'results', label: '이번 시즌 결과', short: '결과' }, { k: 'bracket', label: '지난 시즌 · 대진표', short: '대진표' }, { k: 'cases', label: '경우의 수', short: '경우의 수' }, { k: 'rates', label: '팀별 승률', short: '승률' }];
+const STAGE = D.stage.replace(/^\d{4} OWCS KR /, '');
+// ?date=2026-11-01 (optionally &time=18:30) previews another day, like the home page
+const PARAMS = new URLSearchParams(location.search);
+const NOW = PARAMS.get('date') ? new Date(PARAMS.get('date') + 'T' + (PARAMS.get('time') || '12:00') + ':00+09:00').getTime() : Date.now();
+// after the regular season the bracket tab opens on this stage's playoffs (seeding deciders, LCQ, playoffs)
+const PO_ON = !!D.bracket && NOW > new Date(D.stageRange[1] + 'T23:59:59+09:00').getTime();
+const TABS = [{ k: 'results', label: '이번 시즌 결과', short: '결과' }, { k: 'bracket', label: PO_ON ? '플레이오프 대진표' : '지난 시즌 · 대진표', short: '대진표' }, { k: 'cases', label: '경우의 수', short: '경우의 수' }, { k: 'rates', label: '팀별 승률', short: '승률' }];
 // 2026 Korea record per current team (all stages, regular season + playoffs)
 const RATES = D.teams.map((t) => {
   let w = 0, l = 0, sw = 0, sl = 0;
@@ -375,8 +386,9 @@ const RATES = D.teams.map((t) => {
   return { a: t.a, w, l, sw, sl, p: w + l ? w / (w + l) : 0 };
 }).sort((x, y) => y.p - x.p || (y.sw - y.sl) - (x.sw - x.sl));
 const winStyle = (win) => ({ w: win ? 700 : 500, t: win ? '#0B0B0F' : '#9A9AA0' });
-const PLAYED = D.matches.filter((m) => m.played && !m.live);
-const LEFT = D.matches.filter((m) => !m.played || m.live);
+const PLAYED = D.matches.filter((m) => m.played && !m.live && new Date(m.date).getTime() <= NOW);
+// 경우의 수 = regular season only (the playoff slots are not part of the table)
+const LEFT = D.matches.filter((m) => (!m.phase || m.phase === 'rs') && (!m.played || m.live || new Date(m.date).getTime() > NOW));
 
 // 경우의 수: every win/loss combination of the remaining matches (2^n), ranked by match wins.
 // best = rank if every tie breaks our way, worst = rank if every tie breaks against us.
@@ -424,7 +436,7 @@ const resolve = (tok) => {
   const part = D.teams.find((t) => norm(t.n).includes(k) || t.ko.includes(tok.trim())); return part ? part.a : null;
 };
 class Component extends DCLogic {
-  state = (() => { const t = new URLSearchParams(location.search).get('tab'); const k = TABS.some((x) => x.k === t) ? t : 'results'; return { tabD: k, tabM: k, q: new URLSearchParams(location.search).get('q') || '', sp: false, openRows: {}, openMaps: {} }; })();
+  state = (() => { const t = new URLSearchParams(location.search).get('tab'); const k = TABS.some((x) => x.k === t) ? t : 'results'; return { bk: PO_ON ? 'cur' : 'last', tabD: k, tabM: k, q: new URLSearchParams(location.search).get('q') || '', sp: false, openRows: {}, openMaps: {} }; })();
   tabs(key) {
     const cur = this.state[key];
     return TABS.map((t) => ({ ...t, on: cur === t.k, off: cur !== t.k, go: () => this.setState({ [key]: t.k }) }));
@@ -437,12 +449,13 @@ class Component extends DCLogic {
     const ids = tokens.map(resolve);
     const valid = ids.length > 0 && ids.every(Boolean);
     const found = valid ? D.history.filter((x) => ids.every((id) => x.a === id || x.b === id)) : [];
+    // grouped by week, then 시드 결정전 · LCQ and 플레이오프 (owcs-data.js group), newest first
     const byWeek = {};
-    PLAYED.forEach((m) => { (byWeek[m.week] = byWeek[m.week] || []).push(m); });
-    const weeks = Object.keys(byWeek).map(Number).sort((a, b) => b - a).map((wk) => {
+    PLAYED.forEach((m) => { const g = m.group || m.week + '주차'; (byWeek[g] = byWeek[g] || []).push(m); });
+    const weeks = Object.keys(byWeek).sort((a, b) => byWeek[b][0].date.localeCompare(byWeek[a][0].date)).map((wk) => {
       const list = byWeek[wk].slice().reverse();
       return {
-        title: wk + '주차', range: mdw(list[list.length - 1].date) + ' – ' + mdw(list[0].date),
+        title: wk, range: mdw(list[list.length - 1].date) + ' – ' + mdw(list[0].date),
         games: list.map((m) => {
           let sa = m.sa, sb = m.sb;
           const A = SP ? winStyle(true) : winStyle(sa > sb), B = SP ? winStyle(true) : winStyle(sb > sa);
@@ -456,7 +469,9 @@ class Component extends DCLogic {
         }),
       };
     });
-    const ls = D.lastStage;
+    const ls = this.state.bk === 'cur' && D.bracket ? D.bracket : D.lastStage;
+    const byId = Object.fromEntries(D.matches.map((m) => [m.id, m]));
+    const nextId = (D.matches.find((m) => m.phase && m.phase !== 'rs' && !(m.played && !m.live) && new Date(m.date).getTime() + 3 * 3600e3 > NOW) || {}).id;
     return {
       q: this.state.q, hasQ: tokens.length > 0, onQ: (e) => this.setState({ q: e.target.value }), clearQ: () => this.setState({ q: '' }),
       quick: ['PF,CR', 'CR', 'ZETA,T1'].map((label) => ({ label, go: () => this.setState({ q: label }) })),
@@ -470,7 +485,7 @@ class Component extends DCLogic {
         found.forEach((x) => { const a = x.a === A ? x.sa : x.sb, b = x.a === A ? x.sb : x.sa; sa += a; sb += b; if (a > b) wa++; else wb++; });
         return { na: NAME(A), nb: NAME(B), la: logoDark(A), lb: logoDark(B), wa: SP ? '–' : wa, wb: SP ? '–' : wb, note: '2026 상대 전적 ' + found.length + '경기 · 세트 ' + (SP ? '–' : sa + ':' + sb) };
       })() : null,
-      ratesNote: '2026 코리아 스테이지 1–3 (정규 리그 + 플레이오프) ' + D.history.length + '경기 기준',
+      ratesNote: (D.year || '') + ' 코리아 스테이지 1–' + (D.stageNo || '') + ' (정규 리그 + 플레이오프) ' + D.history.length + '경기 기준',
       rates: RATES.map((t, i) => { const s = D.standings.find((x) => x.a === t.a); return { r: i + 1, n: NAME(t.a), logo: logo(t.a), c: col(t.a), wl: t.w + '-' + t.l, pct: Math.round(t.p * 100) + '%', sets: t.sw + '-' + t.sl, stage: s ? s.w + '-' + s.l : '–' }; }),
       toggleSpoiler: () => this.setState((s) => ({ sp: !s.sp })), spoilTrack: SP ? '#7D39EB' : '#B9B9B3', spoilKnob: SP ? '14px' : '2px', blur: 'none',
       nav: [
@@ -478,16 +493,28 @@ class Component extends DCLogic {
         { label: '순위', href: 'OWCS KR Home v6.dc.html#standings' }, { label: '직관', href: 'OWCS KR 직관.html' },
         { label: '선수', href: 'OWCS KR Home v6.dc.html#teams' }, { label: '방송', href: 'OWCS KR 방송.html' },
       ],
-      seasonLabel: anyBracket ? ls.label : '2026 ' + STAGE,
+      seasonLabel: anyBracket ? ls.label : (D.year || '') + ' ' + STAGE,
       tabsD: this.tabs('tabD'), tabsM: this.tabs('tabM'),
       d: this.flags('tabD'), m: this.flags('tabM'),
       weeks,
-      lastTitle: ls.title, champion: SP ? '?' : ls.champion,
+      lastTitle: ls.title, champion: SP ? '?' : ls.champion || '진행 중',
+      hasBkTabs: !!D.bracket && !!D.lastStage.columns.length,
+      bkTabs: [['cur', D.bracket && D.bracket.label], ['last', D.lastStage.label]].map(([k, label]) => ({ label: (label || '') + (k === 'last' ? ' (지난 시즌)' : ''), bg: this.state.bk === k ? '#7D39EB' : 'transparent', fg: this.state.bk === k ? '#fff' : '#0B0B0F', bd: this.state.bk === k ? '#7D39EB' : '#B9B9B3', go: () => this.setState({ bk: k }) })),
+      bkCols: Math.max(1, ls.columns.length),
+      hasSeeding: !!(ls.seeding && ls.seeding.length), seedGap: '24px',
+      seedNote: '정규 리그 성적 포함 · 1–2위는 플레이오프 4강 직행',
+      seeding: (ls.seeding || []).map((t, i) => ({ r: i + 1, n: NAME(t.a), c: col(t.a), rec: SP ? '–' : t.w + '승 ' + t.l + '패 · 득실 ' + (t.diff > 0 ? '+' : '') + t.diff + ' · 결정전 ' + t.sw + '-' + t.sl })),
       lastBracket: ls.columns.map((c) => ({
         title: c.title,
-        matches: c.matches.map((pair) => {
-          const top = Math.max(pair[0].s, pair[1].s);
-          return { rows: pair.map((r) => { const st = SP ? winStyle(true) : winStyle(r.s === top); return { n: r.n, c: col(r.a), s: SP ? '–' : r.s, w: st.w, t: st.t }; }) };
+        matches: c.matches.map((x) => {
+          // current stage: scores come from the live match list; slots without teams yet read 미정
+          const m = byId[x.id], played = m ? m.played && !m.live && new Date(m.date).getTime() <= NOW : x.played, live = !!(m && m.live);
+          const rows = m ? [[m.a, m.sa], [m.b, m.sb]] : x.rows.map((r) => [r.a, r.s]);
+          const top = Math.max(rows[0][1] || 0, rows[1][1] || 0), shown = (played || live) && !SP;
+          return { when: x.when, tag: live ? 'LIVE' : x.round && x.round !== c.title ? x.round : '', tagC: live ? '#D92D20' : '#6B6B72',
+            bd: live ? '2px solid #D92D20' : x.id === nextId ? '2px solid #7D39EB' : '1px solid #E1E1DB',
+            rows: rows.map(([a, sc]) => { const st = !played || SP ? winStyle(true) : winStyle(sc === top);
+              return { n: a === 'TBD' ? '미정' : NAME(a), c: a === 'TBD' ? '#E1E1DB' : col(a), s: shown ? sc : '–', w: st.w, t: a === 'TBD' ? '#9A9AA0' : st.t }; }) };
         }),
       })),
       cases: D.standings.map((s, i) => { const c = caseOf(s.a); return { r: i + 1, n: NAME(s.a), c: col(s.a), wl: SP ? '–' : s.w + '-' + s.l, note: c.note, tag: c.tag, sure: c.kind === 'sure', maybe: c.kind === 'maybe', out: c.kind === 'out' }; }),

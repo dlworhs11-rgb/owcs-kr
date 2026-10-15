@@ -116,7 +116,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <sc-if value="{{ hasQ }}"><div style="position:absolute;top:calc(100% + 8px);right:56px;width:440px;z-index:30;background:var(--paper,#fff);border:1px solid var(--line,#E6E6E1);border-radius:16px;box-shadow:0 12px 32px rgba(11,11,15,.12);padding:12px;display:flex;flex-direction:column;gap:6px">
 <div style="font-size:13px;font-weight:700;color:var(--mute,#55555C);padding:2px 4px 4px">{{ searchSummary }}</div>
 <sc-for list="{{ results }}" as="r" hint-placeholder-count="0"><div style="display:grid;grid-template-columns:70px minmax(0,1fr);gap:10px;align-items:center;padding:8px 10px;border-radius:10px;background:var(--paper2,#F6F6F3)">
-<div><div style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:700;font-size:17px;line-height:1">{{ r.date }}</div><div style="font-size:11px;color:var(--mute,#6B6B72);margin-top:2px">{{ r.stage }} · {{ r.week }}주차</div></div>
+<div><div style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:700;font-size:17px;line-height:1">{{ r.date }}</div><div style="font-size:11px;color:var(--mute,#6B6B72);margin-top:2px">{{ r.stage }} · {{ r.wk }}</div></div>
 <div style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:50%;background:{{ r.ca }}"></span><span style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:700;font-size:19px;color:{{ r.ta }}">{{ r.a }}</span><span style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:800;font-size:19px;padding:0 2px">{{ r.sa }} : {{ r.sb }}</span><span style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:700;font-size:19px;color:{{ r.tb }}">{{ r.b }}</span><span style="width:10px;height:10px;border-radius:50%;background:{{ r.cb }}"></span></div>
 </div></sc-for>
 <sc-if value="{{ noResults }}"><div style="padding:8px 10px;font-size:13px;color:var(--mute,#55555C)">{{ searchHint }}</div></sc-if>
@@ -295,9 +295,10 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <div style="display:flex;align-items:center;gap:10px"><span style="width:28px;height:4px;border-radius:2px;background:var(--pi,#FF5A4F)"></span>{{ piLegend }}</div>
 </div>
 <div style="padding:14px 16px;border-radius:14px;background:var(--paper2,#F6F6F3);font-size:14px;line-height:1.5;color:var(--mute,#3A3A40);max-width:320px">{{ casesNote }}</div>
-<a href="#" style="margin-top:8px;display:flex;align-items:center;justify-content:space-between;height:52px;padding:0 20px;border-radius:12px;background:#0B0B0F;color:#fff;text-decoration:none;font-size:15px;font-weight:600;max-width:320px" style-hover="color:var(--ac2,#C6FF33)">{{ standLink }}<span>→</span></a>
+<a href="{{ standHref }}" style="margin-top:8px;display:flex;align-items:center;justify-content:space-between;height:52px;padding:0 20px;border-radius:12px;background:#0B0B0F;color:#fff;text-decoration:none;font-size:15px;font-weight:600;max-width:320px" style-hover="color:var(--ac2,#C6FF33)">{{ standLink }}<span>→</span></a>
 </div>
 <div>
+<sc-if value="{{ showBracket }}"><div style="margin-bottom:32px"><div style="display:flex;align-items:baseline;justify-content:space-between;gap:6px 12px;flex-wrap:wrap;padding-bottom:10px;border-bottom:2px solid var(--ink,#0B0B0F)"><span style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:800;font-size:30px;line-height:1">{{ bk.title }}</span><span style="font-size:13px;color:var(--mute,#55555C)">{{ bk.note }}</span></div><sc-if value="{{ bk.champion }}"><div style="display:flex;align-items:center;gap:8px;margin-top:12px;font-size:15px;font-weight:700"><span style="background:var(--ac2,#C6FF33);color:#0B0B0F;padding:2px 10px;border-radius:6px;font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:800;font-size:18px">CHAMPION</span>{{ bk.champion }}</div></sc-if><div style="display:flex;gap:14px;overflow-x:auto;padding:14px 2px 8px;scroll-snap-type:x proximity"><sc-for list="{{ bk.columns }}" as="bc" hint-placeholder-count="5"><div style="flex:0 0 178px;display:flex;flex-direction:column;gap:8px;scroll-snap-align:start"><div style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--ink,#0B0B0F)"><span style="width:8px;height:8px;border-radius:50%;background:{{ bc.dot }}"></span>{{ bc.title }}</div><sc-for list="{{ bc.matches }}" as="bm" hint-placeholder-count="2"><div style="border:{{ bm.bd }};border-radius:12px;background:var(--paper2,#F6F6F3);overflow:hidden"><div style="display:flex;justify-content:space-between;gap:6px;padding:6px 10px;font-size:11px;color:var(--mute,#6B6B72)"><span>{{ bm.when }}</span><span style="font-weight:700;color:{{ bm.tagC }}">{{ bm.tag }}</span></div><sc-for list="{{ bm.rows }}" as="br" hint-placeholder-count="2"><div style="display:grid;grid-template-columns:4px 20px minmax(0,1fr) 24px;align-items:center;gap:8px;height:34px;padding-right:10px;border-top:1px solid var(--line,#E6E6E1)"><span style="height:100%;background:{{ br.c }}"></span><span style="width:20px;height:20px;background:{{ br.logo }}"></span><span style="font-size:14px;font-weight:{{ br.w }};color:{{ br.t }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ br.a }}</span><span style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:800;font-size:20px;text-align:right;color:{{ br.t }}">{{ br.s }}</span></div></sc-for></div></sc-for></div></sc-for></div></div></sc-if>
 <div style="display:grid;grid-template-columns:72px minmax(0,1fr) 72px 72px 120px;gap:12px;padding:0 8px 12px;border-bottom:2px solid var(--ink,#0B0B0F);font-size:13px;font-weight:700;color:var(--mute,#55555C)"><span>순위</span><span>팀</span><span style="text-align:center">승</span><span style="text-align:center">패</span><span>세트 득실</span></div>
 <sc-if value="{{ spoiler }}"><div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin:10px 0;padding:10px 14px;border-radius:12px;background:var(--paper2,#F6F6F3);font-size:14px;font-weight:600"><span>스포일러 방지 중이라 순위를 가렸어요</span><button onClick="{{ toggleSpoiler }}" style="height:36px;padding:0 14px;border-radius:999px;border:1px solid var(--ink,#0B0B0F);background:transparent;font:inherit;font-size:13px;font-weight:700;color:var(--ink,#0B0B0F);cursor:pointer">결과 보기</button></div></sc-if>
 <sc-for list="{{ standings }}" as="s" hint-placeholder-count="8">
@@ -374,7 +375,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <sc-if value="{{ hasQ }}"><div style="position:absolute;top:calc(100% + 8px);right:28px;width:400px;z-index:30;background:var(--paper,#fff);border:1px solid var(--line,#E6E6E1);border-radius:16px;box-shadow:0 12px 32px rgba(11,11,15,.12);padding:12px;display:flex;flex-direction:column;gap:6px">
 <div style="font-size:13px;font-weight:700;color:var(--mute,#55555C);padding:2px 4px 4px">{{ searchSummary }}</div>
 <sc-for list="{{ results }}" as="r" hint-placeholder-count="0"><div style="display:grid;grid-template-columns:70px minmax(0,1fr);gap:10px;align-items:center;padding:8px 10px;border-radius:10px;background:var(--paper2,#F6F6F3)">
-<div><div style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:700;font-size:17px;line-height:1">{{ r.date }}</div><div style="font-size:11px;color:var(--mute,#6B6B72);margin-top:2px">{{ r.stage }} · {{ r.week }}주차</div></div>
+<div><div style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:700;font-size:17px;line-height:1">{{ r.date }}</div><div style="font-size:11px;color:var(--mute,#6B6B72);margin-top:2px">{{ r.stage }} · {{ r.wk }}</div></div>
 <div style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:50%;background:{{ r.ca }}"></span><span style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:700;font-size:19px;color:{{ r.ta }}">{{ r.a }}</span><span style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:800;font-size:19px;padding:0 2px">{{ r.sa }} : {{ r.sb }}</span><span style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:700;font-size:19px;color:{{ r.tb }}">{{ r.b }}</span><span style="width:10px;height:10px;border-radius:50%;background:{{ r.cb }}"></span></div>
 </div></sc-for>
 <sc-if value="{{ noResults }}"><div style="padding:8px 10px;font-size:13px;color:var(--mute,#55555C)">{{ searchHint }}</div></sc-if>
@@ -553,9 +554,10 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <div style="display:flex;align-items:center;gap:10px"><span style="width:28px;height:4px;border-radius:2px;background:var(--pi,#FF5A4F)"></span>{{ piLegend }}</div>
 </div>
 <div style="padding:14px 16px;border-radius:14px;background:var(--paper2,#F6F6F3);font-size:14px;line-height:1.5;color:var(--mute,#3A3A40);max-width:320px">{{ casesNote }}</div>
-<a href="#" style="margin-top:8px;display:flex;align-items:center;justify-content:space-between;height:52px;padding:0 20px;border-radius:12px;background:#0B0B0F;color:#fff;text-decoration:none;font-size:15px;font-weight:600;max-width:320px" style-hover="color:var(--ac2,#C6FF33)">{{ standLink }}<span>→</span></a>
+<a href="{{ standHref }}" style="margin-top:8px;display:flex;align-items:center;justify-content:space-between;height:52px;padding:0 20px;border-radius:12px;background:#0B0B0F;color:#fff;text-decoration:none;font-size:15px;font-weight:600;max-width:320px" style-hover="color:var(--ac2,#C6FF33)">{{ standLink }}<span>→</span></a>
 </div>
 <div>
+<sc-if value="{{ showBracket }}"><div style="margin-bottom:32px"><div style="display:flex;align-items:baseline;justify-content:space-between;gap:6px 12px;flex-wrap:wrap;padding-bottom:10px;border-bottom:2px solid var(--ink,#0B0B0F)"><span style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:800;font-size:30px;line-height:1">{{ bk.title }}</span><span style="font-size:13px;color:var(--mute,#55555C)">{{ bk.note }}</span></div><sc-if value="{{ bk.champion }}"><div style="display:flex;align-items:center;gap:8px;margin-top:12px;font-size:15px;font-weight:700"><span style="background:var(--ac2,#C6FF33);color:#0B0B0F;padding:2px 10px;border-radius:6px;font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:800;font-size:18px">CHAMPION</span>{{ bk.champion }}</div></sc-if><div style="display:flex;gap:14px;overflow-x:auto;padding:14px 2px 8px;scroll-snap-type:x proximity"><sc-for list="{{ bk.columns }}" as="bc" hint-placeholder-count="5"><div style="flex:0 0 178px;display:flex;flex-direction:column;gap:8px;scroll-snap-align:start"><div style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--ink,#0B0B0F)"><span style="width:8px;height:8px;border-radius:50%;background:{{ bc.dot }}"></span>{{ bc.title }}</div><sc-for list="{{ bc.matches }}" as="bm" hint-placeholder-count="2"><div style="border:{{ bm.bd }};border-radius:12px;background:var(--paper2,#F6F6F3);overflow:hidden"><div style="display:flex;justify-content:space-between;gap:6px;padding:6px 10px;font-size:11px;color:var(--mute,#6B6B72)"><span>{{ bm.when }}</span><span style="font-weight:700;color:{{ bm.tagC }}">{{ bm.tag }}</span></div><sc-for list="{{ bm.rows }}" as="br" hint-placeholder-count="2"><div style="display:grid;grid-template-columns:4px 20px minmax(0,1fr) 24px;align-items:center;gap:8px;height:34px;padding-right:10px;border-top:1px solid var(--line,#E6E6E1)"><span style="height:100%;background:{{ br.c }}"></span><span style="width:20px;height:20px;background:{{ br.logo }}"></span><span style="font-size:14px;font-weight:{{ br.w }};color:{{ br.t }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ br.a }}</span><span style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:800;font-size:20px;text-align:right;color:{{ br.t }}">{{ br.s }}</span></div></sc-for></div></sc-for></div></sc-for></div></div></sc-if>
 <div style="display:grid;grid-template-columns:72px minmax(0,1fr) 72px 72px 120px;gap:12px;padding:0 8px 12px;border-bottom:2px solid var(--ink,#0B0B0F);font-size:13px;font-weight:700;color:var(--mute,#55555C)"><span>순위</span><span>팀</span><span style="text-align:center">승</span><span style="text-align:center">패</span><span>세트 득실</span></div>
 <sc-if value="{{ spoiler }}"><div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin:10px 0;padding:10px 14px;border-radius:12px;background:var(--paper2,#F6F6F3);font-size:14px;font-weight:600"><span>스포일러 방지 중이라 순위를 가렸어요</span><button onClick="{{ toggleSpoiler }}" style="height:36px;padding:0 14px;border-radius:999px;border:1px solid var(--ink,#0B0B0F);background:transparent;font:inherit;font-size:13px;font-weight:700;color:var(--ink,#0B0B0F);cursor:pointer">결과 보기</button></div></sc-if>
 <sc-for list="{{ standings }}" as="s" hint-placeholder-count="8">
@@ -633,7 +635,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <sc-if value="{{ hasQ }}"><div style="position:absolute;top:calc(100% + 8px);right:16px;width:calc(100% - 32px);z-index:30;background:var(--paper,#fff);border:1px solid var(--line,#E6E6E1);border-radius:16px;box-shadow:0 12px 32px rgba(11,11,15,.12);padding:12px;display:flex;flex-direction:column;gap:6px">
 <div style="font-size:13px;font-weight:700;color:var(--mute,#55555C);padding:2px 4px 4px">{{ searchSummary }}</div>
 <sc-for list="{{ results }}" as="r" hint-placeholder-count="0"><div style="display:grid;grid-template-columns:70px minmax(0,1fr);gap:10px;align-items:center;padding:8px 10px;border-radius:10px;background:var(--paper2,#F6F6F3)">
-<div><div style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:700;font-size:17px;line-height:1">{{ r.date }}</div><div style="font-size:11px;color:var(--mute,#6B6B72);margin-top:2px">{{ r.stage }} · {{ r.week }}주차</div></div>
+<div><div style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:700;font-size:17px;line-height:1">{{ r.date }}</div><div style="font-size:11px;color:var(--mute,#6B6B72);margin-top:2px">{{ r.stage }} · {{ r.wk }}</div></div>
 <div style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:50%;background:{{ r.ca }}"></span><span style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:700;font-size:19px;color:{{ r.ta }}">{{ r.a }}</span><span style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:800;font-size:19px;padding:0 2px">{{ r.sa }} : {{ r.sb }}</span><span style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:700;font-size:19px;color:{{ r.tb }}">{{ r.b }}</span><span style="width:10px;height:10px;border-radius:50%;background:{{ r.cb }}"></span></div>
 </div></sc-for>
 <sc-if value="{{ noResults }}"><div style="padding:8px 10px;font-size:13px;color:var(--mute,#55555C)">{{ searchHint }}</div></sc-if>
@@ -755,6 +757,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <section style="padding:36px 20px 40px;background:var(--paper,#fff)">
 <div style="font-size:14px;font-weight:700;color:var(--mute,#55555C)">{{ L.stand }}</div>
 <h2 style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:800;font-size:calc(var(--ts,1) * 60px);line-height:.86;margin:10px 0 20px"><span style="display:var(--en,inline)">STANDINGS</span><span style="display:var(--ko,none)">팀별 순위</span></h2>
+<sc-if value="{{ showBracket }}"><div style="margin-bottom:32px"><div style="display:flex;align-items:baseline;justify-content:space-between;gap:6px 12px;flex-wrap:wrap;padding-bottom:10px;border-bottom:2px solid var(--ink,#0B0B0F)"><span style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:800;font-size:30px;line-height:1">{{ bk.title }}</span><span style="font-size:13px;color:var(--mute,#55555C)">{{ bk.note }}</span></div><sc-if value="{{ bk.champion }}"><div style="display:flex;align-items:center;gap:8px;margin-top:12px;font-size:15px;font-weight:700"><span style="background:var(--ac2,#C6FF33);color:#0B0B0F;padding:2px 10px;border-radius:6px;font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:800;font-size:18px">CHAMPION</span>{{ bk.champion }}</div></sc-if><div style="display:flex;gap:14px;overflow-x:auto;padding:14px 2px 8px;scroll-snap-type:x proximity"><sc-for list="{{ bk.columns }}" as="bc" hint-placeholder-count="5"><div style="flex:0 0 178px;display:flex;flex-direction:column;gap:8px;scroll-snap-align:start"><div style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--ink,#0B0B0F)"><span style="width:8px;height:8px;border-radius:50%;background:{{ bc.dot }}"></span>{{ bc.title }}</div><sc-for list="{{ bc.matches }}" as="bm" hint-placeholder-count="2"><div style="border:{{ bm.bd }};border-radius:12px;background:var(--paper2,#F6F6F3);overflow:hidden"><div style="display:flex;justify-content:space-between;gap:6px;padding:6px 10px;font-size:11px;color:var(--mute,#6B6B72)"><span>{{ bm.when }}</span><span style="font-weight:700;color:{{ bm.tagC }}">{{ bm.tag }}</span></div><sc-for list="{{ bm.rows }}" as="br" hint-placeholder-count="2"><div style="display:grid;grid-template-columns:4px 20px minmax(0,1fr) 24px;align-items:center;gap:8px;height:34px;padding-right:10px;border-top:1px solid var(--line,#E6E6E1)"><span style="height:100%;background:{{ br.c }}"></span><span style="width:20px;height:20px;background:{{ br.logo }}"></span><span style="font-size:14px;font-weight:{{ br.w }};color:{{ br.t }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ br.a }}</span><span style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:800;font-size:20px;text-align:right;color:{{ br.t }}">{{ br.s }}</span></div></sc-for></div></sc-for></div></sc-for></div></div></sc-if>
 <div style="display:grid;grid-template-columns:40px minmax(0,1fr) 32px 32px 44px;gap:8px;padding:0 4px 10px;border-bottom:2px solid var(--ink,#0B0B0F);font-size:12px;font-weight:700;color:var(--mute,#55555C)"><span>순위</span><span>팀</span><span style="text-align:center">승</span><span style="text-align:center">패</span><span>득실</span></div>
 <sc-if value="{{ spoiler }}"><div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin:10px 0;padding:10px 14px;border-radius:12px;background:var(--paper2,#F6F6F3);font-size:14px;font-weight:600"><span>스포일러 방지 중이라 순위를 가렸어요</span><button onClick="{{ toggleSpoiler }}" style="height:36px;padding:0 14px;border-radius:999px;border:1px solid var(--ink,#0B0B0F);background:transparent;font:inherit;font-size:13px;font-weight:700;color:var(--ink,#0B0B0F);cursor:pointer">결과 보기</button></div></sc-if>
 <sc-for list="{{ standings }}" as="s" hint-placeholder-count="8">
@@ -767,7 +770,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <sc-if value="{{ s.po }}"><div style="display:flex;align-items:center;gap:8px;margin:-1px 0"><div style="flex:1;height:3px;background:var(--ac2,#C6FF33);color:#0B0B0F"></div><span style="font-size:11px;font-weight:700;background:var(--ac2,#C6FF33);padding:2px 6px;border-radius:5px;color:#0B0B0F">{{ poShort }}</span></div></sc-if>
 <sc-if value="{{ s.pi }}"><div style="display:flex;align-items:center;gap:8px;margin:-1px 0"><div style="flex:1;height:3px;background:var(--pi,#FF5A4F)"></div><span style="font-size:11px;font-weight:700;background:var(--pi,#FF5A4F);color:#0B0B0F;padding:2px 6px;border-radius:5px">{{ piShort }}</span></div></sc-if>
 </sc-for>
-<a href="#" style="margin-top:16px;display:flex;align-items:center;justify-content:space-between;height:52px;padding:0 18px;border-radius:12px;background:#0B0B0F;color:#fff;text-decoration:none;font-size:15px;font-weight:600">{{ standLink }}<span>→</span></a>
+<a href="{{ standHref }}" style="margin-top:16px;display:flex;align-items:center;justify-content:space-between;height:52px;padding:0 18px;border-radius:12px;background:#0B0B0F;color:#fff;text-decoration:none;font-size:15px;font-weight:600">{{ standLink }}<span>→</span></a>
 </section>
 <section style="padding:36px 20px 40px;background:var(--paper2,#F6F6F3)">
 <div style="font-size:14px;font-weight:700;color:var(--mute,#55555C)">{{ L.teams }}</div>
@@ -825,7 +828,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <sc-if value="{{ hasQ }}"><div style="position:absolute;top:calc(100% + 8px);right:16px;width:calc(100% - 32px);z-index:30;background:var(--paper,#fff);border:1px solid var(--line,#E6E6E1);border-radius:16px;box-shadow:0 12px 32px rgba(11,11,15,.12);padding:12px;display:flex;flex-direction:column;gap:6px">
 <div style="font-size:13px;font-weight:700;color:var(--mute,#55555C);padding:2px 4px 4px">{{ searchSummary }}</div>
 <sc-for list="{{ results }}" as="r" hint-placeholder-count="0"><div style="display:grid;grid-template-columns:70px minmax(0,1fr);gap:10px;align-items:center;padding:8px 10px;border-radius:10px;background:var(--paper2,#F6F6F3)">
-<div><div style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:700;font-size:17px;line-height:1">{{ r.date }}</div><div style="font-size:11px;color:var(--mute,#6B6B72);margin-top:2px">{{ r.stage }} · {{ r.week }}주차</div></div>
+<div><div style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:700;font-size:17px;line-height:1">{{ r.date }}</div><div style="font-size:11px;color:var(--mute,#6B6B72);margin-top:2px">{{ r.stage }} · {{ r.wk }}</div></div>
 <div style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:50%;background:{{ r.ca }}"></span><span style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:700;font-size:19px;color:{{ r.ta }}">{{ r.a }}</span><span style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:800;font-size:19px;padding:0 2px">{{ r.sa }} : {{ r.sb }}</span><span style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:700;font-size:19px;color:{{ r.tb }}">{{ r.b }}</span><span style="width:10px;height:10px;border-radius:50%;background:{{ r.cb }}"></span></div>
 </div></sc-for>
 <sc-if value="{{ noResults }}"><div style="padding:8px 10px;font-size:13px;color:var(--mute,#55555C)">{{ searchHint }}</div></sc-if>
@@ -947,6 +950,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <section style="padding:36px 20px 40px;background:var(--paper,#fff)">
 <div style="font-size:14px;font-weight:700;color:var(--mute,#55555C)">{{ L.stand }}</div>
 <h2 style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:800;font-size:calc(var(--ts,1) * 60px);line-height:.86;margin:10px 0 20px"><span style="display:var(--en,inline)">STANDINGS</span><span style="display:var(--ko,none)">팀별 순위</span></h2>
+<sc-if value="{{ showBracket }}"><div style="margin-bottom:32px"><div style="display:flex;align-items:baseline;justify-content:space-between;gap:6px 12px;flex-wrap:wrap;padding-bottom:10px;border-bottom:2px solid var(--ink,#0B0B0F)"><span style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:800;font-size:30px;line-height:1">{{ bk.title }}</span><span style="font-size:13px;color:var(--mute,#55555C)">{{ bk.note }}</span></div><sc-if value="{{ bk.champion }}"><div style="display:flex;align-items:center;gap:8px;margin-top:12px;font-size:15px;font-weight:700"><span style="background:var(--ac2,#C6FF33);color:#0B0B0F;padding:2px 10px;border-radius:6px;font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:800;font-size:18px">CHAMPION</span>{{ bk.champion }}</div></sc-if><div style="display:flex;gap:14px;overflow-x:auto;padding:14px 2px 8px;scroll-snap-type:x proximity"><sc-for list="{{ bk.columns }}" as="bc" hint-placeholder-count="5"><div style="flex:0 0 178px;display:flex;flex-direction:column;gap:8px;scroll-snap-align:start"><div style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--ink,#0B0B0F)"><span style="width:8px;height:8px;border-radius:50%;background:{{ bc.dot }}"></span>{{ bc.title }}</div><sc-for list="{{ bc.matches }}" as="bm" hint-placeholder-count="2"><div style="border:{{ bm.bd }};border-radius:12px;background:var(--paper2,#F6F6F3);overflow:hidden"><div style="display:flex;justify-content:space-between;gap:6px;padding:6px 10px;font-size:11px;color:var(--mute,#6B6B72)"><span>{{ bm.when }}</span><span style="font-weight:700;color:{{ bm.tagC }}">{{ bm.tag }}</span></div><sc-for list="{{ bm.rows }}" as="br" hint-placeholder-count="2"><div style="display:grid;grid-template-columns:4px 20px minmax(0,1fr) 24px;align-items:center;gap:8px;height:34px;padding-right:10px;border-top:1px solid var(--line,#E6E6E1)"><span style="height:100%;background:{{ br.c }}"></span><span style="width:20px;height:20px;background:{{ br.logo }}"></span><span style="font-size:14px;font-weight:{{ br.w }};color:{{ br.t }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ br.a }}</span><span style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:800;font-size:20px;text-align:right;color:{{ br.t }}">{{ br.s }}</span></div></sc-for></div></sc-for></div></sc-for></div></div></sc-if>
 <div style="display:grid;grid-template-columns:40px minmax(0,1fr) 32px 32px 44px;gap:8px;padding:0 4px 10px;border-bottom:2px solid var(--ink,#0B0B0F);font-size:12px;font-weight:700;color:var(--mute,#55555C)"><span>순위</span><span>팀</span><span style="text-align:center">승</span><span style="text-align:center">패</span><span>득실</span></div>
 <sc-if value="{{ spoiler }}"><div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin:10px 0;padding:10px 14px;border-radius:12px;background:var(--paper2,#F6F6F3);font-size:14px;font-weight:600"><span>스포일러 방지 중이라 순위를 가렸어요</span><button onClick="{{ toggleSpoiler }}" style="height:36px;padding:0 14px;border-radius:999px;border:1px solid var(--ink,#0B0B0F);background:transparent;font:inherit;font-size:13px;font-weight:700;color:var(--ink,#0B0B0F);cursor:pointer">결과 보기</button></div></sc-if>
 <sc-for list="{{ standings }}" as="s" hint-placeholder-count="8">
@@ -959,7 +963,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <sc-if value="{{ s.po }}"><div style="display:flex;align-items:center;gap:8px;margin:-1px 0"><div style="flex:1;height:3px;background:var(--ac2,#C6FF33);color:#0B0B0F"></div><span style="font-size:11px;font-weight:700;background:var(--ac2,#C6FF33);padding:2px 6px;border-radius:5px;color:#0B0B0F">{{ poShort }}</span></div></sc-if>
 <sc-if value="{{ s.pi }}"><div style="display:flex;align-items:center;gap:8px;margin:-1px 0"><div style="flex:1;height:3px;background:var(--pi,#FF5A4F)"></div><span style="font-size:11px;font-weight:700;background:var(--pi,#FF5A4F);color:#0B0B0F;padding:2px 6px;border-radius:5px">{{ piShort }}</span></div></sc-if>
 </sc-for>
-<a href="#" style="margin-top:16px;display:flex;align-items:center;justify-content:space-between;height:52px;padding:0 18px;border-radius:12px;background:#0B0B0F;color:#fff;text-decoration:none;font-size:15px;font-weight:600">{{ standLink }}<span>→</span></a>
+<a href="{{ standHref }}" style="margin-top:16px;display:flex;align-items:center;justify-content:space-between;height:52px;padding:0 18px;border-radius:12px;background:#0B0B0F;color:#fff;text-decoration:none;font-size:15px;font-weight:600">{{ standLink }}<span>→</span></a>
 </section>
 <section style="padding:36px 20px 40px;background:var(--paper2,#F6F6F3)">
 <div style="font-size:14px;font-weight:700;color:var(--mute,#55555C)">{{ L.teams }}</div>
@@ -1086,7 +1090,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;matchDay&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;상태&quot;},&quot;streamLive&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;상태&quot;},&quot;weeksLeft&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:0,&quot;max&quot;:8,&quot;step&quot;:1,&quot;unit&quot;:&quot;주&quot;,&quot;default&quot;:2,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;상태&quot;},&quot;showCasters&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;오늘의 경기&quot;},&quot;mapsOpenDefault&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;오늘의 경기&quot;},&quot;showBans&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;오늘의 경기&quot;},&quot;showComps&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;오늘의 경기&quot;},&quot;winnerLeft&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;결과 표시&quot;},&quot;scheduleView&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;캘린더 + 리스트&quot;,&quot;리스트만&quot;,&quot;캘린더만&quot;],&quot;default&quot;:&quot;캘린더 + 리스트&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;결과 표시&quot;},&quot;showSearch&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;결과 표시&quot;},&quot;casesTiming&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;항상 표시&quot;,&quot;종료 2주 전부터&quot;,&quot;종료 1주 전부터&quot;],&quot;default&quot;:&quot;종료 2주 전부터&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;순위&quot;},&quot;playInColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;options&quot;:[&quot;#FF5A4F&quot;,&quot;#FF8A3D&quot;,&quot;#7D39EB&quot;],&quot;default&quot;:&quot;#FF5A4F&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;순위&quot;},&quot;showTeamDetail&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;팀 &amp; 선수&quot;},&quot;showStaff&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;팀 &amp; 선수&quot;},&quot;liveStyle&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;빨간 테두리&quot;,&quot;빨간 점&quot;,&quot;표시 안 함&quot;],&quot;default&quot;:&quot;빨간 테두리&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;팀 &amp; 선수&quot;},&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;options&quot;:[&quot;#7D39EB&quot;,&quot;#2F6BFF&quot;,&quot;#E8467C&quot;,&quot;#0B0B0F&quot;],&quot;default&quot;:&quot;#7D39EB&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;컬러 &amp; 타이포&quot;},&quot;accent2&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;options&quot;:[&quot;#C6FF33&quot;,&quot;#FFD84D&quot;,&quot;#5CF2C8&quot;,&quot;#FFFFFF&quot;],&quot;default&quot;:&quot;#C6FF33&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;컬러 &amp; 타이포&quot;},&quot;teamColors&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;컬러 &amp; 타이포&quot;},&quot;displayFont&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Barlow Condensed&quot;,&quot;Oswald&quot;,&quot;Saira Condensed&quot;,&quot;Big Shoulders Display&quot;],&quot;default&quot;:&quot;Barlow Condensed&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;컬러 &amp; 타이포&quot;},&quot;titleScale&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:0.6,&quot;max&quot;:1.3,&quot;step&quot;:0.05,&quot;default&quot;:1,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;컬러 &amp; 타이포&quot;},&quot;titleLang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;영문&quot;,&quot;한글&quot;],&quot;default&quot;:&quot;영문&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;컬러 &amp; 타이포&quot;}}">
 // Data: window.OWCS from owcs-data.js (built by build_owcs_data.py from the OWCSKR collector + live capture).
-const D = window.OWCS || { teams: [], players: [], matches: [], standings: [], live: {}, stage: 'OWCS KR', stageRange: ['', ''], playoffs: 4, lcq: 8, format: '', sources: '' };
+const D = window.OWCS || { teams: [], players: [], matches: [], standings: [], live: {}, stage: 'OWCS KR', stageRange: ['', ''], stageEnd: '', bracket: null, playoffs: 4, lcq: 8, format: '', sources: '' };
 const TEAM = Object.fromEntries(D.teams.map((t) => [t.a, t]));
 const team = (a) => TEAM[a] || { a, n: a, ko: a, color: '#C9C9CF', logo: '' };
 // team logo as a transparent cut-out (no backing circle); dark = the variant drawn for dark backgrounds
@@ -1103,6 +1107,11 @@ const params = new URLSearchParams(location.search);
 const LOADED = Date.now();
 const nowMs = () => params.get('date') ? new Date(params.get('date') + 'T' + (params.get('time') || '12:00') + ':00+09:00').getTime() : window.__owcsNow ? window.__owcsNow + (Date.now() - LOADED) : Date.now();
 const MATCH_LEN = 3 * 3600e3;
+// Liquipedia has no start time yet (tbd): the time shown is a guess, so say so
+const tmOf = (m) => m.tbd ? '시간 미정' : m.time;
+const startTxt = (m) => m.tbd ? '시작 시간 발표 전' : m.time + ' KST 시작';
+const vsOf = (m) => m.a === 'TBD' && m.b === 'TBD' ? (m.round || m.label) + ' · 대진 미정' : m.a + ' vs ' + m.b;
+const STAGE_SHORT = D.stage.replace(/^\d{4} OWCS KR /, '');
 const state = (m, now) => {
   const t0 = new Date(m.date).getTime();
   if (m.live) return 'live';
@@ -1122,9 +1131,11 @@ const icsTime = (ms) => new Date(ms).toISOString().replace(/[-:]/g, '').replace(
 const icsOf = (list) => {
   const ev = list.map((m) => {
     const t0 = new Date(m.date).getTime();
-    return ['BEGIN:VEVENT', 'UID:owcs-' + m.id + '@owcskr.fan', 'DTSTAMP:' + icsTime(t0), 'DTSTART:' + icsTime(t0), 'DTEND:' + icsTime(t0 + 2 * 3600e3),
+    const day = (d) => d.replace(/-/g, ''), next = (d) => dayOf(new Date(d + 'T12:00:00+09:00').getTime() + 86400e3);
+    const when = m.tbd ? ['DTSTART;VALUE=DATE:' + day(m.day), 'DTEND;VALUE=DATE:' + day(next(m.day))] : ['DTSTART:' + icsTime(t0), 'DTEND:' + icsTime(t0 + 2 * 3600e3)];
+    return ['BEGIN:VEVENT', 'UID:owcs-' + m.id + '@owcskr.fan', 'DTSTAMP:' + icsTime(t0), ...when,
       'SUMMARY:' + icsEsc('[OWCS KR] ' + team(m.a).n + ' vs ' + team(m.b).n),
-      'DESCRIPTION:' + icsEsc(D.stage + ' ' + m.week + '주차 · SOOP owesports 생중계 https://www.sooplive.com/station/owesports'),
+      'DESCRIPTION:' + icsEsc(D.stage + ' ' + (m.label || m.week + '주차') + ' · SOOP owesports 생중계 https://www.sooplive.com/station/owesports'),
       'LOCATION:SOOP owesports', 'END:VEVENT'].join('\r\n');
   });
   return 'data:text/calendar;charset=utf-8,' + encodeURIComponent(['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//OWCS KR fan//KO', 'CALSCALE:GREGORIAN', 'X-WR-CALNAME:OWCS KR', 'X-WR-TIMEZONE:Asia/Seoul', ...ev, 'END:VCALENDAR'].join('\r\n'));
@@ -1136,7 +1147,7 @@ const calUrl = (a) => { const f = 'owcs-kr-upcoming' + (a ? '-' + a.toLowerCase(
 const gcalOf = (m) => {
   const t0 = new Date(m.date).getTime();
   return 'https://calendar.google.com/calendar/render?' + new URLSearchParams({ action: 'TEMPLATE', text: '[OWCS KR] ' + team(m.a).n + ' vs ' + team(m.b).n,
-    dates: icsTime(t0) + '/' + icsTime(t0 + 2 * 3600e3), details: D.stage + ' ' + m.week + '주차 · SOOP owesports https://www.sooplive.com/station/owesports', location: 'SOOP owesports', ctz: 'Asia/Seoul' }).toString();
+    dates: icsTime(t0) + '/' + icsTime(t0 + 2 * 3600e3), details: D.stage + ' ' + (m.label || m.week + '주차') + ' · SOOP owesports https://www.sooplive.com/station/owesports', location: 'SOOP owesports', ctz: 'Asia/Seoul' }).toString();
 };
 
 const DARK = { '--glass': 'rgba(30,30,38,0.72)', '--paper': '#16161C', '--paper2': '#0E0E12', '--paper3': '#24242C', '--line': '#2E2E37', '--ink': '#F2F2F5', '--mute': '#A3A3AD', '--banner-edge': '#2E2E37' };
@@ -1185,6 +1196,28 @@ class Component extends DCLogic {
     const upcoming = M.filter((m) => m.st === 'up');
     const nextM = upcoming[0];
     const endMs = new Date(D.stageRange[1] + 'T23:59:59+09:00').getTime();
+    // after the regular season: seeding deciders / LCQ / playoffs from owcs-data.js bracket
+    const rsOver = now > endMs, allOver = now > new Date((D.stageEnd || D.stageRange[1]) + 'T23:59:59+09:00').getTime();
+    const BK = D.bracket, showBracket = !!BK && rsOver;
+    const byId = Object.fromEntries(M.map((m) => [m.id, m]));
+    const curPO = M.find((m) => m.phase !== 'rs' && m.st !== 'done');
+    const bk = !showBracket ? { title: '', note: '', champion: '', columns: [] } : {
+      title: lang === '영문' ? 'PLAYOFFS' : '플레이오프 대진표',
+      note: BK.label + ' · ' + md(BK.start + 'T12:00:00+09:00') + ' – ' + md(BK.end + 'T12:00:00+09:00') + ' · 시드 결정전 3선승 · 플레이오프 4선승',
+      champion: SP ? '' : BK.champion || '',
+      // the seeding deciders (6 matches) drop out once they are over and the playoffs are on: the results page keeps them
+      columns: BK.columns.filter((c) => !(c.key === 'seed' && c.matches.every((x) => (byId[x.id] || {}).st === 'done') && BK.columns.some((d) => d.key.startsWith('po-') && d.matches.some((x) => (byId[x.id] || {}).st !== 'up')))).map((c) => ({ title: c.title,
+        dot: curPO && c.matches.some((x) => x.id === curPO.id) ? 'var(--ac,#7D39EB)' : c.matches.every((x) => (byId[x.id] || {}).st === 'done') ? 'var(--mute,#9A9AA0)' : 'var(--line,#D4D4CF)',
+        matches: c.matches.map((x) => {
+          const m = byId[x.id] || { st: x.played ? 'done' : 'up', sa: x.rows[0].s, sb: x.rows[1].s, a: x.rows[0].a, b: x.rows[1].a };
+          const shown = !SP && (m.played || m.st === 'live') && m.a !== 'TBD', top = Math.max(m.sa || 0, m.sb || 0);
+          const rows = [[m.a, m.sa], [m.b, m.sb]].map(([a, s]) => { const win = shown && m.st === 'done' && s === top;
+            return { a: a === 'TBD' ? '미정' : a, c: a === 'TBD' ? 'var(--line,#D4D4CF)' : col(a), logo: a === 'TBD' ? 'transparent' : logoBg(a, DM), s: shown ? s : '',
+              w: win || !shown ? 700 : 500, t: shown && m.st === 'done' && !win ? 'var(--mute,#8A8A93)' : 'var(--ink,#0B0B0F)' }; });
+          const live = m.st === 'live', isNext = curPO && curPO.id === x.id;
+          return { when: x.when, rows, tag: live ? 'LIVE' : x.round !== c.title ? x.round : '', tagC: live ? '#D92D20' : 'var(--mute,#6B6B72)',
+            bd: live ? '2px solid #D92D20' : isNext ? '2px solid var(--ac,#7D39EB)' : '1px solid var(--line,#E6E6E1)' };
+        }) })) };
     const weeksLeft = Math.max(0, Math.ceil((endMs - now) / (7 * 86400e3)));
     const timing = P.casesTiming ?? '종료 2주 전부터';
     const casesOn = timing === '항상 표시' || (timing === '종료 2주 전부터' && weeksLeft <= 2) || (timing === '종료 1주 전부터' && weeksLeft <= 1);
@@ -1236,10 +1269,10 @@ class Component extends DCLogic {
     const card = (m) => {
       const o = orient(m.a, m.sa, m.b, m.sb);
       return { date: md(m.date), dow: dow(m.date), a: o[0], b: o[2], la: logoBg(o[0], DM), lb: logoBg(o[2], DM),
-        mid: m.st === 'up' || SP ? 'vs' : o[1] + ' : ' + o[3], time: m.time + ' KST', tm: m.time, live: m.st === 'live', up: m.st === 'up', done: m.st === 'done',
+        mid: m.st === 'up' || SP ? 'vs' : o[1] + ' : ' + o[3], time: m.tbd ? '시간 미정' : m.time + ' KST', tm: tmOf(m), live: m.st === 'live', up: m.st === 'up', done: m.st === 'done',
         bd: MY && (m.a === MY || m.b === MY) ? '2px solid ' + col(MY) : '1px solid var(--line,#E6E6E1)' };
     };
-    const whenOf = (m) => (m.day === today ? '오늘 ' : md(m.date) + ' (' + dow(m.date) + ') ') + m.time;
+    const whenOf = (m) => (m.day === today ? '오늘 ' : md(m.date) + ' (' + dow(m.date) + ') ') + tmOf(m);
     // map rows (shared with the results page): owcs-maps.js
     const buildMaps = (m) => window.OWCSMaps.build(m, { spoiler: SP, showBans, isOpen: (k) => this.state.openMaps[k],
       toggle: (k) => this.setState((s) => ({ openMaps: { ...s.openMaps, [k]: !s.openMaps[k] } })) });
@@ -1258,7 +1291,7 @@ class Component extends DCLogic {
     const hs = hero ? orient(hero.a, hero.sa, hero.b, hero.sb) : ['', 0, '', 0];
     const heroSet = hero ? hero.maps.filter((x) => x.winner).length + (hero.st === 'live' ? 1 : 0) : 0;
     return {
-      rootVars, todayMode: this.state.dark ? 'gray dark' : 'gray',   // today's block: one rounded charcoal box on the page paper (light or dark)
+      rootVars, todayMode: params.get('bg') === 'old' ? (this.state.dark ? 'gray dark' : 'gray') : 'light',   // B background: today's block sits on the page, only its screens/cards are dark   // today's block: one rounded charcoal box on the page paper (light or dark)
       nav: ['#', 'OWCS KR Results.dc.html', '#standings', 'OWCS KR 직관.html', '#teams', 'OWCS KR 방송.html'].map((href, k) => ({ label: L.nav[k], href })),
       weekdays: DOWS, cells, week,
       calTitle: Y + '. ' + pad(Mo + 1), calPrev: () => shiftMonth(-1), calNext: () => shiftMonth(1),
@@ -1268,7 +1301,7 @@ class Component extends DCLogic {
       shareOpen: this.state.share, openShare: () => this.setState({ share: true, shareMsg: '' }), closeShare: () => this.setState({ share: false }),
       markAdded: () => this.setState({ shareMsg: 'ICS 파일을 받았어요 · 구글 캘린더 > 설정 > 가져오기에서 올리면 돼요' }),
       shareDone: this.state.shareMsg || this.state.copied === 'link' ? (this.state.shareMsg || '링크를 복사했어요') : '',
-      shareTitle: 'OWCS KR ' + D.stage.replace(/^2026 OWCS KR /, '') + ' 경기 일정',
+      shareTitle: 'OWCS KR ' + STAGE_SHORT + ' 경기 일정',
       shareSub: (M.length ? md(M[0].date) + ' – ' + md(M[M.length - 1].date) : '') + ' · ' + M.length + '경기 · 모든 시간 KST',
       shareAllCount: M.length + '경기', shareLeftCount: left.length + '경기',
       icsAll: icsOf(M), icsLeft: icsOf(left),
@@ -1294,10 +1327,10 @@ class Component extends DCLogic {
         { label: this.state.copied === 'link' ? '복사됨' : '링크 복사', icon: '⧉', bg: 'rgba(120,120,128,0.16)', fg: '#000000', go: () => this.copy('link', location.href) },
       ],
       linkLabel: this.state.copied === 'link' ? '링크 복사됨 ✓' : '일정 링크 복사',
-      venueLine: (nextM ? md(nextM.date) + ' ' + team(nextM.a).a + ' vs ' + team(nextM.b).a : '플레이오프') + ' · WDG 스튜디오 홍대',
+      venueLine: (nextM ? md(nextM.date) + ' ' + vsOf(nextM) : allOver ? '다음 스테이지' : '플레이오프') + ' · WDG 스튜디오 홍대',
       venueDates: nextM ? md(nextM.date) : '–',
       headerBadge: hero && hero.st === 'live' ? 'LIVE' : 'NEXT',
-      headerMatch: hero && hero.st === 'live' ? hero.a + ' vs ' + hero.b : (nextM ? nextM.a + ' vs ' + nextM.b : ''),
+      headerMatch: hero && hero.st === 'live' ? vsOf(hero) : (nextM ? vsOf(nextM) : ''),
       searchHint: '일치하는 경기가 없어요. ' + D.teams.map((t) => t.a).join(', ') + ' 중에서 찾아보세요.',
       matchDay, countdownMode: !matchDay,
       streamLive: !!hero && hero.st === 'live', streamOff: !hero || hero.st !== 'live',
@@ -1306,25 +1339,26 @@ class Component extends DCLogic {
       chanHref: this.state.lang === 'ja' ? 'https://www.youtube.com/@ow_esports_jp/live' : 'https://www.sooplive.com/station/owesports',
       chanLabel: this.state.lang === 'ja' ? 'YouTube @ow_esports_jp ↗' : 'SOOP owesports 방송국 ↗',
       streamHead: hero && hero.st === 'done' ? '경기 종료' : '방송 예정',
-      streamNote: hero && hero.st === 'done' ? '오늘 경기가 모두 끝났어요 · 다시보기는 SOOP owesports 방송국에서 볼 수 있어요' : (hero ? hero.time + ' KST 시작 · 방송이 시작되면 이곳에 자동으로 표시돼요' : ''),
-      streamNoteShort: hero && hero.st === 'done' ? '오늘 경기 종료' : (hero ? hero.time + ' KST 시작' : ''),
+      streamNote: hero && hero.st === 'done' ? '오늘 경기가 모두 끝났어요 · 다시보기는 SOOP owesports 방송국에서 볼 수 있어요' : (hero ? startTxt(hero) + ' · 방송이 시작되면 이곳에 자동으로 표시돼요' : ''),
+      streamNoteShort: hero && hero.st === 'done' ? '오늘 경기 종료' : (hero ? startTxt(hero) : ''),
       todayLabel: matchDay ? L.todayP + ' · ' + md(today + 'T12:00:00+09:00') + ' (' + DOWS[tk.getUTCDay()] + ')' : L.none,
       todayTitle: lang === '영문' ? (matchDay ? 'TODAY' : 'NEXT MATCH') : (matchDay ? '오늘의 경기' : '다음 경기'),
-      stageLine: D.stage + ' · 정규 리그 ' + ((hero || nextM || {}).week || '') + '주차',
+      stageLine: D.stage + ' · ' + ((hero || nextM || {}).label || (allOver ? '일정 종료' : '')),
       hm: { a: hs[0], b: hs[2], an: '', bn: '', la: logoBg(hs[0], true), lb: logoBg(hs[2], true),
-        status: !hero ? '' : hero.st === 'live' ? 'LIVE · ' + Math.max(1, heroSet) + '세트' : hero.st === 'done' ? '종료' : hero.time + ' 시작' },
+        status: !hero ? '' : hero.st === 'live' ? 'LIVE · ' + Math.max(1, heroSet) + '세트' : hero.st === 'done' ? '종료' : hero.tbd ? '시간 미정' : hero.time + ' 시작' },
       cast: hero && hero.casters.length ? hero.casters.join(' · ') : '발표 전',
       potmLine: hero && hero.potm && !SP ? hero.potm : '',
-      nx: nextM ? { when: md(nextM.date) + ' (' + dow(nextM.date) + ') ' + nextM.time, a: nextM.a, b: nextM.b, la: logoBg(nextM.a, true), lb: logoBg(nextM.b, true) } : { when: '–', a: '', b: '', la: 'none', lb: 'none' },
-      offNote: nextM ? '다음 경기 ' + md(nextM.date) + ' (' + dow(nextM.date) + ') ' + nextM.time + ' KST · 방송이 시작되면 이곳에 자동으로 표시돼요' : '정규 리그 일정이 끝났어요',
-      offNoteShort: nextM ? md(nextM.date) + ' ' + nextM.time + ' KST 시작' : '',
+      nx: nextM ? { when: md(nextM.date) + ' (' + dow(nextM.date) + ') ' + tmOf(nextM), a: nextM.a, b: nextM.b, la: logoBg(nextM.a, true), lb: logoBg(nextM.b, true) } : { when: '–', a: '', b: '', la: 'none', lb: 'none' },
+      offNote: nextM ? '다음 경기 ' + md(nextM.date) + ' (' + dow(nextM.date) + ') ' + (nextM.tbd ? '· 시작 시간 발표 전' : nextM.time + ' KST') + ' · 방송이 시작되면 이곳에 자동으로 표시돼요' : '이번 스테이지 일정이 모두 끝났어요',
+      offNoteShort: nextM ? md(nextM.date) + ' ' + startTxt(nextM) : '',
       countdown: [{ v: pad(Math.floor(diff / 86400)), l: '일' }, { v: pad(Math.floor(diff % 86400 / 3600)), l: '시간' }, { v: pad(Math.floor(diff % 3600 / 60)), l: '분' }, { v: pad(diff % 60), l: '초' }],
       showCasters: P.showCasters ?? true,
       showMaps, toggleMaps: () => this.setState({ mapsShown: !showMaps }),
       mapsHint: showMaps ? '세트별 상세 접기' : '스코어를 눌러 세트별 맵 · 밴 · 승리 팀 보기', mapsChev: showMaps ? '▴' : '▾',
       mapsD: heroMaps, mapsM: heroMaps, mapsS: heroMaps.slice(0, 2),
-      next3: upcoming.filter((m) => m !== hero).slice(0, 3).map((m) => ({ when: whenOf(m), a: m.a, b: m.b, gcal: gcalOf(m), la: logoBg(m.a, this.state.dark), lb: logoBg(m.b, this.state.dark) })),
-      standNote: D.stage.replace(/^2026 OWCS KR /, '') + ' 정규 리그 · ' + md(new Date(now).toISOString()) + ' 기준 · ' + D.format.split(' · ').pop(),
+      next3: upcoming.filter((m) => m !== hero).slice(0, 3).map((m) => ({ when: whenOf(m), a: m.a === 'TBD' ? '미정' : m.a, b: m.b === 'TBD' ? '미정' : m.b, gcal: gcalOf(m), la: logoBg(m.a, this.state.dark), lb: logoBg(m.b, this.state.dark) })),
+      standNote: STAGE_SHORT + ' 정규 리그 · ' + (rsOver ? '최종 순위' : md(new Date(now).toISOString()) + ' 기준') + ' · ' + D.format.split(' · ').pop(),
+      showBracket, bk,
       poLegend: '1–' + D.playoffs + '위 플레이오프 시드 결정전', piLegend: (D.playoffs + 1) + '–' + D.lcq + '위 라스트 찬스 예선',
       poLine: '플레이오프 진출선', piLine: '라스트 찬스 진출선', poShort: '플레이오프', piShort: 'LCQ',
       standings: D.standings.map((s, i) => ({ r: i + 1, a: s.a, c: col(s.a), logo: logoBg(s.a, DM), n: team(s.a).n,
@@ -1337,8 +1371,9 @@ class Component extends DCLogic {
       L, langs: [['ko', '한국어'], ['ja', '日本語'], ['en', 'EN']].map(([k, label]) => ({ label, bg: this.state.lang === k ? 'var(--ink,#0B0B0F)' : 'transparent', fg: this.state.lang === k ? 'var(--paper,#FFFFFF)' : 'var(--ink,#0B0B0F)', go: () => window.OWCSi18n ? window.OWCSi18n.set(k) : this.setState({ lang: k }) })),
       hasMyTeam: !!MY, myTeamLabel: MY ? L.my + ' · ' + MY : '', myTeamColor: MY ? col(MY) : 'transparent',
       tabs: [['⌂', '홈'], ['▦', '일정'], ['◎', '결과'], ['◆', '팀'], ['●', '선수']].map(([icon, label], k) => ({ icon, label, bg: this.state.tab === k ? 'rgba(120,120,128,0.16)' : 'transparent', fg: this.state.tab === k ? (this.state.dark ? (P.accent2 ?? '#C6FF33') : (P.accent ?? '#7D39EB')) : 'var(--ink,#0B0B0F)', go: () => this.setState({ tab: k }) })),
-      standLink: casesOn ? '전체 순위 · 경우의 수 보기' : '전체 순위 보기',
-      casesNote: casesOn ? '경우의 수 공개 중 · 정규 리그 종료까지 ' + weeksLeft + '주' : '경우의 수는 정규 리그 ' + (timing === '종료 1주 전부터' ? '종료 1주 전' : '종료 2주 전') + '부터 공개돼요 · 현재 ' + weeksLeft + '주 남음',
+      standLink: showBracket ? '대진표 · 지난 시즌 보기' : casesOn ? '전체 순위 · 경우의 수 보기' : '전체 순위 보기',
+      standHref: showBracket ? 'OWCS KR Results.dc.html?tab=bracket' + (params.get('date') ? '&date=' + params.get('date') : '') : casesOn ? 'OWCS KR Results.dc.html?tab=cases' : 'OWCS KR Results.dc.html',
+      casesNote: allOver ? '이번 스테이지 일정이 모두 끝났어요 · 다음 스테이지 일정이 나오면 자동으로 바뀌어요' : rsOver ? '정규 리그가 끝났어요 · 1–' + D.playoffs + '위는 시드 결정전, ' + (D.playoffs + 1) + '–' + D.lcq + '위는 라스트 찬스 예선으로 플레이오프가 이어져요' : casesOn ? '경우의 수 공개 중 · 정규 리그 종료까지 ' + weeksLeft + '주' : '경우의 수는 정규 리그 ' + (timing === '종료 1주 전부터' ? '종료 1주 전' : '종료 2주 전') + '부터 공개돼요 · 현재 ' + weeksLeft + '주 남음',
       liveCountLabel: liveCount ? '지금 방송 중인 선수 ' + liveCount + '명' : '지금 방송 중인 선수 없음',
       teams: D.standings.map((s) => {
         const t = team(s.a);
@@ -1366,7 +1401,7 @@ class Component extends DCLogic {
       searchSummary: valid ? ids.join(' vs ') + ' 지난 경기 ' + found.length + '건' : '팀을 찾을 수 없어요',
       noResults: tokens.length > 0 && found.length === 0,
       results: found.map((m) => { const o = orient(m.a, m.sa, m.b, m.sb); return {
-        stage: D.stage.replace(/^2026 OWCS KR /, ''), week: m.week, date: md(m.date), a: o[0], sa: SP ? '–' : o[1], b: o[2], sb: SP ? '–' : o[3],
+        stage: STAGE_SHORT, wk: m.phase === 'rs' || !m.phase ? m.week + '주차' : m.label, date: md(m.date), a: o[0], sa: SP ? '–' : o[1], b: o[2], sb: SP ? '–' : o[3],
         ca: col(o[0]), cb: col(o[2]), ta: o[1] > o[3] ? '#0B0B0F' : '#6B6B72', tb: o[3] > o[1] ? '#0B0B0F' : '#6B6B72' }; }),
       footNote: '비공식 팬 사이트입니다. Blizzard Entertainment 및 OWCS 공식 운영과 관련이 없습니다. ' + D.sources + ' · 업데이트 ' + (D.generated || '').replace('T', ' ').slice(0, 16),
     };

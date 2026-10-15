@@ -56,7 +56,7 @@ def main():
         data = read_data(f.read())
     now = datetime.datetime.now(b.KST).isoformat(timespec='seconds')
     data['live'] = b.live_status(data['players'])
-    vods = b.soop_vods()
+    vods = b.soop_vods(data['matches'], data.get('stageNo'), data.get('year'))
     for m in data['matches']:
         if vods.get(m['day']):
             m['vod'] = vods[m['day']]
