@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OWCS KR 선수 방송</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&display=swap">
+<style>
+:root{--bg:#F6F6F3;--panel:#FFFFFF;--line:#E6E6E1;--ink:#0B0B0F;--mute:#55555C;--dim:#6B6B72;--ac:#7D39EB;--ac2:#C6FF33;--red:#D92D20;--chzzk:#00C73C;--soop:#2A6CF6}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Pretendard Variable',Pretendard,system-ui,sans-serif;-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(90% 60% at 0% 0%,color-mix(in srgb,var(--ac) 9%,transparent),transparent 60%),repeating-linear-gradient(135deg,rgba(11,11,15,.03) 0 1px,transparent 1px 12px);background-attachment:fixed}
+a{color:inherit}
+.disp{font-family:'Barlow Condensed',sans-serif;font-weight:800;letter-spacing:.01em}
+.wrap{max-width:1360px;margin:0 auto;padding:0 24px}
+header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand i{width:28px;height:28px;border-radius:7px;background:#0B0B0F;display:grid;place-items:center}
+.brand i:after{content:"";width:9px;height:9px;border-radius:2px;background:var(--ac2)}
+.brand span{font-size:26px}
+nav{display:flex;gap:4px;overflow-x:auto}
+nav a{height:40px;padding:0 14px;border-radius:999px;display:flex;align-items:center;text-decoration:none;font-weight:600;font-size:15px;color:var(--mute);white-space:nowrap}
+nav a:hover,nav a.on{background:#F1F1ED;color:#0B0B0F}
+.hero{padding:56px 0 28px;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.eyebrow{font-size:15px;font-weight:700;color:var(--ac)}
+h1{font-size:clamp(56px,8vw,96px);line-height:.86;margin:12px 0 0}
+.count{display:flex;align-items:center;gap:14px;padding:16px 22px;border-radius:20px;background:var(--panel);border:1px solid var(--line)}
+.count b{font-family:'Barlow Condensed',sans-serif;font-size:56px;line-height:1;color:#0B0B0F}
+.count .dot{width:12px;height:12px;border-radius:50%;background:var(--red);box-shadow:0 0 0 6px color-mix(in srgb,var(--red) 25%,transparent)}
+.count small{display:block;font-size:13px;color:var(--mute)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+.seg{display:flex;padding:3px;border-radius:999px;background:#1B1B22;border:1px solid var(--line)}
+.seg button{height:36px;padding:0 16px;border:0;border-radius:999px;background:transparent;color:var(--mute);font:inherit;font-size:14px;font-weight:700;cursor:pointer}
+.seg button.on{background:#fff;color:#0B0B0F}
+.note{font-size:13px;color:var(--dim)}
+.teams{display:grid;grid-template-columns:repeat(auto-fill,minmax(400px,1fr));gap:18px;padding-bottom:64px}
+.team{border:1px solid var(--line);border-radius:22px;background:#FFFFFF;overflow:hidden}
+.team h2{display:flex;align-items:center;gap:12px;margin:0;padding:16px 18px;font-size:18px;border-bottom:1px solid var(--line)}
+.team h2 i{width:34px;height:34px;flex:none;background-size:contain;background-position:center;background-repeat:no-repeat}
+.team h2 span{margin-left:auto;font-size:13px;font-weight:700;color:var(--mute)}
+.team h2 span.on{color:#D92D20}
+.rows{display:flex;flex-direction:column}
+.p{display:grid;grid-template-columns:52px minmax(0,1fr) auto;align-items:center;gap:12px;padding:10px 18px;border-bottom:1px solid #EFEFEA;text-decoration:none}
+.p:last-child{border-bottom:0}
+.p:hover{background:#F6F6F3}
+.av{position:relative;width:52px;height:52px;border-radius:50%;background:#EFEFEA center 18%/cover no-repeat;display:grid;place-items:center;font-weight:800;color:#55555C}
+.p.live .av{box-shadow:0 0 0 3px var(--red)}
+.p.live .av:after{content:"LIVE";position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);padding:1px 5px;border-radius:4px;background:var(--red);color:#fff;font-size:9px;font-weight:800;letter-spacing:.04em}
+.who b{display:block;font-size:16px}
+.who small{display:block;font-size:12px;color:var(--mute);margin-top:2px}
+.go{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px;border-radius:999px;font-size:12px;font-weight:800;white-space:nowrap}
+.go.chzzk{background:color-mix(in srgb,var(--chzzk) 12%,transparent);color:#00873A}
+.go.soop{background:color-mix(in srgb,var(--soop) 12%,transparent);color:#1B4FC4}
+.go.none{background:#F1F1ED;color:var(--dim)}
+.p.live .go{background:var(--red);color:#fff}
+.p.off{display:none}
+footer{padding:32px 0 56px;background:#0B0B0F;color:#8A8A93;font-size:13px;line-height:1.7}
+@media (max-width:720px){.teams{grid-template-columns:minmax(0,1fr)}header nav{display:none}}
+</style>
+</head>
+<body class="streams-page">
+<header><div class="wrap">
+  <a class="brand" href="OWCS KR Home v6.dc.html"><i></i><span class="disp">OWCS KR</span></a>
+  <nav>
+    <a href="OWCS KR Home v6.dc.html">일정</a><a href="OWCS KR Results.dc.html">결과</a><a href="OWCS KR Home v6.dc.html#standings">순위</a>
+    <a href="OWCS KR 직관.html">직관</a><a href="OWCS KR Home v6.dc.html#teams">선수</a><a class="on" href="OWCS KR 방송.html">방송</a>
+  </nav>
+</div></header>
+
+<main class="wrap">
+  <div class="hero">
+    <div><div class="eyebrow">선수 개인 방송 · CHZZK / SOOP</div><h1 class="disp">STREAMS</h1></div>
+    <div class="count"><span class="dot"></span><div><b id="liveN">0</b><small>지금 방송 중인 선수</small></div></div>
+  </div>
+  <div class="bar">
+    <div class="note" id="checked"></div>
+  </div>
+  <div class="teams" id="teams"></div>
+</main>
+<footer><div class="wrap">방송 상태는 CHZZK·SOOP에서 몇 분마다 확인해요. 비공식 팬 사이트입니다. Blizzard Entertainment 및 OWCS 공식 운영과 관련이 없습니다.</div></footer>
+
+<script src="./owcs-data.js"></script>
+<script src="./owcs-i18n.js"></script>
+<script src="./owcs-dark.js"></script>
+<script>
+(function () {
+  var D = window.OWCS || { teams: [], players: [], standings: [], live: {} };
+  var order = (D.standings || []).map(function (s) { return s.a; });
+  var teams = D.teams.slice().sort(function (a, b) { return order.indexOf(a.a) - order.indexOf(b.a); });
+    function platform(p) {
+    var live = D.live[p.id];
+    if (live) return { cls: /chzzk/.test(live) ? 'chzzk' : 'soop', label: (/chzzk/.test(live) ? 'CHZZK' : 'SOOP') + ' 방송 중', href: live };
+    if (p.soop && !p.chzzk) return { cls: 'soop', label: 'SOOP', href: p.soop };
+    if (p.chzzk) return { cls: 'chzzk', label: 'CHZZK', href: p.chzzk };
+    if (p.soop) return { cls: 'soop', label: 'SOOP', href: p.soop };
+    return { cls: 'none', label: '채널 없음', href: '' };
+  }
+  function esc(s) { return String(s || '').replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function render() {
+    var n = 0, html = '';
+    teams.forEach(function (t) {
+      var ps = D.players.filter(function (p) { return p.team === t.a; });
+      var liveCnt = ps.filter(function (p) { return D.live[p.id]; }).length; n += liveCnt;
+      html += '<section class="team"><h2><i style="background-image:url(\'' + esc(t.logo) + '\')"></i>' + esc(t.n) +
+        '<span class="' + (liveCnt ? 'on' : '') + '">' + (liveCnt ? '● 방송 중 ' + liveCnt + '명' : '방송 중 없음') + '</span></h2><div class="rows">';
+      ps.forEach(function (p) {
+        var pf = platform(p), live = !!D.live[p.id];
+        var tag = pf.href ? 'a' : 'div';
+        html += '<' + tag + (pf.href ? ' href="' + esc(pf.href) + '" target="_blank" rel="noopener"' : '') + ' class="p' + (live ? ' live' : '') + '">' +
+          '<span class="av" style="' + (p.photo ? "background-image:url('" + esc(p.photo) + "')" : '') + '">' + (p.photo ? '' : esc(p.id.slice(0, 2).toUpperCase())) + '</span>' +
+          '<span class="who"><b>' + esc(p.id) + '</b><small>' + esc(p.roleFull) + (p.ko ? ' · ' + esc(p.ko) : '') + '</small></span>' +
+          '<span class="go ' + pf.cls + '">' + esc(pf.label) + (pf.href ? ' ↗' : '') + '</span></' + tag + '>';
+      });
+      html += '</div></section>';
+    });
+    document.getElementById('teams').innerHTML = html;
+    document.getElementById('liveN').textContent = n;
+    var g = (D.liveChecked || D.generated || '').replace('T', ' ').slice(0, 16);
+    document.getElementById('checked').textContent = '마지막 확인 ' + g + (n ? '' : ' · 방송 상태 확인이 꺼져 있으면 모두 꺼짐으로 보여요');
+  }
+  render();
+  // pick up a rebuilt owcs-data.js without a reload
+  setInterval(function () {
+    var s = document.createElement('script');
+    s.src = 'owcs-data.js?v=' + Date.now();
+    s.onload = function () { s.remove(); if (window.OWCS && (window.OWCS.generated !== D.generated || window.OWCS.liveChecked !== D.liveChecked)) { D = window.OWCS; render(); } };
+    s.onerror = function () { s.remove(); };
+    document.head.appendChild(s);
+  }, 60000);
+})();
+</script>
+<script src="./owcs-theme-wise.js"></script>
+</body>
+</html>

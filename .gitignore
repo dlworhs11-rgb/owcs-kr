@@ -1,0 +1,14 @@
+# publish only the site + the cloud refresh (cloud_live.py, owcs_cloud.py: no local paths); everything else stays on this PC
+/*
+!/.gitignore
+!/.github/
+!/assets/
+!/index.html
+!/*.html
+!/owcs-*.js
+!/support.js
+!/cloud_live.py
+!/owcs_cloud.py
+
+# built on every deploy by cloud_live.py
+owcs-kr-upcoming*.ics

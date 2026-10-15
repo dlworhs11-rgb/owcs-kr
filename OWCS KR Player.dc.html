@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>window.__resources = window.__resources || {};</script>
+<script src="./owcs-data.js"></script>
+<script src="./owcs-i18n.js"></script>
+<script src="./owcs-dark.js"></script>
+<script src="./owcs-test.js"></script>
+<script src="./support.js"></script>
+<script src="./owcs-theme.js"></script>
+<script src="./owcs-theme-wise.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#0B0B0F"/><rect x="38" y="38" width="24" height="24" fill="#C6FF33"/></svg></template>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
+<style>
+body{margin:0;background:#E7E7E2;font-family:'Pretendard Variable',Pretendard,system-ui,sans-serif;color:#0B0B0F;-webkit-font-smoothing:antialiased}
+a{color:#7D39EB}a:hover{color:#0B0B0F}
+*{box-sizing:border-box}
+</style>
+</helmet>
+<section style="padding:64px;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;align-items:baseline;gap:16px">
+<div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:40px">02 · 선수 상세</div>
+<div style="font-size:15px;color:#55555C">프로필 · 링크 · 대회 업적 · 알약형 팀 로스터(레퍼런스 ②) · 샘플 데이터</div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:64px;align-items:flex-start">
+
+<div id="2e" style="display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;gap:10px;align-items:center"><span style="background:#0B0B0F;color:#C6FF33;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;padding:4px 10px;border-radius:6px">2e</span><span style="font-size:15px;font-weight:600">선수 상세 · 데스크톱</span></div>
+<div data-screen-label="Player Desktop" style="width:1440px;background:#fff;border-radius:20px;overflow:hidden">
+<header style="display:flex;align-items:center;justify-content:space-between;height:76px;padding:0 56px;border-bottom:1px solid #E6E6E1">
+<a href="OWCS KR Home v6.dc.html" style="display:flex;align-items:center;gap:10px;color:#0B0B0F;text-decoration:none"><div style="width:30px;height:30px;background:#0B0B0F;border-radius:7px;display:grid;place-items:center"><div style="width:10px;height:10px;background:#C6FF33;border-radius:2px"></div></div><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px">OWCS KR</span></a>
+<nav style="display:flex;gap:6px">
+<sc-for list="{{ nav }}" as="n" hint-placeholder-count="6"><a href="{{ n.href }}" style="display:flex;align-items:center;height:44px;padding:0 16px;border-radius:999px;font-size:16px;font-weight:600;color:#0B0B0F;text-decoration:none" style-hover="background:#F1F1ED;color:#0B0B0F">{{ n.label }}</a></sc-for>
+</nav>
+<div style="width:150px"></div>
+</header>
+
+<section style="padding:56px 56px 80px;background:#F6F6F3">
+<div style="display:flex;gap:8px;font-size:14px;color:#6B6B72;margin-bottom:28px"><a href="OWCS KR Home v6.dc.html" style="color:#6B6B72">선수</a><span>/</span><a href="OWCS KR Home v6.dc.html" style="color:#6B6B72">{{ teamName }}</a><span>/</span><span style="color:#0B0B0F;font-weight:600">{{ pid }}</span></div>
+<div style="display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:center">
+<div style="position:relative;aspect-ratio:4/5;border-radius:32px;overflow:hidden;background:{{ teamColor }}">
+<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:300px;line-height:1;color:rgba(255,255,255,.12);writing-mode:vertical-rl;transform:rotate(180deg)">{{ pUp }}</div>
+<div style="position:absolute;left:32px;right:32px;bottom:0;top:96px;border-radius:24px 24px 0 0;background:{{ photoBg }};display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:14px;color:#fff">{{ photoNote }}</div>
+</div>
+<div>
+<div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+<span style="display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 12px;border-radius:999px;background:#fff;border:1px solid #E6E6E1;font-size:14px;font-weight:600"><span style="width:10px;height:10px;border-radius:50%;background:{{ teamColor }}"></span>{{ teamName }}</span>
+<span style="display:inline-flex;align-items:center;height:32px;padding:0 12px;border-radius:999px;background:#0B0B0F;color:#fff;font-size:14px;font-weight:600">{{ roleFull }}</span>
+<sc-if value="{{ isLive }}"><span style="display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px;border-radius:999px;background:#D92D20;color:#fff;font-size:13px;font-weight:700;letter-spacing:.04em"><span style="width:6px;height:6px;border-radius:50%;background:#fff"></span>LIVE</span></sc-if>
+</div>
+<h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:200px;line-height:.82;margin:20px 0 28px;letter-spacing:-.01em">{{ pid }}</h1>
+<div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 20px;border-radius:18px;background:#0B0B0F;color:#fff;margin-bottom:14px">
+<div style="display:flex;align-items:center;gap:14px"><sc-if value="{{ streamIcon }}"><img src="{{ streamIcon }}" alt="" style="width:40px;height:40px;border-radius:10px"></sc-if><div><div style="font-size:13px;color:#B5B5BD">{{ streamHead }}</div><div style="font-size:19px;font-weight:700;margin-top:2px">{{ streamSub }}</div></div></div>
+<a href="{{ streamHref }}" target="_blank" style="display:flex;align-items:center;height:48px;padding:0 20px;border-radius:12px;background:#C6FF33;color:#0B0B0F;text-decoration:none;font-size:15px;font-weight:700">{{ streamCta }}</a>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px">
+<sc-for list="{{ links }}" as="l" hint-placeholder-count="3"><a href="{{ l.href }}" target="_blank" style="display:flex;align-items:center;gap:12px;height:60px;padding:0 16px 0 12px;border-radius:14px;background:#fff;border:1px solid #E6E6E1;color:#0B0B0F;text-decoration:none" style-hover="border-color:#0B0B0F;color:#0B0B0F"><img src="{{ l.icon }}" alt="" style="flex:none;width:34px;height:34px;border-radius:9px"><span style="flex:1;min-width:0"><span style="display:block;font-size:15px;font-weight:700">{{ l.label }}</span><span style="display:block;font-size:12px;color:#6B6B72;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ l.handle }}</span></span><span>↗</span></a></sc-for>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:28px;padding-top:24px;border-top:1px solid #E1E1DB">
+<sc-for list="{{ facts }}" as="x" hint-placeholder-count="3"><div><div style="font-size:13px;color:#6B6B72">{{ x.k }}</div><div style="font-size:18px;font-weight:700;margin-top:4px">{{ x.v }}</div></div></sc-for>
+</div>
+</div>
+</div>
+</section>
+
+<section style="padding:88px 56px;background:#fff">
+<div style="display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:56px">
+<div><div style="font-size:15px;font-weight:700;color:#7D39EB">대회 업적</div><div style="font-size:14px;color:#6B6B72;margin-top:6px;line-height:1.5">OWCS 코리아·아시아·월드 파이널·EWC 4위 이내 · Liquipedia</div><h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:96px;line-height:.86;margin:8px 0 0">RECORDS</h2></div>
+<div style="border-top:2px solid #0B0B0F">
+<sc-if value="{{ noRecords }}"><div style="padding:24px 8px;font-size:16px;color:#6B6B72">대회 기록이 아직 없어요</div></sc-if>
+<sc-for list="{{ records }}" as="r" hint-placeholder-count="4">
+<div style="display:grid;grid-template-columns:120px minmax(0,1fr) auto;gap:20px;align-items:center;min-height:80px;border-bottom:1px solid #ECECE7;padding:0 8px">
+<span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:36px">{{ r.y }}</span>
+<span><span style="display:block;font-size:18px;font-weight:700">{{ r.ev }}</span><span style="display:block;font-size:14px;color:#6B6B72;margin-top:2px">{{ r.team }}</span></span>
+<sc-if value="{{ r.win }}"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;background:#C6FF33;padding:2px 14px;border-radius:10px">{{ r.res }}</span></sc-if>
+<sc-if value="{{ r.other }}"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;padding:2px 14px;border-radius:10px;border:1px solid #0B0B0F">{{ r.res }}</span></sc-if>
+</div>
+</sc-for>
+</div>
+</div>
+</section>
+
+<section style="padding:88px 56px 96px;background:#0B0B0F;color:#fff">
+<div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:36px">
+<div><div style="font-size:15px;font-weight:700;color:#C6FF33">{{ rosterTitle }}</div><h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:96px;line-height:.86;margin:8px 0 0">ROSTER</h2></div>
+<a href="OWCS KR Home v6.dc.html" style="font-size:15px;font-weight:600;color:#fff">팀 페이지 →</a>
+</div>
+<div style="display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:12px">
+<sc-for list="{{ roster }}" as="p" hint-placeholder-count="8">
+<sc-if value="{{ p.me }}"><a href="{{ p.href }}" style="position:relative;height:400px;border-radius:999px;overflow:hidden;background:{{ teamColor }};color:#fff;text-decoration:none;display:flex;flex-direction:column;border:none;box-shadow:0 0 0 4px #D92D20">
+<div style="flex:none;height:214px;box-sizing:border-box;display:flex;gap:6px;justify-content:center;align-items:flex-start;padding:34px 0 0"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:{{ p.fs }};line-height:1;writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap">{{ p.up }}</span><span style="font-size:14px;font-weight:700;writing-mode:vertical-rl;text-orientation:upright;letter-spacing:1px;line-height:1.05">{{ p.role }}</span></div><div style="position:relative;flex:none;height:186px;overflow:hidden;background:{{ p.mbg }}"><sc-if value="{{ p.hasPhoto }}"><img src="{{ p.src }}" alt="" style="position:absolute;left:50%;top:62px;height:{{ p.ih }};max-width:none;transform:{{ p.tf }}"></sc-if><sc-if value="{{ p.noPhoto }}"><span style="position:absolute;inset:0;display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:12px;color:#55555C">{{ p.note }}</span></sc-if></div>
+<sc-if value="{{ p.live }}"><span style="position:absolute;top:22px;left:50%;transform:translateX(-50%);display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 8px;border-radius:999px;background:#D92D20;color:#fff;font-size:11px;font-weight:700"><span style="width:5px;height:5px;border-radius:50%;background:#fff"></span>LIVE</span></sc-if>
+</a></sc-if>
+<sc-if value="{{ p.other }}"><a href="{{ p.href }}" style="height:400px;border-radius:999px;overflow:hidden;opacity:{{ p.op }};background:#fff;color:#0B0B0F;text-decoration:none;display:flex;flex-direction:column" style-hover="color:#0B0B0F;background:#F1EEFB">
+<div style="flex:none;height:214px;box-sizing:border-box;display:flex;gap:6px;justify-content:center;align-items:flex-start;padding:34px 0 0"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:{{ p.fs }};line-height:1;writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap">{{ p.up }}</span><span style="font-size:14px;font-weight:700;color:#7D39EB;writing-mode:vertical-rl;text-orientation:upright;letter-spacing:1px;line-height:1.05">{{ p.role }}</span></div><div style="position:relative;flex:none;height:186px;overflow:hidden;background:{{ p.obg }}"><sc-if value="{{ p.hasPhoto }}"><img src="{{ p.src }}" alt="" style="position:absolute;left:50%;top:62px;height:{{ p.ih }};max-width:none;transform:{{ p.tf }}"></sc-if><sc-if value="{{ p.noPhoto }}"><span style="position:absolute;inset:0;display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:12px;color:#55555C">{{ p.note }}</span></sc-if></div>
+</a></sc-if>
+</sc-for>
+</div>
+</section>
+<footer style="padding:40px 56px;background:#0B0B0F;color:#8A8A93;border-top:1px solid #26262E;font-size:13px">{{ footNote }}</footer>
+</div>
+</div>
+
+<div id="2f" style="display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;gap:10px;align-items:center"><span style="background:#0B0B0F;color:#C6FF33;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;padding:4px 10px;border-radius:6px">2f</span><span style="font-size:15px;font-weight:600">선수 상세 · 모바일</span></div>
+<div data-screen-label="Player Mobile" style="width:390px;background:#fff;border-radius:36px;overflow:hidden;border:8px solid #0B0B0F">
+<header style="display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 12px 0 8px;border-bottom:1px solid #E6E6E1">
+<a href="OWCS KR Home v6.dc.html" style="width:44px;height:44px;display:grid;place-items:center;color:#0B0B0F;text-decoration:none;font-size:22px">‹</a>
+<span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px">OWCS KR</span>
+<button style="width:44px;height:44px;border:none;background:transparent;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px"><span style="width:20px;height:2px;background:#0B0B0F"></span><span style="width:20px;height:2px;background:#0B0B0F"></span></button>
+</header>
+<section style="padding:20px 20px 32px;background:#F6F6F3">
+<div style="position:relative;aspect-ratio:1/1;border-radius:24px;overflow:hidden;background:{{ teamColor }}">
+<div style="position:absolute;left:24px;right:24px;bottom:0;top:48px;border-radius:18px 18px 0 0;background:{{ photoBg }};display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:12px;color:#fff">{{ photoNote }}</div>
+<sc-if value="{{ isLive }}"><span style="position:absolute;top:14px;left:14px;display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 9px;border-radius:999px;background:#D92D20;color:#fff;font-size:11px;font-weight:700"><span style="width:5px;height:5px;border-radius:50%;background:#fff"></span>LIVE</span></sc-if>
+</div>
+<div style="display:flex;gap:6px;margin-top:18px">
+<span style="display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 10px;border-radius:999px;background:#fff;border:1px solid #E6E6E1;font-size:13px;font-weight:600"><span style="width:8px;height:8px;border-radius:50%;background:{{ teamColor }}"></span>{{ teamName }}</span>
+<span style="display:inline-flex;align-items:center;height:30px;padding:0 10px;border-radius:999px;background:#0B0B0F;color:#fff;font-size:13px;font-weight:600">{{ roleFull }}</span>
+</div>
+<h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:104px;line-height:.82;margin:14px 0 18px">{{ pid }}</h1>
+<a href="{{ streamHref }}" target="_blank" style="display:flex;align-items:center;justify-content:space-between;height:56px;padding:0 18px;border-radius:14px;background:#0B0B0F;color:#fff;text-decoration:none;font-size:15px;font-weight:700"><span>{{ streamHead }} · {{ streamSub }}</span><span style="color:#C6FF33">보러가기 →</span></a>
+<div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+<sc-for list="{{ links }}" as="l" hint-placeholder-count="3"><a href="{{ l.href }}" target="_blank" style="display:flex;align-items:center;gap:12px;height:52px;padding:0 16px 0 10px;border-radius:14px;background:#fff;border:1px solid #E6E6E1;color:#0B0B0F;text-decoration:none"><img src="{{ l.icon }}" alt="" style="flex:none;width:30px;height:30px;border-radius:8px"><span style="flex:1;font-size:15px;font-weight:700">{{ l.label }}</span><span style="font-size:13px;color:#6B6B72">{{ l.handle }} ↗</span></a></sc-for>
+</div>
+</section>
+<section style="padding:32px 20px;background:#fff">
+<div style="font-size:14px;font-weight:700;color:#7D39EB">대회 업적</div>
+<h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:60px;line-height:.86;margin:6px 0 16px">RECORDS</h2>
+<div style="border-top:2px solid #0B0B0F">
+<sc-if value="{{ noRecords }}"><div style="padding:24px 8px;font-size:16px;color:#6B6B72">대회 기록이 아직 없어요</div></sc-if>
+<sc-for list="{{ records }}" as="r" hint-placeholder-count="4">
+<div style="display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:10px;align-items:center;min-height:68px;border-bottom:1px solid #ECECE7">
+<span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:24px">{{ r.y }}</span>
+<span style="font-size:14px;font-weight:700;line-height:1.35">{{ r.ev }}</span>
+<sc-if value="{{ r.win }}"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:20px;background:#C6FF33;padding:1px 10px;border-radius:8px">{{ r.res }}</span></sc-if>
+<sc-if value="{{ r.other }}"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:20px;padding:1px 10px;border-radius:8px;border:1px solid #0B0B0F">{{ r.res }}</span></sc-if>
+</div>
+</sc-for>
+</div>
+</section>
+<section style="padding:32px 0 40px 20px;background:#0B0B0F;color:#fff">
+<div style="font-size:14px;font-weight:700;color:#C6FF33">{{ rosterTitle }}</div>
+<h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:60px;line-height:.86;margin:6px 0 18px">ROSTER</h2>
+<div style="display:flex;gap:10px;overflow-x:auto;padding-right:20px">
+<sc-for list="{{ roster }}" as="p" hint-placeholder-count="8">
+<sc-if value="{{ p.me }}"><a href="{{ p.href }}" style="flex:none;width:112px;height:300px;border-radius:999px;overflow:hidden;background:{{ teamColor }};color:#fff;text-decoration:none;display:flex;flex-direction:column;border:none;box-shadow:0 0 0 4px #D92D20"><div style="flex:none;height:168px;box-sizing:border-box;display:flex;gap:6px;justify-content:center;align-items:flex-start;padding:24px 0 0"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:{{ p.fsM }};line-height:1;writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap">{{ p.up }}</span><span style="font-size:12px;font-weight:700;writing-mode:vertical-rl;text-orientation:upright;letter-spacing:1px;line-height:1.05">{{ p.role }}</span></div><div style="position:relative;flex:none;height:132px;overflow:hidden;background:{{ p.mbg }}"><sc-if value="{{ p.hasPhoto }}"><img src="{{ p.src }}" alt="" style="position:absolute;left:50%;top:46px;height:{{ p.ihM }};max-width:none;transform:{{ p.tf }}"></sc-if><sc-if value="{{ p.noPhoto }}"><span style="position:absolute;inset:0;display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:12px;color:#55555C">{{ p.note }}</span></sc-if></div></a></sc-if>
+<sc-if value="{{ p.other }}"><a href="{{ p.href }}" style="flex:none;width:112px;height:300px;border-radius:999px;overflow:hidden;opacity:{{ p.op }};background:#fff;color:#0B0B0F;text-decoration:none;display:flex;flex-direction:column"><div style="flex:none;height:168px;box-sizing:border-box;display:flex;gap:6px;justify-content:center;align-items:flex-start;padding:24px 0 0"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:{{ p.fsM }};line-height:1;writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap">{{ p.up }}</span><span style="font-size:12px;font-weight:700;color:#7D39EB;writing-mode:vertical-rl;text-orientation:upright;letter-spacing:1px;line-height:1.05">{{ p.role }}</span></div><div style="position:relative;flex:none;height:132px;overflow:hidden;background:{{ p.obg }}"><sc-if value="{{ p.hasPhoto }}"><img src="{{ p.src }}" alt="" style="position:absolute;left:50%;top:46px;height:{{ p.ihM }};max-width:none;transform:{{ p.tf }}"></sc-if><sc-if value="{{ p.noPhoto }}"><span style="position:absolute;inset:0;display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:12px;color:#55555C">{{ p.note }}</span></sc-if></div></a></sc-if>
+</sc-for>
+</div>
+</section>
+</div>
+</div>
+
+</div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+// Data: window.OWCS from owcs-data.js. Open with ?p=<handle>, e.g. OWCS KR Player.dc.html?p=HeeSang
+const D = window.OWCS || { teams: [], players: [], matches: [], standings: [], live: {}, sources: '' };
+const TEAM = Object.fromEntries(D.teams.map((t) => [t.a, t]));
+const ABBR = Object.fromEntries(D.teams.map((t) => [t.n, t.a]));
+const want = (new URLSearchParams(location.search).get('p') || '').toLowerCase();
+const pick = () => D.players.find((p) => p.id.toLowerCase() === want)
+  || D.players.find((p) => D.live[p.id])
+  || D.players.slice().sort((a, b) => b.awardCount - a.awardCount)[0] || { id: '?', team: '', role: '', roleFull: '', awards: [] };
+const handleOf = (url) => (url || '').replace(/\/+$/, '').split('/').pop();
+const ICON = { CHZZK: 'assets/icons/chzzk.png', SOOP: 'assets/icons/soop.png', YouTube: 'assets/icons/youtube.png', Discord: 'assets/icons/discord.png',
+  Instagram: 'assets/icons/instagram.png', X: 'assets/icons/x.png', Liquipedia: 'assets/icons/liquipedia.png' };
+// roster photo: scale so every face is the same height and sits at the same spot (face box from data/faces.json)
+const facePx = (p, F) => { const f = p.face || [0.5, 0.36, 0.34, 1]; return { h: Math.round(F / f[2]) + 'px', tf: 'translate(' + (-f[0] * 100).toFixed(1) + '%, ' + (-f[1] * 100).toFixed(1) + '%)' }; };
+const nameFs = (id, room) => Math.min(44, Math.floor(room / (id.length * 0.5))) + 'px';
+class Component extends DCLogic {
+  renderVals() {
+    const me = pick();
+    const t = TEAM[me.team] || { n: me.team, color: '#55555C', ko: '' };
+    const live = D.live[me.id];
+    const stream = live || me.soop || me.chzzk || me.youtube || '';
+    const platform = (u) => /sooplive/.test(u) ? 'SOOP' : /chzzk/.test(u) ? 'CHZZK' : /youtube/.test(u) ? 'YouTube' : '';
+    const st = D.standings.findIndex((s) => s.a === me.team);
+    const mates = D.players.filter((p) => p.team === me.team);
+    return {
+      nav: [
+        { label: '일정', href: 'OWCS KR Home v6.dc.html' }, { label: '결과', href: 'OWCS KR Results.dc.html' },
+        { label: '순위', href: 'OWCS KR Home v6.dc.html#standings' }, { label: '직관', href: 'OWCS KR 직관.html' },
+        { label: '선수', href: 'OWCS KR Home v6.dc.html#teams' }, { label: '방송', href: 'OWCS KR 방송.html' },
+      ],
+      pid: me.id, pUp: me.id.toUpperCase(), teamName: t.n, teamColor: t.color, roleFull: me.roleFull,
+      photoBg: me.photo ? "center 12%/cover no-repeat url('" + me.photo + "')" : 'repeating-linear-gradient(135deg,rgba(255,255,255,.16) 0 8px,rgba(255,255,255,.06) 8px 16px)',
+      photoNote: me.photo ? '' : '사진 준비 중',
+      isLive: !!live,
+      streamHead: live ? '지금 방송 중' : '개인 방송',
+      streamSub: stream ? platform(stream) + (live ? ' 생방송' : ' 방송국') : '등록된 방송 없음',
+      streamIcon: stream ? ICON[platform(stream)] : '',
+      streamHref: stream || '#', streamCta: live ? '방송 보러가기 →' : '방송국 가기 →',
+      links: [
+        me.chzzk && { label: 'CHZZK', handle: '치지직 채널', href: me.chzzk, icon: ICON.CHZZK },
+        me.soop && { label: 'SOOP', handle: 'SOOP 방송국', href: me.soop, icon: ICON.SOOP },
+        me.youtube && { label: 'YouTube', handle: '@' + handleOf(me.youtube).replace(/^@/, ''), href: me.youtube, icon: ICON.YouTube },
+        me.discord && { label: 'Discord', handle: '디스코드 서버', href: me.discord, icon: ICON.Discord },
+        me.instagram && { label: 'Instagram', handle: '@' + handleOf(me.instagram), href: me.instagram, icon: ICON.Instagram },
+        me.x && { label: 'X', handle: '@' + handleOf(me.x), href: me.x, icon: ICON.X },
+        me.lp && { label: 'Liquipedia', handle: '선수 문서', href: me.lp, icon: ICON.Liquipedia },
+      ].filter(Boolean),
+      facts: [
+        { k: '포지션', v: me.roleFull + (me.ko ? ' · ' + me.ko : '') },
+        { k: '소속', v: t.n + (st >= 0 ? ' · 현재 ' + (st + 1) + '위' : '') },
+        { k: 'POTM', v: me.awardCount + '회' + (me.name ? ' · ' + me.name : '') },
+      ],
+      records: (me.achievements || []).slice(0, 8).map((a) => ({ y: a.y, ev: a.ev, team: a.team, res: a.res, win: a.place === 1, other: a.place !== 1 })),
+      noRecords: !(me.achievements || []).length,
+      rosterTitle: t.n + ' 라인업 · ' + mates.length + '명',
+      roster: mates.map((p) => ({ up: p.id.toUpperCase(), role: p.roleFull, me: p.id === me.id, other: p.id !== me.id, op: 1, live: !!D.live[p.id],
+        href: 'OWCS KR Player.dc.html?p=' + encodeURIComponent(p.id),
+        hasPhoto: !!p.photo, noPhoto: !p.photo, src: p.photo, ih: facePx(p, 64).h, ihM: facePx(p, 48).h, tf: facePx(p, 64).tf,
+        fs: nameFs(p.id, 172), fsM: nameFs(p.id, 136), mbg: t.color, obg: '#F2F2EE',
+        photo: p.photo ? "center 15%/cover no-repeat url('" + p.photo + "'), " + (p.id === me.id ? t.color : '#F2F2EE') : (p.id === me.id ? 'repeating-linear-gradient(135deg,rgba(255,255,255,.18) 0 6px,rgba(255,255,255,.06) 6px 12px)' : 'repeating-linear-gradient(135deg,#E2E2DD 0 6px,#F2F2EE 6px 12px)'),
+        note: p.photo ? '' : p.id.slice(0, 2).toUpperCase() })),
+      footNote: '비공식 팬 사이트입니다. Blizzard Entertainment 및 OWCS 공식 운영과 관련이 없습니다. ' + (D.sources || ''),
+    };
+  }
+}
+</script>
+</body>
+</html>
