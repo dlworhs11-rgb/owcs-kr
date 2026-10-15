@@ -19,7 +19,7 @@ os.makedirs(os.path.join(HERE, 'data'), exist_ok=True)   # soop_vods() caches he
 import owcs_cloud as b  # noqa: E402  (no local paths; build_owcs_data.py stays on the PC)
 
 SITE_FILES = ['index.html', 'OWCS KR Home v6.dc.html', 'OWCS KR Player.dc.html', 'OWCS KR Results.dc.html',
-              'OWCS KR 방송.html', 'OWCS KR 직관.html', 'OWCS KR 테스트.html', 'support.js']
+              'OWCS KR 방송.html', 'OWCS KR 직관.html', 'support.js']
 VOLATILE = ('generated', 'liveChecked')
 
 

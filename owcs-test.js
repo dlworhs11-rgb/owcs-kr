@@ -1,6 +1,8 @@
 // Test mode: open any page with ?test=1 to see made-up results for the next match days.
 // Only changes window.OWCS in this browser tab; owcs-data.js and the real data stay untouched.
 (function () {
+  // made-up results only on this PC (file:// or localhost), never on the public site
+  if (/^https:$/.test(location.protocol) && !/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) return;
   if (new URLSearchParams(location.search).get('test') !== '1' || !window.OWCS) return;
   var D = window.OWCS;
   var MAPS = [['Busan', '쟁탈'], ['Lijiang Tower', '쟁탈'], ['Suravasa', '플래시포인트'], ['New Junk City', '플래시포인트'], ['Colosseo', '밀기'],

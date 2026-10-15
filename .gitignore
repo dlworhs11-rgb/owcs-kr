@@ -5,6 +5,7 @@
 !/assets/
 !/index.html
 !/*.html
+/OWCS KR 테스트.html
 !/owcs-*.js
 !/support.js
 !/cloud_live.py
