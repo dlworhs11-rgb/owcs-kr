@@ -503,7 +503,55 @@
      "team": "ZETA DIVISION",
      "hero": "winston"
     }
-   }
+   },
+   "hudLeft": "ZETA DIVISION",
+   "comps": {
+    "ZETA DIVISION": [
+     [
+      "Bernar",
+      "?"
+     ],
+     [
+      "Knife",
+      "bastion"
+     ],
+     [
+      "Proper",
+      "junkrat"
+     ],
+     [
+      "Viol2t",
+      "?"
+     ],
+     [
+      "Shu",
+      "jetpack-cat"
+     ]
+    ],
+    "O2 Blast": [
+     [
+      "Fate",
+      "?"
+     ],
+     [
+      "A1lEN",
+      "soldier-76"
+     ],
+     [
+      "WuTian",
+      "cassidy"
+     ],
+     [
+      "Gamjung",
+      "kiriko"
+     ],
+     [
+      "Faith",
+      "jetpack-cat"
+     ]
+    ]
+   },
+   "compAt": null
   }
  ]
 }
