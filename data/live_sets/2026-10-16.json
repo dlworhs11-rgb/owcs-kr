@@ -410,6 +410,29 @@
     "O2 Blast": 7,
     "ZETA DIVISION": 5
    }
+  },
+  {
+   "banTs": 1792150362,
+   "teams": [
+    "O2 Blast",
+    "ZETA DIVISION"
+   ],
+   "game": 2,
+   "map": "Esperança",
+   "seriesBefore": {
+    "O2 Blast": 0,
+    "ZETA DIVISION": 1
+   },
+   "bans": {
+    "initial": {
+     "team": "O2 Blast",
+     "hero": "bastion"
+    },
+    "followUp": {
+     "team": "ZETA DIVISION",
+     "hero": "dmon"
+    }
+   }
   }
  ]
 }
