@@ -658,6 +658,14 @@ def build(check_live=False, prev_live=None, out=HERE, records=True):
     STAGE_TEAMS.update(t for m in stage_raw(stage) for t in (m['team1'], m['team2']) if is_team(t))
     matches, lives = build_matches(stage)
     players = build_players(socials, STAGE_TEAMS)
+    # a POTM name read off the broadcast card ('Violet') -> the closest handle on the two teams' rosters ('Viol2t')
+    import difflib
+    for m in matches:
+        if m['potm'] and not any(p['id'].lower() == m['potm'].lower() for p in players):
+            ids = [p['id'] for p in players if p['team'] in (m['a'], m['b'])]
+            best = difflib.get_close_matches(m['potm'].lower(), [i.lower() for i in ids], 1, .6)
+            if best:
+                m['potm'] = next(i for i in ids if i.lower() == best[0])
     standings = standings_of(stage)
     live = live_status(players) if check_live else (prev_live or {})
     bracket = build_bracket(stage, matches, standings, playoffs)
