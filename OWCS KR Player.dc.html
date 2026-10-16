@@ -85,23 +85,6 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 </div>
 </section>
 
-<section style="padding:88px 56px;background:#fff">
-<div style="display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:56px">
-<div><div style="font-size:15px;font-weight:700;color:#7D39EB">대회 업적</div><div style="font-size:14px;color:#6B6B72;margin-top:6px;line-height:1.5">OWCS 코리아·아시아·월드 파이널·EWC 4위 이내 · Liquipedia</div><h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:96px;line-height:.86;margin:8px 0 0">RECORDS</h2></div>
-<div style="border-top:2px solid #0B0B0F">
-<sc-if value="{{ noRecords }}"><div style="padding:24px 8px;font-size:16px;color:#6B6B72">대회 기록이 아직 없어요</div></sc-if>
-<sc-for list="{{ records }}" as="r" hint-placeholder-count="4">
-<div style="display:grid;grid-template-columns:120px minmax(0,1fr) auto;gap:20px;align-items:center;min-height:80px;border-bottom:1px solid #ECECE7;padding:0 8px">
-<span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:36px">{{ r.y }}</span>
-<span><span style="display:block;font-size:18px;font-weight:700">{{ r.ev }}</span><span style="display:block;font-size:14px;color:#6B6B72;margin-top:2px">{{ r.team }}</span></span>
-<sc-if value="{{ r.win }}"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;background:#C6FF33;padding:2px 14px;border-radius:10px">{{ r.res }}</span></sc-if>
-<sc-if value="{{ r.other }}"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;padding:2px 14px;border-radius:10px;border:1px solid #0B0B0F">{{ r.res }}</span></sc-if>
-</div>
-</sc-for>
-</div>
-</div>
-</section>
-
 <sc-if value="{{ hasInsta }}"><section style="padding:88px 56px;background:#F6F6F3">
 <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:36px"><div><div style="font-size:15px;font-weight:700;color:#55555C">인스타그램</div><h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:96px;line-height:.86;margin:8px 0 0">INSTAGRAM</h2></div><a href="{{ igProfile }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:600;color:#0B0B0F"><img src="assets/icons/instagram.png" alt="" style="width:24px;height:24px;border-radius:6px">{{ igHandle }} 프로필 →</a></div>
 <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;align-items:start"><sc-for list="{{ insta }}" as="ig" hint-placeholder-count="3"><div data-ig-url="{{ ig.url }}" style="min-width:0"></div></sc-for></div>
@@ -148,21 +131,6 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <a href="{{ streamHref }}" target="_blank" style="display:flex;align-items:center;justify-content:space-between;height:56px;padding:0 18px;border-radius:14px;background:#0B0B0F;color:#fff;text-decoration:none;font-size:15px;font-weight:700"><span>{{ streamHead }} · {{ streamSub }}</span><span style="color:#C6FF33">보러가기 →</span></a>
 <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
 <sc-for list="{{ links }}" as="l" hint-placeholder-count="3"><a href="{{ l.href }}" target="_blank" style="display:flex;align-items:center;gap:12px;height:52px;padding:0 16px 0 10px;border-radius:14px;background:#fff;border:1px solid #E6E6E1;color:#0B0B0F;text-decoration:none"><img src="{{ l.icon }}" alt="" style="flex:none;width:30px;height:30px;border-radius:8px"><span style="flex:1;font-size:15px;font-weight:700">{{ l.label }}</span><span style="font-size:13px;color:#6B6B72">{{ l.handle }} ↗</span></a></sc-for>
-</div>
-</section>
-<section style="padding:32px 20px;background:#fff">
-<div style="font-size:14px;font-weight:700;color:#7D39EB">대회 업적</div>
-<h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:60px;line-height:.86;margin:6px 0 16px">RECORDS</h2>
-<div style="border-top:2px solid #0B0B0F">
-<sc-if value="{{ noRecords }}"><div style="padding:24px 8px;font-size:16px;color:#6B6B72">대회 기록이 아직 없어요</div></sc-if>
-<sc-for list="{{ records }}" as="r" hint-placeholder-count="4">
-<div style="display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:10px;align-items:center;min-height:68px;border-bottom:1px solid #ECECE7">
-<span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:24px">{{ r.y }}</span>
-<span style="font-size:14px;font-weight:700;line-height:1.35">{{ r.ev }}</span>
-<sc-if value="{{ r.win }}"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:20px;background:#C6FF33;padding:1px 10px;border-radius:8px">{{ r.res }}</span></sc-if>
-<sc-if value="{{ r.other }}"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:20px;padding:1px 10px;border-radius:8px;border:1px solid #0B0B0F">{{ r.res }}</span></sc-if>
-</div>
-</sc-for>
 </div>
 </section>
 <sc-if value="{{ hasInsta }}"><section style="padding:32px 20px;background:#F6F6F3">
@@ -216,7 +184,7 @@ class Component extends DCLogic {
         { label: '선수', href: 'OWCS KR Home v6.dc.html#teams' }, { label: '방송', href: 'OWCS KR 방송.html' },
       ],
       pid: me.id, pUp: me.id.toUpperCase(), teamName: t.n, teamColor: t.color, roleFull: me.roleFull,
-      photoBg: me.photo ? "center 12%/cover no-repeat url('" + me.photo + "')" : 'repeating-linear-gradient(135deg,rgba(255,255,255,.16) 0 8px,rgba(255,255,255,.06) 8px 16px)',
+      photoBg: me.photo ? "center bottom/min(100%, 440px) auto no-repeat url('" + me.photo + "')" : 'repeating-linear-gradient(135deg,rgba(255,255,255,.16) 0 8px,rgba(255,255,255,.06) 8px 16px)',
       photoNote: me.photo ? '' : '사진 준비 중',
       isLive: !!live,
       streamHead: live ? '지금 방송 중' : '개인 방송',
