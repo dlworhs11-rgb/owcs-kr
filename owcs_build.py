@@ -344,8 +344,8 @@ def build_matches(stage):
                 sb = sum(1 for x in maps if x['winner'] == 'b')
                 live = max(sa, sb) < need
                 played = not live
-            if not potm and lv.get('potm'):
-                potm = lv['potm'].get('name')
+            if not potm and lv.get('potm') and re.fullmatch(r'[A-Za-z0-9_]{2,}', lv['potm'].get('name') or ''):
+                potm = lv['potm']['name']   # a half-read name ('?51') stays out
         # map name as soon as the ban screen shows it, and the first heroes off the HUD (pick_watch.py)
         auto_comps = {}
         for s in live_sets(day):
