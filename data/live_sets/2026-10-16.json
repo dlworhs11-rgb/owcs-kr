@@ -335,6 +335,29 @@
     "Cheeseburger": 0,
     "T1": 2
    }
+  },
+  {
+   "banTs": 1792149406,
+   "teams": [
+    "O2 Blast",
+    "ZETA DIVISION"
+   ],
+   "game": 1,
+   "map": "Busan",
+   "seriesBefore": {
+    "O2 Blast": 0,
+    "ZETA DIVISION": 0
+   },
+   "bans": {
+    "initial": {
+     "team": "O2 Blast",
+     "hero": "dva"
+    },
+    "followUp": {
+     "team": "ZETA DIVISION",
+     "hero": "jetpack cat"
+    }
+   }
   }
  ]
 }
