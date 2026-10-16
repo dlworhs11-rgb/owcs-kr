@@ -1368,7 +1368,7 @@ class Component extends DCLogic {
       posterSub: 'SOOP owesports · ' + todays.length + '경기',
       posterNote: hero ? '다음 경기 ' + startTxt(hero) + ' · 방송이 시작되면 이곳에 자동으로 표시돼요' : '',
       posterNoteShort: '방송이 시작되면 이곳에 자동으로 표시돼요',
-      streamSrc: !hero ? '' : YT ? 'https://www.youtube.com/embed/live_stream?channel=UCDMOG3oKXEh5Omaw9FaVqDw&autoplay=1&mute=1' : hero.stream,
+      streamSrc: !hero ? '' : YT ? (D.ytLive ? 'https://www.youtube.com/embed/' + D.ytLive + '?autoplay=1&mute=1' : 'https://www.youtube.com/embed/live_stream?channel=UCDMOG3oKXEh5Omaw9FaVqDw&autoplay=1&mute=1') : hero.stream,
       streamLabel: YT ? 'YouTube · 日本語配信' : 'SOOP · 공식 중계',
       // pick the broadcast: SOOP (Korean) or the Japanese YouTube one; remembered in this browser
       srcs: [['soop', 'SOOP · 한국어'], ['yt', 'YouTube · 日本語']].map(([k, label]) => { const on = (k === 'yt') === YT;
