@@ -1,0 +1,188 @@
+{
+ "date": "2026-10-16",
+ "source": "OBS capture of the SOOP broadcast (owesports), GAME DATA screens",
+ "maps": [
+  {
+   "match": "Team Falcons vs SEIJI ESPORTS",
+   "matchNo": 1,
+   "game": 1,
+   "map": "Busan",
+   "mapTime": "12:31",
+   "frame": "m01_table1_1792139556.png",
+   "teams": {
+    "Team Falcons": [
+     {
+      "name": "?1",
+      "e": 19,
+      "a": 0,
+      "d": 6,
+      "dmg": 9268,
+      "heal": 78,
+      "mit": 645
+     },
+     {
+      "name": "?2",
+      "e": 15,
+      "a": 18,
+      "d": 3,
+      "dmg": 6112,
+      "heal": 13791,
+      "mit": 989
+     },
+     {
+      "name": "?3",
+      "e": 18,
+      "a": 17,
+      "d": 4,
+      "dmg": 4814,
+      "heal": 9451,
+      "mit": 518
+     },
+     {
+      "name": "?4",
+      "e": 17,
+      "a": 0,
+      "d": 5,
+      "dmg": 13201,
+      "heal": 274,
+      "mit": 11
+     },
+     {
+      "name": "?5",
+      "e": 18,
+      "a": 6,
+      "d": 6,
+      "dmg": 12112,
+      "heal": 4644,
+      "mit": 11899
+     }
+    ],
+    "SEIJI ESPORTS": [
+     {
+      "name": "?6",
+      "e": 15,
+      "a": null,
+      "d": 5,
+      "dmg": 9839,
+      "heal": 179,
+      "mit": 40
+     },
+     {
+      "name": "?7",
+      "e": 10,
+      "a": 12,
+      "d": 5,
+      "dmg": 5441,
+      "heal": 11726,
+      "mit": 786
+     },
+     {
+      "name": "?8",
+      "e": 15,
+      "a": null,
+      "d": 10,
+      "dmg": 9980,
+      "heal": 615,
+      "mit": 24
+     },
+     {
+      "name": "?9",
+      "e": 9,
+      "a": 12,
+      "d": 5,
+      "dmg": 5161,
+      "heal": 1090,
+      "mit": 810
+     },
+     {
+      "name": "?10",
+      "e": 10,
+      "a": 1,
+      "d": 9,
+      "dmg": 11916,
+      "heal": 1272,
+      "mit": 11485
+     }
+    ]
+   },
+   "totalsVerified": false,
+   "reading": "ocr",
+   "bans": {
+    "initial": {
+     "team": "SEIJI ESPORTS",
+     "hero": "cassidy"
+    },
+    "followUp": {
+     "team": "Team Falcons",
+     "hero": "jetpack cat"
+    }
+   },
+   "seriesBefore": {
+    "Team Falcons": 0,
+    "SEIJI ESPORTS": 0
+   }
+  }
+ ],
+ "matches": [
+  {
+   "match": "Team Falcons vs SEIJI ESPORTS",
+   "matchNo": 1,
+   "mapWins": {},
+   "potm": null
+  }
+ ],
+ "unknownNames": [
+  {
+   "id": "?1",
+   "map": "01",
+   "row": 0
+  },
+  {
+   "id": "?2",
+   "map": "01",
+   "row": 1
+  },
+  {
+   "id": "?3",
+   "map": "01",
+   "row": 2
+  },
+  {
+   "id": "?4",
+   "map": "01",
+   "row": 3
+  },
+  {
+   "id": "?5",
+   "map": "01",
+   "row": 4
+  },
+  {
+   "id": "?6",
+   "map": "01",
+   "row": 5
+  },
+  {
+   "id": "?7",
+   "map": "01",
+   "row": 6
+  },
+  {
+   "id": "?8",
+   "map": "01",
+   "row": 7
+  },
+  {
+   "id": "?9",
+   "map": "01",
+   "row": 8
+  },
+  {
+   "id": "?10",
+   "map": "01",
+   "row": 9
+  }
+ ],
+ "unknownMaps": [],
+ "note": "reading=ocr: numbers, match/game/map read from the broadcast screen; totalsVerified = sums match the team-totals page; mapTime = damage / damage-per-minute from the totals page."
+}
