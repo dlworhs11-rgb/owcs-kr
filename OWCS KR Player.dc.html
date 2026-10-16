@@ -60,7 +60,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <div style="display:flex;gap:8px;font-size:14px;color:#6B6B72;margin-bottom:28px"><a href="OWCS KR Home v6.dc.html" style="color:#6B6B72">선수</a><span>/</span><a href="OWCS KR Home v6.dc.html" style="color:#6B6B72">{{ teamName }}</a><span>/</span><span style="color:#0B0B0F;font-weight:600">{{ pid }}</span></div>
 <div style="display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:center">
 <div style="position:relative;aspect-ratio:4/5;border-radius:32px;overflow:hidden;background:{{ teamColor }}">
-<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:300px;line-height:1;color:rgba(255,255,255,.12);writing-mode:vertical-rl;transform:rotate(180deg)">{{ pUp }}</div>
+<div style="position:absolute;left:-8%;right:-8%;top:-4%;height:78%;background:{{ teamMark }};opacity:.22"></div>
 <div style="position:absolute;left:32px;right:32px;bottom:0;top:96px;border-radius:24px 24px 0 0;background:{{ photoBg }};display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:14px;color:#fff">{{ photoNote }}</div>
 </div>
 <div>
@@ -118,7 +118,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <button style="width:44px;height:44px;border:none;background:transparent;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px"><span style="width:20px;height:2px;background:#0B0B0F"></span><span style="width:20px;height:2px;background:#0B0B0F"></span></button>
 </header>
 <section style="padding:20px 20px 32px;background:#F6F6F3">
-<div style="position:relative;aspect-ratio:1/1;border-radius:24px;overflow:hidden;background:{{ teamColor }}">
+<div style="position:relative;aspect-ratio:1/1;border-radius:24px;overflow:hidden;background:{{ teamColor }}"><div style="position:absolute;left:-6%;right:-6%;top:-6%;height:80%;background:{{ teamMark }};opacity:.22"></div>
 <div style="position:absolute;left:24px;right:24px;bottom:0;top:48px;border-radius:18px 18px 0 0;background:{{ photoBg }};display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:12px;color:#fff">{{ photoNote }}</div>
 <sc-if value="{{ isLive }}"><span style="position:absolute;top:14px;left:14px;display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 9px;border-radius:999px;background:#D92D20;color:#fff;font-size:11px;font-weight:700"><span style="width:5px;height:5px;border-radius:50%;background:#fff"></span>LIVE</span></sc-if>
 </div>
@@ -182,6 +182,7 @@ class Component extends DCLogic {
         { label: '순위', href: 'OWCS KR Home v6.dc.html#standings' }, { label: '직관', href: 'OWCS KR 직관.html' },
         { label: '선수', href: 'OWCS KR Home v6.dc.html#teams' }, { label: '방송', href: 'OWCS KR 방송.html' },
       ],
+      teamMark: (t.logoOnColor || t.logoDark || t.logo) ? "url('" + (t.logoOnColor || t.logoDark || t.logo) + "') center / contain no-repeat" : 'none',   // big team logo behind the photo
       pid: me.id, pUp: me.id.toUpperCase(), teamName: t.n, teamColor: t.color, roleFull: me.roleFull,
       photoBg: me.photo ? "center bottom/min(100%, 440px) auto no-repeat url('" + me.photo + "')" : 'repeating-linear-gradient(135deg,rgba(255,255,255,.16) 0 8px,rgba(255,255,255,.06) 8px 16px)',
       photoNote: me.photo ? '' : '사진 준비 중',

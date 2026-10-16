@@ -85,6 +85,7 @@
     ['OWCS 코리아·아시아·월드 파이널·EWC 4위 이내 · Liquipedia', 'OWCS コリア・アジア・ワールドファイナル・EWC 4位以内 · Liquipedia', 'Top-4 finishes at OWCS Korea, Asia, World Finals and EWC · Liquipedia'],
     ['구글 캘린더로 남은 경기 구독', 'Googleカレンダーで残りの試合を購読', 'Subscribe in Google Calendar'], ['캘린더에 추가', 'カレンダーに追加', 'Add to calendar'], ['이 경기를 구글 캘린더에 추가', 'この試合をGoogleカレンダーに追加', 'Add this match to Google Calendar'],
     ['인스타그램', 'Instagram', 'Instagram'], ['인스타그램에서 보기', 'Instagramで見る', 'View on Instagram'],
+    ['공식 유튜브', '公式YouTube', 'Official YouTube'], ['예매하기 ↗', 'チケット購入 ↗', 'Buy tickets ↗'], ['눌러서 티켓링크에서 예매 ↗', 'タップしてTicketLinkで購入 ↗', 'Tap to buy on TicketLink ↗'],
     ['우승', '優勝', 'Champion'], ['준우승', '準優勝', 'Runner-up'], ['대회 기록이 아직 없어요', '大会実績はまだありません', 'No major results yet'],
     // streams
     ['선수 개인 방송 · CHZZK / SOOP', '選手の個人配信 · CHZZK / SOOP', 'Player streams · CHZZK / SOOP'], ['지금 방송 중인 선수', '配信中の選手', 'players live now'], ['방송 중 없음', '配信なし', 'Nobody live'],
