@@ -1190,16 +1190,21 @@ class Component extends DCLogic {
   state = { copied: null, now: nowMs(), mapsShown: null, q: '', sel: (() => { try { const v = sessionStorage.getItem('owcs-sel'); if (v && D.teams.some((t) => t.a === v)) return v; } catch (e) {} return (D.standings[0] || {}).a || 'CR'; })(), ms: false, share: false, shareMsg: '', spoiler: false, dark: params.get('dark') ? params.get('dark') === '1' : (() => { try { return localStorage.getItem('owcs-dark') === '1'; } catch (e) { return false; } })(), lang: (window.OWCSi18n || {}).lang || 'ko', sub: false, subMode: 'all', subTeams: [], myTeam: null, tab: 0, month: null, rev: 0, openMaps: {} };
   componentDidMount() {
     this.t = setInterval(() => this.setState({ now: nowMs() }), 1000);
-    // pick up a rebuilt owcs-data.js (build_owcs_data.py --watch) without reloading the page
-    this.r = setInterval(() => {
+    // pick up a rebuilt owcs-data.js (live scores from the PC, the cloud refresh): every 10 s while a match of
+    // today is on or about to start, otherwise every minute
+    const poll = () => {
       const s = document.createElement('script');
       s.src = 'owcs-data.js?v=' + Date.now();
       s.onload = () => { s.remove(); if (window.OWCS && window.OWCS.generated !== D.generated) location.reload(); };
       s.onerror = () => s.remove();
       document.head.appendChild(s);
-    }, 30000);
+      const now = nowMs(), today = dayOf(now);
+      const on = D.matches.some((m) => m.day === today && !m.played && now >= new Date(m.date).getTime() - 30 * 60e3);
+      this.r = setTimeout(poll, on ? 10000 : 60000);
+    };
+    this.r = setTimeout(poll, 10000);
   }
-  componentWillUnmount() { clearInterval(this.t); clearInterval(this.r); clearTimeout(this.ct); }
+  componentWillUnmount() { clearInterval(this.t); clearTimeout(this.r); clearTimeout(this.ct); }
   copy(key, text) {
     try { navigator.clipboard && navigator.clipboard.writeText(text).catch(() => {}); } catch (e) {}
     this.setState({ copied: key }); clearTimeout(this.ct);
