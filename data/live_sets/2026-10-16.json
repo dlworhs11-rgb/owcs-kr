@@ -207,7 +207,54 @@
      "team": "T1",
      "hero": "cassidy"
     }
-   }
+   },
+   "comps": {
+    "Cheeseburger": [
+     [
+      "Belosrea",
+      "?"
+     ],
+     [
+      "K4NE",
+      "?"
+     ],
+     [
+      "Profit",
+      "tracer"
+     ],
+     [
+      "Trest",
+      "?"
+     ],
+     [
+      "TenTen",
+      "doctrine"
+     ]
+    ],
+    "T1": [
+     [
+      "DONGHAK",
+      "?"
+     ],
+     [
+      "Proud",
+      "widowmaker"
+     ],
+     [
+      "ZEST",
+      "genji"
+     ],
+     [
+      "Bliss",
+      "doctrine"
+     ],
+     [
+      "skewed",
+      "kiriko"
+     ]
+    ]
+   },
+   "compAt": null
   }
  ]
 }
