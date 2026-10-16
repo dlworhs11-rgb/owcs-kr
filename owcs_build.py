@@ -640,9 +640,31 @@ def stage_brief(stage):
     return out if layout else []
 
 
-def standings_of(stage):
+def standings_of(stage, matches=None):
+    """Liquipedia's table; with `matches`, recounted from the regular-season results instead, so a match counts the
+    moment its score is in (broadcast capture or Liquipedia's match page) without waiting for the table to be edited.
+    Order: wins, set difference, head-to-head, then Liquipedia's own order."""
     st = load('site/standings.json').get(stage['rs'], [])
-    return [dict(a=short(s['team']), w=s['w'], l=s['l'], mw=s['mw'], ml=s['ml'], diff=s['diff']) for s in st]
+    lp = [dict(a=short(s['team']), w=s['w'], l=s['l'], mw=s['mw'], ml=s['ml'], diff=s['diff']) for s in st]
+    rs = [m for m in matches or [] if m['phase'] == 'rs' and m['played'] and m['sa'] is not None and m['sb'] is not None]
+    if not rs:
+        return lp
+    rec = {s['a']: dict(a=s['a'], w=0, l=0, mw=0, ml=0, diff=0) for s in lp}
+    beat = {}
+    for m in rs:
+        for t, f, a in ((m['a'], m['sa'], m['sb']), (m['b'], m['sb'], m['sa'])):
+            r = rec.setdefault(t, dict(a=t, w=0, l=0, mw=0, ml=0, diff=0))
+            r['w' if f > a else 'l'] += 1
+            r['mw'] += f; r['ml'] += a; r['diff'] = r['mw'] - r['ml']
+        win, lose = (m['a'], m['b']) if m['sa'] > m['sb'] else (m['b'], m['a'])
+        beat[(win, lose)] = beat.get((win, lose), 0) + 1
+    order = [s['a'] for s in lp]
+    out = sorted(rec.values(), key=lambda r: (-r['w'], -r['diff'], order.index(r['a']) if r['a'] in order else 99))
+    for i in range(len(out) - 1):   # two teams level on wins and set difference: the head-to-head winner goes first
+        x, y = out[i], out[i + 1]
+        if (x['w'], x['diff']) == (y['w'], y['diff']) and beat.get((y['a'], x['a']), 0) > beat.get((x['a'], y['a']), 0):
+            out[i], out[i + 1] = y, x
+    return out
 
 
 def build(check_live=False, prev_live=None, out=HERE, records=True):
@@ -666,8 +688,8 @@ def build(check_live=False, prev_live=None, out=HERE, records=True):
             best = difflib.get_close_matches(m['potm'].lower(), [i.lower() for i in ids], 1, .6)
             if best:
                 m['potm'] = next(i for i in ids if i.lower() == best[0])
-    standings = standings_of(stage)
-    live = live_status(players) if check_live else (prev_live or {})
+    standings = standings_of(stage, matches)
+    live =live_status(players) if check_live else (prev_live or {})
     bracket = build_bracket(stage, matches, standings, playoffs)
     last = prev and build_bracket(prev, stage_brief(prev), standings_of(prev), playoffs)
     history = build_history(stages, stage['year'])

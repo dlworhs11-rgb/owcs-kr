@@ -28,7 +28,7 @@
     R + 'header a[style*="color: rgb(11, 11, 15)"]{color:#F2F2F5 !important}',
     R + 'input{background:#16161C !important;color:#F2F2F5 !important;border-color:#2E2E37 !important}',
     // --- streams page (its own variables) ---
-    D + 'body.streams-page{--bg:#0E0E12;--panel:#16161C;--line:#2E2E37;--ink:#F2F2F5;--mute:#A3A3AD;--dim:#8E8E98;color:#F2F2F5;background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.022) 0 1px,transparent 1px 12px)}',
+    D + 'body.streams-page{--bg:#0E0E12;--panel:#16161C;--line:#2E2E37;--ink:#F2F2F5;--mute:#A3A3AD;--dim:#8E8E98;color:#F2F2F5;background-image:radial-gradient(90% 60% at 0% 0%,color-mix(in srgb,var(--ac) 22%,transparent),transparent 60%),radial-gradient(60% 50% at 100% 40%,color-mix(in srgb,var(--red) 10%,transparent),transparent 65%),repeating-linear-gradient(135deg,rgba(255,255,255,.028) 0 1px,transparent 1px 12px)}',
     D + 'body.streams-page header{background:rgba(14,14,18,.9)}',
     D + 'body.streams-page .brand i{background:#F2F2F5}',
     D + 'body.streams-page nav a:hover,' + D + 'body.streams-page nav a.on{background:#24242C;color:#F2F2F5}',
