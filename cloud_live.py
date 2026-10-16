@@ -151,6 +151,8 @@ def main():
             fast = '--fast' in sys.argv   # push with only live map scores: no Liquipedia / collector, just rebuild with the new scores
             if not fast:
                 collect(prev, now, '--force-lp' in sys.argv)
+            else:   # the collector's site data is not in its repo: rebuild it from the cached Liquipedia copy (no request)
+                node('collector/build.mjs')
             data = owcs_build.build(prev_live=(prev or {}).get('live'), out=out, records=False)
             print(f"built: {data['stage']} · {len(data['matches'])} matches · {sum(m['played'] for m in data['matches'])} played · "
                   f"{len(data['players'])} players · standings {[(s['a'], s['w'], s['l']) for s in data['standings']]}")
