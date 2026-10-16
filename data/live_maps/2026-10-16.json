@@ -367,6 +367,126 @@
    },
    "winner": "Team Falcons",
    "winnerSource": "match end (leader)"
+  },
+  {
+   "match": "Cheeseburger vs T1",
+   "matchNo": 2,
+   "game": 1,
+   "map": "Busan",
+   "mapTime": "9:01",
+   "frame": "m04_table1_1792144878.png",
+   "teams": {
+    "Cheeseburger": [
+     {
+      "name": "?31",
+      "e": 12,
+      "a": 1,
+      "d": 5,
+      "dmg": 9834,
+      "heal": 1564,
+      "mit": 86
+     },
+     {
+      "name": "?32",
+      "e": 9,
+      "a": 0,
+      "d": 7,
+      "dmg": 7907,
+      "heal": 0,
+      "mit": 107
+     },
+     {
+      "name": "?33",
+      "e": 4,
+      "a": 0,
+      "d": 6,
+      "dmg": 4419,
+      "heal": 53,
+      "mit": 100
+     },
+     {
+      "name": "?34",
+      "e": 7,
+      "a": 9,
+      "d": 7,
+      "dmg": 1790,
+      "heal": 4829,
+      "mit": 123
+     },
+     {
+      "name": "?35",
+      "e": 4,
+      "a": 8,
+      "d": 4,
+      "dmg": 4964,
+      "heal": 9616,
+      "mit": 621
+     }
+    ],
+    "T1": [
+     {
+      "name": "?36",
+      "e": 10,
+      "a": 16,
+      "d": 5,
+      "dmg": 3491,
+      "heal": 7250,
+      "mit": 528
+     },
+     {
+      "name": "?37",
+      "e": 16,
+      "a": 3,
+      "d": 1,
+      "dmg": 8818,
+      "heal": 179,
+      "mit": 509
+     },
+     {
+      "name": "?38",
+      "e": 20,
+      "a": null,
+      "d": 6,
+      "dmg": 6607,
+      "heal": 0,
+      "mit": 64
+     },
+     {
+      "name": "?39",
+      "e": 7,
+      "a": 18,
+      "d": 3,
+      "dmg": 3607,
+      "heal": 7251,
+      "mit": 0
+     },
+     {
+      "name": "?40",
+      "e": 20,
+      "a": 0,
+      "d": 1,
+      "dmg": 7842,
+      "heal": 112,
+      "mit": 471
+     }
+    ]
+   },
+   "totalsVerified": false,
+   "reading": "ocr",
+   "bans": {
+    "initial": {
+     "team": "Cheeseburger",
+     "hero": "bastion"
+    },
+    "followUp": {
+     "team": "T1",
+     "hero": "jetpack cat"
+    }
+   },
+   "seriesBefore": {
+    "Cheeseburger": 0,
+    "T1": 0
+   }
   }
  ],
  "matches": [
@@ -385,6 +505,12 @@
     "screenName": "",
     "method": "unresolved"
    }
+  },
+  {
+   "match": "Cheeseburger vs T1",
+   "matchNo": 2,
+   "mapWins": {},
+   "potm": null
   }
  ],
  "unknownNames": [
@@ -536,6 +662,56 @@
   {
    "id": "?30",
    "map": "03",
+   "row": 9
+  },
+  {
+   "id": "?31",
+   "map": "04",
+   "row": 0
+  },
+  {
+   "id": "?32",
+   "map": "04",
+   "row": 1
+  },
+  {
+   "id": "?33",
+   "map": "04",
+   "row": 2
+  },
+  {
+   "id": "?34",
+   "map": "04",
+   "row": 3
+  },
+  {
+   "id": "?35",
+   "map": "04",
+   "row": 4
+  },
+  {
+   "id": "?36",
+   "map": "04",
+   "row": 5
+  },
+  {
+   "id": "?37",
+   "map": "04",
+   "row": 6
+  },
+  {
+   "id": "?38",
+   "map": "04",
+   "row": 7
+  },
+  {
+   "id": "?39",
+   "map": "04",
+   "row": 8
+  },
+  {
+   "id": "?40",
+   "map": "04",
    "row": 9
   }
  ],
