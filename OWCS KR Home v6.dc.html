@@ -1200,9 +1200,33 @@ class Component extends DCLogic {
       document.head.appendChild(s);
       const now = nowMs(), today = dayOf(now);
       const on = D.matches.some((m) => m.day === today && !m.played && now >= new Date(m.date).getTime() - 30 * 60e3);
+      if (on) this.liveScores(today);
       this.r = setTimeout(poll, on ? 10000 : 60000);
     };
     this.r = setTimeout(poll, 10000);
+  }
+  // map scores the PC reads off the broadcast (data/live_scores) straight from the repository: a push shows here in
+  // seconds, while the site build behind owcs-data.js takes a minute or more. Only ever moves a score forward.
+  liveScores(today) {
+    if (!/github\.io$/.test(location.hostname)) return;
+    fetch('https://raw.githubusercontent.com/dlworhs11-rgb/owcs-kr/main/data/live_scores/' + today + '.json?t=' + Date.now())
+      .then((r) => (r.ok ? r.json() : null)).then((d) => {
+        if (!d || !d.matches) return;
+        let changed = false;
+        D.matches.filter((m) => m.day === today).forEach((m, i) => {
+          const sc = d.matches[String(i + 1)];
+          if (!sc || sc.sa + sc.sb <= (m.sa || 0) + (m.sb || 0)) return;
+          m.sa = sc.sa; m.sb = sc.sb; changed = true;
+          (sc.history || []).forEach((h) => {
+            const x = m.maps.find((y) => y.no === h.map);
+            if (x) { if (!x.winner) x.winner = h.winner; }
+            else m.maps.push({ no: h.map, map: '', mode: '', winner: h.winner, bans: [] });
+          });
+          m.maps.sort((p, q) => p.no - q.no);
+          if (Math.max(sc.sa, sc.sb) >= Math.floor((m.bo || 5) / 2) + 1) { m.played = true; m.live = false; }
+        });
+        if (changed) this.setState((s) => ({ rev: s.rev + 1 }));
+      }).catch(() => {});
   }
   componentWillUnmount() { clearInterval(this.t); clearTimeout(this.r); clearTimeout(this.ct); }
   copy(key, text) {
