@@ -610,6 +610,128 @@
     "T1": 1
    },
    "winner": "T1",
+   "winnerSource": "series score"
+  },
+  {
+   "match": "Cheeseburger vs T1",
+   "matchNo": 2,
+   "game": 3,
+   "map": "Paraiso",
+   "mapTime": "17:07",
+   "frame": "m06_table1_1792147708.png",
+   "teams": {
+    "Cheeseburger": [
+     {
+      "name": "?51",
+      "e": 28,
+      "a": 9,
+      "d": 10,
+      "dmg": 18031,
+      "heal": 3610,
+      "mit": 12693
+     },
+     {
+      "name": "?52",
+      "e": 20,
+      "a": 2,
+      "d": 9,
+      "dmg": 15524,
+      "heal": 0,
+      "mit": 300
+     },
+     {
+      "name": "?53",
+      "e": 22,
+      "a": 0,
+      "d": 10,
+      "dmg": 1645,
+      "heal": 310,
+      "mit": 2810
+     },
+     {
+      "name": "?54",
+      "e": 21,
+      "a": 21,
+      "d": 6,
+      "dmg": 4025,
+      "heal": 18798,
+      "mit": 0
+     },
+     {
+      "name": "?55",
+      "e": 10,
+      "a": 20,
+      "d": 9,
+      "dmg": 6101,
+      "heal": 17997,
+      "mit": 2042
+     }
+    ],
+    "T1": [
+     {
+      "name": "?56",
+      "e": 15,
+      "a": 0,
+      "d": 8,
+      "dmg": 6111,
+      "heal": 14534,
+      "mit": 1321
+     },
+     {
+      "name": "?57",
+      "e": 10,
+      "a": 7,
+      "d": 6,
+      "dmg": 18861,
+      "heal": 3257,
+      "mit": 16933
+     },
+     {
+      "name": "?58",
+      "e": 17,
+      "a": 1,
+      "d": 11,
+      "dmg": 14491,
+      "heal": 0,
+      "mit": 214
+     },
+     {
+      "name": "?59",
+      "e": 18,
+      "a": 70,
+      "d": 12,
+      "dmg": 8150,
+      "heal": 15249,
+      "mit": 674
+     },
+     {
+      "name": "?60",
+      "e": 20,
+      "a": 0,
+      "d": 4,
+      "dmg": 11961,
+      "heal": 104,
+      "mit": 885
+     }
+    ]
+   },
+   "totalsVerified": false,
+   "reading": "ocr",
+   "bans": {
+    "initial": {
+     "team": "Cheeseburger",
+     "hero": "wrecking ball"
+    },
+    "followUp": {
+     "team": "T1",
+     "hero": "ana"
+    }
+   },
+   "seriesBefore": {
+    "Cheeseburger": 0,
+    "T1": 2
+   },
+   "winner": "T1",
    "winnerSource": "match end (leader)"
   }
  ],
@@ -634,9 +756,17 @@
    "match": "Cheeseburger vs T1",
    "matchNo": 2,
    "mapWins": {
-    "T1": 2
+    "T1": 3
    },
-   "potm": null
+   "potm": {
+    "name": "?51",
+    "team": "Cheeseburger",
+    "elims": 83,
+    "deaths": 28,
+    "dmgPerMin": 880,
+    "screenName": "Proud",
+    "method": "closest elims+deaths"
+   }
   }
  ],
  "unknownNames": [
@@ -888,6 +1018,56 @@
   {
    "id": "?50",
    "map": "05",
+   "row": 9
+  },
+  {
+   "id": "?51",
+   "map": "06",
+   "row": 0
+  },
+  {
+   "id": "?52",
+   "map": "06",
+   "row": 1
+  },
+  {
+   "id": "?53",
+   "map": "06",
+   "row": 2
+  },
+  {
+   "id": "?54",
+   "map": "06",
+   "row": 3
+  },
+  {
+   "id": "?55",
+   "map": "06",
+   "row": 4
+  },
+  {
+   "id": "?56",
+   "map": "06",
+   "row": 5
+  },
+  {
+   "id": "?57",
+   "map": "06",
+   "row": 6
+  },
+  {
+   "id": "?58",
+   "map": "06",
+   "row": 7
+  },
+  {
+   "id": "?59",
+   "map": "06",
+   "row": 8
+  },
+  {
+   "id": "?60",
+   "map": "06",
    "row": 9
   }
  ],
