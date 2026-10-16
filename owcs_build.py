@@ -360,6 +360,9 @@ def build_matches(stage):
             if not cur['bans'] and (b.get('initial') or {}).get('hero'):
                 cur['bans'] = [dict(t=side(x['team'], m), h=x['hero']) for x in (b.get('initial'), b.get('followUp')) if x and x.get('hero')]
                 cur['banFirst'] = side(b['initial'].get('team'), m)
+            sc = s.get('score') or {}
+            if cur.get('sa') is None and t1 in sc and t2 in sc:   # read off the HUD; Liquipedia's score replaces it
+                cur['sa'], cur['sb'] = sc[t1], sc[t2]
             if s.get('comps'):
                 auto_comps[str(s['game'])] = {side(t, m): rows for t, rows in s['comps'].items() if side(t, m)}
         maps.sort(key=lambda x: x['no'] or 0)
