@@ -78,7 +78,8 @@ def upcoming_ics(data, now=None, team=None):
     (new playoff dates appear once they are in the schedule, finished matches drop out)."""
     now = now or datetime.datetime.now(KST)
     names = {t['a']: t['n'] for t in data['teams']}
-    title = 'OWCS KR ' + (names.get(team, team) + ' ' if team else '') + '남은 경기'
+    teams = (team,) if isinstance(team, str) else tuple(team or ())
+    title = 'OWCS KR ' + ('·'.join(teams if len(teams) > 1 else [names.get(x, x) for x in teams]) + ' ' if teams else '') + '남은 경기'
     esc = lambda x: str(x).replace('\\', '\\\\').replace(';', '\\;').replace(',', '\\,')
     utc = lambda dt: dt.astimezone(datetime.timezone.utc).strftime('%Y%m%dT%H%M%SZ')
     stamp = utc(now)
@@ -86,7 +87,7 @@ def upcoming_ics(data, now=None, team=None):
              'X-WR-CALNAME:' + title, 'X-WR-TIMEZONE:Asia/Seoul', 'REFRESH-INTERVAL;VALUE=DURATION:PT6H', 'X-PUBLISHED-TTL:PT6H']
     for m in data['matches']:
         t0 = datetime.datetime.fromisoformat(m['date'])
-        if m.get('played') or t0 <= now or (team and team not in (m['a'], m['b'])):
+        if m.get('played') or t0 <= now or (teams and m['a'] not in teams and m['b'] not in teams):
             continue
         label = m.get('label') or f"{m['week']}주차"
         vs = f"{names.get(m['a'], m['a'])} vs {names.get(m['b'], m['b'])}"
@@ -106,8 +107,14 @@ def upcoming_ics(data, now=None, team=None):
 
 
 def write_ics(data, folder=HERE):
-    """owcs-kr-upcoming.ics (every team) + owcs-kr-upcoming-<team>.ics for each team (the site's 팀 고르기 subscription)"""
-    for team in [None] + [t['a'] for t in data['teams']]:
-        name = ICS_FILE if not team else ICS_FILE.replace('.ics', '-' + team.lower() + '.ics')
-        with open(os.path.join(folder, name), 'w', encoding='utf-8', newline='') as f:
-            f.write(upcoming_ics(data, team=team))
+    """owcs-kr-upcoming.ics (every team) + one file for every combination of teams, so picking several teams on the
+    site is still a single subscription: owcs-kr-upcoming-<team>-<team>....ics, codes lower case in alphabetical order"""
+    import itertools
+    codes = sorted(t['a'] for t in data['teams'])
+    with open(os.path.join(folder, ICS_FILE), 'w', encoding='utf-8', newline='') as f:
+        f.write(upcoming_ics(data))
+    for k in range(1, len(codes)):
+        for combo in itertools.combinations(codes, k):
+            name = ICS_FILE.replace('.ics', '-' + '-'.join(c.lower() for c in combo) + '.ics')
+            with open(os.path.join(folder, name), 'w', encoding='utf-8', newline='') as f:
+                f.write(upcoming_ics(data, team=combo))

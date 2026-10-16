@@ -1142,7 +1142,8 @@ const icsOf = (list) => {
 };
 // calendar subscription: owcs-kr-upcoming[-TEAM].ics (matches not played yet), rebuilt by the site's cloud refresh.
 // On the public site Google Calendar subscribes to it and keeps it current; opened from this PC it just downloads the file.
-const calUrl = (a) => { const f = 'owcs-kr-upcoming' + (a ? '-' + a.toLowerCase() : '') + '.ics';
+// a = '' (every team), one code, or several codes: the cloud refresh writes a file for every combination
+const calUrl = (a) => { const list = [].concat(a || []).map((x) => x.toLowerCase()).sort(); const f = 'owcs-kr-upcoming' + (list.length && list.length < D.teams.length ? '-' + list.join('-') : '') + '.ics';
   return /^https:$/.test(location.protocol) ? 'https://calendar.google.com/calendar/r?cid=' + encodeURIComponent('webcal://' + location.host + location.pathname.replace(/[^/]*$/, '') + f) : f; };
 const gcalOf = (m) => {
   const t0 = new Date(m.date).getTime();
@@ -1323,9 +1324,9 @@ class Component extends DCLogic {
         bg: on ? 'color-mix(in srgb, ' + col(t.a) + ' 16%, var(--paper,#fff))' : 'var(--paper,#fff)', bd: on ? '2px solid ' + col(t.a) : '1px solid var(--line,#E6E6E1)',
         toggle: () => this.setState((s) => ({ subTeams: s.subTeams.includes(t.a) ? s.subTeams.filter((x) => x !== t.a) : [...s.subTeams, t.a] })) }; }),
       subLinks: this.state.subMode === 'all' ? [{ label: '전체 남은 경기 구독', href: calUrl('') }]
-        : this.state.subTeams.map((a) => ({ label: team(a).n + ' 경기 구독', href: calUrl(a) })),
+        : this.state.subTeams.length ? [{ label: (this.state.subTeams.length === 1 ? team(this.state.subTeams[0]).n : this.state.subTeams.join(' · ')) + ' 경기 한 번에 구독', href: calUrl(this.state.subTeams) }] : [],
       subNone: this.state.subMode === 'teams' && !this.state.subTeams.length, subNoneHint: '팀을 하나 이상 고르면 구독 버튼이 나와요',
-      subNote: '구독하면 새 일정(플레이오프 포함)이 생길 때 캘린더에 자동으로 들어와요. 여러 팀은 팀마다 한 번씩 눌러 주세요.', calAddLabel: '캘린더에 추가', calAddTitle: '이 경기를 구글 캘린더에 추가',
+      subNote: '여러 팀을 골라도 캘린더 하나로 한 번에 구독돼요. 새 일정(플레이오프 포함)이 생기면 자동으로 들어와요.', calAddLabel: '캘린더에 추가', calAddTitle: '이 경기를 구글 캘린더에 추가',
       teamIcs: D.teams.map((t) => ({ a: t.a, n: t.n, logo: logoBg(t.a, false), file: 'owcs-kr-' + t.a.toLowerCase() + '.ics', href: icsOf(left.filter((m) => m.a === t.a || m.b === t.a)) })),
       shareActions: [
         { label: '구글 캘린더', icon: '31', bg: '#1A73E8', fg: '#FFFFFF', go: () => { window.open(gcalOf(nextM || hero || M[0]), '_blank'); this.setState({ shareMsg: '다음 경기를 구글 캘린더에 추가하는 창을 열었어요' }); } },

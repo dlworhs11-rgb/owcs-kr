@@ -87,6 +87,7 @@
     ['인스타그램', 'Instagram', 'Instagram'], ['인스타그램에서 보기', 'Instagramで見る', 'View on Instagram'],
     ['공식 유튜브', '公式YouTube', 'Official YouTube'], ['예매하기 ↗', 'チケット購入 ↗', 'Buy tickets ↗'], ['눌러서 티켓링크에서 예매 ↗', 'タップしてTicketLinkで購入 ↗', 'Tap to buy on TicketLink ↗'],
     ['시드전', 'シード戦', 'Seeding'], ['PO 8강', 'PO 準々決勝', 'PO QF'], ['PO 4강', 'PO 準決勝', 'PO SF'], ['PO 결승', 'PO 決勝', 'PO Final'],
+    ['여러 팀을 골라도 캘린더 하나로 한 번에 구독돼요. 새 일정(플레이오프 포함)이 생기면 자동으로 들어와요.', '複数チームを選んでもカレンダー1つでまとめて購読できます。新しい日程(プレーオフ含む)は自動で追加されます。', 'Pick several teams and it is still one calendar. New matches (playoffs too) are added automatically.'],
     ['우승', '優勝', 'Champion'], ['준우승', '準優勝', 'Runner-up'], ['대회 기록이 아직 없어요', '大会実績はまだありません', 'No major results yet'],
     // streams
     ['선수 개인 방송 · CHZZK / SOOP', '選手の個人配信 · CHZZK / SOOP', 'Player streams · CHZZK / SOOP'], ['지금 방송 중인 선수', '配信中の選手', 'players live now'], ['방송 중 없음', '配信なし', 'Nobody live'],
@@ -165,6 +166,7 @@
     [/^(\d+)–(\d+)위 라스트 찬스 예선$/, J ? '$1–$2位 ラストチャンス予選' : '#$1–$2 last chance qualifier'],
     [/^(@[\w.]+) 프로필 →$/, J ? '$1 プロフィール →' : '$1 profile →'],
     [/^(.+) 우승$/, J ? '$1 優勝' : '$1 champion'],
+    [/^(.+) 경기 한 번에 구독$/, J ? '$1 の試合をまとめて購読' : 'Subscribe to $1 matches'],
     [/^(\d+)회$/, J ? '$1回' : '$1×'],
     [/^(\d+)명$/, J ? '$1人' : '$1'],
     [/^로스터 (\d+)명$/, J ? 'ロスター $1人' : 'Roster · $1'],
