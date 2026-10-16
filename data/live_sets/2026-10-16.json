@@ -185,6 +185,29 @@
     ]
    },
    "compAt": "2026-10-16T18:48:21+09:00"
+  },
+  {
+   "banTs": 1792144963,
+   "teams": [
+    "Cheeseburger",
+    "T1"
+   ],
+   "game": 2,
+   "map": "Route 66",
+   "seriesBefore": {
+    "Cheeseburger": 0,
+    "T1": 1
+   },
+   "bans": {
+    "initial": {
+     "team": "Cheeseburger",
+     "hero": "0.Va"
+    },
+    "followUp": {
+     "team": "T1",
+     "hero": "cassidy"
+    }
+   }
   }
  ]
 }
