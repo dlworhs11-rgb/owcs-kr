@@ -73,7 +73,7 @@
     "SEIJI ESPORTS": [
      [
       "SENTIER",
-      "?"
+      "orisa"
      ],
      [
       "M1nut2",
@@ -81,7 +81,7 @@
      ],
      [
       "D4RT",
-      "?"
+      "shion"
      ],
      [
       "OFF",
@@ -95,7 +95,7 @@
     "Team Falcons": [
      [
       "SOMEONE",
-      "?"
+      "zarya"
      ],
      [
       "MER1T",
@@ -107,14 +107,16 @@
      ],
      [
       "Fielder",
-      "?"
+      "doctrine"
      ],
      [
       "ChiYo",
       "doctrine"
      ]
     ]
-   }
+   },
+   "hudLeft": "SEIJI ESPORTS",
+   "guessed": []
   },
   {
    "banTs": 1792143921,
@@ -146,7 +148,7 @@
      ],
      [
       "K4NE",
-      "?"
+      "sojourn"
      ],
      [
       "Profit",
@@ -154,7 +156,7 @@
      ],
      [
       "Trest",
-      "?"
+      "doctrine"
      ],
      [
       "TenTen",
@@ -168,7 +170,7 @@
      ],
      [
       "Proud",
-      "?"
+      "sojourn"
      ],
      [
       "ZEST",
@@ -180,11 +182,13 @@
      ],
      [
       "skewed",
-      "?"
+      "kiriko"
      ]
     ]
    },
-   "compAt": "2026-10-16T18:48:21+09:00"
+   "compAt": "2026-10-16T18:48:21+09:00",
+   "hudLeft": "Cheeseburger",
+   "guessed": []
   },
   {
    "banTs": 1792144963,
@@ -212,11 +216,11 @@
     "Cheeseburger": [
      [
       "Belosrea",
-      "?"
+      "wrecking-ball"
      ],
      [
       "K4NE",
-      "?"
+      "sojourn"
      ],
      [
       "Profit",
@@ -224,7 +228,7 @@
      ],
      [
       "Trest",
-      "?"
+      "doctrine"
      ],
      [
       "TenTen",
@@ -234,7 +238,7 @@
     "T1": [
      [
       "DONGHAK",
-      "?"
+      "wrecking-ball"
      ],
      [
       "Proud",
@@ -259,7 +263,8 @@
    "score": {
     "Cheeseburger": 0,
     "T1": 2
-   }
+   },
+   "guessed": []
   },
   {
    "banTs": 1792146459,
@@ -288,7 +293,7 @@
     "Cheeseburger": [
      [
       "Belosrea",
-      "?"
+      "hazard"
      ],
      [
       "K4NE",
@@ -334,7 +339,8 @@
    "score": {
     "Cheeseburger": 0,
     "T1": 2
-   }
+   },
+   "guessed": []
   },
   {
    "banTs": 1792149406,
@@ -367,11 +373,11 @@
      ],
      [
       "A1lEN",
-      "?"
+      "sojourn"
      ],
      [
       "WuTian",
-      "?"
+      "tracer"
      ],
      [
       "Gamjung",
@@ -389,15 +395,15 @@
      ],
      [
       "Knife",
-      "?"
+      "bastion"
      ],
      [
       "Proper",
-      "?"
+      "tracer"
      ],
      [
       "Viol2t",
-      "?"
+      "lifeweaver"
      ],
      [
       "Shu",
@@ -405,7 +411,8 @@
      ]
     ]
    },
-   "compAt": "2026-10-16T20:17:55+09:00"
+   "compAt": "2026-10-16T20:17:55+09:00",
+   "guessed": []
   },
   {
    "banTs": 1792150362,
@@ -434,49 +441,50 @@
     "ZETA DIVISION": [
      [
       "Bernar",
-      "?"
+      "dva"
      ],
      [
       "Knife",
-      "?"
+      "cassidy"
      ],
      [
       "Proper",
-      "?"
+      "genji"
      ],
      [
       "Viol2t",
-      "?"
+      "lifeweaver"
      ],
      [
       "Shu",
-      "?"
+      "doctrine"
      ]
     ],
     "O2 Blast": [
      [
       "Fate",
-      "?"
+      "dva"
      ],
      [
       "A1lEN",
-      "?"
+      "tracer"
      ],
      [
       "WuTian",
-      "?"
+      "genji"
      ],
      [
       "Gamjung",
-      "?"
+      "doctrine"
      ],
      [
       "Faith",
-      "?"
+      "jetpack-cat"
      ]
     ]
    },
-   "compAt": "2026-10-16T20:37:39+09:00"
+   "compAt": "2026-10-16T20:37:39+09:00",
+   "guessed": []
   },
   {
    "banTs": 1792151940,
@@ -517,11 +525,11 @@
      ],
      [
       "Viol2t",
-      "?"
+      "lifeweaver"
      ],
      [
       "Shu",
-      "?"
+      "jetpack-cat"
      ]
     ],
     "O2 Blast": [
@@ -539,7 +547,7 @@
      ],
      [
       "Gamjung",
-      "?"
+      "kiriko"
      ],
      [
       "Faith",
@@ -547,7 +555,8 @@
      ]
     ]
    },
-   "compAt": "2026-10-16T21:00:36+09:00"
+   "compAt": "2026-10-16T21:00:36+09:00",
+   "guessed": []
   }
  ]
 }
