@@ -24,7 +24,11 @@
     '  html[data-owcs-dark] body.streams-page header nav a:hover,html[data-owcs-dark] body.ticket-page header nav a:hover{background:#24242C !important}',
     '  header .brand span{font-size:28px !important;line-height:normal !important;letter-spacing:.56px !important}',
     // the tool bar above the header, like the home page's
-    '  [data-owcs-bar]{display:flex;justify-content:flex-end;align-items:center;gap:8px;height:45px;padding:0 max(56px, calc(50% - 680px));box-sizing:border-box;border-bottom:1px solid #E6E6E1;font:600 13px Pretendard,system-ui,sans-serif;color:#0B0B0F;position:relative;z-index:11}',
+    // the bar's 45px is reserved on the header from the first paint, and the bar sits in it (absolute), so nothing
+    // moves when the bar is added a moment later (the design pages render their header after the script runs)
+    '  #dc-root [data-screen-label]{position:relative}',
+    '  #dc-root header,body.streams-page > header,body.ticket-page > header{margin-top:45px !important}',
+    '  [data-owcs-bar]{position:absolute !important;top:0;left:0;right:0;display:flex;justify-content:flex-end;align-items:center;gap:8px;height:45px;padding:0 max(56px, calc(50% - 680px));box-sizing:border-box;border-bottom:1px solid #E6E6E1;font:600 13px Pretendard,system-ui,sans-serif;color:#0B0B0F;z-index:11}',
     '  html[data-owcs-dark] [data-owcs-bar]{border-bottom-color:#2E2E37;color:#F2F2F5}',
     '  [data-owcs-bar] [data-owcs-darkbtn]{position:static !important;height:32px !important;padding:0 10px !important;border:0 !important;border-radius:999px !important;background:transparent !important;color:inherit !important;box-shadow:none !important;font:inherit !important}',
     '  [data-owcs-bar] [data-owcs-lang]{position:static !important;padding:2px !important;border:0 !important;box-shadow:none !important;background:#E6E6E1 !important;font:700 12px Pretendard,system-ui,sans-serif !important}',
