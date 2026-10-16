@@ -74,20 +74,37 @@ def live_status(players):
 
 
 YT_JP = 'https://www.youtube.com/@ow_esports_jp/live'
+YT_FEED = 'https://www.youtube.com/feeds/videos.xml?channel_id=UCDMOG3oKXEh5Omaw9FaVqDw'
 
 
-def yt_live(prev=None):
-    """Video id of the Japanese broadcast (live now, or the next one scheduled) on @ow_esports_jp.
+def yt_live(prev=None, matches=(), stage_no=None, now=None):
+    """Video id of today's Japanese broadcast on @ow_esports_jp (live now, or scheduled for today).
     The home page embeds it for the YouTube / 日本語 choice: YouTube no longer plays embed/live_stream?channel=...
-    Keeps the previous id when YouTube can't be read, '' when the channel has nothing live or scheduled."""
+    1. the channel's /live page (works from a home PC; GitHub's servers often get a page without the stream)
+    2. the channel's RSS feed: the stream titled "...Stage N】Week W Day D ライブ" for today's match day
+    Keeps the previous id when YouTube can't be read, '' when nothing fits."""
+    ua = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)', 'Accept-Language': 'ja,en;q=0.8', 'Cookie': 'CONSENT=YES+1; SOCS=CAI'}
     try:
-        req = urllib.request.Request(YT_JP, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)', 'Accept-Language': 'ja,en;q=0.8',
-                                                     'Cookie': 'CONSENT=YES+1; SOCS=CAI'})
-        html = urllib.request.urlopen(req, timeout=10).read().decode('utf-8', 'replace')
+        html = urllib.request.urlopen(urllib.request.Request(YT_JP, headers=ua), timeout=10).read().decode('utf-8', 'replace')
         m = re.search(r'<link rel="canonical" href="https://www\.youtube\.com/watch\?v=([\w-]{11})"', html)
         if m and ('"isLiveNow":true' in html or '"isUpcoming":true' in html):
             return m.group(1)
-        return '' if 'canonical' in html else (prev or '')
+    except Exception:
+        pass
+    today = (now or datetime.datetime.now(KST)).date().isoformat()
+    tm = [m for m in matches if m.get('day') == today]
+    if not tm:
+        return ''
+    week = tm[0].get('week')
+    days = sorted({m['day'] for m in matches if m.get('week') == week and m.get('phase', 'rs') == 'rs'})
+    want = (week, days.index(today) + 1) if week and today in days else None
+    try:
+        xml = urllib.request.urlopen(urllib.request.Request(YT_FEED, headers=ua), timeout=10).read().decode('utf-8', 'replace')
+        for vid, title in re.findall(r'<yt:videoId>([\w-]{11})</yt:videoId>.*?<title>([^<]*)</title>', xml, re.S):
+            t = re.search(r'Stage\s*(\d+)\D*Week\s*(\d+)\s*Day\s*(\d+)', title, re.I)
+            if want and t and 'ライブ' in title and (stage_no is None or int(t.group(1)) == stage_no) and (int(t.group(2)), int(t.group(3))) == want:
+                return vid
+        return ''
     except Exception:
         return prev or ''
 
