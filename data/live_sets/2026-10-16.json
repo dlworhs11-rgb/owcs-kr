@@ -254,7 +254,12 @@
      ]
     ]
    },
-   "compAt": "2026-10-16T19:05:02+09:00"
+   "compAt": "2026-10-16T19:05:02+09:00",
+   "hudLeft": "Cheeseburger",
+   "score": {
+    "Cheeseburger": 0,
+    "T1": 2
+   }
   }
  ]
 }
