@@ -260,6 +260,29 @@
     "Cheeseburger": 0,
     "T1": 2
    }
+  },
+  {
+   "banTs": 1792146459,
+   "teams": [
+    "Cheeseburger",
+    "T1"
+   ],
+   "game": 3,
+   "map": "Paraiso",
+   "seriesBefore": {
+    "Cheeseburger": 0,
+    "T1": 2
+   },
+   "bans": {
+    "initial": {
+     "team": "Cheeseburger",
+     "hero": "wrecking ball"
+    },
+    "followUp": {
+     "team": "T1",
+     "hero": "ana"
+    }
+   }
   }
  ]
 }
