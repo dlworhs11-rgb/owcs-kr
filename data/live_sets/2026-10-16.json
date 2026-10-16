@@ -481,6 +481,29 @@
     ]
    },
    "compAt": "2026-10-16T20:37:39+09:00"
+  },
+  {
+   "banTs": 1792151940,
+   "teams": [
+    "O2 Blast",
+    "ZETA DIVISION"
+   ],
+   "game": 3,
+   "map": "New Junk City",
+   "seriesBefore": {
+    "O2 Blast": 0,
+    "ZETA DIVISION": 2
+   },
+   "bans": {
+    "initial": {
+     "team": "O2 Blast",
+     "hero": "doctrine"
+    },
+    "followUp": {
+     "team": "ZETA DIVISION",
+     "hero": "winston"
+    }
+   }
   }
  ]
 }
