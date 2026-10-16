@@ -1299,6 +1299,8 @@ class Component extends DCLogic {
     const liveCount = Object.keys(D.live).filter((id) => D.players.some((p) => p.id === id)).length;
     const left = upcoming;
     const hs = hero ? orient(hero.a, hero.sa, hero.b, hero.sb) : ['', 0, '', 0];
+    // the broadcast starts before the first match: show the stream from 30 minutes before it until the day's last match ends
+    const preShow = !!hero && hero.st === 'up' && !todays[0].tbd && now >= new Date(todays[0].date).getTime() - 30 * 60e3;
     const heroSet = hero ? hero.maps.filter((x) => x.winner).length + (hero.st === 'live' ? 1 : 0) : 0;
     // team colour for tints on the dark cards: very dark team colours (ZETA, ZAN) are lifted so the tint still shows
     const tintOf = (a) => { if (a === 'TBD' || !teamColors) return '#5A5A66'; const c = team(a).color || '#5A5A66', h = c.replace('#', '');
@@ -1350,9 +1352,9 @@ class Component extends DCLogic {
       headerMatch: hero && hero.st === 'live' ? vsOf(hero) : (nextM ? vsOf(nextM) : ''),
       searchHint: '일치하는 경기가 없어요. ' + D.teams.map((t) => t.a).join(', ') + ' 중에서 찾아보세요.',
       matchDay, countdownMode: !matchDay,
-      streamLive: !!hero && hero.st === 'live', streamOff: !hero || hero.st !== 'live',
+      streamLive: !!hero && (hero.st === 'live' || preShow), streamOff: !hero || (hero.st !== 'live' && !preShow),
       // before the broadcast: a poster of today's matches; after the last one: the old 경기 종료 note
-      streamPre: !!hero && hero.st === 'up', streamDone: !hero || hero.st === 'done',
+      streamPre: !!hero && hero.st === 'up' && !preShow, streamDone: !hero || hero.st === 'done',
       poster: todays.map((m) => {
         const o = orient(m.a, m.sa, m.b, m.sb), done = m.st === 'done', shown = done && !SP, nx = m === hero;
         const nm = (a) => a === 'TBD' ? '미정' : a, lg = (a) => a === 'TBD' ? 'transparent' : logoBg(a, true);
