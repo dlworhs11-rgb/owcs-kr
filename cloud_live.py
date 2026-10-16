@@ -148,7 +148,9 @@ def main():
     data = None
     if os.path.isdir(COLLECTOR):
         try:
-            collect(prev, now, '--force-lp' in sys.argv)
+            fast = '--fast' in sys.argv   # push with only live map scores: no Liquipedia / collector, just rebuild with the new scores
+            if not fast:
+                collect(prev, now, '--force-lp' in sys.argv)
             data = owcs_build.build(prev_live=(prev or {}).get('live'), out=out, records=False)
             print(f"built: {data['stage']} · {len(data['matches'])} matches · {sum(m['played'] for m in data['matches'])} played · "
                   f"{len(data['players'])} players · standings {[(s['a'], s['w'], s['l']) for s in data['standings']]}")
@@ -164,9 +166,13 @@ def main():
         sys.exit('no site data: build failed and nothing deployed yet')
     shutil.copytree(os.path.join(HERE, 'assets'), os.path.join(out, 'assets'))   # after the build: it may add Instagram photos
 
-    data['live'] = b.live_status(data['players'])
-    data['ytLive'] = b.yt_live((prev or {}).get('ytLive'), data['matches'], data.get('stageNo'))
-    vods = b.soop_vods(data['matches'], data.get('stageNo'), data.get('year'))
+    if '--fast' in sys.argv and prev:   # live-score push: reuse the stream list and replays from the last deploy (seconds saved)
+        data['live'], data['ytLive'] = prev.get('live', {}), prev.get('ytLive')
+        vods = {m['day']: m['vod'] for m in prev.get('matches', []) if m.get('vod')}
+    else:
+        data['live'] = b.live_status(data['players'])
+        data['ytLive'] = b.yt_live((prev or {}).get('ytLive'), data['matches'], data.get('stageNo'))
+        vods = b.soop_vods(data['matches'], data.get('stageNo'), data.get('year'))
     for m in data['matches']:
         if vods.get(m['day']):
             m['vod'] = vods[m['day']]

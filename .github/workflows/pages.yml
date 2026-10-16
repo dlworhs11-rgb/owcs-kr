@@ -22,7 +22,7 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true   # a newer push (live score) replaces a deploy still running: no queue
 
 jobs:
   deploy:
@@ -33,6 +33,12 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      # a push that only changes data/live_scores (the PC's live map scores) takes the fast path
+      - id: kind
+        run: |
+          if [ "${{ github.event_name }}" = "push" ] && [ -z "$(git diff --name-only HEAD^ HEAD | grep -v '^data/live_scores/')" ]; then echo "fast=--fast" >> "$GITHUB_OUTPUT"; fi
       - uses: actions/checkout@v4
         with:
           repository: dlworhs11-rgb/OWCSKR
@@ -54,7 +60,7 @@ jobs:
       - id: pages
         uses: actions/configure-pages@v5
       - id: build
-        run: python cloud_live.py --out _site --prev "${{ steps.pages.outputs.base_url }}/owcs-data.js" ${{ inputs.force_lp && '--force-lp' || '' }}
+        run: python cloud_live.py --out _site --prev "${{ steps.pages.outputs.base_url }}/owcs-data.js" ${{ inputs.force_lp && '--force-lp' || '' }} ${{ steps.kind.outputs.fast }}
       - uses: actions/cache/save@v4
         if: always() && steps.build.outputs.fetched == 'true'
         with:
