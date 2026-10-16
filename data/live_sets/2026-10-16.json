@@ -22,7 +22,55 @@
      "team": "Team Falcons",
      "hero": "jetpack cat"
     }
-   }
+   },
+   "comps": {
+    "Team Falcons": [
+     [
+      "SOMEONE",
+      "winston"
+     ],
+     [
+      "Checkmate",
+      "tracer"
+     ],
+     [
+      "MER1T",
+      "emre"
+     ],
+     [
+      "ChiYo",
+      "doctrine"
+     ],
+     [
+      "Fielder",
+      "sombra"
+     ]
+    ],
+    "SEIJI ESPORTS": [
+     [
+      "SENTIER",
+      "dva"
+     ],
+     [
+      "D4RT",
+      "tracer"
+     ],
+     [
+      "M1nut2",
+      "sojourn"
+     ],
+     [
+      "Lavender",
+      "doctrine"
+     ],
+     [
+      "OFF",
+      "sombra"
+     ]
+    ]
+   },
+   "hudLeft": "Team Falcons",
+   "fromTable": true
   },
   {
    "banTs": 1792139687,
@@ -45,7 +93,55 @@
      "team": "Team Falcons",
      "hero": "kiriko"
     }
-   }
+   },
+   "comps": {
+    "SEIJI ESPORTS": [
+     [
+      "DOX",
+      "doomfist"
+     ],
+     [
+      "SENTIER",
+      "jetpack-cat"
+     ],
+     [
+      "D4RT",
+      "tracer"
+     ],
+     [
+      "M1nut2",
+      "shion"
+     ],
+     [
+      "Lavender",
+      "lucio"
+     ]
+    ],
+    "Team Falcons": [
+     [
+      "SOMEONE",
+      "junker-queen"
+     ],
+     [
+      "Checkmate",
+      "tracer"
+     ],
+     [
+      "MER1T",
+      "shion"
+     ],
+     [
+      "ChiYo",
+      "doctrine"
+     ],
+     [
+      "Fielder",
+      "sombra"
+     ]
+    ]
+   },
+   "hudLeft": "SEIJI ESPORTS",
+   "fromTable": true
   },
   {
    "banTs": 1792140851,
