@@ -486,7 +486,131 @@
    "seriesBefore": {
     "Cheeseburger": 0,
     "T1": 0
-   }
+   },
+   "winner": "T1",
+   "winnerSource": "series score"
+  },
+  {
+   "match": "Cheeseburger vs T1",
+   "matchNo": 2,
+   "game": 2,
+   "map": "Route 66",
+   "mapTime": "15:05",
+   "frame": "m05_table1_1792146374.png",
+   "teams": {
+    "Cheeseburger": [
+     {
+      "name": "?41",
+      "e": 24,
+      "a": 8,
+      "d": 8,
+      "dmg": 15865,
+      "heal": 2544,
+      "mit": 14394
+     },
+     {
+      "name": "?42",
+      "e": 18,
+      "a": 0,
+      "d": 8,
+      "dmg": 17774,
+      "heal": 0,
+      "mit": 0
+     },
+     {
+      "name": "?43",
+      "e": 26,
+      "a": null,
+      "d": 9,
+      "dmg": 1744,
+      "heal": 751,
+      "mit": 7517
+     },
+     {
+      "name": "?44",
+      "e": 11,
+      "a": 17,
+      "d": 13,
+      "dmg": 6561,
+      "heal": 4464,
+      "mit": 498
+     },
+     {
+      "name": "?45",
+      "e": 12,
+      "a": 22,
+      "d": 8,
+      "dmg": 4257,
+      "heal": 16261,
+      "mit": 1517
+     }
+    ],
+    "T1": [
+     {
+      "name": "?46",
+      "e": 15,
+      "a": 25,
+      "d": 10,
+      "dmg": 6578,
+      "heal": 10439,
+      "mit": 40
+     },
+     {
+      "name": "?47",
+      "e": 21,
+      "a": 8,
+      "d": 3,
+      "dmg": 14418,
+      "heal": 3195,
+      "mit": 138
+     },
+     {
+      "name": "?48",
+      "e": 26,
+      "a": null,
+      "d": 9,
+      "dmg": 14154,
+      "heal": 0,
+      "mit": 0
+     },
+     {
+      "name": "?49",
+      "e": 17,
+      "a": 17,
+      "d": 9,
+      "dmg": 9495,
+      "heal": 17181,
+      "mit": 0
+     },
+     {
+      "name": "?50",
+      "e": 19,
+      "a": null,
+      "d": 10,
+      "dmg": 4047,
+      "heal": 670,
+      "mit": 2952
+     }
+    ]
+   },
+   "totalsVerified": false,
+   "reading": "ocr",
+   "bans": {
+    "initial": {
+     "team": "Cheeseburger",
+     "hero": "0.Va"
+    },
+    "followUp": {
+     "team": "T1",
+     "hero": "cassidy"
+    }
+   },
+   "seriesBefore": {
+    "Cheeseburger": 0,
+    "T1": 1
+   },
+   "winner": "T1",
+   "winnerSource": "match end (leader)"
   }
  ],
  "matches": [
@@ -509,7 +633,9 @@
   {
    "match": "Cheeseburger vs T1",
    "matchNo": 2,
-   "mapWins": {},
+   "mapWins": {
+    "T1": 2
+   },
    "potm": null
   }
  ],
@@ -712,6 +838,56 @@
   {
    "id": "?40",
    "map": "04",
+   "row": 9
+  },
+  {
+   "id": "?41",
+   "map": "05",
+   "row": 0
+  },
+  {
+   "id": "?42",
+   "map": "05",
+   "row": 1
+  },
+  {
+   "id": "?43",
+   "map": "05",
+   "row": 2
+  },
+  {
+   "id": "?44",
+   "map": "05",
+   "row": 3
+  },
+  {
+   "id": "?45",
+   "map": "05",
+   "row": 4
+  },
+  {
+   "id": "?46",
+   "map": "05",
+   "row": 5
+  },
+  {
+   "id": "?47",
+   "map": "05",
+   "row": 6
+  },
+  {
+   "id": "?48",
+   "map": "05",
+   "row": 7
+  },
+  {
+   "id": "?49",
+   "map": "05",
+   "row": 8
+  },
+  {
+   "id": "?50",
+   "map": "05",
    "row": 9
   }
  ],
