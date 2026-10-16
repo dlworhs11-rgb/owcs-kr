@@ -369,7 +369,8 @@ def build_matches(stage):
         # series score read off the broadcast break screen (score_watch.py): the fastest map winner we get
         key = (m['competition'], m['idx'])
         sc = live_scores(day).get(str(order[day].index(key) + 1)) if key in order.get(day, []) else None
-        if sc and not m['played']:
+        # also when Liquipedia already calls the match over but has fewer maps in (it lags: 0-1 while the broadcast is at 0-3)
+        if sc and (not m['played'] or sc['sa'] + sc['sb'] > (sa or 0) + (sb or 0)):
             for h in sc['history']:
                 cur = next((x for x in maps if x['no'] == h['map']), None)
                 if cur is None:
