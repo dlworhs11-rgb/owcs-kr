@@ -165,6 +165,7 @@ def main():
     shutil.copytree(os.path.join(HERE, 'assets'), os.path.join(out, 'assets'))   # after the build: it may add Instagram photos
 
     data['live'] = b.live_status(data['players'])
+    data['ytLive'] = b.yt_live((prev or {}).get('ytLive'))
     vods = b.soop_vods(data['matches'], data.get('stageNo'), data.get('year'))
     for m in data['matches']:
         if vods.get(m['day']):

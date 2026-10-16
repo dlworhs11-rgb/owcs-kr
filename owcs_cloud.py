@@ -73,6 +73,25 @@ def live_status(players):
     return live
 
 
+YT_JP = 'https://www.youtube.com/@ow_esports_jp/live'
+
+
+def yt_live(prev=None):
+    """Video id of the Japanese broadcast (live now, or the next one scheduled) on @ow_esports_jp.
+    The home page embeds it for the YouTube / 日本語 choice: YouTube no longer plays embed/live_stream?channel=...
+    Keeps the previous id when YouTube can't be read, '' when the channel has nothing live or scheduled."""
+    try:
+        req = urllib.request.Request(YT_JP, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)', 'Accept-Language': 'ja,en;q=0.8',
+                                                     'Cookie': 'CONSENT=YES+1; SOCS=CAI'})
+        html = urllib.request.urlopen(req, timeout=10).read().decode('utf-8', 'replace')
+        m = re.search(r'<link rel="canonical" href="https://www\.youtube\.com/watch\?v=([\w-]{11})"', html)
+        if m and ('"isLiveNow":true' in html or '"isUpcoming":true' in html):
+            return m.group(1)
+        return '' if 'canonical' in html else (prev or '')
+    except Exception:
+        return prev or ''
+
+
 def upcoming_ics(data, now=None, team=None):
     """iCalendar text with every match that has not started yet, so a subscribed Google Calendar keeps itself current
     (new playoff dates appear once they are in the schedule, finished matches drop out)."""
