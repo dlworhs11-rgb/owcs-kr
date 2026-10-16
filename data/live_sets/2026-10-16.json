@@ -282,7 +282,55 @@
      "team": "T1",
      "hero": "ana"
     }
-   }
+   },
+   "hudLeft": "Cheeseburger",
+   "comps": {
+    "Cheeseburger": [
+     [
+      "Belosrea",
+      "?"
+     ],
+     [
+      "K4NE",
+      "cassidy"
+     ],
+     [
+      "Profit",
+      "tracer"
+     ],
+     [
+      "Trest",
+      "?"
+     ],
+     [
+      "TenTen",
+      "jetpack-cat"
+     ]
+    ],
+    "T1": [
+     [
+      "DONGHAK",
+      "dva"
+     ],
+     [
+      "Proud",
+      "widowmaker"
+     ],
+     [
+      "ZEST",
+      "genji"
+     ],
+     [
+      "Bliss",
+      "doctrine"
+     ],
+     [
+      "skewed",
+      "kiriko"
+     ]
+    ]
+   },
+   "compAt": null
   }
  ]
 }
