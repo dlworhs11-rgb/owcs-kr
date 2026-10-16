@@ -1150,11 +1150,12 @@ const liveScores = (today, onChange) => {
       let changed = false;
       D.matches.filter((m) => m.day === today).forEach((m, i) => {
         const sc = d.matches[String(i + 1)];
-        if (!sc || sc.sa + sc.sb <= (m.sa || 0) + (m.sb || 0)) return;
+        // a newer reading, or a corrected one (same number of maps, a misread map given back to the other team)
+        if (!sc || sc.sa + sc.sb < (m.sa || 0) + (m.sb || 0) || (sc.sa === m.sa && sc.sb === m.sb)) return;
         m.sa = sc.sa; m.sb = sc.sb; changed = true;
         (sc.history || []).forEach((h) => {
           const x = m.maps.find((y) => y.no === h.map);
-          if (x) { if (!x.winner) x.winner = h.winner; }
+          if (x) x.winner = h.winner;
           else m.maps.push({ no: h.map, map: '', mode: '', winner: h.winner, bans: [] });
         });
         m.maps.sort((p, q) => p.no - q.no);
