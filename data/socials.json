@@ -1,0 +1,439 @@
+{
+ "_source": "Liquipedia (CC-BY-SA 3.0) player and team pages, fetched 2026-10-15",
+ "players": {
+  "Proper": {
+   "instagram": "ow_proper",
+   "x": "Ow_Proper",
+   "name": "Kim Dong-hyun",
+   "birth": "2003-12-1",
+   "lp": "https://liquipedia.net/overwatch/Proper"
+  },
+  "HeeSang": {
+   "instagram": "heesang1",
+   "x": "Ow_HeeSang",
+   "name": "Chae Hee-sang",
+   "birth": "2005-03-03",
+   "lp": "https://liquipedia.net/overwatch/HeeSang"
+  },
+  "Stalk3r": {
+   "instagram": "stalk3r_ow",
+   "x": "Stalk3r_OW",
+   "name": "Jeong Hak-yong",
+   "birth": "2003-08-26",
+   "lp": "https://liquipedia.net/overwatch/Stalk3r"
+  },
+  "LIP": {
+   "instagram": "jaewoni762",
+   "x": "socutelip",
+   "youtube": "@overwatchlip",
+   "name": "Lee Jae-won",
+   "birth": "2001-11-05",
+   "lp": "https://liquipedia.net/overwatch/LIP"
+  },
+  "Proud": {
+   "instagram": "proud._.s2",
+   "x": "Proud1002_ow",
+   "youtube": "@proud_ow5353",
+   "name": "Hong Suk-jin",
+   "birth": "2006-11-12",
+   "lp": "https://liquipedia.net/overwatch/Proud"
+  },
+  "DONGHAK": {
+   "instagram": "donghak123",
+   "x": "Donghak_ow",
+   "youtube": "@동학2",
+   "name": "Kim Min-sung",
+   "birth": "2005-12-03",
+   "lp": "https://liquipedia.net/overwatch/DONGHAK"
+  },
+  "ZEST": {
+   "instagram": "zest0303",
+   "x": "OW_Zest",
+   "name": "Kim Hyun-woo",
+   "birth": "2003-06-05",
+   "lp": "https://liquipedia.net/overwatch/ZEST"
+  },
+  "Shu": {
+   "instagram": "1__shu__",
+   "x": "shu_overwatch",
+   "youtube": "@shu0712",
+   "name": "Kim Jin-seo",
+   "birth": "2000-07-12",
+   "lp": "https://liquipedia.net/overwatch/Shu"
+  },
+  "Viol2t": {
+   "instagram": "viol2tow",
+   "x": "Viol2t_OW",
+   "youtube": "@viol2t417",
+   "name": "Park Min-ki",
+   "birth": "2000-04-17",
+   "lp": "https://liquipedia.net/overwatch/Viol2t"
+  },
+  "JunBin": {
+   "instagram": "junbin105",
+   "x": "Junbin_ow",
+   "name": "Park Jun-bin",
+   "birth": "2005-10-05",
+   "lp": "https://liquipedia.net/overwatch/JunBin"
+  },
+  "Bernar": {
+   "instagram": "sxxnsewon",
+   "x": "Bernar",
+   "name": "Shin Se-won",
+   "birth": "2000-08-18",
+   "lp": "https://liquipedia.net/overwatch/Bernar"
+  },
+  "Knife": {
+   "instagram": "iseonu5991",
+   "x": "KNIFE__OW",
+   "name": "Lee Seon-woo",
+   "birth": "2004-07-21",
+   "lp": "https://liquipedia.net/overwatch/KNIFE"
+  },
+  "SP1NT": {
+   "instagram": "j1n_o7",
+   "x": "OwSp1nt",
+   "name": "An Woo-jin",
+   "birth": "2007-12-28",
+   "lp": "https://liquipedia.net/overwatch/SP1NT"
+  },
+  "CH0R0NG": {
+   "instagram": "yumminzz",
+   "x": "CH0R0NG_OW",
+   "youtube": "@CH0R0NG-f4j",
+   "name": "Sung Yoo-min",
+   "birth": "2003-12-08",
+   "lp": "https://liquipedia.net/overwatch/CH0R0NG"
+  },
+  "Checkmate": {
+   "x": "ow_checkmate",
+   "name": "Baek Seung-hun",
+   "birth": "2001-05-08",
+   "lp": "https://liquipedia.net/overwatch/Checkmate"
+  },
+  "MER1T": {
+   "instagram": "mer1t_ow",
+   "x": "MER1T_ow",
+   "name": "Choi Tae-min",
+   "birth": "2002-06-21",
+   "lp": "https://liquipedia.net/overwatch/MER1T"
+  },
+  "Hanbin": {
+   "instagram": "hanbin_ow",
+   "x": "HanBin_OW",
+   "name": "Choi Han-been",
+   "birth": "2002-02-20",
+   "lp": "https://liquipedia.net/overwatch/Hanbin"
+  },
+  "Fielder": {
+   "instagram": "fielder_ow",
+   "x": "fielder_ow",
+   "youtube": "@fielder9338",
+   "name": "Kwon Joon",
+   "birth": "2002-01-29",
+   "lp": "https://liquipedia.net/overwatch/Fielder"
+  },
+  "MAX": {
+   "instagram": "max_o8o",
+   "x": "OW_MAX1",
+   "name": "Choi Su-min",
+   "birth": "2004-11-23",
+   "lp": "https://liquipedia.net/overwatch/MAX"
+  },
+  "Mealgaru": {
+   "x": "Mealgaru_ow",
+   "youtube": "@Mealgaru",
+   "name": "Lee Jeong-hwan",
+   "birth": "2006-02-25",
+   "lp": "https://liquipedia.net/overwatch/Mealgaru"
+  },
+  "Heiser": {
+   "instagram": "yuheiser",
+   "x": "Heiser72_",
+   "name": "Cho-Yu-hyun",
+   "birth": "2008-02-07",
+   "lp": "https://liquipedia.net/overwatch/HEISER"
+  },
+  "Kilo": {
+   "instagram": "jeong_kilo",
+   "x": "0w_kilo",
+   "name": "Jung Jin-woo",
+   "birth": "2003-07-08",
+   "lp": "https://liquipedia.net/overwatch/Kilo"
+  },
+  "M1nut2": {
+   "instagram": "seominseo03",
+   "x": "M1nut2_ow",
+   "name": "Seo Min-seo",
+   "birth": "2003-06-20",
+   "lp": "https://liquipedia.net/overwatch/M1nut2"
+  },
+  "ChiYo": {
+   "instagram": "chiyo_ow",
+   "x": "ChiYo_ow1",
+   "name": "Han Hyeon-seok",
+   "birth": "2003-09-08",
+   "lp": "https://liquipedia.net/overwatch/ChiYo"
+  },
+  "D4RT": {
+   "instagram": "gominhyuk04",
+   "x": "ow_D4RT",
+   "name": "Go Min-hyuk",
+   "birth": "2004-11-15",
+   "lp": "https://liquipedia.net/overwatch/D4RT"
+  },
+  "Jasm1ne": {
+   "instagram": "jongmin405",
+   "x": "Jasm1ne_ow",
+   "name": "Jeong Jong-min",
+   "birth": "2003-09-19",
+   "lp": "https://liquipedia.net/overwatch/Jasm1ne"
+  },
+  "perr": {
+   "x": "ow_perr",
+   "name": "Kim Dam-I",
+   "birth": "2003-09-13",
+   "lp": "https://liquipedia.net/overwatch/Perr"
+  },
+  "K4NE": {
+   "instagram": "zuhxnng",
+   "x": "k4ne_ow",
+   "name": "Choi Ju-hyung",
+   "birth": "2008-04-29",
+   "lp": "https://liquipedia.net/overwatch/K4ne"
+  },
+  "SOMEONE": {
+   "instagram": "someone_ow",
+   "x": "someone0424",
+   "name": "Ham Jeong-wan",
+   "birth": "2004-04-24",
+   "lp": "https://liquipedia.net/overwatch/Someone"
+  },
+  "Bliss": {
+   "instagram": "owbliss",
+   "x": "Bliss_ow",
+   "youtube": "@김소명-j8l",
+   "name": "Kim So-myung",
+   "birth": "2005-01-05",
+   "lp": "https://liquipedia.net/overwatch/Bliss"
+  },
+  "HEESUNG": {
+   "x": "heesung69981132",
+   "name": "Lee Hee-sung",
+   "birth": "2006-06-20",
+   "lp": "https://liquipedia.net/overwatch/HEESUNG"
+  },
+  "Fate": {
+   "x": "Fate_ow",
+   "name": "Koo Pan-seung",
+   "birth": "1998-10-15",
+   "lp": "https://liquipedia.net/overwatch/Fate"
+  },
+  "Gamjung": {
+   "x": "gamjung22",
+   "youtube": "@감정적으로겜함",
+   "name": "Lee Jeong-min",
+   "birth": "2007-11-12",
+   "lp": "https://liquipedia.net/overwatch/Gamjung"
+  },
+  "WuTian": {
+   "x": "imjaewon390542",
+   "name": "Lim Jae-won",
+   "birth": "2004-05-07",
+   "lp": "https://liquipedia.net/overwatch/WuTian"
+  },
+  "Belosrea": {
+   "instagram": "belosrea_ow",
+   "x": "OW_Belosrea",
+   "name": "Hwang Gyu-tae",
+   "birth": "2004-01-10",
+   "lp": "https://liquipedia.net/overwatch/Belosrea"
+  },
+  "Trest": {},
+  "SENTIER": {
+   "x": "sentier_ow",
+   "birth": "2009-05-07",
+   "lp": "https://liquipedia.net/overwatch/SENTIER"
+  },
+  "vigilante": {
+   "instagram": "vi9ilante71",
+   "x": "vi9ilante71",
+   "name": "Kim Joon",
+   "birth": "2004-07-01",
+   "lp": "https://liquipedia.net/overwatch/Vigilante"
+  },
+  "skewed": {
+   "x": "skewedOw",
+   "name": "Kim Min-seok",
+   "birth": "2001-01-11",
+   "lp": "https://liquipedia.net/overwatch/Skewed"
+  },
+  "Bekey": {},
+  "iR0NY": {},
+  "Taejong": {
+   "instagram": "taejong801",
+   "x": "ow_taejong",
+   "youtube": "@owtaejong",
+   "name": "Yoo Tae-jong",
+   "birth": "2006-08-01",
+   "lp": "https://liquipedia.net/overwatch/Taejong"
+  },
+  "OPENER": {
+   "instagram": "opener0403",
+   "x": "OPENER_ow",
+   "name": "An Gi-beom",
+   "birth": "2004-04-03",
+   "lp": "https://liquipedia.net/overwatch/OPENER"
+  },
+  "A1lEN": {},
+  "homerunball": {
+   "instagram": "loaisjdaa",
+   "x": "ow_e1ther",
+   "name": "Kim Jae-woo",
+   "birth": "2008-05-14",
+   "lp": "https://liquipedia.net/overwatch/Homerunball"
+  },
+  "Faith": {
+   "instagram": "ow_faith",
+   "x": "OW_Faith",
+   "name": "Kim Hong-gyu",
+   "birth": "2001-11-16",
+   "lp": "https://liquipedia.net/overwatch/Faith"
+  },
+  "Azent": {},
+  "Profit": {
+   "instagram": "profitow",
+   "x": "profitow",
+   "youtube": "channel/UCUL0nRdx3zrqvXTvca7kftw",
+   "name": "Park Joon-yeong",
+   "birth": "1999-11-19",
+   "lp": "https://liquipedia.net/overwatch/Profit"
+  },
+  "TenTen": {
+   "name": "Liao Ching-han",
+   "lp": "https://liquipedia.net/overwatch/TenTen"
+  },
+  "SWOO": {
+   "instagram": "juho._01",
+   "x": "Ow_SWOO",
+   "name": "Yoo Ju-ho",
+   "birth": "2007-01-24",
+   "lp": "https://liquipedia.net/overwatch/SWOO"
+  },
+  "Caffeine": {
+   "x": "caffeine_ow",
+   "name": "Kwon Ye-jun",
+   "birth": "2003-12-10",
+   "lp": "https://liquipedia.net/overwatch/Caffeine"
+  },
+  "SoLA": {
+   "x": "Ow_Sola",
+   "name": "Shin Eon-woo",
+   "birth": "2007-04-09",
+   "lp": "https://liquipedia.net/overwatch/SoLA"
+  },
+  "Soae": {
+   "x": "soae_03",
+   "youtube": "@soae03",
+   "name": "Lee Chae-woo",
+   "birth": "2003-12-16",
+   "lp": "https://liquipedia.net/overwatch/Soae"
+  },
+  "SORI": {
+   "x": "OW_SORI",
+   "youtube": "@SORI_OW",
+   "name": "Lee Jin-uk",
+   "birth": "2005-04-01",
+   "lp": "https://liquipedia.net/overwatch/SORI"
+  },
+  "Dumbbell": {
+   "instagram": "hwangts_06",
+   "x": "ow_Dumbbell",
+   "youtube": "@dumbbell777",
+   "name": "Hwang Tae-san",
+   "birth": "2006-07-09",
+   "lp": "https://liquipedia.net/overwatch/Dumbbell"
+  },
+  "F1nally": {
+   "x": "F1nally_ow",
+   "name": "Park Min-jae",
+   "birth": "2007-09-22",
+   "lp": "https://liquipedia.net/overwatch/F1nally"
+  },
+  "DOX": {
+   "instagram": "mins_dox",
+   "x": "ow_dox",
+   "youtube": "kmc2482",
+   "name": "Kim Min-seok",
+   "birth": "1994-11-04",
+   "lp": "https://liquipedia.net/overwatch/DOX"
+  },
+  "OFF": {
+   "x": "OW_OFFF",
+   "name": "Lee Jae-in",
+   "birth": "2003-04-14",
+   "lp": "https://liquipedia.net/overwatch/OFF"
+  },
+  "Lavender": {
+   "x": "lavender_Ow0",
+   "name": "Lee Seung-je",
+   "birth": "2005-06-02",
+   "lp": "https://liquipedia.net/overwatch/Lavender"
+  }
+ },
+ "teams": {
+  "ZETA DIVISION": {
+   "instagram": "zetadivision",
+   "x": "zetadivision",
+   "youtube": "channel/UCnt5hmHu3kLN-LLOuCgAQ2g",
+   "name": "ZETA DIVISION",
+   "lp": "https://liquipedia.net/overwatch/ZETA_DIVISION"
+  },
+  "Crazy Raccoon": {
+   "instagram": "crazy_raccoon_official",
+   "x": "crazyraccoon406",
+   "youtube": "channel/UCV3h-YCXiKiMmVupdknm73Q",
+   "name": "Crazy Raccoon",
+   "lp": "https://liquipedia.net/overwatch/Crazy_Raccoon"
+  },
+  "Cheeseburger": {
+   "instagram": "owcheeseburger",
+   "x": "owCHEESEBURGER",
+   "youtube": "@owCHEESEBURGER",
+   "name": "Cheeseburger",
+   "lp": "https://liquipedia.net/overwatch/Cheeseburger"
+  },
+  "T1": {
+   "instagram": "t1official.gg",
+   "x": "T1_official_gg",
+   "name": "T1",
+   "lp": "https://liquipedia.net/overwatch/T1"
+  },
+  "Team Falcons": {
+   "instagram": "teamfalconsgg",
+   "x": "TeamFalconsGG",
+   "youtube": "@TeamFalconsGG",
+   "name": "Team Falcons",
+   "lp": "https://liquipedia.net/overwatch/Team_Falcons"
+  },
+  "O2 Blast": {
+   "x": "O2_Blast",
+   "youtube": "channel/UCpPndVAhBwKFAe-NowqT6Eg",
+   "name": "O2 Blast",
+   "lp": "https://liquipedia.net/overwatch/O2_Blast"
+  },
+  "SEIJI ESPORTS": {},
+  "ZANSIDE GAMING": {
+   "x": "ZANSIDEGAMING",
+   "name": "ZANSIDE GAMING",
+   "lp": "https://liquipedia.net/overwatch/ZANSIDE_GAMING"
+  },
+  "Poker Face": {
+   "instagram": "pokerface_ow",
+   "x": "WEAREPOKERFACE",
+   "youtube": "@POKERFACE_OFFICIAL",
+   "name": "Poker Face",
+   "lp": "https://liquipedia.net/overwatch/Poker_Face"
+  }
+ }
+}

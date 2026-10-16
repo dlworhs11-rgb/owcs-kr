@@ -1,4 +1,5 @@
-# publish only the site + the cloud refresh (cloud_live.py, owcs_cloud.py: no local paths); everything else stays on this PC
+# publish only the site, the cloud build (owcs_build.py, owcs_cloud.py, cloud_live.py: no local paths) and the data
+# files it needs; everything else stays on this PC
 /*
 !/.gitignore
 !/.github/
@@ -10,6 +11,18 @@
 !/support.js
 !/cloud_live.py
 !/owcs_cloud.py
+!/owcs_build.py
+!/data/
+/data/*
+!/data/socials.json
+!/data/faces.json
+!/data/achievements.json
+!/data/picks.json
+!/data/insta_posts.txt
+!/data/insta_meta.json
+!/data/live_scores/
+!/data/live_maps/
 
-# built on every deploy by cloud_live.py
+# built by GitHub Actions on every deploy (cloud_live.py); the PC copy is only for the local preview
+/owcs-data.js
 owcs-kr-upcoming*.ics

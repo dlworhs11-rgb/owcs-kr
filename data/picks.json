@@ -1,0 +1,9 @@
+{
+  "_설명": "세트별 첫 조합. 키는 '날짜 왼쪽팀 vs 오른쪽팀'(사이트 약칭), 그 안에 세트 번호. a = 왼쪽 팀, b = 오른쪽 팀, [선수, 영웅(영문)] 순서는 탱 딜 딜 힐 힐. 고친 뒤 build_owcs_data.py를 실행하면 사이트에 반영돼요.",
+  "_예시": {
+    "1": {
+      "a": [["SWOO", "winston"], ["Soae", "tracer"], ["SORI", "sojourn"], ["Dumbbell", "kiriko"], ["Caffeine", "lucio"]],
+      "b": [["Mealgaru", "dva"], ["Proper", "tracer"], ["Knife", "genji"], ["Shu", "ana"], ["Viol2t", "lucio"]]
+    }
+  }
+}

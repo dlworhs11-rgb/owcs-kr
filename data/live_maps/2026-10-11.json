@@ -1,0 +1,131 @@
+{
+ "date": "2026-10-11",
+ "source": "OBS capture of the SOOP broadcast (owesports), GAME DATA screens",
+ "maps": [
+  {
+   "match": "O2 Blast vs ZANSIDE GAMING",
+   "matchNo": 1,
+   "game": 5,
+   "map": "Neon Junction",
+   "mapTime": "15:48",
+   "frame": "m01_table1_1791960443.png",
+   "teams": {
+    "O2 Blast": [
+     {
+      "name": "Faith",
+      "e": 22,
+      "a": 25,
+      "d": 11,
+      "dmg": 4747,
+      "heal": 14325,
+      "mit": 0
+     },
+     {
+      "name": "Fate",
+      "e": 31,
+      "a": 7,
+      "d": 7,
+      "dmg": 20108,
+      "heal": 1037,
+      "mit": 15709
+     },
+     {
+      "name": "Gamjung",
+      "e": 18,
+      "a": 30,
+      "d": 6,
+      "dmg": 7295,
+      "heal": 23546,
+      "mit": 3083
+     },
+     {
+      "name": "Perr",
+      "e": 18,
+      "a": 3,
+      "d": 9,
+      "dmg": 16456,
+      "heal": 0,
+      "mit": 171
+     },
+     {
+      "name": "Wutian",
+      "e": 25,
+      "a": 1,
+      "d": 5,
+      "dmg": 13146,
+      "heal": 195,
+      "mit": 948
+     }
+    ],
+    "ZANSIDE GAMING": [
+     {
+      "name": "Becky",
+      "e": 17,
+      "a": 3,
+      "d": 13,
+      "dmg": 11635,
+      "heal": 131,
+      "mit": 951
+     },
+     {
+      "name": "Heesang",
+      "e": 16,
+      "a": 4,
+      "d": 7,
+      "dmg": 21266,
+      "heal": 1486,
+      "mit": 15070
+     },
+     {
+      "name": "Irony",
+      "e": 13,
+      "a": 25,
+      "d": 1,
+      "dmg": 9788,
+      "heal": 24739,
+      "mit": 2741
+     },
+     {
+      "name": "Kilo",
+      "e": 28,
+      "a": 4,
+      "d": 10,
+      "dmg": 16055,
+      "heal": 0,
+      "mit": 256
+     },
+     {
+      "name": "Opener",
+      "e": 21,
+      "a": 16,
+      "d": 9,
+      "dmg": 5295,
+      "heal": 12122,
+      "mit": 0
+     }
+    ]
+   },
+   "totalsVerified": true,
+   "reading": "ocr"
+  }
+ ],
+ "matches": [
+  {
+   "match": "O2 Blast vs ZANSIDE GAMING",
+   "matchNo": 1,
+   "mapWins": {},
+   "potm": {
+    "name": "Becky",
+    "team": "ZANSIDE GAMING",
+    "elims": 98,
+    "deaths": 40,
+    "dmgPerMin": 743,
+    "screenName": "Becky",
+    "method": "name"
+   }
+  }
+ ],
+ "unknownNames": [],
+ "unknownMaps": [],
+ "note": "reading=ocr: numbers, match/game/map read from the broadcast screen; totalsVerified = sums match the team-totals page; mapTime = damage / damage-per-minute from the totals page."
+}

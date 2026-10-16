@@ -1,0 +1,13488 @@
+{
+"proper": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "ZETA DIVISION",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "ZETA DIVISION",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "ZETA DIVISION",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "ZETA DIVISION",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Team Falcons",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "Team Falcons",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+}
+],
+"stalk3r": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "Team Falcons",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+}
+],
+"smurf": [
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+}
+],
+"hanbin": [
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "Team Falcons",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Team Falcons",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "Team Falcons",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+}
+],
+"chiyo": [
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "Team Falcons",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Team Falcons",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "Team Falcons",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+}
+],
+"fielder": [
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "Team Falcons",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Team Falcons",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "Team Falcons",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+}
+],
+"sirmajed": [
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+}
+],
+"junkbuck": [
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "Team Falcons",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Al Qadsiah",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Al Qadsiah",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+}
+],
+"crusty": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "ZETA DIVISION",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "ZETA DIVISION",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "ZETA DIVISION",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "ZETA DIVISION",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+}
+],
+"lip": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "WAC",
+"place": 2,
+"res": "준우승"
+}
+],
+"heesang": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "WAC",
+"place": 2,
+"res": "준우승"
+}
+],
+"junbin": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "WAC",
+"place": 2,
+"res": "준우승"
+}
+],
+"max": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "WAC",
+"place": 2,
+"res": "준우승"
+}
+],
+"ch0r0ng": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "WAC",
+"place": 2,
+"res": "준우승"
+}
+],
+"shu": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "ZETA DIVISION",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "ZETA DIVISION",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "ZETA DIVISION",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "ZETA DIVISION",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "WAC",
+"place": 2,
+"res": "준우승"
+}
+],
+"moon": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "WAC",
+"place": 2,
+"res": "준우승"
+}
+],
+"kong": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "WAC",
+"place": 2,
+"res": "준우승"
+}
+],
+"pavane": [
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "WAC",
+"place": 2,
+"res": "준우승"
+}
+],
+"flora": [
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "ZETA DIVISION",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "ZETA DIVISION",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "ZETA DIVISION",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "From The Gamer",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "From The Gamer",
+"place": 3,
+"res": "3위"
+}
+],
+"alphayi": [
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "ZETA DIVISION",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "ZETA DIVISION",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "ZETA DIVISION",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "From The Gamer",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "From The Gamer",
+"place": 3,
+"res": "3위"
+}
+],
+"belosrea": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "JD Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "ROC Esports",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "From The Gamer",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "From The Gamer",
+"place": 3,
+"res": "3위"
+}
+],
+"bernar": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "ZETA DIVISION",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "ZETA DIVISION",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "ZETA DIVISION",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "ZETA DIVISION",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "ZETA DIVISION",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "ZETA DIVISION",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "ZETA DIVISION",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "From The Gamer",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "From The Gamer",
+"place": 3,
+"res": "3위"
+}
+],
+"viol2t": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "ZETA DIVISION",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "ZETA DIVISION",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "ZETA DIVISION",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "ZETA DIVISION",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "ZETA DIVISION",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "ZETA DIVISION",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "ZETA DIVISION",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "From The Gamer",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "From The Gamer",
+"place": 3,
+"res": "3위"
+}
+],
+"finn": [
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "ZETA DIVISION",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "ZETA DIVISION",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "ZETA DIVISION",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "From The Gamer",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "From The Gamer",
+"place": 3,
+"res": "3위"
+}
+],
+"neko": [
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "From The Gamer",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "From The Gamer",
+"place": 3,
+"res": "3위"
+}
+],
+"yaki": [
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "From The Gamer",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "From The Gamer",
+"place": 3,
+"res": "3위"
+}
+],
+"knife": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "ZETA DIVISION",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "ZETA DIVISION",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "ZETA DIVISION",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "ZETA DIVISION",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "ONSIDE GAMING",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Team Liquid",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "YETI",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "YETI",
+"place": 3,
+"res": "3위"
+}
+],
+"viper": [
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "T1",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "T1",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "YETI",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "YETI",
+"place": 3,
+"res": "3위"
+}
+],
+"donghak": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "T1",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "T1",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "YETI",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "YETI",
+"place": 3,
+"res": "3위"
+}
+],
+"bliss": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Twisted Minds",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "YETI",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "YETI",
+"place": 3,
+"res": "3위"
+}
+],
+"irony": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "ZANSIDE GAMING",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "ONSIDE GAMING",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "YETI",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "YETI",
+"place": 3,
+"res": "3위"
+}
+],
+"fate": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "O2 Blast",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "YETI",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "YETI",
+"place": 3,
+"res": "3위"
+}
+],
+"fleta": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "T1",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "T1",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "YETI",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "YETI",
+"place": 3,
+"res": "3위"
+}
+],
+"ade": [
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "WAE",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "All Gamers Global",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "WAY",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "Sin Prisa Gaming",
+"place": 3,
+"res": "3위"
+}
+],
+"argon": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "Sin Prisa Gaming",
+"place": 3,
+"res": "3위"
+}
+],
+"mealgaru": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "ZETA DIVISION",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "ZETA DIVISION",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "ZETA DIVISION",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "ZETA DIVISION",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "WAE",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "All Gamers Global",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "WAY",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "Sin Prisa Gaming",
+"place": 3,
+"res": "3위"
+}
+],
+"toyou": [
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "Sin Prisa Gaming",
+"place": 3,
+"res": "3위"
+}
+],
+"hyunjae": [
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "Sin Prisa Gaming",
+"place": 3,
+"res": "3위"
+}
+],
+"leesoomin": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Weibo Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Weibo Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "WAE",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "All Gamers Global",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "WAY",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "HaeJeokDan",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "Sin Prisa Gaming",
+"place": 3,
+"res": "3위"
+}
+],
+"sky": [
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "VEC",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "Sin Prisa Gaming",
+"place": 3,
+"res": "3위"
+}
+],
+"wonsoomin": [
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "Sin Prisa Gaming",
+"place": 3,
+"res": "3위"
+}
+],
+"candle": [
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "Sin Prisa Gaming",
+"place": 3,
+"res": "3위"
+}
+],
+"decay": [
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "Genesis",
+"place": 3,
+"res": "3위"
+}
+],
+"choisehwan": [
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "Genesis",
+"place": 3,
+"res": "3위"
+}
+],
+"kellan": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Dallas Fuel",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "ONSIDE GAMING",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "NRG Shock",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "Genesis",
+"place": 3,
+"res": "3위"
+}
+],
+"kalios": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Old Ocean",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "Genesis",
+"place": 3,
+"res": "3위"
+}
+],
+"teru": [
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "Genesis",
+"place": 3,
+"res": "3위"
+}
+],
+"maka": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Weibo Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Weibo Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "WAE",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "All Gamers Global",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "WAY",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Bleed Esports",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "Genesis",
+"place": 3,
+"res": "3위"
+}
+],
+"undine": [
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "HaeJeokDan",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "Genesis",
+"place": 3,
+"res": "3위"
+}
+],
+"prophet": [
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "From The Gamer",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "HaeJeokDan",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "RunAway",
+"place": 3,
+"res": "3위"
+}
+],
+"zest": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "T1",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "T1",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "HaeJeokDan",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "RunAway",
+"place": 3,
+"res": "3위"
+}
+],
+"mag": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "All Gamers Global",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "HaeJeokDan",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "RunAway",
+"place": 3,
+"res": "3위"
+}
+],
+"leejaegon": [
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "RunAway",
+"place": 3,
+"res": "3위"
+}
+],
+"vigilante": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "T1",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "T1",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "From The Gamer",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Twisted Minds",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "RunAway",
+"place": 3,
+"res": "3위"
+}
+],
+"runner": [
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "RunAway",
+"place": 3,
+"res": "3위"
+}
+],
+"chara": [
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "RunAway",
+"place": 3,
+"res": "3위"
+}
+],
+"flowervin": [
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "RunAway",
+"place": 3,
+"res": "3위"
+}
+],
+"m1nut2": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "Old Ocean",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "VEC",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+}
+],
+"d4rt": [
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Old Ocean",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+}
+],
+"gur3um": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Old Ocean",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "Old Ocean",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+}
+],
+"off": [
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+}
+],
+"daegun": [
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+}
+],
+"seon": [
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Sign Esports",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+}
+],
+"da1da1sm00th": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "VEC",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+}
+],
+"mircalla": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "ZAN Esports",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20241,
+"ev": "OWCS 2024 코리아 스테이지 1",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+}
+],
+"nyang": [
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "The Gatos Guapos",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "MFC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "Honeypot",
+"place": 3,
+"res": "3위"
+}
+],
+"sgy": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Team Secret",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "Honeypot",
+"place": 3,
+"res": "3위"
+}
+],
+"adam": [
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "Honeypot",
+"place": 3,
+"res": "3위"
+}
+],
+"overshake": [
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "Honeypot",
+"place": 3,
+"res": "3위"
+}
+],
+"kame": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Team Secret",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "Honeypot",
+"place": 3,
+"res": "3위"
+}
+],
+"lightt": [
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "The Gatos Guapos",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "MFC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "Honeypot",
+"place": 3,
+"res": "3위"
+}
+],
+"dreamer": [
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "Honeypot",
+"place": 3,
+"res": "3위"
+}
+],
+"kiki": [
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "Honeypot",
+"place": 3,
+"res": "3위"
+}
+],
+"daisy": [
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Nyam Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "INSOMNIA (Japanese team)",
+"place": 3,
+"res": "3위"
+}
+],
+"haitei": [
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "INSOMNIA (Japanese team)",
+"place": 3,
+"res": "3위"
+}
+],
+"leonopteryx": [
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "INSOMNIA (Japanese team)",
+"place": 3,
+"res": "3위"
+}
+],
+"masdog": [
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "INSOMNIA (Japanese team)",
+"place": 3,
+"res": "3위"
+}
+],
+"bl1nk": [
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "INSOMNIA (Japanese team)",
+"place": 3,
+"res": "3위"
+}
+],
+"caru": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "INSOMNIA (Japanese team)",
+"place": 3,
+"res": "3위"
+}
+],
+"ares": [
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20242,
+"ev": "OWCS 2024 아시아 스테이지 1",
+"team": "INSOMNIA (Japanese team)",
+"place": 3,
+"res": "3위"
+}
+],
+"sparkr": [
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Spacestation Gaming",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+}
+],
+"backbone": [
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Spacestation Gaming",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+}
+],
+"seicoe": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Virtus.pro",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Virtus.pro",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Twisted Minds",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Twisted Minds",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Spacestation Gaming",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+}
+],
+"hadi": [
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Spacestation Gaming",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+}
+],
+"funnyastro": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Twisted Minds",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Twisted Minds",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Twisted Minds",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Twisted Minds",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Spacestation Gaming",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+}
+],
+"landon": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Virtus.pro",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Virtus.pro",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Al Qadsiah",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Al Qadsiah",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Spacestation Gaming",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+}
+],
+"christfer": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Spacestation Gaming",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+}
+],
+"suji": [
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Spacestation Gaming",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+}
+],
+"kai": [
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "ENCE",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "ENCE",
+"place": 3,
+"res": "3위"
+}
+],
+"kevster": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Virtus.pro",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Virtus.pro",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "ENCE",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "ENCE",
+"place": 3,
+"res": "3위"
+}
+],
+"chase": [
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Al Qadsiah",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "ENCE",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "ENCE",
+"place": 3,
+"res": "3위"
+}
+],
+"vestola": [
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Virtus.pro",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "ENCE",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "ENCE",
+"place": 3,
+"res": "3위"
+}
+],
+"masaa": [
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "ENCE",
+"place": 3,
+"res": "3위"
+}
+],
+"ghost91": [
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "ENCE",
+"place": 3,
+"res": "3위"
+}
+],
+"crimzo": [
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "ENCE",
+"place": 3,
+"res": "3위"
+}
+],
+"lhcloudy": [
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "ENCE",
+"place": 3,
+"res": "3위"
+}
+],
+"algos05": [
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Al Qadsiah",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Al Qadsiah",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "All Gamers Global",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "ENCE",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "ENCE",
+"place": 3,
+"res": "3위"
+}
+],
+"happy": [
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "M80",
+"place": 3,
+"res": "3위"
+}
+],
+"pelican": [
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "ZETA DIVISION",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Old Ocean",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "M80",
+"place": 3,
+"res": "3위"
+}
+],
+"hawk": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "M80",
+"place": 3,
+"res": "3위"
+}
+],
+"lyar": [
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "M80",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "M80",
+"place": 3,
+"res": "3위"
+}
+],
+"ultraviolet": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Geekay Esports",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Geekay Esports",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "NTMR",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "NRG Shock",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "M80",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "M80",
+"place": 3,
+"res": "3위"
+}
+],
+"nero": [
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "M80",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "M80",
+"place": 3,
+"res": "3위"
+}
+],
+"gator": [
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "M80",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "M80",
+"place": 3,
+"res": "3위"
+}
+],
+"urzo": [
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "NTMR",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "NTMR",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "M80",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "NTMR",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "M80",
+"place": 3,
+"res": "3위"
+}
+],
+"youbi": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Twisted Minds",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Twisted Minds",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Twisted Minds",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Twisted Minds",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Twisted Minds",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "Twisted Minds",
+"place": 3,
+"res": "3위"
+}
+],
+"akay": [
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Al Qadsiah",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Al Qadsiah",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Twisted Minds",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "Twisted Minds",
+"place": 3,
+"res": "3위"
+}
+],
+"skairipa": [
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "ENCE",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "Twisted Minds",
+"place": 3,
+"res": "3위"
+}
+],
+"admiral": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Geekay Esports",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Geekay Esports",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "NTMR",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "NTMR",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "NTMR",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "Twisted Minds",
+"place": 3,
+"res": "3위"
+}
+],
+"slay": [
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "Twisted Minds",
+"place": 3,
+"res": "3위"
+}
+],
+"w1llyv": [
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Twisted Minds",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "Twisted Minds",
+"place": 3,
+"res": "3위"
+}
+],
+"mobugi": [
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Twisted Minds",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20243,
+"ev": "OWCS 2024 댈러스 메이저",
+"team": "Twisted Minds",
+"place": 3,
+"res": "3위"
+}
+],
+"heesung": [
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "From The Gamer",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "ZETA DIVISION",
+"place": 2,
+"res": "준우승"
+}
+],
+"changgoon": [
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "ZETA DIVISION",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "ZETA DIVISION",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "ZETA DIVISION",
+"place": 2,
+"res": "준우승"
+}
+],
+"rascal": [
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "ZETA DIVISION",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "ZETA DIVISION",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "ZETA DIVISION",
+"place": 2,
+"res": "준우승"
+}
+],
+"proud": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "T1",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "T1",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+}
+],
+"jaewoo": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Twisted Minds",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Twisted Minds",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Virtus.pro",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+}
+],
+"jasm1ne": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "T1",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "All Gamers Global",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+}
+],
+"fixa": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Virtus.pro",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Virtus.pro",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Virtus.pro",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+}
+],
+"simple": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Twisted Minds",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Twisted Minds",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Twisted Minds",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Twisted Minds",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+}
+],
+"bluehas": [
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+}
+],
+"seowhi": [
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+}
+],
+"seonjun": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Dallas Fuel",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "WAE",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "All Gamers Global",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "From The Gamer",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "HaeJeokDan",
+"place": 3,
+"res": "3위"
+}
+],
+"vindaim": [
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "From The Gamer",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "HaeJeokDan",
+"place": 3,
+"res": "3위"
+}
+],
+"smash": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Virtus.pro",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Virtus.pro",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Virtus.pro",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Virtus.pro",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "HaeJeokDan",
+"place": 3,
+"res": "3위"
+}
+],
+"farmer": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "VEC",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+}
+],
+"lego": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+}
+],
+"jinsung": [
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "VEC",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+}
+],
+"probe": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "ZANSIDE GAMING",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "ZAN Esports",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "Old Ocean",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Old Ocean",
+"place": 3,
+"res": "3위"
+}
+],
+"becky": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "ZANSIDE GAMING",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "ZAN Esports",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Old Ocean",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "Old Ocean",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Old Ocean",
+"place": 3,
+"res": "3위"
+}
+],
+"taejong": [
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "WAE",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "ROC Esports",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Old Ocean",
+"place": 3,
+"res": "3위"
+}
+],
+"ruler": [
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Mir Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "New Era",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Old Ocean",
+"place": 3,
+"res": "3위"
+}
+],
+"faith": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "O2 Blast",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Old Ocean",
+"place": 3,
+"res": "3위"
+}
+],
+"ryujehong": [
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Old Ocean",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "Old Ocean",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Old Ocean",
+"place": 3,
+"res": "3위"
+}
+],
+"yang1": [
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Old Ocean",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "Old Ocean",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20244,
+"ev": "OWCS 2024 코리아 스테이지 2",
+"team": "Old Ocean",
+"place": 3,
+"res": "3위"
+}
+],
+"hyvision": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Team Secret",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Bleed Esports",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Bleed Esports",
+"place": 3,
+"res": "3위"
+}
+],
+"ace": [
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Bleed Esports",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Bleed Esports",
+"place": 3,
+"res": "3위"
+}
+],
+"seungan": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "O2 Blast",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Bleed Esports",
+"place": 3,
+"res": "3위"
+}
+],
+"lumi": [
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Bleed Esports",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Bleed Esports",
+"place": 3,
+"res": "3위"
+}
+],
+"palee": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Team Secret",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Bleed Esports",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Bleed Esports",
+"place": 3,
+"res": "3위"
+}
+],
+"mush2oom": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Team Secret",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Bleed Esports",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Bleed Esports",
+"place": 3,
+"res": "3위"
+}
+],
+"rxis": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Team Secret",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Bleed Esports",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Bleed Esports",
+"place": 3,
+"res": "3위"
+}
+],
+"scarlett": [
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Nyam Gaming",
+"place": 3,
+"res": "3위"
+}
+],
+"dox": [
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Old Ocean",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Nyam Gaming",
+"place": 3,
+"res": "3위"
+}
+],
+"chang": [
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Nyam Gaming",
+"place": 3,
+"res": "3위"
+}
+],
+"mimoza": [
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Nyam Gaming",
+"place": 3,
+"res": "3위"
+}
+],
+"ydot": [
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Nyam Gaming",
+"place": 3,
+"res": "3위"
+}
+],
+"aria": [
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Nyam Gaming",
+"place": 3,
+"res": "3위"
+}
+],
+"search": [
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "New Era",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20245,
+"ev": "OWCS 2024 아시아 스테이지 2",
+"team": "Nyam Gaming",
+"place": 3,
+"res": "3위"
+}
+],
+"mer1t": [
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "Team Falcons",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Team Falcons",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "Team Falcons",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "Toronto Defiant",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Toronto Ultra",
+"place": 2,
+"res": "준우승"
+}
+],
+"sugarfree": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "Toronto Defiant",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Toronto Ultra",
+"place": 2,
+"res": "준우승"
+}
+],
+"someone": [
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "Team Falcons",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Team Falcons",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "Team Falcons",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "Toronto Defiant",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Toronto Ultra",
+"place": 2,
+"res": "준우승"
+}
+],
+"vega": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Team Liquid",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Team Liquid",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "Toronto Defiant",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Toronto Ultra",
+"place": 2,
+"res": "준우승"
+}
+],
+"rupal": [
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Team Liquid",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "Toronto Defiant",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Toronto Ultra",
+"place": 2,
+"res": "준우승"
+}
+],
+"casores": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Team Liquid",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Team Liquid",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "Toronto Defiant",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Toronto Ultra",
+"place": 2,
+"res": "준우승"
+}
+],
+"danny": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Team Liquid",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Team Liquid",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "Toronto Defiant",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Toronto Ultra",
+"place": 2,
+"res": "준우승"
+}
+],
+"fearless": [
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "ZETA DIVISION",
+"place": 2,
+"res": "준우승"
+}
+],
+"shockwave": [
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Virtus.pro",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Virtus.pro",
+"place": 2,
+"res": "준우승"
+}
+],
+"sauna": [
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Virtus.pro",
+"place": 2,
+"res": "준우승"
+}
+],
+"raajaro": [
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Virtus.pro",
+"place": 2,
+"res": "준우승"
+}
+],
+"galaa": [
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Virtus.pro",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Virtus.pro",
+"place": 2,
+"res": "준우승"
+}
+],
+"khenail": [
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Virtus.pro",
+"place": 2,
+"res": "준우승"
+}
+],
+"clowd": [
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Virtus.pro",
+"place": 2,
+"res": "준우승"
+}
+],
+"laggy": [
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Virtus.pro",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Virtus.pro",
+"place": 2,
+"res": "준우승"
+}
+],
+"kirahwi": [
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Virtus.pro",
+"place": 2,
+"res": "준우승"
+}
+],
+"quartz": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Twisted Minds",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Twisted Minds",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Twisted Minds",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Twisted Minds",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Twisted Minds",
+"place": 2,
+"res": "준우승"
+}
+],
+"lbbd7": [
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Al Qadsiah",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Al Qadsiah",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Twisted Minds",
+"place": 2,
+"res": "준우승"
+}
+],
+"tvnt": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Twisted Minds",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Twisted Minds",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Twisted Minds",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Twisted Minds",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Twisted Minds",
+"place": 2,
+"res": "준우승"
+}
+],
+"crispy": [
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Twisted Minds",
+"place": 2,
+"res": "준우승"
+}
+],
+"skeng1": [
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Twisted Minds",
+"place": 2,
+"res": "준우승"
+}
+],
+"tr33": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Team Liquid",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Team Liquid",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "NRG Shock",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "M80",
+"place": 2,
+"res": "준우승"
+}
+],
+"spectra": [
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "M80",
+"place": 2,
+"res": "준우승"
+}
+],
+"coluge": [
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "M80",
+"place": 2,
+"res": "준우승"
+}
+],
+"xzodyal": [
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Gaimin Gladiators",
+"place": 2,
+"res": "준우승"
+}
+],
+"naga": [
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Gaimin Gladiators",
+"place": 2,
+"res": "준우승"
+}
+],
+"tred": [
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Gaimin Gladiators",
+"place": 2,
+"res": "준우승"
+}
+],
+"fdgod": [
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Gaimin Gladiators",
+"place": 2,
+"res": "준우승"
+}
+],
+"lv1crook": [
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Gaimin Gladiators",
+"place": 2,
+"res": "준우승"
+}
+],
+"yoham": [
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Gaimin Gladiators",
+"place": 2,
+"res": "준우승"
+}
+],
+"lerenegat": [
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Gaimin Gladiators",
+"place": 2,
+"res": "준우승"
+}
+],
+"benbest": [
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Gaimin Gladiators",
+"place": 2,
+"res": "준우승"
+}
+],
+"søeny": [
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Gaimin Gladiators",
+"place": 2,
+"res": "준우승"
+}
+],
+"zheng yangjie": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Weibo Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Weibo Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Weibo Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Once Again",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "LGD.OA",
+"place": 2,
+"res": "준우승"
+}
+],
+"huang xin": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Weibo Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Weibo Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Weibo Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Once Again",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "LGD.OA",
+"place": 2,
+"res": "준우승"
+}
+],
+"xu qiulin": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Weibo Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Weibo Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Weibo Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Once Again",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "LGD.OA",
+"place": 2,
+"res": "준우승"
+}
+],
+"chen jingyi": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "All Gamers Global",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "ROC Esports",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "LGD.OA",
+"place": 2,
+"res": "준우승"
+}
+],
+"zhou xiang": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "JD Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Weibo Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Once Again",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "LGD.OA",
+"place": 2,
+"res": "준우승"
+}
+],
+"rush": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "T1",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "T1",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "LGD.OA",
+"place": 2,
+"res": "준우승"
+}
+],
+"yan xiao": [
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "LGD.OA",
+"place": 2,
+"res": "준우승"
+}
+],
+"shenyang": [
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "LGD.OA",
+"place": 2,
+"res": "준우승"
+}
+],
+"neuu": [
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "MFC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Mkers",
+"place": 2,
+"res": "준우승"
+}
+],
+"topdragon": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Mkers",
+"place": 2,
+"res": "준우승"
+}
+],
+"punk": [
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "The Gatos Guapos",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Mkers",
+"place": 2,
+"res": "준우승"
+}
+],
+"ackyyy": [
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "The Gatos Guapos",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "MFC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Mkers",
+"place": 2,
+"res": "준우승"
+}
+],
+"opener": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "ZANSIDE GAMING",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "ONSIDE GAMING",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Mkers",
+"place": 2,
+"res": "준우승"
+}
+],
+"colourhex": [
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "The Gatos Guapos",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "MFC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Mkers",
+"place": 2,
+"res": "준우승"
+}
+],
+"unter": [
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Mkers",
+"place": 2,
+"res": "준우승"
+}
+],
+"yoshinori2k": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Team Secret",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Bleed Esports",
+"place": 2,
+"res": "준우승"
+}
+],
+"clear": [
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "NTMR",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "NTMR",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "Bleed Esports",
+"place": 2,
+"res": "준우승"
+}
+],
+"seeker": [
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "NTMR",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "NTMR",
+"place": 2,
+"res": "준우승"
+}
+],
+"zeruhh": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Team Liquid",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Team Liquid",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "NTMR",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "NTMR",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "NTMR",
+"place": 2,
+"res": "준우승"
+}
+],
+"infekted": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Team Liquid",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Team Liquid",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "NTMR",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "NTMR",
+"place": 2,
+"res": "준우승"
+}
+],
+"zzz": [
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "NTMR",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "NTMR",
+"place": 2,
+"res": "준우승"
+}
+],
+"zhang shukun": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "JD Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Team CC (Chinese orgless team)",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Team CC (Chinese orgless team)",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "NTMR",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "NTMR",
+"place": 2,
+"res": "준우승"
+}
+],
+"snr": [
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "NTMR",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "NTMR",
+"place": 2,
+"res": "준우승"
+}
+],
+"debit": [
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Sign Esports",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "NRG Shock",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "NTMR",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20246,
+"ev": "EWC 2024",
+"team": "NTMR",
+"place": 2,
+"res": "준우승"
+}
+],
+"pge": [
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "NRG Shock",
+"place": 3,
+"res": "3위"
+}
+],
+"scissors": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "NRG Shock",
+"place": 3,
+"res": "3위"
+}
+],
+"attack": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Team Liquid",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "ONSIDE GAMING",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "NRG Shock",
+"place": 3,
+"res": "3위"
+}
+],
+"rakattack": [
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "The Gatos Guapos",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "NRG Shock",
+"place": 3,
+"res": "3위"
+}
+],
+"cal": [
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "NRG Shock",
+"place": 3,
+"res": "3위"
+}
+],
+"wheats": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Dallas Fuel",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Geekay Esports",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Geekay Esports",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "NTMR",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "NRG Shock",
+"place": 3,
+"res": "3위"
+}
+],
+"clicky": [
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "NRG Shock",
+"place": 3,
+"res": "3위"
+}
+],
+"cjay": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Dallas Fuel",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "NTMR",
+"place": 3,
+"res": "3위"
+}
+],
+"wmaimone": [
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Geekay Esports",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Geekay Esports",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "ENCE",
+"place": 3,
+"res": "3위"
+}
+],
+"kellex": [
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Al Qadsiah",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Al Qadsiah",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2024",
+"k": 20247,
+"ev": "OWCS 2024 월드 파이널",
+"team": "ENCE",
+"place": 3,
+"res": "3위"
+}
+],
+"mobydik": [
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "ZETA DIVISION",
+"place": 2,
+"res": "준우승"
+}
+],
+"ninek": [
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "Team Falcons",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Team Falcons",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "Team Falcons",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+}
+],
+"aid": [
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Team Falcons",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "Team Falcons",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+}
+],
+"sp9rk1e": [
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "Team Falcons",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Team Falcons",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "Team Falcons",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+}
+],
+"levi": [
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "Team Falcons",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Team Falcons",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "Team Falcons",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "Team Falcons",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+}
+],
+"dongsu": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Weibo Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Weibo Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "WAE",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "All Gamers Global",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "From The Gamer",
+"place": 2,
+"res": "준우승"
+}
+],
+"arche": [
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "New Era",
+"place": 2,
+"res": "준우승"
+}
+],
+"d0d0": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "New Era",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "New Era",
+"place": 2,
+"res": "준우승"
+}
+],
+"fearful": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "New Era",
+"place": 2,
+"res": "준우승"
+}
+],
+"mcd": [
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "New Era",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Mir Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "New Era",
+"place": 2,
+"res": "준우승"
+}
+],
+"kivis": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Team Liquid",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "ZAN Esports",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Old Ocean",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "Old Ocean",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "New Era",
+"place": 2,
+"res": "준우승"
+}
+],
+"le0na": [
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Mir Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "New Era",
+"place": 2,
+"res": "준우승"
+}
+],
+"a1ien": [
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "ZAN Esports",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Old Ocean",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 2,
+"res": "준우승"
+}
+],
+"sp1nt": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 2,
+"res": "준우승"
+}
+],
+"heiser": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "ZANSIDE GAMING",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "ZAN Esports",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Old Ocean",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 2,
+"res": "준우승"
+}
+],
+"d0nghun": [
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 2,
+"res": "준우승"
+}
+],
+"misin": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "O2 Blast",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 2,
+"res": "준우승"
+}
+],
+"presia": [
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 2,
+"res": "준우승"
+}
+],
+"architect": [
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "VEC",
+"place": 2,
+"res": "준우승"
+}
+],
+"f1nally": [
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "VEC",
+"place": 2,
+"res": "준우승"
+}
+],
+"sp1nel": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "VEC",
+"place": 2,
+"res": "준우승"
+}
+],
+"woochan": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20251,
+"ev": "OWCS 2025 코리아 스테이지 1",
+"team": "VEC",
+"place": 2,
+"res": "준우승"
+}
+],
+"whoru": [
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "WAY",
+"place": 3,
+"res": "3위"
+}
+],
+"peppi": [
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "WAY",
+"place": 3,
+"res": "3위"
+}
+],
+"ggultaek": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "ZETA DIVISION",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "ZETA DIVISION",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "ZETA DIVISION",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "ZETA DIVISION",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "ZETA DIVISION",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Geekay Esports",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "NTMR",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "WAY",
+"place": 3,
+"res": "3위"
+}
+],
+"nico": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+}
+],
+"qki": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+}
+],
+"ksg": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+}
+],
+"qloud": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+}
+],
+"mihawk": [
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+}
+],
+"pain": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+}
+],
+"yaho": [
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+}
+],
+"romani": [
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "MFC",
+"place": 3,
+"res": "3위"
+}
+],
+"frogger": [
+{
+"y": "2025",
+"k": 20252,
+"ev": "OWCS 2025 아시아 스테이지 1",
+"team": "MFC",
+"place": 3,
+"res": "3위"
+}
+],
+"lethal": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Geekay Esports",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Geekay Esports",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "NTMR",
+"place": 3,
+"res": "3위"
+}
+],
+"vision": [
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "NTMR",
+"place": 3,
+"res": "3위"
+}
+],
+"cuffa": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Team Secret",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Geekay Esports",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Geekay Esports",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "NTMR",
+"place": 3,
+"res": "3위"
+}
+],
+"cointree": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Twisted Minds",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Twisted Minds",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Twisted Minds",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Al Qadsiah",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Al Qadsiah",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Twisted Minds",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "ROC Esports",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "All Gamers Global",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "NTMR",
+"place": 3,
+"res": "3위"
+}
+],
+"b3cky": [
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "NTMR",
+"place": 3,
+"res": "3위"
+}
+],
+"li yuanjinghao": [
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Weibo Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Once Again",
+"place": 3,
+"res": "3위"
+}
+],
+"jia chengjie": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "All Gamers Global",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Once Again",
+"place": 3,
+"res": "3위"
+}
+],
+"li xianyao": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "JD Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Weibo Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Once Again",
+"place": 3,
+"res": "3위"
+}
+],
+"zhang zhihao": [
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Once Again",
+"place": 3,
+"res": "3위"
+}
+],
+"wang chao": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "JD Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Team CC (Chinese orgless team)",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Once Again",
+"place": 3,
+"res": "3위"
+}
+],
+"cogito": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Weibo Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Weibo Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Once Again",
+"place": 3,
+"res": "3위"
+}
+],
+"liu nian": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "JD Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Team CC (Chinese orgless team)",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Team CC (Chinese orgless team)",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Team CC (Chinese orgless team)",
+"place": 3,
+"res": "3위"
+}
+],
+"song chunhui": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "All Gamers Global",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Team CC (Chinese orgless team)",
+"place": 3,
+"res": "3위"
+}
+],
+"li zhuo": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "JD Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Team CC (Chinese orgless team)",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Team CC (Chinese orgless team)",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Team CC (Chinese orgless team)",
+"place": 3,
+"res": "3위"
+}
+],
+"qiu jiaxin": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "All Gamers Global",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Team CC (Chinese orgless team)",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Team CC (Chinese orgless team)",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Team CC (Chinese orgless team)",
+"place": 3,
+"res": "3위"
+}
+],
+"wu gengtuo": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "JD Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Team CC (Chinese orgless team)",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Team CC (Chinese orgless team)",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Team CC (Chinese orgless team)",
+"place": 3,
+"res": "3위"
+}
+],
+"cao jiale": [
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Team CC (Chinese orgless team)",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Team CC (Chinese orgless team)",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Team CC (Chinese orgless team)",
+"place": 3,
+"res": "3위"
+}
+],
+"zheng jiawen": [
+{
+"y": "2025",
+"k": 20253,
+"ev": "OWCS 2025 챔피언스 클래시",
+"team": "Team CC (Chinese orgless team)",
+"place": 3,
+"res": "3위"
+}
+],
+"skewed": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "T1",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "T1",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "T1",
+"place": 2,
+"res": "준우승"
+}
+],
+"daemin": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Weibo Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Weibo Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "WAE",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "All Gamers Global",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+}
+],
+"gido": [
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "Old Ocean",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+}
+],
+"hunter": [
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Old Ocean",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "Old Ocean",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+}
+],
+"zesin": [
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+}
+],
+"xlim": [
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+}
+],
+"achieve": [
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+}
+],
+"kilo": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "ZANSIDE GAMING",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "ONSIDE GAMING",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+}
+],
+"ado": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "ZANSIDE GAMING",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "ONSIDE GAMING",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+}
+],
+"f4ze": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Team Liquid",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "ONSIDE GAMING",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+}
+],
+"mixtape": [
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "ONSIDE GAMING",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+}
+],
+"avast": [
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+}
+],
+"a1m": [
+{
+"y": "2025",
+"k": 20254,
+"ev": "OWCS 2025 코리아 스테이지 2",
+"team": "VEC",
+"place": 3,
+"res": "3위"
+}
+],
+"checkmate": [
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "Team Falcons",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Team Falcons",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Al Qadsiah",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Al Qadsiah",
+"place": 2,
+"res": "준우승"
+}
+],
+"ziyad": [
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Al Qadsiah",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Al Qadsiah",
+"place": 2,
+"res": "준우승"
+}
+],
+"haku": [
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Al Qadsiah",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Al Qadsiah",
+"place": 2,
+"res": "준우승"
+}
+],
+"ksaa": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Twisted Minds",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Twisted Minds",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Twisted Minds",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Twisted Minds",
+"place": 3,
+"res": "3위"
+}
+],
+"ammar": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Twisted Minds",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Twisted Minds",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Twisted Minds",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Twisted Minds",
+"place": 3,
+"res": "3위"
+}
+],
+"w1lliam": [
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Twisted Minds",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Twisted Minds",
+"place": 3,
+"res": "3위"
+}
+],
+"eisgnom": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Virtus.pro",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Virtus.pro",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Virtus.pro",
+"place": 3,
+"res": "3위"
+}
+],
+"sley": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+}
+],
+"dae1": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "VARREL",
+"place": 3,
+"res": "3위"
+}
+],
+"chen cheng": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Weibo Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Weibo Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Team CC (Chinese orgless team)",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Team CC (Chinese orgless team)",
+"place": 3,
+"res": "3위"
+}
+],
+"ren yanchao": [
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Team CC (Chinese orgless team)",
+"place": 3,
+"res": "3위"
+}
+],
+"rokit": [
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Sign Esports",
+"place": 3,
+"res": "3위"
+}
+],
+"kronik": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Dallas Fuel",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Sign Esports",
+"place": 3,
+"res": "3위"
+}
+],
+"painkiller": [
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Sign Esports",
+"place": 3,
+"res": "3위"
+}
+],
+"rhyno": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Sign Esports",
+"place": 3,
+"res": "3위"
+}
+],
+"lukemino": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Dallas Fuel",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Sign Esports",
+"place": 3,
+"res": "3위"
+}
+],
+"lep": [
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Sign Esports",
+"place": 3,
+"res": "3위"
+}
+],
+"slippery": [
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Sign Esports",
+"place": 3,
+"res": "3위"
+}
+],
+"flashmob": [
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "Sign Esports",
+"place": 3,
+"res": "3위"
+}
+],
+"lu weida": [
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "ROC Esports",
+"place": 3,
+"res": "3위"
+}
+],
+"he chengzhi": [
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "ROC Esports",
+"place": 3,
+"res": "3위"
+}
+],
+"yi hu": [
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "ROC Esports",
+"place": 3,
+"res": "3위"
+}
+],
+"kariv": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "ZANSIDE GAMING",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "ZAN Esports",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "ROC Esports",
+"place": 3,
+"res": "3위"
+}
+],
+"jin zihang": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "All Gamers Global",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "ROC Esports",
+"place": 3,
+"res": "3위"
+}
+],
+"love": [
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "ZoKorp Esports",
+"place": 3,
+"res": "3위"
+}
+],
+"wilmafistfit": [
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "ZoKorp Esports",
+"place": 3,
+"res": "3위"
+}
+],
+"tunder": [
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "ZoKorp Esports",
+"place": 3,
+"res": "3위"
+}
+],
+"kani": [
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "ZoKorp Esports",
+"place": 3,
+"res": "3위"
+}
+],
+"abbs": [
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "ZoKorp Esports",
+"place": 3,
+"res": "3위"
+}
+],
+"stillkiwi": [
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "ZoKorp Esports",
+"place": 3,
+"res": "3위"
+}
+],
+"poke": [
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "ZoKorp Esports",
+"place": 3,
+"res": "3위"
+}
+],
+"mercury": [
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "ZoKorp Esports",
+"place": 3,
+"res": "3위"
+}
+],
+"aeroplayne": [
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "ZoKorp Esports",
+"place": 3,
+"res": "3위"
+}
+],
+"syzex": [
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "ZoKorp Esports",
+"place": 3,
+"res": "3위"
+}
+],
+"fatcat2001": [
+{
+"y": "2025",
+"k": 20255,
+"ev": "OWCS 2025 미드시즌 챔피언십 (EWC)",
+"team": "The Gatos Guapos",
+"place": 3,
+"res": "3위"
+}
+],
+"ir1s": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "ZANSIDE GAMING",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "ZAN Esports",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+}
+],
+"k4ne": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Mir Gaming",
+"place": 3,
+"res": "3위"
+}
+],
+"flos": [
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Mir Gaming",
+"place": 3,
+"res": "3위"
+}
+],
+"azent": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Mir Gaming",
+"place": 3,
+"res": "3위"
+}
+],
+"univ2r": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20256,
+"ev": "OWCS 2025 코리아 스테이지 3",
+"team": "Mir Gaming",
+"place": 3,
+"res": "3위"
+}
+],
+"jfeel": [
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Weibo Gaming",
+"place": 3,
+"res": "3위"
+}
+],
+"yong": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Dallas Fuel",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2025",
+"k": 20257,
+"ev": "OWCS 2025 월드 파이널",
+"team": "Weibo Gaming",
+"place": 3,
+"res": "3위"
+}
+],
+"izayaki": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Crazy Raccoon",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 2,
+"res": "준우승"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Crazy Raccoon",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+}
+],
+"yangjun": [
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "ZAN Esports",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+}
+],
+"hyeonjun": [
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "ZAN Esports",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+}
+],
+"sihu": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "ZAN Esports",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+}
+],
+"opera": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+}
+],
+"tenten": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "Cheeseburger",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+}
+],
+"sola": [
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "New Era",
+"place": 3,
+"res": "3위"
+}
+],
+"secret": [
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "New Era",
+"place": 3,
+"res": "3위"
+}
+],
+"perr": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "O2 Blast",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "New Era",
+"place": 3,
+"res": "3위"
+}
+],
+"haksal": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "ZANSIDE GAMING",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+}
+],
+"alright": [
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+}
+],
+"poko": [
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+}
+],
+"swoo": [
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20261,
+"ev": "OWCS 2026 코리아 스테이지 1",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+}
+],
+"ky0n": [
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "Please Not Hero Ban",
+"place": 3,
+"res": "3위"
+}
+],
+"soae": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "Please Not Hero Ban",
+"place": 3,
+"res": "3위"
+}
+],
+"homerunball": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "Please Not Hero Ban",
+"place": 3,
+"res": "3위"
+}
+],
+"neivis": [
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "Please Not Hero Ban",
+"place": 3,
+"res": "3위"
+}
+],
+"sakume": [
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "Please Not Hero Ban",
+"place": 3,
+"res": "3위"
+}
+],
+"gyomin": [
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "Please Not Hero Ban",
+"place": 3,
+"res": "3위"
+}
+],
+"barcode": [
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "Please Not Hero Ban",
+"place": 3,
+"res": "3위"
+}
+],
+"drizzling": [
+{
+"y": "2026",
+"k": 20262,
+"ev": "OWCS 2026 아시아 스테이지 1",
+"team": "Please Not Hero Ban",
+"place": 3,
+"res": "3위"
+}
+],
+"nozumo": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Virtus.pro",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Virtus.pro",
+"place": 3,
+"res": "3위"
+}
+],
+"artemis": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20263,
+"ev": "OWCS 2026 챔피언스 클래시",
+"team": "Spacestation Gaming",
+"place": 3,
+"res": "3위"
+}
+],
+"twilight": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "ZETA DIVISION",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "ZETA DIVISION",
+"place": 1,
+"res": "우승"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+}
+],
+"void": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "ZANSIDE GAMING",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+}
+],
+"wutian": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "O2 Blast",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+}
+],
+"gamjung": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "O2 Blast",
+"place": 3,
+"res": "3위"
+}
+],
+"o2boss": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "O2 Blast",
+"place": 3,
+"res": "3위"
+}
+],
+"chilhwa": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "O2 Blast",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+}
+],
+"myunb0ng": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "O2 Blast",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+}
+],
+"cane": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "O2 Blast",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+}
+],
+"sori": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+}
+],
+"sentier": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+}
+],
+"dumbbell": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+}
+],
+"seltaret": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+}
+],
+"yui": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+}
+],
+"obssojourn": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+}
+],
+"victoria": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+}
+],
+"mandu": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+}
+],
+"rexi": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+}
+],
+"romics": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+}
+],
+"hyeon": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+},
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "Poker Face",
+"place": 3,
+"res": "3위"
+}
+],
+"minjune": [
+{
+"y": "2026",
+"k": 20264,
+"ev": "OWCS 2026 코리아 스테이지 2",
+"team": "SuperBad",
+"place": 3,
+"res": "3위"
+}
+],
+"roxy": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "JD Gaming",
+"place": 3,
+"res": "3위"
+}
+],
+"ezhan": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "All Gamers Global",
+"place": 3,
+"res": "3위"
+}
+],
+"hua yankai": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "All Gamers Global",
+"place": 3,
+"res": "3위"
+}
+],
+"zhang jingkun": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "All Gamers Global",
+"place": 3,
+"res": "3위"
+}
+],
+"chen xingyou": [
+{
+"y": "2026",
+"k": 20265,
+"ev": "OWCS 2026 미드시즌 챔피언십 (EWC)",
+"team": "All Gamers Global",
+"place": 3,
+"res": "3위"
+}
+]
+}
