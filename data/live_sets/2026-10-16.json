@@ -357,7 +357,55 @@
      "team": "ZETA DIVISION",
      "hero": "jetpack cat"
     }
-   }
+   },
+   "hudLeft": "O2 Blast",
+   "comps": {
+    "O2 Blast": [
+     [
+      "Fate",
+      "orisa"
+     ],
+     [
+      "A1lEN",
+      "?"
+     ],
+     [
+      "WuTian",
+      "?"
+     ],
+     [
+      "Gamjung",
+      "kiriko"
+     ],
+     [
+      "Faith",
+      "doctrine"
+     ]
+    ],
+    "ZETA DIVISION": [
+     [
+      "Bernar",
+      "dmon"
+     ],
+     [
+      "Knife",
+      "bastion"
+     ],
+     [
+      "Proper",
+      "?"
+     ],
+     [
+      "Viol2t",
+      "?"
+     ],
+     [
+      "Shu",
+      "doctrine"
+     ]
+    ]
+   },
+   "compAt": null
   }
  ]
 }
