@@ -18,7 +18,6 @@
 <script src="./owcs-data.js"></script>
 <script src="./owcs-i18n.js"></script>
 <script src="./owcs-stats.js"></script>
-<script src="./owcs-insta.js"></script>
 <script src="./owcs-dark.js"></script>
 <script src="./owcs-test.js"></script>
 <script src="./support.js"></script>
@@ -87,7 +86,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 
 <sc-if value="{{ hasInsta }}"><section style="padding:88px 56px;background:#F6F6F3">
 <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:36px"><div><div style="font-size:15px;font-weight:700;color:#55555C">인스타그램</div><h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:96px;line-height:.86;margin:8px 0 0">INSTAGRAM</h2></div><a href="{{ igProfile }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:600;color:#0B0B0F"><img src="assets/icons/instagram.png" alt="" style="width:24px;height:24px;border-radius:6px">{{ igHandle }} 프로필 →</a></div>
-<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;align-items:start"><sc-for list="{{ insta }}" as="ig" hint-placeholder-count="3"><div data-ig-url="{{ ig.url }}" style="min-width:0"></div></sc-for></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;align-items:start"><sc-for list="{{ insta }}" as="ig" hint-placeholder-count="3"><a href="{{ ig.url }}" target="_blank" rel="noopener" style="display:flex;flex-direction:column;min-width:0;border-radius:20px;overflow:hidden;background:#fff;border:1px solid #E6E6E1;color:#0B0B0F;text-decoration:none" style-hover="border-color:#0B0B0F;color:#0B0B0F"><div style="display:flex;align-items:center;gap:10px;padding:12px 14px"><img src="assets/icons/instagram.png" alt="" style="width:22px;height:22px;border-radius:6px"><b style="font-size:14px">{{ igHandle }}</b><span style="margin-left:auto;font-size:12px;color:#6B6B72">{{ ig.date }}</span></div><img src="{{ ig.img }}" alt="" loading="lazy" style="display:block;width:100%;aspect-ratio:1/1;object-fit:cover;background:#F1F1ED"><div style="padding:12px 14px 14px;font-size:14px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;white-space:pre-line">{{ ig.text }}</div></a></sc-for></div>
 </section></sc-if>
 <section style="padding:88px 56px 96px;background:#0B0B0F;color:#fff">
 <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:36px">
@@ -135,7 +134,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 </section>
 <sc-if value="{{ hasInsta }}"><section style="padding:32px 20px;background:#F6F6F3">
 <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:18px;flex-wrap:wrap"><div><div style="font-size:15px;font-weight:700;color:#55555C">인스타그램</div><h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:60px;line-height:.86;margin:8px 0 0">INSTAGRAM</h2></div><a href="{{ igProfile }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:600;color:#0B0B0F"><img src="assets/icons/instagram.png" alt="" style="width:24px;height:24px;border-radius:6px">{{ igHandle }} 프로필 →</a></div>
-<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(0,1fr));gap:14px;align-items:start"><sc-for list="{{ insta }}" as="ig" hint-placeholder-count="3"><div data-ig-url="{{ ig.url }}" style="min-width:0"></div></sc-for></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(0,1fr));gap:14px;align-items:start"><sc-for list="{{ insta }}" as="ig" hint-placeholder-count="3"><a href="{{ ig.url }}" target="_blank" rel="noopener" style="display:flex;flex-direction:column;min-width:0;border-radius:20px;overflow:hidden;background:#fff;border:1px solid #E6E6E1;color:#0B0B0F;text-decoration:none" style-hover="border-color:#0B0B0F;color:#0B0B0F"><div style="display:flex;align-items:center;gap:10px;padding:12px 14px"><img src="assets/icons/instagram.png" alt="" style="width:22px;height:22px;border-radius:6px"><b style="font-size:14px">{{ igHandle }}</b><span style="margin-left:auto;font-size:12px;color:#6B6B72">{{ ig.date }}</span></div><img src="{{ ig.img }}" alt="" loading="lazy" style="display:block;width:100%;aspect-ratio:1/1;object-fit:cover;background:#F1F1ED"><div style="padding:12px 14px 14px;font-size:14px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;white-space:pre-line">{{ ig.text }}</div></a></sc-for></div>
 </section></sc-if>
 <section style="padding:32px 0 40px 20px;background:#0B0B0F;color:#fff">
 <div style="font-size:14px;font-weight:700;color:#C6FF33">{{ rosterTitle }}</div>
@@ -205,7 +204,7 @@ class Component extends DCLogic {
         { k: '소속', v: t.n + (st >= 0 ? ' · 현재 ' + (st + 1) + '위' : '') },
         { k: 'POTM', v: me.awardCount + '회' + (me.name ? ' · ' + me.name : '') },
       ],
-      insta: (me.insta || []).map((url) => ({ url })), hasInsta: !!(me.insta || []).length,
+      insta: (me.insta || []).map((x) => ({ url: x.url, img: x.img, text: x.text, date: x.date ? x.date.replace(/-/g, '.') : '' })), hasInsta: !!(me.insta || []).length,
       igProfile: me.instagram || '#', igHandle: me.instagram ? '@' + handleOf(me.instagram) : '',
       records: (me.achievements || []).slice(0, 8).map((a) => ({ y: a.y, ev: a.ev, team: a.team, res: a.res, win: a.place === 1, other: a.place !== 1 })),
       noRecords: !(me.achievements || []).length,
