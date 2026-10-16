@@ -87,7 +87,7 @@ MAP_MODE = {  # for maps read from the broadcast before Liquipedia has them
     'Dorado': 'Escort', 'Havana': 'Escort', 'Junkertown': 'Escort', 'Rialto': 'Escort', 'Route 66': 'Escort',
     'Shambali Monastery': 'Escort', 'Watchpoint: Gibraltar': 'Escort', 'Colosseo': 'Push', 'Esperança': 'Push',
     'New Queen Street': 'Push', 'Runasapi': 'Push', 'New Junk City': 'Flashpoint', 'Suravasa': 'Flashpoint',
-    'Aatlis': 'Flashpoint', 'Hanaoka': 'Clash', 'Throne of Anubis': 'Clash', 'Neon Junction': 'Flashpoint',
+    'Aatlis': 'Flashpoint', 'Hanaoka': 'Clash', 'Throne of Anubis': 'Clash', 'Neon Junction': 'Hybrid',
 }
 ROLE = {'TANK': ('탱', '탱커', 0), 'DPS': ('딜', '딜러', 1), 'SUP': ('힐', '힐러', 2)}
 
