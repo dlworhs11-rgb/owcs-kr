@@ -189,6 +189,13 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 </div>
 </div>
 </sc-if>
+<sc-if value="{{ showRes }}"><div style="margin-top:40px">
+<div style="font-size:18px;font-weight:700;margin-bottom:14px">오늘 결과</div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px">
+<sc-for list="{{ todayRes }}" as="r" hint-placeholder-count="3"><button data-tres="" onClick="{{ r.go }}" style="position:relative;overflow:hidden;display:flex;flex-direction:column;gap:6px;padding:22px 20px 16px;border-radius:16px;border:{{ r.bd }};background:{{ r.bg }};-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:{{ r.fg }};opacity:{{ r.op }};font:inherit;cursor:pointer;text-align:left"><sc-if value="{{ r.face }}"><span style="position:absolute;top:0;bottom:0;left:50%;width:170px;transform:translateX(-50%);background:{{ r.face }};opacity:.5;-webkit-mask-image:radial-gradient(closest-side,#000 45%,transparent 100%);mask-image:radial-gradient(closest-side,#000 45%,transparent 100%);pointer-events:none"></span></sc-if><span style="position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:8px"><span style="display:flex;align-items:center;gap:8px;min-width:0;opacity:{{ r.oa }};font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:700;font-size:26px"><span style="flex:none;width:30px;height:30px;background:{{ r.la }}"></span>{{ r.a }}</span><span style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:800;font-size:26px;font-variant-numeric:tabular-nums;white-space:nowrap">{{ r.mid }}</span><span style="display:flex;align-items:center;justify-content:flex-end;gap:8px;min-width:0;opacity:{{ r.ob }};font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:700;font-size:26px">{{ r.b }}<span style="flex:none;width:30px;height:30px;background:{{ r.lb }}"></span></span></span><sc-if value="{{ r.sub }}"><span style="position:relative;font-size:12px;font-weight:600;color:{{ r.subC }};text-align:center">{{ r.sub }}</span></sc-if></button></sc-for>
+</div>
+<div data-tl="" style="margin-top:10px;font-size:12px;color:var(--mute,#8A8A93)">{{ resHint }}</div>
+</div></sc-if>
 <div style="margin-top:40px">
 <div style="font-size:18px;font-weight:700;margin-bottom:14px">{{ L.next }}</div>
 <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px">
@@ -449,6 +456,13 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 </div>
 </div>
 </sc-if>
+<sc-if value="{{ showRes }}"><div style="margin-top:40px">
+<div style="font-size:18px;font-weight:700;margin-bottom:14px">오늘 결과</div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px">
+<sc-for list="{{ todayRes }}" as="r" hint-placeholder-count="3"><button data-tres="" onClick="{{ r.go }}" style="position:relative;overflow:hidden;display:flex;flex-direction:column;gap:6px;padding:22px 20px 16px;border-radius:16px;border:{{ r.bd }};background:{{ r.bg }};-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:{{ r.fg }};opacity:{{ r.op }};font:inherit;cursor:pointer;text-align:left"><sc-if value="{{ r.face }}"><span style="position:absolute;top:0;bottom:0;left:50%;width:170px;transform:translateX(-50%);background:{{ r.face }};opacity:.5;-webkit-mask-image:radial-gradient(closest-side,#000 45%,transparent 100%);mask-image:radial-gradient(closest-side,#000 45%,transparent 100%);pointer-events:none"></span></sc-if><span style="position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:8px"><span style="display:flex;align-items:center;gap:8px;min-width:0;opacity:{{ r.oa }};font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:700;font-size:26px"><span style="flex:none;width:30px;height:30px;background:{{ r.la }}"></span>{{ r.a }}</span><span style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:800;font-size:26px;font-variant-numeric:tabular-nums;white-space:nowrap">{{ r.mid }}</span><span style="display:flex;align-items:center;justify-content:flex-end;gap:8px;min-width:0;opacity:{{ r.ob }};font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:700;font-size:26px">{{ r.b }}<span style="flex:none;width:30px;height:30px;background:{{ r.lb }}"></span></span></span><sc-if value="{{ r.sub }}"><span style="position:relative;font-size:12px;font-weight:600;color:{{ r.subC }};text-align:center">{{ r.sub }}</span></sc-if></button></sc-for>
+</div>
+<div data-tl="" style="margin-top:10px;font-size:12px;color:var(--mute,#8A8A93)">{{ resHint }}</div>
+</div></sc-if>
 <div style="margin-top:40px">
 <div style="font-size:18px;font-weight:700;margin-bottom:14px">{{ L.next }}</div>
 <div style="display:grid;grid-template-columns:minmax(0,1fr);gap:10px">
@@ -697,6 +711,11 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <sc-for list="{{ countdown }}" as="u" hint-placeholder-count="4"><div style="padding:10px 0;border-radius:12px;background:#0B0B0F;text-align:center"><div style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:800;font-size:40px;line-height:1;color:var(--ac2,#C6FF33);font-variant-numeric:tabular-nums">{{ u.v }}</div><div style="font-size:12px;color:#B5B5BD">{{ u.l }}</div></div></sc-for>
 </div></div>
 </sc-if>
+<sc-if value="{{ showRes }}"><div style="font-size:16px;font-weight:700;margin:24px 0 10px">오늘 결과</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<sc-for list="{{ todayRes }}" as="r" hint-placeholder-count="3"><button data-tres="" onClick="{{ r.go }}" style="position:relative;overflow:hidden;display:flex;flex-direction:column;gap:6px;padding:12px 14px;border-radius:14px;border:{{ r.bd }};background:{{ r.bg }};-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:{{ r.fg }};opacity:{{ r.op }};font:inherit;cursor:pointer;text-align:left"><sc-if value="{{ r.face }}"><span style="position:absolute;top:0;bottom:0;left:50%;width:170px;transform:translateX(-50%);background:{{ r.face }};opacity:.5;-webkit-mask-image:radial-gradient(closest-side,#000 45%,transparent 100%);mask-image:radial-gradient(closest-side,#000 45%,transparent 100%);pointer-events:none"></span></sc-if><span style="position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:6px"><span style="display:flex;align-items:center;gap:6px;min-width:0;opacity:{{ r.oa }};font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:700;font-size:22px"><span style="flex:none;width:24px;height:24px;background:{{ r.la }}"></span>{{ r.a }}</span><span style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:800;font-size:22px;font-variant-numeric:tabular-nums;white-space:nowrap">{{ r.mid }}</span><span style="display:flex;align-items:center;justify-content:flex-end;gap:6px;min-width:0;opacity:{{ r.ob }};font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:700;font-size:22px">{{ r.b }}<span style="flex:none;width:24px;height:24px;background:{{ r.lb }}"></span></span></span><sc-if value="{{ r.sub }}"><span style="position:relative;font-size:12px;font-weight:600;color:{{ r.subC }};text-align:center">{{ r.sub }}</span></sc-if></button></sc-for>
+</div>
+<div data-tl="" style="margin-top:8px;font-size:12px;color:var(--mute,#8A8A93)">{{ resHint }}</div></sc-if>
 <div style="font-size:16px;font-weight:700;margin:24px 0 10px">{{ L.next }}</div>
 <div style="display:flex;flex-direction:column;gap:8px">
 <sc-for list="{{ next3 }}" as="n" hint-placeholder-count="3"><div data-tcard="" style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-radius:14px;border:1px solid #26262E"><div style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:700;font-size:22px"><span style="display:inline-flex;align-items:center;gap:.28em"><span style="flex:none;width:1.05em;height:1.05em;background:{{ n.la }}"></span>{{ n.a }} <span style="color:var(--mute,#6B6B72)">vs</span> {{ n.b }}<span style="flex:none;width:1.05em;height:1.05em;background:{{ n.lb }}"></span></span></div><div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px"><div style="font-size:13px;color:#B5B5BD">{{ n.when }}</div></div></div></sc-for>
@@ -891,6 +910,11 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <sc-for list="{{ countdown }}" as="u" hint-placeholder-count="4"><div style="padding:10px 0;border-radius:12px;background:#0B0B0F;text-align:center"><div style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:800;font-size:40px;line-height:1;color:var(--ac2,#C6FF33);font-variant-numeric:tabular-nums">{{ u.v }}</div><div style="font-size:12px;color:#B5B5BD">{{ u.l }}</div></div></sc-for>
 </div></div>
 </sc-if>
+<sc-if value="{{ showRes }}"><div style="font-size:16px;font-weight:700;margin:24px 0 10px">오늘 결과</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<sc-for list="{{ todayRes }}" as="r" hint-placeholder-count="3"><button data-tres="" onClick="{{ r.go }}" style="position:relative;overflow:hidden;display:flex;flex-direction:column;gap:6px;padding:12px 14px;border-radius:14px;border:{{ r.bd }};background:{{ r.bg }};-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:{{ r.fg }};opacity:{{ r.op }};font:inherit;cursor:pointer;text-align:left"><sc-if value="{{ r.face }}"><span style="position:absolute;top:0;bottom:0;left:50%;width:170px;transform:translateX(-50%);background:{{ r.face }};opacity:.5;-webkit-mask-image:radial-gradient(closest-side,#000 45%,transparent 100%);mask-image:radial-gradient(closest-side,#000 45%,transparent 100%);pointer-events:none"></span></sc-if><span style="position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:6px"><span style="display:flex;align-items:center;gap:6px;min-width:0;opacity:{{ r.oa }};font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:700;font-size:22px"><span style="flex:none;width:24px;height:24px;background:{{ r.la }}"></span>{{ r.a }}</span><span style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:800;font-size:22px;font-variant-numeric:tabular-nums;white-space:nowrap">{{ r.mid }}</span><span style="display:flex;align-items:center;justify-content:flex-end;gap:6px;min-width:0;opacity:{{ r.ob }};font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:700;font-size:22px">{{ r.b }}<span style="flex:none;width:24px;height:24px;background:{{ r.lb }}"></span></span></span><sc-if value="{{ r.sub }}"><span style="position:relative;font-size:12px;font-weight:600;color:{{ r.subC }};text-align:center">{{ r.sub }}</span></sc-if></button></sc-for>
+</div>
+<div data-tl="" style="margin-top:8px;font-size:12px;color:var(--mute,#8A8A93)">{{ resHint }}</div></sc-if>
 <div style="font-size:16px;font-weight:700;margin:24px 0 10px">{{ L.next }}</div>
 <div style="display:flex;flex-direction:column;gap:8px">
 <sc-for list="{{ next3 }}" as="n" hint-placeholder-count="3"><div data-tcard="" style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-radius:14px;border:1px solid #26262E"><div style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:700;font-size:22px"><span style="display:inline-flex;align-items:center;gap:.28em"><span style="flex:none;width:1.05em;height:1.05em;background:{{ n.la }}"></span>{{ n.a }} <span style="color:var(--mute,#6B6B72)">vs</span> {{ n.b }}<span style="flex:none;width:1.05em;height:1.05em;background:{{ n.lb }}"></span></span></div><div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px"><div style="font-size:13px;color:#B5B5BD">{{ n.when }}</div></div></div></sc-for>
@@ -1197,7 +1221,9 @@ class Component extends DCLogic {
     const M = D.matches.map((m) => ({ ...m, st: state(m, now) }));
     const todays = M.filter((m) => m.day === today);
     const matchDay = todays.length > 0;
-    const hero = todays.find((m) => m.st === 'live') || todays.find((m) => m.st === 'up') || todays[todays.length - 1];
+    // "오늘 결과" strip: a finished match picked there is what the score card and set details show (the live one stays in the strip to go back)
+    const picked = todays.find((m) => m.id === this.state.pick && m.st !== 'up');
+    const hero = picked || todays.find((m) => m.st === 'live') || todays.find((m) => m.st === 'up') || todays[todays.length - 1];
     const upcoming = M.filter((m) => m.st === 'up');
     const nextM = upcoming[0];
     const endMs = new Date(D.stageRange[1] + 'T23:59:59+09:00').getTime();
@@ -1399,7 +1425,19 @@ class Component extends DCLogic {
       showMaps, toggleMaps: () => this.setState({ mapsShown: !showMaps }),
       mapsHint: showMaps ? '세트별 상세 접기' : '스코어를 눌러 세트별 맵 · 밴 · 승리 팀 보기', mapsChev: showMaps ? '▴' : '▾',
       mapsD: heroMaps, mapsM: heroMaps, mapsS: heroMaps.slice(0, 2),
-      next3: upcoming.filter((m) => m !== hero).slice(0, 3).map((m) => ({ when: whenOf(m), a: m.a === 'TBD' ? '미정' : m.a, b: m.b === 'TBD' ? '미정' : m.b, gcal: gcalOf(m), la: logoBg(m.a, this.state.dark), lb: logoBg(m.b, this.state.dark) })),
+      showRes: matchDay, resHint: SP ? '스포일러 방지 중 · 점수는 숨겨요' : '결과를 누르면 위에서 세트별 맵 · 밴 · 첫 조합을 볼 수 있어요',
+      // all of today's matches, in order (not started yet: 0 : 0 and its start time); the POTM's face sits behind the card
+      todayRes: todays.map((m) => { const o = orient(m.a, m.sa, m.b, m.sb), on = m === hero, done = m.st === 'done' && !SP;
+        const pm = done && m.potm ? D.players.find((x) => x.id.toLowerCase() === m.potm.toLowerCase() && x.photo) : null, f = pm && pm.face;
+        const face = !pm ? '' : "url('" + pm.photo + "') " + (f ? Math.round(f[0] * 100) + '% ' + Math.round(f[1] * 100) + '%/auto ' + Math.round(70 / f[2]) + '%' : 'center 20%/auto 220%') + ' no-repeat';
+        return { a: o[0], b: o[2], la: logoBg(o[0], m.st !== 'up' || DM), lb: logoBg(o[2], m.st !== 'up' || DM), mid: SP ? 'vs' : m.st === 'up' ? '0 : 0' : o[1] + ' : ' + o[3],
+          oa: done && o[1] < o[3] ? .4 : 1, ob: done && o[3] < o[1] ? .4 : 1,
+          bg: m.st === 'live' ? 'linear-gradient(135deg, rgba(217,45,32,.82), rgba(140,22,16,.78))' : m.st === 'up' ? 'transparent' : 'rgba(24,24,30,.55)',
+          fg: m.st === 'up' ? 'var(--ink,#0B0B0F)' : '#fff', face, op: 1,
+          sub: m.st === 'live' ? '● LIVE' : m.st === 'up' ? (m.tbd ? '시간 미정' : m.time + ' 시작') : m.potm && !SP ? 'POTM ' + m.potm : '', subC: m.st === 'up' ? 'var(--mute,#6B6B72)' : '#fff',
+          bd: on ? '2px solid var(--ac2,#C6FF33)' : m.st === 'live' ? '1px solid #FF5A4F' : m.st === 'up' ? '1.5px dashed var(--mute,#9A9AA0)' : '1px solid rgba(255,255,255,.1)',
+          go: () => { if (m.st === 'up') return; this.setState({ pick: m.id, mapsShown: true }); const t = document.getElementById('today'); t && t.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }; }),
+      next3: upcoming.filter((m) => m !== hero && m.day !== today).slice(0, 3).map((m) => ({ when: whenOf(m), a: m.a === 'TBD' ? '미정' : m.a, b: m.b === 'TBD' ? '미정' : m.b, gcal: gcalOf(m), la: logoBg(m.a, this.state.dark), lb: logoBg(m.b, this.state.dark) })),
       standNote: STAGE_SHORT + ' 정규 리그 · ' + (rsOver ? '최종 순위' : md(new Date(now).toISOString()) + ' 기준') + ' · ' + D.format.split(' · ').pop(),
       showBracket, bk,
       poLegend: '1–' + D.playoffs + '위 플레이오프 시드 결정전', piLegend: (D.playoffs + 1) + '–' + D.lcq + '위 라스트 찬스 예선',
