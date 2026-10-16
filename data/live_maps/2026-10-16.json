@@ -120,14 +120,140 @@
    "seriesBefore": {
     "Team Falcons": 0,
     "SEIJI ESPORTS": 0
-   }
+   },
+   "winner": "Team Falcons",
+   "winnerSource": "series score"
+  },
+  {
+   "match": "Team Falcons vs SEIJI ESPORTS",
+   "matchNo": 1,
+   "game": 2,
+   "map": "New Junk City",
+   "mapTime": "9:53",
+   "frame": "m02_table1_1792140708.png",
+   "teams": {
+    "Team Falcons": [
+     {
+      "name": "?11",
+      "e": 12,
+      "a": 0,
+      "d": 5,
+      "dmg": 6258,
+      "heal": 105,
+      "mit": 300
+     },
+     {
+      "name": "?12",
+      "e": 13,
+      "a": 3,
+      "d": 8,
+      "dmg": 9778,
+      "heal": 914,
+      "mit": 7427
+     },
+     {
+      "name": "?13",
+      "e": 9,
+      "a": 11,
+      "d": 10,
+      "dmg": 1914,
+      "heal": 804,
+      "mit": 915
+     },
+     {
+      "name": "?14",
+      "e": 9,
+      "a": 1,
+      "d": 11,
+      "dmg": 8167,
+      "heal": 0,
+      "mit": 404
+     },
+     {
+      "name": "?15",
+      "e": 11,
+      "a": 8,
+      "d": 6,
+      "dmg": 4815,
+      "heal": 5461,
+      "mit": 0
+     }
+    ],
+    "SEIJI ESPORTS": [
+     {
+      "name": "?16",
+      "e": 0,
+      "a": 0,
+      "d": 4,
+      "dmg": 8953,
+      "heal": 0,
+      "mit": 362
+     },
+     {
+      "name": "?17",
+      "e": 14,
+      "a": 20,
+      "d": 4,
+      "dmg": 4578,
+      "heal": 8638,
+      "mit": 1476
+     },
+     {
+      "name": "?18",
+      "e": 24,
+      "a": null,
+      "d": 2,
+      "dmg": 4175,
+      "heal": 8575,
+      "mit": 487
+     },
+     {
+      "name": "?19",
+      "e": 72,
+      "a": null,
+      "d": 7,
+      "dmg": 8064,
+      "heal": 0,
+      "mit": 210
+     },
+     {
+      "name": "?20",
+      "e": 20,
+      "a": 10,
+      "d": 5,
+      "dmg": 98019,
+      "heal": 2954,
+      "mit": 2641
+     }
+    ]
+   },
+   "totalsVerified": false,
+   "reading": "ocr",
+   "bans": {
+    "initial": {
+     "team": "SEIJI ESPORTS",
+     "hero": "orisa"
+    },
+    "followUp": {
+     "team": "Team Falcons",
+     "hero": "kiriko"
+    }
+   },
+   "seriesBefore": {
+    "Team Falcons": 1,
+    "SEIJI ESPORTS": 0
+   },
+   "winner": "Team Falcons",
+   "winnerSource": "match end (leader)"
   }
  ],
  "matches": [
   {
    "match": "Team Falcons vs SEIJI ESPORTS",
    "matchNo": 1,
-   "mapWins": {},
+   "mapWins": {
+    "Team Falcons": 2
+   },
    "potm": null
   }
  ],
@@ -180,6 +306,56 @@
   {
    "id": "?10",
    "map": "01",
+   "row": 9
+  },
+  {
+   "id": "?11",
+   "map": "02",
+   "row": 0
+  },
+  {
+   "id": "?12",
+   "map": "02",
+   "row": 1
+  },
+  {
+   "id": "?13",
+   "map": "02",
+   "row": 2
+  },
+  {
+   "id": "?14",
+   "map": "02",
+   "row": 3
+  },
+  {
+   "id": "?15",
+   "map": "02",
+   "row": 4
+  },
+  {
+   "id": "?16",
+   "map": "02",
+   "row": 5
+  },
+  {
+   "id": "?17",
+   "map": "02",
+   "row": 6
+  },
+  {
+   "id": "?18",
+   "map": "02",
+   "row": 7
+  },
+  {
+   "id": "?19",
+   "map": "02",
+   "row": 8
+  },
+  {
+   "id": "?20",
+   "map": "02",
    "row": 9
   }
  ],
