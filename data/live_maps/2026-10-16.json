@@ -1109,7 +1109,7 @@
     "Team Falcons": 3
    },
    "potm": {
-    "name": "",
+    "name": null,
     "team": null,
     "elims": null,
     "deaths": null,
@@ -1125,7 +1125,7 @@
     "T1": 3
    },
    "potm": {
-    "name": "?51",
+    "name": "Proud",
     "team": "Cheeseburger",
     "elims": 83,
     "deaths": 28,
@@ -1141,7 +1141,7 @@
     "ZETA DIVISION": 3
    },
    "potm": {
-    "name": "?88",
+    "name": "Violet",
     "team": "ZETA DIVISION",
     "elims": 11,
     "deaths": 8,
