@@ -17,6 +17,9 @@
   // push maps report distance in metres; everything else is a round count
   const pts = (v) => (v == null ? '' : Number.isInteger(+v) ? String(v) : (+v).toFixed(1) + 'm');
   /* m: a match from owcs-data.js (with m.st = 'live' | 'done' | 'up'); o: { spoiler, showBans, isOpen(key), toggle(key) } */
+  // winner's logo next to its name on the map art: the white logo (the rows are dark), else the team colour
+  const logoOf = (a) => { const t = ((window.OWCS || {}).teams || []).find((x) => x.a === a); if (!t) return '';
+    const u = t.logoDark || t.logoOnColor || t.logo; return u ? "url('" + u + "') center / contain no-repeat" : t.color || ''; };
   function build(m, o) {
     const SP = !!o.spoiler, showBans = o.showBans !== false;
     return (m ? m.maps : []).map((x) => {
@@ -27,7 +30,7 @@
       const comps = x.comps ? ['a', 'b'].map((t) => ({ team: m[t], win: !SP && x.winner === t,
         picks: (x.comps[t] || []).map(([pl, h]) => ({ pl, h, bg: heroBg(h), txt: HERO_IMG[heroKey(h)] ? '' : heroCode(h) })) })) : [];
       return { no: pad(x.no), name: x.map, mode: x.mode + (x.time ? ' · ' + x.time : ''),
-        winner: SP ? '?' : (w || '–'), score: SP || !w ? '' : score,
+        winner: SP ? '?' : (w || '–'), wlogo: SP || !w ? '' : logoOf(w), score: SP || !w ? '' : score,
         done: !!w || m.st === 'done', recording, bg: mapBg(x.map),
         chev: open ? '−' : '+', isOpen: open, showBans: open && showBans && x.bans.length > 0, showComps: open && comps.length > 0,
         showRec: open && !comps.length, comps,
