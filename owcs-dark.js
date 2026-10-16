@@ -13,11 +13,11 @@
   var R = D + '#dc-root [data-screen-label] ';          // design-runtime pages (results, player): inline styles
   var NOT_LIME = ':not([style*="background: rgb(198, 255, 51)"]):not([style*="background: var(--ac2"])';
   var css = [
-    D + 'body{background:#0E0E12}',
+    D + 'body{background:#13110E repeating-linear-gradient(135deg,rgba(255,255,255,.03) 0 1px,transparent 1px 11px)}',   // the home page's dark paper on every page
     // --- results / player: remap the light paper, ink text and hairlines written inline ---
-    D + '#dc-root [data-screen-label]{background:#0E0E12 !important;color:#F2F2F5}',
+    D + '#dc-root [data-screen-label]{background:#13110E repeating-linear-gradient(135deg,rgba(255,255,255,.03) 0 1px,transparent 1px 11px) !important;color:#F2F2F5}',
     R + '[style*="background: rgb(255, 255, 255)"]{background-color:#16161C !important}',
-    R + '[style*="background: rgb(246, 246, 243)"],' + R + '[style*="background: rgb(231, 231, 226)"]{background-color:#0E0E12 !important}',
+    R + '[style*="background: rgb(246, 246, 243)"],' + R + '[style*="background: rgb(231, 231, 226)"]{background-color:transparent !important}',
     R + '[style*="background: rgb(241, 241, 237)"],' + R + '[style*="background: rgb(236, 236, 232)"],' + R + '[style*="background: rgb(242, 242, 238)"],' + R + '[style*="background: rgb(241, 238, 251)"]{background-color:#24242C !important}',
     R + '[style*="color: rgb(11, 11, 15)"]' + NOT_LIME + '{color:#F2F2F5 !important}',
     R + '[style*="color: rgb(85, 85, 92)"],' + R + '[style*="color: rgb(107, 107, 114)"]{color:#A3A3AD !important}',
@@ -26,9 +26,13 @@
     R + '[style*="solid rgb(11, 11, 15)"]{border-color:#F2F2F5 !important}',
     R + 'header{background:#16161C !important;border-color:#2E2E37 !important}',
     R + 'header a[style*="color: rgb(11, 11, 15)"]{color:#F2F2F5 !important}',
+    // menu hover: the light pill from the design would hide the white text, so a dark pill like the tickets page
+    R + 'header nav a:hover{background:#24242C !important;color:#F2F2F5 !important}',
+    // buttons without their own text colour (the stage picker) take the page's light text
+    R + 'button{color:inherit}',
     R + 'input{background:#16161C !important;color:#F2F2F5 !important;border-color:#2E2E37 !important}',
     // --- streams page (its own variables) ---
-    D + 'body.streams-page{--bg:#0E0E12;--panel:#16161C;--line:#2E2E37;--ink:#F2F2F5;--mute:#A3A3AD;--dim:#8E8E98;color:#F2F2F5;background-image:radial-gradient(90% 60% at 0% 0%,color-mix(in srgb,var(--ac) 22%,transparent),transparent 60%),radial-gradient(60% 50% at 100% 40%,color-mix(in srgb,var(--red) 10%,transparent),transparent 65%),repeating-linear-gradient(135deg,rgba(255,255,255,.028) 0 1px,transparent 1px 12px)}',
+    D + 'body.streams-page{--bg:#13110E;--panel:#16161C;--line:#2E2E37;--ink:#F2F2F5;--mute:#A3A3AD;--dim:#8E8E98;color:#F2F2F5;background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.03) 0 1px,transparent 1px 11px)}',
     D + 'body.streams-page header{background:rgba(14,14,18,.9)}',
     D + 'body.streams-page .brand i{background:#F2F2F5}',
     D + 'body.streams-page nav a:hover,' + D + 'body.streams-page nav a.on{background:#24242C;color:#F2F2F5}',
@@ -39,7 +43,7 @@
     D + 'body.streams-page .go.chzzk{color:#5BEA87}' + D + 'body.streams-page .go.soop{color:#8FB4FF}' + D + 'body.streams-page .go.none{background:#24242C}',
     D + 'body.streams-page .eyebrow{color:#B89BFF}',
     // --- tickets page (its own variables) ---
-    D + 'body.ticket-page{--bg:#0E0E12;--panel:#16161C;--line:#2E2E37;--ink:#F2F2F5;--mute:#A3A3AD;--dim:#8E8E98;color:#F2F2F5;background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.022) 0 1px,transparent 1px 12px)}',
+    D + 'body.ticket-page{--bg:#13110E;--panel:#16161C;--line:#2E2E37;--ink:#F2F2F5;--mute:#A3A3AD;--dim:#8E8E98;color:#F2F2F5;background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.03) 0 1px,transparent 1px 11px)}',
     D + 'body.ticket-page header{background:rgba(14,14,18,.9)}',
     D + 'body.ticket-page .brand i{background:#F2F2F5}',
     D + 'body.ticket-page nav a:hover,' + D + 'body.ticket-page nav a.on{background:#24242C;color:#F2F2F5}',
@@ -62,7 +66,7 @@
 
   // switch (the home page has its own 다크 모드 toggle)
   function button() {
-    if (/Home/.test(decodeURIComponent(location.pathname)) || document.querySelector('[data-owcs-darkbtn]')) return;
+    if (/Home/.test(decodeURIComponent(location.pathname).split('/').pop()) || document.querySelector('[data-owcs-darkbtn]')) return;
     var b = document.createElement('button');
     b.setAttribute('data-owcs-darkbtn', '');
     b.textContent = on ? '☀ 라이트 모드' : '☾ 다크 모드';

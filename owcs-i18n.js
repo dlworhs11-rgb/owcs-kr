@@ -287,7 +287,7 @@
 
   function start() {
     // the home page renders its own 한국어/日本語/EN buttons a moment after load
-    if (!/Home/.test(decodeURIComponent(location.pathname))) setTimeout(switcher, 600);
+    if (!/Home/.test(decodeURIComponent(location.pathname).split('/').pop())) setTimeout(switcher, 600);
     if (lang === 'ko') return;
     var st = document.createElement('style');   // upright Korean role letters read sideways in other scripts
     st.textContent = '[style*="text-orientation: upright"]{text-orientation:mixed !important;transform:rotate(180deg)}';

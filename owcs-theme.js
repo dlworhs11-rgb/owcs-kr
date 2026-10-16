@@ -74,7 +74,7 @@
   }
   // "B" background (home page): one warm paper sheet with fine hatching from the top bar to the footer; sections
   // lose their own fills, edge lines and glows and are told apart by spacing only. ?bg=old shows the previous look.
-  if (/Home/.test(decodeURIComponent(location.pathname)) && new URLSearchParams(location.search).get('bg') !== 'old') {
+  if (/Home/.test(decodeURIComponent(location.pathname).split('/').pop()) && new URLSearchParams(location.search).get('bg') !== 'old') {
     var H = 'html[data-owcs-bgb] ';
     document.documentElement.setAttribute('data-owcs-bgb', '');
     css += '\n' + [
@@ -93,6 +93,19 @@
       H + 'footer{color:var(--ink,#0B0B0F) !important;border-top:0 !important}',
       H + 'footer [style*="color: rgb(255, 255, 255)"]{color:var(--ink,#0B0B0F) !important}',
       H + 'footer [style*="color: rgb(138, 138, 147)"],' + H + 'footer [style*="color: rgb(181, 181, 189)"],' + H + 'footer [style*="color: rgb(201, 201, 209)"]{color:var(--mute,#55555C) !important}'
+    ].join('\n');
+  }
+  // dark mode on the other pages (results, player): the same dark sheet as the home page, bands without their own fills
+  var darkQ = new URLSearchParams(location.search).get('dark'), darkOn = darkQ === '1';
+  if (darkQ !== '0' && darkQ !== '1') { try { darkOn = localStorage.getItem('owcs-dark') === '1'; } catch (e) {} }
+  if (!/Home/.test(decodeURIComponent(location.pathname).split('/').pop()) && darkOn) {
+    var X = 'html[data-owcs-bgb][data-owcs-dark] ';
+    document.documentElement.setAttribute('data-owcs-bgb', '');
+    css += '\n' + [
+      'html[data-owcs-bgb][data-owcs-dark],html[data-owcs-bgb][data-owcs-dark] body{background:#13110E !important}',
+      X + '#dc-root [data-screen-label]{background:#13110E repeating-linear-gradient(135deg, rgba(255,255,255,.03) 0 1px, transparent 1px 11px) fixed !important}',
+      X + '#dc-root [data-screen-label] section,' + X + '#dc-root [data-screen-label] footer,' + X + '#dc-root [data-screen-label] > header{background:transparent !important;background-image:none !important}',
+      X + '[data-owcs-bg]::before,' + X + '[data-owcs-bg]::after{display:none !important}'
     ].join('\n');
   }
   var st = document.createElement('style');
