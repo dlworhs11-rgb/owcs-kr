@@ -84,6 +84,7 @@
     ['포지션', 'ポジション', 'Role'], ['소속', '所属', 'Team'], ['대회 업적', '大会実績', 'Achievements'], ['팀 페이지 →', 'チームページ →', 'Team page →'], ['사진 준비 중', '写真準備中', 'Photo coming soon'],
     ['OWCS 코리아·아시아·월드 파이널·EWC 4위 이내 · Liquipedia', 'OWCS コリア・アジア・ワールドファイナル・EWC 4位以内 · Liquipedia', 'Top-4 finishes at OWCS Korea, Asia, World Finals and EWC · Liquipedia'],
     ['구글 캘린더로 남은 경기 구독', 'Googleカレンダーで残りの試合を購読', 'Subscribe in Google Calendar'], ['캘린더에 추가', 'カレンダーに追加', 'Add to calendar'], ['이 경기를 구글 캘린더에 추가', 'この試合をGoogleカレンダーに追加', 'Add this match to Google Calendar'],
+    ['인스타그램', 'Instagram', 'Instagram'], ['인스타그램에서 보기', 'Instagramで見る', 'View on Instagram'],
     ['우승', '優勝', 'Champion'], ['준우승', '準優勝', 'Runner-up'], ['대회 기록이 아직 없어요', '大会実績はまだありません', 'No major results yet'],
     // streams
     ['선수 개인 방송 · CHZZK / SOOP', '選手の個人配信 · CHZZK / SOOP', 'Player streams · CHZZK / SOOP'], ['지금 방송 중인 선수', '配信中の選手', 'players live now'], ['방송 중 없음', '配信なし', 'Nobody live'],
@@ -160,6 +161,7 @@
     [/^현재 (\d+)위$/, J ? '現在$1位' : 'currently #$1'],
     [/^(\d+)–(\d+)위 플레이오프 시드 결정전$/, J ? '$1–$2位 プレーオフシード決定戦' : '#$1–$2 playoff seeding'],
     [/^(\d+)–(\d+)위 라스트 찬스 예선$/, J ? '$1–$2位 ラストチャンス予選' : '#$1–$2 last chance qualifier'],
+    [/^(@[\w.]+) 프로필 →$/, J ? '$1 プロフィール →' : '$1 profile →'],
     [/^(\d+)회$/, J ? '$1回' : '$1×'],
     [/^(\d+)명$/, J ? '$1人' : '$1'],
     [/^로스터 (\d+)명$/, J ? 'ロスター $1人' : 'Roster · $1'],
