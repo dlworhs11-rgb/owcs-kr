@@ -22,6 +22,7 @@
 !/data/insta_meta.json
 !/data/live_scores/
 !/data/live_maps/
+!/data/live_sets/
 
 # built by GitHub Actions on every deploy (cloud_live.py); the PC copy is only for the local preview
 /owcs-data.js

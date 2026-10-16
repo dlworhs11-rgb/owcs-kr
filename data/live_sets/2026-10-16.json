@@ -1,0 +1,190 @@
+{
+ "date": "2026-10-16",
+ "sets": [
+  {
+   "banTs": 1792138269,
+   "teams": [
+    "Team Falcons",
+    "SEIJI ESPORTS"
+   ],
+   "game": 1,
+   "map": "Busan",
+   "seriesBefore": {
+    "Team Falcons": 0,
+    "SEIJI ESPORTS": 0
+   },
+   "bans": {
+    "initial": {
+     "team": "SEIJI ESPORTS",
+     "hero": "cassidy"
+    },
+    "followUp": {
+     "team": "Team Falcons",
+     "hero": "jetpack cat"
+    }
+   }
+  },
+  {
+   "banTs": 1792139687,
+   "teams": [
+    "Team Falcons",
+    "SEIJI ESPORTS"
+   ],
+   "game": 2,
+   "map": "New Junk City",
+   "seriesBefore": {
+    "Team Falcons": 1,
+    "SEIJI ESPORTS": 0
+   },
+   "bans": {
+    "initial": {
+     "team": "SEIJI ESPORTS",
+     "hero": "orisa"
+    },
+    "followUp": {
+     "team": "Team Falcons",
+     "hero": "kiriko"
+    }
+   }
+  },
+  {
+   "banTs": 1792140851,
+   "teams": [
+    "Team Falcons",
+    "SEIJI ESPORTS"
+   ],
+   "game": 3,
+   "map": "Neon Junction",
+   "seriesBefore": {
+    "Team Falcons": 2,
+    "SEIJI ESPORTS": 0
+   },
+   "bans": {
+    "initial": {
+     "team": "SEIJI ESPORTS",
+     "hero": "dmon"
+    },
+    "followUp": {
+     "team": "Team Falcons",
+     "hero": "bastion"
+    }
+   },
+   "comps": {
+    "SEIJI ESPORTS": [
+     [
+      "SENTIER",
+      "?"
+     ],
+     [
+      "M1nut2",
+      "cassidy"
+     ],
+     [
+      "D4RT",
+      "?"
+     ],
+     [
+      "OFF",
+      "ana"
+     ],
+     [
+      "Lavender",
+      "doctrine"
+     ]
+    ],
+    "Team Falcons": [
+     [
+      "SOMEONE",
+      "?"
+     ],
+     [
+      "MER1T",
+      "cassidy"
+     ],
+     [
+      "Checkmate",
+      "genji"
+     ],
+     [
+      "Fielder",
+      "?"
+     ],
+     [
+      "ChiYo",
+      "doctrine"
+     ]
+    ]
+   }
+  },
+  {
+   "banTs": 1792143921,
+   "teams": [
+    "Cheeseburger",
+    "T1"
+   ],
+   "game": 1,
+   "map": "Busan",
+   "seriesBefore": {
+    "Cheeseburger": 0,
+    "T1": 0
+   },
+   "bans": {
+    "initial": {
+     "team": "Cheeseburger",
+     "hero": "bastion"
+    },
+    "followUp": {
+     "team": "T1",
+     "hero": "jetpack cat"
+    }
+   },
+   "comps": {
+    "Cheeseburger": [
+     [
+      "Belosrea",
+      "winston"
+     ],
+     [
+      "K4NE",
+      "?"
+     ],
+     [
+      "Profit",
+      "tracer"
+     ],
+     [
+      "Trest",
+      "?"
+     ],
+     [
+      "TenTen",
+      "sombra"
+     ]
+    ],
+    "T1": [
+     [
+      "DONGHAK",
+      "wrecking-ball"
+     ],
+     [
+      "Proud",
+      "?"
+     ],
+     [
+      "ZEST",
+      "tracer"
+     ],
+     [
+      "Bliss",
+      "doctrine"
+     ],
+     [
+      "skewed",
+      "?"
+     ]
+    ]
+   },
+   "compAt": "2026-10-16T18:48:21+09:00"
+  }
+ ]
+}

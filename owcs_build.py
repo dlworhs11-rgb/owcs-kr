@@ -248,6 +248,15 @@ def load_picks():
         return {k: v for k, v in json.load(fh).items() if not k.startswith('_')}
 
 
+def live_sets(day):
+    """map name (from the hero-ban screen) and first heroes per map (from the HUD), read by pick_watch.py on the PC"""
+    f = os.path.join(HERE, 'data', 'live_sets', day + '.json')
+    if not os.path.exists(f):
+        return []
+    with open(f, encoding='utf-8') as fh:
+        return json.load(fh).get('sets', [])
+
+
 def live_scores(day):
     f = os.path.join(HERE, 'data', 'live_scores', day + '.json')
     if not os.path.exists(f):
@@ -337,6 +346,23 @@ def build_matches(stage):
                 played = not live
             if not potm and lv.get('potm'):
                 potm = lv['potm'].get('name')
+        # map name as soon as the ban screen shows it, and the first heroes off the HUD (pick_watch.py)
+        auto_comps = {}
+        for s in live_sets(day):
+            if set(s.get('teams') or []) != {t1, t2} or not s.get('game'):
+                continue
+            cur = next((x for x in maps if x['no'] == s['game']), None)
+            if cur is None:
+                cur = dict(no=s['game'], map=s.get('map') or f"{s['game']}세트", mode=MODE_KO.get(MAP_MODE.get(s.get('map')), ''),
+                           winner=None, bans=[], banFirst=None, src='live')
+                maps.append(cur)
+            b = s.get('bans') or {}
+            if not cur['bans'] and (b.get('initial') or {}).get('hero'):
+                cur['bans'] = [dict(t=side(x['team'], m), h=x['hero']) for x in (b.get('initial'), b.get('followUp')) if x and x.get('hero')]
+                cur['banFirst'] = side(b['initial'].get('team'), m)
+            if s.get('comps'):
+                auto_comps[str(s['game'])] = {side(t, m): rows for t, rows in s['comps'].items() if side(t, m)}
+        maps.sort(key=lambda x: x['no'] or 0)
         # series score read off the broadcast break screen (score_watch.py): the fastest map winner we get
         key = (m['competition'], m['idx'])
         sc = live_scores(day).get(str(order[day].index(key) + 1)) if key in order.get(day, []) else None
@@ -353,7 +379,7 @@ def build_matches(stage):
             live = max(sa, sb) < need
             played = not live
         # first heroes per player, from data/picks.json (filled by hand or by a hero-recognition tool)
-        pk = PICKS.get(f"{day} {short(t1)} vs {short(t2)}", {})
+        pk = {**auto_comps, **PICKS.get(f"{day} {short(t1)} vs {short(t2)}", {})}
         for x in maps:
             x['bans'] = [dict(b, code=hero_code(b['h'])) for b in x['bans']]
             if pk.get(str(x['no'])):
