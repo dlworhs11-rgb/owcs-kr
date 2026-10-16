@@ -34,7 +34,7 @@
     D + 'body.streams-page nav a:hover,' + D + 'body.streams-page nav a.on{background:#24242C;color:#F2F2F5}',
     D + 'body.streams-page .count b{color:#F2F2F5}',
     D + 'body.streams-page .team,' + D + 'body.streams-page .count{background:#16161C}',
-    D + 'body.streams-page .p{border-bottom-color:#24242C}' + D + 'body.streams-page .p:hover{background:#1C1C23}',
+    D + 'body.streams-page .p{background:#1C1C23}' + D + 'body.streams-page .p:hover{background:#24242C}',
     D + 'body.streams-page .av{background-color:#24242C;color:#C9C9CF}',
     D + 'body.streams-page .go.chzzk{color:#5BEA87}' + D + 'body.streams-page .go.soop{color:#8FB4FF}' + D + 'body.streams-page .go.none{background:#24242C}',
     D + 'body.streams-page .eyebrow{color:#B89BFF}',

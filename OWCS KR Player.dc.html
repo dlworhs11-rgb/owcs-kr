@@ -70,12 +70,8 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <sc-if value="{{ isLive }}"><span style="display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px;border-radius:999px;background:#D92D20;color:#fff;font-size:13px;font-weight:700;letter-spacing:.04em"><span style="width:6px;height:6px;border-radius:50%;background:#fff"></span>LIVE</span></sc-if>
 </div>
 <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:200px;line-height:.82;margin:20px 0 28px;letter-spacing:-.01em">{{ pid }}</h1>
-<div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 20px;border-radius:18px;background:#0B0B0F;color:#fff;margin-bottom:14px">
-<div style="display:flex;align-items:center;gap:14px"><sc-if value="{{ streamIcon }}"><img src="{{ streamIcon }}" alt="" style="width:40px;height:40px;border-radius:10px"></sc-if><div><div style="font-size:13px;color:#B5B5BD">{{ streamHead }}</div><div style="font-size:19px;font-weight:700;margin-top:2px">{{ streamSub }}</div></div></div>
-<a href="{{ streamHref }}" target="_blank" style="display:flex;align-items:center;height:48px;padding:0 20px;border-radius:12px;background:#C6FF33;color:#0B0B0F;text-decoration:none;font-size:15px;font-weight:700">{{ streamCta }}</a>
-</div>
 <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px">
-<sc-for list="{{ links }}" as="l" hint-placeholder-count="3"><a href="{{ l.href }}" target="_blank" style="display:flex;align-items:center;gap:12px;height:60px;padding:0 16px 0 12px;border-radius:14px;background:#fff;border:1px solid #E6E6E1;color:#0B0B0F;text-decoration:none" style-hover="border-color:#0B0B0F;color:#0B0B0F"><img src="{{ l.icon }}" alt="" style="flex:none;width:34px;height:34px;border-radius:9px"><span style="flex:1;min-width:0"><span style="display:block;font-size:15px;font-weight:700">{{ l.label }}</span><span style="display:block;font-size:12px;color:#6B6B72;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ l.handle }}</span></span><span>↗</span></a></sc-for>
+<sc-for list="{{ links }}" as="l" hint-placeholder-count="3"><a href="{{ l.href }}" target="_blank" style="display:flex;align-items:center;gap:12px;height:60px;padding:0 16px 0 12px;border-radius:14px;background:#fff;border:1px solid {{ l.bd }};color:#0B0B0F;text-decoration:none" style-hover="border-color:#0B0B0F;color:#0B0B0F"><img src="{{ l.icon }}" alt="" style="flex:none;width:34px;height:34px;border-radius:9px"><span style="flex:1;min-width:0"><span style="display:block;font-size:15px;font-weight:700">{{ l.label }}<sc-if value="{{ l.live }}"><span style="display:inline-flex;align-items:center;gap:4px;margin-left:8px;padding:2px 7px;border-radius:5px;background:#D92D20;color:#fff;font-size:11px;font-weight:800;letter-spacing:.04em;vertical-align:2px">● LIVE</span></sc-if></span><span style="display:block;font-size:12px;color:#6B6B72;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ l.handle }}</span></span><span>↗</span></a></sc-for>
 </div>
 <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:28px;padding-top:24px;border-top:1px solid #E1E1DB">
 <sc-for list="{{ facts }}" as="x" hint-placeholder-count="3"><div><div style="font-size:13px;color:#6B6B72">{{ x.k }}</div><div style="font-size:18px;font-weight:700;margin-top:4px">{{ x.v }}</div></div></sc-for>
@@ -88,10 +84,9 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:36px"><div><div style="font-size:15px;font-weight:700;color:#55555C">인스타그램</div><h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:96px;line-height:.86;margin:8px 0 0">INSTAGRAM</h2></div><a href="{{ igProfile }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:600;color:#0B0B0F"><img src="assets/icons/instagram.png" alt="" style="width:24px;height:24px;border-radius:6px">{{ igHandle }} 프로필 →</a></div>
 <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;align-items:start"><sc-for list="{{ insta }}" as="ig" hint-placeholder-count="3"><a href="{{ ig.url }}" target="_blank" rel="noopener" style="display:flex;flex-direction:column;min-width:0;border-radius:20px;overflow:hidden;background:#fff;border:1px solid #E6E6E1;color:#0B0B0F;text-decoration:none" style-hover="border-color:#0B0B0F;color:#0B0B0F"><div style="display:flex;align-items:center;gap:10px;padding:12px 14px"><img src="assets/icons/instagram.png" alt="" style="width:22px;height:22px;border-radius:6px"><b style="font-size:14px">{{ igHandle }}</b><span style="margin-left:auto;font-size:12px;color:#6B6B72">{{ ig.date }}</span></div><img src="{{ ig.img }}" alt="" loading="lazy" style="display:block;width:100%;aspect-ratio:1/1;object-fit:cover;background:#F1F1ED"><div style="padding:12px 14px 14px;font-size:14px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;white-space:pre-line">{{ ig.text }}</div></a></sc-for></div>
 </section></sc-if>
-<section style="padding:88px 56px 96px;background:#0B0B0F;color:#fff">
+<section style="padding:88px 56px 96px;background:#F6F6F3;color:#0B0B0F">
 <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:36px">
-<div><div style="font-size:15px;font-weight:700;color:#C6FF33">{{ rosterTitle }}</div><h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:96px;line-height:.86;margin:8px 0 0">ROSTER</h2></div>
-<a href="OWCS KR Home v6.dc.html" style="font-size:15px;font-weight:600;color:#fff">팀 페이지 →</a>
+<div><h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:96px;line-height:.86;margin:0">ROSTER</h2></div>
 </div>
 <div style="display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:12px">
 <sc-for list="{{ roster }}" as="p" hint-placeholder-count="8">
@@ -127,17 +122,15 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <span style="display:inline-flex;align-items:center;height:30px;padding:0 10px;border-radius:999px;background:#0B0B0F;color:#fff;font-size:13px;font-weight:600">{{ roleFull }}</span>
 </div>
 <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:104px;line-height:.82;margin:14px 0 18px">{{ pid }}</h1>
-<a href="{{ streamHref }}" target="_blank" style="display:flex;align-items:center;justify-content:space-between;height:56px;padding:0 18px;border-radius:14px;background:#0B0B0F;color:#fff;text-decoration:none;font-size:15px;font-weight:700"><span>{{ streamHead }} · {{ streamSub }}</span><span style="color:#C6FF33">보러가기 →</span></a>
 <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
-<sc-for list="{{ links }}" as="l" hint-placeholder-count="3"><a href="{{ l.href }}" target="_blank" style="display:flex;align-items:center;gap:12px;height:52px;padding:0 16px 0 10px;border-radius:14px;background:#fff;border:1px solid #E6E6E1;color:#0B0B0F;text-decoration:none"><img src="{{ l.icon }}" alt="" style="flex:none;width:30px;height:30px;border-radius:8px"><span style="flex:1;font-size:15px;font-weight:700">{{ l.label }}</span><span style="font-size:13px;color:#6B6B72">{{ l.handle }} ↗</span></a></sc-for>
+<sc-for list="{{ links }}" as="l" hint-placeholder-count="3"><a href="{{ l.href }}" target="_blank" style="display:flex;align-items:center;gap:12px;height:52px;padding:0 16px 0 10px;border-radius:14px;background:#fff;border:1px solid {{ l.bd }};color:#0B0B0F;text-decoration:none"><img src="{{ l.icon }}" alt="" style="flex:none;width:30px;height:30px;border-radius:8px"><span style="flex:1;font-size:15px;font-weight:700">{{ l.label }}<sc-if value="{{ l.live }}"><span style="display:inline-flex;align-items:center;gap:4px;margin-left:8px;padding:2px 7px;border-radius:5px;background:#D92D20;color:#fff;font-size:11px;font-weight:800;letter-spacing:.04em;vertical-align:2px">● LIVE</span></sc-if></span><span style="font-size:13px;color:#6B6B72">{{ l.handle }} ↗</span></a></sc-for>
 </div>
 </section>
 <sc-if value="{{ hasInsta }}"><section style="padding:32px 20px;background:#F6F6F3">
 <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:18px;flex-wrap:wrap"><div><div style="font-size:15px;font-weight:700;color:#55555C">인스타그램</div><h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:60px;line-height:.86;margin:8px 0 0">INSTAGRAM</h2></div><a href="{{ igProfile }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:600;color:#0B0B0F"><img src="assets/icons/instagram.png" alt="" style="width:24px;height:24px;border-radius:6px">{{ igHandle }} 프로필 →</a></div>
 <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(0,1fr));gap:14px;align-items:start"><sc-for list="{{ insta }}" as="ig" hint-placeholder-count="3"><a href="{{ ig.url }}" target="_blank" rel="noopener" style="display:flex;flex-direction:column;min-width:0;border-radius:20px;overflow:hidden;background:#fff;border:1px solid #E6E6E1;color:#0B0B0F;text-decoration:none" style-hover="border-color:#0B0B0F;color:#0B0B0F"><div style="display:flex;align-items:center;gap:10px;padding:12px 14px"><img src="assets/icons/instagram.png" alt="" style="width:22px;height:22px;border-radius:6px"><b style="font-size:14px">{{ igHandle }}</b><span style="margin-left:auto;font-size:12px;color:#6B6B72">{{ ig.date }}</span></div><img src="{{ ig.img }}" alt="" loading="lazy" style="display:block;width:100%;aspect-ratio:1/1;object-fit:cover;background:#F1F1ED"><div style="padding:12px 14px 14px;font-size:14px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;white-space:pre-line">{{ ig.text }}</div></a></sc-for></div>
 </section></sc-if>
-<section style="padding:32px 0 40px 20px;background:#0B0B0F;color:#fff">
-<div style="font-size:14px;font-weight:700;color:#C6FF33">{{ rosterTitle }}</div>
+<section style="padding:32px 0 40px 20px;background:#F6F6F3;color:#0B0B0F">
 <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:60px;line-height:.86;margin:6px 0 18px">ROSTER</h2>
 <div style="display:flex;gap:10px;overflow-x:auto;padding-right:20px">
 <sc-for list="{{ roster }}" as="p" hint-placeholder-count="8">
@@ -192,14 +185,14 @@ class Component extends DCLogic {
       streamIcon: stream ? ICON[platform(stream)] : '',
       streamHref: stream || '#', streamCta: live ? '방송 보러가기 →' : '방송국 가기 →',
       links: [
-        me.chzzk && { label: 'CHZZK', handle: '치지직 채널', href: me.chzzk, icon: ICON.CHZZK },
-        me.soop && { label: 'SOOP', handle: 'SOOP 방송국', href: me.soop, icon: ICON.SOOP },
+        me.chzzk && { label: 'CHZZK', handle: live && /chzzk/.test(live) ? '지금 방송 중' : '치지직 채널', href: live && /chzzk/.test(live) ? live : me.chzzk, icon: ICON.CHZZK, live: !!live && /chzzk/.test(live) },
+        me.soop && { label: 'SOOP', handle: live && !/chzzk/.test(live) ? '지금 방송 중' : 'SOOP 방송국', href: live && !/chzzk/.test(live) ? live : me.soop, icon: ICON.SOOP, live: !!live && !/chzzk/.test(live) },
         me.youtube && { label: 'YouTube', handle: '@' + handleOf(me.youtube).replace(/^@/, ''), href: me.youtube, icon: ICON.YouTube },
         me.discord && { label: 'Discord', handle: '디스코드 서버', href: me.discord, icon: ICON.Discord },
         me.instagram && { label: 'Instagram', handle: '@' + handleOf(me.instagram), href: me.instagram, icon: ICON.Instagram },
         me.x && { label: 'X', handle: '@' + handleOf(me.x), href: me.x, icon: ICON.X },
         me.lp && { label: 'Liquipedia', handle: '선수 문서', href: me.lp, icon: ICON.Liquipedia },
-      ].filter(Boolean),
+      ].filter(Boolean).map((l) => ({ ...l, live: !!l.live, bd: l.live ? '#D92D20' : '#E6E6E1' })),
       facts: [
         { k: '포지션', v: me.roleFull + (me.ko ? ' · ' + me.ko : '') },
         { k: '소속', v: t.n + (st >= 0 ? ' · 현재 ' + (st + 1) + '위' : '') },
