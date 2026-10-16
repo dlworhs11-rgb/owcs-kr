@@ -1223,7 +1223,8 @@ class Component extends DCLogic {
     const matchDay = todays.length > 0;
     // "오늘 결과" strip: a finished match picked there is what the score card and set details show (the live one stays in the strip to go back)
     const picked = todays.find((m) => m.id === this.state.pick && m.st !== 'up');
-    const hero = picked || todays.find((m) => m.st === 'live') || todays.find((m) => m.st === 'up') || todays[todays.length - 1];
+    const sh = todays.find((m) => m.st === 'live') || todays.find((m) => m.st === 'up') || todays[todays.length - 1];   // the stream panel follows the day, never a result picked below
+    const hero = picked || sh;
     const upcoming = M.filter((m) => m.st === 'up');
     const nextM = upcoming[0];
     const endMs = new Date(D.stageRange[1] + 'T23:59:59+09:00').getTime();
@@ -1327,7 +1328,7 @@ class Component extends DCLogic {
     const hs = hero ? orient(hero.a, hero.sa, hero.b, hero.sb) : ['', 0, '', 0];
     // the broadcast starts before the first match: show the stream from 30 minutes before it until the day's last match ends
     const YT = (this.state.src || (() => { try { return localStorage.getItem('owcs-src'); } catch (e) { return null; } })() || (this.state.lang === 'ja' ? 'yt' : 'soop')) === 'yt';
-    const preShow = !!hero && hero.st === 'up' && !todays[0].tbd && now >= new Date(todays[0].date).getTime() - 30 * 60e3;
+    const preShow = !!sh && sh.st === 'up' && !todays[0].tbd && now >= new Date(todays[0].date).getTime() - 30 * 60e3;
     const heroSet = hero ? hero.maps.filter((x) => x.winner).length + (hero.st === 'live' ? 1 : 0) : 0;
     // team colour for tints on the dark cards: very dark team colours (ZETA, ZAN) are lifted so the tint still shows
     const tintOf = (a) => { if (a === 'TBD' || !teamColors) return '#5A5A66'; const c = team(a).color || '#5A5A66', h = c.replace('#', '');
@@ -1379,11 +1380,11 @@ class Component extends DCLogic {
       headerMatch: hero && hero.st === 'live' ? vsOf(hero) : (nextM ? vsOf(nextM) : ''),
       searchHint: '일치하는 경기가 없어요. ' + D.teams.map((t) => t.a).join(', ') + ' 중에서 찾아보세요.',
       matchDay, countdownMode: !matchDay,
-      streamLive: !!hero && (hero.st === 'live' || preShow), streamOff: !hero || (hero.st !== 'live' && !preShow),
+      streamLive: !!sh && (sh.st === 'live' || preShow), streamOff: !sh || (sh.st !== 'live' && !preShow),
       // before the broadcast: a poster of today's matches; after the last one: the old 경기 종료 note
-      streamPre: !!hero && hero.st === 'up' && !preShow, streamDone: !hero || hero.st === 'done',
+      streamPre: !!sh && sh.st === 'up' && !preShow, streamDone: !sh || sh.st === 'done',
       poster: todays.map((m) => {
-        const o = orient(m.a, m.sa, m.b, m.sb), done = m.st === 'done', shown = done && !SP, nx = m === hero;
+        const o = orient(m.a, m.sa, m.b, m.sb), done = m.st === 'done', shown = done && !SP, nx = m === sh;
         const nm = (a) => a === 'TBD' ? '미정' : a, lg = (a) => a === 'TBD' ? 'transparent' : logoBg(a, true);
         return { time: m.tbd ? '미정' : m.time, next: nx, a: nm(o[0]), b: nm(o[2]), la: lg(o[0]), lb: lg(o[2]),
           oa: shown && o[1] < o[3] ? .4 : 1, ob: shown && o[3] < o[1] ? .4 : 1,
@@ -1392,9 +1393,9 @@ class Component extends DCLogic {
           ring: nx ? 'inset 0 0 0 2px var(--ac2,#C6FF33)' : 'none' };
       }),
       posterSub: 'SOOP owesports · ' + todays.length + '경기',
-      posterNote: hero ? '다음 경기 ' + startTxt(hero) + ' · 방송이 시작되면 이곳에 자동으로 표시돼요' : '',
+      posterNote: sh ? '다음 경기 ' + startTxt(sh) + ' · 방송이 시작되면 이곳에 자동으로 표시돼요' : '',
       posterNoteShort: '방송이 시작되면 이곳에 자동으로 표시돼요',
-      streamSrc: !hero ? '' : YT ? (D.ytLive ? 'https://www.youtube.com/embed/' + D.ytLive + '?autoplay=1&mute=1' : 'https://www.youtube.com/embed/live_stream?channel=UCDMOG3oKXEh5Omaw9FaVqDw&autoplay=1&mute=1') : hero.stream,
+      streamSrc: !sh ? '' : YT ? (D.ytLive ? 'https://www.youtube.com/embed/' + D.ytLive + '?autoplay=1&mute=1' : 'https://www.youtube.com/embed/live_stream?channel=UCDMOG3oKXEh5Omaw9FaVqDw&autoplay=1&mute=1') : sh.stream,
       streamLabel: YT ? 'YouTube · 日本語配信' : 'SOOP · 공식 중계',
       // pick the broadcast: SOOP (Korean) or the Japanese YouTube one; remembered in this browser
       srcs: [['soop', 'SOOP · 한국어'], ['yt', 'YouTube · 日本語']].map(([k, label]) => { const on = (k === 'yt') === YT;
@@ -1402,9 +1403,9 @@ class Component extends DCLogic {
           go: () => { try { localStorage.setItem('owcs-src', k); } catch (e) {} this.setState({ src: k }); } }; }),
       chanHref: YT ? 'https://www.youtube.com/@ow_esports_jp/live' : 'https://www.sooplive.com/station/owesports',
       chanLabel: YT ? 'YouTube @ow_esports_jp ↗' : 'SOOP owesports 방송국 ↗',
-      streamHead: hero && hero.st === 'done' ? '경기 종료' : '방송 예정',
-      streamNote: hero && hero.st === 'done' ? '오늘 경기가 모두 끝났어요 · 다시보기는 SOOP owesports 방송국에서 볼 수 있어요' : (hero ? startTxt(hero) + ' · 방송이 시작되면 이곳에 자동으로 표시돼요' : ''),
-      streamNoteShort: hero && hero.st === 'done' ? '오늘 경기 종료' : (hero ? startTxt(hero) : ''),
+      streamHead: sh && sh.st === 'done' ? '경기 종료' : '방송 예정',
+      streamNote: sh && sh.st === 'done' ? '오늘 경기가 모두 끝났어요 · 다시보기는 SOOP owesports 방송국에서 볼 수 있어요' : (sh ? startTxt(sh) + ' · 방송이 시작되면 이곳에 자동으로 표시돼요' : ''),
+      streamNoteShort: sh && sh.st === 'done' ? '오늘 경기 종료' : (sh ? startTxt(sh) : ''),
       todayLabel: matchDay ? L.todayP + ' · ' + md(today + 'T12:00:00+09:00') + ' (' + DOWS[tk.getUTCDay()] + ')' : L.none,
       todayTitle: lang === '영문' ? (matchDay ? 'TODAY' : 'NEXT MATCH') : (matchDay ? '오늘의 경기' : '다음 경기'),
       stageLine: D.stage + ' · ' + ((hero || nextM || {}).label || (allOver ? '일정 종료' : '')),
