@@ -49,7 +49,7 @@ nav a:hover,nav a.on{background:#1F1F27;color:#fff}
 .next .k{font-size:14px;color:var(--mute)}
 .next .v{font-size:40px;margin-top:4px}
 .next .s{font-size:14px;color:var(--mute);margin-top:4px}
-.badge{display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 12px;border-radius:999px;font-size:12px;font-weight:700}
+.badge{display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 12px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap;flex:none}
 .b-open{background:var(--ac2);color:#0B0B0F}.b-soon{border:1px solid #fff;color:#fff}.b-closed{background:#2A2A33;color:var(--mute)}.b-live{background:var(--red);color:#fff}
 section.block{padding:56px 0;border-top:1px solid var(--line)}
 .title{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:26px}
@@ -79,7 +79,16 @@ th{font-size:13px;font-weight:700;color:var(--mute);text-align:left;padding:12px
 td{padding:14px;border-bottom:1px solid var(--line);vertical-align:middle}
 td.n{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:20px;white-space:nowrap}
 tr.today td{background:color-mix(in srgb,var(--ac) 14%,transparent)}
-.wk{font-weight:700}.wk small{display:block;font-size:12px;color:var(--dim);font-weight:500}
+.wk{font-weight:700;white-space:nowrap}.wk small{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--dim);font-weight:500}
+.owl{width:16px;height:16px;flex:none}
+.vs{display:flex;flex-direction:column;gap:6px}
+.vs div{display:flex;align-items:center;gap:6px;white-space:nowrap;font-weight:700;font-size:14px}
+.vs img{width:22px;height:22px;object-fit:contain;flex:none}
+.vs .t{font-family:'Barlow Condensed',sans-serif;font-size:16px;color:var(--dim);min-width:40px}
+.vs .x{font-size:12px;color:var(--dim);font-weight:600}
+.nextTitle{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.nextTitle .owl{width:34px;height:34px}
+.nextSub{white-space:nowrap}
 .tablewrap{overflow-x:auto;border-radius:16px;border:1px solid var(--line);background:rgba(21,21,27,.86)}
 .tablewrap table th:first-child,.tablewrap table td:first-child{padding-left:20px}
 .list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px}
@@ -94,8 +103,8 @@ tr.today td{background:color-mix(in srgb,var(--ac) 14%,transparent)}
 .age .big{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:44px;line-height:1;color:#FF8A80}
 footer{padding:40px 0 60px;border-top:1px solid var(--line);color:var(--dim);font-size:13px;line-height:1.7}
 /* light look, same paper as the other pages */
-body.ticket-page{--bg:#F6F6F3;--panel:#FFFFFF;--line:#E6E6E1;--ink:#0B0B0F;--mute:#55555C;--dim:#6B6B72;color:#0B0B0F;
-  background-image:radial-gradient(90% 60% at 0% 0%,color-mix(in srgb,var(--ac) 9%,transparent),transparent 60%),repeating-linear-gradient(135deg,rgba(11,11,15,.03) 0 1px,transparent 1px 12px)}
+body.ticket-page{--bg:#F1EDE5;--panel:#FFFFFF;--line:#E6E6E1;--ink:#0B0B0F;--mute:#55555C;--dim:#6B6B72;color:#0B0B0F;
+  background-image:repeating-linear-gradient(135deg,rgba(60,45,25,.043) 0 1px,transparent 1px 11px);background-attachment:fixed}   /* same paper as the home / 방송 pages */
 body.ticket-page header{background:rgba(255,255,255,.92)}
 body.ticket-page .brand i{background:#0B0B0F}
 body.ticket-page nav a:hover,body.ticket-page nav a.on{background:#F1F1ED;color:#0B0B0F}
@@ -125,6 +134,21 @@ body.ticket-page footer{background:#0B0B0F;color:#8A8A93;border:0}
   .facts{grid-template-columns:96px minmax(0,1fr)}
   .next{grid-template-columns:minmax(0,1fr)}
   header nav{display:none}
+  .pc{display:none}
+  /* tickets table as one card per day: date + state on top, start time + sale opening, then the matches */
+  #schedule .tablewrap{overflow:visible}
+  #schedule table,#schedule tbody{display:block}
+  #schedule thead{display:none}
+  #schedule tr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 12px;align-items:center;padding:16px;border-bottom:1px solid var(--line)}
+  #schedule tr:last-child{border-bottom:0}
+  #schedule td{padding:0;border:0;background:none !important}
+  #schedule tr.today{background:color-mix(in srgb,var(--ac) 9%,transparent)}
+  #schedule td.wk{grid-area:1/1}
+  #schedule td.stt{grid-area:1/2;justify-self:end}
+  #schedule td.n{grid-area:2/1;font-size:18px}
+  #schedule td.op{grid-area:2/2;justify-self:end;font-size:12px;color:var(--dim)}
+  #schedule td.op:before{content:"판매 오픈 "}
+  #schedule td.mv{grid-area:3/1/4/3}
 }
 </style>
 <script src="./owcs-nav.js"></script>
@@ -150,7 +174,7 @@ body.ticket-page footer{background:#0B0B0F;color:#8A8A93;border:0}
       <span class="chip">만 15세 이상</span>
     </div>
     <div class="next" id="next">
-      <div><div class="k">다음 직관 가능 경기일</div><div class="v disp" id="nextTitle">–</div><div class="s" id="nextSub"></div></div>
+      <div><div class="k">다음 직관 가능 경기일</div><div class="v disp nextTitle"><span id="nextTitle">–</span><img class="owl pc" src="assets/icons/overwatch.svg" alt=""></div><div class="s" id="nextSub"></div></div>
       <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="cta" href="https://www.ticketlink.co.kr/sports/1262/631" target="_blank" rel="noopener">티켓링크에서 예매 ↗</a><a class="cta ghost" href="#schedule">예매 일정 보기</a></div>
     </div>
   </div>
@@ -205,7 +229,7 @@ body.ticket-page footer{background:#0B0B0F;color:#8A8A93;border:0}
   <section class="block" id="schedule">
     <div class="title"><div><div class="ko">예매 정보</div><h2 class="disp">TICKETS</h2></div><small>모든 시간 KST · 상태는 지금 시각 기준</small></div>
     <div class="tablewrap"><table>
-      <thead><tr><th>경기일</th><th>대회 시간</th><th>판매 오픈</th><th>판매 마감</th><th>상태</th></tr></thead>
+      <thead><tr><th>경기일</th><th>대회 시간</th><th>경기</th><th>판매 오픈</th><th>상태</th></tr></thead>
       <tbody id="tickets"></tbody>
     </table></div>
     <div class="open" style="margin-top:22px">
@@ -336,14 +360,23 @@ function draw() {
   var rows = ROWS.concat(playoffRows(D));
   var body = document.getElementById('tickets'), next = null;
   body.innerHTML = '';
+  var team = function (c) { return D && D.teams.filter(function (x) { return x.a === c; })[0]; };
+  var dark = document.documentElement.hasAttribute('data-owcs-dark');
   rows.forEach(function (r) {
     // no start time yet: the match day counts as on sale until the end of that day
     var start = kst(r[1] + 'T' + (r[3] || '23:59')), open = kst(r[4]), close = r[5] ? kst(r[5]) : kst(r[1] + 'T23:59');
-    var st = now < open ? ['오픈 예정', 'b-soon'] : now <= close ? (now >= start ? ['경기 중', 'b-live'] : ['판매 중', 'b-open']) : ['마감', 'b-closed'];
-    if (!next && now <= close) next = { r: r, st: st, open: open };
+    if (now > close) return;                     // sales over: not listed
+    var st = now < open ? ['오픈 예정', 'b-soon'] : now >= start ? ['경기 중', 'b-live'] : ['판매 중', 'b-open'];
+    if (!next) next = { r: r, st: st, open: open };
+    // that day's matches (owcs-data.js, rebuilt in the cloud), each team with its logo
+    var ms = D ? D.matches.filter(function (m) { return m.day === r[1] && !(m.a === 'TBD' && m.b === 'TBD'); }) : [];
+    var vs = ms.length ? '<div class="vs">' + ms.map(function (m) {
+      var lg = function (c) { var x = team(c); var f = x && (dark && x.logoDark || x.logo); return f ? '<img src="' + f + '" alt="">' : ''; };
+      return '<div><span class="t">' + (m.tbd ? '' : m.time) + '</span>' + lg(m.a) + m.a + '<span class="x">vs</span>' + lg(m.b) + m.b + '</div>';
+    }).join('') + '</div>' : '<span style="color:var(--dim);white-space:nowrap">대진 발표 전</span>';
     var tr = document.createElement('tr');
-    if (next && next.r === r) tr.className = 'today';
-    tr.innerHTML = '<td class="wk">' + md(r[1]) + ' (' + r[2] + ')<small>' + stage + ' ' + r[0] + '</small></td><td class="n">' + (r[3] || '발표 전') + '</td><td>' + md(r[4]) + ' ' + r[4].slice(11) + '</td><td>' + (r[5] ? md(r[5]) + ' ' + r[5].slice(11) : md(r[1]) + ' 경기 후') + '</td><td><span class="badge ' + st[1] + '">' + st[0] + '</span></td>';
+    if (next.r === r) tr.className = 'today';
+    tr.innerHTML = '<td class="wk">' + md(r[1]) + ' (' + r[2] + ')<small>' + stage + ' ' + r[0] + '<img class="owl pc" src="assets/icons/overwatch.svg" alt=""></small></td><td class="n">' + (r[3] || '발표 전') + '</td><td class="mv">' + vs + '</td><td class="op" style="white-space:nowrap">' + md(r[4]) + ' ' + r[4].slice(11) + '</td><td class="stt"><span class="badge ' + st[1] + '">' + st[0] + '</span></td>';
     body.appendChild(tr);
   });
   if (next) {
@@ -353,9 +386,10 @@ function draw() {
     // matchups for that day from owcs-data.js when it is next to this page
     if (D) {
       var ms = D.matches.filter(function (m) { return m.day === r[1] && !(m.a === 'TBD' && m.b === 'TBD'); });
-      if (ms.length) sub += ' · ' + ms.map(function (m) { return (m.tbd ? '' : m.time + ' ') + m.a + ' vs ' + m.b; }).join(' / ');
+      var li = function (c) { var x = team(c); var f = x && (dark && x.logoDark || x.logo); return f ? '<img src="' + f + '" alt="" style="width:18px;height:18px;object-fit:contain;vertical-align:-4px;margin-right:4px">' : ''; };
+      if (ms.length) sub += ' · ' + ms.map(function (m) { return (m.tbd ? '' : m.time + ' ') + li(m.a) + m.a + ' vs ' + li(m.b) + m.b; }).join(' / ');
     }
-    document.getElementById('nextSub').innerHTML = '<span class="badge ' + next.st[1] + '">' + next.st[0] + '</span> &nbsp;' + sub;
+    document.getElementById('nextSub').innerHTML = '<span class="badge ' + next.st[1] + '">' + next.st[0] + '</span> &nbsp;' + sub.split(' · ').map(function (x) { return x.split(' / ').map(function (y) { return '<span class="nextSub">' + y + '</span>'; }).join(' / '); }).join(' · ');   // pieces stay whole ('11.01 경기 후'), the line wraps between them
   } else {
     document.getElementById('nextTitle').textContent = '다음 스테이지';
     document.getElementById('nextSub').textContent = '이번 스테이지 직관 판매가 모두 끝났어요. 다음 스테이지 일정이 나오면 여기에 표시돼요.';
@@ -372,6 +406,14 @@ draw();
 <script>
 // owcs-data.js loads after the first paint: redraw with its playoff days, start times and matchups
 if (window.OWCS) draw();
+// keep it current with the page open: states follow the clock, and the cloud-built owcs-data.js is re-read every minute
+setInterval(function () {
+  if (!q.get('date')) now = Date.now();
+  var s = document.createElement('script');
+  s.src = 'owcs-data.js?v=' + Date.now();
+  s.onload = s.onerror = function () { s.remove(); draw(); };
+  document.head.appendChild(s);
+}, 60000);
 </script>
 </body>
 </html>
