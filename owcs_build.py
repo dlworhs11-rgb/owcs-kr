@@ -426,7 +426,15 @@ def potm_awards():
     return out
 
 
-SOOP_ONLY = {'CR'}   # Crazy Raccoon streams on SOOP only (their CHZZK channels are unused)
+SOOP_ONLY = {'CR', 'ZAN'}   # Crazy Raccoon and ZANSIDE GAMING stream on SOOP only (their CHZZK channels are unused)
+
+
+
+def soop_url(v):
+    """SOOP station link from a station id or link; the collector sometimes has station/undefined (Heiser), so
+    socials.json "soop" (a station id) wins and a broken id gives None"""
+    bid = (v or '').rstrip('/').split('/')[-1]
+    return f'https://www.sooplive.com/station/{bid}' if bid and bid not in ('undefined', 'null', 'None') else None
 
 
 INSTA_FILE = os.path.join(HERE, 'data', 'insta_posts.txt')
@@ -514,7 +522,7 @@ def build_players(socials, stage_teams):
         out.append(dict(id=handle, ko=p.get('nameKo') or '', team=a, role=role[0], roleFull=role[1], order=role[2],
                         name=s.get('name', ''), birth=s.get('birth', ''), potm=p.get('potm') or 0,
                         photo=f'assets/players/{photo}' if photo else '', face=faces.get(os.path.splitext(photo)[0]) if photo else None,
-                        soop=p.get('soop'), chzzk=None if a in SOOP_ONLY else p.get('chzzk'), discord=p.get('discord'), youtube=p.get('youtube') or (s.get('youtube') and 'https://youtube.com/' + s['youtube']),
+                        soop=soop_url(s.get('soop')) or soop_url(p.get('soop')), chzzk=None if a in SOOP_ONLY else p.get('chzzk'), discord=p.get('discord'), youtube=p.get('youtube') or (s.get('youtube') and 'https://youtube.com/' + s['youtube']),
                         instagram=s.get('instagram') and 'https://instagram.com/' + s['instagram'],
                         x=s.get('x') and 'https://x.com/' + s['x'], lp=s.get('lp'),
                         insta=sorted([x for x in (insta_post(u) for w, u in insta if w in (handle.lower(), (s.get('instagram') or '').lower())) if x['img']],
