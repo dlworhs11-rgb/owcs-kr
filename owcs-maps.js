@@ -40,7 +40,7 @@
         recNoteShort: recording ? '세트가 끝나면 조합이 올라와요.' : '첫 조합 기록 없음',
         bans: x.bans.map((b) => ({ k: b.t === x.banFirst ? '선벤' : '후벤', team: m[b.t] || '?', h: b.code, name: heroName(b.h), bg: heroBg(b.h), txt: HERO_IMG[heroKey(b.h)] ? '' : b.code })),
         // replay code (community sheet): shown in a box to select, with a copy button
-        replay: x.replay || '', hasReplay: !!x.replay,
+        replay: x.replay || '', hasReplay: !!x.replay, showReplay: open && !!x.replay,
         copyReplay: (e) => {
           const b = e && e.currentTarget, done = () => { if (b) { b.textContent = '복사됨'; setTimeout(() => { b.textContent = '복사'; }, 1500); } };
           if (navigator.clipboard) navigator.clipboard.writeText(x.replay).then(done, done); else done();
