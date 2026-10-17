@@ -159,3 +159,28 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
   else start();
 })();
+
+// Standings / players on their own page: the home page opened with ?view=standings or ?view=teams shows only its top
+// (tool bar, header, 직관 안내) and that one section, in every layout. The home page itself is unchanged; the menus on
+// every page link here instead of scrolling the home page.
+(function () {
+  if (!/Home/.test(decodeURIComponent(location.pathname).split('/').pop())) return;
+  var view = new URLSearchParams(location.search).get('view');
+  var KEY = { standings: 'STANDINGS', teams: 'TEAMS' }[view];
+  if (!KEY) return;
+  document.documentElement.setAttribute('data-owcs-view', view);
+  var st = document.createElement('style');
+  st.textContent = 'html[data-owcs-view] #dc-root [data-screen-label] > section[data-owcs-off]{display:none !important}';
+  (document.head || document.documentElement).appendChild(st);
+  function mark() {
+    Array.prototype.forEach.call(document.querySelectorAll('#dc-root [data-screen-label] > section'), function (s) {
+      var keep = s.querySelector('a[href*="ticketlink"]') || (s.textContent.indexOf(KEY) >= 0 && s.textContent.indexOf(KEY) < 80);
+      if (keep) s.removeAttribute('data-owcs-off');
+      else if (!s.hasAttribute('data-owcs-off')) s.setAttribute('data-owcs-off', '');
+    });
+  }
+  var busy = false;
+  function soon() { if (busy) return; busy = true; setTimeout(function () { busy = false; mark(); }, 30); }
+  function start() { mark(); new MutationObserver(soon).observe(document.body, { childList: true, subtree: true }); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();

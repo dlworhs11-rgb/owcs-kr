@@ -476,8 +476,8 @@ class Component extends DCLogic {
       toggleSpoiler: () => this.setState((s) => ({ sp: !s.sp })), spoilAttr: SP ? '1' : '0', spoilTrack: SP ? '#7D39EB' : '#B9B9B3', spoilKnob: SP ? '14px' : '2px', blur: 'none',
       nav: [
         { label: '일정', href: 'OWCS KR Home v6.dc.html' }, { label: '결과', href: 'OWCS KR Results.dc.html' },
-        { label: '순위', href: 'OWCS KR Home v6.dc.html#standings' }, { label: '직관', href: 'OWCS KR 직관.html' },
-        { label: '선수', href: 'OWCS KR Home v6.dc.html#teams' }, { label: '방송', href: 'OWCS KR 방송.html' },
+        { label: '순위', href: 'OWCS KR Home v6.dc.html?view=standings' }, { label: '직관', href: 'OWCS KR 직관.html' },
+        { label: '선수', href: 'OWCS KR Home v6.dc.html?view=teams' }, { label: '방송', href: 'OWCS KR 방송.html' },
       ],
       seasonLabel: anyBracket ? ls.label : (D.year || '') + ' ' + STAGE,
       tabsD: this.tabs('tabD'), tabsM: this.tabs('tabM'),

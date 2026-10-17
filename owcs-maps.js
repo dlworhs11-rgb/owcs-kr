@@ -31,6 +31,8 @@
         picks: (x.comps[t] || []).map(([pl, h]) => ({ pl, h, bg: heroBg(h), txt: HERO_IMG[heroKey(h)] ? '' : heroCode(h) })) })) : [];
       return { no: pad(x.no), name: x.map, mode: x.mode + (x.time ? ' · ' + x.time : ''),
         winner: SP ? '?' : (w || '–'), wlogo: SP || !w ? '' : logoOf(w), score: SP || !w ? '' : score,
+        // the phone row shows the winner's number in lime and the loser's in grey (winner's number first)
+        scoreHi: SP || !w || !score ? '' : score.split(' : ')[0], scoreLo: SP || !w || !score ? '' : score.split(' : ')[1],
         done: !!w || m.st === 'done', recording, bg: mapBg(x.map),
         chev: open ? '−' : '+', isOpen: open, showBans: open && showBans && x.bans.length > 0, showComps: open && comps.length > 0,
         showRec: open && !comps.length, comps,
