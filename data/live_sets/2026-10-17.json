@@ -549,7 +549,56 @@
      "team": "T1",
      "hero": "jetpack cat"
     }
-   }
+   },
+   "hudLeft": "T1",
+   "guessed": [],
+   "comps": {
+    "T1": [
+     [
+      "DONGHAK",
+      "orisa"
+     ],
+     [
+      "Proud",
+      "cassidy"
+     ],
+     [
+      "ZEST",
+      "tracer"
+     ],
+     [
+      "Bliss",
+      "doctrine"
+     ],
+     [
+      "skewed",
+      "kiriko"
+     ]
+    ],
+    "ZANSIDE GAMING": [
+     [
+      "Heiser",
+      "mauga"
+     ],
+     [
+      "Taejong",
+      "tracer"
+     ],
+     [
+      "Bekey",
+      "vendetta"
+     ],
+     [
+      "iR0NY",
+      "kiriko"
+     ],
+     [
+      "OPENER",
+      "lucio"
+     ]
+    ]
+   },
+   "compAt": "replay"
   },
   {
    "banTs": 1792234314,
