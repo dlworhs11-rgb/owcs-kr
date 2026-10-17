@@ -205,7 +205,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px">OWCS KR</span>
 <button style="width:44px;height:44px;border:none;background:transparent;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px"><span style="width:20px;height:2px;background:#0B0B0F"></span><span style="width:20px;height:2px;background:#0B0B0F"></span></button>
 </header>
-<section style="padding:28px 20px 0;background:#F6F6F3">
+<section style="position:relative;z-index:5;padding:28px 20px 0;background:#F6F6F3">
 <div style="font-size:14px;font-weight:700;color:#7D39EB">결과 · 대진표</div>
 <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:64px;line-height:.86;margin:6px 0 14px">RESULTS</h1>
 <div style="position:relative;display:inline-block"><button onClick="{{ stToggleM }}" style="display:flex;align-items:center;gap:8px;height:44px;padding:0 14px;border-radius:12px;border:1px solid #0B0B0F;background:#fff;font:inherit;font-size:14px;font-weight:600;color:#0B0B0F">{{ seasonLabelM }} {{ stChevM }}</button>
@@ -229,7 +229,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <div style="border-bottom:1px solid #ECECE7;background:{{ g.mine }};padding:0 4px">
 <div style="display:flex;align-items:center;gap:6px;min-height:50px">
 <span style="flex:none;font-size:11px;color:#6B6B72;font-variant-numeric:tabular-nums">{{ g.dshort }}</span>
-<div onClick="{{ g.toggle }}" style="flex:1;min-width:0;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:6px;align-items:center;color:#0B0B0F;cursor:pointer">
+<div onClick="{{ g.toggle }}" style="flex:1;min-width:0;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:14px;align-items:center;color:#0B0B0F;cursor:pointer">
 <span style="display:flex;align-items:center;justify-content:flex-end;gap:5px;min-width:0"><span style="font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;color:{{ g.ta }}">{{ g.a }}</span><span style="flex:none;width:20px;height:20px;background:{{ g.ca }};opacity:{{ g.oa }}"></span></span>
 <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:21px;text-align:center;white-space:nowrap"><span style="color:{{ g.ta }}">{{ g.sa }}</span><span style="color:#B5B5BD">:</span><span style="color:{{ g.tb }}">{{ g.sb }}</span></span>
 <span style="display:flex;align-items:center;gap:5px;min-width:0"><span style="flex:none;width:20px;height:20px;background:{{ g.cb }};opacity:{{ g.ob }}"></span><span style="font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;color:{{ g.tb }}">{{ g.b }}</span></span>
