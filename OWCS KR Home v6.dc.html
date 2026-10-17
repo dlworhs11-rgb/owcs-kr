@@ -1163,6 +1163,8 @@ const liveScores = (today, onChange) => {
       let changed = false;
       D.matches.filter((m) => m.day === today).forEach((m, i) => {
         const sc = d.matches[String(i + 1)];
+        // POTM read off the broadcast card (score_watch.py), as soon as it is pushed
+        if (sc && sc.potm && m.potm !== sc.potm) { m.potm = sc.potm; changed = true; }
         // a newer reading, or a corrected one (same number of maps, a misread map given back to the other team)
         if (!sc || sc.sa + sc.sb < (m.sa || 0) + (m.sb || 0) || (sc.sa === m.sa && sc.sb === m.sb)) return;
         m.sa = sc.sa; m.sb = sc.sb; changed = true;
@@ -1238,7 +1240,7 @@ class Component extends DCLogic {
       s.onerror = () => s.remove();
       document.head.appendChild(s);
       const now = nowMs(), today = dayOf(now);
-      const on = D.matches.some((m) => m.day === today && !m.played && now >= new Date(m.date).getTime() - 30 * 60e3);
+      const on = D.matches.some((m) => m.day === today && ((!m.played && now >= new Date(m.date).getTime() - 30 * 60e3) || (m.played && !m.potm)));   // also until the last POTM is in
       this.r = setTimeout(poll, on ? 10000 : 60000);
       if (on) try { liveScores(today, () => this.setState((st) => ({ rev: st.rev + 1 }))); } catch (e) {}
     };
