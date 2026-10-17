@@ -3,8 +3,15 @@
  "matches": {
   "1": {
    "sa": 0,
-   "sb": 0,
-   "history": []
+   "sb": 1,
+   "history": [
+    {
+     "map": 1,
+     "winner": "b",
+     "at": "2026-10-17T15:31:57+09:00",
+     "src": "banner"
+    }
+   ]
   }
  }
 }
