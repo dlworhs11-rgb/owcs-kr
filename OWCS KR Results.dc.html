@@ -22,6 +22,7 @@
 <script src="./owcs-dark.js"></script>
 <script src="./owcs-test.js"></script>
 <script src="./owcs-maps.js"></script>
+<script src="./owcs-bracket.js"></script>
 <script src="./support.js"></script>
 <script src="./owcs-theme.js"></script>
 <script src="./owcs-theme-wise.js"></script>
@@ -311,24 +312,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 </sc-for>
 </sc-if>
 <sc-if value="{{ m.bracket }}">
-<div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:14px;font-weight:600"><span style="background:#C6FF33;padding:1px 8px;border-radius:6px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px">CHAMPION</span>{{ champion }}</div>
-<sc-if value="{{ hasBkTabs }}"><div style="display:flex;gap:6px;margin:0 0 16px;flex-wrap:wrap"><sc-for list="{{ bkTabs }}" as="bt" hint-placeholder-count="2"><button onClick="{{ bt.go }}" style="height:36px;padding:0 14px;border-radius:999px;border:1px solid {{ bt.bd }};background:{{ bt.bg }};color:{{ bt.fg }};font:inherit;font-size:13px;font-weight:700;cursor:pointer">{{ bt.label }}</button></sc-for></div></sc-if>
-<div style="display:flex;flex-direction:column;gap:22px">
-<sc-for list="{{ lastBracket }}" as="col" hint-placeholder-count="4">
-<div>
-<div style="font-size:13px;font-weight:700;color:#55555C;margin-bottom:8px">{{ col.title }}</div>
-<div style="display:flex;flex-direction:column;gap:8px">
-<sc-for list="{{ col.matches }}" as="mm" hint-placeholder-count="1">
-<div style="border:{{ mm.bd }};border-radius:12px;overflow:hidden">
-<div style="display:flex;justify-content:space-between;gap:8px;padding:6px 14px;font-size:12px;color:#6B6B72;border-bottom:1px solid #F0F0EB"><span>{{ mm.when }}</span><span style="font-weight:700;color:{{ mm.tagC }}">{{ mm.tag }}</span></div>
-<sc-for list="{{ mm.rows }}" as="r" hint-placeholder-count="2"><div style="display:grid;grid-template-columns:5px minmax(0,1fr) 32px;align-items:center;gap:10px;height:46px;padding-right:12px;border-bottom:1px solid #F0F0EB"><span style="height:100%;background:{{ r.c }}"></span><span style="font-size:14px;font-weight:{{ r.w }};color:{{ r.t }}">{{ r.n }}</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;text-align:right;color:{{ r.t }}">{{ r.s }}</span></div></sc-for>
-</div>
-</sc-for>
-</div>
-</div>
-</sc-for>
-</div>
-<sc-if value="{{ hasSeeding }}"><div style="margin-top:{{ seedGap }};padding:20px 22px;border-radius:20px;background:#F6F6F3"><div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px"><span style="font-size:15px;font-weight:700">시드 결정전 순위</span><span style="font-size:12px;color:#6B6B72">{{ seedNote }}</span></div><sc-for list="{{ seeding }}" as="sd" hint-placeholder-count="4"><div style="display:grid;grid-template-columns:28px 5px minmax(0,1fr) auto;align-items:center;gap:10px;height:40px;border-top:1px solid #E6E6E1"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px">{{ sd.r }}</span><span style="height:22px;background:{{ sd.c }}"></span><span style="font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ sd.n }}</span><span style="font-size:13px;color:#55555C">{{ sd.rec }}</span></div></sc-for></div></sc-if>
+<owcs-bracket spoiler="{{ spoilAttr }}"></owcs-bracket>
 </sc-if>
 <sc-if value="{{ m.cases }}">
 <sc-for list="{{ cases }}" as="c" hint-placeholder-count="8">
@@ -489,7 +473,7 @@ class Component extends DCLogic {
       })() : null,
       ratesNote: (D.year || '') + ' 코리아 스테이지 1–' + (D.stageNo || '') + ' (정규 리그 + 플레이오프) ' + D.history.length + '경기 기준',
       rates: RATES.map((t, i) => { const s = D.standings.find((x) => x.a === t.a); return { r: i + 1, n: NAME(t.a), logo: logo(t.a), c: col(t.a), wl: t.w + '-' + t.l, pct: Math.round(t.p * 100) + '%', sets: t.sw + '-' + t.sl, stage: s ? s.w + '-' + s.l : '–' }; }),
-      toggleSpoiler: () => this.setState((s) => ({ sp: !s.sp })), spoilTrack: SP ? '#7D39EB' : '#B9B9B3', spoilKnob: SP ? '14px' : '2px', blur: 'none',
+      toggleSpoiler: () => this.setState((s) => ({ sp: !s.sp })), spoilAttr: SP ? '1' : '0', spoilTrack: SP ? '#7D39EB' : '#B9B9B3', spoilKnob: SP ? '14px' : '2px', blur: 'none',
       nav: [
         { label: '일정', href: 'OWCS KR Home v6.dc.html' }, { label: '결과', href: 'OWCS KR Results.dc.html' },
         { label: '순위', href: 'OWCS KR Home v6.dc.html#standings' }, { label: '직관', href: 'OWCS KR 직관.html' },

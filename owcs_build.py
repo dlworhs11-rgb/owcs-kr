@@ -694,6 +694,12 @@ def build(check_live=False, prev_live=None, out=HERE, records=True):
     live =live_status(players) if check_live else (prev_live or {})
     bracket = build_bracket(stage, matches, standings, playoffs)
     last = prev and build_bracket(prev, stage_brief(prev), standings_of(prev), playoffs)
+    # every earlier stage's bracket, newest first: the home page and the results page let you pick one
+    past = []
+    for s_ in stages[:stages.index(stage)][::-1]:
+        b_ = build_bracket(s_, stage_brief(s_), standings_of(s_), stage_format(s_['po'])[0])
+        if b_:
+            past.append(b_)
     history = build_history(stages, stage['year'])
     teams = []   # every team in TEAMS, then the ones the build met that are not there yet (after matches / brackets / history)
     for full, t in list(TEAMS.items()) + list(NEW_TEAMS.items()):
@@ -717,7 +723,7 @@ def build(check_live=False, prev_live=None, out=HERE, records=True):
                 playoffs=playoffs, lcq=lcq,
                 format=f'1–{playoffs}위 플레이오프 시드 결정전 · {playoffs + 1}–{lcq}위 라스트 찬스 예선 · 전 경기 3선승제',
                 teams=teams, players=players, matches=matches, live=live,
-                history=history, bracket=bracket, lastStage=last or dict(label='', title='', champion=None, columns=[]),
+                history=history, bracket=bracket, lastStage=last or dict(label='', title='', champion=None, columns=[]), pastStages=past,
                 tiebreak='승수가 같으면 세트 득실 → 맞대결 성적 순으로 순위를 정해요.',
                 standings=standings,
                 sources='경기·순위: Liquipedia (CC-BY-SA 3.0) · 실시간 맵 승패: SOOP 공식 중계 캡처 · 선수 방송/디스코드: 커뮤니티 시트 · 인스타/X: Liquipedia')
