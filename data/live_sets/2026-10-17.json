@@ -310,7 +310,56 @@
      "team": "O2 Blast",
      "hero": "cassidy"
     }
-   }
+   },
+   "hudLeft": "Poker Face",
+   "guessed": [],
+   "comps": {
+    "Poker Face": [
+     [
+      "SoLA",
+      "dmon"
+     ],
+     [
+      "SORI",
+      "bastion"
+     ],
+     [
+      "F1nally",
+      "tracer"
+     ],
+     [
+      "Soae",
+      "jetpack-cat"
+     ],
+     [
+      "Caffeine",
+      "doctrine"
+     ]
+    ],
+    "O2 Blast": [
+     [
+      "Fate",
+      "orisa"
+     ],
+     [
+      "A1lEN",
+      "bastion"
+     ],
+     [
+      "WuTian",
+      "tracer"
+     ],
+     [
+      "Gamjung",
+      "doctrine"
+     ],
+     [
+      "Faith",
+      "jetpack-cat"
+     ]
+    ]
+   },
+   "compAt": "replay"
   },
   {
    "banTs": 1792226476,
