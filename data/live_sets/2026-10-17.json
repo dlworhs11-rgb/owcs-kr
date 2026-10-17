@@ -526,7 +526,56 @@
      "team": "Crazy Raccoon",
      "hero": "soldier: 76"
     }
-   }
+   },
+   "hudLeft": "Team Falcons",
+   "guessed": [],
+   "comps": {
+    "Team Falcons": [
+     [
+      "SOMEONE",
+      "dmon"
+     ],
+     [
+      "MER1T",
+      "sojourn"
+     ],
+     [
+      "Checkmate",
+      "tracer"
+     ],
+     [
+      "Fielder",
+      "kiriko"
+     ],
+     [
+      "ChiYo",
+      "doctrine"
+     ]
+    ],
+    "Crazy Raccoon": [
+     [
+      "JunBin",
+      "reinhardt"
+     ],
+     [
+      "HeeSang",
+      "genji"
+     ],
+     [
+      "Stalk3r",
+      "cassidy"
+     ],
+     [
+      "LIP",
+      "doctrine"
+     ],
+     [
+      "CH0R0NG",
+      "lifeweaver"
+     ]
+    ]
+   },
+   "compAt": "replay"
   },
   {
    "banTs": 1792231856,
