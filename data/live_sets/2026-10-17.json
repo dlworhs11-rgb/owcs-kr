@@ -454,7 +454,56 @@
      "team": "Crazy Raccoon",
      "hero": "winston"
     }
-   }
+   },
+   "hudLeft": "Crazy Raccoon",
+   "guessed": [],
+   "comps": {
+    "Crazy Raccoon": [
+     [
+      "MAX",
+      "dva"
+     ],
+     [
+      "HeeSang",
+      "tracer"
+     ],
+     [
+      "Stalk3r",
+      "cassidy"
+     ],
+     [
+      "LIP",
+      "sombra"
+     ],
+     [
+      "CH0R0NG",
+      "doctrine"
+     ]
+    ],
+    "Team Falcons": [
+     [
+      "SOMEONE",
+      "dmon"
+     ],
+     [
+      "MER1T",
+      "cassidy"
+     ],
+     [
+      "Checkmate",
+      "genji"
+     ],
+     [
+      "Fielder",
+      "sombra"
+     ],
+     [
+      "ChiYo",
+      "doctrine"
+     ]
+    ]
+   },
+   "compAt": "replay"
   },
   {
    "banTs": 1792229077,
