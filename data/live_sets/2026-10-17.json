@@ -621,7 +621,56 @@
      "team": "T1",
      "hero": "tracer"
     }
-   }
+   },
+   "hudLeft": "T1",
+   "guessed": [],
+   "comps": {
+    "T1": [
+     [
+      "DONGHAK",
+      "?"
+     ],
+     [
+      "Proud",
+      "sojourn"
+     ],
+     [
+      "ZEST",
+      "genji"
+     ],
+     [
+      "Bliss",
+      "doctrine"
+     ],
+     [
+      "skewed",
+      "kiriko"
+     ]
+    ],
+    "ZANSIDE GAMING": [
+     [
+      "Heiser",
+      "wrecking-ball"
+     ],
+     [
+      "Taejong",
+      "bastion"
+     ],
+     [
+      "Bekey",
+      "shion"
+     ],
+     [
+      "iR0NY",
+      "doctrine"
+     ],
+     [
+      "OPENER",
+      "jetpack-cat"
+     ]
+    ]
+   },
+   "compAt": "replay"
   }
  ]
 }
