@@ -1,0 +1,188 @@
+{
+ "date": "2026-10-17",
+ "source": "OBS capture of the SOOP broadcast (owesports), GAME DATA screens",
+ "maps": [
+  {
+   "match": "O2 Blast vs Poker Face",
+   "matchNo": 1,
+   "game": 1,
+   "map": "Busan",
+   "mapTime": "14:52",
+   "frame": "m01_table1_1792219041.png",
+   "teams": {
+    "O2 Blast": [
+     {
+      "name": "?1",
+      "e": 28,
+      "a": 6,
+      "d": 11,
+      "dmg": 16842,
+      "heal": 0,
+      "mit": 223
+     },
+     {
+      "name": "?2",
+      "e": 16,
+      "a": 25,
+      "d": 10,
+      "dmg": 2812,
+      "heal": 12177,
+      "mit": 0
+     },
+     {
+      "name": "?3",
+      "e": 25,
+      "a": 8,
+      "d": 10,
+      "dmg": 14047,
+      "heal": 1640,
+      "mit": 12287
+     },
+     {
+      "name": "?4",
+      "e": 16,
+      "a": 22,
+      "d": 12,
+      "dmg": 6417,
+      "heal": 9427,
+      "mit": 397
+     },
+     {
+      "name": "?5",
+      "e": 20,
+      "a": 0,
+      "d": 7,
+      "dmg": 9457,
+      "heal": 72,
+      "mit": 474
+     }
+    ],
+    "Poker Face": [
+     {
+      "name": "?6",
+      "e": 19,
+      "a": 30,
+      "d": 8,
+      "dmg": 46,
+      "heal": 11955,
+      "mit": 2074
+     },
+     {
+      "name": "?7",
+      "e": 26,
+      "a": null,
+      "d": 7,
+      "dmg": 8500,
+      "heal": 41,
+      "mit": 232
+     },
+     {
+      "name": "?8",
+      "e": 21,
+      "a": 211,
+      "d": 8,
+      "dmg": 1544,
+      "heal": 11614,
+      "mit": 0
+     },
+     {
+      "name": "?9",
+      "e": 26,
+      "a": 9,
+      "d": 7,
+      "dmg": 1140,
+      "heal": 1377,
+      "mit": 4244
+     },
+     {
+      "name": "?10",
+      "e": 27,
+      "a": 7,
+      "d": 11,
+      "dmg": 4056,
+      "heal": 0,
+      "mit": 519
+     }
+    ]
+   },
+   "totalsVerified": false,
+   "reading": "ocr",
+   "bans": {
+    "initial": {
+     "team": "O2 Blast",
+     "hero": "0.Va"
+    },
+    "followUp": {
+     "team": "Poker Face",
+     "hero": "bastion"
+    }
+   },
+   "seriesBefore": {
+    "O2 Blast": 0,
+    "Poker Face": 0
+   }
+  }
+ ],
+ "matches": [
+  {
+   "match": "O2 Blast vs Poker Face",
+   "matchNo": 1,
+   "mapWins": {},
+   "potm": null
+  }
+ ],
+ "unknownNames": [
+  {
+   "id": "?1",
+   "map": "01",
+   "row": 0
+  },
+  {
+   "id": "?2",
+   "map": "01",
+   "row": 1
+  },
+  {
+   "id": "?3",
+   "map": "01",
+   "row": 2
+  },
+  {
+   "id": "?4",
+   "map": "01",
+   "row": 3
+  },
+  {
+   "id": "?5",
+   "map": "01",
+   "row": 4
+  },
+  {
+   "id": "?6",
+   "map": "01",
+   "row": 5
+  },
+  {
+   "id": "?7",
+   "map": "01",
+   "row": 6
+  },
+  {
+   "id": "?8",
+   "map": "01",
+   "row": 7
+  },
+  {
+   "id": "?9",
+   "map": "01",
+   "row": 8
+  },
+  {
+   "id": "?10",
+   "map": "01",
+   "row": 9
+  }
+ ],
+ "unknownMaps": [],
+ "note": "reading=ocr: numbers, match/game/map read from the broadcast screen; totalsVerified = sums match the team-totals page; mapTime = damage / damage-per-minute from the totals page."
+}
