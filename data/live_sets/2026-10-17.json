@@ -382,7 +382,56 @@
      "team": "Crazy Raccoon",
      "hero": "cassidy"
     }
-   }
+   },
+   "hudLeft": "Crazy Raccoon",
+   "guessed": [],
+   "comps": {
+    "Crazy Raccoon": [
+     [
+      "JunBin",
+      "dmon"
+     ],
+     [
+      "HeeSang",
+      "tracer"
+     ],
+     [
+      "Stalk3r",
+      "bastion"
+     ],
+     [
+      "LIP",
+      "doctrine"
+     ],
+     [
+      "CH0R0NG",
+      "jetpack-cat"
+     ]
+    ],
+    "Team Falcons": [
+     [
+      "SOMEONE",
+      "mauga"
+     ],
+     [
+      "MER1T",
+      "sojourn"
+     ],
+     [
+      "Checkmate",
+      "genji"
+     ],
+     [
+      "Fielder",
+      "kiriko"
+     ],
+     [
+      "ChiYo",
+      "doctrine"
+     ]
+    ]
+   },
+   "compAt": "replay"
   },
   {
    "banTs": 1792227833,
