@@ -25,29 +25,33 @@
 <script src="./owcs-theme.js"></script>
 <script src="./owcs-theme-wise.js"></script>
 <script>
-// mobile Instagram carousel: one post per screen, swipe (scroll-snap) or the ‹ › buttons
+// mobile/tablet Instagram carousel: one post per screen, swipe (scroll-snap) or the ‹ › buttons on the photo's sides
 (function () {
   function step(track) { var a = track.firstElementChild; return a ? a.offsetWidth + 14 : track.clientWidth; }
+  function set(el, k, v) { if (el.style[k] !== v) el.style[k] = v; }   // only on change: the observer below would loop forever
   function sync(track) {
-    var box = track.parentNode, n = track.children.length, i = Math.round(track.scrollLeft / step(track));
-    var c = box.querySelector('[data-ig-count]'), txt = n ? (i + 1) + ' / ' + n : '';
-    if (c && c.textContent !== txt) c.textContent = txt;   // only on change: the observer below would loop forever
-    box.querySelectorAll('[data-ig-nav]').forEach(function (b) {
+    var wrap = track.parentNode, n = track.children.length, i = Math.round(track.scrollLeft / step(track));
+    var c = wrap.parentNode.querySelector('[data-ig-count]'), txt = n > 1 ? (i + 1) + ' / ' + n : '';
+    if (c && c.textContent !== txt) c.textContent = txt;
+    var img = track.querySelector('img[data-ig-photo]');
+    var mid = img && img.offsetHeight ? Math.round(img.offsetTop + img.offsetHeight / 2) + 'px' : '50%';
+    wrap.querySelectorAll('[data-ig-nav]').forEach(function (b) {
       var off = b.getAttribute('data-ig-nav') === '-1' ? i <= 0 : i >= n - 1;
-      var op = off ? '0.35' : '1';
       if (b.disabled !== off) b.disabled = off;
-      if (b.style.opacity !== op) b.style.opacity = op;
+      set(b, 'visibility', off ? 'hidden' : 'visible');
+      set(b, 'top', mid);
     });
   }
   document.addEventListener('click', function (e) {
     var b = e.target.closest && e.target.closest('[data-ig-nav]'); if (!b) return;
-    var t = b.parentNode.parentNode.querySelector('[data-ig-track]'); if (!t) return;
+    var t = b.parentNode.querySelector('[data-ig-track]'); if (!t) return;
     t.scrollBy({ left: step(t) * +b.getAttribute('data-ig-nav'), behavior: 'smooth' });
   });
   document.addEventListener('scroll', function (e) {
     if (e.target.matches && e.target.matches('[data-ig-track]')) sync(e.target);
   }, true);
   function all() { document.querySelectorAll('[data-ig-track]').forEach(sync); }
+  document.addEventListener('load', function (e) { if (e.target.hasAttribute && e.target.hasAttribute('data-ig-photo')) all(); }, true);
   new MutationObserver(all).observe(document.documentElement, { childList: true, subtree: true });
   window.addEventListener('resize', all);
 })();
@@ -158,8 +162,8 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 </section>
 <sc-if value="{{ hasInsta }}"><section style="padding:32px 20px;background:#F6F6F3">
 <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:18px;flex-wrap:wrap"><div><div style="font-size:15px;font-weight:700;color:#55555C">인스타그램</div><h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:60px;line-height:.86;margin:8px 0 0">INSTAGRAM</h2></div><a href="{{ igProfile }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:600;color:#0B0B0F"><img src="assets/icons/instagram.png" alt="" style="width:24px;height:24px;border-radius:6px">{{ igHandle }} 프로필 →</a></div>
-<div data-ig-track style="display:flex;gap:14px;align-items:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;scrollbar-width:none"><sc-for list="{{ insta }}" as="ig" hint-placeholder-count="3"><a href="{{ ig.url }}" target="_blank" rel="noopener" style="flex:0 0 100%;scroll-snap-align:start;display:flex;flex-direction:column;min-width:0;border-radius:20px;overflow:hidden;background:#fff;border:1px solid #E6E6E1;color:#0B0B0F;text-decoration:none" style-hover="border-color:#0B0B0F;color:#0B0B0F"><div style="display:flex;align-items:center;gap:10px;padding:12px 14px"><img src="assets/icons/instagram.png" alt="" style="width:22px;height:22px;border-radius:6px"><b style="font-size:14px">{{ igHandle }}</b><span style="margin-left:auto;font-size:12px;color:#6B6B72">{{ ig.date }}</span></div><img src="{{ ig.img }}" alt="" loading="lazy" style="display:block;width:100%;aspect-ratio:1/1;object-fit:cover;background:#F1F1ED"><div style="padding:12px 14px 14px;font-size:14px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;white-space:pre-line">{{ ig.text }}</div></a></sc-for></div>
-<div style="display:flex;align-items:center;justify-content:center;gap:16px;margin-top:14px"><button type="button" data-ig-nav="-1" aria-label="이전 글" style="width:44px;height:44px;border-radius:999px;background:#fff;border:1px solid #E6E6E1;color:#0B0B0F;font-size:22px;line-height:1;display:grid;place-items:center;cursor:pointer;padding:0">‹</button><span data-ig-count style="min-width:56px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:13px;color:#6B6B72"></span><button type="button" data-ig-nav="1" aria-label="다음 글" style="width:44px;height:44px;border-radius:999px;background:#fff;border:1px solid #E6E6E1;color:#0B0B0F;font-size:22px;line-height:1;display:grid;place-items:center;cursor:pointer;padding:0">›</button></div>
+<div style="position:relative"><div data-ig-track style="display:flex;gap:14px;align-items:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;scrollbar-width:none"><sc-for list="{{ insta }}" as="ig" hint-placeholder-count="3"><a href="{{ ig.url }}" target="_blank" rel="noopener" style="flex:0 0 100%;scroll-snap-align:start;display:flex;flex-direction:column;min-width:0;border-radius:20px;overflow:hidden;background:#fff;border:1px solid #E6E6E1;color:#0B0B0F;text-decoration:none" style-hover="border-color:#0B0B0F;color:#0B0B0F"><div style="display:flex;align-items:center;gap:10px;padding:12px 14px"><img src="assets/icons/instagram.png" alt="" style="width:22px;height:22px;border-radius:6px"><b style="font-size:14px">{{ igHandle }}</b><span style="margin-left:auto;font-size:12px;color:#6B6B72">{{ ig.date }}</span></div><img data-ig-photo src="{{ ig.img }}" alt="" loading="lazy" style="display:block;width:100%;aspect-ratio:1/1;object-fit:cover;background:#F1F1ED"><div style="padding:12px 14px 14px;font-size:14px;line-height:1.5;white-space:pre-line;overflow-wrap:anywhere">{{ ig.text }}</div></a></sc-for></div><button type="button" data-ig-nav="-1" aria-label="이전 글" style="left:10px;position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:44px;height:44px;border-radius:999px;background:#fff;border:1px solid #E6E6E1;color:#0B0B0F;font-size:24px;line-height:1;display:grid;place-items:center;cursor:pointer;padding:0;box-shadow:0 2px 10px rgba(0,0,0,.25)">‹</button><button type="button" data-ig-nav="1" aria-label="다음 글" style="right:10px;position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:44px;height:44px;border-radius:999px;background:#fff;border:1px solid #E6E6E1;color:#0B0B0F;font-size:24px;line-height:1;display:grid;place-items:center;cursor:pointer;padding:0;box-shadow:0 2px 10px rgba(0,0,0,.25)">›</button></div>
+<div data-ig-count style="margin-top:12px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:13px;color:#6B6B72"></div>
 </section></sc-if>
 <section style="padding:32px 0 40px 20px;background:#F6F6F3;color:#0B0B0F">
 <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:60px;line-height:.86;margin:6px 0 18px">ROSTER</h2>
