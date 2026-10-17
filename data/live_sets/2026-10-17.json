@@ -91,7 +91,56 @@
      "team": "Poker Face",
      "hero": "mauga"
     }
-   }
+   },
+   "hudLeft": "O2 Blast",
+   "guessed": [],
+   "comps": {
+    "O2 Blast": [
+     [
+      "Fate",
+      "dmon"
+     ],
+     [
+      "A1lEN",
+      "cassidy"
+     ],
+     [
+      "WuTian",
+      "tracer"
+     ],
+     [
+      "Gamjung",
+      "kiriko"
+     ],
+     [
+      "Faith",
+      "doctrine"
+     ]
+    ],
+    "Poker Face": [
+     [
+      "SoLA",
+      "dmon"
+     ],
+     [
+      "SORI",
+      "cassidy"
+     ],
+     [
+      "F1nally",
+      "tracer"
+     ],
+     [
+      "Soae",
+      "sombra"
+     ],
+     [
+      "Caffeine",
+      "doctrine"
+     ]
+    ]
+   },
+   "compAt": "replay"
   },
   {
    "banTs": 1792222767,
