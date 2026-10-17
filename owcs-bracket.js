@@ -78,8 +78,20 @@
 .st{font-size:11.5px;font-weight:800;color:var(--b-mute);margin:2px 2px -4px}
 .sd div.bye{background:var(--b-ac2);color:#0B0B0F}
 .sd div.bye b,.sd div.bye u{color:#0B0B0F}
+.cw{position:relative;margin-bottom:14px;border-radius:18px;overflow:hidden;background:#0B0B0F;color:#fff}
+.cw img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}
+.cw.nop img{display:none}
+.cw .cb{position:relative;display:flex;align-items:center;gap:16px;padding:22px 20px}
+.cw:not(.nop) .cb{min-height:190px;background:linear-gradient(90deg,rgba(0,0,0,.82),rgba(0,0,0,.4))}
+.cw .cb i{flex:none;display:block;width:64px;height:64px;background:center/contain no-repeat}
+.cw .ck{display:inline-block;height:24px;line-height:24px;padding:0 10px;border-radius:999px;background:var(--b-ac2);color:#0B0B0F;font-size:12px;font-weight:800;letter-spacing:.04em}
+.cw .cn{font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:800;font-size:38px;line-height:1;margin:6px 0 4px;word-break:keep-all}
+.cw .cs{font-size:14px;font-weight:700;opacity:.85}
+.wt{display:inline-block;margin-left:6px;height:18px;line-height:18px;padding:0 6px;border-radius:999px;background:var(--b-ac2);color:#0B0B0F;font-size:10.5px;font-weight:800;vertical-align:1px}
+@container (min-width:640px){.cw .cb{padding:28px 30px}.cw:not(.nop) .cb{min-height:240px}.cw .cb i{width:88px;height:88px}.cw .cn{font-size:60px}.cw .cs{font-size:16px}}
 .fin{font-size:11.5px;color:var(--b-mute);margin:10px 2px 0;line-height:1.5}
 @container (min-width:640px){.r{height:32px;grid-template-columns:20px minmax(0,1fr) auto;gap:7px;padding:0 10px}.r i{width:20px;height:20px}.r b{font-size:14.5px}.r s{font-size:20px}.mh{font-size:11.5px;padding:4px 10px}.tree{gap:0 26px}.link .m::after{right:-14px;width:13px}.into .m::before{left:-14px;width:13px}.merge .cm::after{right:-14px}}
+@container (min-width:900px){.cw img{position:static;height:auto;aspect-ratio:16/9;max-height:560px}.cw:not(.nop) .cb{position:absolute;left:0;right:0;bottom:0;min-height:0;padding:90px 30px 28px;background:linear-gradient(transparent,rgba(0,0,0,.82))}}
 @container (min-width:640px){.ttl{font-size:46px}.top{padding:20px 22px 20px 26px}}
 @container (min-width:900px){.grid{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)}.box{padding:18px 18px 20px}.tree{grid-auto-columns:minmax(0,250px);gap:0 44px}.link .m::after{right:-23px;width:22px}.into .m::before{left:-23px;width:22px}.merge .cm::after{right:-23px}.extra{grid-template-columns:repeat(auto-fill,minmax(0,250px))}}
 `;
@@ -147,7 +159,8 @@
         const head = (opt && opt.round ? '<span>' + esc(opt.title || x.round) + '</span>' : '') + (live ? '<em>LIVE</em>' : '<span>' + esc(day) + '</span>');
         return '<div class="m' + (live ? ' live' : '') + '"><div class="mh">' + head + '</div>' + rows.map((r) => {
           const cls = r.a === 'TBD' ? 'tbd' : shown && played && +r.s < top ? 'lose' : '';
-          return '<div class="r ' + cls + '"><i ' + logo(r.a) + '></i><b>' + esc(name(r)) + '</b><s>' + (shown ? esc(r.s) : '') + '</s></div>';
+          const win = /^결승$/.test(x.round) && shown && played && +r.s === top ? '<span class="wt">우승</span>' : '';
+          return '<div class="r ' + cls + '"><i ' + logo(r.a) + '></i><b>' + esc(name(r)) + win + '</b><s>' + (shown ? esc(r.s) : '') + '</s></div>';
         }).join('') + '</div>';
       };
 
@@ -192,22 +205,54 @@
         + (third.length || extra.length ? '<div class="extra">' + [...third.map((x) => '<div><div class="t">' + esc(x.round) + '</div>' + chip(x) + '</div>'), ...extra.map((x) => '<div><div class="t">' + esc(x.round) + '</div>' + chip(x) + '</div>')].join('') + '</div>' : '')
         + '</div>' : '';
 
-      const champ = !SP && S.champion ? (() => { const t = ((window.OWCS || {}).teams || []).find((t) => t.n === S.champion || t.a === S.champion); return '<span class="champ"><i ' + (t ? logo(t.a) : 'class="none"') + '></i><small>우승</small>' + esc(S.champion) + '</span>'; })() : '';
+      // the champion, big: with a photo when assets/champions/<year>-s<stage>.(jpg|webp|png) is in the repository
+      const slug = (S.label.match(/(\d{4})\D+(\d+)/) || []).slice(1).join('-s');
+      const finX = poCols.length ? poCols[poCols.length - 1].ms.find((x) => /^결승$/.test(x.round)) : null, finM = finX && byId[finX.id];
+      let card = '';
+      if (!SP && S.champion) {
+        const t = ((window.OWCS || {}).teams || []).find((t) => t.n === S.champion || t.a === S.champion);
+        const lg = t && (t.logoDark || t.logo);
+        let sub = '';
+        if (finX) {
+          const r = finM ? [[finM.a, finM.sa], [finM.b, finM.sb]] : finX.rows.map((r) => [r.a, r.s]);
+          const w = r.find((x) => t && x[0] === t.a) || r[0], l = r.find((x) => x !== w);
+          sub = '결승 ' + w[1] + ' : ' + l[1] + ' ' + l[0] + ' · ' + String(finX.when || '').split(' ')[0];
+        }
+        card = '<div class="cw nop" data-s="' + esc(slug) + '" data-n="' + esc(S.champion) + '">'
+          + '<div class="cb"><i ' + (lg ? 'style="background-image:url(\'' + esc(lg) + '\')"' : '') + '></i><div><span class="ck">CHAMPION · 우승</span><div class="cn">' + esc(S.champion) + '</div><div class="cs">' + esc(sub) + '</div></div></div></div>';
+      }
       const pick = all.length > 1 ? '<div class="pick">' + all.map((s, i) => '<button data-k="' + esc(s.label) + '" class="' + (s === S ? 'on' : '') + '">' + esc(s.label.replace(/스테이지 /, 'S')) + (i === 0 ? ' · 이번 시즌' : '') + '</button>').join('') + '</div>' : '';
       // which tournament this is, big: a stage name never gets lost among the cards below
       const dates = S.start ? S.start.slice(5).replace('-', '.') + ' – ' + (S.end || '').slice(5).replace('-', '.') : '';
       const head = '<div class="top"><div><span class="tag' + (S === all[0] ? '' : ' old') + '">' + (S === all[0] ? '이번 시즌' : '지난 시즌') + '</span>'
-        + '<div class="ttl">' + esc(S.label) + '</div><div class="sub">플레이오프' + (dates ? ' · ' + esc(dates) : '') + '</div></div>' + champ + '</div>';
+        + '<div class="ttl">' + esc(S.label) + '</div><div class="sub">플레이오프' + (dates ? ' · ' + esc(dates) : '') + '</div></div>' + '</div>';
       const note = isCur ? '대진은 정규 리그가 끝나면 채워져요' : '';
 
       this.shadowRoot.innerHTML = '<style>' + CSS + '</style><div class="w' + (dark ? ' dark' : '') + '">' + pick
-        + head + (note ? '<div class="note">' + note + '</div>' : '')
+        + card + (note ? '<div class="note">' + note + '</div>' : '')
         + poHtml + (seedHtml || lcqHtml ? '<div class="pre-l">플레이오프 가는 길</div><div class="grid">' + seedHtml + lcqHtml + '</div>' : '') + '</div>';
       this.shadowRoot.querySelectorAll('.pick button').forEach((b) => b.addEventListener('click', () => {
         this.sel = b.getAttribute('data-k');
         try { sessionStorage.setItem(KEY, this.sel); } catch (e) {}
         this.render();
       }));
+      // champion photo: try jpg, webp, png; the card stays a plain banner when there is none (answer kept per stage)
+      const cw = this.shadowRoot.querySelector('.cw[data-s]:not([data-s=""])');
+      if (cw) {
+        const sl = cw.getAttribute('data-s'), memo = (this.photos = this.photos || {}), exts = ['jpg', 'webp', 'png'];
+        const show = (u) => { const im = document.createElement('img'); im.src = u; im.alt = cw.getAttribute('data-n') + ' 우승'; cw.prepend(im); cw.classList.remove('nop'); };
+        if (memo[sl]) show(memo[sl]);
+        else if (memo[sl] !== false) {
+          const next = (i) => {
+            if (i >= exts.length) { memo[sl] = false; return; }
+            const t = new Image(), u = 'assets/champions/' + sl + '.' + exts[i];
+            t.onload = () => { memo[sl] = u; if (cw.isConnected) show(u); };
+            t.onerror = () => next(i + 1);
+            t.src = u;
+          };
+          next(0);
+        }
+      }
       const on = this.shadowRoot.querySelector('.pick .on');
       if (on && on.scrollIntoView && on.offsetLeft > on.parentElement.clientWidth) on.parentElement.scrollLeft = on.offsetLeft - 8;
     }
