@@ -1,0 +1,368 @@
+{
+ "crusty": {
+  "id": "Crusty",
+  "name": "박대희",
+  "romanized": "Park Dae-hee",
+  "birth": "",
+  "country": "대한민국",
+  "lp": "https://liquipedia.net/overwatch/Crusty",
+  "career": [
+   {
+    "start": "2016-11",
+    "end": "2017-01",
+    "team": "wNv.KR",
+    "role": "Coach"
+   },
+   {
+    "start": "2017-05",
+    "end": "2017-10",
+    "team": "Nc Wolves",
+    "role": "Coach"
+   },
+   {
+    "start": "2017-05",
+    "end": "2017-10",
+    "team": "RX Foxes",
+    "role": "Coach"
+   }
+  ],
+  "namu": "https://namu.wiki/w/%EB%B0%95%EB%8C%80%ED%9D%AC",
+  "photo": "assets/staff/Crusty.webp"
+ },
+ "kong": {
+  "id": "Kong",
+  "name": "손준영",
+  "romanized": "Son Jun-young",
+  "birth": "",
+  "country": "대한민국",
+  "lp": "https://liquipedia.net/overwatch/Kong",
+  "career": [],
+  "namu": "https://namu.wiki/w/%EC%86%90%EC%A4%80%EC%98%81%28%ED%94%84%EB%A1%9C%EA%B2%8C%EC%9D%B4%EB%A8%B8%29",
+  "photo": "assets/staff/Kong.webp"
+ },
+ "izayaki": {
+  "id": "Izayaki",
+  "name": "김민철",
+  "romanized": "Kim Min-chul",
+  "birth": "2000-02-22",
+  "country": "대한민국",
+  "lp": "https://liquipedia.net/overwatch/Izayaki",
+  "career": [],
+  "namu": "",
+  "photo": ""
+ },
+ "rush": {
+  "id": "RUSH",
+  "name": "윤희원",
+  "romanized": "Yun Hee-won",
+  "birth": "1986-02-11",
+  "country": "대한민국",
+  "lp": "https://liquipedia.net/overwatch/RUSH",
+  "career": [],
+  "namu": "https://namu.wiki/w/%EC%9C%A4%ED%9D%AC%EC%9B%90",
+  "photo": "assets/staff/RUSH.webp"
+ },
+ "fleta": {
+  "id": "Fleta",
+  "name": "김병선",
+  "romanized": "Kim Byung-sun",
+  "birth": "1999-09-02",
+  "country": "대한민국",
+  "lp": "https://liquipedia.net/overwatch/Fleta",
+  "career": [],
+  "namu": "https://namu.wiki/w/%EA%B9%80%EB%B3%91%EC%84%A0(%ED%94%84%EB%A1%9C%EA%B2%8C%EC%9D%B4%EB%A8%B8)",
+  "photo": "assets/staff/Fleta.webp"
+ },
+ "ggultaek": {
+  "id": "GgulTaek",
+  "name": "김정윤",
+  "romanized": "Kim Jeong-youn",
+  "birth": "1997-07-06",
+  "country": "대한민국",
+  "lp": "https://liquipedia.net/overwatch/GgulTaek",
+  "career": [
+   {
+    "start": "2019-11",
+    "end": "2020-03",
+    "team": "Team BM",
+    "role": "Coach"
+   }
+  ],
+  "namu": "https://namu.wiki/w/%EA%B9%80%EC%A0%95%EC%9C%A4(e%EC%8A%A4%ED%8F%AC%EC%B8%A0)",
+  "photo": "assets/staff/GgulTaek.webp"
+ },
+ "kariv": {
+  "id": "KariV",
+  "name": "박영서",
+  "romanized": "Park Young-seo",
+  "birth": "1998-01-08",
+  "country": "대한민국",
+  "lp": "https://liquipedia.net/overwatch/KariV",
+  "career": [],
+  "namu": "https://namu.wiki/w/%EB%B0%95%EC%98%81%EC%84%9C(%ED%94%84%EB%A1%9C%EA%B2%8C%EC%9D%B4%EB%A8%B8)",
+  "photo": "assets/staff/KariV.webp"
+ },
+ "ir1s": {
+  "id": "Ir1s",
+  "name": "김승현",
+  "romanized": "Kim Seung-hyun",
+  "birth": "2000-09-10",
+  "country": "대한민국",
+  "lp": "https://liquipedia.net/overwatch/Ir1s",
+  "career": [],
+  "namu": "",
+  "photo": ""
+ },
+ "mircalla": {
+  "id": "Mircalla",
+  "name": "최현서",
+  "romanized": "Choi Hyeon-seo",
+  "birth": "2001-08-06",
+  "country": "대한민국",
+  "lp": "https://liquipedia.net/overwatch/Mircalla",
+  "career": [],
+  "namu": "",
+  "photo": ""
+ },
+ "ninek": {
+  "id": "NineK",
+  "name": "김범훈",
+  "romanized": "Kim Bum-hoon",
+  "birth": "1988-09-10",
+  "country": "대한민국",
+  "lp": "https://liquipedia.net/overwatch/NineK",
+  "career": [
+   {
+    "start": "2016",
+    "end": "2016",
+    "team": "Team Uniqueness",
+    "role": ""
+   },
+   {
+    "start": "2017",
+    "end": "2017",
+    "team": "Watch Out",
+    "role": ""
+   }
+  ],
+  "namu": "https://namu.wiki/w/%EA%B9%80%EB%B2%94%ED%9B%88",
+  "photo": "assets/staff/NineK.webp"
+ },
+ "sp9rk1e": {
+  "id": "SP9RK1E",
+  "name": "김영한",
+  "romanized": "Kim Yeong-han",
+  "birth": "2002-05-31",
+  "country": "대한민국",
+  "lp": "https://liquipedia.net/overwatch/Sp9rk1e",
+  "career": [],
+  "namu": "https://namu.wiki/w/%EA%B9%80%EC%98%81%ED%95%9C(%ED%94%84%EB%A1%9C%EA%B2%8C%EC%9D%B4%EB%A8%B8)",
+  "photo": "assets/staff/SP9RK1E.webp"
+ },
+ "junkbuck": {
+  "id": "Junkbuck",
+  "name": "최재원",
+  "romanized": "Choi Jae-won",
+  "birth": "",
+  "country": "미국",
+  "lp": "https://liquipedia.net/overwatch/Junkbuck",
+  "career": [
+   {
+    "start": "2017",
+    "end": "2018-02",
+    "team": "Toronto Esports",
+    "role": "Coach"
+   }
+  ],
+  "namu": "https://namu.wiki/w/%EC%B5%9C%EC%9E%AC%EC%9B%90(e%EC%8A%A4%ED%8F%AC%EC%B8%A0)",
+  "photo": "assets/staff/Junkbuck.webp"
+ },
+ "levi": {
+  "id": "Levi",
+  "name": "정충혁",
+  "romanized": "Jeong Chung-hyeok",
+  "birth": "",
+  "country": "대한민국",
+  "lp": "https://liquipedia.net/overwatch/Levi",
+  "career": [],
+  "namu": "",
+  "photo": ""
+ },
+ "o2boss": {
+  "id": "O2Boss",
+  "name": "진석훈",
+  "romanized": "Jin Suk-hoon",
+  "birth": "",
+  "country": "대한민국",
+  "lp": "https://liquipedia.net/overwatch/O2Boss",
+  "career": [
+   {
+    "start": "2016",
+    "end": "2017-02",
+    "team": "Luminous Solar",
+    "role": "Coach"
+   }
+  ],
+  "namu": "https://namu.wiki/w/%EC%A7%84%EC%84%9D%ED%9B%88",
+  "photo": "assets/staff/O2Boss.webp"
+ },
+ "chilhwa": {
+  "id": "Chilhwa",
+  "name": "박민형",
+  "romanized": "Park Min-hyung",
+  "birth": "1997-04-19",
+  "country": "대한민국",
+  "lp": "https://liquipedia.net/overwatch/Chilhwa",
+  "career": [
+   {
+    "start": "2018-11",
+    "end": "2019-04",
+    "team": "WGS Armament",
+    "role": "Coach"
+   }
+  ],
+  "namu": "",
+  "photo": ""
+ },
+ "myunb0ng": {
+  "id": "Myunb0ng",
+  "name": "서상민",
+  "romanized": "Seo Sang-min",
+  "birth": "1999-06-12",
+  "country": "대한민국",
+  "lp": "https://liquipedia.net/overwatch/Myunb0ng",
+  "career": [
+   {
+    "start": "2018-10",
+    "end": "2019-04",
+    "team": "WGS Armament",
+    "role": ""
+   },
+   {
+    "start": "2019-04",
+    "end": "2019-10",
+    "team": "O2 Blast",
+    "role": ""
+   }
+  ],
+  "namu": "https://namu.wiki/w/%EC%84%9C%EC%83%81%EB%AF%BC",
+  "photo": "assets/staff/Myunb0ng.webp"
+ },
+ "cane": {
+  "id": "Cane",
+  "name": "권동현",
+  "romanized": "Kwon Dong-hyun",
+  "birth": "2001-09-09",
+  "country": "대한민국",
+  "lp": "https://liquipedia.net/overwatch/Cane",
+  "career": [],
+  "namu": "",
+  "photo": ""
+ },
+ "krillin": {
+  "id": "KRILLIN",
+  "name": "정영훈",
+  "romanized": "Jeong Young-hoon",
+  "birth": "2000-10-28",
+  "country": "대한민국",
+  "lp": "https://liquipedia.net/overwatch/Krillin",
+  "career": [],
+  "namu": "https://namu.wiki/w/%EC%A0%95%EC%98%81%ED%9B%88%28%ED%94%84%EB%A1%9C%EA%B2%8C%EC%9D%B4%EB%A8%B8%29",
+  "photo": "assets/staff/KRILLIN.webp"
+ },
+ "seon": {
+  "id": "SEON",
+  "name": "안선빈",
+  "romanized": "Ahn Seon-bin",
+  "birth": "1996-09-19",
+  "country": "대한민국",
+  "lp": "https://liquipedia.net/overwatch/SEON",
+  "career": [],
+  "namu": "https://namu.wiki/w/%EC%95%88%EC%84%A0%EB%B9%88",
+  "photo": "assets/staff/SEON.webp"
+ },
+ "mandu": {
+  "id": "Mandu",
+  "name": "김찬희",
+  "romanized": "Kim Chan-hee",
+  "birth": "2002-06-03",
+  "country": "대한민국",
+  "lp": "https://liquipedia.net/overwatch/Mandu",
+  "career": [
+   {
+    "start": "2018",
+    "end": "2018-10",
+    "team": "Armament",
+    "role": ""
+   },
+   {
+    "start": "2018-10",
+    "end": "2019-04",
+    "team": "WGS Armament",
+    "role": ""
+   }
+  ],
+  "namu": "https://namu.wiki/w/%EA%B9%80%EC%B0%AC%ED%9D%AC(2002)",
+  "photo": "assets/staff/Mandu.webp"
+ },
+ "da1da1sm00th": {
+  "id": "Da1Da1Sm00th",
+  "name": "황성환",
+  "romanized": "Hwang Sung-hwan",
+  "birth": "1999-02-04",
+  "country": "대한민국",
+  "lp": "https://liquipedia.net/overwatch/Da1Da1Sm00th",
+  "career": [
+   {
+    "start": "2019-04",
+    "end": "2019-06",
+    "team": "White Whale ICN",
+    "role": "link=White Whale Incheon E-Sports"
+   }
+  ],
+  "namu": "https://namu.wiki/w/%ED%99%A9%EC%84%B1%ED%99%98",
+  "photo": "assets/staff/Da1Da1Sm00th.webp"
+ },
+ "sanguinar": {
+  "id": "SanGuiNar",
+  "name": "임규민",
+  "romanized": "Lim Gyu-min",
+  "birth": "2001-12-07",
+  "country": "대한민국",
+  "lp": "https://liquipedia.net/overwatch/SanGuiNar",
+  "career": [
+   {
+    "start": "2019-02",
+    "end": "2019",
+    "team": "KPG Veloz",
+    "role": ""
+   },
+   {
+    "start": "2019-06",
+    "end": "2019-11",
+    "team": "Gen.B",
+    "role": ""
+   }
+  ],
+  "namu": "https://namu.wiki/w/%EC%9E%84%EA%B7%9C%EB%AF%BC",
+  "photo": "assets/staff/SanGuiNar.webp"
+ },
+ "twilight": {
+  "id": "Twilight",
+  "name": "이주석",
+  "romanized": "Lee Joo-seok",
+  "birth": "1998-2-8",
+  "country": "대한민국",
+  "lp": "https://liquipedia.net/overwatch/Twilight",
+  "career": [
+   {
+    "start": "2016",
+    "end": "2016-12",
+    "team": "BK Stars",
+    "role": ""
+   }
+  ],
+  "namu": "https://namu.wiki/w/%EC%9D%B4%EC%A3%BC%EC%84%9D%28%ED%94%84%EB%A1%9C%EA%B2%8C%EC%9D%B4%EB%A8%B8%29",
+  "photo": "assets/staff/Twilight.webp"
+ }
+}

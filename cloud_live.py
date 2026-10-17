@@ -108,6 +108,10 @@ def collect(prev, now, force=False):
             if os.path.exists(cache_file(t)):   # (kept, so a failed read still leaves the old copy)
                 os.utime(cache_file(t), (0, 0))
         node('collector/run-lp.mjs', '--active-only')
+        try:   # replay codes: the community sheet (Google CSV), re-read with Liquipedia so new codes show without the PC
+            node('collector/replays.mjs', '--refresh')
+        except Exception as e:
+            print('replay sheet not read:', e)
         os.makedirs(os.path.dirname(stamp), exist_ok=True)
         with open(stamp, 'w') as f:
             f.write(str(now.timestamp()))

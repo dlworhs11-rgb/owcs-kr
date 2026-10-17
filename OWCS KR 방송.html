@@ -66,7 +66,28 @@ h1{font-size:clamp(56px,8vw,96px);line-height:.86;margin:12px 0 0}
 .go.none{background:#ECECE8;color:var(--dim)}
 .p.off{display:none}
 footer{padding:32px 0 56px;background:#0B0B0F;color:#8A8A93;font-size:13px;line-height:1.7}
-@media (max-width:720px){.teams{grid-template-columns:minmax(0,1fr)}header nav{display:none}}
+@media (max-width:720px){.teams{grid-template-columns:minmax(0,1fr)}header nav{display:none}
+  /* phone: the live count is a small pill under the title instead of a big card */
+  .hero{gap:14px;padding:32px 0 20px}
+  .count{flex:none;gap:8px;padding:7px 12px;border-radius:999px}
+  .count>div{display:flex;align-items:baseline;gap:5px}
+  .count b{font-size:22px}
+  .count .dot{width:8px;height:8px;box-shadow:0 0 0 4px color-mix(in srgb,var(--red) 25%,transparent)}
+  .count small{display:inline;font-size:12px;white-space:nowrap}}
+/* phone / tablet: three teams side by side, each team a column of photo + handle (the whole row opens the stream) */
+@media (max-width:899.98px){
+  .teams{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .team{border-radius:14px;padding-bottom:6px}
+  .team h2{flex-direction:column;gap:4px;padding:10px 6px 8px;font-size:12px;line-height:1.2;text-align:center;word-break:break-word}
+  .team h2 i{width:26px;height:26px}
+  .team h2 span{margin-left:0;font-size:10px}
+  .rows{gap:4px;padding:0 6px}
+  .p{grid-template-columns:minmax(0,1fr);justify-items:center;gap:6px;padding:8px 4px 6px;border-radius:10px;text-align:center}
+  .av{width:40px;height:40px}
+  .who{min-width:0;max-width:100%}
+  .who b{font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .who small,.go{display:none}
+}
 </style>
 <script src="./owcs-nav.js"></script>
 </head>
@@ -89,7 +110,7 @@ footer{padding:32px 0 56px;background:#0B0B0F;color:#8A8A93;font-size:13px;line-
   </div>
   <div class="teams" id="teams"></div>
 </main>
-<footer><div class="wrap">방송 상태는 CHZZK·SOOP에서 몇 분마다 확인해요. 비공식 팬 사이트입니다. Blizzard Entertainment 및 OWCS 공식 운영과 관련이 없습니다.<div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:14px"><span style="width:100%;font-size:13px;color:#8A8A93">OWCS 공식 채널</span><a href="https://x.com/OW_Esports_Asia" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 14px 0 6px;border-radius:999px;border:1px solid #33333D;color:#fff;text-decoration:none;font-size:14px;font-weight:600"><img src="assets/icons/x.png" alt="" style="width:28px;height:28px;border-radius:8px">X ↗</a><a href="https://www.instagram.com/ow_esports_kr/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 14px 0 6px;border-radius:999px;border:1px solid #33333D;color:#fff;text-decoration:none;font-size:14px;font-weight:600"><img src="assets/icons/instagram.png" alt="" style="width:28px;height:28px;border-radius:8px">인스타그램 ↗</a><a href="https://www.sooplive.co.kr/station/owesports" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 14px 0 6px;border-radius:999px;border:1px solid #33333D;color:#fff;text-decoration:none;font-size:14px;font-weight:600"><img src="assets/icons/soop.png" alt="" style="width:28px;height:28px;border-radius:8px">SOOP 방송국 ↗</a></div></div></footer>
+<footer><div class="wrap">방송 상태는 CHZZK·SOOP에서 몇 분마다 확인해요. 비공식 팬 사이트입니다. Blizzard Entertainment 및 OWCS 공식 운영과 관련이 없습니다.<div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;margin-top:14px"><span style="width:100%;font-size:13px;color:#8A8A93">OWCS 공식 채널</span><a href="https://x.com/OW_Esports_Asia" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;height:40px;padding:0;color:#fff;text-decoration:none;font-size:14px;font-weight:600"><img src="assets/icons/x.png" alt="" style="width:28px;height:28px;border-radius:8px">X</a><a href="https://www.instagram.com/ow_esports_kr/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;height:40px;padding:0;color:#fff;text-decoration:none;font-size:14px;font-weight:600"><img src="assets/icons/instagram.png" alt="" style="width:28px;height:28px;border-radius:8px">Instagram</a><a href="https://www.sooplive.co.kr/station/owesports" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;height:40px;padding:0;color:#fff;text-decoration:none;font-size:14px;font-weight:600"><img src="assets/icons/soop.png" alt="" style="width:28px;height:28px;border-radius:8px">SOOP 방송국</a></div></div></footer>
 
 <script src="./owcs-data.js"></script>
 <script src="./owcs-phase.js"></script>

@@ -172,6 +172,8 @@ def stage_staff(comp):
     j = w.find('\n==', 20)
     w = w[:j] if j > 0 else w
     alias = {k: v for k, v in load('aliases.json').items() if not k.startswith('_')}
+    sp = os.path.join(HERE, 'data', 'staff.json')
+    info = json.load(open(sp, encoding='utf-8')) if os.path.exists(sp) else {}
     out = {}
     for blk in re.split(r'\{\{Opponent\|', w)[1:]:
         name = blk.split('\n', 1)[0].split('|')[0].strip()
@@ -184,7 +186,11 @@ def stage_staff(comp):
             if kv.get('type', '').strip().lower() != 'staff':
                 continue
             role = kv.get('role', '').strip().lower()
-            out.setdefault(team(name)['a'], []).append(dict(id=parts[0].strip(), role=STAFF_KO.get(role, role.title())))
+            pid = parts[0].strip()
+            more = info.get(pid.lower(), {})   # fetch_staff.py: real name, birthday, country, career, photo (Namuwiki)
+            out.setdefault(team(name)['a'], []).append(dict(id=pid, role=STAFF_KO.get(role, role.title()), ko=more.get('name', ''),
+                                                            birth=more.get('birth', ''), country=more.get('country', ''), photo=more.get('photo', ''),
+                                                            career=more.get('career', []), namu=more.get('namu', ''), lp=more.get('lp', '')))
     for a in out:
         out[a].sort(key=lambda p: next((k for k, r in enumerate(STAFF_KO.values()) if r == p['role']), 99))
     return out
@@ -417,10 +423,13 @@ def build_matches(stage):
             played = not live
         # first heroes per player, from data/picks.json (filled by hand or by a hero-recognition tool)
         pk = {**auto_comps, **PICKS.get(f"{day} {short(t1)} vs {short(t2)}", {})}
+        rp = m.get('replays') or []   # replay codes per game from the community sheet (collector/replays.mjs)
         for x in maps:
             x['bans'] = [dict(b, code=hero_code(b['h'])) for b in x['bans']]
             if pk.get(str(x['no'])):
                 x['comps'] = pk[str(x['no'])]
+            if 0 < x['no'] <= len(rp) and rp[x['no'] - 1]:
+                x['replay'] = rp[x['no'] - 1]
         week = (dt.date() - stage['week0']).days // 7 + 1
         rs = m['phase'] == 'rs'
         out.append(dict(

@@ -61,9 +61,11 @@
     '@media (max-width:899.98px){',
     '  [data-owcs-mtop]{display:block;color:#0B0B0F;font-family:"Pretendard Variable",Pretendard,system-ui,sans-serif;text-align:left}',
     '  [data-owcs-mtop] *{box-sizing:content-box}',
-    '  [data-owcs-mtop] .tb{display:flex;justify-content:flex-end;align-items:center;flex-wrap:wrap;gap:8px;padding:6px 12px;border-bottom:1px solid #E6E6E1;font-size:13px}',
+    // 스포일러 방지 · 다크 모드 · language live in the menu the menu button opens (as on the home page)
+    '  [data-owcs-mtop] .tb{display:none;justify-content:flex-start;align-items:center;flex-wrap:wrap;gap:8px 12px;padding:12px 20px;border-bottom:1px solid #E6E6E1;font-size:13px}',
+    '  [data-owcs-mtop].open .tb{display:flex}',
     '  [data-owcs-mtop] .sw{display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 10px;border:none;border-radius:999px;background:transparent;font:inherit;font-size:13px;font-weight:600;color:inherit !important;cursor:pointer}',
-    '  [data-owcs-mtop] .sw.ph{visibility:hidden}',
+    '  [data-owcs-mtop] .sw.ph{display:none}',
     '  [data-owcs-mtop] .tr{position:relative;width:30px;height:18px;border-radius:999px;background:#B9B9B3}',
     '  [data-owcs-mtop] .on .tr{background:#7D39EB}',
     '  [data-owcs-mtop] .kn{position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:#fff}',
@@ -80,8 +82,8 @@
     '  [data-owcs-mtop] .ic{display:flex;align-items:center;gap:4px}',
     '  [data-owcs-mtop] .se{display:inline-flex;align-items:center;gap:6px;height:42px;padding:0 16px 0 14px;border-radius:999px;border:1px solid #E6E6E1;background:#F6F6F3;font-size:15px;font-weight:700;color:inherit !important;text-decoration:none}',
     '  [data-owcs-mtop] .se span{font-size:20px;line-height:1}',
-    '  [data-owcs-mtop] .hm{width:44px;height:44px;border:none;background:transparent;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;padding:0}',
-    '  [data-owcs-mtop] .hm span{width:20px;height:2px;background:#0B0B0F}',
+    '  [data-owcs-mtop] .hm{width:44px;height:44px;border:none;background:transparent;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;padding:0;cursor:pointer;color:inherit}',
+    '  [data-owcs-mtop] .hm span{width:20px;height:2px;background:currentColor}',
     '  [data-owcs-mtop] nav{display:flex !important;gap:4px;padding:0 12px 10px;overflow-x:auto;position:static !important;transform:none !important}',
     '  [data-owcs-mtop] nav a{flex:none;display:flex;align-items:center;height:44px;padding:0 14px;border-radius:999px;background:#F3F3EF;font-size:15px;font-weight:600;color:#0B0B0F !important;text-decoration:none}',
     '  [data-owcs-mtop],[data-owcs-tk].m{background:#F1EDE5 repeating-linear-gradient(135deg,rgba(60,45,25,.043) 0 1px,transparent 1px 11px)}',
@@ -139,15 +141,16 @@
     var m = document.createElement('div');
     m.setAttribute('data-owcs-mtop', '');
     var dark = isDark(), sp = spoilerBtn();
-    m.innerHTML = '<div class="tb">' +
+    m.innerHTML = '<div class="hd"><div class="row"><a class="brand" href="OWCS KR Home v6.dc.html"><span class="mk"><i></i></span><span class="wm">OWCS KR</span></a>' +
+      '<span class="ic"><button class="hm" aria-label="메뉴"><span></span><span></span></button></span></div>' +
+      '<nav>' + T.nav.map(function (l, k) { return '<a href="' + HREFS[k] + '">' + l + '</a>'; }).join('') + '</nav></div>' +
+      '<div class="tb">' +
       '<button class="sw sp' + (sp ? '' : ' ph') + '"><span class="tr"><span class="kn"></span></span>' + T.spoiler + '</button>' +
       '<button class="sw dk' + (dark ? ' on' : '') + '"><span class="tr"><span class="kn"></span></span>' + T.dark + '</button>' +
       '<div class="lg">' + [['ko', '한국어'], ['ja', '日本語'], ['en', 'EN']].map(function (x) {
         return '<button data-l="' + x[0] + '"' + (x[0] === LANG ? ' class="on"' : '') + '>' + x[1] + '</button>';
-      }).join('') + '</div></div>' +
-      '<div class="hd"><div class="row"><a class="brand" href="OWCS KR Home v6.dc.html"><span class="mk"><i></i></span><span class="wm">OWCS KR</span></a>' +
-      '<span class="ic"><a class="se" href="OWCS KR Results.dc.html"><span>⌕</span>검색</a><button class="hm" aria-label="메뉴"><span></span><span></span></button></span></div>' +
-      '<nav>' + T.nav.map(function (l, k) { return '<a href="' + HREFS[k] + '">' + l + '</a>'; }).join('') + '</nav></div>';
+      }).join('') + '</div></div>';
+    m.querySelector('.hm').onclick = function () { m.classList.toggle('open'); };
     m.querySelector('.dk').onclick = function () { try { localStorage.setItem('owcs-dark', isDark() ? '0' : '1'); } catch (e) {} location.reload(); };
     Array.prototype.forEach.call(m.querySelectorAll('.lg button'), function (b) {
       b.onclick = function () {
@@ -162,11 +165,6 @@
       if (!own) return;
       own.click();
       setTimeout(function () { syncSpoiler(m); }, 60);
-    };
-    var se = m.querySelector('.se');
-    se.onclick = function (e) {   // on the results page: its own match search
-      var inp = document.querySelector('input');
-      if (/Results/.test(decodeURIComponent(location.pathname)) && inp && inp.offsetWidth) { e.preventDefault(); inp.scrollIntoView({ block: 'center' }); inp.focus(); }
     };
     syncSpoiler(m);
     return m;

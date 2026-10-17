@@ -50,6 +50,9 @@
     ['이 세트의 첫 조합 기록이 아직 없어요.', 'このセットの初期構成はまだ記録がありません。', 'No starting comp recorded for this map yet.'], ['세트가 끝나면 조합이 올라와요.', 'セット終了後に構成が表示されます。', 'Comps appear when the map ends.'], ['첫 조합 기록 없음', '初期構成なし', 'No starting comp'],
     ['시간', '時間', 'hrs'], ['분', '分', 'min'], ['초', '秒', 'sec'],
     // schedule
+    // mobile schedule header: small buttons next to the title, my-team picker
+    ['캘린더 구독', 'カレンダー登録', 'Subscribe'], ['공유', '共有', 'Share'], ['☆ 내 팀 고르기', '☆ マイチームを選ぶ', '☆ Pick my team'],
+    ['다시 누르면 해제돼요 · 선수 섹션의 내 팀과 같이 바뀌어요', 'もう一度押すと解除 · 選手セクションのマイチームと連動します', 'Tap again to clear · Linked with My team in the players section'],
     ['경기 일정', '試合日程', 'Schedule'], ['일정 공유', '日程を共有', 'Share schedule'], ['최근 · 다가오는 경기', '最近 · 今後の試合', 'Recent · Upcoming'], ['모든 시간 KST', '時間はすべてKST', 'All times KST'], ['전체 일정 보기 →', 'すべての日程 →', 'Full schedule →'],
     ['구글 캘린더', 'Googleカレンダー', 'Google Calendar'], ['링크 복사', 'リンクをコピー', 'Copy link'], ['복사됨', 'コピー済み', 'Copied'], ['링크를 복사했어요', 'リンクをコピーしました', 'Link copied'],
     ['링크 복사됨 ✓', 'リンクをコピーしました ✓', 'Link copied ✓'], ['일정 링크 복사', '日程リンクをコピー', 'Copy schedule link'],
@@ -59,6 +62,7 @@
     ['다음 경기를 구글 캘린더에 추가하는 창을 열었어요', '次の試合をGoogleカレンダーに追加する画面を開きました', 'Opened Google Calendar for the next match'],
     // standings
     ['팀별 순위', 'チーム順位', 'Standings'], ['플레이오프 진출선', 'プレーオフ圏', 'Playoff line'], ['라스트 찬스 진출선', 'ラストチャンス圏', 'Last chance line'], ['플레이오프', 'プレーオフ', 'Playoffs'],
+    ['경우의 수 보기', 'プレーオフ条件を見る', 'Playoff scenarios'],
     ['전체 순위 · 경우의 수 보기', '全順位・プレーオフ条件を見る', 'Full standings & scenarios'], ['전체 순위 보기', '全順位を見る', 'Full standings'],
     ['플레이오프 시드 결정전', 'プレーオフシード決定戦', 'playoff seeding'], ['라스트 찬스 예선', 'ラストチャンス予選', 'last chance qualifier'], ['전 경기 3선승제', '全試合3本先取', 'all matches first to 3'],
     // teams

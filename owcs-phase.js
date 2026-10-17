@@ -2,7 +2,7 @@
 // stage ends (stageEnd), the site leads with the playoffs.
 //   - html[data-owcs-po] is set on every page
 //   - the menu item 순위 reads 대진표 (it still opens ?view=standings, which now starts with the bracket)
-//   - home: the standings section (bracket first, final standings folded under a button) moves up
+//   - home: the standings section (bracket only; the final standings are not shown) moves up
 //     right under TODAY, above the schedule
 // ?phase=po previews it; ?date=YYYY-MM-DD picks the day like the home page does.
 (function () {
@@ -23,7 +23,7 @@
     var past = (D.pastStages && D.pastStages.length) || (D.lastStage && D.lastStage.columns && D.lastStage.columns.length);
     var show = now >= from || (now < day(D.stageRange[0]) && past);
     var hide = document.createElement('style');
-    hide.textContent = '[data-stand-tg]{display:none !important}' + (show ? '' : '#tournament{display:none !important}');
+    hide.textContent = show ? '' : '#tournament{display:none !important}';
     (document.head || html).appendChild(hide);
     return;
   }
@@ -37,11 +37,7 @@
     S + ' > [data-sec=stand]{order:1}' +
     P + '[data-sec=stand]{display:flex;flex-direction:column}' +
     P + '[data-sec=stand] > #tournament{order:-2;margin-top:0 !important}' +
-    P + '[data-sec=stand] > [data-stand-tg]{order:-1}' +
-    'html[data-owcs-po]:not([data-owcs-stand-open]) [data-sec=stand] > :not(#tournament):not([data-stand-tg]){display:none !important}' +
-    'html[data-owcs-stand-open] [data-sec=stand] > [data-stand-tg]{margin-bottom:28px !important}' +
-    '[data-stand-tg] [data-c],html[data-owcs-stand-open] [data-stand-tg] [data-o]{display:none}' +
-    'html[data-owcs-stand-open] [data-stand-tg] [data-c]{display:inline}' +
+    P + '[data-sec=stand] > :not(#tournament){display:none !important}' +   // final regular-season standings: not shown during the playoffs
     P + '#tournament h3{font-size:calc(var(--ts,1) * 96px) !important;margin:14px 0 24px !important}' +
     P + '#tournament > div:first-child{font-size:15px !important}' +
     '@media (max-width:899px){' + P + '#tournament h3{font-size:calc(var(--ts,1) * 60px) !important;margin:10px 0 20px !important}}';
