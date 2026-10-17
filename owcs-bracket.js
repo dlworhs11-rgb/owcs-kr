@@ -15,10 +15,21 @@
 .pick::-webkit-scrollbar{display:none}
 .pick button{flex:none;height:34px;padding:0 13px;border-radius:999px;border:1px solid var(--b-line);background:var(--b-card);color:var(--b-ink);font:inherit;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}
 .pick button.on{background:var(--b-ink);color:var(--b-card);border-color:var(--b-ink)}
-.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 12px;margin-bottom:14px}
-.note{font-size:13px;color:var(--b-mute)}
-.champ{display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 12px 0 8px;border-radius:999px;background:var(--b-ac2);color:#0B0B0F;font-size:13px;font-weight:800}
-.champ i{width:22px;height:22px}
+.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px 16px;margin-bottom:14px;padding:16px 16px 16px 18px;border-radius:18px;background:var(--b-ink);color:var(--b-card);position:relative;overflow:hidden}
+.top::before{content:'';position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--b-ac2)}
+.tag{display:inline-block;height:22px;line-height:22px;padding:0 9px;border-radius:999px;font-size:11.5px;font-weight:800;background:var(--b-ac2);color:#0B0B0F}
+.tag.old{background:transparent;color:var(--b-card);border:1px solid currentColor;opacity:.7;line-height:20px}
+.ttl{font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:800;font-size:34px;line-height:.95;margin:8px 0 4px;letter-spacing:.005em;word-break:keep-all}
+.sub{font-size:15px;font-weight:700;opacity:.8}
+.note{font-size:13px;color:var(--b-mute);margin:-4px 2px 14px}
+.box.main{border:2px solid var(--b-ink)}
+.box.main .h b{font-size:18px}
+.box.pre{background:var(--b-soft);border-color:transparent}
+.pre-l{display:flex;align-items:center;gap:10px;margin:22px 2px 0;font-size:12.5px;font-weight:800;color:var(--b-mute)}
+.pre-l::after{content:'';flex:1;border-top:1px solid var(--b-line)}
+.champ{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 14px 0 8px;border-radius:999px;background:var(--b-card);color:var(--b-ink);font-size:14px;font-weight:800}
+.champ small{font-size:11px;font-weight:700;color:var(--b-mute)}
+.champ i{width:26px;height:26px}
 .box{background:var(--b-card);border:1px solid var(--b-line);border-radius:18px;padding:14px 12px 16px}
 .h{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin:0 2px 10px}
 .h b{font-size:15px;font-weight:800}
@@ -56,6 +67,7 @@
 .sd i{width:22px;height:22px}
 .fin{font-size:11.5px;color:var(--b-mute);margin:10px 2px 0;line-height:1.5}
 @container (min-width:640px){.r{height:32px;grid-template-columns:20px minmax(0,1fr) auto;gap:7px;padding:0 10px}.r i{width:20px;height:20px}.r b{font-size:14.5px}.r s{font-size:20px}.mh{font-size:11.5px;padding:4px 10px}.tree{gap:0 26px}.link .m::after{right:-14px;width:13px}.into .m::before{left:-14px;width:13px}.merge .cm::after{right:-14px}}
+@container (min-width:640px){.ttl{font-size:46px}.top{padding:20px 22px 20px 26px}}
 @container (min-width:900px){.grid{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)}.box{padding:18px 18px 20px}.tree{grid-auto-columns:minmax(0,250px);gap:0 44px}.link .m::after{right:-23px;width:22px}.into .m::before{left:-23px;width:22px}.merge .cm::after{right:-23px}.extra{grid-template-columns:repeat(auto-fill,minmax(0,250px))}}
 `;
 
@@ -141,7 +153,7 @@
       let lcqHtml = '';
       if (lcq) {
         const up = lcq.matches.filter((x) => /승자조|패자조 준결승/.test(x.round)), fin = lcq.matches.filter((x) => /패자조 결승/.test(x.round));
-        lcqHtml = '<div class="box"><div class="h"><b>라스트 찬스 예선</b><span>승자조 결승 · 패자조 결승 승리 팀이 8강</span></div>'
+        lcqHtml = '<div class="box pre"><div class="h"><b>라스트 찬스 예선</b><span>승자조 결승 · 패자조 결승 승리 팀이 8강</span></div>'
           + (up.length === 2 && fin.length === 1
             ? tree([{ title: '1라운드', ms: up, opt: { round: true, short: true } }, { title: '패자조 결승', ms: fin }])
             : '<div class="rr">' + lcq.matches.map((x) => chip(x, { round: true })).join('') + '</div>')
@@ -150,19 +162,23 @@
       let seedHtml = '';
       if (seed) {
         const sd = !SP && S.seeding && S.seeding.length ? '<div class="sd">' + S.seeding.map((t, i) => '<div><u>' + (i + 1) + '</u><i ' + logo(t.a) + '></i><b>' + esc(t.a) + '</b>' + esc(t.sw + '승 ' + t.sl + '패') + '</div>').join('') + '</div>' : '';
-        seedHtml = '<div class="box"><div class="h"><b>시드 결정전</b><span>정규 리그 1–4위 · 풀리그</span></div>' + sd + '<div class="rr">' + seed.matches.map((x) => chip(x, { short: true })).join('') + '</div></div>';
+        seedHtml = '<div class="box pre"><div class="h"><b>시드 결정전</b><span>정규 리그 1–4위 · 풀리그</span></div>' + sd + '<div class="rr">' + seed.matches.map((x) => chip(x, { short: true })).join('') + '</div></div>';
       }
-      const poHtml = poCols.length ? '<div class="box"><div class="h"><b>플레이오프</b><span>' + esc(S.start ? S.start.slice(5).replace('-', '.') + ' – ' + (S.end || '').slice(5).replace('-', '.') : '') + '</span></div>' + tree(poCols)
+      const poHtml = poCols.length ? '<div class="box main"><div class="h"><b>플레이오프 본선</b><span>' + esc(poCols.map((c) => c.title).join(' → ')) + '</span></div>' + tree(poCols)
         + (third.length || extra.length ? '<div class="extra">' + [...third.map((x) => '<div><div class="t">' + esc(x.round) + '</div>' + chip(x) + '</div>'), ...extra.map((x) => '<div><div class="t">' + esc(x.round) + '</div>' + chip(x) + '</div>')].join('') + '</div>' : '')
         + '</div>' : '';
 
-      const champ = !SP && S.champion ? (() => { const t = ((window.OWCS || {}).teams || []).find((t) => t.n === S.champion || t.a === S.champion); return '<span class="champ"><i ' + (t ? logo(t.a) : 'class="none"') + '></i>우승 ' + esc(S.champion) + '</span>'; })() : '';
+      const champ = !SP && S.champion ? (() => { const t = ((window.OWCS || {}).teams || []).find((t) => t.n === S.champion || t.a === S.champion); return '<span class="champ"><i ' + (t ? logo(t.a) : 'class="none"') + '></i><small>우승</small>' + esc(S.champion) + '</span>'; })() : '';
       const pick = all.length > 1 ? '<div class="pick">' + all.map((s, i) => '<button data-k="' + esc(s.label) + '" class="' + (s === S ? 'on' : '') + '">' + esc(s.label.replace(/스테이지 /, 'S')) + (i === 0 ? ' · 이번 시즌' : '') + '</button>').join('') + '</div>' : '';
-      const note = isCur ? (S.start ? '시드 결정전 ' + S.start.slice(5).replace('-', '.') + '부터 · 대진은 정규 리그가 끝나면 채워져요' : '') : esc(S.title || S.label);
+      // which tournament this is, big: a stage name never gets lost among the cards below
+      const dates = S.start ? S.start.slice(5).replace('-', '.') + ' – ' + (S.end || '').slice(5).replace('-', '.') : '';
+      const head = '<div class="top"><div><span class="tag' + (S === all[0] ? '' : ' old') + '">' + (S === all[0] ? '이번 시즌' : '지난 시즌') + '</span>'
+        + '<div class="ttl">' + esc(S.label) + '</div><div class="sub">플레이오프' + (dates ? ' · ' + esc(dates) : '') + '</div></div>' + champ + '</div>';
+      const note = isCur ? '대진은 정규 리그가 끝나면 채워져요' : '';
 
       this.shadowRoot.innerHTML = '<style>' + CSS + '</style><div class="w' + (dark ? ' dark' : '') + '">' + pick
-        + '<div class="top"><span class="note">' + note + '</span>' + champ + '</div>'
-        + poHtml + '<div class="grid">' + seedHtml + lcqHtml + '</div></div>';
+        + head + (note ? '<div class="note">' + note + '</div>' : '')
+        + poHtml + (seedHtml || lcqHtml ? '<div class="pre-l">본선 진출전</div><div class="grid">' + seedHtml + lcqHtml + '</div>' : '') + '</div>';
       this.shadowRoot.querySelectorAll('.pick button').forEach((b) => b.addEventListener('click', () => {
         this.sel = b.getAttribute('data-k');
         try { sessionStorage.setItem(KEY, this.sel); } catch (e) {}
