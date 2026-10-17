@@ -671,7 +671,56 @@
      "hero": "lucio"
     }
    },
-   "src": "vod"
+   "src": "vod",
+   "hudLeft": "T1",
+   "guessed": [],
+   "comps": {
+    "T1": [
+     [
+      "DONGHAK",
+      "junker-queen"
+     ],
+     [
+      "Proud",
+      "sojourn"
+     ],
+     [
+      "ZEST",
+      "genji"
+     ],
+     [
+      "Bliss",
+      "doctrine"
+     ],
+     [
+      "skewed",
+      "kiriko"
+     ]
+    ],
+    "ZANSIDE GAMING": [
+     [
+      "Heiser",
+      "dmon"
+     ],
+     [
+      "Taejong",
+      "bastion"
+     ],
+     [
+      "Bekey",
+      "tracer"
+     ],
+     [
+      "iR0NY",
+      "doctrine"
+     ],
+     [
+      "OPENER",
+      "jetpack-cat"
+     ]
+    ]
+   },
+   "compAt": "replay"
   },
   {
    "banTs": 1792234314,
