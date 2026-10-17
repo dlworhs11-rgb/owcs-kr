@@ -1,0 +1,28 @@
+{
+ "date": "2026-10-17",
+ "sets": [
+  {
+   "banTs": 1792217609,
+   "teams": [
+    "O2 Blast",
+    "Poker Face"
+   ],
+   "game": 1,
+   "map": "Busan",
+   "seriesBefore": {
+    "O2 Blast": 0,
+    "Poker Face": 0
+   },
+   "bans": {
+    "initial": {
+     "team": "O2 Blast",
+     "hero": "0.Va"
+    },
+    "followUp": {
+     "team": "Poker Face",
+     "hero": "bastion"
+    }
+   }
+  }
+ ]
+}
