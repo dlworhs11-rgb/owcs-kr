@@ -25,6 +25,9 @@
     ['승리', '勝利', 'Won'], ['발표 전', '未発表', 'TBA'], ['중계', '実況', 'Casters'], ['현재', '現在', 'Now'], ['사진', '写真', 'Photo'],
     ['디자인: 기본 → Wise로', 'デザイン: 標準 → Wise', 'Design: default → Wise'], ['디자인: Wise → 기본으로', 'デザイン: Wise → 標準', 'Design: Wise → default'],
     ['비공식 팬 사이트입니다. Blizzard Entertainment 및 OWCS 공식 운영과 관련이 없습니다.', '非公式ファンサイトです。Blizzard Entertainment および OWCS 公式運営とは関係ありません。', 'Unofficial fan site. Not affiliated with Blizzard Entertainment or the official OWCS operation.'],
+    // footer = disclaimer + sources as one text node, so the whole line is a dictionary entry
+    ['비공식 팬 사이트입니다. Blizzard Entertainment 및 OWCS 공식 운영과 관련이 없습니다. 데이터: Liquipedia (CC-BY-SA 3.0)', '非公式ファンサイトです。Blizzard Entertainment および OWCS 公式運営とは関係ありません。 データ: Liquipedia (CC-BY-SA 3.0)', 'Unofficial fan site. Not affiliated with Blizzard Entertainment or the official OWCS operation. Data: Liquipedia (CC-BY-SA 3.0)'],
+    ['데이터: Liquipedia (CC-BY-SA 3.0)', 'データ: Liquipedia (CC-BY-SA 3.0)', 'Data: Liquipedia (CC-BY-SA 3.0)'],
     ['경기·순위: Liquipedia (CC-BY-SA 3.0)', '試合・順位: Liquipedia (CC-BY-SA 3.0)', 'Matches & standings: Liquipedia (CC-BY-SA 3.0)'],
     ['실시간 맵 승패: SOOP 공식 중계 캡처', 'リアルタイムのマップ勝敗: SOOP公式中継のキャプチャ', 'Live map results: captured from the official SOOP stream'],
     ['선수 방송/디스코드: 커뮤니티 시트', '選手配信/Discord: コミュニティシート', 'Player streams/Discord: community sheet'], ['인스타/X: Liquipedia', 'Instagram/X: Liquipedia', 'Instagram/X: Liquipedia'],

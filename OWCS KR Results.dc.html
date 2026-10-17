@@ -62,7 +62,8 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <section style="padding:64px 56px 0;background:#F6F6F3">
 <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px">
 <div><div style="font-size:15px;font-weight:700;color:#7D39EB">결과 · 대진표</div><h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:120px;line-height:.84;margin:8px 0 0">RESULTS</h1></div>
-<button style="display:flex;align-items:center;gap:10px;height:48px;padding:0 18px;border-radius:12px;border:1px solid #0B0B0F;background:#fff;font:inherit;font-size:15px;font-weight:600;cursor:pointer">{{ seasonLabel }} <span>▾</span></button>
+<div style="position:relative"><button onClick="{{ stToggleD }}" style="display:flex;align-items:center;gap:10px;height:48px;padding:0 18px;border-radius:12px;border:1px solid #0B0B0F;background:#fff;font:inherit;font-size:15px;font-weight:600;color:#0B0B0F;cursor:pointer">{{ seasonLabelD }} <span>{{ stChevD }}</span></button>
+<sc-if value="{{ stOpenD }}"><div style="position:absolute;right:0;top:54px;z-index:20;min-width:100%;padding:6px;border-radius:12px;border:1px solid #0B0B0F;background:#fff;box-shadow:0 8px 24px rgba(0,0,0,.12);display:flex;flex-direction:column;gap:2px"><sc-for list="{{ stOpts }}" as="o" hint-placeholder-count="3"><button onClick="{{ o.go }}" style="height:44px;padding:0 14px;border:none;border-radius:8px;background:{{ o.bg }};color:{{ o.fg }};font:inherit;font-size:15px;font-weight:700;text-align:left;white-space:nowrap;cursor:pointer">{{ o.label }}</button></sc-for></div></sc-if></div>
 </div>
 <div style="display:flex;gap:4px;margin-top:40px">
 <sc-for list="{{ tabsD }}" as="t" hint-placeholder-count="3">
@@ -90,7 +91,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <div style="font-size:15px;font-weight:600;color:#55555C;margin:18px 0 10px">{{ searchSummary }}</div><sc-if value="{{ h2h }}"><div style="display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:20px;margin:4px 0 14px;padding:18px 22px;border-radius:16px;background:#0B0B0F;color:#fff"><span style="display:flex;align-items:center;justify-content:flex-end;gap:12px"><span style="font-size:17px;font-weight:700">{{ h2h.na }}</span><span style="width:40px;height:40px;background:{{ h2h.la }}"></span></span><span style="text-align:center"><span style="display:block;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:44px;line-height:1;filter:{{ blur }}">{{ h2h.wa }} <span style="color:#6B6B72">:</span> {{ h2h.wb }}</span><span style="display:block;font-size:12px;color:#B5B5BD;margin-top:4px">{{ h2h.note }}</span></span><span style="display:flex;align-items:center;gap:12px"><span style="width:40px;height:40px;background:{{ h2h.lb }}"></span><span style="font-size:17px;font-weight:700">{{ h2h.nb }}</span></span></div></sc-if>
 <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr));gap:10px">
 <sc-for list="{{ results }}" as="x" hint-placeholder-count="0">
-<div style="display:grid;grid-template-columns:96px minmax(0,1fr);gap:14px;align-items:center;padding:16px 18px;border-radius:14px;background:#fff">
+<div style="display:grid;grid-template-columns:96px minmax(0,1fr);gap:14px;align-items:center;padding:16px 18px;border-radius:14px;background:{{ x.bg }}">
 <div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:24px;line-height:1">{{ x.date }}</div><div style="font-size:12px;color:#6B6B72;margin-top:4px">{{ x.stage }} · {{ x.week }}주차</div></div>
 <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
 <span style="width:24px;height:24px;background:{{ x.ca }};opacity:{{ x.oa }}"></span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:28px;color:{{ x.ta }}">{{ x.a }}</span>
@@ -104,14 +105,14 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 </sc-if>
 </div>
 
-<div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0 0 24px"><span style="font-size:14px;font-weight:700;color:#55555C;margin-right:6px">스테이지</span><sc-for list="{{ stTabs }}" as="st" hint-placeholder-count="3"><button onClick="{{ st.go }}" style="height:40px;padding:0 16px;border-radius:999px;border:1px solid {{ st.bd }};background:{{ st.bg }};color:{{ st.fg }};font:inherit;font-size:14px;font-weight:700;cursor:pointer">{{ st.label }}</button></sc-for></div>
+
 <sc-if value="{{ pastNote }}"><div style="margin:-12px 0 24px;font-size:14px;color:#6B6B72">{{ pastNote }}</div></sc-if>
 <div style="display:flex;flex-direction:column;gap:40px">
 <sc-for list="{{ weeks }}" as="w" hint-placeholder-count="2">
 <div>
 <div style="display:flex;align-items:baseline;gap:12px;padding-bottom:12px;border-bottom:2px solid #0B0B0F"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:36px">{{ w.title }}</span><span style="font-size:14px;color:#6B6B72">{{ w.range }}</span></div>
 <sc-for list="{{ w.games }}" as="g" hint-placeholder-count="4">
-<div style="display:grid;grid-template-columns:120px minmax(0,1fr) 140px minmax(0,1fr) 96px 104px;gap:16px;align-items:center;min-height:76px;border-bottom:1px solid #ECECE7;padding:0 8px">
+<div style="display:grid;grid-template-columns:120px minmax(0,1fr) 140px minmax(0,1fr) 96px 104px;gap:16px;align-items:center;min-height:76px;border-bottom:1px solid #ECECE7;padding:0 8px;background:{{ g.mine }}">
 <span style="font-size:15px;color:#55555C">{{ g.date }}</span>
 <span style="display:flex;align-items:center;justify-content:flex-end;gap:12px"><span style="font-size:17px;font-weight:{{ g.wa }};color:{{ g.ta }}">{{ g.na }}</span><span style="width:36px;height:36px;background:{{ g.ca }};opacity:{{ g.oa }}"></span></span>
 <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:36px;text-align:center;letter-spacing:.02em;filter:{{ blur }}"><span style="color:{{ g.ta }}">{{ g.sa }}</span> <span style="color:#B5B5BD">:</span> <span style="color:{{ g.tb }}">{{ g.sb }}</span></span>
@@ -235,7 +236,8 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <section style="padding:28px 20px 0;background:#F6F6F3">
 <div style="font-size:14px;font-weight:700;color:#7D39EB">결과 · 대진표</div>
 <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:64px;line-height:.86;margin:6px 0 14px">RESULTS</h1>
-<button style="display:flex;align-items:center;gap:8px;height:44px;padding:0 14px;border-radius:12px;border:1px solid #0B0B0F;background:#fff;font:inherit;font-size:14px;font-weight:600">{{ seasonLabel }} ▾</button>
+<div style="position:relative;display:inline-block"><button onClick="{{ stToggleM }}" style="display:flex;align-items:center;gap:8px;height:44px;padding:0 14px;border-radius:12px;border:1px solid #0B0B0F;background:#fff;font:inherit;font-size:14px;font-weight:600;color:#0B0B0F">{{ seasonLabelM }} {{ stChevM }}</button>
+<sc-if value="{{ stOpenM }}"><div style="position:absolute;left:0;top:50px;z-index:20;min-width:100%;padding:6px;border-radius:12px;border:1px solid #0B0B0F;background:#fff;box-shadow:0 8px 24px rgba(0,0,0,.12);display:flex;flex-direction:column;gap:2px"><sc-for list="{{ stOpts }}" as="o" hint-placeholder-count="3"><button onClick="{{ o.go }}" style="height:44px;padding:0 14px;border:none;border-radius:8px;background:{{ o.bg }};color:{{ o.fg }};font:inherit;font-size:15px;font-weight:700;text-align:left;white-space:nowrap">{{ o.label }}</button></sc-for></div></sc-if></div>
 <div style="display:flex;gap:2px;margin-top:20px">
 <sc-for list="{{ tabsM }}" as="t" hint-placeholder-count="3">
 <sc-if value="{{ t.on }}"><button onClick="{{ t.go }}" style="flex:1;height:48px;border:none;border-radius:12px 12px 0 0;background:#fff;color:#0B0B0F;font:inherit;font-size:14px;font-weight:700">{{ t.short }}</button></sc-if>
@@ -261,7 +263,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <div style="font-size:15px;font-weight:600;color:#55555C;margin:18px 0 10px">{{ searchSummary }}</div><sc-if value="{{ h2h }}"><div style="display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:10px;margin:4px 0 14px;padding:14px;border-radius:16px;background:#0B0B0F;color:#fff"><span style="display:flex;align-items:center;justify-content:flex-end;gap:12px"><span style="font-size:14px;font-weight:700">{{ h2h.na }}</span><span style="width:30px;height:30px;background:{{ h2h.la }}"></span></span><span style="text-align:center"><span style="display:block;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:34px;line-height:1;filter:{{ blur }}">{{ h2h.wa }} <span style="color:#6B6B72">:</span> {{ h2h.wb }}</span><span style="display:block;font-size:12px;color:#B5B5BD;margin-top:4px">{{ h2h.note }}</span></span><span style="display:flex;align-items:center;gap:12px"><span style="width:30px;height:30px;background:{{ h2h.lb }}"></span><span style="font-size:14px;font-weight:700">{{ h2h.nb }}</span></span></div></sc-if>
 <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr));gap:10px">
 <sc-for list="{{ results }}" as="x" hint-placeholder-count="0">
-<div style="display:grid;grid-template-columns:96px minmax(0,1fr);gap:14px;align-items:center;padding:16px 18px;border-radius:14px;background:#fff">
+<div style="display:grid;grid-template-columns:96px minmax(0,1fr);gap:14px;align-items:center;padding:16px 18px;border-radius:14px;background:{{ x.bg }}">
 <div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:24px;line-height:1">{{ x.date }}</div><div style="font-size:12px;color:#6B6B72;margin-top:4px">{{ x.stage }} · {{ x.week }}주차</div></div>
 <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
 <span style="width:24px;height:24px;background:{{ x.ca }};opacity:{{ x.oa }}"></span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:28px;color:{{ x.ta }}">{{ x.a }}</span>
@@ -275,16 +277,19 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 </sc-if>
 </div>
 
-<div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0 0 20px"><sc-for list="{{ stTabs }}" as="st" hint-placeholder-count="3"><button onClick="{{ st.go }}" style="flex:1 1 0;min-width:0;height:44px;padding:0 10px;border-radius:999px;border:1px solid {{ st.bd }};background:{{ st.bg }};color:{{ st.fg }};font:inherit;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap">{{ st.label }}</button></sc-for></div>
+
 <sc-if value="{{ pastNote }}"><div style="margin:-8px 0 20px;font-size:13px;color:#6B6B72">{{ pastNote }}</div></sc-if>
 <sc-for list="{{ weeks }}" as="w" hint-placeholder-count="2">
 <div style="margin-bottom:28px">
 <div style="display:flex;align-items:baseline;gap:8px;padding-bottom:8px;border-bottom:2px solid #0B0B0F"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:26px">{{ w.title }}</span><span style="font-size:12px;color:#6B6B72">{{ w.range }}</span></div>
 <sc-for list="{{ w.games }}" as="g" hint-placeholder-count="4">
-<div onClick="{{ g.toggle }}" style="display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:10px;align-items:center;min-height:64px;border-bottom:1px solid #ECECE7;color:#0B0B0F;text-decoration:none;cursor:pointer">
+<div style="border-bottom:1px solid #ECECE7;background:{{ g.mine }};padding:0 6px 10px">
+<div onClick="{{ g.toggle }}" style="display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:10px;align-items:center;min-height:64px;color:#0B0B0F;text-decoration:none;cursor:pointer">
 <span style="display:flex;align-items:center;justify-content:flex-end;gap:8px"><span style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:{{ g.ta }}">{{ g.a }}</span><span style="width:26px;height:26px;background:{{ g.ca }};opacity:{{ g.oa }}"></span></span>
 <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:26px;text-align:center;min-width:64px"><span style="color:{{ g.ta }}">{{ g.sa }}</span> <span style="color:#B5B5BD">:</span> <span style="color:{{ g.tb }}">{{ g.sb }}</span></span>
 <span style="display:flex;align-items:center;gap:8px"><span style="width:26px;height:26px;background:{{ g.cb }};opacity:{{ g.ob }}"></span><span style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:{{ g.tb }}">{{ g.b }}</span></span>
+</div>
+<div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span style="font-size:12px;color:#6B6B72">{{ g.date }}</span><span style="display:flex;align-items:center;gap:8px"><sc-if value="{{ g.hasMaps }}"><button onClick="{{ g.toggle }}" style="height:32px;padding:0 10px;border:none;background:none;font:inherit;font-size:13px;font-weight:600;color:#0B0B0F;cursor:pointer">{{ g.detailLabel }}</button></sc-if><a href="{{ g.vod }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;height:32px;padding:0 12px;border-radius:999px;background:#ECECE8;color:#0B0B0F;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap">▶ 다시보기 ↗</a></span></div>
 </div>
 <sc-if value="{{ g.open }}"><div style="margin:4px 0 10px;padding:10px;border-radius:16px;background:#0B0B0F;color:#fff;display:flex;flex-direction:column;gap:8px">
 <sc-for list="{{ g.maps }}" as="mp" hint-placeholder-count="4">
@@ -377,6 +382,9 @@ const RATES = D.teams.map((t) => {
   return { a: t.a, w, l, sw, sl, p: w + l ? w / (w + l) : 0 };
 }).sort((x, y) => y.p - x.p || (y.sw - y.sl) - (x.sw - x.sl));
 const winStyle = (win) => ({ w: win ? 700 : 500, t: win ? '#0B0B0F' : '#9A9AA0' });
+// 내 팀 (set on the home page's team card): its matches get a light wash of the team colour, like its standings row
+const MY = (() => { try { const v = localStorage.getItem('owcs-myteam'); return TEAM[v] ? v : null; } catch (e) { return null; } })();
+const mine = (a, b, base) => MY && (a === MY || b === MY) ? 'color-mix(in srgb, ' + col(MY) + ' 14%, ' + (base || 'transparent') + ')' : (base || 'transparent');
 const PLAYED = D.matches.filter((m) => m.played && !m.live && new Date(m.date).getTime() <= NOW);
 // 경우의 수 = regular season only (the playoff slots are not part of the table)
 const LEFT = D.matches.filter((m) => (!m.phase || m.phase === 'rs') && (!m.played || m.live || new Date(m.date).getTime() > NOW));
@@ -464,7 +472,7 @@ class Component extends DCLogic {
           const A = SP ? winStyle(true) : winStyle(sa > sb), B = SP ? winStyle(true) : winStyle(sb > sa);
           if (SP) { sa = '–'; sb = '–'; }
           return { date: mdw(m.date), a: m.a, b: m.b, na: NAME(m.a), nb: NAME(m.b), sa, sb, ca: logo(m.a), cb: logo(m.b), oa: !SP && m.played && m.sa < m.sb ? .4 : 1, ob: !SP && m.played && m.sb < m.sa ? .4 : 1, wa: A.w, ta: A.t, wb: B.w, tb: B.t,
-            href: 'OWCS KR Home v6.dc.html?date=' + m.day + '#today', vod: m.vod || 'https://www.sooplive.com/station/owesports/vod/review',
+            href: 'OWCS KR Home v6.dc.html?date=' + m.day + '#today', vod: m.vod || 'https://www.sooplive.com/station/owesports/vod/review', mine: mine(m.a, m.b),
             hasMaps: !m.past, open: !m.past && !!this.state.openRows[m.id], detailLabel: this.state.openRows[m.id] ? '맵 상세 ▴' : '맵 상세 ▾',
             toggle: () => this.setState((s) => ({ openRows: { ...s.openRows, [m.id]: !s.openRows[m.id] } })),
             maps: m.past ? [] : window.OWCSMaps.build({ ...m, st: m.live ? 'live' : 'done' }, { spoiler: SP, isOpen: (k) => this.state.openMaps[k],
@@ -482,7 +490,7 @@ class Component extends DCLogic {
       searchHint: '일치하는 경기가 없어요. ' + D.teams.map((t) => t.a).join(', ') + ' 중에서 찾아보세요.',
       noResults: tokens.length > 0 && found.length === 0,
       results: found.map((x) => ({ stage: x.stage, week: x.week || '–', date: x.date.slice(5).replace('-', '.'), a: x.a, sa: SP ? '–' : x.sa, b: x.b, sb: SP ? '–' : x.sb,
-        ca: logo(x.a), cb: logo(x.b), oa: !SP && x.sa < x.sb ? .4 : 1, ob: !SP && x.sb < x.sa ? .4 : 1, ta: x.sa > x.sb ? '#0B0B0F' : '#9A9AA0', tb: x.sb > x.sa ? '#0B0B0F' : '#9A9AA0' })),
+        bg: mine(x.a, x.b, '#fff'), ca: logo(x.a), cb: logo(x.b), oa: !SP && x.sa < x.sb ? .4 : 1, ob: !SP && x.sb < x.sa ? .4 : 1, ta: x.sa > x.sb ? '#0B0B0F' : '#9A9AA0', tb: x.sb > x.sa ? '#0B0B0F' : '#9A9AA0' })),
       h2h: valid && ids.length === 2 && ids[0] !== ids[1] ? (() => {
         const [A, B] = ids; let wa = 0, wb = 0, sa = 0, sb = 0;
         found.forEach((x) => { const a = x.a === A ? x.sa : x.sb, b = x.a === A ? x.sb : x.sa; sa += a; sb += b; if (a > b) wa++; else wb++; });
@@ -497,6 +505,14 @@ class Component extends DCLogic {
         { label: '선수', href: 'OWCS KR Home v6.dc.html?view=teams' }, { label: '방송', href: 'OWCS KR 방송.html' },
       ],
       seasonLabel: anyBracket ? ls.label : (D.year || '') + ' ' + (CUR ? STAGE : '스테이지 ' + this.state.st),
+      // the season button picks the stage on the results tab (other tabs show their own label)
+      seasonLabelD: this.state.tabD === 'results' ? (D.year || '') + ' 스테이지 ' + this.state.st : anyBracket ? ls.label : (D.year || '') + ' ' + STAGE,
+      seasonLabelM: this.state.tabM === 'results' ? (D.year || '') + ' 스테이지 ' + this.state.st : this.state.tabM === 'bracket' ? ls.label : (D.year || '') + ' ' + STAGE,
+      stOpenD: this.state.stOpen === 'd' && this.state.tabD === 'results', stOpenM: this.state.stOpen === 'm' && this.state.tabM === 'results',
+      stChevD: this.state.tabD !== 'results' ? '' : this.state.stOpen === 'd' ? '▴' : '▾', stChevM: this.state.tabM !== 'results' ? '' : this.state.stOpen === 'm' ? '▴' : '▾',
+      stToggleD: () => this.setState((s) => ({ stOpen: s.stOpen === 'd' ? null : 'd', tabD: 'results' })),
+      stToggleM: () => this.setState((s) => ({ stOpen: s.stOpen === 'm' ? null : 'm', tabM: 'results' })),
+      stOpts: STAGE_NOS.slice().reverse().map((no) => { const on = this.state.st === no; return { label: (D.year || '') + ' 스테이지 ' + no, bg: on ? '#7D39EB' : 'transparent', fg: on ? '#fff' : '#0B0B0F', go: () => this.setState({ st: no, stOpen: null }) }; }),
       stTabs: STAGE_NOS.map((no) => { const on = this.state.st === no; return { label: '스테이지 ' + no, bg: on ? '#7D39EB' : 'transparent', fg: on ? '#fff' : '#0B0B0F', bd: on ? '#7D39EB' : '#B9B9B3', go: () => this.setState({ st: no }) }; }),
       pastNote: CUR ? '' : '지난 스테이지는 경기 점수만 있어요 · 맵 상세는 스테이지 ' + (D.stageNo || '') + '부터',
       tabsD: this.tabs('tabD'), tabsM: this.tabs('tabM'),

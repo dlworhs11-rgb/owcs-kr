@@ -65,6 +65,19 @@
 .sd div b{font-size:13px;color:var(--b-ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
 .sd div u{text-decoration:none;font-family:var(--disp,'Barlow Condensed'),sans-serif;font-size:18px;font-weight:800;color:var(--b-ink);line-height:1}
 .sd i{width:22px;height:22px}
+.lane{display:flex;flex-direction:column;gap:12px}
+.lh{display:flex;align-items:center;gap:10px;margin:0 2px}
+.lh u{flex:none;text-decoration:none;height:30px;line-height:30px;padding:0 11px;border-radius:999px;background:var(--b-ink);color:var(--b-card);font-family:var(--disp,'Barlow Condensed'),sans-serif;font-size:17px;font-weight:800}
+.lh b{font-size:16px;font-weight:800}
+.say{font-size:15px;font-weight:700;line-height:1.45;margin:0 2px;word-break:keep-all}
+.say small{display:block;font-size:12.5px;font-weight:500;color:var(--b-mute);margin-top:2px}
+.out{display:flex;flex-wrap:wrap;gap:6px;margin:0 2px}
+.out span{display:inline-flex;align-items:center;height:28px;padding:0 11px;border-radius:999px;font-size:12.5px;font-weight:800;background:var(--b-card);border:1px solid var(--b-line)}
+.out span.go{background:var(--b-ac2);border-color:var(--b-ac2);color:#0B0B0F}
+.out span.ko{color:var(--b-mute)}
+.st{font-size:11.5px;font-weight:800;color:var(--b-mute);margin:2px 2px -4px}
+.sd div.bye{background:var(--b-ac2);color:#0B0B0F}
+.sd div.bye b,.sd div.bye u{color:#0B0B0F}
 .fin{font-size:11.5px;color:var(--b-mute);margin:10px 2px 0;line-height:1.5}
 @container (min-width:640px){.r{height:32px;grid-template-columns:20px minmax(0,1fr) auto;gap:7px;padding:0 10px}.r i{width:20px;height:20px}.r b{font-size:14.5px}.r s{font-size:20px}.mh{font-size:11.5px;padding:4px 10px}.tree{gap:0 26px}.link .m::after{right:-14px;width:13px}.into .m::before{left:-14px;width:13px}.merge .cm::after{right:-14px}}
 @container (min-width:640px){.ttl{font-size:46px}.top{padding:20px 22px 20px 26px}}
@@ -106,7 +119,11 @@
       const all = this.stages();
       let k = this.sel;
       if (k == null) { try { k = sessionStorage.getItem(KEY); } catch (e) { k = null; } }
-      return all.some((s) => s.label === k) ? k : (all[0] || {}).label;
+      // before a new regular season starts the finished stage comes first (the new stage's bracket is still empty)
+      const D = window.OWCS || {}, q = new URLSearchParams(location.search);
+      const now = q.get('date') ? new Date(q.get('date') + 'T12:00:00+09:00').getTime() : Date.now();
+      const early = D.stageRange && now < new Date(D.stageRange[0] + 'T00:00:00+09:00').getTime();
+      return all.some((s) => s.label === k) ? k : ((early && all[1]) || all[0] || {}).label;
     }
 
     render() {
@@ -117,17 +134,17 @@
       const key = this.selKey(), S = all.find((s) => s.label === key) || all[0], isCur = S === all[0] && !(S.champion);
       const byId = Object.fromEntries(((window.OWCS || {}).matches || []).map((m) => [m.id, m]));
       const logo = (a) => { const t = team(a); const u = t && (dark ? (t.logoDark || t.logo) : t.logo); return u ? 'style="background-image:url(\'' + esc(u) + '\')"' : 'class="none"'; };
-      const name = (r) => { const t = team(r.a); return r.a === 'TBD' ? '미정' : t ? t.a : (r.n || r.a); };
+      const name = (r) => { const t = team(r.a); return r.a === 'TBD' ? (r.ph || '미정') : t ? t.a : (r.n || r.a); };
 
       const chip = (x, opt) => {
         const m = byId[x.id];
-        let rows = x.rows.map((r) => ({ ...r }));
+        let rows = x.rows.map((r, i) => ({ ...r, ph: opt && opt.ph ? opt.ph[i] : '' }));
         if (m) { rows[0].a = m.a; rows[1].a = m.b; if (m.played || m.live) { rows[0].s = m.sa; rows[1].s = m.sb; } }
         const live = m ? m.live : x.live, played = m ? m.played : x.played;
         const shown = !SP && (played || live) && rows[0].a !== 'TBD';
         const top = Math.max(+rows[0].s || 0, +rows[1].s || 0);
         const day = String(x.when || '').split(' ').slice(0, opt && opt.short ? 1 : 2).join(' ');
-        const head = (opt && opt.round ? '<span>' + esc(x.round) + '</span>' : '') + (live ? '<em>LIVE</em>' : '<span>' + esc(day) + '</span>');
+        const head = (opt && opt.round ? '<span>' + esc(opt.title || x.round) + '</span>' : '') + (live ? '<em>LIVE</em>' : '<span>' + esc(day) + '</span>');
         return '<div class="m' + (live ? ' live' : '') + '"><div class="mh">' + head + '</div>' + rows.map((r) => {
           const cls = r.a === 'TBD' ? 'tbd' : shown && played && +r.s < top ? 'lose' : '';
           return '<div class="r ' + cls + '"><i ' + logo(r.a) + '></i><b>' + esc(name(r)) + '</b><s>' + (shown ? esc(r.s) : '') + '</s></div>';
@@ -137,7 +154,7 @@
       // a tree from columns of matches: a column feeds the next one straight (same count) or in pairs (half as many)
       const tree = (cols) => '<div class="tree">' + cols.map((c, i) => {
         const nx = cols[i + 1], cls = ['col', nx ? 'link' : '', i ? 'into' : '', nx && nx.ms.length < c.ms.length ? 'merge' : ''].join(' ');
-        return '<div class="' + cls + '"><div class="ct">' + esc(c.title) + '</div><div class="cm">' + c.ms.map((x) => chip(x, c.opt || { short: cols.length > 2 })).join('') + '</div></div>';
+        return '<div class="' + cls + '"><div class="ct">' + esc(c.title) + '</div><div class="cm">' + c.ms.map((x, k) => chip(x, (c.opts && c.opts[k]) || c.opt || { short: cols.length > 2 })).join('') + '</div></div>';
       }).join('') + '</div>';
 
       const po = S.columns.filter((c) => c.key.startsWith('po-'));
@@ -150,19 +167,26 @@
       });
       const seed = S.columns.find((c) => c.key === 'seed'), lcq = S.columns.find((c) => c.key === 'lcq');
 
+      // the two ways into the playoffs, said in plain words: who plays, what winning gets, then the matches
+      const lane = (rank, title, say, small, outs) => '<div class="lh"><u>' + rank + '</u><b>' + title + '</b></div>'
+        + '<div class="say">' + say + '<small>' + small + '</small></div>'
+        + '<div class="out">' + outs.map((o) => '<span class="' + o[0] + '">' + o[1] + '</span>').join('') + '</div>';
       let lcqHtml = '';
       if (lcq) {
-        const up = lcq.matches.filter((x) => /승자조|패자조 준결승/.test(x.round)), fin = lcq.matches.filter((x) => /패자조 결승/.test(x.round));
-        lcqHtml = '<div class="box pre"><div class="h"><b>라스트 찬스 예선</b><span>승자조 결승 · 패자조 결승 승리 팀이 8강</span></div>'
-          + (up.length === 2 && fin.length === 1
-            ? tree([{ title: '1라운드', ms: up, opt: { round: true, short: true } }, { title: '패자조 결승', ms: fin }])
+        const up = lcq.matches.find((x) => /승자조 결승/.test(x.round)), semi = lcq.matches.find((x) => /패자조 준결승/.test(x.round)),
+          fin = lcq.matches.find((x) => /패자조 결승/.test(x.round));
+        lcqHtml = '<div class="box pre lane">' + lane('5–8위', '라스트 찬스', '4팀 중 2팀만 플레이오프에 올라가요', '두 번 지면 탈락 · 올라가면 8강', [['go', '2팀 → 8강'], ['ko', '2팀 탈락']])
+          + (up && semi && fin
+            ? tree([{ title: '첫 경기', ms: [up, semi], opts: [{ round: true, short: true, title: '이기면 바로 진출', ph: ['5위', '6위'] }, { round: true, short: true, title: '지면 탈락', ph: ['7위', '8위'] }] },
+                    { title: '마지막 한 자리', ms: [fin], opts: [{ round: true, short: true, title: '이기면 진출', ph: ['5·6위전 패자', '7·8위전 승자'] }] }])
             : '<div class="rr">' + lcq.matches.map((x) => chip(x, { round: true })).join('') + '</div>')
-          + '</div>';   // first round: upper final + lower semifinal, named on the card
+          + '</div>';
       }
       let seedHtml = '';
       if (seed) {
-        const sd = !SP && S.seeding && S.seeding.length ? '<div class="sd">' + S.seeding.map((t, i) => '<div><u>' + (i + 1) + '</u><i ' + logo(t.a) + '></i><b>' + esc(t.a) + '</b>' + esc(t.sw + '승 ' + t.sl + '패') + '</div>').join('') + '</div>' : '';
-        seedHtml = '<div class="box pre"><div class="h"><b>시드 결정전</b><span>정규 리그 1–4위 · 풀리그</span></div>' + sd + '<div class="rr">' + seed.matches.map((x) => chip(x, { short: true })).join('') + '</div></div>';
+        const sd = !SP && S.seeding && S.seeding.length ? '<div class="sd">' + S.seeding.map((t, i) => '<div class="' + (i < 2 ? 'bye' : '') + '"><u>' + (i + 1) + '</u><i ' + logo(t.a) + '></i><b>' + esc(t.a) + '</b>' + esc(t.sw + '승 ' + t.sl + '패') + '</div>').join('') + '</div>' : '';
+        seedHtml = '<div class="box pre lane">' + lane('1–4위', '시드 결정전', '4팀 모두 플레이오프 진출 확정 · 자리만 정해요', '서로 한 번씩 더 붙고, 정규 리그 승패도 합쳐서 순위 계산', [['go', '1·2위 → 4강 직행'], ['', '3·4위 → 8강부터']])
+          + sd + '<div class="st">경기</div><div class="rr">' + seed.matches.map((x) => chip(x, { short: true })).join('') + '</div></div>';
       }
       const poHtml = poCols.length ? '<div class="box main"><div class="h"><b>플레이오프 본선</b><span>' + esc(poCols.map((c) => c.title).join(' → ')) + '</span></div>' + tree(poCols)
         + (third.length || extra.length ? '<div class="extra">' + [...third.map((x) => '<div><div class="t">' + esc(x.round) + '</div>' + chip(x) + '</div>'), ...extra.map((x) => '<div><div class="t">' + esc(x.round) + '</div>' + chip(x) + '</div>')].join('') + '</div>' : '')
@@ -178,7 +202,7 @@
 
       this.shadowRoot.innerHTML = '<style>' + CSS + '</style><div class="w' + (dark ? ' dark' : '') + '">' + pick
         + head + (note ? '<div class="note">' + note + '</div>' : '')
-        + poHtml + (seedHtml || lcqHtml ? '<div class="pre-l">본선 진출전</div><div class="grid">' + seedHtml + lcqHtml + '</div>' : '') + '</div>';
+        + poHtml + (seedHtml || lcqHtml ? '<div class="pre-l">플레이오프 가는 길</div><div class="grid">' + seedHtml + lcqHtml + '</div>' : '') + '</div>';
       this.shadowRoot.querySelectorAll('.pick button').forEach((b) => b.addEventListener('click', () => {
         this.sel = b.getAttribute('data-k');
         try { sessionStorage.setItem(KEY, this.sel); } catch (e) {}

@@ -174,10 +174,6 @@ body.ticket-page footer{background:#0B0B0F;color:#8A8A93;border:0}
       <span class="chip">토·일 <b>15:00–21:00</b></span>
       <span class="chip">만 15세 이상</span>
     </div>
-    <div class="next" id="next">
-      <div><div class="k">다음 직관 가능 경기일</div><div class="v disp nextTitle"><span id="nextTitle">–</span><img class="owl pc" src="assets/icons/overwatch.svg" alt=""></div><div class="s" id="nextSub"></div></div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="cta" href="https://www.ticketlink.co.kr/sports/1262/631" target="_blank" rel="noopener">티켓링크에서 예매 ↗</a><a class="cta ghost" href="#schedule">예매 일정 보기</a></div>
-    </div>
   </div>
 
   <section class="block" id="info">
@@ -380,14 +376,7 @@ function draw() {
     tr.innerHTML = '<td class="wk">' + md(r[1]) + ' (' + r[2] + ')<small>' + stage + ' ' + r[0] + '<img class="owl pc" src="assets/icons/overwatch.svg" alt=""></small></td><td class="n">' + (r[3] || '발표 전') + '</td><td class="mv">' + vs + '</td><td class="op" style="white-space:nowrap">' + md(r[4]) + ' ' + r[4].slice(11) + '</td><td class="stt"><span class="badge ' + st[1] + '">' + st[0] + '</span></td>';
     body.appendChild(tr);
   });
-  if (next) {
-    var r = next.r;
-    document.getElementById('nextTitle').textContent = md(r[1]) + ' (' + r[2] + ') ' + (r[3] ? r[3] + ' ' : '') + '· ' + r[0];
-    document.getElementById('nextSub').innerHTML = '';   // matches and sale times are in the TICKETS table below (user: no extra line here)
-  } else {
-    document.getElementById('nextTitle').textContent = '다음 스테이지';
-    document.getElementById('nextSub').textContent = '이번 스테이지 직관 판매가 모두 끝났어요. 다음 스테이지 일정이 나오면 여기에 표시돼요.';
-  }
+  // the "다음 직관 가능 경기일" card was removed (user); the next match day is still marked in the TICKETS table
 }
 draw();
 </script>

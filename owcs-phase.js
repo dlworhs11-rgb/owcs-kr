@@ -13,8 +13,20 @@
   var rsEnd = new Date(D.stageRange[1] + 'T23:59:59+09:00').getTime();
   var stEnd = new Date((D.stageEnd || D.stageRange[1]) + 'T23:59:59+09:00').getTime();
   var po = q.get('phase') === 'po' || (now > rsEnd && now <= stEnd);
-  if (!po) return;
   var html = document.documentElement;
+  if (!po) {
+    // home during the regular season: the bracket shows from a week before the seeding deciders / LCQ start; the
+    // finished stage's bracket stays until the next regular season starts (the data may switch stage weeks earlier)
+    var day = function (s) { return new Date(s + 'T00:00:00+09:00').getTime(); };
+    var post = (D.matches || []).filter(function (m) { return m.phase && m.phase !== 'rs'; }).map(function (m) { return m.day; }).sort()[0];
+    var from = (post ? day(post) : rsEnd + 1) - 7 * 86400e3;
+    var past = (D.pastStages && D.pastStages.length) || (D.lastStage && D.lastStage.columns && D.lastStage.columns.length);
+    var show = now >= from || (now < day(D.stageRange[0]) && past);
+    var hide = document.createElement('style');
+    hide.textContent = '[data-stand-tg]{display:none !important}' + (show ? '' : '#tournament{display:none !important}');
+    (document.head || html).appendChild(hide);
+    return;
+  }
   html.setAttribute('data-owcs-po', '');
 
   var P = 'html[data-owcs-po] ', S = P + '#dc-root [data-screen-label]';
