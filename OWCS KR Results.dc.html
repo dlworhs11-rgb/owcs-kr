@@ -104,6 +104,8 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 </sc-if>
 </div>
 
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0 0 24px"><span style="font-size:14px;font-weight:700;color:#55555C;margin-right:6px">스테이지</span><sc-for list="{{ stTabs }}" as="st" hint-placeholder-count="3"><button onClick="{{ st.go }}" style="height:40px;padding:0 16px;border-radius:999px;border:1px solid {{ st.bd }};background:{{ st.bg }};color:{{ st.fg }};font:inherit;font-size:14px;font-weight:700;cursor:pointer">{{ st.label }}</button></sc-for></div>
+<sc-if value="{{ pastNote }}"><div style="margin:-12px 0 24px;font-size:14px;color:#6B6B72">{{ pastNote }}</div></sc-if>
 <div style="display:flex;flex-direction:column;gap:40px">
 <sc-for list="{{ weeks }}" as="w" hint-placeholder-count="2">
 <div>
@@ -115,7 +117,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:36px;text-align:center;letter-spacing:.02em;filter:{{ blur }}"><span style="color:{{ g.ta }}">{{ g.sa }}</span> <span style="color:#B5B5BD">:</span> <span style="color:{{ g.tb }}">{{ g.sb }}</span></span>
 <span style="display:flex;align-items:center;gap:12px"><span style="width:36px;height:36px;background:{{ g.cb }};opacity:{{ g.ob }}"></span><span style="font-size:17px;font-weight:{{ g.wb }};color:{{ g.tb }}">{{ g.nb }}</span></span>
 <a href="{{ g.vod }}" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;height:26px;padding:0 10px;border-radius:999px;background:#ECECE8;color:#0B0B0F;font-size:12px;font-weight:700;text-decoration:none" style-hover="background:#C6FF33;color:#0B0B0F">다시보기 ↗</a>
-<button onClick="{{ g.toggle }}" style="font:inherit;font-size:14px;font-weight:600;color:#0B0B0F;text-align:right;background:none;border:0;padding:0;cursor:pointer">{{ g.detailLabel }}</button>
+<sc-if value="{{ g.hasMaps }}"><button onClick="{{ g.toggle }}" style="font:inherit;font-size:14px;font-weight:600;color:#0B0B0F;text-align:right;background:none;border:0;padding:0;cursor:pointer">{{ g.detailLabel }}</button></sc-if>
 </div>
 <sc-if value="{{ g.open }}"><div style="margin:6px 0 14px;padding:14px;border-radius:20px;background:#0B0B0F;color:#fff;display:flex;flex-direction:column;gap:10px">
 <sc-for list="{{ g.maps }}" as="mp" hint-placeholder-count="4">
@@ -273,6 +275,8 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 </sc-if>
 </div>
 
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0 0 20px"><sc-for list="{{ stTabs }}" as="st" hint-placeholder-count="3"><button onClick="{{ st.go }}" style="flex:1 1 0;min-width:0;height:44px;padding:0 10px;border-radius:999px;border:1px solid {{ st.bd }};background:{{ st.bg }};color:{{ st.fg }};font:inherit;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap">{{ st.label }}</button></sc-for></div>
+<sc-if value="{{ pastNote }}"><div style="margin:-8px 0 20px;font-size:13px;color:#6B6B72">{{ pastNote }}</div></sc-if>
 <sc-for list="{{ weeks }}" as="w" hint-placeholder-count="2">
 <div style="margin-bottom:28px">
 <div style="display:flex;align-items:baseline;gap:8px;padding-bottom:8px;border-bottom:2px solid #0B0B0F"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:26px">{{ w.title }}</span><span style="font-size:12px;color:#6B6B72">{{ w.range }}</span></div>
@@ -376,6 +380,18 @@ const winStyle = (win) => ({ w: win ? 700 : 500, t: win ? '#0B0B0F' : '#9A9AA0' 
 const PLAYED = D.matches.filter((m) => m.played && !m.live && new Date(m.date).getTime() <= NOW);
 // 경우의 수 = regular season only (the playoff slots are not part of the table)
 const LEFT = D.matches.filter((m) => (!m.phase || m.phase === 'rs') && (!m.played || m.live || new Date(m.date).getTime() > NOW));
+// results tab stage picker: earlier stages of the year come from D.history (date + score only, no map detail);
+// playoff games take their round (시드 결정전 / LCQ / 8강 ...) from that stage's bracket in D.pastStages
+const STAGE_NOS = Array.from({ length: D.stageNo || 1 }, (_, i) => i + 1);
+const PAST = (no) => {
+  const bk = (D.pastStages || []).find((p) => p.label === (D.year || '') + ' 스테이지 ' + no);
+  const round = (x) => { const k = [x.a, x.b].sort().join(); for (const c of (bk ? bk.columns : [])) if (c.matches.some((y) => y.day === x.date && y.rows.map((r) => r.a).sort().join() === k)) return c.title; return '플레이오프'; };
+  const list = D.history.filter((x) => x.stage === '스테이지 ' + no || x.stage === '스테이지 ' + no + ' 플레이오프').slice().reverse();
+  // history weeks count calendar weeks from the stage start; a break week would leave a gap (1, 3, 4 ...), so number the match weeks
+  const wks = [...new Set(list.filter((x) => !x.stage.endsWith('플레이오프')).map((x) => x.week))].sort((a, b) => a - b);
+  return list.map((x, i) => ({ id: 's' + no + '-' + i, date: x.date, a: x.a, b: x.b, sa: x.sa, sb: x.sb, played: true, past: true,
+    group: x.stage.endsWith('플레이오프') ? round(x) : (wks.indexOf(x.week) + 1) + '주차' }));
+};
 
 // 경우의 수: every win/loss combination of the remaining matches (2^n), ranked by match wins.
 // best = rank if every tie breaks our way, worst = rank if every tie breaks against us.
@@ -423,7 +439,7 @@ const resolve = (tok) => {
   const part = D.teams.find((t) => norm(t.n).includes(k) || t.ko.includes(tok.trim())); return part ? part.a : null;
 };
 class Component extends DCLogic {
-  state = (() => { const t = new URLSearchParams(location.search).get('tab'); const k = TABS.some((x) => x.k === t) ? t : 'results'; return { bk: PO_ON ? 'cur' : 'last', tabD: k, tabM: k, q: new URLSearchParams(location.search).get('q') || '', sp: false, openRows: {}, openMaps: {} }; })();
+  state = (() => { const t = new URLSearchParams(location.search).get('tab'); const k = TABS.some((x) => x.k === t) ? t : 'results'; const st = Number(new URLSearchParams(location.search).get('stage')); return { bk: PO_ON ? 'cur' : 'last', tabD: k, tabM: k, st: STAGE_NOS.includes(st) ? st : (D.stageNo || 1), q: new URLSearchParams(location.search).get('q') || '', sp: false, openRows: {}, openMaps: {} }; })();
   tabs(key) {
     const cur = this.state[key];
     return TABS.map((t) => ({ ...t, on: cur === t.k, off: cur !== t.k, go: () => this.setState({ [key]: t.k }) }));
@@ -437,8 +453,8 @@ class Component extends DCLogic {
     const valid = ids.length > 0 && ids.every(Boolean);
     const found = valid ? D.history.filter((x) => ids.every((id) => x.a === id || x.b === id)) : [];
     // grouped by week, then 시드 결정전 · LCQ and 플레이오프 (owcs-data.js group), newest first
-    const byWeek = {};
-    PLAYED.forEach((m) => { const g = m.group || m.week + '주차'; (byWeek[g] = byWeek[g] || []).push(m); });
+    const byWeek = {}, CUR = this.state.st === (D.stageNo || 1);
+    (CUR ? PLAYED : PAST(this.state.st)).forEach((m) => { const g = m.group || m.week + '주차'; (byWeek[g] = byWeek[g] || []).push(m); });
     const weeks = Object.keys(byWeek).sort((a, b) => byWeek[b][0].date.localeCompare(byWeek[a][0].date)).map((wk) => {
       const list = byWeek[wk].slice().reverse();
       return {
@@ -449,9 +465,9 @@ class Component extends DCLogic {
           if (SP) { sa = '–'; sb = '–'; }
           return { date: mdw(m.date), a: m.a, b: m.b, na: NAME(m.a), nb: NAME(m.b), sa, sb, ca: logo(m.a), cb: logo(m.b), oa: !SP && m.played && m.sa < m.sb ? .4 : 1, ob: !SP && m.played && m.sb < m.sa ? .4 : 1, wa: A.w, ta: A.t, wb: B.w, tb: B.t,
             href: 'OWCS KR Home v6.dc.html?date=' + m.day + '#today', vod: m.vod || 'https://www.sooplive.com/station/owesports/vod/review',
-            open: !!this.state.openRows[m.id], detailLabel: this.state.openRows[m.id] ? '맵 상세 ▴' : '맵 상세 ▾',
+            hasMaps: !m.past, open: !m.past && !!this.state.openRows[m.id], detailLabel: this.state.openRows[m.id] ? '맵 상세 ▴' : '맵 상세 ▾',
             toggle: () => this.setState((s) => ({ openRows: { ...s.openRows, [m.id]: !s.openRows[m.id] } })),
-            maps: window.OWCSMaps.build({ ...m, st: m.live ? 'live' : 'done' }, { spoiler: SP, isOpen: (k) => this.state.openMaps[k],
+            maps: m.past ? [] : window.OWCSMaps.build({ ...m, st: m.live ? 'live' : 'done' }, { spoiler: SP, isOpen: (k) => this.state.openMaps[k],
               toggle: (k) => this.setState((s) => ({ openMaps: { ...s.openMaps, [k]: !s.openMaps[k] } })) }) };
         }),
       };
@@ -480,7 +496,9 @@ class Component extends DCLogic {
         { label: '순위', href: 'OWCS KR Home v6.dc.html?view=standings' }, { label: '직관', href: 'OWCS KR 직관.html' },
         { label: '선수', href: 'OWCS KR Home v6.dc.html?view=teams' }, { label: '방송', href: 'OWCS KR 방송.html' },
       ],
-      seasonLabel: anyBracket ? ls.label : (D.year || '') + ' ' + STAGE,
+      seasonLabel: anyBracket ? ls.label : (D.year || '') + ' ' + (CUR ? STAGE : '스테이지 ' + this.state.st),
+      stTabs: STAGE_NOS.map((no) => { const on = this.state.st === no; return { label: '스테이지 ' + no, bg: on ? '#7D39EB' : 'transparent', fg: on ? '#fff' : '#0B0B0F', bd: on ? '#7D39EB' : '#B9B9B3', go: () => this.setState({ st: no }) }; }),
+      pastNote: CUR ? '' : '지난 스테이지는 경기 점수만 있어요 · 맵 상세는 스테이지 ' + (D.stageNo || '') + '부터',
       tabsD: this.tabs('tabD'), tabsM: this.tabs('tabM'),
       d: this.flags('tabD'), m: this.flags('tabM'),
       weeks,
