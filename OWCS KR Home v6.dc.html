@@ -245,9 +245,9 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <sc-for list="{{ weekdays }}" as="w" hint-placeholder-count="7"><div style="font-size:13px;font-weight:600;color:var(--mute,#6B6B72);padding:0 8px 6px">{{ w }}</div></sc-for>
 <sc-for list="{{ cells }}" as="c" hint-placeholder-count="35">
 <div style="position:relative;min-height:96px;border-radius:12px;padding:6px 5px;display:flex;flex-direction:column;gap:4px;border:1px solid var(--line,#E6E6E1)">
-<sc-if value="{{ c.tag }}"><span style="position:absolute;top:12px;right:7px;max-width:calc(100% - 44px);font-size:10.5px;font-weight:800;line-height:16px;color:var(--ink,#0B0B0F);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ c.tag }}</span></sc-if><sc-if value="{{ c.today }}"><div style="width:28px;height:28px;border-radius:50%;background:#0B0B0F;color:#fff;display:grid;place-items:center;font-size:14px;font-weight:700">{{ c.d }}</div></sc-if>
-<sc-if value="{{ c.plain }}"><div style="height:28px;display:flex;align-items:center;padding-left:4px;font-size:14px;font-weight:600;color:var(--ink,#0B0B0F)">{{ c.d }}</div></sc-if>
-<sc-if value="{{ c.pastDay }}"><div style="height:28px;display:flex;align-items:center;padding-left:4px;font-size:14px;font-weight:600;color:#707077">{{ c.d }}</div></sc-if>
+<sc-if value="{{ c.tag }}"><span style="position:absolute;top:12px;right:7px;max-width:calc(100% - 44px);font-size:10.5px;font-weight:800;line-height:16px;color:var(--ink,#0B0B0F);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ c.tag }}</span></sc-if><sc-if value="{{ c.today }}"><div style="width:28px;height:28px;border-radius:50%;background:#0B0B0F;color:{{ c.dfg }};display:grid;place-items:center;font-size:14px;font-weight:700">{{ c.d }}</div></sc-if>
+<sc-if value="{{ c.plain }}"><div style="height:28px;display:flex;align-items:center;padding-left:4px;font-size:14px;font-weight:600;color:{{ c.dcol }}">{{ c.d }}</div></sc-if>
+<sc-if value="{{ c.pastDay }}"><div style="height:28px;display:flex;align-items:center;padding-left:4px;font-size:14px;font-weight:600;color:{{ c.dcol }}">{{ c.d }}</div></sc-if>
 <sc-for list="{{ c.games }}" as="g" hint-placeholder-count="0">
 <sc-if value="{{ g.past }}"><div style="font-size:11px;font-weight:600;color:var(--mute,#6B6B72);background:var(--paper3,#F1F1ED);border-radius:6px;padding:3px 4px"><span style="display:flex;align-items:center;gap:1px;white-space:nowrap;overflow:hidden;font-family:var(--disp,'Barlow Condensed'),sans-serif;font-size:11.5px;line-height:14px"><span style="flex:none;width:12px;height:12px;margin-right:1px;background:{{ g.la }};opacity:{{ g.oa }}"></span><b>{{ g.a }}</b><span style="padding-left:2px">{{ g.sa }}</span><span style="opacity:.55;font-size:9px;padding:0 2px">vs</span><span style="padding-right:2px">{{ g.sb }}</span><b>{{ g.b }}</b><span style="flex:none;width:12px;height:12px;margin-left:1px;background:{{ g.lb }};opacity:{{ g.ob }}"></span></span></div></sc-if>
 <sc-if value="{{ g.now }}"><div style="font-size:11px;font-weight:700;color:#0B0B0F;background:var(--ac2,#C6FF33);border-radius:6px;padding:3px 4px"><span style="display:flex;align-items:center;gap:1px;white-space:nowrap;overflow:hidden;font-family:var(--disp,'Barlow Condensed'),sans-serif;font-size:11.5px;line-height:14px"><span style="flex:none;width:12px;height:12px;margin-right:1px;background:{{ g.la }};opacity:{{ g.oa }}"></span><b>{{ g.a }}</b><span style="padding-left:2px">{{ g.sa }}</span><span style="opacity:.55;font-size:9px;padding:0 2px">vs</span><span style="padding-right:2px">{{ g.sb }}</span><b>{{ g.b }}</b><span style="flex:none;width:12px;height:12px;margin-left:1px;background:{{ g.lb }};opacity:{{ g.ob }}"></span></span></div></sc-if>
@@ -498,9 +498,9 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <sc-for list="{{ weekdays }}" as="w" hint-placeholder-count="7"><div style="font-size:13px;font-weight:600;color:var(--mute,#6B6B72);padding:0 8px 6px">{{ w }}</div></sc-for>
 <sc-for list="{{ cells }}" as="c" hint-placeholder-count="35">
 <div style="position:relative;min-height:96px;border-radius:12px;padding:6px 5px;display:flex;flex-direction:column;gap:4px;border:1px solid var(--line,#E6E6E1)">
-<sc-if value="{{ c.tag }}"><span style="position:absolute;top:12px;right:7px;max-width:calc(100% - 44px);font-size:10.5px;font-weight:800;line-height:16px;color:var(--ink,#0B0B0F);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ c.tag }}</span></sc-if><sc-if value="{{ c.today }}"><div style="width:28px;height:28px;border-radius:50%;background:#0B0B0F;color:#fff;display:grid;place-items:center;font-size:14px;font-weight:700">{{ c.d }}</div></sc-if>
-<sc-if value="{{ c.plain }}"><div style="height:28px;display:flex;align-items:center;padding-left:4px;font-size:14px;font-weight:600;color:var(--ink,#0B0B0F)">{{ c.d }}</div></sc-if>
-<sc-if value="{{ c.pastDay }}"><div style="height:28px;display:flex;align-items:center;padding-left:4px;font-size:14px;font-weight:600;color:#707077">{{ c.d }}</div></sc-if>
+<sc-if value="{{ c.tag }}"><span style="position:absolute;top:12px;right:7px;max-width:calc(100% - 44px);font-size:10.5px;font-weight:800;line-height:16px;color:var(--ink,#0B0B0F);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ c.tag }}</span></sc-if><sc-if value="{{ c.today }}"><div style="width:28px;height:28px;border-radius:50%;background:#0B0B0F;color:{{ c.dfg }};display:grid;place-items:center;font-size:14px;font-weight:700">{{ c.d }}</div></sc-if>
+<sc-if value="{{ c.plain }}"><div style="height:28px;display:flex;align-items:center;padding-left:4px;font-size:14px;font-weight:600;color:{{ c.dcol }}">{{ c.d }}</div></sc-if>
+<sc-if value="{{ c.pastDay }}"><div style="height:28px;display:flex;align-items:center;padding-left:4px;font-size:14px;font-weight:600;color:{{ c.dcol }}">{{ c.d }}</div></sc-if>
 <sc-for list="{{ c.games }}" as="g" hint-placeholder-count="0">
 <sc-if value="{{ g.past }}"><div style="font-size:11px;font-weight:600;color:var(--mute,#6B6B72);background:var(--paper3,#F1F1ED);border-radius:6px;padding:3px 4px"><span style="display:flex;align-items:center;gap:1px;white-space:nowrap;overflow:hidden;font-family:var(--disp,'Barlow Condensed'),sans-serif;font-size:11.5px;line-height:14px"><span style="flex:none;width:12px;height:12px;margin-right:1px;background:{{ g.la }};opacity:{{ g.oa }}"></span><b>{{ g.a }}</b><span style="padding-left:2px">{{ g.sa }}</span><span style="opacity:.55;font-size:9px;padding:0 2px">vs</span><span style="padding-right:2px">{{ g.sb }}</span><b>{{ g.b }}</b><span style="flex:none;width:12px;height:12px;margin-left:1px;background:{{ g.lb }};opacity:{{ g.ob }}"></span></span></div></sc-if>
 <sc-if value="{{ g.now }}"><div style="font-size:11px;font-weight:700;color:#0B0B0F;background:var(--ac2,#C6FF33);border-radius:6px;padding:3px 4px"><span style="display:flex;align-items:center;gap:1px;white-space:nowrap;overflow:hidden;font-family:var(--disp,'Barlow Condensed'),sans-serif;font-size:11.5px;line-height:14px"><span style="flex:none;width:12px;height:12px;margin-right:1px;background:{{ g.la }};opacity:{{ g.oa }}"></span><b>{{ g.a }}</b><span style="padding-left:2px">{{ g.sa }}</span><span style="opacity:.55;font-size:9px;padding:0 2px">vs</span><span style="padding-right:2px">{{ g.sb }}</span><b>{{ g.b }}</b><span style="flex:none;width:12px;height:12px;margin-left:1px;background:{{ g.lb }};opacity:{{ g.ob }}"></span></span></div></sc-if>
@@ -1184,13 +1184,25 @@ const gcalOf = (m) => {
 
 const DARK = { '--glass': 'rgba(30,30,38,0.72)', '--paper': '#16161C', '--paper2': '#0E0E12', '--paper3': '#24242C', '--chip': '#22222A', '--chipLine': '#3A3A45', '--line': '#2E2E37', '--ink': '#F2F2F5', '--mute': '#A3A3AD', '--banner-edge': '#2E2E37' };
 const FONTS = { 'Barlow Condensed': "'Barlow Condensed'", 'Oswald': "'Oswald'", 'Saira Condensed': "'Saira Condensed'", 'Big Shoulders Display': "'Big Shoulders Display'" };
+// Korean public holidays (빨간날, substitute holidays included), shown in red on the calendar with Sundays.
+// Add the next year's dates here once they are announced.
+const HOLIDAYS_KR = new Set([
+  // 2026
+  '2026-01-01', '2026-02-16', '2026-02-17', '2026-02-18', '2026-03-01', '2026-03-02', '2026-05-05', '2026-05-24', '2026-05-25',
+  '2026-06-03', '2026-06-06', '2026-07-17', '2026-08-15', '2026-08-17', '2026-09-24', '2026-09-25', '2026-09-26',
+  '2026-10-03', '2026-10-05', '2026-10-09', '2026-12-25',
+  // 2027
+  '2027-01-01', '2027-02-06', '2027-02-07', '2027-02-08', '2027-02-09', '2027-03-01', '2027-05-05', '2027-05-13', '2027-06-06',
+  '2027-07-17', '2027-08-15', '2027-08-16', '2027-09-14', '2027-09-15', '2027-09-16', '2027-10-03', '2027-10-04',
+  '2027-10-09', '2027-10-11', '2027-12-25', '2027-12-27',
+]);
 const I18N = {
   ko: { nav: ['일정', '결과', '순위', '직관', '선수', '방송'], sched: '경기 일정', stand: '팀별 순위', teams: '팀 & 선수 라인업', recent: '최근 · 다가오는 경기', next: '다음 일정', share: '일정 공유', spoiler: '스포일러 방지', dark: '다크 모드', none: '오늘은 경기가 없어요', my: '내 팀', setMy: '☆ 내 팀으로 설정', isMy: '★ 내 팀', todayP: '오늘의 경기' },
   ja: { nav: ['日程', '結果', '順位', '観戦', '選手', '配信'], sched: '試合日程', stand: 'チーム順位', teams: 'チーム & 選手', recent: '最近 · 今後の試合', next: '次の日程', share: '日程を共有', spoiler: 'ネタバレ防止', dark: 'ダークモード', none: '今日は試合がありません', my: 'マイチーム', setMy: '☆ マイチームに設定', isMy: '★ マイチーム', todayP: '今日の試合' },
   en: { nav: ['Schedule', 'Results', 'Standings', 'Tickets', 'Players', 'Live'], sched: 'Schedule', stand: 'Standings', teams: 'Teams & Rosters', recent: 'Recent · Upcoming', next: 'Up next', share: 'Share schedule', spoiler: 'No spoilers', dark: 'Dark mode', none: 'No match today', my: 'My team', setMy: '☆ Set as my team', isMy: '★ My team', todayP: "Today's match" },
 };
 class Component extends DCLogic {
-  state = { copied: null, now: nowMs(), mapsShown: null, q: '', sel: (() => { try { const v = sessionStorage.getItem('owcs-sel'); if (v && D.teams.some((t) => t.a === v)) return v; } catch (e) {} return (D.standings[0] || {}).a || 'CR'; })(), ms: false, share: false, shareMsg: '', spoiler: false, dark: params.get('dark') ? params.get('dark') === '1' : (() => { try { return localStorage.getItem('owcs-dark') === '1'; } catch (e) { return false; } })(), lang: (window.OWCSi18n || {}).lang || 'ko', sub: false, subMode: 'all', subTeams: [], myTeam: (() => { try { const v = localStorage.getItem('owcs-myteam'); return D.teams.some((t) => t.a === v) ? v : null; } catch (e) { return null; } })(), tab: 0, myPick: false, month: null, calDay: null, rev: 0, openMaps: {}, vday: null };
+  state = { copied: null, now: nowMs(), mapsShown: null, q: '', sel: (() => { try { const my = localStorage.getItem('owcs-myteam'); if (my && D.teams.some((t) => t.a === my)) return my; const v = sessionStorage.getItem('owcs-sel'); if (v && D.teams.some((t) => t.a === v)) return v; } catch (e) {} return (D.standings[0] || {}).a || 'CR'; })(), ms: false, share: false, shareMsg: '', spoiler: false, dark: params.get('dark') ? params.get('dark') === '1' : (() => { try { return localStorage.getItem('owcs-dark') === '1'; } catch (e) { return false; } })(), lang: (window.OWCSi18n || {}).lang || 'ko', sub: false, subMode: 'all', subTeams: [], myTeam: (() => { try { const v = localStorage.getItem('owcs-myteam'); return D.teams.some((t) => t.a === v) ? v : null; } catch (e) { return null; } })(), tab: 0, myPick: false, month: null, calDay: null, rev: 0, openMaps: {}, vday: null };
   componentDidMount() {
     this.t = setInterval(() => this.setState({ now: nowMs() }), 1000);
     // pick up a rebuilt owcs-data.js (live scores from the PC, the cloud refresh): every 10 s while a match of
@@ -1210,7 +1222,7 @@ class Component extends DCLogic {
     };
     this.r = setTimeout(poll, 10000);
     // my team set on another page/tab (results, live) shows up here too
-    this.onStore = (e) => { if (e.key === 'owcs-myteam') this.setState({ myTeam: D.teams.some((t) => t.a === e.newValue) ? e.newValue : null }); };
+    this.onStore = (e) => { if (e.key !== 'owcs-myteam') return; const v = D.teams.some((t) => t.a === e.newValue) ? e.newValue : null; this.setState(v ? { myTeam: v, sel: v } : { myTeam: v }); };
     window.addEventListener('storage', this.onStore);
   }
   componentWillUnmount() { clearInterval(this.t); clearTimeout(this.r); clearTimeout(this.ct); window.removeEventListener('storage', this.onStore); }
@@ -1232,7 +1244,7 @@ class Component extends DCLogic {
     const showStaff = P.showStaff ?? true;
     const showBans = P.showBans ?? true;
     const SP = this.state.spoiler, L = I18N[this.state.lang], MY = this.state.myTeam, DM = this.state.dark;
-    const setMy = (a) => this.setState((s) => { const v = s.myTeam === a ? null : a; try { v ? localStorage.setItem('owcs-myteam', v) : localStorage.removeItem('owcs-myteam'); } catch (e) {} return { myTeam: v, myPick: false }; });
+    const setMy = (a) => this.setState((s) => { const v = s.myTeam === a ? null : a; try { v ? localStorage.setItem('owcs-myteam', v) : localStorage.removeItem('owcs-myteam'); } catch (e) {} return v ? { myTeam: v, myPick: false, sel: v } : { myTeam: v, myPick: false }; });
     const M = D.matches.map((m) => ({ ...m, st: state(m, now) }));
     // the TODAY box can step back through earlier match days (‹ ›); vday = the day it shows, today unless picked
     const dayList = [...new Set(M.map((m) => m.day).filter((d) => d < today)), today];
@@ -1299,18 +1311,22 @@ class Component extends DCLogic {
     for (let i = 0; i < first; i++) cells.push({ games: [] });
     for (let d = 1; d <= days; d++) {
       const ds = Y + '-' + pad(Mo + 1) + '-' + pad(d);
-      const g = M.filter((m) => m.day === ds).map((m) => {
+      // days before today (KST) show no matches at all: no score, logo or team name
+      const g = M.filter((m) => m.day === ds && ds >= today).map((m) => {
         const o = orient(m.a, m.sa, m.b, m.sb);
         const label = m.st === 'up' || SP ? o[0] + '·' + o[2] : o[0] + ' ' + o[1] + ':' + o[3] + ' ' + o[2];
         const hide = m.st === 'up' || SP;
         return { label, a: o[0], b: o[2], sa: hide ? '' : o[1], sb: hide ? '' : o[3], oa: !hide && m.st === 'done' && o[1] < o[3] ? .4 : 1, ob: !hide && m.st === 'done' && o[3] < o[1] ? .4 : 1, la: logoBg(o[0], DM), lb: logoBg(o[2], DM), mid: m.st === 'up' || SP ? 'vs' : o[1] + ':' + o[3], past: ds < today, now: ds === today, next: ds > today };
       });
       // stage of the day's matches on the date row: 시드전 · LCQ / PO 8강 / PO 4강 / PO 결승
-      const dm = M.filter((m) => m.day === ds && m.phase && m.phase !== 'rs');
+      const dm = M.filter((m) => m.day === ds && ds >= today && m.phase && m.phase !== 'rs');
       const tag = !dm.length ? '' : dm.every((m) => m.phase === 'po')
         ? 'PO ' + (dm.some((m) => m.round === '결승') ? '결승' : dm[0].round || '')
         : '시드전 · LCQ';
-      cells.push({ d, ds, today: ds === today, plain: ds > today, pastDay: ds < today, games: g, tag });
+      // Sundays and Korean public holidays: red date (paler once the day is over)
+      const red = (first + d - 1) % 7 === 0 || HOLIDAYS_KR.has(ds);
+      const dcol = red ? (ds < today ? (DM ? '#8E4A4D' : '#EBA3A5') : (DM ? '#FF6B6E' : '#E5484D')) : ds < today ? '#707077' : 'var(--ink,#0B0B0F)';
+      cells.push({ d, ds, today: ds === today, plain: ds > today, pastDay: ds < today, games: g, tag, red, dcol });
     }
     // mobile calendar: tap a day to list its matches under the month; by default today, else the next match day
     const calDay = this.state.calDay || (todays.length && vday === today ? today : (nextM || M[M.length - 1] || {}).day);
@@ -1318,7 +1334,7 @@ class Component extends DCLogic {
       c.pick = has ? () => this.setState({ calDay: c.ds }) : null; c.cur = has ? 'pointer' : 'default';
       const mine = !!MY && (c.games || []).some((g) => g.a === MY || g.b === MY);
       c.mbg = sel ? 'var(--paper3,#ECECE8)' : mine ? 'color-mix(in srgb, ' + col(MY) + ' 12%, transparent)' : 'transparent'; c.mbd = sel ? '2px solid var(--ink,#0B0B0F)' : mine ? '2px solid ' + col(MY) : has ? '1px solid var(--line,#E6E6E1)' : '1px solid transparent';
-      c.dbg = c.today ? '#0B0B0F' : 'transparent'; c.dfg = c.today ? '#fff' : c.pastDay ? '#8A8A93' : 'var(--ink,#0B0B0F)';
+      c.dbg = c.today ? '#0B0B0F' : 'transparent'; c.dfg = c.today ? (c.red ? '#FF6B6E' : '#fff') : c.dcol || 'var(--ink,#0B0B0F)';
       (c.games || []).forEach((g) => { g.mo = g.past ? .75 : 1; }); });
     const shiftMonth = (k) => this.setState({ month: new Date(Date.UTC(Y, Mo + k, 1)).toISOString() });
     const tk = kst(now);
@@ -1328,8 +1344,8 @@ class Component extends DCLogic {
     });
     const target = nextM ? new Date(nextM.date).getTime() : now;
     const diff = Math.max(0, Math.floor((target - now) / 1000));
-    const past = M.filter((m) => m.st === 'done' && m.day < today);
-    const listM = [...past.slice(-2), ...todays, ...upcoming.filter((m) => m.day !== today)].slice(0, 7);
+    // list under the calendar: today's and later matches only (finished days are left out)
+    const listM = [...todays, ...upcoming.filter((m) => m.day !== today)].slice(0, 7);
     const card = (m) => {
       const o = orient(m.a, m.sa, m.b, m.sb);
       return { date: md(m.date), dow: dow(m.date), a: o[0], b: o[2], la: logoBg(o[0], DM), lb: logoBg(o[2], DM), oa: !SP && m.st === 'done' && o[1] < o[3] ? .4 : 1, ob: !SP && m.st === 'done' && o[3] < o[1] ? .4 : 1,
@@ -1377,7 +1393,7 @@ class Component extends DCLogic {
       weekdays: DOWS, cells, week,
       calTitle: Y + '. ' + pad(Mo + 1), calPrev: () => shiftMonth(-1), calNext: () => shiftMonth(1),
       matches: listM.map(card),
-      dayMatches: M.filter((m) => m.day === calDay).map(card),
+      dayMatches: M.filter((m) => m.day === calDay && m.day >= today).map(card),
       dayTitle: calDay ? (calDay === today ? '오늘 · ' : '') + md(calDay + 'T12:00:00+09:00') + ' (' + dow(calDay + 'T12:00:00+09:00') + ') 경기' : '경기',
       sheetMatches: listM.slice(0, 3).map(card),
       copyLink: () => this.copy('link', location.href),
