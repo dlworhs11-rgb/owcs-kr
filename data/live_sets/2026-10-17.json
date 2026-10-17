@@ -584,7 +584,7 @@
     "ZANSIDE GAMING"
    ],
    "game": 1,
-   "map": null,
+   "map": "Nepal",
    "seriesBefore": {
     "T1": 0,
     "ZANSIDE GAMING": 0
@@ -648,6 +648,30 @@
     ]
    },
    "compAt": "replay"
+  },
+  {
+   "banTs": 1792232804,
+   "teams": [
+    "T1",
+    "ZANSIDE GAMING"
+   ],
+   "game": 2,
+   "map": "Eichenwalde",
+   "seriesBefore": {
+    "T1": 1,
+    "ZANSIDE GAMING": 0
+   },
+   "bans": {
+    "initial": {
+     "team": "ZANSIDE GAMING",
+     "hero": "cassidy"
+    },
+    "followUp": {
+     "team": "T1",
+     "hero": "lucio"
+    }
+   },
+   "src": "vod"
   },
   {
    "banTs": 1792234314,
