@@ -23,6 +23,213 @@
      "hero": "bastion"
     }
    }
+  },
+  {
+   "banTs": 1792219167,
+   "teams": [
+    "O2 Blast",
+    "Poker Face"
+   ],
+   "game": 2,
+   "map": "Esperança",
+   "seriesBefore": {
+    "O2 Blast": 0,
+    "Poker Face": 1
+   },
+   "bans": {
+    "initial": {
+     "team": "O2 Blast",
+     "hero": "bastion"
+    },
+    "followUp": {
+     "team": "Poker Face",
+     "hero": "orisa"
+    }
+   }
+  },
+  {
+   "banTs": 1792220414,
+   "teams": [
+    "O2 Blast",
+    "Poker Face"
+   ],
+   "game": 3,
+   "map": "Shambali Monastery",
+   "seriesBefore": {
+    "O2 Blast": 1,
+    "Poker Face": 1
+   },
+   "bans": {
+    "initial": {
+     "team": "Poker Face",
+     "hero": "ana"
+    },
+    "followUp": {
+     "team": "O2 Blast",
+     "hero": "sierra"
+    }
+   }
+  },
+  {
+   "banTs": 1792221556,
+   "teams": [
+    "O2 Blast",
+    "Poker Face"
+   ],
+   "game": 4,
+   "map": "New Junk City",
+   "seriesBefore": {
+    "O2 Blast": 1,
+    "Poker Face": 2
+   },
+   "bans": {
+    "initial": {
+     "team": "O2 Blast",
+     "hero": "jetpack cat"
+    },
+    "followUp": {
+     "team": "Poker Face",
+     "hero": "mauga"
+    }
+   }
+  },
+  {
+   "banTs": 1792222767,
+   "teams": [
+    "O2 Blast",
+    "Poker Face"
+   ],
+   "game": 5,
+   "map": "Eichenwalde",
+   "seriesBefore": {
+    "O2 Blast": 2,
+    "Poker Face": 2
+   },
+   "bans": {
+    "initial": {
+     "team": "Poker Face",
+     "hero": "winston"
+    },
+    "followUp": {
+     "team": "O2 Blast",
+     "hero": "cassidy"
+    }
+   }
+  },
+  {
+   "banTs": 1792226476,
+   "teams": [
+    "Crazy Raccoon",
+    "Team Falcons"
+   ],
+   "game": 1,
+   "map": "Busan",
+   "seriesBefore": {
+    "Crazy Raccoon": 0,
+    "Team Falcons": 0
+   },
+   "bans": {
+    "initial": {
+     "team": "Team Falcons",
+     "hero": "wrecking ball"
+    },
+    "followUp": {
+     "team": "Crazy Raccoon",
+     "hero": "cassidy"
+    }
+   }
+  },
+  {
+   "banTs": 1792227833,
+   "teams": [
+    "Crazy Raccoon",
+    "Team Falcons"
+   ],
+   "game": 2,
+   "map": "Route 66",
+   "seriesBefore": {
+    "Crazy Raccoon": 1,
+    "Team Falcons": 0
+   },
+   "bans": {
+    "initial": {
+     "team": "Team Falcons",
+     "hero": "zenyatta"
+    },
+    "followUp": {
+     "team": "Crazy Raccoon",
+     "hero": "winston"
+    }
+   }
+  },
+  {
+   "banTs": 1792229077,
+   "teams": [
+    "Crazy Raccoon",
+    "Team Falcons"
+   ],
+   "game": 3,
+   "map": "New Junk City",
+   "seriesBefore": {
+    "Crazy Raccoon": 2,
+    "Team Falcons": 0
+   },
+   "bans": {
+    "initial": {
+     "team": "Team Falcons",
+     "hero": "mauga"
+    },
+    "followUp": {
+     "team": "Crazy Raccoon",
+     "hero": "soldier: 76"
+    }
+   }
+  },
+  {
+   "banTs": 1792231856,
+   "teams": [
+    "T1",
+    "ZANSIDE GAMING"
+   ],
+   "game": 1,
+   "map": null,
+   "seriesBefore": {
+    "T1": 0,
+    "ZANSIDE GAMING": 0
+   },
+   "bans": {
+    "initial": {
+     "team": "ZANSIDE GAMING",
+     "hero": "sojourn"
+    },
+    "followUp": {
+     "team": "T1",
+     "hero": "jetpack cat"
+    }
+   }
+  },
+  {
+   "banTs": 1792234314,
+   "teams": [
+    "T1",
+    "ZANSIDE GAMING"
+   ],
+   "game": 3,
+   "map": "Suravasa",
+   "seriesBefore": {
+    "T1": 2,
+    "ZANSIDE GAMING": 0
+   },
+   "bans": {
+    "initial": {
+     "team": "ZANSIDE GAMING",
+     "hero": "mauga"
+    },
+    "followUp": {
+     "team": "T1",
+     "hero": "tracer"
+    }
+   }
   }
  ]
 }
