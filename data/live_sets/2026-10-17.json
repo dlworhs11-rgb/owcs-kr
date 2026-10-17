@@ -94,7 +94,56 @@
      "team": "Poker Face",
      "hero": "orisa"
     }
-   }
+   },
+   "hudLeft": "O2 Blast",
+   "guessed": [],
+   "comps": {
+    "O2 Blast": [
+     [
+      "Fate",
+      "dmon"
+     ],
+     [
+      "A1lEN",
+      "cassidy"
+     ],
+     [
+      "WuTian",
+      "tracer"
+     ],
+     [
+      "Gamjung",
+      "doctrine"
+     ],
+     [
+      "Faith",
+      "jetpack-cat"
+     ]
+    ],
+    "Poker Face": [
+     [
+      "SoLA",
+      "dmon"
+     ],
+     [
+      "SORI",
+      "cassidy"
+     ],
+     [
+      "F1nally",
+      "tracer"
+     ],
+     [
+      "Dumbbell",
+      "jetpack-cat"
+     ],
+     [
+      "Caffeine",
+      "doctrine"
+     ]
+    ]
+   },
+   "compAt": "replay"
   },
   {
    "banTs": 1792220414,
