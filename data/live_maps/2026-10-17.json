@@ -243,8 +243,128 @@
     "O2 Blast": 0,
     "Poker Face": 1
    },
-   "winner": "Poker Face",
-   "winnerSource": "match end (leader)"
+   "winner": "O2 Blast",
+   "winnerSource": "series score"
+  },
+  {
+   "match": "O2 Blast vs Poker Face",
+   "matchNo": 1,
+   "game": 3,
+   "map": "Shambali Monastery",
+   "mapTime": "10:01",
+   "frame": "m03_table1_1792221486.png",
+   "teams": {
+    "O2 Blast": [
+     {
+      "name": "?20",
+      "e": 12,
+      "a": 1,
+      "d": null,
+      "dmg": 5041,
+      "heal": 1202,
+      "mit": 1258
+     },
+     {
+      "name": "?21",
+      "e": 11,
+      "a": 4,
+      "d": null,
+      "dmg": 5503,
+      "heal": 0,
+      "mit": 445
+     },
+     {
+      "name": "?22",
+      "e": 12,
+      "a": 1,
+      "d": null,
+      "dmg": 16851,
+      "heal": 1946,
+      "mit": 46
+     },
+     {
+      "name": "?23",
+      "e": 11,
+      "a": 1,
+      "d": null,
+      "dmg": 540,
+      "heal": 10391,
+      "mit": 1992
+     },
+     {
+      "name": "?24",
+      "e": 7,
+      "a": null,
+      "d": null,
+      "dmg": 1147,
+      "heal": 0,
+      "mit": 343
+     }
+    ],
+    "Poker Face": [
+     {
+      "name": "?25",
+      "e": 1,
+      "a": 11,
+      "d": null,
+      "dmg": 1185,
+      "heal": 0,
+      "mit": 497
+     },
+     {
+      "name": "?26",
+      "e": 4,
+      "a": 9,
+      "d": null,
+      "dmg": 6476,
+      "heal": 603,
+      "mit": 48
+     },
+     {
+      "name": "?27",
+      "e": 12,
+      "a": 8,
+      "d": null,
+      "dmg": 209,
+      "heal": 2119,
+      "mit": 1070
+     },
+     {
+      "name": "?28",
+      "e": 5,
+      "a": 9,
+      "d": null,
+      "dmg": 10458,
+      "heal": 15791,
+      "mit": 127846
+     },
+     {
+      "name": "?29",
+      "e": 0,
+      "a": 6,
+      "d": null,
+      "dmg": 314,
+      "heal": 87,
+      "mit": 114
+     }
+    ]
+   },
+   "totalsVerified": false,
+   "reading": "ocr",
+   "bans": {
+    "initial": {
+     "team": "Poker Face",
+     "hero": "ana"
+    },
+    "followUp": {
+     "team": "O2 Blast",
+     "hero": "sierra"
+    }
+   },
+   "seriesBefore": {
+    "O2 Blast": 1,
+    "Poker Face": 1
+   }
   }
  ],
  "matches": [
@@ -252,7 +372,8 @@
    "match": "O2 Blast vs Poker Face",
    "matchNo": 1,
    "mapWins": {
-    "Poker Face": 2
+    "Poker Face": 1,
+    "O2 Blast": 1
    },
    "potm": null
   }
@@ -352,6 +473,56 @@
    "id": "?19",
    "map": "02",
    "row": 8
+  },
+  {
+   "id": "?20",
+   "map": "03",
+   "row": 0
+  },
+  {
+   "id": "?21",
+   "map": "03",
+   "row": 1
+  },
+  {
+   "id": "?22",
+   "map": "03",
+   "row": 2
+  },
+  {
+   "id": "?23",
+   "map": "03",
+   "row": 3
+  },
+  {
+   "id": "?24",
+   "map": "03",
+   "row": 4
+  },
+  {
+   "id": "?25",
+   "map": "03",
+   "row": 5
+  },
+  {
+   "id": "?26",
+   "map": "03",
+   "row": 6
+  },
+  {
+   "id": "?27",
+   "map": "03",
+   "row": 7
+  },
+  {
+   "id": "?28",
+   "map": "03",
+   "row": 8
+  },
+  {
+   "id": "?29",
+   "map": "03",
+   "row": 9
   }
  ],
  "unknownMaps": [],
