@@ -302,6 +302,30 @@
     "Crazy Raccoon": 1,
     "Poker Face": 0
    }
+  },
+  {
+   "banTs": 1792310026,
+   "teams": [
+    "Crazy Raccoon",
+    "Poker Face"
+   ],
+   "game": 2,
+   "map": "Paraiso",
+   "seriesBefore": {
+    "Crazy Raccoon": 1,
+    "Poker Face": 0
+   },
+   "bans": {
+    "initial": {
+     "team": "Poker Face",
+     "hero": "jetpack cat"
+    },
+    "followUp": {
+     "team": "Crazy Raccoon",
+     "hero": "winston"
+    }
+   },
+   "src": "SOOP"
   }
  ]
 }
