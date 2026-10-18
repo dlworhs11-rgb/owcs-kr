@@ -71,6 +71,30 @@
    },
    "hudLeft": "Cheeseburger",
    "fromTable": true
+  },
+  {
+   "banTs": 1792305068,
+   "teams": [
+    "Cheeseburger",
+    "SEIJI ESPORTS"
+   ],
+   "game": 2,
+   "map": "Neon Junction",
+   "seriesBefore": {
+    "Cheeseburger": 1,
+    "SEIJI ESPORTS": 0
+   },
+   "bans": {
+    "initial": {
+     "team": "SEIJI ESPORTS",
+     "hero": "dmon"
+    },
+    "followUp": {
+     "team": "Cheeseburger",
+     "hero": "ana"
+    }
+   },
+   "src": "SOOP"
   }
  ]
 }
