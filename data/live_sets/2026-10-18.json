@@ -225,6 +225,30 @@
     "SEIJI ESPORTS": 0,
     "Cheeseburger": 0
    }
+  },
+  {
+   "banTs": 1792308970,
+   "teams": [
+    "Crazy Raccoon",
+    "Poker Face"
+   ],
+   "game": 1,
+   "map": "Nepal",
+   "seriesBefore": {
+    "Crazy Raccoon": 0,
+    "Poker Face": 0
+   },
+   "bans": {
+    "initial": {
+     "team": "Poker Face",
+     "hero": "bastion"
+    },
+    "followUp": {
+     "team": "Crazy Raccoon",
+     "hero": "jetpack cat"
+    }
+   },
+   "src": "SOOP"
   }
  ]
 }
