@@ -171,7 +171,56 @@
      "hero": "vendetta"
     }
    },
-   "src": "SOOP"
+   "src": "SOOP",
+   "hudLeft": "SEIJI ESPORTS",
+   "guessed": [],
+   "comps": {
+    "SEIJI ESPORTS": [
+     [
+      "DOX",
+      "mauga"
+     ],
+     [
+      "M1nut2",
+      "shion"
+     ],
+     [
+      "D4RT",
+      "?"
+     ],
+     [
+      "OFF",
+      "lucio"
+     ],
+     [
+      "Lavender",
+      "kiriko"
+     ]
+    ],
+    "Cheeseburger": [
+     [
+      "Belosrea",
+      "wrecking-ball"
+     ],
+     [
+      "K4NE",
+      "genji"
+     ],
+     [
+      "Profit",
+      "?"
+     ],
+     [
+      "Trest",
+      "lucio"
+     ],
+     [
+      "TenTen",
+      "jetpack-cat"
+     ]
+    ]
+   },
+   "compAt": null
   }
  ]
 }
