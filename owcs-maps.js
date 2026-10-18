@@ -11,7 +11,7 @@
   const MAP_FILE = { 'antarctic-peninsula': 'antarctic', 'throne-of-anubis': 'anubis', 'aatlis': 'atlis', 'watchpoint-gibraltar': 'gibraltar', 'kings-row': 'kings-row', 'route-66': 'route66', 'shambali-monastery': 'shambali' };
   const MAP_HAVE = 'antarctic anubis atlis blizzard-world busan circuit-royal colosseo dorado eichenwalde esperanca gibraltar gridsbolten hanaoka havana hollywood ilios junkertown kings-row lijiang-tower lunasapphire midtown nepal new-junk-city new-queen-street numbani oasis paraiso rialto route66 samoa shambali suravasa'.split(' ');
   const mapBg = (name) => { const k0 = deaccent(name).toLowerCase().replace(/[.:']/g, '').trim().replace(/\s+/g, '-'); const k = MAP_FILE[k0] || k0;
-    return MAP_HAVE.includes(k) ? "linear-gradient(90deg, #15151B 0%, #15151B 34%, rgba(21,21,27,.5) 100%), url('assets/maps/" + k + ".webp') right center / cover no-repeat" : 'transparent'; };
+    return MAP_HAVE.includes(k) ? "linear-gradient(90deg, #15151B 0, #15151B calc(100% - 330px), rgba(21,21,27,.3) calc(100% - 140px), rgba(21,21,27,.25) 100%), url('assets/maps/" + k + ".webp') right center / auto 100% no-repeat, #15151B" : 'transparent'; };
   const heroName = (h) => { const k = (h || '').toLowerCase(), en = (h || '').replace(/\b\w/g, (c) => c.toUpperCase()); return HERO_KO[k] && !(window.OWCSi18n && window.OWCSi18n.lang !== 'ko') ? HERO_KO[k] + ' · ' + en : en; };
   const pad = (n) => String(n).padStart(2, '0');
   // push maps report distance in metres; everything else is a round count
