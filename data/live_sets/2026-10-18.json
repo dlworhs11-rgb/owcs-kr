@@ -325,7 +325,59 @@
      "hero": "winston"
     }
    },
-   "src": "SOOP"
+   "src": "SOOP",
+   "hudLeft": "Poker Face",
+   "guessed": [
+    "Stalk3r",
+    "vigilante"
+   ],
+   "comps": {
+    "Poker Face": [
+     [
+      "SWOO",
+      "dmon"
+     ],
+     [
+      "SORI",
+      "widowmaker"
+     ],
+     [
+      "F1nally",
+      "tracer"
+     ],
+     [
+      "Dumbbell",
+      "ana"
+     ],
+     [
+      "Caffeine",
+      "doctrine"
+     ]
+    ],
+    "Crazy Raccoon": [
+     [
+      "MAX",
+      "sigma"
+     ],
+     [
+      "HeeSang",
+      "?"
+     ],
+     [
+      "Stalk3r",
+      "mei"
+     ],
+     [
+      "CH0R0NG",
+      "?"
+     ],
+     [
+      "vigilante",
+      "doctrine"
+     ]
+    ]
+   },
+   "compAt": null
   }
  ]
 }
