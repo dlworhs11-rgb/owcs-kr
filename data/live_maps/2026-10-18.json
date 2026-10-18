@@ -6,7 +6,7 @@
    "match": "Cheeseburger vs SEIJI ESPORTS",
    "matchNo": 1,
    "game": 1,
-   "map": "?",
+   "map": "Nepal",
    "mapTime": null,
    "frame": "m01_table1_1792304917.png",
    "teams": {
@@ -120,14 +120,140 @@
    "seriesBefore": {
     "Cheeseburger": 0,
     "SEIJI ESPORTS": 0
-   }
+   },
+   "winner": "Cheeseburger",
+   "winnerSource": "series score"
+  },
+  {
+   "match": "Cheeseburger vs SEIJI ESPORTS",
+   "matchNo": 1,
+   "game": 2,
+   "map": "Neon Junction",
+   "mapTime": "12:02",
+   "frame": "m02_table1_1792306328.png",
+   "teams": {
+    "Cheeseburger": [
+     {
+      "name": "?11",
+      "e": 7,
+      "a": 2,
+      "d": 11,
+      "dmg": 7454,
+      "heal": 100,
+      "mit": 814
+     },
+     {
+      "name": "?12",
+      "e": 6,
+      "a": 7,
+      "d": 7,
+      "dmg": 4169,
+      "heal": 12198,
+      "mit": 1411
+     },
+     {
+      "name": "?13",
+      "e": 12,
+      "a": 0,
+      "d": 10,
+      "dmg": 10647,
+      "heal": 0,
+      "mit": 112
+     },
+     {
+      "name": "?14",
+      "e": 4,
+      "a": 9,
+      "d": 9,
+      "dmg": 1333,
+      "heal": 10150,
+      "mit": 0
+     },
+     {
+      "name": "?15",
+      "e": 6,
+      "a": 1,
+      "d": 9,
+      "dmg": 13359,
+      "heal": 45,
+      "mit": 1444
+     }
+    ],
+    "SEIJI ESPORTS": [
+     {
+      "name": "?16",
+      "e": 0,
+      "a": 2,
+      "d": 3,
+      "dmg": 10563,
+      "heal": 313,
+      "mit": 20720
+     },
+     {
+      "name": "?17",
+      "e": 27,
+      "a": 1,
+      "d": 2,
+      "dmg": 12047,
+      "heal": 0,
+      "mit": 161
+     },
+     {
+      "name": "?18",
+      "e": 21,
+      "a": 6,
+      "d": 6,
+      "dmg": 9199,
+      "heal": 1225,
+      "mit": 1762
+     },
+     {
+      "name": "?19",
+      "e": 21,
+      "a": 22,
+      "d": 4,
+      "dmg": 4119,
+      "heal": 13164,
+      "mit": 891
+     },
+     {
+      "name": "?20",
+      "e": 22,
+      "a": 22,
+      "d": 4,
+      "dmg": 744,
+      "heal": 11418,
+      "mit": 1038
+     }
+    ]
+   },
+   "totalsVerified": false,
+   "reading": "ocr",
+   "bans": {
+    "initial": {
+     "team": "SEIJI ESPORTS",
+     "hero": "dmon"
+    },
+    "followUp": {
+     "team": "Cheeseburger",
+     "hero": "ana"
+    }
+   },
+   "seriesBefore": {
+    "Cheeseburger": 1,
+    "SEIJI ESPORTS": 0
+   },
+   "winner": "Cheeseburger",
+   "winnerSource": "match end (leader)"
   }
  ],
  "matches": [
   {
    "match": "Cheeseburger vs SEIJI ESPORTS",
    "matchNo": 1,
-   "mapWins": {},
+   "mapWins": {
+    "Cheeseburger": 2
+   },
    "potm": null
   }
  ],
@@ -180,6 +306,56 @@
   {
    "id": "?10",
    "map": "01",
+   "row": 9
+  },
+  {
+   "id": "?11",
+   "map": "02",
+   "row": 0
+  },
+  {
+   "id": "?12",
+   "map": "02",
+   "row": 1
+  },
+  {
+   "id": "?13",
+   "map": "02",
+   "row": 2
+  },
+  {
+   "id": "?14",
+   "map": "02",
+   "row": 3
+  },
+  {
+   "id": "?15",
+   "map": "02",
+   "row": 4
+  },
+  {
+   "id": "?16",
+   "map": "02",
+   "row": 5
+  },
+  {
+   "id": "?17",
+   "map": "02",
+   "row": 6
+  },
+  {
+   "id": "?18",
+   "map": "02",
+   "row": 7
+  },
+  {
+   "id": "?19",
+   "map": "02",
+   "row": 8
+  },
+  {
+   "id": "?20",
+   "map": "02",
    "row": 9
   }
  ],
