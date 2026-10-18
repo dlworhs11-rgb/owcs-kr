@@ -9,6 +9,8 @@
   const heroCode = (h) => String(h || '?').replace(/[^A-Za-z]/g, '').slice(0, 3).toUpperCase();
   const heroBg = (h) => HERO_IMG[heroKey(h)] ? "url('assets/heroes/" + heroKey(h) + ".png') center / cover no-repeat, #1B1B21" : 'repeating-linear-gradient(135deg,#24242B 0 4px,#1B1B21 4px 8px)';
   const MAP_FILE = { 'antarctic-peninsula': 'antarctic', 'throne-of-anubis': 'anubis', 'aatlis': 'atlis', 'watchpoint-gibraltar': 'gibraltar', 'kings-row': 'kings-row', 'route-66': 'route66', 'shambali-monastery': 'shambali' };
+  const WIN_AT = Object.fromEntries([...['Antarctic Peninsula', 'Busan', 'Ilios', 'Lijiang Tower', 'Nepal', 'Oasis', 'Samoa'].map((n) => [n, 2]),
+    ...['New Junk City', 'Suravasa', 'Aatlis'].map((n) => [n, 3])]);   // first to this many wins the map
   const MAP_HAVE = 'antarctic anubis atlis blizzard-world busan circuit-royal colosseo dorado eichenwalde esperanca gibraltar gridsbolten hanaoka havana hollywood ilios junkertown kings-row lijiang-tower lunasapphire midtown nepal new-junk-city new-queen-street numbani oasis paraiso rialto route66 samoa shambali suravasa'.split(' ');
   const mapBg = (name) => { const k0 = deaccent(name).toLowerCase().replace(/[.:']/g, '').trim().replace(/\s+/g, '-'); const k = MAP_FILE[k0] || k0;
     return MAP_HAVE.includes(k) ? "linear-gradient(90deg, #15151B 0, #15151B calc(100% - 330px), rgba(21,21,27,.3) calc(100% - 140px), rgba(21,21,27,.25) 100%), url('assets/maps/" + k + ".webp') right center / auto 100% no-repeat, #15151B" : 'transparent'; };
@@ -26,7 +28,13 @@
       const w = x.winner ? m[x.winner] : null;
       const recording = !w && m.st === 'live';
       const key = m.id + '-' + x.no, open = !!o.isOpen(key);
-      const score = x.sa != null && x.sb != null ? (x.winner === 'b' ? pts(x.sb) + ' : ' + pts(x.sa) : pts(x.sa) + ' : ' + pts(x.sb)) : '';
+      // Control / Flashpoint end at a fixed score (2 / 3): once the map's winner is known, its score is that, even when
+      // the HUD could not be read (Flashpoint shows points as dots, not digits: 10-18 map 3 stayed at 0 : 0)
+      const tgt = WIN_AT[x.map] || { '쟁탈': 2, '플래시포인트': 3 }[x.mode];
+      let sa = x.sa, sb = x.sb;
+      if (tgt && x.winner === 'a' && (sa == null || sa < tgt)) { sa = tgt; sb = Math.min(sb || 0, tgt - 1); }
+      if (tgt && x.winner === 'b' && (sb == null || sb < tgt)) { sb = tgt; sa = Math.min(sa || 0, tgt - 1); }
+      const score = sa != null && sb != null ? (x.winner === 'b' ? pts(sb) + ' : ' + pts(sa) : pts(sa) + ' : ' + pts(sb)) : '';
       const comps = x.comps ? ['a', 'b'].map((t) => ({ team: m[t], win: !SP && x.winner === t,
         picks: (x.comps[t] || []).map(([pl, h]) => ({ pl, h, bg: heroBg(h), txt: HERO_IMG[heroKey(h)] ? '' : heroCode(h) })) })) : [];
       return { no: pad(x.no), name: x.map, mode: x.mode + (x.time ? ' · ' + x.time : ''),
