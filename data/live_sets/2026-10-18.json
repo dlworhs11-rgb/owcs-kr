@@ -1,0 +1,28 @@
+{
+ "date": "2026-10-18",
+ "sets": [
+  {
+   "banTs": 1792303926,
+   "teams": [
+    "Cheeseburger",
+    "SEIJI ESPORTS"
+   ],
+   "game": 1,
+   "map": null,
+   "seriesBefore": {
+    "Cheeseburger": 0,
+    "SEIJI ESPORTS": 0
+   },
+   "bans": {
+    "initial": {
+     "team": "Cheeseburger",
+     "hero": "sombra"
+    },
+    "followUp": {
+     "team": "SEIJI ESPORTS",
+     "hero": "cassidy"
+    }
+   }
+  }
+ ]
+}
