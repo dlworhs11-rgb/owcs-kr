@@ -108,6 +108,20 @@
       X + '[data-owcs-bg]::before,' + X + '[data-owcs-bg]::after{display:none !important}'
     ].join('\n');
   }
+  // light mode on the other pages: the home page's warm paper sheet, bands without their own fills
+  if (!/Home/.test(decodeURIComponent(location.pathname).split('/').pop()) && !darkOn && new URLSearchParams(location.search).get('bg') !== 'old') {
+    var L = 'html[data-owcs-bgb]:not([data-owcs-dark]) ';
+    document.documentElement.setAttribute('data-owcs-bgb', '');
+    css += '\n' + [
+      'html[data-owcs-bgb]:not([data-owcs-dark]),html[data-owcs-bgb]:not([data-owcs-dark]) body{background:#F1EDE5 !important}',
+      L + '#dc-root [data-screen-label]{background:#F1EDE5 repeating-linear-gradient(135deg, rgba(60,45,25,.045) 0 1px, transparent 1px 11px) fixed !important}',
+      L + '#dc-root [data-screen-label] section,' + L + '#dc-root [data-screen-label] footer,' + L + '#dc-root [data-screen-label] > div:first-child,' + L + '#dc-root [data-screen-label] > header{background:transparent !important;background-image:none !important}',
+      L + '[data-owcs-bg]::before,' + L + '[data-owcs-bg]::after{display:none !important}',
+      L + 'footer{color:var(--ink,#0B0B0F) !important;border-top:0 !important}',
+      L + 'footer [style*="color: rgb(255, 255, 255)"]{color:var(--ink,#0B0B0F) !important}',
+      L + 'footer [style*="color: rgb(138, 138, 147)"],' + L + 'footer [style*="color: rgb(181, 181, 189)"],' + L + 'footer [style*="color: rgb(201, 201, 209)"]{color:var(--mute,#55555C) !important}'
+    ].join('\n');
+  }
   var st = document.createElement('style');
   st.textContent = css;
   document.head.appendChild(st);
