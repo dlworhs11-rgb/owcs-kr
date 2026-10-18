@@ -492,7 +492,7 @@ def build_matches(stage):
             group=f'{week}주차' if rs else ('플레이오프' if m['phase'] == 'po' else '시드 결정전 · LCQ'),
             bo=need * 2 - 1,
             a=short(t1), b=short(t2), sa=sa, sb=sb, played=played, live=live,
-            potm=potm, casters=adm.get('casters') or live_cast(day) or [c for c in (m.get('casters') or []) if c],
+            potm=potm, casters=adm.get('casters') or [c for c in (m.get('casters') or []) if c] or live_cast(day),   # Liquipedia per match beats the screen read
             stream='https://play.sooplive.com/owesports/embed?autoPlay=true&mutePlay=true', maps=maps))
     out.sort(key=lambda x: (x['date'], x['phase'] != 'lcq'))
     vods = soop_vods(out, stage['n'], stage['year'])

@@ -1137,7 +1137,7 @@ const applyLive = (today) => {
   });
   // broadcast crew read off the waiting screen before the first set (caster_watch.py)
   const c = LIVE.cast;
-  if (c && c.date === today && (c.casters || []).length) D.matches.filter((m) => m.day === today).forEach((m) => {
+  if (c && c.date === today && (c.casters || []).length) D.matches.filter((m) => m.day === today && !(m.casters || []).length).forEach((m) => {   // only until Liquipedia names the crew
     if ((m.casters || []).join() !== c.casters.join()) { m.casters = c.casters.slice(); changed = true; }
   });
   // map name, bans and first heroes per map (pick_watch.py)
@@ -1575,7 +1575,7 @@ class Component extends DCLogic {
         pill: hero && hero.st === 'live' ? '#D92D20' : '#3A3A44', padB: sh && sh.st === 'done' && ((hero && hero.vod) || sh.vod) ? '40px' : '18px',
         status: !hero ? '' : hero.st === 'live' ? 'LIVE · ' + Math.max(1, heroSet) + '세트' : hero.st === 'done' ? '종료' : hero.tbd ? '시간 미정' : hero.time + ' 시작' },
       // broadcast crew in Korean (the source lists them romanized)
-      cast: hero && hero.casters.length ? hero.casters.map((c) => ({ 'Sim Ji-soo': '심지수', 'Park Han-eol': '박한얼', 'AKaros': '장지수', 'ChangSik': '창식', 'Aid': '에이드' })[c] || c).join(' · ') : '발표 전',
+      cast: hero && hero.casters.length ? hero.casters.map((c) => ({ 'Sim Ji-soo': '심지수', 'Park Han-eol': '박한얼', 'AKaros': '장지수', 'Strings': '홍현성', 'ChangSik': '창식', 'Aid': '에이드' })[c] || c).join(' · ') : '발표 전',
       potmLine: hero && hero.potm && !SP ? hero.potm : '',
       showCrew: (P.showCasters ?? true) && !(sh && sh.st === 'done'),
       nx: nextM ? { when: md(nextM.date) + ' (' + dow(nextM.date) + ') ' + tmOf(nextM), a: nextM.a, b: nextM.b, la: logoBg(nextM.a, true), lb: logoBg(nextM.b, true) } : { when: '–', a: '', b: '', la: 'none', lb: 'none' },

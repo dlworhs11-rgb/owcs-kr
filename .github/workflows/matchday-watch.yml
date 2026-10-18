@@ -1,0 +1,49 @@
+name: Match-day watch
+
+# The safety net when this PC is asleep or off on a match day: results, POTM and map scores still come from
+# Liquipedia. GitHub runs pages.yml's 10-minute schedule late or not at all under load (10-18: no run from 18:50 to
+# 21:25, so ZAN vs ZETA stayed 0 : 0). This job starts three times on every day and, when the deployed site has
+# matches today, asks for a site build every 10 minutes for about 3 hours (a build re-reads Liquipedia when its copy
+# is older than 10 minutes around today's matches). Started late, it still covers the hours that follow.
+on:
+  schedule:
+    - cron: '20 5 * * *'    # 14:20 KST
+    - cron: '20 8 * * *'    # 17:20 KST
+    - cron: '20 11 * * *'   # 20:20 KST
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: matchday-watch
+  cancel-in-progress: true   # the next start takes over
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 200
+    steps:
+      - name: Ask for a site build every 10 minutes while today's matches are not all in
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          left() {
+            curl -s "https://dlworhs11-rgb.github.io/owcs-kr/owcs-data.js?t=$(date +%s)" | python3 -c '
+          import sys, json, datetime
+          s = sys.stdin.read(); d = json.loads(s[s.index("{"):s.rindex("}") + 1])
+          kst = datetime.timezone(datetime.timedelta(hours=9)); now = datetime.datetime.now(kst)
+          today = now.date().isoformat()
+          ms = [m for m in d["matches"] if m["day"] == today]
+          # still something to fetch: a match that has started and is not finished, or finished without POTM
+          todo = [m for m in ms if datetime.datetime.fromisoformat(m["date"]) <= now and (not m["played"] or not m.get("potm"))]
+          print(len(todo) if ms else -1)'
+          }
+          for i in $(seq 1 18); do
+            n=$(left || echo 0)
+            echo "$(date -u +%H:%M) UTC: matches still to fill = $n"
+            if [ "$n" = "-1" ]; then echo "no matches today"; exit 0; fi
+            if [ "$n" != "0" ]; then gh workflow run pages.yml -R "$GITHUB_REPOSITORY" -f force_lp=true || true; fi
+            sleep 600
+          done
