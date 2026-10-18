@@ -1328,8 +1328,7 @@ class Component extends DCLogic {
     const calDay = this.state.calDay || (todays.length && vday === today ? today : (nextM || M[M.length - 1] || {}).day);
     cells.forEach((c) => { const sel = !!c.ds && c.ds === calDay, has = !!(c.games && c.games.length);
       c.pick = has ? () => this.setState({ calDay: c.ds }) : null; c.cur = has ? 'pointer' : 'default';
-      const mine = !!MY && (c.games || []).some((g) => g.a === MY || g.b === MY);
-      c.mbg = sel ? 'var(--paper3,#ECECE8)' : mine ? 'color-mix(in srgb, ' + col(MY) + ' 12%, transparent)' : 'transparent'; c.mbd = sel ? '2px solid var(--ink,#0B0B0F)' : mine ? '2px solid ' + col(MY) : has ? '1px solid var(--line,#E6E6E1)' : '1px solid transparent';
+      c.mbg = sel ? 'var(--paper3,#ECECE8)' : 'transparent'; c.mbd = sel ? '2px solid var(--ink,#0B0B0F)' : has ? '1px solid var(--line,#E6E6E1)' : '1px solid transparent';
       c.dbg = c.today ? '#0B0B0F' : 'transparent'; c.dfg = c.today ? (c.red ? '#FF6B6E' : '#fff') : c.dcol || 'var(--ink,#0B0B0F)';
       (c.games || []).forEach((g) => { g.mo = g.past ? .75 : 1; }); });
     const shiftMonth = (k) => this.setState({ month: new Date(Date.UTC(Y, Mo + k, 1)).toISOString() });
