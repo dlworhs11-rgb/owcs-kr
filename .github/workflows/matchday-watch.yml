@@ -38,12 +38,14 @@ jobs:
           ms = [m for m in d["matches"] if m["day"] == today]
           # still something to fetch: a match that has started and is not finished, or finished without POTM
           todo = [m for m in ms if datetime.datetime.fromisoformat(m["date"]) <= now and (not m["played"] or not m.get("potm"))]
-          print(len(todo) if ms else -1)'
+          done = ms and all(m["played"] and m.get("potm") for m in ms)
+          print(-1 if not ms else -2 if done else len(todo))'
           }
           for i in $(seq 1 18); do
             n=$(left || echo 0)
             echo "$(date -u +%H:%M) UTC: matches still to fill = $n"
             if [ "$n" = "-1" ]; then echo "no matches today"; exit 0; fi
+            if [ "$n" = "-2" ]; then echo "all of today's matches are in"; exit 0; fi
             if [ "$n" != "0" ]; then gh workflow run pages.yml -R "$GITHUB_REPOSITORY" -f force_lp=true || true; fi
             sleep 600
           done
