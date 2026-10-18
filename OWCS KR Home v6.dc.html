@@ -1138,6 +1138,14 @@ const liveScores = (today, onChange) => {
       });
       if (changed) onChange();
     }).catch(() => {});
+  // broadcast crew read off the waiting screen before the first set (caster_watch.py -> data/live_cast)
+  fetch('https://raw.githubusercontent.com/dlworhs11-rgb/owcs-kr/main/data/live_cast/' + today + '.json?t=' + Date.now())
+    .then((r) => (r.ok ? r.json() : null)).then((d) => {
+      if (!d || !(d.casters || []).length) return;
+      let changed = false;
+      D.matches.filter((m) => m.day === today).forEach((m) => { if ((m.casters || []).join() !== d.casters.join()) { m.casters = d.casters.slice(); changed = true; } });
+      if (changed) onChange();
+    }).catch(() => {});
   // map name, bans and first heroes per map (pick_watch.py -> data/live_sets), also straight from the repository:
   // shows seconds after the PC reads them instead of after the next site build
   fetch('https://raw.githubusercontent.com/dlworhs11-rgb/owcs-kr/main/data/live_sets/' + today + '.json?t=' + Date.now())
@@ -1511,7 +1519,7 @@ class Component extends DCLogic {
         pill: hero && hero.st === 'live' ? '#D92D20' : '#3A3A44', padB: sh && sh.st === 'done' && ((hero && hero.vod) || sh.vod) ? '40px' : '18px',
         status: !hero ? '' : hero.st === 'live' ? 'LIVE · ' + Math.max(1, heroSet) + '세트' : hero.st === 'done' ? '종료' : hero.tbd ? '시간 미정' : hero.time + ' 시작' },
       // broadcast crew in Korean (the source lists them romanized)
-      cast: hero && hero.casters.length ? hero.casters.map((c) => ({ 'Sim Ji-soo': '심지수', 'Park Han-eol': '박한얼', 'AKaros': '아카로스', 'ChangSik': '창식', 'Aid': '에이드' })[c] || c).join(' · ') : '발표 전',
+      cast: hero && hero.casters.length ? hero.casters.map((c) => ({ 'Sim Ji-soo': '심지수', 'Park Han-eol': '박한얼', 'AKaros': '장지수', 'ChangSik': '창식', 'Aid': '에이드' })[c] || c).join(' · ') : '발표 전',
       potmLine: hero && hero.potm && !SP ? hero.potm : '',
       showCrew: (P.showCasters ?? true) && !(sh && sh.st === 'done'),
       nx: nextM ? { when: md(nextM.date) + ' (' + dow(nextM.date) + ') ' + tmOf(nextM), a: nextM.a, b: nextM.b, la: logoBg(nextM.a, true), lb: logoBg(nextM.b, true) } : { when: '–', a: '', b: '', la: 'none', lb: 'none' },

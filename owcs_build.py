@@ -294,6 +294,15 @@ def live_sets(day):
         return json.load(fh).get('sets', [])
 
 
+def live_cast(day):
+    """broadcast crew in Korean, read off the SOOP waiting screen before the first set (caster_watch.py on the PC)"""
+    f = os.path.join(HERE, 'data', 'live_cast', day + '.json')
+    if not os.path.exists(f):
+        return []
+    with open(f, encoding='utf-8') as fh:
+        return [c for c in json.load(fh).get('casters', []) if c]
+
+
 def live_scores(day):
     f = os.path.join(HERE, 'data', 'live_scores', day + '.json')
     if not os.path.exists(f):
@@ -442,7 +451,7 @@ def build_matches(stage):
             group=f'{week}주차' if rs else ('플레이오프' if m['phase'] == 'po' else '시드 결정전 · LCQ'),
             bo=need * 2 - 1,
             a=short(t1), b=short(t2), sa=sa, sb=sb, played=played, live=live,
-            potm=potm, casters=[c for c in (m.get('casters') or []) if c],
+            potm=potm, casters=live_cast(day) or [c for c in (m.get('casters') or []) if c],
             stream='https://play.sooplive.com/owesports/embed?autoPlay=true&mutePlay=true', maps=maps))
     out.sort(key=lambda x: (x['date'], x['phase'] != 'lcq'))
     vods = soop_vods(out, stage['n'], stage['year'])
