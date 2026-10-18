@@ -303,6 +303,15 @@ def live_cast(day):
         return [c for c in json.load(fh).get('casters', []) if c]
 
 
+def live_admin(day):
+    """hand entries from the admin page (admin_server.py on the PC): they win over everything read automatically"""
+    f = os.path.join(HERE, 'data', 'live_admin', day + '.json')
+    if not os.path.exists(f):
+        return {}
+    with open(f, encoding='utf-8') as fh:
+        return json.load(fh)
+
+
 def live_scores(day):
     f = os.path.join(HERE, 'data', 'live_scores', day + '.json')
     if not os.path.exists(f):
@@ -439,8 +448,30 @@ def build_matches(stage):
                 x['comps'] = pk[str(x['no'])]
             if 0 < x['no'] <= len(rp) and rp[x['no'] - 1]:
                 x['replay'] = rp[x['no'] - 1]
+        adm = live_admin(day)
         week = (dt.date() - stage['week0']).days // 7 + 1
         rs = m['phase'] == 'rs'
+        ao = (adm.get('matches') or {}).get(f"{day}-{m['idx']}" if rs else f"{stage['year']}s{stage['n']}-p{m['idx']}") or {}
+        if ao.get('sa') is not None or ao.get('sb') is not None:
+            sa, sb = ao.get('sa', sa) or 0, ao.get('sb', sb) or 0
+            live = max(sa, sb) < need
+            played = not live
+        potm = ao.get('potm') or potm
+        for no, y in (ao.get('maps') or {}).items():
+            x = next((z for z in maps if z['no'] == int(no)), None)
+            if x is None:
+                x = dict(no=int(no), map=y.get('map') or f'{no}세트', mode='', winner=None, bans=[], banFirst=None, src='admin')
+                maps.append(x)
+            if y.get('map'):
+                x['map'], x['mode'] = y['map'], MODE_KO.get(MAP_MODE.get(y['map']), x.get('mode') or '')
+            if y.get('winner'):
+                x['winner'] = y['winner']
+            if y.get('bans'):
+                x['bans'], x['banFirst'] = [dict(t=b['t'], h=b['h'], code=hero_code(b['h'])) for b in y['bans']], y.get('banFirst')
+            for t, rows in (y.get('comps') or {}).items():
+                old = (x.get('comps') or {}).get(t) or [['', '']] * 5
+                x.setdefault('comps', {})[t] = [[r[0] or (old[i][0] if i < len(old) else ''), r[1] or (old[i][1] if i < len(old) else '')] for i, r in enumerate(rows)]
+        maps.sort(key=lambda x: x['no'] or 0)
         out.append(dict(
             # regular season ids stay '<day>-<idx>' (calendar UIDs people already subscribed to); playoff ids do not
             # carry the day, so a rescheduled playoff match keeps its calendar entry
@@ -451,7 +482,7 @@ def build_matches(stage):
             group=f'{week}주차' if rs else ('플레이오프' if m['phase'] == 'po' else '시드 결정전 · LCQ'),
             bo=need * 2 - 1,
             a=short(t1), b=short(t2), sa=sa, sb=sb, played=played, live=live,
-            potm=potm, casters=live_cast(day) or [c for c in (m.get('casters') or []) if c],
+            potm=potm, casters=adm.get('casters') or live_cast(day) or [c for c in (m.get('casters') or []) if c],
             stream='https://play.sooplive.com/owesports/embed?autoPlay=true&mutePlay=true', maps=maps))
     out.sort(key=lambda x: (x['date'], x['phase'] != 'lcq'))
     vods = soop_vods(out, stage['n'], stage['year'])

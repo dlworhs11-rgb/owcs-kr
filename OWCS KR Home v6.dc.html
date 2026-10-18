@@ -1116,7 +1116,7 @@ const potmLook = (pm, side, loserLogo) => {
     bust2: loserLogo && logo ? 'top:50%;' + other + ':' + Math.round(slot / 5) + 'px;width:' + logo + 'px;height:' + logo + 'px;transform:translateY(-50%);opacity:.14;background:' + loserLogo : '' };
 };
 // the latest live data from the PC, kept so it can be put back after owcs-data.js is swapped in
-const LIVE = { scores: null, sets: {}, cast: null, relay: {} };
+const LIVE = { scores: null, sets: {}, cast: null, admin: null, relay: {} };
 const applyLive = (today) => {
   let changed = false;
   const d = LIVE.scores;
@@ -1162,13 +1162,36 @@ const applyLive = (today) => {
       if (JSON.stringify(cp) !== JSON.stringify(x.comps || null)) { x.comps = cp; changed = true; }
     }
   });
+  // hand entries from the admin page (admin_server.py on the PC): whatever was typed there wins
+  const ad = LIVE.admin, same = (p, q) => JSON.stringify(p) === JSON.stringify(q);
+  if (ad && ad.date === today) {
+    if ((ad.casters || []).length) D.matches.filter((m) => m.day === today).forEach((m) => { if (!same(m.casters, ad.casters)) { m.casters = ad.casters.slice(); changed = true; } });
+    Object.entries(ad.matches || {}).forEach(([id, o]) => {
+      const m = D.matches.find((x) => x.id === id);
+      if (!m) return;
+      if (o.sa != null && m.sa !== o.sa) { m.sa = o.sa; changed = true; }
+      if (o.sb != null && m.sb !== o.sb) { m.sb = o.sb; changed = true; }
+      if (o.potm && m.potm !== o.potm) { m.potm = o.potm; changed = true; }
+      if ((o.sa != null || o.sb != null) && Math.max(m.sa || 0, m.sb || 0) >= Math.floor((m.bo || 5) / 2) + 1 && !m.played) { m.played = true; m.live = false; changed = true; }
+      Object.entries(o.maps || {}).forEach(([no, y]) => {
+        no = +no;
+        let x = m.maps.find((z) => z.no === no);
+        if (!x) { x = { no, map: y.map || no + '세트', mode: '', winner: null, bans: [], banFirst: null, src: 'admin' }; m.maps.push(x); m.maps.sort((p, q) => p.no - q.no); changed = true; }
+        if (y.map && x.map !== y.map) { x.map = y.map; changed = true; }
+        if (y.winner && x.winner !== y.winner) { x.winner = y.winner; changed = true; }
+        if ((y.bans || []).length) { const b = y.bans.map((z) => ({ t: z.t, h: z.h, code: code(z.h) })); if (!same(x.bans, b)) { x.bans = b; x.banFirst = y.banFirst; changed = true; } }
+        if (y.comps) { const cp = { ...(x.comps || {}) }; Object.keys(y.comps).forEach((t) => { cp[t] = y.comps[t].map((s, i) => [s[0] || ((x.comps || {})[t] || [])[i]?.[0] || '', s[1] || ((x.comps || {})[t] || [])[i]?.[1] || '']); }); if (!same(cp, x.comps)) { x.comps = cp; changed = true; } }
+      });
+    });
+  }
   return changed;
 };
 // backup path: the files the PC pushes to GitHub (raw.githubusercontent caches them up to 5 minutes)
 const liveScores = (today, onChange) => {
   if (!/github\.io$/.test(location.hostname)) return;
   const get = (sub) => fetch('https://raw.githubusercontent.com/dlworhs11-rgb/owcs-kr/main/data/' + sub + '/' + today + '.json?t=' + Date.now()).then((r) => (r.ok ? r.json() : null)).catch(() => null);
-  Promise.all([get('live_scores'), get('live_cast'), get('live_sets')]).then(([sc, ca, se]) => {
+  Promise.all([get('live_scores'), get('live_cast'), get('live_sets'), get('live_admin')]).then(([sc, ca, se, ad]) => {
+    if (ad && !LIVE.relay.admin) LIVE.admin = ad;
     if (sc && !LIVE.relay.scores) LIVE.scores = sc;
     if (ca && !LIVE.relay.cast) LIVE.cast = ca;
     ((se || {}).sets || []).forEach((st) => { if (!LIVE.relay['set' + st.banTs]) LIVE.sets[st.banTs] = { ...st, _day: today }; });
@@ -1192,6 +1215,7 @@ const liveRelay = (onChange) => {
       const pl = JSON.parse(body.p);
       if (pl.k === 'scores') { LIVE.scores = pl.d; LIVE.relay.scores = true; }
       else if (pl.k === 'cast') { LIVE.cast = pl.d; LIVE.relay.cast = true; }
+      else if (pl.k === 'admin') { LIVE.admin = pl.d; LIVE.relay.admin = true; }
       else if (pl.k === 'set' && pl.d) { LIVE.sets[pl.d.banTs] = { ...pl.d, _day: pl.date }; LIVE.relay['set' + pl.d.banTs] = true; }
       else return;
       if (applyLive(pl.date)) onChange();
