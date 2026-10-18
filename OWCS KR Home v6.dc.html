@@ -1115,64 +1115,89 @@ const potmLook = (pm, side, loserLogo) => {
     bust: 'bottom:-18%;' + side + ':0;width:' + slot + "px;height:140%;background:url('" + pm.photo + "') center bottom / auto 100% no-repeat;-webkit-mask-image:" + fadeTo + ';mask-image:' + fadeTo,
     bust2: loserLogo && logo ? 'top:50%;' + other + ':' + Math.round(slot / 5) + 'px;width:' + logo + 'px;height:' + logo + 'px;transform:translateY(-50%);opacity:.14;background:' + loserLogo : '' };
 };
+// the latest live data from the PC, kept so it can be put back after owcs-data.js is swapped in
+const LIVE = { scores: null, sets: {}, cast: null, relay: {} };
+const applyLive = (today) => {
+  let changed = false;
+  const d = LIVE.scores;
+  if (d && d.date === today && d.matches) D.matches.filter((m) => m.day === today).forEach((m, i) => {
+    const sc = d.matches[String(i + 1)];
+    // POTM read off the broadcast card (score_watch.py), as soon as it is pushed
+    if (sc && sc.potm && m.potm !== sc.potm) { m.potm = sc.potm; changed = true; }
+    // a newer reading, or a corrected one (same number of maps, a misread map given back to the other team)
+    if (!sc || sc.sa + sc.sb < (m.sa || 0) + (m.sb || 0) || (sc.sa === m.sa && sc.sb === m.sb)) return;
+    m.sa = sc.sa; m.sb = sc.sb; changed = true;
+    (sc.history || []).forEach((h) => {
+      const x = m.maps.find((y) => y.no === h.map);
+      if (x) x.winner = h.winner;
+      else m.maps.push({ no: h.map, map: '', mode: '', winner: h.winner, bans: [] });
+    });
+    m.maps.sort((p, q) => p.no - q.no);
+    if (Math.max(sc.sa, sc.sb) >= Math.floor((m.bo || 5) / 2) + 1) { m.played = true; m.live = false; }
+  });
+  // broadcast crew read off the waiting screen before the first set (caster_watch.py)
+  const c = LIVE.cast;
+  if (c && c.date === today && (c.casters || []).length) D.matches.filter((m) => m.day === today).forEach((m) => {
+    if ((m.casters || []).join() !== c.casters.join()) { m.casters = c.casters.slice(); changed = true; }
+  });
+  // map name, bans and first heroes per map (pick_watch.py)
+  const ab = (nm) => (D.teams.find((t) => t.n.toLowerCase() === String(nm || '').toLowerCase() || t.a === nm) || {}).a;
+  const code = (h) => / /.test(h || '') ? h.split(' ').map((w) => w[0]).join('').toUpperCase().slice(0, 3) : String(h || '?').slice(0, 3).toUpperCase();
+  Object.values(LIVE.sets).forEach((st) => {
+    if (st._day !== today) return;
+    const tm = (st.teams || []).map(ab);
+    const m = D.matches.find((x) => x.day === today && tm.includes(x.a) && tm.includes(x.b));
+    if (!m || !st.game) return;
+    const side = (nm) => ab(nm) === m.a ? 'a' : ab(nm) === m.b ? 'b' : null;
+    let x = m.maps.find((y) => y.no === st.game);
+    if (!x) { x = { no: st.game, map: st.map || st.game + '세트', mode: '', winner: null, bans: [], banFirst: null, src: 'live' }; m.maps.push(x); m.maps.sort((p, q) => p.no - q.no); changed = true; }
+    if (st.map && /세트$/.test(x.map || '세트')) { x.map = st.map; changed = true; }
+    const bn = st.bans || {};
+    if (!x.bans.length && bn.initial && bn.initial.hero) {
+      x.bans = [bn.initial, bn.followUp].filter((y) => y && y.hero).map((y) => ({ t: side(y.team), h: y.hero, code: code(y.hero) }));
+      x.banFirst = side(bn.initial.team); changed = true;
+    }
+    if (st.comps) {   // the comp so far, then the settled one: always the newest read
+      const cp = {}; Object.keys(st.comps).forEach((t) => { const k = side(t); if (k) cp[k] = st.comps[t]; });
+      if (JSON.stringify(cp) !== JSON.stringify(x.comps || null)) { x.comps = cp; changed = true; }
+    }
+  });
+  return changed;
+};
+// backup path: the files the PC pushes to GitHub (raw.githubusercontent caches them up to 5 minutes)
 const liveScores = (today, onChange) => {
   if (!/github\.io$/.test(location.hostname)) return;
-  fetch('https://raw.githubusercontent.com/dlworhs11-rgb/owcs-kr/main/data/live_scores/' + today + '.json?t=' + Date.now())
-    .then((r) => (r.ok ? r.json() : null)).then((d) => {
-      if (!d || !d.matches) return;
-      let changed = false;
-      D.matches.filter((m) => m.day === today).forEach((m, i) => {
-        const sc = d.matches[String(i + 1)];
-        // POTM read off the broadcast card (score_watch.py), as soon as it is pushed
-        if (sc && sc.potm && m.potm !== sc.potm) { m.potm = sc.potm; changed = true; }
-        // a newer reading, or a corrected one (same number of maps, a misread map given back to the other team)
-        if (!sc || sc.sa + sc.sb < (m.sa || 0) + (m.sb || 0) || (sc.sa === m.sa && sc.sb === m.sb)) return;
-        m.sa = sc.sa; m.sb = sc.sb; changed = true;
-        (sc.history || []).forEach((h) => {
-          const x = m.maps.find((y) => y.no === h.map);
-          if (x) x.winner = h.winner;
-          else m.maps.push({ no: h.map, map: '', mode: '', winner: h.winner, bans: [] });
-        });
-        m.maps.sort((p, q) => p.no - q.no);
-        if (Math.max(sc.sa, sc.sb) >= Math.floor((m.bo || 5) / 2) + 1) { m.played = true; m.live = false; }
-      });
-      if (changed) onChange();
+  const get = (sub) => fetch('https://raw.githubusercontent.com/dlworhs11-rgb/owcs-kr/main/data/' + sub + '/' + today + '.json?t=' + Date.now()).then((r) => (r.ok ? r.json() : null)).catch(() => null);
+  Promise.all([get('live_scores'), get('live_cast'), get('live_sets')]).then(([sc, ca, se]) => {
+    if (sc && !LIVE.relay.scores) LIVE.scores = sc;
+    if (ca && !LIVE.relay.cast) LIVE.cast = ca;
+    ((se || {}).sets || []).forEach((st) => { if (!LIVE.relay['set' + st.banTs]) LIVE.sets[st.banTs] = { ...st, _day: today }; });
+    if (applyLive(today)) onChange();
+  });
+};
+// fast path: the PC posts every change to an ntfy.sh topic (live_relay.py), signed with a key only that PC has.
+// Messages arrive here in a second or two; anything not signed by that key is dropped.
+const RELAY = { topic: 'owcskr-live-s434nt5ulgrcxxye', jwk: { kty: 'EC', crv: 'P-256', x: 'jo1Q1N-8_KxY7TJ_D_ttnJVC_vh_1SsrKI-eaNHakn8', y: 'nP3btiq5uML0akhyjWtDtomz0NlrQTC8NUXgDRUfh4E' } };
+const liveRelay = (onChange) => {
+  if (!window.EventSource || !(window.crypto && crypto.subtle)) return;
+  const key = crypto.subtle.importKey('jwk', RELAY.jwk, { name: 'ECDSA', namedCurve: 'P-256' }, false, ['verify']);
+  const es = new EventSource('https://ntfy.sh/' + RELAY.topic + '/sse?since=12h');
+  es.onmessage = (e) => {
+    let body;
+    try { body = JSON.parse(JSON.parse(e.data).message); } catch (x) { return; }
+    if (!body || typeof body.p !== 'string' || typeof body.s !== 'string') return;
+    const sig = Uint8Array.from(atob(body.s), (ch) => ch.charCodeAt(0));
+    key.then((k) => crypto.subtle.verify({ name: 'ECDSA', hash: 'SHA-256' }, k, sig, new TextEncoder().encode(body.p))).then((ok) => {
+      if (!ok) return;
+      const pl = JSON.parse(body.p);
+      if (pl.k === 'scores') { LIVE.scores = pl.d; LIVE.relay.scores = true; }
+      else if (pl.k === 'cast') { LIVE.cast = pl.d; LIVE.relay.cast = true; }
+      else if (pl.k === 'set' && pl.d) { LIVE.sets[pl.d.banTs] = { ...pl.d, _day: pl.date }; LIVE.relay['set' + pl.d.banTs] = true; }
+      else return;
+      if (applyLive(pl.date)) onChange();
     }).catch(() => {});
-  // broadcast crew read off the waiting screen before the first set (caster_watch.py -> data/live_cast)
-  fetch('https://raw.githubusercontent.com/dlworhs11-rgb/owcs-kr/main/data/live_cast/' + today + '.json?t=' + Date.now())
-    .then((r) => (r.ok ? r.json() : null)).then((d) => {
-      if (!d || !(d.casters || []).length) return;
-      let changed = false;
-      D.matches.filter((m) => m.day === today).forEach((m) => { if ((m.casters || []).join() !== d.casters.join()) { m.casters = d.casters.slice(); changed = true; } });
-      if (changed) onChange();
-    }).catch(() => {});
-  // map name, bans and first heroes per map (pick_watch.py -> data/live_sets), also straight from the repository:
-  // shows seconds after the PC reads them instead of after the next site build
-  fetch('https://raw.githubusercontent.com/dlworhs11-rgb/owcs-kr/main/data/live_sets/' + today + '.json?t=' + Date.now())
-    .then((r) => (r.ok ? r.json() : null)).then((d) => {
-      if (!d || !d.sets) return;
-      const ab = (nm) => (D.teams.find((t) => t.n.toLowerCase() === String(nm || '').toLowerCase() || t.a === nm) || {}).a;
-      const code = (h) => / /.test(h || '') ? h.split(' ').map((w) => w[0]).join('').toUpperCase().slice(0, 3) : String(h || '?').slice(0, 3).toUpperCase();
-      let changed = false;
-      d.sets.forEach((st) => {
-        const tm = (st.teams || []).map(ab);
-        const m = D.matches.find((x) => x.day === today && tm.includes(x.a) && tm.includes(x.b));
-        if (!m || !st.game) return;
-        const side = (nm) => ab(nm) === m.a ? 'a' : ab(nm) === m.b ? 'b' : null;
-        let x = m.maps.find((y) => y.no === st.game);
-        if (!x) { x = { no: st.game, map: st.map || st.game + '세트', mode: '', winner: null, bans: [], banFirst: null, src: 'live' }; m.maps.push(x); m.maps.sort((p, q) => p.no - q.no); changed = true; }
-        if (st.map && /세트$/.test(x.map)) { x.map = st.map; changed = true; }
-        const bn = st.bans || {};
-        if (!x.bans.length && bn.initial && bn.initial.hero) {
-          x.bans = [bn.initial, bn.followUp].filter((y) => y && y.hero).map((y) => ({ t: side(y.team), h: y.hero, code: code(y.hero) }));
-          x.banFirst = side(bn.initial.team); changed = true;
-        }
-        if (st.comps && !x.comps) {
-          x.comps = {}; Object.keys(st.comps).forEach((t) => { const k = side(t); if (k) x.comps[k] = st.comps[t]; }); changed = true;
-        }
-      });
-      if (changed) onChange();
-    }).catch(() => {});
+  };
+  return es;
 };
 const state = (m, now) => {
   const t0 = new Date(m.date).getTime();
@@ -1243,7 +1268,7 @@ class Component extends DCLogic {
       s.src = 'owcs-data.js?v=' + Date.now();
       // swapped in place, no reload: a reload reuses the browser's cached owcs-data.js (10 min), so it looked stale
       // and the page reloaded again and again
-      s.onload = () => { s.remove(); if (window.OWCS && window.OWCS.generated > D.generated) { Object.assign(D, window.OWCS); this.setState((st) => ({ rev: st.rev + 1 })); } };
+      s.onload = () => { s.remove(); if (window.OWCS && window.OWCS.generated > D.generated) { Object.assign(D, window.OWCS); applyLive(dayOf(nowMs())); this.setState((st) => ({ rev: st.rev + 1 })); } };
       s.onerror = () => s.remove();
       document.head.appendChild(s);
       const now = nowMs(), today = dayOf(now);
@@ -1252,6 +1277,7 @@ class Component extends DCLogic {
       if (on) try { liveScores(today, () => this.setState((st) => ({ rev: st.rev + 1 }))); } catch (e) {}
     };
     this.r = setTimeout(poll, 10000);
+    try { this.es = liveRelay(() => this.setState((st) => ({ rev: st.rev + 1 }))); } catch (e) {}
     // my team set on another page/tab (results, live) shows up here too
     this.onStore = (e) => { if (e.key !== 'owcs-myteam') return; const v = D.teams.some((t) => t.a === e.newValue) ? e.newValue : null; this.setState(v ? { myTeam: v, sel: v } : { myTeam: v }); };
     window.addEventListener('storage', this.onStore);
