@@ -86,7 +86,7 @@
       H + '[data-owcs-bg]::before,' + H + '[data-owcs-bg]::after{display:none !important}',
       // today: content back to the normal column; the dark screens (stream, score, map rows) stay as cards
       H + '[data-tm="light"] section[data-today] [data-tbox]{background:transparent !important;background-image:none !important;color:inherit !important;border:3px solid color-mix(in srgb, var(--ink,#0B0B0F) 22%, transparent);border-radius:28px !important;padding:38px 45px 46px !important}',
-      '@media (min-width:900px){' + H + '#dc-root [data-screen-label] > section[data-today]{padding:40px max(8px, calc(50% - 728px)) 72px !important}}',
+      '@media (min-width:900px){' + H + '#dc-root [data-screen-label] > section[data-today]{padding:40px max(8px, calc(50% - 728px)) 40px !important}}',
       '@media (max-width:899.98px){' + H + '#dc-root [data-screen-label] > section[data-today]{padding:20px 8px 32px !important}' + H + '[data-tm="light"] section[data-today] [data-tbox]{border-radius:20px !important;padding:22px 10px 26px !important}}',
       H + '[data-tm="light"] section[data-today] [data-tcard] a{color:var(--ink,#0B0B0F) !important;border-color:color-mix(in srgb, var(--ink,#0B0B0F) 25%, transparent) !important}',
       // footer on the sheet: ink text instead of white
