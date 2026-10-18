@@ -3,14 +3,70 @@
  "casters": [],
  "matches": {
   "2026-10-18-24": {
-   "sa": 2,
-   "sb": 0,
    "maps": {
     "1": {
      "map": "Nepal"
     }
    }
+  },
+  "2026-10-18-25": {
+   "sa": 3,
+   "sb": 0,
+   "potm": "Stalk3r",
+   "maps": {
+    "3": {
+     "map": "Shambali Monastery",
+     "sa": 3,
+     "sb": 1,
+     "comps": {
+      "a": [
+       [
+        "MAX",
+        "sigma"
+       ],
+       [
+        "HeeSang",
+        "symmetra"
+       ],
+       [
+        "Stalk3r",
+        "cassidy"
+       ],
+       [
+        "CH0R0NG",
+        "mizuki"
+       ],
+       [
+        "vigilante",
+        "doctrine"
+       ]
+      ],
+      "b": [
+       [
+        "SoLA",
+        "dva"
+       ],
+       [
+        "SORI",
+        "cassidy"
+       ],
+       [
+        "F1nally",
+        "tracer"
+       ],
+       [
+        "Soae",
+        "jetpack-cat"
+       ],
+       [
+        "Caffeine",
+        "doctrine"
+       ]
+      ]
+     }
+    }
+   }
   }
  },
- "at": "2026-10-18T15:49:15+09:00"
+ "at": "2026-10-18T17:42:41+09:00"
 }
