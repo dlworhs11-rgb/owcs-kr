@@ -1148,6 +1148,8 @@ const applyLive = (today) => {
     const tm = (st.teams || []).map(ab);
     const m = D.matches.find((x) => x.day === today && tm.includes(x.a) && tm.includes(x.b));
     if (!m || !st.game) return;
+    // its map / ban screen was read: the match is on even before its listed start (10-02: on air 17:10, listed 17:15)
+    if (!m.played && !m.live) { m.live = true; changed = true; }
     const side = (nm) => ab(nm) === m.a ? 'a' : ab(nm) === m.b ? 'b' : null;
     let x = m.maps.find((y) => y.no === st.game);
     if (!x) { x = { no: st.game, map: st.map || st.game + '세트', mode: '', winner: null, bans: [], banFirst: null, src: 'live' }; m.maps.push(x); m.maps.sort((p, q) => p.no - q.no); changed = true; }
