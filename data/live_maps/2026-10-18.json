@@ -1,0 +1,188 @@
+{
+ "date": "2026-10-18",
+ "source": "OBS capture of the SOOP broadcast (owesports), GAME DATA screens",
+ "maps": [
+  {
+   "match": "Cheeseburger vs SEIJI ESPORTS",
+   "matchNo": 1,
+   "game": 1,
+   "map": "?",
+   "mapTime": null,
+   "frame": "m01_table1_1792304917.png",
+   "teams": {
+    "Cheeseburger": [
+     {
+      "name": "?1",
+      "e": 18,
+      "a": 4,
+      "d": 3,
+      "dmg": 12568,
+      "heal": 0,
+      "mit": 6946
+     },
+     {
+      "name": "?2",
+      "e": 22,
+      "a": 7,
+      "d": 4,
+      "dmg": 11792,
+      "heal": 140,
+      "mit": 1248
+     },
+     {
+      "name": "?3",
+      "e": 20,
+      "a": 0,
+      "d": 2,
+      "dmg": 7345,
+      "heal": 25,
+      "mit": 62
+     },
+     {
+      "name": "?4",
+      "e": 16,
+      "a": 21,
+      "d": null,
+      "dmg": 1447,
+      "heal": 9201,
+      "mit": 0
+     },
+     {
+      "name": "?5",
+      "e": 10,
+      "a": 24,
+      "d": 4,
+      "dmg": 1707,
+      "heal": 9734,
+      "mit": 1457
+     }
+    ],
+    "SEIJI ESPORTS": [
+     {
+      "name": "?6",
+      "e": 7,
+      "a": 0,
+      "d": 3,
+      "dmg": 6262,
+      "heal": 117,
+      "mit": 122
+     },
+     {
+      "name": "?7",
+      "e": 8,
+      "a": 1,
+      "d": 5,
+      "dmg": 9504,
+      "heal": 544,
+      "mit": 9853
+     },
+     {
+      "name": "?8",
+      "e": 3,
+      "a": 6,
+      "d": 6,
+      "dmg": 1429,
+      "heal": 11841,
+      "mit": 2045
+     },
+     {
+      "name": "?9",
+      "e": 9,
+      "a": 5,
+      "d": 9,
+      "dmg": 9263,
+      "heal": 269,
+      "mit": 1181
+     },
+     {
+      "name": "?10",
+      "e": 5,
+      "a": 6,
+      "d": 7,
+      "dmg": 2695,
+      "heal": 7809,
+      "mit": 1
+     }
+    ]
+   },
+   "totalsVerified": false,
+   "reading": "ocr",
+   "bans": {
+    "initial": {
+     "team": "Cheeseburger",
+     "hero": "sombra"
+    },
+    "followUp": {
+     "team": "SEIJI ESPORTS",
+     "hero": "cassidy"
+    }
+   },
+   "seriesBefore": {
+    "Cheeseburger": 0,
+    "SEIJI ESPORTS": 0
+   }
+  }
+ ],
+ "matches": [
+  {
+   "match": "Cheeseburger vs SEIJI ESPORTS",
+   "matchNo": 1,
+   "mapWins": {},
+   "potm": null
+  }
+ ],
+ "unknownNames": [
+  {
+   "id": "?1",
+   "map": "01",
+   "row": 0
+  },
+  {
+   "id": "?2",
+   "map": "01",
+   "row": 1
+  },
+  {
+   "id": "?3",
+   "map": "01",
+   "row": 2
+  },
+  {
+   "id": "?4",
+   "map": "01",
+   "row": 3
+  },
+  {
+   "id": "?5",
+   "map": "01",
+   "row": 4
+  },
+  {
+   "id": "?6",
+   "map": "01",
+   "row": 5
+  },
+  {
+   "id": "?7",
+   "map": "01",
+   "row": 6
+  },
+  {
+   "id": "?8",
+   "map": "01",
+   "row": 7
+  },
+  {
+   "id": "?9",
+   "map": "01",
+   "row": 8
+  },
+  {
+   "id": "?10",
+   "map": "01",
+   "row": 9
+  }
+ ],
+ "unknownMaps": [],
+ "note": "reading=ocr: numbers, match/game/map read from the broadcast screen; totalsVerified = sums match the team-totals page; mapTime = damage / damage-per-minute from the totals page."
+}
