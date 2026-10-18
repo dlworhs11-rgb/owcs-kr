@@ -250,9 +250,7 @@
    },
    "src": "SOOP",
    "hudLeft": "Crazy Raccoon",
-   "guessed": [
-    "Stalk3r"
-   ],
+   "guessed": [],
    "comps": {
     "Crazy Raccoon": [
      [
@@ -265,7 +263,7 @@
      ],
      [
       "Stalk3r",
-      "mei"
+      "venture"
      ],
      [
       "CH0R0NG",
