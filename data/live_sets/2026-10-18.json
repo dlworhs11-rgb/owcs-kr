@@ -23,54 +23,54 @@
      "hero": "cassidy"
     }
    },
-   "hudLeft": "Cheeseburger",
    "comps": {
     "Cheeseburger": [
+     [
+      "Belosrea",
+      "dmon"
+     ],
      [
       "K4NE",
       "bastion"
      ],
      [
-      "PROFIT",
+      "Profit",
       "tracer"
      ],
      [
-      "BELOSREA",
-      "dmon"
-     ],
-     [
-      "TREST",
-      "doctrine"
-     ],
-     [
-      "TENTEN",
+      "TenTen",
       "jetpack-cat"
+     ],
+     [
+      "Trest",
+      "doctrine"
      ]
     ],
     "SEIJI ESPORTS": [
      [
-      "M1NUT2",
-      "bastion"
+      "DOX",
+      "dmon"
      ],
      [
       "D4RT",
       "tracer"
      ],
      [
-      "DOX",
-      "dmon"
+      "M1nut2",
+      "bastion"
+     ],
+     [
+      "Lavender",
+      "doctrine"
      ],
      [
       "OFF",
       "jetpack-cat"
-     ],
-     [
-      "LAVENDER",
-      "doctrine"
      ]
     ]
    },
-   "compAt": "late"
+   "hudLeft": "Cheeseburger",
+   "fromTable": true
   }
  ]
 }
