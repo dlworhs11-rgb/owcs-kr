@@ -1,18 +1,19 @@
 {
  "date": "2026-10-18",
  "casters": [
-  "호하Af",
+  "홍현성",
   "AID"
  ],
  "roles": [
   [
    "CASTER",
-   "호하Af"
+   "홍현성"
   ],
   [
    "COMMENTATOR",
    "AID"
   ]
  ],
- "at": "2026-10-18T17:43:20+09:00"
+ "at": "2026-10-18T21:40:00+09:00",
+ "note": "fixed by hand: the 21:21 read was garbage"
 }
