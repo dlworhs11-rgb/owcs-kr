@@ -1138,6 +1138,33 @@ const liveScores = (today, onChange) => {
       });
       if (changed) onChange();
     }).catch(() => {});
+  // map name, bans and first heroes per map (pick_watch.py -> data/live_sets), also straight from the repository:
+  // shows seconds after the PC reads them instead of after the next site build
+  fetch('https://raw.githubusercontent.com/dlworhs11-rgb/owcs-kr/main/data/live_sets/' + today + '.json?t=' + Date.now())
+    .then((r) => (r.ok ? r.json() : null)).then((d) => {
+      if (!d || !d.sets) return;
+      const ab = (nm) => (D.teams.find((t) => t.n.toLowerCase() === String(nm || '').toLowerCase() || t.a === nm) || {}).a;
+      const code = (h) => / /.test(h || '') ? h.split(' ').map((w) => w[0]).join('').toUpperCase().slice(0, 3) : String(h || '?').slice(0, 3).toUpperCase();
+      let changed = false;
+      d.sets.forEach((st) => {
+        const tm = (st.teams || []).map(ab);
+        const m = D.matches.find((x) => x.day === today && tm.includes(x.a) && tm.includes(x.b));
+        if (!m || !st.game) return;
+        const side = (nm) => ab(nm) === m.a ? 'a' : ab(nm) === m.b ? 'b' : null;
+        let x = m.maps.find((y) => y.no === st.game);
+        if (!x) { x = { no: st.game, map: st.map || st.game + '세트', mode: '', winner: null, bans: [], banFirst: null, src: 'live' }; m.maps.push(x); m.maps.sort((p, q) => p.no - q.no); changed = true; }
+        if (st.map && /세트$/.test(x.map)) { x.map = st.map; changed = true; }
+        const bn = st.bans || {};
+        if (!x.bans.length && bn.initial && bn.initial.hero) {
+          x.bans = [bn.initial, bn.followUp].filter((y) => y && y.hero).map((y) => ({ t: side(y.team), h: y.hero, code: code(y.hero) }));
+          x.banFirst = side(bn.initial.team); changed = true;
+        }
+        if (st.comps && !x.comps) {
+          x.comps = {}; Object.keys(st.comps).forEach((t) => { const k = side(t); if (k) x.comps[k] = st.comps[t]; }); changed = true;
+        }
+      });
+      if (changed) onChange();
+    }).catch(() => {});
 };
 const state = (m, now) => {
   const t0 = new Date(m.date).getTime();
@@ -1213,7 +1240,7 @@ class Component extends DCLogic {
       document.head.appendChild(s);
       const now = nowMs(), today = dayOf(now);
       const on = D.matches.some((m) => m.day === today && ((!m.played && now >= new Date(m.date).getTime() - 30 * 60e3) || (m.played && !m.potm)));   // also until the last POTM is in
-      this.r = setTimeout(poll, on ? 10000 : 60000);
+      this.r = setTimeout(poll, on ? 5000 : 60000);   // match day: new live data within ~5 s
       if (on) try { liveScores(today, () => this.setState((st) => ({ rev: st.rev + 1 }))); } catch (e) {}
     };
     this.r = setTimeout(poll, 10000);
