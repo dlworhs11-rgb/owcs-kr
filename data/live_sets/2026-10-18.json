@@ -70,11 +70,7 @@
     ]
    },
    "hudLeft": "Cheeseburger",
-   "fromTable": true,
-   "score": {
-    "Cheeseburger": 2,
-    "SEIJI ESPORTS": 0
-   }
+   "fromTable": true
   },
   {
    "banTs": 1792305068,
@@ -152,6 +148,30 @@
     "SEIJI ESPORTS": 0,
     "Cheeseburger": 3
    }
+  },
+  {
+   "banTs": 1792306464,
+   "teams": [
+    "Cheeseburger",
+    "SEIJI ESPORTS"
+   ],
+   "game": 3,
+   "map": "New Junk City",
+   "seriesBefore": {
+    "Cheeseburger": 2,
+    "SEIJI ESPORTS": 0
+   },
+   "bans": {
+    "initial": {
+     "team": "SEIJI ESPORTS",
+     "hero": "doctrine"
+    },
+    "followUp": {
+     "team": "Cheeseburger",
+     "hero": "vendetta"
+    }
+   },
+   "src": "SOOP"
   }
  ]
 }
