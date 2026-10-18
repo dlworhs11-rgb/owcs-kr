@@ -251,8 +251,7 @@
    "src": "SOOP",
    "hudLeft": "Crazy Raccoon",
    "guessed": [
-    "Stalk3r",
-    "F1nally"
+    "Stalk3r"
    ],
    "comps": {
     "Crazy Raccoon": [
@@ -274,7 +273,7 @@
      ],
      [
       "vigilante",
-      "zenyatta"
+      "sombra"
      ]
     ],
     "Poker Face": [
