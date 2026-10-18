@@ -70,7 +70,11 @@
     ]
    },
    "hudLeft": "Cheeseburger",
-   "fromTable": true
+   "fromTable": true,
+   "score": {
+    "Cheeseburger": 2,
+    "SEIJI ESPORTS": 0
+   }
   },
   {
    "banTs": 1792305068,
