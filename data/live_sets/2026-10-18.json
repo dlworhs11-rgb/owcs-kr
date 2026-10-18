@@ -248,7 +248,58 @@
      "hero": "jetpack cat"
     }
    },
-   "src": "SOOP"
+   "src": "SOOP",
+   "hudLeft": "Crazy Raccoon",
+   "guessed": [
+    "Stalk3r"
+   ],
+   "comps": {
+    "Crazy Raccoon": [
+     [
+      "JunBin",
+      "reinhardt"
+     ],
+     [
+      "HeeSang",
+      "tracer"
+     ],
+     [
+      "Stalk3r",
+      "vendetta"
+     ],
+     [
+      "CH0R0NG",
+      "doctrine"
+     ],
+     [
+      "vigilante",
+      "zenyatta"
+     ]
+    ],
+    "Poker Face": [
+     [
+      "SoLA",
+      "dmon"
+     ],
+     [
+      "SORI",
+      "widowmaker"
+     ],
+     [
+      "F1nally",
+      "?"
+     ],
+     [
+      "Dumbbell",
+      "kiriko"
+     ],
+     [
+      "Caffeine",
+      "doctrine"
+     ]
+    ]
+   },
+   "compAt": null
   }
  ]
 }
