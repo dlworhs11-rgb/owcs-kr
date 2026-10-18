@@ -94,7 +94,60 @@
      "hero": "ana"
     }
    },
-   "src": "SOOP"
+   "src": "SOOP",
+   "hudLeft": "SEIJI ESPORTS",
+   "guessed": [],
+   "comps": {
+    "SEIJI ESPORTS": [
+     [
+      "SENTIER",
+      "sigma"
+     ],
+     [
+      "M1nut2",
+      "cassidy"
+     ],
+     [
+      "D4RT",
+      "junkrat"
+     ],
+     [
+      "OFF",
+      "jetpack-cat"
+     ],
+     [
+      "Lavender",
+      "doctrine"
+     ]
+    ],
+    "Cheeseburger": [
+     [
+      "Belosrea",
+      "reinhardt"
+     ],
+     [
+      "K4NE",
+      "cassidy"
+     ],
+     [
+      "Profit",
+      "mei"
+     ],
+     [
+      "Trest",
+      "lucio"
+     ],
+     [
+      "TenTen",
+      "jetpack-cat"
+     ]
+    ]
+   },
+   "compAt": "2026-10-18T15:34:12+09:00",
+   "score": {
+    "SEIJI ESPORTS": 0,
+    "Cheeseburger": 0
+   }
   }
  ]
 }
