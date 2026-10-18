@@ -617,7 +617,7 @@ def build_players(socials, stage_teams):
                         x=s.get('x') and 'https://x.com/' + s['x'], lp=s.get('lp'),
                         insta=sorted([x for x in (insta_post(u) for w, u in insta if w in (handle.lower(), (s.get('instagram') or '').lower())) if x['img']],
                                      key=lambda x: x['date'], reverse=True)[:4],   # newest first; posts whose photo could not be read are left out
-                        achievements=[{k: v for k, v in x.items() if k != 'k'} for x in ach.get(handle.lower(), [])][:10],
+                        achievements=[{k: v for k, v in x.items() if k != 'k'} for x in ach.get(handle.lower()) or ach.get((s.get('lp') or '').rsplit('/', 1)[-1].lower(), [])][:10],   # Liquipedia may spell the handle differently (iR0NY -> Irony)
                         awards=awards.get(handle.lower(), [])[:6], awardCount=len(awards.get(handle.lower(), []))))
     out.sort(key=lambda x: (x['team'], x['order'], -x['potm']))
     return out
