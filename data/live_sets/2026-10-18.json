@@ -22,7 +22,55 @@
      "team": "SEIJI ESPORTS",
      "hero": "cassidy"
     }
-   }
+   },
+   "hudLeft": "Cheeseburger",
+   "comps": {
+    "Cheeseburger": [
+     [
+      "K4NE",
+      "bastion"
+     ],
+     [
+      "PROFIT",
+      "tracer"
+     ],
+     [
+      "BELOSREA",
+      "dmon"
+     ],
+     [
+      "TREST",
+      "doctrine"
+     ],
+     [
+      "TENTEN",
+      "jetpack-cat"
+     ]
+    ],
+    "SEIJI ESPORTS": [
+     [
+      "M1NUT2",
+      "bastion"
+     ],
+     [
+      "D4RT",
+      "tracer"
+     ],
+     [
+      "DOX",
+      "dmon"
+     ],
+     [
+      "OFF",
+      "jetpack-cat"
+     ],
+     [
+      "LAVENDER",
+      "doctrine"
+     ]
+    ]
+   },
+   "compAt": "late"
   }
  ]
 }
