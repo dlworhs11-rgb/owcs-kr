@@ -251,7 +251,8 @@
    "src": "SOOP",
    "hudLeft": "Crazy Raccoon",
    "guessed": [
-    "Stalk3r"
+    "Stalk3r",
+    "F1nally"
    ],
    "comps": {
     "Crazy Raccoon": [
@@ -287,7 +288,7 @@
      ],
      [
       "F1nally",
-      "?"
+      "tracer"
      ],
      [
       "Dumbbell",
