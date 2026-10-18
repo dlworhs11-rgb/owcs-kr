@@ -173,10 +173,7 @@
    },
    "src": "SOOP",
    "hudLeft": "SEIJI ESPORTS",
-   "guessed": [
-    "D4RT",
-    "Profit"
-   ],
+   "guessed": [],
    "comps": {
     "SEIJI ESPORTS": [
      [
@@ -189,7 +186,7 @@
      ],
      [
       "D4RT",
-      "anran"
+      "tracer"
      ],
      [
       "OFF",
@@ -207,11 +204,11 @@
      ],
      [
       "K4NE",
-      "genji"
+      "cassidy"
      ],
      [
       "Profit",
-      "kiriko"
+      "tracer"
      ],
      [
       "Trest",
