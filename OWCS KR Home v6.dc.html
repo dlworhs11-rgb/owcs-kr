@@ -1153,7 +1153,7 @@ const applyLive = (today) => {
     if (!x) { x = { no: st.game, map: st.map || st.game + '세트', mode: '', winner: null, bans: [], banFirst: null, src: 'live' }; m.maps.push(x); m.maps.sort((p, q) => p.no - q.no); changed = true; }
     if (st.map && /세트$/.test(x.map || '세트')) { x.map = st.map; changed = true; }
     const ss = st.score || {}, ka = Object.keys(ss).find((t) => side(t) === 'a'), kb = Object.keys(ss).find((t) => side(t) === 'b');
-    if (ka && kb && x.src !== 'liquipedia' && (x.sa !== ss[ka] || x.sb !== ss[kb])) { x.sa = ss[ka]; x.sb = ss[kb]; changed = true; }   // map score off the HUD; Liquipedia's wins
+    if (ka && kb && x.src !== 'liquipedia' && ss[ka] + ss[kb] > (x.sa || 0) + (x.sb || 0)) { x.sa = ss[ka]; x.sb = ss[kb]; changed = true; }   // map score off the HUD; Liquipedia's wins
     const bn = st.bans || {};
     if (!x.bans.length && bn.initial && bn.initial.hero) {
       x.bans = [bn.initial, bn.followUp].filter((y) => y && y.hero).map((y) => ({ t: side(y.team), h: y.hero, code: code(y.hero) }));
@@ -1171,8 +1171,11 @@ const applyLive = (today) => {
     Object.entries(ad.matches || {}).forEach(([id, o]) => {
       const m = D.matches.find((x) => x.id === id);
       if (!m) return;
-      if (o.sa != null && m.sa !== o.sa) { m.sa = o.sa; changed = true; }
-      if (o.sb != null && m.sb !== o.sb) { m.sb = o.sb; changed = true; }
+      // a typed series score counts while it is at least as far as the automatic one (a stale 2-0 must not hide the 3-0)
+      if ((o.sa != null || o.sb != null) && (o.sa || 0) + (o.sb || 0) >= (m.sa || 0) + (m.sb || 0)) {
+        if (o.sa != null && m.sa !== o.sa) { m.sa = o.sa; changed = true; }
+        if (o.sb != null && m.sb !== o.sb) { m.sb = o.sb; changed = true; }
+      }
       if (o.potm && m.potm !== o.potm) { m.potm = o.potm; changed = true; }
       if ((o.sa != null || o.sb != null) && Math.max(m.sa || 0, m.sb || 0) >= Math.floor((m.bo || 5) / 2) + 1 && !m.played) { m.played = true; m.live = false; changed = true; }
       Object.entries(o.maps || {}).forEach(([no, y]) => {
@@ -1181,6 +1184,7 @@ const applyLive = (today) => {
         if (!x) { x = { no, map: y.map || no + '세트', mode: '', winner: null, bans: [], banFirst: null, src: 'admin' }; m.maps.push(x); m.maps.sort((p, q) => p.no - q.no); changed = true; }
         if (y.map && x.map !== y.map) { x.map = y.map; changed = true; }
         if (y.winner && x.winner !== y.winner) { x.winner = y.winner; changed = true; }
+        if (y.sa != null && y.sb != null && (x.sa !== y.sa || x.sb !== y.sb)) { x.sa = y.sa; x.sb = y.sb; changed = true; }
         if ((y.bans || []).length) { const b = y.bans.map((z) => ({ t: z.t, h: z.h, code: code(z.h) })); if (!same(x.bans, b)) { x.bans = b; x.banFirst = y.banFirst; changed = true; } }
         if (y.comps) { const cp = { ...(x.comps || {}) }; Object.keys(y.comps).forEach((t) => { cp[t] = y.comps[t].map((s, i) => [s[0] || ((x.comps || {})[t] || [])[i]?.[0] || '', s[1] || ((x.comps || {})[t] || [])[i]?.[1] || '']); }); if (!same(cp, x.comps)) { x.comps = cp; changed = true; } }
       });

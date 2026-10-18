@@ -452,7 +452,9 @@ def build_matches(stage):
         week = (dt.date() - stage['week0']).days // 7 + 1
         rs = m['phase'] == 'rs'
         ao = (adm.get('matches') or {}).get(f"{day}-{m['idx']}" if rs else f"{stage['year']}s{stage['n']}-p{m['idx']}") or {}
-        if ao.get('sa') is not None or ao.get('sb') is not None:
+        # a typed series score counts while it is at least as far as the automatic one: a score typed at 2-0 must not
+        # hold the match at 2-0 after the recorder saw the 3-0 (10-18)
+        if (ao.get('sa') is not None or ao.get('sb') is not None) and (ao.get('sa') or 0) + (ao.get('sb') or 0) >= (sa or 0) + (sb or 0):
             sa, sb = ao.get('sa', sa) or 0, ao.get('sb', sb) or 0
             live = max(sa, sb) < need
             played = not live
@@ -466,12 +468,20 @@ def build_matches(stage):
                 x['map'], x['mode'] = y['map'], MODE_KO.get(MAP_MODE.get(y['map']), x.get('mode') or '')
             if y.get('winner'):
                 x['winner'] = y['winner']
+            if y.get('sa') is not None and y.get('sb') is not None:
+                x['sa'], x['sb'] = y['sa'], y['sb']
             if y.get('bans'):
                 x['bans'], x['banFirst'] = [dict(t=b['t'], h=b['h'], code=hero_code(b['h'])) for b in y['bans']], y.get('banFirst')
             for t, rows in (y.get('comps') or {}).items():
                 old = (x.get('comps') or {}).get(t) or [['', '']] * 5
                 x.setdefault('comps', {})[t] = [[r[0] or (old[i][0] if i < len(old) else ''), r[1] or (old[i][1] if i < len(old) else '')] for i, r in enumerate(rows)]
         maps.sort(key=lambda x: x['no'] or 0)
+        for x in maps:   # Control / Flashpoint end at a fixed score: the winner has 2 / 3 even when the HUD was not read
+            tgt = {'Control': 2, 'Flashpoint': 3}.get(MAP_MODE.get(x.get('map')))
+            if tgt and x.get('winner') in ('a', 'b'):
+                w, l = ('sa', 'sb') if x['winner'] == 'a' else ('sb', 'sa')
+                if (x.get(w) or 0) < tgt:
+                    x[w], x[l] = tgt, min(x.get(l) or 0, tgt - 1)
         out.append(dict(
             # regular season ids stay '<day>-<idx>' (calendar UIDs people already subscribed to); playoff ids do not
             # carry the day, so a rescheduled playoff match keeps its calendar entry
