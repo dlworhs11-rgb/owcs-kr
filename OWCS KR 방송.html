@@ -120,16 +120,13 @@ footer{padding:32px 0 56px;background:#0B0B0F;color:#8A8A93;font-size:13px;line-
 <script>
 (function () {
   var D = window.OWCS || { teams: [], players: [], standings: [], live: {} };
-  var order = (D.standings || []).map(function (s) { return s.a; });
   // phone / tablet: the viewer's own teams first (내 팀 on the home page, then the teams of their calendar subscription; kept in this browser)
   var mine = [];
   if (window.matchMedia('(max-width:1024px)').matches) {
     try { mine = [localStorage.getItem('owcs-myteam')].concat(JSON.parse(localStorage.getItem('owcs-subteams') || '[]')).filter(function (a, i, l) { return a && l.indexOf(a) === i; }); } catch (e) {}
   }
-  function rank(a) { var i = mine.indexOf(a); return i < 0 ? 100 + order.indexOf(a) : i; }
-  var teams = D.teams.slice().sort(function (a, b) { return rank(a.a) - rank(b.a); });
-    function platform(p) {
-    var live = D.live[p.id];
+  function platform(p) {
+    var live = (D.live || {})[p.id];
     if (live) return { cls: /chzzk/.test(live) ? 'chzzk' : 'soop', label: /chzzk/.test(live) ? 'CHZZK' : 'SOOP', href: live };   // live shows on the photo ring; the button keeps its platform colour
     var ls = (D.lastStream || {})[p.id] || {};   // both channels: the one with the latest broadcast, SOOP on a tie
     if (p.chzzk && (!p.soop || (ls.chzzk || '') > (ls.soop || ''))) return { cls: 'chzzk', label: 'CHZZK', href: p.chzzk };
@@ -138,14 +135,21 @@ footer{padding:32px 0 56px;background:#0B0B0F;color:#8A8A93;font-size:13px;line-
   }
   function esc(s) { return String(s || '').replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function render() {
-    var n = 0, html = '';
+    var L = D.live || {}, n = 0, html = '';
+    var order = (D.standings || []).map(function (s) { return s.a; });
+    function isLive(p) { return !!L[p.id]; }
+    function liveIn(a) { return D.players.filter(function (p) { return p.team === a && isLive(p); }).length; }
+    function rank(a) { var i = mine.indexOf(a); return i < 0 ? 100 + order.indexOf(a) : i; }
+    // teams with someone live come first, then the viewer's own teams / standings order; inside a team, live players first
+    var teams = (D.teams || []).slice().sort(function (a, b) { return (liveIn(b.a) ? 1 : 0) - (liveIn(a.a) ? 1 : 0) || rank(a.a) - rank(b.a); });
     teams.forEach(function (t) {
       var ps = D.players.filter(function (p) { return p.team === t.a; });
-      var liveCnt = ps.filter(function (p) { return D.live[p.id]; }).length; n += liveCnt;
+      ps = ps.filter(isLive).concat(ps.filter(function (p) { return !isLive(p); }));
+      var liveCnt = ps.filter(isLive).length; n += liveCnt;
       html += '<section class="team"><h2><i style="background-image:url(\'' + esc(t.logo) + '\')"></i>' + esc(t.n) +
-        '<span class="' + (liveCnt ? 'on' : '') + '">' + (liveCnt ? '● 방송 중 ' + liveCnt + '명' : '방송 중 없음') + '</span></h2><div class="rows">';
+        '<span class="' + (liveCnt ? 'on' : '') + '">' + (liveCnt ? '● 방송 중 ' + liveCnt + '명' : '방송 없음') + '</span></h2><div class="rows">';
       ps.forEach(function (p) {
-        var pf = platform(p), live = !!D.live[p.id];
+        var pf = platform(p), live = isLive(p);
         var tag = pf.href ? 'a' : 'div';
         html += '<' + tag + (pf.href ? ' href="' + esc(pf.href) + '" target="_blank" rel="noopener"' : '') + ' class="p' + (live ? ' live' : '') + '">' +
           '<span class="av" style="' + (p.photo ? "background-image:url('" + esc(p.photo) + "')" : '') + '">' + (p.photo ? '' : esc(p.id.slice(0, 2).toUpperCase())) + '</span>' +
@@ -157,7 +161,10 @@ footer{padding:32px 0 56px;background:#0B0B0F;color:#8A8A93;font-size:13px;line-
     document.getElementById('teams').innerHTML = html;
     document.getElementById('liveN').textContent = n;
     var g = (D.liveChecked || D.generated || '').replace('T', ' ').slice(0, 16);
-    document.getElementById('checked').textContent = '마지막 확인 ' + g + (n ? '' : ' · 방송 상태 확인이 꺼져 있으면 모두 꺼짐으로 보여요');
+    // warn only when the live check has stalled (no check in 30+ minutes), not every time nobody is live
+    var t = Date.parse(D.liveChecked || ''), stale = !(t > 0) || Date.now() - t > 30 * 60000;
+    document.getElementById('checked').innerHTML = '<span>마지막 확인 ' + esc(g) + '</span>' +
+      (stale ? ' · <span>방송 확인이 30분 넘게 멈춰 있어 실제와 다를 수 있어요</span>' : '');
   }
   render();
   // pick up a rebuilt owcs-data.js without a reload

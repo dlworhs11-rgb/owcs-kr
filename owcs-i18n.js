@@ -100,6 +100,7 @@
     ['선수 개인 방송 · CHZZK / SOOP', '選手の個人配信 · CHZZK / SOOP', 'Player streams · CHZZK / SOOP'], ['지금 방송 중인 선수', '配信中の選手', 'players live now'], ['방송 중 없음', '配信なし', 'Nobody live'],
     ['채널 없음', 'チャンネルなし', 'No channel'], ['마지막 확인', '最終確認', 'Last checked'], ['방송 상태는 CHZZK·SOOP에서 몇 분마다 확인해요.', '配信状況はCHZZK・SOOPで数分ごとに確認しています。', 'Live status is checked on CHZZK and SOOP every few minutes.'],
     ['방송 상태 확인이 꺼져 있으면 모두 꺼짐으로 보여요', '確認が止まっているとすべてオフライン表示になります', 'everyone shows offline while checking is off'],
+    ['방송 확인이 30분 넘게 멈춰 있어 실제와 다를 수 있어요', '配信確認が30分以上止まっているため、実際と異なる場合があります', 'live check has stalled for 30+ minutes, so this may be out of date'], ['방송 없음', '配信なし', 'Nobody live'],
     // ticket page
     ['직관 안내 · 2026 OWCS ASIA KOREA STAGE 3', '観戦案内 · 2026 OWCS ASIA KOREA STAGE 3', 'Tickets · 2026 OWCS ASIA KOREA STAGE 3'],
     ['서울 마포구 상수동 72-1, 홍익대학교 잔다리홀 B1. 정규 리그부터 플레이오프까지 모든 경기를 현장에서 볼 수 있어요.', 'ソウル市麻浦区上水洞72-1 弘益大学チャンダリホールB1。レギュラーシーズンからプレーオフまで全試合を会場で観戦できます。', '72-1 Sangsu-dong, Mapo-gu, Seoul (Hongik Univ. Jandari Hall B1). Every match from the regular season to the playoffs is played here in front of fans.'],
