@@ -6,14 +6,16 @@
    "x": "Ow_Proper",
    "name": "Kim Dong-hyun",
    "birth": "2003-12-1",
-   "lp": "https://liquipedia.net/overwatch/Proper"
+   "lp": "https://liquipedia.net/overwatch/Proper",
+   "discord": "https://discord.gg/rNXNyeBHyc"
   },
   "HeeSang": {
    "instagram": "heesang1",
    "x": "Ow_HeeSang",
    "name": "Chae Hee-sang",
    "birth": "2005-03-03",
-   "lp": "https://liquipedia.net/overwatch/HeeSang"
+   "lp": "https://liquipedia.net/overwatch/HeeSang",
+   "discord": "https://discord.gg/MxG525TXaA"
   },
   "Stalk3r": {
    "instagram": "stalk3r_ow",
@@ -459,5 +461,5 @@
   }
  },
  "_checked": "2026-10-19: every Instagram opened and matched to the real name. Belosrea belosrea_ow (no such account) -> belosrea; DOX mins_dox removed (no name, 99 followers, posts of another person); A1lEN, iR0NY added from Liquipedia (A1IEN, Irony pages)",
- "_discord": "2026-10-19: every Discord invite checked with the Discord API. 'discord' here overrides the sheet: Profit, ChiYo, SENTIER, DONGHAK from Liquipedia; SOMEONE, Jasm1ne non-expiring invites from the user. A dead invite with no replacement stays as it is (user: never drop a link from the site)"
+ "_discord": "2026-10-19: every Discord invite checked with the Discord API. 'discord' here overrides the sheet: Profit, ChiYo, SENTIER, DONGHAK from Liquipedia; SOMEONE, Jasm1ne, HeeSang, Proper invites from the user. A dead invite with no replacement stays as it is (user: never drop a link from the site)"
 }
