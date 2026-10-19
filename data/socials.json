@@ -6,14 +6,16 @@
    "x": "Ow_Proper",
    "name": "Kim Dong-hyun",
    "birth": "2003-12-1",
-   "lp": "https://liquipedia.net/overwatch/Proper"
+   "lp": "https://liquipedia.net/overwatch/Proper",
+   "discord": ""
   },
   "HeeSang": {
    "instagram": "heesang1",
    "x": "Ow_HeeSang",
    "name": "Chae Hee-sang",
    "birth": "2005-03-03",
-   "lp": "https://liquipedia.net/overwatch/HeeSang"
+   "lp": "https://liquipedia.net/overwatch/HeeSang",
+   "discord": ""
   },
   "Stalk3r": {
    "instagram": "stalk3r_ow",
@@ -44,7 +46,8 @@
    "youtube": "@동학2",
    "name": "Kim Min-sung",
    "birth": "2005-12-03",
-   "lp": "https://liquipedia.net/overwatch/DONGHAK"
+   "lp": "https://liquipedia.net/overwatch/DONGHAK",
+   "discord": "https://discord.gg/e2Hh7UBvR6"
   },
   "ZEST": {
    "instagram": "zest0303",
@@ -109,7 +112,8 @@
    "x": "ow_checkmate",
    "name": "Baek Seung-hun",
    "birth": "2001-05-08",
-   "lp": "https://liquipedia.net/overwatch/Checkmate"
+   "lp": "https://liquipedia.net/overwatch/Checkmate",
+   "discord": ""
   },
   "MER1T": {
    "instagram": "mer1t_ow",
@@ -174,7 +178,8 @@
    "x": "ChiYo_ow1",
    "name": "Han Hyeon-seok",
    "birth": "2003-09-08",
-   "lp": "https://liquipedia.net/overwatch/ChiYo"
+   "lp": "https://liquipedia.net/overwatch/ChiYo",
+   "discord": "https://discord.gg/VrZEx8tSa2"
   },
   "D4RT": {
    "instagram": "gominhyuk04",
@@ -188,7 +193,8 @@
    "x": "Jasm1ne_ow",
    "name": "Jeong Jong-min",
    "birth": "2003-09-19",
-   "lp": "https://liquipedia.net/overwatch/Jasm1ne"
+   "lp": "https://liquipedia.net/overwatch/Jasm1ne",
+   "discord": "https://discord.gg/hyTZWb4KEv"
   },
   "perr": {
    "x": "ow_perr",
@@ -208,7 +214,8 @@
    "x": "someone0424",
    "name": "Ham Jeong-wan",
    "birth": "2004-04-24",
-   "lp": "https://liquipedia.net/overwatch/Someone"
+   "lp": "https://liquipedia.net/overwatch/Someone",
+   "discord": "https://discord.gg/decFsP4EBs"
   },
   "Bliss": {
    "instagram": "owbliss",
@@ -222,7 +229,8 @@
    "x": "heesung69981132",
    "name": "Lee Hee-sung",
    "birth": "2006-06-20",
-   "lp": "https://liquipedia.net/overwatch/HEESUNG"
+   "lp": "https://liquipedia.net/overwatch/HEESUNG",
+   "discord": ""
   },
   "Fate": {
    "x": "Fate_ow",
@@ -241,7 +249,8 @@
    "x": "imjaewon390542",
    "name": "Lim Jae-won",
    "birth": "2004-05-07",
-   "lp": "https://liquipedia.net/overwatch/WuTian"
+   "lp": "https://liquipedia.net/overwatch/WuTian",
+   "discord": ""
   },
   "Belosrea": {
    "instagram": "belosrea",
@@ -254,7 +263,8 @@
   "SENTIER": {
    "x": "sentier_ow",
    "birth": "2009-05-07",
-   "lp": "https://liquipedia.net/overwatch/SENTIER"
+   "lp": "https://liquipedia.net/overwatch/SENTIER",
+   "discord": "https://discord.gg/K4Ep9h5qwQ"
   },
   "vigilante": {
    "instagram": "vi9ilante71",
@@ -320,7 +330,8 @@
    "youtube": "channel/UCUL0nRdx3zrqvXTvca7kftw",
    "name": "Park Joon-yeong",
    "birth": "1999-11-19",
-   "lp": "https://liquipedia.net/overwatch/Profit"
+   "lp": "https://liquipedia.net/overwatch/Profit",
+   "discord": "https://discord.gg/7VHzKjM"
   },
   "TenTen": {
    "name": "Liao Ching-han",
@@ -365,7 +376,8 @@
    "youtube": "@dumbbell777",
    "name": "Hwang Tae-san",
    "birth": "2006-07-09",
-   "lp": "https://liquipedia.net/overwatch/Dumbbell"
+   "lp": "https://liquipedia.net/overwatch/Dumbbell",
+   "discord": ""
   },
   "F1nally": {
    "x": "F1nally_ow",
@@ -384,7 +396,8 @@
    "x": "OW_OFFF",
    "name": "Lee Jae-in",
    "birth": "2003-04-14",
-   "lp": "https://liquipedia.net/overwatch/OFF"
+   "lp": "https://liquipedia.net/overwatch/OFF",
+   "discord": ""
   },
   "Lavender": {
    "x": "lavender_Ow0",
@@ -448,5 +461,6 @@
    "lp": "https://liquipedia.net/overwatch/Poker_Face"
   }
  },
- "_checked": "2026-10-19: every Instagram opened and matched to the real name. Belosrea belosrea_ow (no such account) -> belosrea; DOX mins_dox removed (no name, 99 followers, posts of another person); A1lEN, iR0NY added from Liquipedia (A1IEN, Irony pages)"
+ "_checked": "2026-10-19: every Instagram opened and matched to the real name. Belosrea belosrea_ow (no such account) -> belosrea; DOX mins_dox removed (no name, 99 followers, posts of another person); A1lEN, iR0NY added from Liquipedia (A1IEN, Irony pages)",
+ "_discord": "2026-10-19: every Discord invite checked with the Discord API. 'discord' here overrides the sheet: dead invites replaced from Liquipedia (Profit, ChiYo, SENTIER, DONGHAK) or by a non-expiring one (SOMEONE, Jasm1ne); '' = dead with no replacement, hidden"
 }
