@@ -49,6 +49,35 @@ h1{font-size:clamp(56px,8vw,96px);line-height:.86;margin:12px 0 0}
 .chip.on{border-color:#0B0B0F;box-shadow:inset 0 0 0 1px #0B0B0F}
 .note{font-size:13px;color:var(--dim)}
 
+/* tabs: 시즌 일정 / 시드·LCQ / 플레이오프 / 국제대회. The one for now opens first and keeps a lime dot */
+.tabs{display:flex;gap:8px;margin-bottom:18px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;display:inline-flex;align-items:center;gap:8px;height:46px;padding:0 20px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font:inherit;font-size:16px;font-weight:800;cursor:pointer;white-space:nowrap}
+.tab.on{background:var(--ink);border-color:var(--ink);color:var(--panel)}
+.tab .now{width:8px;height:8px;border-radius:50%;background:var(--ac2);box-shadow:0 0 0 1.5px #0B0B0F}
+.pane[hidden]{display:none}
+.pane owcs-bracket{margin-bottom:28px}
+.pane .sub{display:flex;align-items:center;gap:10px;margin:8px 2px 14px;font-size:13px;font-weight:800;color:var(--mute)}
+.pane .sub:after{content:"";flex:1;border-top:1px solid var(--line)}
+.done-note{padding:28px 22px;border-radius:22px;background:var(--panel);font-size:15px;color:var(--mute);margin-bottom:28px}
+.done-note a{font-weight:700;color:var(--ac)}
+
+/* 국제대회: name, place, dates, D-day, the teams (Korean teams first, marked) */
+.ib{margin-bottom:28px;padding:22px;border-radius:22px;background:#0B0B0F;color:#fff;position:relative;overflow:hidden}
+.ib:before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--ac2)}
+.ib .k{font-size:13px;font-weight:700;color:var(--ac2)}
+.ib .n{font-size:44px;line-height:.95;margin:8px 0 6px}
+.ib .w{font-size:15px;font-weight:600;color:#C9C9CF}
+.ib .dd2{display:inline-block;margin-left:8px;padding:2px 10px;border-radius:999px;background:var(--ac2);color:#0B0B0F;font-size:13px;font-weight:800}
+.ib .ts{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.ib .ts span{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 12px 0 8px;border-radius:999px;background:#1C1C23;font-size:13px;font-weight:700}
+.ib .ts span.kr{background:#2A1F44;box-shadow:inset 0 0 0 1px #7D39EB}
+.ib .ts i{width:22px;height:22px}
+.ib .ts em{font-style:normal;font-size:10px;font-weight:800;color:var(--ac2)}
+.ib .none{margin-top:14px;font-size:14px;color:#A3A3AD}
+.m.kr{box-shadow:inset 4px 0 0 var(--ac)}
+.m.kr.mine{box-shadow:inset 4px 0 0 var(--ac),inset 0 0 0 2px var(--ac)}
+
 /* team logo: transparent cut-out, as on the home page; a grey square when the team is not decided yet */
 i.lg{display:block;flex:none;background:center/contain no-repeat}
 i.lg.tbd{background:#C9C9CF;border-radius:4px}
@@ -92,6 +121,11 @@ footer{padding:32px 0 56px;background:#0B0B0F;color:#8A8A93;font-size:13px;line-
 @media (max-width:1180px){.ms{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:899.98px){
   .wrap{padding:0 16px}
+  .tabs{gap:6px;margin:0 -16px 14px;padding:0 16px}
+  .tab{height:42px;padding:0 15px;font-size:15px}
+  .ib{padding:18px 16px;border-radius:18px;margin-bottom:18px}
+  .ib .n{font-size:34px}
+  .pane owcs-bracket{margin-bottom:18px}
   .hero{gap:14px;padding:28px 0 18px}
   h1{font-size:56px}
   .eyebrow{font-size:13px}
@@ -136,6 +170,7 @@ html[data-owcs-dark] .eyebrow,html[data-owcs-dark] .day.today .dd b{color:#B89BF
   <div class="hero">
     <div><div class="eyebrow" id="stage">OWCS KR</div><h1 class="disp">SCHEDULE</h1></div>
   </div>
+  <div class="tabs" id="tabs" role="tablist"></div>
   <div class="bar">
     <div class="chips" id="chips"></div>
   </div>
@@ -149,6 +184,7 @@ html[data-owcs-dark] .eyebrow,html[data-owcs-dark] .day.today .dd b{color:#B89BF
 <script src="./owcs-i18n.js"></script>
 <script src="./owcs-stats.js"></script>
 <script src="./owcs-dark.js"></script>
+<script src="./owcs-bracket.js"></script>
 <script>
 (function () {
   var D = window.OWCS || { teams: [], matches: [] };
@@ -174,16 +210,46 @@ html[data-owcs-dark] .eyebrow,html[data-owcs-dark] .day.today .dd b{color:#B89BF
   var kstDay = function (ms) { var d = new Date(ms + 9 * 3600e3); return d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate()); };
   var today = kstDay(nowMs);
 
-  function logo(a, cls) {
-    var t = TEAM[a], u = t && (DARK ? (t.logoDark || t.logo) : t.logo);
+  // team logo; TM is the team table to look in (a world tournament has its own, foreign teams included)
+  function logo(a, cls, TM) {
+    var t = (TM || TEAM)[a], u = t && (DARK ? (t.logoDark || t.logo) : t.logo);
     return u ? '<i class="lg ' + (cls || '') + '" style="background-image:url(\'' + esc(u) + '\')" title="' + esc(t.n) + '"></i>' : '<i class="lg tbd ' + (cls || '') + '"></i>';
   }
   function state(m) { return m.live ? 'live' : m.played ? 'done' : 'up'; }
   function score(m) { return [m.sa, m.sb]; }
+  var byDate = function (x, y) { return x.date < y.date ? -1 : x.date > y.date ? 1 : (x.n || 0) - (y.n || 0); };
+  var endOf = function (day) { return new Date(day + 'T23:59:59+09:00').getTime(); };
 
-  var ms = (D.matches || []).filter(function (m) { return !m.played; }).sort(function (x, y) { return x.date < y.date ? -1 : x.date > y.date ? 1 : (x.n || 0) - (y.n || 0); });
+  var all = (D.matches || []).slice().sort(byDate);
+  var RS = all.filter(function (m) { return m.phase === 'rs'; });
+  var ROAD = all.filter(function (m) { return m.phase === 'seed' || m.phase === 'lcq'; });
+  var PO = all.filter(function (m) { return m.phase === 'po'; });
+  var cols = (D.bracket && D.bracket.columns) || [];
+  // the world tournament still to come (or on now), once Liquipedia lists its teams or matches
+  var IT = (D.intl || []).filter(function (t) { return t.end >= today && ((t.teams || []).length || (t.matches || []).length); })
+    .sort(function (x, y) { return x.start < y.start ? -1 : 1; })[0];
+  var TEAMI = {};
+  if (IT) (IT.teams || []).forEach(function (t) { TEAMI[t.a] = t; });
   document.getElementById('stage').textContent = (D.stage || 'OWCS KR').replace(/^\d{4}\s*/, '') + ' · 전체 경기 일정';
 
+  // a part is over as soon as its last match has a score, or at the end of its last day at the latest
+  // (a score that never comes in must not hold the page on a finished part; same rule as the home page)
+  function over(ms) {
+    if (!ms.length) return true;
+    return ms.every(function (m) { return m.played; }) || nowMs > endOf(ms[ms.length - 1].day);
+  }
+  // tabs in the order the season runs; the one for now is the first part not over yet, so after the Korean
+  // playoffs it is the world tournament (when Liquipedia lists it)
+  var TABS = [
+    { k: 'season', label: '시즌 일정', on: RS.length > 0, over: over(RS) },
+    { k: 'road', label: '시드 결정전 · LCQ', on: ROAD.length > 0 || cols.some(function (c) { return c.key === 'seed' || c.key === 'lcq'; }), over: over(ROAD) },
+    { k: 'po', label: '플레이오프', on: PO.length > 0 || cols.some(function (c) { return /^po-/.test(c.key); }), over: over(PO) },
+    { k: 'intl', label: IT ? IT.ko.replace(/^\d{4}\s*/, '') : '', on: !!IT, over: IT ? nowMs > endOf(IT.end) : true }
+  ].filter(function (t) { return t.on; });
+  if (!TABS.length) TABS = [{ k: 'season', label: '시즌 일정', on: true, over: false }];
+  var NOW = (TABS.filter(function (t) { return !t.over; })[0] || TABS[TABS.length - 1]).k;
+  var asked = q.get('tab');
+  var cur = TABS.some(function (t) { return t.k === asked; }) ? asked : NOW;
 
   // team chips: 전체 + every team (logo + short name); 내 팀 first
   var teams = (D.teams || []).slice().sort(function (x, y) { return (y.a === MY) - (x.a === MY) || x.a.localeCompare(y.a); });
@@ -193,20 +259,8 @@ html[data-owcs-dark] .eyebrow,html[data-owcs-dark] .day.today .dd b{color:#B89BF
   chips.innerHTML = '<button class="chip all" data-t="">전체 팀</button>' +
     teams.map(function (t) { return '<button class="chip" data-t="' + esc(t.a) + '">' + logo(t.a) + esc(t.a) + (t.a === MY ? ' ★' : '') + '</button>'; }).join('');
 
-  // weeks: 정규 리그 n주차, then the play-off days grouped by the build's label
-  var groups = [], byKey = {};
-  ms.forEach(function (m) {
-    var key = m.phase === 'rs' ? 'w' + m.week : 'p' + m.week;
-    if (!byKey[key]) {
-      byKey[key] = { key: key, title: m.phase === 'rs' ? '정규 리그 ' + m.week + '주차' : (m.phase === 'po' ? '플레이오프' : '시드 결정전 · 라스트 찬스 예선'), days: {}, order: [] };
-      groups.push(byKey[key]);
-    }
-    var g = byKey[key];
-    if (!g.days[m.day]) { g.days[m.day] = []; g.order.push(m.day); }
-    g.days[m.day].push(m);
-  });
-
-  function card(m) {
+  function card(m, TM) {
+    var intl = m.phase === 'intl';
     var st = state(m), s = score(m), hide = SP && st !== 'up';
     var lose = function (mine, other) { return !hide && st === 'done' && mine < other ? ' lose' : ''; };
     var mid = st === 'up' || hide ? '<span class="vs">vs</span>' : '<span class="vs">:</span>';
@@ -216,49 +270,107 @@ html[data-owcs-dark] .eyebrow,html[data-owcs-dark] .day.today .dd b{color:#B89BF
       : '<span class="sc"><span class="' + (s[0] > s[1] ? 'w' : '') + '">' + s[0] + '</span>:<span class="' + (s[1] > s[0] ? 'w' : '') + '">' + s[1] + '</span></span>';
     if (st === 'live' && !hide) right = '<span class="sc"><span>' + s[0] + '</span>:<span>' + s[1] + '</span></span> ' + right;
     var tm = m.tbd ? '시간 미정' : esc(m.time);
-    var lbl = m.phase === 'rs' ? tm : esc(m.round || m.label || '') + ' · ' + tm;
-    var tag = st === 'done' ? 'a href="OWCS KR Results.dc.html?q=' + encodeURIComponent(m.a) + '"' : st === 'live' ? 'a href="OWCS KR Home v6.dc.html"' : 'div';
+    var rd = intl ? [m.section, m.round].filter(Boolean).join(' ') : (m.round || m.label || '');
+    var lbl = m.phase === 'rs' || !rd ? tm : esc(rd) + ' · ' + tm;
+    var tag = st === 'live' ? 'a href="OWCS KR Home v6.dc.html"' : st === 'done' && !intl ? 'a href="OWCS KR Results.dc.html?q=' + encodeURIComponent(m.a) + '"' : 'div';
     var mine = MY && (m.a === MY || m.b === MY) ? ' mine' : '';
-    return '<' + tag + ' class="m' + mine + '" data-st="' + st + '" data-a="' + esc(m.a) + '" data-b="' + esc(m.b) + '">' +
+    var kr = intl && ((TM[m.a] || {}).kr || (TM[m.b] || {}).kr) ? ' kr' : '';
+    return '<' + tag + ' class="m' + mine + kr + '" data-st="' + st + '" data-a="' + esc(m.a) + '" data-b="' + esc(m.b) + '">' +
       '<div class="lb"><span>' + lbl + '</span><span>BO' + (m.bo || 5) + '</span></div>' +
-      '<div class="tm"><span class="' + lose(s[0], s[1]).trim() + '" style="display:flex;align-items:center;gap:8px">' + logo(m.a) + '<span>' + esc(m.a) + '</span></span>' + mid +
-      '<span class="' + lose(s[1], s[0]).trim() + '" style="display:flex;align-items:center;gap:8px"><span>' + esc(m.b) + '</span>' + logo(m.b) + '</span></div>' +
+      '<div class="tm"><span class="' + lose(s[0], s[1]).trim() + '" style="display:flex;align-items:center;gap:8px">' + logo(m.a, '', TM) + '<span>' + esc(m.a) + '</span></span>' + mid +
+      '<span class="' + lose(s[1], s[0]).trim() + '" style="display:flex;align-items:center;gap:8px"><span>' + esc(m.b) + '</span>' + logo(m.b, '', TM) + '</span></div>' +
       '<div>' + right + '</div></' + tag.split(' ')[0] + '>';
   }
 
-  var list = document.getElementById('list');
-  list.innerHTML = groups.map(function (g) {
-    var first = g.order[0], last = g.order[g.order.length - 1];
-    var rng = first.slice(5).replace('-', '.') + (last !== first ? ' – ' + last.slice(5).replace('-', '.') : '');
-    return '<section class="wk"><h2>' + esc(g.title) + '<span>' + rng + '</span></h2>' + g.order.map(function (day) {
-      var d = new Date(day + 'T00:00:00Z'), dow = d.getUTCDay(), red = dow === 0 || HOL.indexOf(day) >= 0;
-      var cls = day === today ? ' today' : '';
-      var labels = g.days[day].map(function (m) { return m.phase === 'rs' ? '' : m.group || ''; }).filter(function (x, i, l) { return x && l.indexOf(x) === i; });
-      return '<div class="day' + cls + '" id="d-' + day + '"><div class="dd"><b>' + day.slice(5).replace('-', '.') + '</b><small class="' + (red ? 'red' : '') + '">' + DOWS[dow] + '요일</small>' +
-        (day === today ? '<span class="tag">TODAY</span>' : '') + '</div>' +
-        '<div class="ms">' + g.days[day].map(card).join('') + '</div></div>';
-    }).join('') + '</section>';
-  }).join('') + '<div class="empty" hidden>조건에 맞는 경기가 없어요.</div>';
+  // one block per week (정규 리그 n주차) or per part (시드 결정전 · LCQ, 플레이오프, a world tournament), a row per day
+  function days(ms, title, TM) {
+    var groups = [], byKey = {};
+    ms.forEach(function (m) {
+      var key = title ? 'x' : 'w' + m.week;
+      if (!byKey[key]) { byKey[key] = { title: title || '정규 리그 ' + m.week + '주차', days: {}, order: [] }; groups.push(byKey[key]); }
+      var g = byKey[key];
+      if (!g.days[m.day]) { g.days[m.day] = []; g.order.push(m.day); }
+      g.days[m.day].push(m);
+    });
+    return groups.map(function (g) {
+      var first = g.order[0], last = g.order[g.order.length - 1];
+      var rng = first.slice(5).replace('-', '.') + (last !== first ? ' – ' + last.slice(5).replace('-', '.') : '');
+      return '<section class="wk"><h2>' + esc(g.title) + '<span>' + rng + '</span></h2>' + g.order.map(function (day) {
+        var d = new Date(day + 'T00:00:00Z'), dow = d.getUTCDay(), red = dow === 0 || HOL.indexOf(day) >= 0;
+        var cls = day === today ? ' today' : '';
+        return '<div class="day' + cls + '" id="d-' + day + '"><div class="dd"><b>' + day.slice(5).replace('-', '.') + '</b><small class="' + (red ? 'red' : '') + '">' + DOWS[dow] + '요일</small>' +
+          (day === today ? '<span class="tag">TODAY</span>' : '') + '</div>' +
+          '<div class="ms">' + g.days[day].map(function (m) { return card(m, TM || TEAM); }).join('') + '</div></div>';
+      }).join('') + '</section>';
+    }).join('');
+  }
+
+  // the world tournament's card: name, city, dates, D-day before it starts, its teams with the Korean ones first
+  function intlHead(T) {
+    var ts = (T.teams || []).slice().sort(function (x, y) { return (y.kr ? 1 : 0) - (x.kr ? 1 : 0) || x.a.localeCompare(y.a); });
+    var left = Math.ceil((new Date(T.start + 'T00:00:00+09:00').getTime() - nowMs) / 86400e3);
+    return '<div class="ib"><div class="k">국제대회' + (T.city ? ' · ' + esc(T.city) : '') + '</div>' +
+      '<div class="n disp">' + esc(T.ko) + '</div>' +
+      '<div class="w">' + T.start.slice(5).replace('-', '.') + ' – ' + T.end.slice(5).replace('-', '.') + ' · 모든 시간 KST' + (left > 0 ? '<span class="dd2">D-' + left + '</span>' : '') + '</div>' +
+      (ts.length ? '<div class="ts">' + ts.map(function (t) { return '<span class="' + (t.kr ? 'kr' : '') + '">' + logo(t.a, '', TEAMI) + esc(t.a) + (t.kr ? '<em>KR</em>' : '') + '</span>'; }).join('') + '</div>'
+        : '<div class="none">참가 팀은 정해지는 대로 채워요.</div>') + '</div>';
+  }
+
+  var EMPTY = '<div class="empty" hidden>조건에 맞는 경기가 없어요.</div>';
+  var BK = function (part) { return '<owcs-bracket part="' + part + '" spoiler="' + (SP ? '1' : '') + '"></owcs-bracket>'; };
+  var PANE = {
+    // the regular season: only the matches still to play (the played ones are on the results page)
+    season: function () {
+      var up = RS.filter(function (m) { return !m.played; });
+      return up.length ? days(up) + EMPTY
+        : '<div class="done-note">정규 리그 경기가 모두 끝났어요. <a href="OWCS KR Results.dc.html">시즌 결과 보기</a></div>';
+    },
+    // the seeding deciders (4 teams, a league) over the LCQ (a bracket), then every match of those days with its score
+    road: function () { return BK('road') + (ROAD.length ? '<div class="sub">날짜별 경기</div>' + days(ROAD, '시드 결정전 · 라스트 찬스 예선') : '') + EMPTY; },
+    po: function () { return BK('po') + (PO.length ? '<div class="sub">날짜별 경기</div>' + days(PO, '플레이오프') : '') + EMPTY; },
+    intl: function () { var ms = (IT.matches || []).slice().sort(byDate); return intlHead(IT) + (ms.length ? days(ms, IT.ko.replace(/^\d{4}\s*/, ''), TEAMI) : '') + EMPTY; }
+  };
+
+  var tabsEl = document.getElementById('tabs'), list = document.getElementById('list');
+  tabsEl.innerHTML = TABS.map(function (t) {
+    return '<button class="tab" role="tab" data-k="' + t.k + '">' + (t.k === NOW ? '<span class="now" title="지금"></span>' : '') + esc(t.label) + '</button>';
+  }).join('');
+  list.innerHTML = TABS.map(function (t) { return '<div class="pane" data-k="' + t.k + '" hidden>' + PANE[t.k]() + '</div>'; }).join('');
+
+  function show(k) {
+    cur = k;
+    Array.prototype.forEach.call(tabsEl.children, function (b) { var on = b.getAttribute('data-k') === k; b.classList.toggle('on', on); b.setAttribute('aria-selected', on); });
+    Array.prototype.forEach.call(list.children, function (p) { p.hidden = p.getAttribute('data-k') !== k; });
+  }
+  tabsEl.onclick = function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    show(b.getAttribute('data-k'));
+    // the address keeps the tab, so a shared link opens on it; without ?tab the tab for now opens
+    try { var u = new URL(location.href); if (cur === NOW) u.searchParams.delete('tab'); else u.searchParams.set('tab', cur); history.replaceState(null, '', u); } catch (e2) {}
+  };
 
   function apply() {
     Array.prototype.forEach.call(chips.children, function (b) { b.classList.toggle('on', b.getAttribute('data-t') === F.team); });
-    var any = false;
-    Array.prototype.forEach.call(list.querySelectorAll('.wk'), function (w) {
-      var wAny = false;
-      Array.prototype.forEach.call(w.querySelectorAll('.day'), function (dy) {
-        var dAny = false;
-        Array.prototype.forEach.call(dy.querySelectorAll('.m'), function (m) {
-          var ok = (!F.team || m.getAttribute('data-a') === F.team || m.getAttribute('data-b') === F.team);
-          m.classList.toggle('hide', !ok);
-          if (ok) dAny = true;
+    Array.prototype.forEach.call(list.children, function (pane) {
+      var any = false, ws = pane.querySelectorAll('.wk');
+      Array.prototype.forEach.call(ws, function (w) {
+        var wAny = false;
+        Array.prototype.forEach.call(w.querySelectorAll('.day'), function (dy) {
+          var dAny = false;
+          Array.prototype.forEach.call(dy.querySelectorAll('.m'), function (m) {
+            var ok = (!F.team || m.getAttribute('data-a') === F.team || m.getAttribute('data-b') === F.team);
+            m.classList.toggle('hide', !ok);
+            if (ok) dAny = true;
+          });
+          dy.classList.toggle('hide', !dAny);
+          if (dAny) wAny = true;
         });
-        dy.classList.toggle('hide', !dAny);
-        if (dAny) wAny = true;
+        w.classList.toggle('hide', !wAny);
+        if (wAny) any = true;
       });
-      w.classList.toggle('hide', !wAny);
-      if (wAny) any = true;
+      var em = pane.querySelector('.empty');
+      if (em) em.hidden = any || !ws.length;
     });
-    list.querySelector('.empty').hidden = any;
   }
   chips.onclick = function (e) {
     var b = e.target.closest('button'); if (!b) return;
@@ -267,6 +379,7 @@ html[data-owcs-dark] .eyebrow,html[data-owcs-dark] .day.today .dd b{color:#B89BF
     try { sessionStorage.setItem('owcs-sched-team', F.team); } catch (e2) {}
     apply();
   };
+  show(cur);
   apply();
 })();
 </script>

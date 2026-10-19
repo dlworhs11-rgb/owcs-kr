@@ -2,6 +2,8 @@
 // the current stage first with the earlier stages one tap away. Used on the home page (every width) and on the
 // results page (phones and tablets). Data: owcs-data.js -> OWCS.bracket (this stage) + OWCS.pastStages (newest first).
 // It draws itself in a shadow root, so the page's re-renders never touch it; spoiler="1" hides scores.
+// part="po" draws only the playoffs (champion, rounds), part="road" only the seeding deciders and LCQ, one under the
+// other (the schedule page's tabs); without it, everything.
 (function () {
   if (!window.customElements || customElements.get('owcs-bracket')) return;
   const KEY = 'owcs-bracket-stage';
@@ -59,25 +61,37 @@
 .extra{margin-top:12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
 .extra .t{font-size:11.5px;font-weight:800;color:var(--b-mute);margin:0 2px 4px}
 .grid{display:grid;gap:12px;margin-top:12px}
+.pick+.grid{margin-top:0}
 .rr{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px 6px}
-.sd{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-bottom:10px}
-.sd div{display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 2px;border-radius:10px;background:var(--b-soft);font-size:11px;color:var(--b-mute);min-width:0}
-.sd div b{font-size:13px;color:var(--b-ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
-.sd div u{text-decoration:none;font-family:var(--disp,'Barlow Condensed'),sans-serif;font-size:18px;font-weight:800;color:var(--b-ink);line-height:1}
-.sd i{width:22px;height:22px}
+.sd{margin:0 2px 6px}
+.sd .sh,.sd .sr{display:grid;grid-template-columns:4px 26px 24px minmax(0,1fr) 64px 56px;align-items:center;gap:10px}
+.sd .sh{height:26px;font-size:11.5px;font-weight:700;color:var(--b-mute);border-bottom:1.5px solid var(--b-ink)}
+.sd .sh span:nth-child(1){grid-column:1/4}
+.sd .sr{height:46px;border-top:1px solid var(--b-line)}
+.sd .sh+.sr,.sd .cut+.sr{border-top:0}
+.sd .sr em{display:block;width:4px;height:24px;border-radius:2px}
+.sd .sr u{text-decoration:none;font-family:var(--disp,'Barlow Condensed'),sans-serif;font-size:26px;font-weight:800;line-height:1}
+.sd .sr i{width:24px;height:24px}
+.sd .sr b{min-width:0;font-size:15px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sd .sr b small{margin-left:6px;font-size:11.5px;font-weight:600;color:var(--b-mute)}
+.sd .sr span{font-family:var(--disp,'Barlow Condensed'),sans-serif;font-size:19px;font-weight:700}
+.sd .sr span+span{font-size:16px;color:var(--b-mute)}
+/* the 4강 직행 line: the same green line and tag as the home standings' 플레이오프 진출선 */
+.sd .cut{display:flex;align-items:center;gap:10px;margin:-1px 0}
+.sd .cut::before{content:'';flex:1;height:3px;background:#8DCB3E}
+.sd .cut span{font-size:12px;font-weight:700;line-height:1.2;background:#8DCB3E;color:#0B0B0F;padding:3px 8px;border-radius:6px}
+.sd .pend{margin:6px 0 0;font-size:11.5px;color:var(--b-mute)}
 .lane{display:flex;flex-direction:column;gap:12px}
 .lh{display:flex;align-items:center;gap:10px;margin:0 2px}
 .lh u{flex:none;text-decoration:none;height:30px;line-height:30px;padding:0 11px;border-radius:999px;background:var(--b-ink);color:var(--b-card);font-family:var(--disp,'Barlow Condensed'),sans-serif;font-size:17px;font-weight:800}
 .lh b{font-size:16px;font-weight:800}
 .say{font-size:15px;font-weight:700;line-height:1.45;margin:0 2px;word-break:keep-all}
 .say small{display:block;font-size:12.5px;font-weight:500;color:var(--b-mute);margin-top:2px}
-.out{display:flex;flex-wrap:wrap;gap:6px;margin:0 2px}
-.out span{display:inline-flex;align-items:center;height:28px;padding:0 11px;border-radius:999px;font-size:12.5px;font-weight:800;background:var(--b-card);border:1px solid var(--b-line)}
-.out span.go{background:var(--b-ac2);border-color:var(--b-ac2);color:#0B0B0F}
+/* what the lane decides, said in one plain line (no chips: the cut line in the table carries the 1·2위 mark) */
+.out{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;margin:0 2px;font-size:13px;font-weight:800}
+.out i{font-style:normal;color:var(--b-wire)}
 .out span.ko{color:var(--b-mute)}
 .st{font-size:11.5px;font-weight:800;color:var(--b-mute);margin:2px 2px -4px}
-.sd div.bye{background:var(--b-ac2);color:#0B0B0F}
-.sd div.bye b,.sd div.bye u{color:#0B0B0F}
 .cw{position:relative;margin-bottom:14px;border-radius:18px;overflow:hidden;background:#0B0B0F;color:#fff}
 .cw img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}
 .cw.nop img{display:none}
@@ -93,13 +107,13 @@
 @container (min-width:640px){.r{height:32px;grid-template-columns:20px minmax(0,1fr) auto;gap:7px;padding:0 10px}.r i{width:20px;height:20px}.r b{font-size:14.5px}.r s{font-size:20px}.mh{font-size:11.5px;padding:4px 10px}.tree{gap:0 26px}.link .m::after{right:-14px;width:13px}.into .m::before{left:-14px;width:13px}.merge .cm::after{right:-14px}}
 @container (min-width:900px){.cw img{position:static;height:auto;aspect-ratio:16/9;max-height:560px}.cw:not(.nop) .cb{position:absolute;left:0;right:0;bottom:0;min-height:0;padding:90px 30px 28px;background:linear-gradient(transparent,rgba(0,0,0,.82))}}
 @container (min-width:640px){.ttl{font-size:46px}.top{padding:20px 22px 20px 26px}}
-@container (min-width:900px){.grid{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)}.box{padding:18px 18px 20px}.tree{grid-auto-columns:minmax(0,250px);gap:0 44px}.link .m::after{right:-23px;width:22px}.into .m::before{left:-23px;width:22px}.merge .cm::after{right:-23px}.extra{grid-template-columns:repeat(auto-fill,minmax(0,250px))}}
+@container (min-width:900px){.grid:not(.one){grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)}.box{padding:18px 18px 20px}.tree{grid-auto-columns:minmax(0,250px);gap:0 44px}.link .m::after{right:-23px;width:22px}.into .m::before{left:-23px;width:22px}.merge .cm::after{right:-23px}.extra{grid-template-columns:repeat(auto-fill,minmax(0,250px))}}
 `;
 
   const team = (a) => ((window.OWCS || {}).teams || []).find((t) => t.a === a);
 
   class OwcsBracket extends HTMLElement {
-    static get observedAttributes() { return ['spoiler']; }
+    static get observedAttributes() { return ['spoiler', 'part']; }
     connectedCallback() {
       if (!this.shadowRoot) this.attachShadow({ mode: 'open' });
       this.render();
@@ -125,7 +139,7 @@
     sig() {
       const byId = Object.fromEntries(((window.OWCS || {}).matches || []).map((m) => [m.id, m]));
       const s = this.stages()[0];
-      return this.dark() + '|' + this.getAttribute('spoiler') + '|' + this.selKey() + '|' + (s ? s.columns.map((c) => c.matches.map((x) => { const m = byId[x.id]; return m ? m.a + m.sa + m.b + m.sb + m.live : ''; }).join()).join() : '');
+      return this.dark() + '|' + this.getAttribute('spoiler') + '|' + this.getAttribute('part') + '|' + this.selKey() + '|' + (s ? s.columns.map((c) => c.matches.map((x) => { const m = byId[x.id]; return m ? m.a + m.sa + m.b + m.sb + m.live : ''; }).join()).join() : '');
     }
     selKey() {
       const all = this.stages();
@@ -185,12 +199,12 @@
       // the two ways into the playoffs, said in plain words: who plays, what winning gets, then the matches
       const lane = (rank, title, say, small, outs) => '<div class="lh"><u>' + rank + '</u><b>' + title + '</b></div>'
         + '<div class="say">' + say + '<small>' + small + '</small></div>'
-        + '<div class="out">' + outs.map((o) => '<span class="' + o[0] + '">' + o[1] + '</span>').join('') + '</div>';
+        + '<div class="out">' + outs.map((o) => '<span class="' + o[0] + '">' + o[1] + '</span>').join('<i>·</i>') + '</div>';
       let lcqHtml = '';
       if (lcq) {
         const up = lcq.matches.find((x) => /승자조 결승/.test(x.round)), semi = lcq.matches.find((x) => /패자조 준결승/.test(x.round)),
           fin = lcq.matches.find((x) => /패자조 결승/.test(x.round));
-        lcqHtml = '<div class="box pre lane">' + lane('5–8위', '라스트 찬스', '4팀 중 2팀만 플레이오프에 올라가요', '5·6위는 두 번, 7·8위는 한 번 지면 탈락 · 올라가면 8강', [['go', '2팀 → 8강'], ['ko', '2팀 탈락']])
+        lcqHtml = '<div class="box pre lane">' + lane('5–8위', '라스트 찬스', '4팀 중 2팀만 플레이오프에 올라가요', '5·6위는 두 번, 7·8위는 한 번 지면 탈락 · 올라가면 8강', [['', '2팀 8강 진출'], ['ko', '2팀 탈락']])
           + (up && semi && fin
             ? tree([{ title: '첫 경기', ms: [up, semi], opts: [{ round: true, short: true, title: '이기면 바로 진출', ph: ['5위', '6위'] }, { round: true, short: true, title: '지면 탈락', ph: ['7위', '8위'] }] },
                     { title: '마지막 한 자리', ms: [fin], opts: [{ round: true, short: true, title: '이기면 진출', ph: ['5·6위전 패자', '7·8위전 승자'] }] }])
@@ -199,8 +213,17 @@
       }
       let seedHtml = '';
       if (seed) {
-        const sd = !SP && S.seeding && S.seeding.length ? '<div class="sd">' + S.seeding.map((t, i) => '<div class="' + (i < 2 ? 'bye' : '') + '"><u>' + (i + 1) + '</u><i ' + logo(t.a) + '></i><b>' + esc(t.a) + '</b>' + esc(t.sw + '승 ' + t.sl + '패') + '</div>').join('') + '</div>' : '';
-        seedHtml = '<div class="box pre lane">' + lane('1–4위', '시드 결정전', '4팀 모두 플레이오프 진출 확정 · 자리만 정해요', '서로 한 번씩 더 붙고, 정규 리그 승패도 합쳐서 순위 계산', [['go', '1·2위 → 4강 직행'], ['', '3·4위 → 8강부터']])
+        // the four teams as rows, like the home standings: team colour bar, rank, logo, name, decider record, total;
+        // a line under 2위 marks 4강 직행. Before the deciders it shows the regular-season order (this stage only)
+        const DD = window.OWCS || {};
+        const pre = !(S.seeding && S.seeding.length) && S === all[0] && (DD.standings || []).length >= 4;
+        const sTeams = S.seeding && S.seeding.length ? S.seeding : pre ? DD.standings.slice(0, 4).map((t) => ({ a: t.a, w: t.w, l: t.l })) : [];
+        const sd = !SP && sTeams.length ? '<div class="sd"><div class="sh"><span>순위</span><span>팀</span><span>결정전</span><span>합산</span></div>'
+          + sTeams.map((t, i) => { const tm = team(t.a) || {};
+            return '<div class="sr"><em style="background:' + esc(tm.color || 'var(--b-wire)') + '"></em><u>' + (i + 1) + '</u><i ' + logo(t.a) + '></i><b>' + esc(t.a) + (tm.n && tm.n !== t.a ? '<small>' + esc(tm.n) + '</small>' : '') + '</b>'
+              + '<span>' + (t.sw != null ? esc(t.sw + '-' + t.sl) : '–') + '</span><span>' + esc(t.w + '-' + t.l) + '</span></div>' + (i === 1 ? '<div class="cut"><span>4강 직행</span></div>' : ''); }).join('')
+          + (pre ? '<div class="pend">결정전 전 · 지금 정규 리그 순위</div>' : '') + '</div>' : '';
+        seedHtml = '<div class="box pre lane">' + lane('1–4위', '시드 결정전', '4팀 모두 플레이오프 진출 확정 · 자리만 정해요', '서로 한 번씩 더 붙고, 정규 리그 승패도 합쳐서 순위 계산', [['', '1·2위 4강 직행'], ['', '3·4위 8강부터']])
           + sd + '<div class="st">경기</div><div class="rr">' + seed.matches.map((x) => chip(x, { short: true })).join('') + '</div></div>';
       }
       const poHtml = poCols.length ? '<div class="box main"><div class="h"><b>플레이오프 본선</b><span>' + esc(poCols.map((c) => c.title).join(' → ')) + '</span></div>' + tree(poCols)
@@ -230,9 +253,12 @@
         + '<div class="ttl">' + esc(S.label) + '</div><div class="sub">플레이오프' + (dates ? ' · ' + esc(dates) : '') + '</div></div>' + '</div>';
       const note = isCur ? '대진은 정규 리그가 끝나면 채워져요' : '';
 
+      const part = this.getAttribute('part');
+      const road = seedHtml || lcqHtml ? '<div class="grid' + (part === 'road' ? ' one' : '') + '">' + seedHtml + lcqHtml + '</div>' : '';
       this.shadowRoot.innerHTML = '<style>' + CSS + '</style><div class="w' + (dark ? ' dark' : '') + '">' + pick
-        + card + (note ? '<div class="note">' + note + '</div>' : '')
-        + poHtml + (seedHtml || lcqHtml ? '<div class="pre-l">플레이오프 가는 길</div><div class="grid">' + seedHtml + lcqHtml + '</div>' : '') + '</div>';
+        + (part === 'road' ? road
+          : card + (note ? '<div class="note">' + note + '</div>' : '')
+            + poHtml + (part !== 'po' && road ? '<div class="pre-l">플레이오프 가는 길</div>' + road : '')) + '</div>';
       this.shadowRoot.querySelectorAll('.pick button').forEach((b) => b.addEventListener('click', () => {
         this.sel = b.getAttribute('data-k');
         try { sessionStorage.setItem(KEY, this.sel); } catch (e) {}
