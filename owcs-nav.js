@@ -146,7 +146,7 @@
     en: { nav: ['Schedule', 'Results', 'Standings', 'Tickets', 'Players', 'Live'], spoiler: 'No spoilers', dark: 'Dark mode', lang: 'Language', more: 'Settings' },
     zh: { nav: ['赛程', '结果', '排名', '现场观赛', '选手', '直播'], spoiler: '防剧透', dark: '深色模式', lang: '语言', more: '设置' }
   }[LANG];
-  var HREFS = ['OWCS KR Home v6.dc.html', 'OWCS KR Results.dc.html', 'OWCS KR Home v6.dc.html?view=standings',
+  var HREFS = ['OWCS KR 일정.html', 'OWCS KR Results.dc.html', 'OWCS KR Home v6.dc.html?view=standings',
                'OWCS KR 직관.html', 'OWCS KR Home v6.dc.html?view=teams', 'OWCS KR 방송.html'];
   function isDark() { try { return localStorage.getItem('owcs-dark') === '1'; } catch (e) { return document.documentElement.hasAttribute('data-owcs-dark'); } }
 

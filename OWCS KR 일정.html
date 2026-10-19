@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta name="description" content="OWCS 코리아 스테이지 전체 경기 일정. 정규 리그부터 플레이오프까지 한 페이지에.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OWCS KR">
+<meta property="og:title" content="OWCS KR 전체 일정">
+<meta property="og:description" content="OWCS 코리아 스테이지 전체 경기 일정. 정규 리그부터 플레이오프까지 한 페이지에.">
+<meta property="og:url" content="https://dlworhs11-rgb.github.io/owcs-kr/OWCS%20KR%20%EC%9D%BC%EC%A0%95.html">
+<meta property="og:image" content="https://dlworhs11-rgb.github.io/owcs-kr/assets/og-home.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OWCS KR 전체 일정</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&display=swap">
+<style>
+:root{--bg:#F1EDE5;--panel:#FFFFFF;--line:#E6E6E1;--ink:#0B0B0F;--mute:#55555C;--dim:#6B6B72;--ac:#7D39EB;--ac2:#C6FF33;--red:#D92D20;--soft:#F6F6F3}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Pretendard Variable',Pretendard,system-ui,sans-serif;-webkit-font-smoothing:antialiased;
+  background-image:repeating-linear-gradient(135deg,rgba(60,45,25,.043) 0 1px,transparent 1px 11px);background-attachment:fixed}   /* same paper as the home page */
+a{color:inherit}
+.disp{font-family:'Barlow Condensed',sans-serif;font-weight:800;letter-spacing:.01em}
+.wrap{max-width:1360px;margin:0 auto;padding:0 24px}
+header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand i{width:28px;height:28px;border-radius:7px;background:#0B0B0F;display:grid;place-items:center}
+.brand i:after{content:"";width:9px;height:9px;border-radius:2px;background:var(--ac2)}
+.brand span{font-size:26px}
+nav{display:flex;gap:4px;overflow-x:auto}
+nav a{height:40px;padding:0 14px;border-radius:999px;display:flex;align-items:center;text-decoration:none;font-weight:600;font-size:15px;color:var(--mute);white-space:nowrap}
+nav a:hover,nav a.on{background:#F1F1ED;color:#0B0B0F}
+
+/* title row: like the streams page (eyebrow + big display title, a card on the right) */
+.hero{padding:56px 0 28px;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.eyebrow{font-size:15px;font-weight:700;color:var(--ac)}
+h1{font-size:clamp(56px,8vw,96px);line-height:.86;margin:12px 0 0}
+
+/* filter bar: 전체 / 예정 / 종료 + team chips with logos */
+.bar{display:flex;align-items:center;justify-content:flex-start;gap:12px 20px;flex-wrap:wrap;margin-bottom:22px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 12px 0 8px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font:inherit;font-size:13px;font-weight:700;cursor:pointer}
+.chip i{width:22px;height:22px}
+.chip.all{padding:0 14px}
+.chip.on{border-color:#0B0B0F;box-shadow:inset 0 0 0 1px #0B0B0F}
+.note{font-size:13px;color:var(--dim)}
+
+/* team logo: transparent cut-out, as on the home page; a grey square when the team is not decided yet */
+i.lg{display:block;flex:none;background:center/contain no-repeat}
+i.lg.tbd{background:#C9C9CF;border-radius:4px}
+
+/* one block per week (정규 리그 1주차 … 플레이오프), a row per match day inside */
+.wk{margin-bottom:28px;border-radius:22px;background:var(--panel);overflow:hidden}
+.wk>h2{display:flex;align-items:baseline;gap:12px;margin:0;padding:18px 22px 6px;font-size:20px}
+.wk>h2 span{font-size:13px;font-weight:600;color:var(--mute)}
+.day{display:grid;grid-template-columns:120px minmax(0,1fr);gap:16px;padding:14px 22px;border-top:1px solid var(--line)}
+.wk>h2+.day{border-top:0}
+.dd b{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:30px;line-height:1}
+.dd small{display:block;font-size:13px;color:var(--mute);margin-top:4px}
+.dd .red{color:var(--red)}
+.dd .tag{display:inline-block;margin-top:8px;padding:2px 8px;border-radius:999px;background:#0B0B0F;color:var(--ac2);font-size:11px;font-weight:800;letter-spacing:.04em}
+.ms{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.m{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:10px;padding:12px 14px;border-radius:16px;background:var(--soft);text-decoration:none;color:inherit}
+a.m:hover{background:#EFEFEA}
+.m.mine{box-shadow:inset 0 0 0 2px var(--ac)}
+.m .lb{font-size:12px;font-weight:600;color:var(--mute);grid-column:1/-1;display:flex;justify-content:space-between;gap:8px}
+.m .tm{display:flex;align-items:center;gap:8px;min-width:0}
+.m .tm i{width:28px;height:28px}
+.m .tm span{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:22px;line-height:1;white-space:nowrap}
+.m .tm .vs{font-size:16px;color:var(--dim);padding:0 2px}
+.m .tm .lose{opacity:.4}
+/* score: winner lime, loser grey (site rule), on a dark chip so the lime reads on the light card */
+.sc{display:inline-flex;align-items:center;gap:4px;height:30px;padding:0 10px;border-radius:999px;background:#0B0B0F;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:20px;line-height:1;color:#8A8A93}
+.sc .w{color:var(--ac2)}
+.pill{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap}
+.pill.up{border:1px solid var(--ink);color:var(--ink)}
+.pill.up:before{content:"";width:6px;height:6px;border-radius:50%;border:1.5px solid currentColor;box-sizing:border-box}
+.pill.live{background:var(--red);color:#fff;letter-spacing:.04em}
+.pill.live:before{content:"";width:6px;height:6px;border-radius:50%;background:#fff}
+.pill.done{background:#ECECE8;color:var(--mute)}
+.day.today .dd b{color:var(--ac)}
+.empty{padding:40px 22px;text-align:center;color:var(--mute);font-size:15px}
+.wk.hide,.day.hide,.m.hide{display:none}
+main{padding-bottom:64px}
+footer{padding:32px 0 56px;background:#0B0B0F;color:#8A8A93;font-size:13px;line-height:1.7}
+
+/* tablet: two matches a row */
+@media (max-width:1180px){.ms{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:899.98px){
+  .wrap{padding:0 16px}
+  .hero{gap:14px;padding:28px 0 18px}
+  h1{font-size:56px}
+  .eyebrow{font-size:13px}
+  .bar{gap:10px;margin-bottom:16px}
+  .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;width:100%;padding-bottom:2px}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{flex:none}
+  .wk{border-radius:18px;margin-bottom:18px}
+  .wk>h2{padding:14px 14px 4px;font-size:17px}
+  .day{grid-template-columns:minmax(0,1fr);gap:8px;padding:12px 14px}
+  .dd{display:flex;align-items:baseline;gap:8px}
+  .dd b{font-size:24px}
+  .dd small{margin-top:0}
+  .dd .tag{margin-top:0}
+}
+/* phone / tablet: one match a row */
+@media (max-width:899.98px){.ms{grid-template-columns:minmax(0,1fr);gap:8px}
+  .m{padding:10px 12px}
+  .m .tm span{font-size:20px}
+  .m .tm i{width:24px;height:24px}}
+
+/* dark mode (owcs-dark.js sets html[data-owcs-dark]; body.streams-page gets the header / paper from it) */
+html[data-owcs-dark] body{--panel:#16161C;--line:#2E2E37;--ink:#F2F2F5;--mute:#A3A3AD;--dim:#8E8E98;--soft:#1C1C23}
+html[data-owcs-dark] a.m:hover{background:#24242C}
+html[data-owcs-dark] .chip.on{border-color:#F2F2F5;box-shadow:inset 0 0 0 1px #F2F2F5}
+html[data-owcs-dark] .pill.done{background:#24242C}
+html[data-owcs-dark] .sc{box-shadow:inset 0 0 0 1px #2E2E37}
+html[data-owcs-dark] .eyebrow,html[data-owcs-dark] .day.today .dd b{color:#B89BFF}
+</style>
+<script src="./owcs-nav.js"></script>
+</head>
+<body class="streams-page sched-page">
+<header><div class="wrap">
+  <a class="brand" href="OWCS KR Home v6.dc.html"><i></i><span class="disp">OWCS KR</span></a>
+  <nav>
+    <a class="on" href="OWCS KR 일정.html">일정</a><a href="OWCS KR Results.dc.html">결과</a><a href="OWCS KR Home v6.dc.html?view=standings">순위</a>
+    <a href="OWCS KR 직관.html">직관</a><a href="OWCS KR Home v6.dc.html?view=teams">선수</a><a href="OWCS KR 방송.html">방송</a>
+  </nav>
+</div></header>
+
+<main class="wrap">
+  <div class="hero">
+    <div><div class="eyebrow" id="stage">OWCS KR</div><h1 class="disp">SCHEDULE</h1></div>
+  </div>
+  <div class="bar">
+    <div class="chips" id="chips"></div>
+  </div>
+  <div id="list"></div>
+  <div class="note">모든 시간 KST · 시간 미정 경기는 Liquipedia에 시간이 올라오면 바뀌어요.</div>
+</main>
+<footer><div class="wrap">일정은 Liquipedia에서 10분마다 가져와요. 비공식 팬 사이트입니다. Blizzard Entertainment 및 OWCS 공식 운영과 관련이 없습니다.<div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;margin-top:14px"><span style="width:100%;font-size:13px;color:#8A8A93">OWCS 공식 채널</span><a href="https://x.com/OW_Esports_Asia" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;height:40px;padding:0;color:#fff;text-decoration:none;font-size:14px;font-weight:600"><img src="assets/icons/x.png" alt="" style="width:28px;height:28px;border-radius:8px">X</a><a href="https://www.instagram.com/ow_esports_kr/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;height:40px;padding:0;color:#fff;text-decoration:none;font-size:14px;font-weight:600"><img src="assets/icons/instagram.png" alt="" style="width:28px;height:28px;border-radius:8px">Instagram</a><a href="https://www.sooplive.co.kr/station/owesports" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;height:40px;padding:0;color:#fff;text-decoration:none;font-size:14px;font-weight:600"><img src="assets/icons/soop.png" alt="" style="width:28px;height:28px;border-radius:8px">SOOP 방송국</a></div></div></footer>
+
+<script src="./owcs-data.js"></script>
+<script src="./owcs-phase.js"></script>
+<script src="./owcs-i18n.js"></script>
+<script src="./owcs-stats.js"></script>
+<script src="./owcs-dark.js"></script>
+<script>
+(function () {
+  var D = window.OWCS || { teams: [], matches: [] };
+  var TEAM = {};
+  (D.teams || []).forEach(function (t) { TEAM[t.a] = t; });
+  var DARK = document.documentElement.hasAttribute('data-owcs-dark');
+  var DOWS = ['일', '월', '화', '수', '목', '금', '토'];
+  // Korean public holidays shown red like Sundays (same list as the home page's HOLIDAYS_KR)
+  var HOL = [
+    '2026-01-01', '2026-02-16', '2026-02-17', '2026-02-18', '2026-03-01', '2026-03-02', '2026-05-05', '2026-05-24', '2026-05-25',
+    '2026-06-03', '2026-06-06', '2026-07-17', '2026-08-15', '2026-08-17', '2026-09-24', '2026-09-25', '2026-09-26',
+    '2026-10-03', '2026-10-05', '2026-10-09', '2026-12-25',
+    '2027-01-01', '2027-02-06', '2027-02-07', '2027-02-08', '2027-02-09', '2027-03-01', '2027-05-05', '2027-05-13', '2027-06-06',
+    '2027-07-17', '2027-08-15', '2027-08-16', '2027-09-14', '2027-09-15', '2027-09-16', '2027-10-03', '2027-10-04',
+    '2027-10-09', '2027-10-11', '2027-12-25', '2027-12-27'];
+  var pad = function (n) { return String(n).padStart(2, '0'); };
+  var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+  var SP = false, MY = '';
+  try { SP = localStorage.getItem('owcs-spoiler') === '1'; MY = localStorage.getItem('owcs-myteam') || ''; } catch (e) {}
+  // ?date=YYYY-MM-DD&time=HH:MM shows the page as on that day (same as the home page)
+  var q = new URLSearchParams(location.search);
+  var nowMs = q.get('date') ? new Date(q.get('date') + 'T' + (q.get('time') || '12:00') + ':00+09:00').getTime() : Date.now();
+  var kstDay = function (ms) { var d = new Date(ms + 9 * 3600e3); return d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate()); };
+  var today = kstDay(nowMs);
+
+  function logo(a, cls) {
+    var t = TEAM[a], u = t && (DARK ? (t.logoDark || t.logo) : t.logo);
+    return u ? '<i class="lg ' + (cls || '') + '" style="background-image:url(\'' + esc(u) + '\')" title="' + esc(t.n) + '"></i>' : '<i class="lg tbd ' + (cls || '') + '"></i>';
+  }
+  function state(m) { return m.live ? 'live' : m.played ? 'done' : 'up'; }
+  function score(m) { return [m.sa, m.sb]; }
+
+  var ms = (D.matches || []).filter(function (m) { return !m.played; }).sort(function (x, y) { return x.date < y.date ? -1 : x.date > y.date ? 1 : (x.n || 0) - (y.n || 0); });
+  document.getElementById('stage').textContent = (D.stage || 'OWCS KR').replace(/^\d{4}\s*/, '') + ' · 전체 경기 일정';
+
+
+  // team chips: 전체 + every team (logo + short name); 내 팀 first
+  var teams = (D.teams || []).slice().sort(function (x, y) { return (y.a === MY) - (x.a === MY) || x.a.localeCompare(y.a); });
+  var F = { team: '' };
+  try { var savedTeam = sessionStorage.getItem('owcs-sched-team'); if (savedTeam && TEAM[savedTeam]) F.team = savedTeam; } catch (e) {}
+  var chips = document.getElementById('chips');
+  chips.innerHTML = '<button class="chip all" data-t="">전체 팀</button>' +
+    teams.map(function (t) { return '<button class="chip" data-t="' + esc(t.a) + '">' + logo(t.a) + esc(t.a) + (t.a === MY ? ' ★' : '') + '</button>'; }).join('');
+
+  // weeks: 정규 리그 n주차, then the play-off days grouped by the build's label
+  var groups = [], byKey = {};
+  ms.forEach(function (m) {
+    var key = m.phase === 'rs' ? 'w' + m.week : 'p' + m.week;
+    if (!byKey[key]) {
+      byKey[key] = { key: key, title: m.phase === 'rs' ? '정규 리그 ' + m.week + '주차' : (m.phase === 'po' ? '플레이오프' : '시드 결정전 · 라스트 찬스 예선'), days: {}, order: [] };
+      groups.push(byKey[key]);
+    }
+    var g = byKey[key];
+    if (!g.days[m.day]) { g.days[m.day] = []; g.order.push(m.day); }
+    g.days[m.day].push(m);
+  });
+
+  function card(m) {
+    var st = state(m), s = score(m), hide = SP && st !== 'up';
+    var lose = function (mine, other) { return !hide && st === 'done' && mine < other ? ' lose' : ''; };
+    var mid = st === 'up' || hide ? '<span class="vs">vs</span>' : '<span class="vs">:</span>';
+    var right = st === 'live' ? '<span class="pill live">LIVE</span>'
+      : st === 'up' ? ''
+      : hide ? '<span class="pill done">종료</span>'
+      : '<span class="sc"><span class="' + (s[0] > s[1] ? 'w' : '') + '">' + s[0] + '</span>:<span class="' + (s[1] > s[0] ? 'w' : '') + '">' + s[1] + '</span></span>';
+    if (st === 'live' && !hide) right = '<span class="sc"><span>' + s[0] + '</span>:<span>' + s[1] + '</span></span> ' + right;
+    var tm = m.tbd ? '시간 미정' : esc(m.time);
+    var lbl = m.phase === 'rs' ? tm : esc(m.round || m.label || '') + ' · ' + tm;
+    var tag = st === 'done' ? 'a href="OWCS KR Results.dc.html?q=' + encodeURIComponent(m.a) + '"' : st === 'live' ? 'a href="OWCS KR Home v6.dc.html"' : 'div';
+    var mine = MY && (m.a === MY || m.b === MY) ? ' mine' : '';
+    return '<' + tag + ' class="m' + mine + '" data-st="' + st + '" data-a="' + esc(m.a) + '" data-b="' + esc(m.b) + '">' +
+      '<div class="lb"><span>' + lbl + '</span><span>BO' + (m.bo || 5) + '</span></div>' +
+      '<div class="tm"><span class="' + lose(s[0], s[1]).trim() + '" style="display:flex;align-items:center;gap:8px">' + logo(m.a) + '<span>' + esc(m.a) + '</span></span>' + mid +
+      '<span class="' + lose(s[1], s[0]).trim() + '" style="display:flex;align-items:center;gap:8px"><span>' + esc(m.b) + '</span>' + logo(m.b) + '</span></div>' +
+      '<div>' + right + '</div></' + tag.split(' ')[0] + '>';
+  }
+
+  var list = document.getElementById('list');
+  list.innerHTML = groups.map(function (g) {
+    var first = g.order[0], last = g.order[g.order.length - 1];
+    var rng = first.slice(5).replace('-', '.') + (last !== first ? ' – ' + last.slice(5).replace('-', '.') : '');
+    return '<section class="wk"><h2>' + esc(g.title) + '<span>' + rng + '</span></h2>' + g.order.map(function (day) {
+      var d = new Date(day + 'T00:00:00Z'), dow = d.getUTCDay(), red = dow === 0 || HOL.indexOf(day) >= 0;
+      var cls = day === today ? ' today' : '';
+      var labels = g.days[day].map(function (m) { return m.phase === 'rs' ? '' : m.group || ''; }).filter(function (x, i, l) { return x && l.indexOf(x) === i; });
+      return '<div class="day' + cls + '" id="d-' + day + '"><div class="dd"><b>' + day.slice(5).replace('-', '.') + '</b><small class="' + (red ? 'red' : '') + '">' + DOWS[dow] + '요일</small>' +
+        (day === today ? '<span class="tag">TODAY</span>' : '') + '</div>' +
+        '<div class="ms">' + g.days[day].map(card).join('') + '</div></div>';
+    }).join('') + '</section>';
+  }).join('') + '<div class="empty" hidden>조건에 맞는 경기가 없어요.</div>';
+
+  function apply() {
+    Array.prototype.forEach.call(chips.children, function (b) { b.classList.toggle('on', b.getAttribute('data-t') === F.team); });
+    var any = false;
+    Array.prototype.forEach.call(list.querySelectorAll('.wk'), function (w) {
+      var wAny = false;
+      Array.prototype.forEach.call(w.querySelectorAll('.day'), function (dy) {
+        var dAny = false;
+        Array.prototype.forEach.call(dy.querySelectorAll('.m'), function (m) {
+          var ok = (!F.team || m.getAttribute('data-a') === F.team || m.getAttribute('data-b') === F.team);
+          m.classList.toggle('hide', !ok);
+          if (ok) dAny = true;
+        });
+        dy.classList.toggle('hide', !dAny);
+        if (dAny) wAny = true;
+      });
+      w.classList.toggle('hide', !wAny);
+      if (wAny) any = true;
+    });
+    list.querySelector('.empty').hidden = any;
+  }
+  chips.onclick = function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    var t = b.getAttribute('data-t');
+    F.team = F.team === t ? '' : t;
+    try { sessionStorage.setItem('owcs-sched-team', F.team); } catch (e2) {}
+    apply();
+  };
+  apply();
+})();
+</script>
+<script src="./owcs-theme-wise.js"></script>
+</body>
+</html>

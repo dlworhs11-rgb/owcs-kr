@@ -271,7 +271,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 </div>
 </div>
 </sc-for>
-<a href="#" style="align-self:flex-start;margin:6px 4px 0;font-size:15px;font-weight:600;color:var(--ink,#0B0B0F)">전체 일정 보기 →</a>
+<a href="OWCS KR 일정.html" style="align-self:flex-start;margin:6px 4px 0;font-size:15px;font-weight:600;color:var(--ink,#0B0B0F)">전체 일정 보기 →</a>
 </div>
 </div>
 
@@ -518,7 +518,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 </div>
 </div>
 </sc-for>
-<a href="#" style="align-self:flex-start;margin:6px 4px 0;font-size:15px;font-weight:600;color:var(--ink,#0B0B0F)">전체 일정 보기 →</a>
+<a href="OWCS KR 일정.html" style="align-self:flex-start;margin:6px 4px 0;font-size:15px;font-weight:600;color:var(--ink,#0B0B0F)">전체 일정 보기 →</a>
 </div>
 </div>
 
@@ -726,6 +726,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 </sc-for>
 </div>
 </div>
+<div style="display:flex;justify-content:flex-end;margin-top:10px"><a href="OWCS KR 일정.html" style="margin:0 4px;font-size:15px;font-weight:600;color:var(--ink,#0B0B0F)">전체 일정 보기 →</a></div>
 
 </section>
 <section data-sec="stand" style="padding:36px 20px 40px;background:var(--paper,#fff)">
@@ -910,6 +911,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 </div>
 </sc-for>
 </div>
+<div style="display:flex;justify-content:flex-end;margin-top:10px"><a href="OWCS KR 일정.html" style="margin:0 4px;font-size:15px;font-weight:600;color:var(--ink,#0B0B0F)">전체 일정 보기 →</a></div>
 <div style="position:relative;margin-top:16px"><button onClick="{{ openSub }}" style="width:100%;display:flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 18px;border-radius:12px;border:1px solid var(--line,#E6E6E1);background:var(--paper,#fff);color:var(--ink,#0B0B0F);font:inherit;font-size:15px;font-weight:600;cursor:pointer;white-space:nowrap"><img src="assets/icons/gcal.png" alt="" style="width:18px;height:18px">{{ calSubLabel }}</button><sc-if value="{{ subOpen }}"><div onClick="{{ closeSub }}" style="position:fixed;inset:0;z-index:40"></div><div style="position:absolute;top:calc(100% + 10px);left:0;right:0;top:auto;bottom:calc(100% + 10px);z-index:41;width:auto;padding:18px;border-radius:22px;background:var(--paper,#fff);color:var(--ink,#0B0B0F);border:1px solid var(--line,#E6E6E1);box-shadow:0 18px 50px rgba(0,0,0,.18);text-align:left"><div style="font-size:16px;font-weight:700">{{ subTitle }}</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:12px;padding:4px;border-radius:14px;background:var(--paper3,#F1F1ED)"><button onClick="{{ subAll }}" style="height:38px;border:0;border-radius:10px;font:inherit;font-size:14px;font-weight:700;cursor:pointer;background:{{ subAllBg }};color:{{ subAllFg }}">{{ subAllLabel }}</button><button onClick="{{ subTeamsMode }}" style="height:38px;border:0;border-radius:10px;font:inherit;font-size:14px;font-weight:700;cursor:pointer;background:{{ subTeamsBg }};color:{{ subTeamsFg }}">{{ subTeamsLabel }}</button></div><sc-if value="{{ subPickTeams }}"><div style="font-size:13px;color:var(--mute,#55555C);margin:12px 0 8px">{{ subPickHint }}</div><div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px"><sc-for list="{{ subTeamList }}" as="st" hint-placeholder-count="9"><button onClick="{{ st.toggle }}" title="{{ st.n }}" style="display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 2px;border-radius:12px;cursor:pointer;font:inherit;font-size:11px;font-weight:700;color:var(--ink,#0B0B0F);background:{{ st.bg }};border:{{ st.bd }}"><span style="width:28px;height:28px;background:{{ st.logo }}"></span>{{ st.a }}</button></sc-for></div></sc-if><div style="display:flex;flex-direction:column;gap:6px;margin-top:14px"><sc-for list="{{ subLinks }}" as="sl" hint-placeholder-count="1"><a href="{{ sl.href }}" onClick="{{ sl.go }}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;height:44px;padding:0 14px;border-radius:12px;background:#0B0B0F;color:#fff;text-decoration:none;font-size:14px;font-weight:700"><img src="assets/icons/gcal.png" alt="" style="width:18px;height:18px;border-radius:4px;background:#fff">{{ sl.label }}<span style="margin-left:auto">↗</span></a></sc-for><sc-if value="{{ subNone }}"><div style="font-size:13px;color:var(--mute,#55555C)">{{ subNoneHint }}</div></sc-if></div><div style="font-size:12px;line-height:1.5;color:var(--mute,#55555C);margin-top:10px">{{ subNote }}</div></div></sc-if></div><button onClick="{{ openShare }}" style="width:100%;display:flex;align-items:center;justify-content:center;gap:8px;height:48px;margin-top:14px;border-radius:12px;border:none;background:var(--ink,#0B0B0F);color:var(--paper,#fff);font:inherit;font-size:15px;font-weight:600;cursor:pointer"><span>↑</span>{{ L.share }}</button>
 
 </section>
@@ -1466,7 +1468,7 @@ class Component extends DCLogic {
     const rankOf = (a) => { if (SP || !st[a]) return ''; const s = st[a]; return hero && hero.phase !== 'rs' ? '정규 리그 ' + s.rank + '위' : s.rank + '위 · ' + s.w + '승 ' + s.l + '패'; };
     return {
       rootVars, todayMode: params.get('bg') === 'old' ? (this.state.dark ? 'gray dark' : 'gray') : 'light',   // B background: today's block sits on the page, only its screens/cards are dark   // today's block: one rounded charcoal box on the page paper (light or dark)
-      nav: ['OWCS KR Home v6.dc.html', 'OWCS KR Results.dc.html', 'OWCS KR Home v6.dc.html?view=standings', 'OWCS KR 직관.html', 'OWCS KR Home v6.dc.html?view=teams', 'OWCS KR 방송.html'].map((href, k) => ({ label: L.nav[k], href })),
+      nav: ['OWCS KR 일정.html', 'OWCS KR Results.dc.html', 'OWCS KR Home v6.dc.html?view=standings', 'OWCS KR 직관.html', 'OWCS KR Home v6.dc.html?view=teams', 'OWCS KR 방송.html'].map((href, k) => ({ label: L.nav[k], href })),
       weekdays: DOWS, cells, week,
       calTitle: Y + '. ' + pad(Mo + 1), calPrev: () => shiftMonth(-1), calNext: () => shiftMonth(1),
       matches: listM.map(card),
