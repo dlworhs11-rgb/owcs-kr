@@ -62,8 +62,8 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <section style="padding:64px 56px 0;background:#F6F6F3">
 <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px">
 <div><div style="font-size:15px;font-weight:700;color:#7D39EB">결과 · 대진표</div><h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:120px;line-height:.84;margin:8px 0 0">RESULTS</h1></div>
-<div style="position:relative"><button onClick="{{ stToggleD }}" style="display:flex;align-items:center;gap:10px;height:48px;padding:0 18px;border-radius:12px;border:1px solid #0B0B0F;background:#fff;font:inherit;font-size:15px;font-weight:600;color:#0B0B0F;cursor:pointer">{{ seasonLabelD }} <span>{{ stChevD }}</span></button>
-<sc-if value="{{ stOpenD }}"><div style="position:absolute;right:0;top:54px;z-index:20;min-width:100%;padding:6px;border-radius:12px;border:1px solid #0B0B0F;background:#fff;box-shadow:0 8px 24px rgba(0,0,0,.12);display:flex;flex-direction:column;gap:2px"><sc-for list="{{ stOpts }}" as="o" hint-placeholder-count="3"><button onClick="{{ o.go }}" style="height:44px;padding:0 14px;border:none;border-radius:8px;background:{{ o.bg }};color:{{ o.fg }};font:inherit;font-size:15px;font-weight:700;text-align:left;white-space:nowrap;cursor:pointer">{{ o.label }}</button></sc-for></div></sc-if></div>
+<sc-if value="{{ showStD }}"><div style="position:relative"><button onClick="{{ stToggleD }}" style="display:flex;align-items:center;gap:10px;height:48px;padding:0 18px;border-radius:12px;border:1px solid #0B0B0F;background:#fff;font:inherit;font-size:15px;font-weight:600;color:#0B0B0F;cursor:pointer">{{ seasonLabelD }} <span>{{ stChevD }}</span></button>
+<sc-if value="{{ stOpenD }}"><div style="position:absolute;right:0;top:54px;z-index:20;min-width:100%;padding:6px;border-radius:12px;border:1px solid #0B0B0F;background:#fff;box-shadow:0 8px 24px rgba(0,0,0,.12);display:flex;flex-direction:column;gap:2px"><sc-for list="{{ stOpts }}" as="o" hint-placeholder-count="3"><button onClick="{{ o.go }}" style="height:44px;padding:0 14px;border:none;border-radius:8px;background:{{ o.bg }};color:{{ o.fg }};font:inherit;font-size:15px;font-weight:700;text-align:left;white-space:nowrap;cursor:pointer">{{ o.label }}</button></sc-for></div></sc-if></div></sc-if>
 </div>
 <div style="display:flex;gap:4px;margin-top:40px">
 <sc-for list="{{ tabsD }}" as="t" hint-placeholder-count="3">
@@ -158,9 +158,11 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <sc-for list="{{ cases }}" as="c" hint-placeholder-count="8">
 <div style="display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:16px;align-items:center;min-height:72px;border-bottom:1px solid #ECECE7;padding:10px 4px">
 <span style="display:flex;align-items:center;gap:10px"><span style="width:5px;height:32px;border-radius:3px;background:{{ c.c }}"></span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px">{{ c.r }}</span></span>
-<span><span style="display:block;font-size:17px;font-weight:700">{{ c.n }} <span style="font-weight:500;color:#6B6B72;font-size:14px">{{ c.wl }}</span></span><span style="display:block;font-size:14px;color:#55555C;margin-top:3px;line-height:1.5">{{ c.note }}</span></span>
+<span><span style="display:flex;align-items:center;gap:10px;font-size:17px;font-weight:700"><span style="flex:none;width:28px;height:28px;background:{{ c.logo }}"></span>{{ c.n }} <span style="font-weight:500;color:#6B6B72;font-size:14px">{{ c.wl }}</span></span><span style="display:block;font-size:14px;color:#55555C;margin-top:3px;line-height:1.5">{{ c.note }}</span><sc-if value="{{ c.axe }}"><span style="display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-top:6px;font-size:13px;font-weight:700;color:#C62F35"><span style="flex:none;font-weight:800;color:#fff;background:#E5484D;padding:2px 8px;border-radius:6px">단두대 매치</span>{{ c.axe }}</span></sc-if></span>
 <sc-if value="{{ c.sure }}"><span style="font-size:13px;font-weight:700;background:#C6FF33;padding:5px 10px;border-radius:8px">{{ c.tag }}</span></sc-if>
 <sc-if value="{{ c.maybe }}"><span style="font-size:13px;font-weight:700;color:#5B22C2;border:1px solid #7D39EB;padding:4px 10px;border-radius:8px">{{ c.tag }}</span></sc-if>
+<sc-if value="{{ c.lsure }}"><span style="font-size:13px;font-weight:700;color:#7A3300;background:#FFD7B5;padding:5px 10px;border-radius:8px">{{ c.tag }}</span></sc-if>
+<sc-if value="{{ c.lmaybe }}"><span style="font-size:13px;font-weight:700;color:#A84A0C;border:1px solid #F08A3C;padding:4px 10px;border-radius:8px">{{ c.tag }}</span></sc-if>
 <sc-if value="{{ c.out }}"><span style="font-size:13px;font-weight:700;color:#55555C;background:#ECECE8;padding:5px 10px;border-radius:8px">{{ c.tag }}</span></sc-if>
 </div>
 </sc-for>
@@ -170,7 +172,8 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <sc-for list="{{ remaining }}" as="m" hint-placeholder-count="4">
 <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border:1px solid #E6E6E1;border-radius:16px">
 <div><div style="font-size:13px;color:#6B6B72">{{ m.when }}</div><div style="display:flex;align-items:center;gap:8px;margin-top:4px"><span style="width:24px;height:24px;background:{{ m.ca }};opacity:{{ m.oa }}"></span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:26px">{{ m.a }}</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:20px;color:#6B6B72">vs</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:26px">{{ m.b }}</span><span style="width:24px;height:24px;background:{{ m.cb }};opacity:{{ m.ob }}"></span></div></div>
-<span style="font-size:13px;color:#55555C;text-align:right;max-width:150px;line-height:1.4">{{ m.stake }}</span>
+<sc-if value="{{ m.noAxe }}"><span style="font-size:13px;color:#55555C;text-align:right;max-width:150px;line-height:1.4">{{ m.stake }}</span></sc-if>
+<sc-if value="{{ m.isAxe }}"><span style="display:flex;flex-direction:column;align-items:flex-end;gap:4px"><span style="font-size:14px;font-weight:800;color:#fff;background:#E5484D;padding:4px 10px;border-radius:8px">단두대 매치</span><span style="font-size:12px;font-weight:700;color:#C62F35">{{ m.axeSub }}</span></span></sc-if>
 </div>
 </sc-for>
 <div style="padding:18px;border-radius:16px;background:#F6F6F3;font-size:14px;color:#55555C;line-height:1.6">{{ tiebreak }}</div>
@@ -208,8 +211,8 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <section style="position:relative;z-index:5;padding:28px 20px 0;background:#F6F6F3">
 <div style="font-size:14px;font-weight:700;color:#7D39EB">결과 · 대진표</div>
 <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:64px;line-height:.86;margin:6px 0 14px">RESULTS</h1>
-<div style="position:relative;display:inline-block"><button onClick="{{ stToggleM }}" style="display:flex;align-items:center;gap:8px;height:44px;padding:0 14px;border-radius:12px;border:1px solid #0B0B0F;background:#fff;font:inherit;font-size:14px;font-weight:600;color:#0B0B0F">{{ seasonLabelM }} {{ stChevM }}</button>
-<sc-if value="{{ stOpenM }}"><div style="position:absolute;left:0;top:50px;z-index:20;min-width:100%;padding:6px;border-radius:12px;border:1px solid #0B0B0F;background:#fff;box-shadow:0 8px 24px rgba(0,0,0,.12);display:flex;flex-direction:column;gap:2px"><sc-for list="{{ stOpts }}" as="o" hint-placeholder-count="3"><button onClick="{{ o.go }}" style="height:44px;padding:0 14px;border:none;border-radius:8px;background:{{ o.bg }};color:{{ o.fg }};font:inherit;font-size:15px;font-weight:700;text-align:left;white-space:nowrap">{{ o.label }}</button></sc-for></div></sc-if></div>
+<sc-if value="{{ showStM }}"><div style="position:relative;display:inline-block"><button onClick="{{ stToggleM }}" style="display:flex;align-items:center;gap:8px;height:44px;padding:0 14px;border-radius:12px;border:1px solid #0B0B0F;background:#fff;font:inherit;font-size:14px;font-weight:600;color:#0B0B0F">{{ seasonLabelM }} {{ stChevM }}</button>
+<sc-if value="{{ stOpenM }}"><div style="position:absolute;left:0;top:50px;z-index:20;min-width:100%;padding:6px;border-radius:12px;border:1px solid #0B0B0F;background:#fff;box-shadow:0 8px 24px rgba(0,0,0,.12);display:flex;flex-direction:column;gap:2px"><sc-for list="{{ stOpts }}" as="o" hint-placeholder-count="3"><button onClick="{{ o.go }}" style="height:44px;padding:0 14px;border:none;border-radius:8px;background:{{ o.bg }};color:{{ o.fg }};font:inherit;font-size:15px;font-weight:700;text-align:left;white-space:nowrap">{{ o.label }}</button></sc-for></div></sc-if></div></sc-if>
 <div style="display:flex;gap:2px;margin-top:20px">
 <sc-for list="{{ tabsM }}" as="t" hint-placeholder-count="3">
 <sc-if value="{{ t.on }}"><button onClick="{{ t.go }}" style="flex:1;height:48px;border:none;border-radius:12px 12px 0 0;background:#fff;color:#0B0B0F;font:inherit;font-size:14px;font-weight:700">{{ t.short }}</button></sc-if>
@@ -241,27 +244,26 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <sc-if value="{{ g.open }}"><div style="margin:4px 0 10px;padding:10px;border-radius:16px;background:#0B0B0F;color:#fff;display:flex;flex-direction:column;gap:8px">
 <sc-for list="{{ g.maps }}" as="mp" hint-placeholder-count="4">
 <div style="border:1px solid #26262E;border-radius:14px;background:#15151B;overflow:hidden">
-<button onClick="{{ mp.toggle }}" style="width:100%;display:grid;grid-template-columns:20px minmax(0,1fr) auto auto 24px;align-items:center;column-gap:8px;padding:7px 10px 7px 12px;min-height:44px;border:none;background:{{ mp.bg }};color:#fff;font:inherit;text-align:left;cursor:pointer">
+<button onClick="{{ mp.toggle }}" style="width:100%;display:grid;grid-template-columns:20px minmax(0,1fr) auto auto 24px;align-items:center;column-gap:8px;padding:7px 10px 7px 12px;min-height:44px;border:none;background:{{ mp.bgS }};color:#fff;font:inherit;text-align:left;cursor:pointer">
 <span style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:700;font-size:16px;color:#8A8A93">{{ mp.no }}</span>
 <span style="min-width:0;display:flex;align-items:baseline;gap:6px;white-space:nowrap"><span style="flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;font-size:14px;font-weight:700">{{ mp.name }}</span><span style="flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;font-size:11px;color:#B5B5BD">{{ mp.mode }}</span></span>
 <span style="display:flex;align-items:center;gap:4px;justify-self:end"><sc-if value="{{ mp.done }}"><b style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-size:16px;color:#fff">{{ mp.winner }}</b><sc-if value="{ mp.wlogo }"><span style="flex:none;display:inline-block;width:18px;height:18px;background:{{ mp.wlogo }};filter:drop-shadow(0 1px 2px rgba(0,0,0,.7));vertical-align:middle"></span></sc-if></sc-if><sc-if value="{{ mp.recording }}"><span style="font-size:11px;font-weight:700;color:var(--ac2,#C6FF33);border:1px solid var(--ac2,#C6FF33);border-radius:999px;padding:3px 8px">기록 중</span></sc-if></span>
 <span style="display:contents"><sc-if value="{{ mp.score }}"><b style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-size:17px;white-space:nowrap;font-variant-numeric:tabular-nums;text-shadow:0 1px 4px rgba(0,0,0,.85)"><span style="color:var(--ac2,#C6FF33)">{{ mp.scoreHi }}</span><span style="color:#D4D4DA"> : {{ mp.scoreLo }}</span></b></sc-if><span style="grid-column:5;width:24px;height:24px;border-radius:7px;background:#22222A;display:grid;place-items:center;font-size:14px">{{ mp.chev }}</span></span>
 </button>
-<sc-if value="{{ mp.showBans }}"><div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:14px 16px 0;border-top:1px solid #26262E">
-<sc-for list="{{ mp.bans }}" as="b" hint-placeholder-count="2"><div style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:12px;background:#0B0B0F;border:1px solid #26262E;min-width:0"><div style="position:relative;flex:none;width:36px;height:36px;border-radius:10px;border:1px solid #D92D20;background:{{ b.bg }};display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;color:#D4D4DA;overflow:hidden">{{ b.txt }}<span style="position:absolute;left:-4px;right:-4px;top:50%;height:2px;background:#D92D20;transform:rotate(-45deg)"></span></div><div style="flex:1;min-width:0"><div style="font-size:12px;color:#B5B5BD"><b style="color:#fff">{{ b.k }}</b> · {{ b.team }}</div><div style="font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ b.name }}</div></div></div></sc-for>
+<sc-if value="{{ mp.showBans }}"><div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;padding:8px 10px 0;border-top:1px solid #26262E">
+<sc-for list="{{ mp.bans }}" as="b" hint-placeholder-count="2"><div style="display:flex;align-items:center;gap:8px;padding:4px 8px 4px 4px;border-radius:10px;background:#0B0B0F;border:1px solid #26262E;min-width:0"><div style="position:relative;flex:none;width:28px;height:28px;border-radius:8px;border:1px solid #D92D20;background:{{ b.bg }};display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;color:#D4D4DA;overflow:hidden">{{ b.txt }}<span style="position:absolute;left:-4px;right:-4px;top:50%;height:2px;background:#D92D20;transform:rotate(-45deg)"></span></div><div style="flex:1;min-width:0;line-height:1.25"><div style="font-size:11px;color:#B5B5BD"><b style="color:#fff">{{ b.k }}</b> · {{ b.team }}</div><div style="font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ b.name }}</div></div></div></sc-for>
 </div></sc-if>
-<sc-if value="{{ mp.showReplayRow }}"><div style="display:flex;justify-content:flex-end;padding:8px 10px 0"><button onClick="{{ mp.copyReplay }}" title="리플레이 코드 복사" style="display:flex;align-items:center;gap:6px;height:26px;padding:0 3px 0 8px;border:1px solid #2E2E37;border-radius:8px;background:#0B0B0F;color:#fff;font:inherit;cursor:pointer"><span style="font-size:11px;font-weight:700;color:#B5B5BD">리플코드</span><span data-l style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:.06em">{{ mp.replay }}</span><span style="width:20px;height:20px;border-radius:5px;background:var(--ac2,#C6FF33);display:grid;place-items:center"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#0B0B0F" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg></span></button></div></sc-if>
+<sc-if value="{{ mp.showReplayRow }}"><div style="display:flex;justify-content:flex-end;padding:6px 10px 0"><button onClick="{{ mp.copyReplay }}" title="리플레이 코드 복사" style="display:flex;align-items:center;gap:6px;height:26px;padding:0 3px 0 8px;border:1px solid #2E2E37;border-radius:8px;background:#0B0B0F;color:#fff;font:inherit;cursor:pointer"><span style="font-size:11px;font-weight:700;color:#B5B5BD">리플코드</span><span data-l style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:.06em">{{ mp.replay }}</span><span style="width:20px;height:20px;border-radius:5px;background:var(--ac2,#C6FF33);display:grid;place-items:center"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#0B0B0F" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg></span></button></div></sc-if>
 <sc-if value="{{ mp.showComps }}">
-<div style="padding:0 14px 10px">
+<div style="padding:0 10px 8px">
 <sc-for list="{{ mp.comps }}" as="c" hint-placeholder-count="2">
-<div style="padding-top:8px"><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px"><span style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:700;font-size:18px">{{ c.team }}</span><sc-if value="{{ c.win }}"><span style="font-size:11px;font-weight:700;color:#0B0B0F;background:var(--ac2,#C6FF33);border-radius:4px;padding:1px 5px">WIN</span></sc-if></div>
+<div style="padding-top:6px"><div style="display:flex;align-items:center;gap:6px;margin-bottom:4px"><span style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:700;font-size:18px">{{ c.team }}</span><sc-if value="{{ c.win }}"><span style="font-size:11px;font-weight:700;color:#0B0B0F;background:var(--ac2,#C6FF33);border-radius:4px;padding:1px 5px">WIN</span></sc-if></div>
 <div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px">
-<sc-for list="{{ c.picks }}" as="p" hint-placeholder-count="5"><div style="display:flex;flex-direction:column;align-items:center;gap:3px;min-width:0"><div style="width:34px;height:34px;border-radius:9px;background:{{ p.bg }};border:1px solid #2E2E37;display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;color:#D4D4DA">{{ p.txt }}</div><div style="font-size:11px;font-weight:600;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ p.pl }}</div></div></sc-for>
+<sc-for list="{{ c.picks }}" as="p" hint-placeholder-count="5"><div style="display:flex;flex-direction:column;align-items:center;gap:3px;min-width:0"><div style="width:28px;height:28px;border-radius:8px;background:{{ p.bg }};border:1px solid #2E2E37;display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;color:#D4D4DA">{{ p.txt }}</div><div style="font-size:11px;font-weight:600;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ p.pl }}</div></div></sc-for>
 </div></div>
 </sc-for></div></sc-if>
+<sc-if value="{{ mp.showRec }}"><div style="padding:6px 12px 8px;font-size:12px;color:#B5B5BD">{{ mp.recNoteShort }}</div></sc-if>
 </div>
-
-<sc-if value="{{ mp.showRec }}"><div style="padding:10px 14px 14px;font-size:13px;color:#B5B5BD">{{ mp.recNoteShort }}</div></sc-if>
 </sc-for>
 </div></sc-if>
 </sc-for>
@@ -275,11 +277,13 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <sc-for list="{{ cases }}" as="c" hint-placeholder-count="8">
 <div style="display:grid;grid-template-columns:40px minmax(0,1fr);gap:10px;padding:14px 0;border-bottom:1px solid #ECECE7">
 <span style="display:flex;align-items:flex-start;gap:6px"><span style="width:4px;height:26px;border-radius:2px;background:{{ c.c }}"></span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:24px;line-height:1">{{ c.r }}</span></span>
-<div><div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span style="font-size:15px;font-weight:700">{{ c.n }}</span>
+<div><div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span style="display:flex;align-items:center;gap:8px;min-width:0;font-size:15px;font-weight:700"><span style="flex:none;width:24px;height:24px;background:{{ c.logo }}"></span>{{ c.n }}</span>
 <sc-if value="{{ c.sure }}"><span style="font-size:11px;font-weight:700;background:#C6FF33;padding:3px 8px;border-radius:6px">{{ c.tag }}</span></sc-if>
 <sc-if value="{{ c.maybe }}"><span style="font-size:11px;font-weight:700;color:#5B22C2;border:1px solid #7D39EB;padding:2px 8px;border-radius:6px">{{ c.tag }}</span></sc-if>
+<sc-if value="{{ c.lsure }}"><span style="font-size:11px;font-weight:700;color:#7A3300;background:#FFD7B5;padding:3px 8px;border-radius:6px">{{ c.tag }}</span></sc-if>
+<sc-if value="{{ c.lmaybe }}"><span style="font-size:11px;font-weight:700;color:#A84A0C;border:1px solid #F08A3C;padding:2px 8px;border-radius:6px">{{ c.tag }}</span></sc-if>
 <sc-if value="{{ c.out }}"><span style="font-size:11px;font-weight:700;color:#55555C;background:#ECECE8;padding:3px 8px;border-radius:6px">{{ c.tag }}</span></sc-if>
-</div><div style="font-size:13px;color:#55555C;margin-top:4px;line-height:1.5">{{ c.note }}</div></div>
+</div><div style="font-size:13px;color:#55555C;margin-top:4px;line-height:1.5">{{ c.note }}</div><sc-if value="{{ c.axe }}"><div style="display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-top:6px;font-size:12px;font-weight:700;color:#C62F35"><span style="flex:none;font-weight:800;color:#fff;background:#E5484D;padding:2px 7px;border-radius:6px">단두대 매치</span>{{ c.axe }}</div></sc-if></div>
 </div>
 </sc-for>
 </sc-if>
@@ -321,7 +325,7 @@ const PARAMS = new URLSearchParams(location.search);
 const NOW = PARAMS.get('date') ? new Date(PARAMS.get('date') + 'T' + (PARAMS.get('time') || '12:00') + ':00+09:00').getTime() : Date.now();
 // after the regular season the bracket tab opens on this stage's playoffs (seeding deciders, LCQ, playoffs)
 const PO_ON = !!D.bracket && NOW > new Date(D.stageRange[1] + 'T23:59:59+09:00').getTime();
-const TABS = [{ k: 'results', label: '이번 시즌 결과', short: '결과' }, { k: 'bracket', label: PO_ON ? '플레이오프 대진표' : '지난 시즌 · 대진표', short: '대진표' }, { k: 'cases', label: '경우의 수', short: '경우의 수' }, { k: 'rates', label: '팀별 승률', short: '승률' }];
+const TABS = [{ k: 'results', label: '시즌 결과', short: '결과' }, { k: 'bracket', label: PO_ON ? '플레이오프 대진표' : '지난 시즌 · 대진표', short: '대진표' }, { k: 'cases', label: '경우의 수', short: '경우의 수' }, { k: 'rates', label: '팀별 승률', short: '승률' }];
 // 2026 Korea record per current team (all stages, regular season + playoffs)
 const RATES = D.teams.map((t) => {
   let w = 0, l = 0, sw = 0, sl = 0;
@@ -353,17 +357,19 @@ const PAST = (no) => {
 const CASES = (() => {
   const base = Object.fromEntries(D.standings.map((s) => [s.a, s.w]));
   const teams = Object.keys(base), n = LEFT.length, out = {};
-  teams.forEach((a) => { out[a] = { best: 99, worst: 0, needPO: null, needLCQ: null, byWins: {} }; });
+  teams.forEach((a) => { out[a] = { best: 99, worst: 0, needPO: null, needLCQ: null, byWins: {}, bestIfLose: {} }; });
   if (n > 22) return out; // too many to enumerate; leave unknown
+  const own = Object.fromEntries(teams.map((a) => [a, LEFT.map((m, i) => (m.a === a || m.b === a ? i : -1)).filter((i) => i >= 0)]));
   for (let mask = 0; mask < (1 << n); mask++) {
-    const w = { ...base }, extra = {};
-    for (let i = 0; i < n; i++) { const win = (mask >> i) & 1 ? LEFT[i].a : LEFT[i].b; w[win]++; extra[win] = (extra[win] || 0) + 1; }
+    const w = { ...base }, extra = {}, won = [];
+    for (let i = 0; i < n; i++) { const win = (mask >> i) & 1 ? LEFT[i].a : LEFT[i].b; won[i] = win; w[win]++; extra[win] = (extra[win] || 0) + 1; }
     for (const a of teams) {
       let above = 0, tied = 0;
       for (const b of teams) if (b !== a) { if (w[b] > w[a]) above++; else if (w[b] === w[a]) tied++; }
       const o = out[a], best = above + 1, worst = above + tied + 1, k = extra[a] || 0;
       o.best = Math.min(o.best, best); o.worst = Math.max(o.worst, worst);
       o.byWins[k] = Math.max(o.byWins[k] || 0, worst);
+      for (const i of own[a]) if (won[i] !== a) o.bestIfLose[i] = Math.min(o.bestIfLose[i] || 99, best);
     }
   }
   for (const a of teams) {
@@ -374,8 +380,25 @@ const CASES = (() => {
   }
   return out;
 })();
+// 단두대 매치: both teams are still fighting for the same cut, and whoever loses can no longer make it.
+// returns that cut (D.lcq first: losing = out of the season) or null
+const axeOf = (i) => {
+  const m = LEFT[i], A = CASES[m.a] || {}, B = CASES[m.b] || {};
+  if (!A.bestIfLose || !B.bestIfLose) return null;
+  for (const cut of [D.lcq, D.playoffs]) {
+    const open = (c) => c.best <= cut && c.worst > cut;
+    if (open(A) && open(B) && (A.bestIfLose[i] || 99) > cut && (B.bestIfLose[i] || 99) > cut) return cut;
+  }
+  return null;
+};
+const axeNote = (a) => LEFT.map((m, i) => [m, axeOf(i)]).filter(([m, cut]) => cut && (m.a === a || m.b === a))
+  .map(([m, cut]) => NAME(m.a === a ? m.b : m.a) + '전, 지면 ' + (cut === D.lcq ? '바로 탈락' : '플레이오프 직행 실패')).join(' · ');
+const racing = (k) => k.kind === 'maybe' || k.kind === 'lmaybe';
 const caseOf = (a) => {
   const c = CASES[a] || {}, left = LEFT.filter((m) => m.a === a || m.b === a).length;
+  const k = caseKind(a, c, left); return { ...k, axe: racing(k) ? axeNote(a) : '' };
+};
+const caseKind = (a, c, left) => {
   if (c.worst && c.worst <= D.playoffs) return { tag: '플레이오프 확정', kind: 'sure', note: '남은 경기 결과와 관계없이 1–' + D.playoffs + '위 안이에요.' };
   if (c.best > D.lcq) return { tag: '탈락', kind: 'out', note: '남은 경기를 모두 이겨도 ' + D.lcq + '위 안에 들 수 없어요.' };
   if (c.best <= D.playoffs) {
@@ -383,8 +406,8 @@ const caseOf = (a) => {
     const need = c.needPO != null ? '남은 ' + left + '경기 중 ' + c.needPO + '승 하면 플레이오프 확정.' : '다른 팀 결과와 세트 득실에 따라 플레이오프가 갈려요.';
     return { tag: '플레이오프 경쟁', kind: 'maybe', note: need + lcq };
   }
-  if (c.worst <= D.lcq) return { tag: 'LCQ 확정', kind: 'sure', note: '플레이오프 직행은 어렵지만 라스트 찬스 예선은 확정이에요.' };
-  return { tag: 'LCQ 경쟁', kind: 'maybe', note: c.needLCQ != null ? '남은 ' + left + '경기 중 ' + c.needLCQ + '승 하면 ' + D.lcq + '위 안 확정.' : '다른 팀 결과에 따라 ' + D.lcq + '위 안에 들 수 있어요.' };
+  if (c.worst <= D.lcq) return { tag: 'LCQ 확정', kind: 'lsure', note: '플레이오프 직행은 어렵지만 라스트 찬스 예선은 확정이에요.' };
+  return { tag: 'LCQ 경쟁', kind: 'lmaybe', note: c.needLCQ != null ? '남은 ' + left + '경기 중 ' + c.needLCQ + '승 하면 ' + D.lcq + '위 안 확정.' : '다른 팀 결과에 따라 ' + D.lcq + '위 안에 들 수 있어요.' };
 };
 
 const norm = (s) => s.toLowerCase().replace(/\s+/g, '');
@@ -394,7 +417,7 @@ const resolve = (tok) => {
   const part = D.teams.find((t) => norm(t.n).includes(k) || t.ko.includes(tok.trim())); return part ? part.a : null;
 };
 class Component extends DCLogic {
-  state = (() => { const t = new URLSearchParams(location.search).get('tab'); const k = TABS.some((x) => x.k === t) ? t : 'results'; const st = Number(new URLSearchParams(location.search).get('stage')); return { bk: PO_ON ? 'cur' : 'last', tabD: k, tabM: k, st: STAGE_NOS.includes(st) ? st : (D.stageNo || 1), q: new URLSearchParams(location.search).get('q') || '', sp: (() => { try { return localStorage.getItem('owcs-spoiler') === '1'; } catch (e) { return false; } })(), openRows: {}, openMaps: {} }; })();
+  state = (() => { const t = new URLSearchParams(location.search).get('tab'); const k = TABS.some((x) => x.k === t) ? t : 'results'; const st = Number(new URLSearchParams(location.search).get('stage')); return { bk: D.bracket ? 'cur' : 'last', tabD: k, tabM: k, st: STAGE_NOS.includes(st) ? st : (D.stageNo || 1), q: new URLSearchParams(location.search).get('q') || '', sp: (() => { try { return localStorage.getItem('owcs-spoiler') === '1'; } catch (e) { return false; } })(), openRows: {}, openMaps: {} }; })();
   tabs(key) {
     const cur = this.state[key];
     return TABS.map((t) => ({ ...t, on: cur === t.k, off: cur !== t.k, go: () => this.setState({ [key]: t.k }) }));
@@ -455,6 +478,7 @@ class Component extends DCLogic {
       // the season button picks the stage on the results tab (other tabs show their own label)
       seasonLabelD: this.state.tabD === 'results' ? (D.year || '') + ' 스테이지 ' + this.state.st : anyBracket ? ls.label : (D.year || '') + ' ' + STAGE,
       seasonLabelM: this.state.tabM === 'results' ? (D.year || '') + ' 스테이지 ' + this.state.st : this.state.tabM === 'bracket' ? ls.label : (D.year || '') + ' ' + STAGE,
+      showStD: this.state.tabD === 'results', showStM: this.state.tabM === 'results',
       stOpenD: this.state.stOpen === 'd' && this.state.tabD === 'results', stOpenM: this.state.stOpen === 'm' && this.state.tabM === 'results',
       stChevD: this.state.tabD !== 'results' ? '' : this.state.stOpen === 'd' ? '▴' : '▾', stChevM: this.state.tabM !== 'results' ? '' : this.state.stOpen === 'm' ? '▴' : '▾',
       stToggleD: () => this.setState((s) => ({ stOpen: s.stOpen === 'd' ? null : 'd', tabD: 'results' })),
@@ -490,12 +514,14 @@ class Component extends DCLogic {
               return { n: a === 'TBD' ? '미정' : NAME(a), logo: a === 'TBD' ? 'transparent' : logo(a), lo: played && !SP && sc !== top ? .45 : 1, c: a === 'TBD' ? '#E1E1DB' : col(a), s: shown ? sc : '–', w: st.w, t: a === 'TBD' ? '#9A9AA0' : st.t }; }) };
         }),
       })),
-      cases: D.standings.map((s, i) => { const c = caseOf(s.a); return { r: i + 1, n: NAME(s.a), c: col(s.a), wl: SP ? '–' : s.w + '-' + s.l, note: c.note, tag: c.tag, sure: c.kind === 'sure', maybe: c.kind === 'maybe', out: c.kind === 'out' }; }),
+      cases: D.standings.map((s, i) => { const c = caseOf(s.a); return { r: i + 1, n: NAME(s.a), logo: logo(s.a), c: col(s.a), wl: SP ? '–' : s.w + '-' + s.l, note: c.note, axe: c.axe, tag: c.tag, sure: c.kind === 'sure', maybe: c.kind === 'maybe', lsure: c.kind === 'lsure', lmaybe: c.kind === 'lmaybe', out: c.kind === 'out' }; }),
       remaining: LEFT.slice(0, 6).map((m) => {
         const ka = caseOf(m.a), kb = caseOf(m.b);
-        const hot = [ka, kb].some((k) => k.kind === 'maybe');
+        const hot = [ka, kb].some(racing);
+        const axe = axeOf(LEFT.indexOf(m));
         return { when: mdw(m.date) + ' ' + m.time, a: m.a, b: m.b, ca: logo(m.a), cb: logo(m.b), oa: 1, ob: 1,
-          stake: m.live ? 'LIVE' : hot ? [m.a, m.b].filter((a, i) => [ka, kb][i].kind === 'maybe').join('·') + ' ' + ([ka, kb].find((k) => k.kind === 'maybe').tag) : '순위 싸움' };
+          isAxe: !m.live && !!axe, noAxe: m.live || !axe, axeSub: axe === D.lcq ? '지면 탈락' : '지면 직행 실패',
+          stake: m.live ? 'LIVE' : hot ? [m.a, m.b].filter((a, i) => racing([ka, kb][i])).join('·') + ' ' + [ka, kb].find(racing).tag : '순위 싸움' };
       }),
       tiebreak: D.tiebreak,
       footNote: '비공식 팬 사이트입니다. Blizzard Entertainment 및 OWCS 공식 운영과 관련이 없습니다. ' + (D.sources || ''),
