@@ -2,7 +2,7 @@ name: Deploy site
 
 # Builds the whole site here (no PC needed): Liquipedia via the OWCSKR collector (re-read every 30 min, every 10 min
 # around today's matches), streams / SOOP VODs every run. Also runs on every push from the PC (live map scores).
-# workflow_dispatch can be called from outside (e.g. cron-job.org) when GitHub's own schedule runs late.
+# GitHub's own schedule runs late or not at all, so refresh-loop.yml asks for a build every 10 minutes.
 on:
   push:
     branches: [main]
