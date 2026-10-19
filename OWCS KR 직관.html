@@ -50,7 +50,7 @@ nav a:hover,nav a.on{background:#1F1F27;color:#fff}
 .next .v{font-size:40px;margin-top:4px}
 .next .s{font-size:14px;color:var(--mute);margin-top:4px}
 .badge{display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 12px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap;flex:none}
-.b-open{background:var(--ac2);color:#0B0B0F}.b-soon{border:1px solid #fff;color:#fff}.b-closed{background:#2A2A33;color:var(--mute)}.b-live{background:var(--red);color:#fff}
+.b-open{background:var(--ac2);color:#0B0B0F}a.b-open{text-decoration:none;cursor:pointer;transition:filter .15s}a.b-open:hover{filter:brightness(.92)}a.b-open:focus-visible{outline:2px solid #0B0B0F;outline-offset:2px}.b-soon{border:1px solid #fff;color:#fff}.b-closed{background:#2A2A33;color:var(--mute)}.b-live{background:var(--red);color:#fff}
 section.block{padding:56px 0;border-top:1px solid var(--line)}
 .title{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:26px}
 .title h2{font-size:56px;line-height:.9;margin:0}
@@ -304,6 +304,8 @@ var ROWS = [
 // days below are used. Start time = first match of the day once Liquipedia has it, sales close 4 h after the start.
 var BLOCKS = [{ k: 'seed', name: 'SEEDING · LCQ', days: ['2026-10-30', '2026-10-31', '2026-11-01'] },
               { k: 'po', name: 'PLAYOFFS', days: ['2026-11-06', '2026-11-07', '2026-11-08'] }];
+// 판매 중 badge opens the Ticketlink OWCS page (seat selection itself needs a Ticketlink login)
+var TICKET_URL = 'https://www.ticketlink.co.kr/sports/1262/631';
 var DOWS = ['일', '월', '화', '수', '목', '금', '토'];
 var kst = function (s) { return new Date(s + ':00+09:00').getTime(); };
 var md = function (s) { return s.slice(5, 7) + '.' + s.slice(8, 10); };
@@ -353,7 +355,7 @@ function draw() {
     }).join('') + '</div>' : '<span style="color:var(--dim);white-space:nowrap">대진 발표 전</span>';
     var tr = document.createElement('tr');
     if (next.r === r) tr.className = 'today';
-    tr.innerHTML = '<td class="wk">' + md(r[1]) + ' (' + r[2] + ')<small>' + stage + ' ' + r[0] + '<img class="owl pc" src="assets/icons/overwatch.svg" alt=""></small></td><td class="n">' + (r[3] || '발표 전') + '</td><td class="mv">' + vs + '</td><td class="op" style="white-space:nowrap">' + md(r[4]) + ' ' + r[4].slice(11) + '</td><td class="stt"><span class="badge ' + st[1] + '">' + st[0] + '</span></td>';
+    tr.innerHTML = '<td class="wk">' + md(r[1]) + ' (' + r[2] + ')<small>' + stage + ' ' + r[0] + '<img class="owl pc" src="assets/icons/overwatch.svg" alt=""></small></td><td class="n">' + (r[3] || '발표 전') + '</td><td class="mv">' + vs + '</td><td class="op" style="white-space:nowrap">' + md(r[4]) + ' ' + r[4].slice(11) + '</td><td class="stt">' + (st[1] === 'b-open' ? '<a class="badge b-open" href="' + TICKET_URL + '" target="_blank" rel="noopener" title="티켓링크에서 예매">' + st[0] + ' ↗</a>' : '<span class="badge ' + st[1] + '">' + st[0] + '</span>') + '</td>';
     body.appendChild(tr);
   });
   // the "다음 직관 가능 경기일" card was removed (user); the next match day is still marked in the TICKETS table
