@@ -28,6 +28,13 @@
       const w = x.winner ? m[x.winner] : null;
       const recording = !w && m.st === 'live';
       const key = m.id + '-' + x.no, open = !!o.isOpen(key);
+      // copy the code; the button's [data-l] label (or the button) says 복사됨 for 1.5 s
+      const copyReplay = (e) => {
+        if (e && e.stopPropagation) e.stopPropagation();
+        const b = e && e.currentTarget, l = b && (b.querySelector('[data-l]') || b), was = l && l.textContent;
+        const done = () => { if (l) { l.textContent = '복사됨'; setTimeout(() => { l.textContent = was; }, 1500); } };
+        if (navigator.clipboard) navigator.clipboard.writeText(x.replay).then(done, done); else done();
+      };
       // Control / Flashpoint end at a fixed score (2 / 3): once the map's winner is known, its score is that, even when
       // the HUD could not be read (Flashpoint shows points as dots, not digits: 10-18 map 3 stayed at 0 : 0)
       const tgt = WIN_AT[x.map] || { '쟁탈': 2, '플래시포인트': 3 }[x.mode];
@@ -46,13 +53,13 @@
         showRec: open && !comps.length, comps,
         recNote: recording ? '기록 중이에요. 세트가 끝나면 양 팀 조합이 올라와요.' : '이 세트의 첫 조합 기록이 아직 없어요.',
         recNoteShort: recording ? '세트가 끝나면 조합이 올라와요.' : '첫 조합 기록 없음',
-        bans: x.bans.map((b) => ({ k: b.t === x.banFirst ? '선벤' : '후벤', team: m[b.t] || '?', h: b.code, name: heroName(b.h), bg: heroBg(b.h), txt: HERO_IMG[heroKey(b.h)] ? '' : b.code })),
-        // replay code (community sheet): shown in a box to select, with a copy button
-        replay: x.replay || '', hasReplay: !!x.replay, showReplay: open && !!x.replay,
-        copyReplay: (e) => {
-          const b = e && e.currentTarget, done = () => { if (b) { b.textContent = '복사됨'; setTimeout(() => { b.textContent = '복사'; }, 1500); } };
-          if (navigator.clipboard) navigator.clipboard.writeText(x.replay).then(done, done); else done();
-        },
+        // replay code (community sheet): a small copy chip at the right end of the last ban card; its own row only
+        // when the map has no bans to sit beside
+        bans: x.bans.map((b, i, all) => ({ k: b.t === x.banFirst ? '선벤' : '후벤', team: m[b.t] || '?', h: b.code, name: heroName(b.h), bg: heroBg(b.h), txt: HERO_IMG[heroKey(b.h)] ? '' : b.code,
+          rc: i === all.length - 1 ? x.replay || '' : '', copy: (e) => copyReplay(e) })),
+        replay: x.replay || '', hasReplay: !!x.replay, showReplay: open && !!x.replay && !(showBans && x.bans.length),
+        showReplayRow: open && !!x.replay,   // phone: ban cards are too narrow, the chip gets a slim row under them
+        copyReplay: (e) => copyReplay(e),
         toggle: () => o.toggle(key) };
     });
   }

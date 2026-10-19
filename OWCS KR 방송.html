@@ -153,7 +153,7 @@ footer{padding:32px 0 56px;background:#0B0B0F;color:#8A8A93;font-size:13px;line-
         var tag = pf.href ? 'a' : 'div';
         html += '<' + tag + (pf.href ? ' href="' + esc(pf.href) + '" target="_blank" rel="noopener"' : '') + ' class="p' + (live ? ' live' : '') + '">' +
           '<span class="av" style="' + (p.photo ? "background-image:url('" + esc(p.photo) + "')" : '') + '">' + (p.photo ? '' : esc(p.id.slice(0, 2).toUpperCase())) + '</span>' +
-          '<span class="who"><b>' + esc(p.id) + '</b><small>' + esc(p.roleFull) + (p.ko ? ' · ' + esc(p.ko) : '') + '</small></span>' +
+          '<span class="who"><b>' + esc(p.id) + '</b><small>' + esc(p.roleFull) + '</small></span>' +
           '<span class="go ' + pf.cls + '">' + esc(pf.label) + (pf.href ? ' ↗' : '') + '</span></' + tag + '>';
       });
       html += '</div></section>';

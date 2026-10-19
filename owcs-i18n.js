@@ -72,7 +72,7 @@
     // results
     ['이번 시즌 결과', '今シーズンの結果', 'This season', '本赛季结果'], ['지난 시즌 · 대진표', '過去シーズン · トーナメント表', 'Past seasons · Brackets', '往届赛季 · 对阵图'], ['대진표', 'トーナメント表', 'Bracket', '对阵图'], ['경우의 수', 'プレーオフ条件', 'Scenarios', '晋级形势'],
     ['팀별 승률', 'チーム別勝率', 'Win rates', '战队胜率'], ['지난 경기 검색', '過去の試合を検索', 'Search past matches', '搜索往期比赛'], ['팀 약칭·이름으로 검색 · 두 팀은 쉼표로 구분', 'チーム略称・名前で検索 · 2チームはカンマ区切り', 'Search by team · separate two teams with a comma', '按战队简称·名称搜索 · 两支战队用逗号分隔'],
-    ['예: PF,CR 또는 CR', '例: PF,CR または CR', 'e.g. PF,CR or CR', '例: PF,CR 或 CR'], ['지난 경기 · PF,CR', '過去の試合 · PF,CR', 'Past matches · PF,CR', '往期比赛 · PF,CR'], ['다시보기 ↗', 'アーカイブ ↗', 'Replay ↗', '回放 ↗'], ['맵 상세 ▾', 'マップ詳細 ▾', 'Map details ▾', '地图详情 ▾'], ['맵 상세 ▴', 'マップ詳細 ▴', 'Map details ▴', '地图详情 ▴'],
+    ['예: PF,CR 또는 CR', '例: PF,CR または CR', 'e.g. PF,CR or CR', '例: PF,CR 或 CR'], ['지난 경기 · PF,CR', '過去の試合 · PF,CR', 'Past matches · PF,CR', '往期比赛 · PF,CR'], ['리플코드', 'リプレイコード', 'Replay code', '回放代码'], ['다시보기 ↗', 'アーカイブ ↗', 'Replay ↗', '回放 ↗'], ['맵 상세 ▾', 'マップ詳細 ▾', 'Map details ▾', '地图详情 ▾'], ['맵 상세 ▴', 'マップ詳細 ▴', 'Map details ▴', '地图详情 ▴'],
     ['팀을 찾을 수 없어요', 'チームが見つかりません', 'Team not found', '找不到该战队'], ['플레이오프 확정', 'プレーオフ確定', 'Playoffs clinched', '锁定季后赛'], ['탈락', '敗退', 'Eliminated', '淘汰'], ['플레이오프 경쟁', 'プレーオフ争い', 'In the playoff race', '争夺季后赛'],
     ['LCQ 확정', 'LCQ確定', 'LCQ clinched', '锁定 LCQ'], ['LCQ 경쟁', 'LCQ争い', 'In the LCQ race', '争夺 LCQ'], ['순위 싸움', '順位争い', 'Race', '排名之争'],
     ['다른 팀 결과와 세트 득실에 따라 플레이오프가 갈려요.', '他チームの結果とセット得失でプレーオフが決まります。', 'Playoffs depend on other results and map differential.', '能否进入季后赛取决于其他战队的结果和地图净胜。'],
