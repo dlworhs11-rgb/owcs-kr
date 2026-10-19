@@ -41,9 +41,9 @@
     'html body a[data-owcs-nv]:hover{color:var(--ink,#0B0B0F) !important}',
     'html[data-owcs-dark] body a[data-owcs-nv][data-owcs-nv]{color:#A3A3AD !important}',
     'html[data-owcs-dark] body a[data-owcs-nv]:hover{color:#F2F2F5 !important}',
-    // light: a lime highlighter stroke just under the word (not over the letters); dark: a thin lime line under it
+    // light: a lime highlighter stroke under the word, just touching the letters' feet; dark: a thin lime line under it
     'html body a[data-owcs-nv][data-owcs-nv].cur{color:var(--ink,#0B0B0F) !important;background-image:linear-gradient(var(--ac2,#C6FF33),var(--ac2,#C6FF33)) !important;' +
-      'background-size:calc(100% - 26px) 5px !important;background-position:center bottom 7px !important;background-repeat:no-repeat !important}',
+      'background-size:calc(100% - 26px) 7px !important;background-position:center bottom 9px !important;background-repeat:no-repeat !important}',
     'html[data-owcs-dark] body a[data-owcs-nv][data-owcs-nv].cur{color:#F2F2F5 !important;background-size:calc(100% - 26px) 2px !important;background-position:center bottom 7px !important}',
     'html[data-owcs-dark] [data-owcs-hw]{color:#F2F2F5}',
     'html[data-owcs-dark] [data-owcs-hw] .lb,html[data-owcs-dark] [data-owcs-hw] .dd{background:#16161C;border-color:#2E2E37}',
