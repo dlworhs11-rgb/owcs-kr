@@ -120,8 +120,10 @@ footer{padding:32px 0 56px;background:#0B0B0F;color:#8A8A93;font-size:13px;line-
 <script>
 (function () {
   var D = window.OWCS || { teams: [], players: [], standings: [], live: {} };
-  // phone / tablet: the viewer's own teams first (내 팀 on the home page, then the teams of their calendar subscription; kept in this browser)
-  var mine = [];
+  // 내 팀 (set on the home page, kept in this browser) is always the first team on every screen size, live or not;
+  // phone / tablet: the teams of their calendar subscription come next among the rest
+  var mine = [], myTeam = '';
+  try { myTeam = localStorage.getItem('owcs-myteam') || ''; } catch (e) {}
   if (window.matchMedia('(max-width:1024px)').matches) {
     try { mine = [localStorage.getItem('owcs-myteam')].concat(JSON.parse(localStorage.getItem('owcs-subteams') || '[]')).filter(function (a, i, l) { return a && l.indexOf(a) === i; }); } catch (e) {}
   }
@@ -140,8 +142,8 @@ footer{padding:32px 0 56px;background:#0B0B0F;color:#8A8A93;font-size:13px;line-
     function isLive(p) { return !!L[p.id]; }
     function liveIn(a) { return D.players.filter(function (p) { return p.team === a && isLive(p); }).length; }
     function rank(a) { var i = mine.indexOf(a); return i < 0 ? 100 + order.indexOf(a) : i; }
-    // teams with someone live come first, then the viewer's own teams / standings order; inside a team, live players first
-    var teams = (D.teams || []).slice().sort(function (a, b) { return (liveIn(b.a) ? 1 : 0) - (liveIn(a.a) ? 1 : 0) || rank(a.a) - rank(b.a); });
+    // 내 팀 first, then teams with someone live, then the viewer's own teams / standings order; inside a team, live players first
+    var teams = (D.teams || []).slice().sort(function (a, b) { return (b.a === myTeam) - (a.a === myTeam) || (liveIn(b.a) ? 1 : 0) - (liveIn(a.a) ? 1 : 0) || rank(a.a) - rank(b.a); });
     teams.forEach(function (t) {
       var ps = D.players.filter(function (p) { return p.team === t.a; });
       ps = ps.filter(isLive).concat(ps.filter(function (p) { return !isLive(p); }));
