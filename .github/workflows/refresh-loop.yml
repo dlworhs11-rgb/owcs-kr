@@ -1,9 +1,8 @@
 name: Refresh loop
 
-# Keeps the site fresh every 10 minutes without the PC. GitHub runs pages.yml's own '*/10' schedule hours late or
-# not at all (10-19: two scheduled runs in a whole day, so streams stayed stale). This job stays up for ~5h40m,
-# asks for a site build every 10 minutes (skipped while one is already queued or running, since a new one would
-# cancel it), then starts itself again before GitHub's 6-hour job limit. The schedule below only restarts the chain
+# Keeps the site fresh without the PC. GitHub runs pages.yml's own '*/10' schedule hours late or not at all
+# (10-19: two scheduled runs in a whole day, so streams stayed stale). This job stays up for ~5h40m, asks for a site
+# build whenever none has started for 9 minutes, then starts itself again before GitHub's 6-hour job limit. The schedule below only restarts the chain
 # if it ever breaks; the concurrency group keeps a single loop (an extra start waits and takes over at the end).
 on:
   schedule:
@@ -26,17 +25,20 @@ jobs:
       GH_TOKEN: ${{ github.token }}
       R: ${{ github.repository }}
     steps:
-      - name: Ask for a site build every 10 minutes
+      # a backup only: another trigger (cron-job.org, every 5 min since 10-19 22:35 KST) usually starts builds, and a
+      # second request would cancel the build it started. So every 5 minutes this asks for one only when no build
+      # (any trigger, any outcome) has started in the last 9 minutes.
+      - name: Ask for a site build when none has started for 9 minutes
         run: |
-          for i in $(seq 1 34); do
-            run=$(gh run list -R "$R" -w pages.yml -s in_progress --json databaseId -q length || echo 0)
-            wait=$(gh run list -R "$R" -w pages.yml -s queued --json databaseId -q length || echo 0)
-            if [ "$((run + wait))" = "0" ]; then
-              gh workflow run pages.yml -R "$R" && echo "$(date -u +%H:%M) UTC: build requested" || echo "$(date -u +%H:%M) UTC: request failed"
+          for i in $(seq 1 68); do
+            last=$(gh run list -R "$R" -w pages.yml -L 1 --json createdAt -q '.[0].createdAt' || echo '')
+            age=$(( $(date +%s) - $(date -d "${last:-1970-01-01T00:00:00Z}" +%s) ))
+            if [ "$age" -ge 540 ]; then
+              gh workflow run pages.yml -R "$R" && echo "$(date -u +%H:%M) UTC: last build ${age}s ago, build requested" || echo "$(date -u +%H:%M) UTC: request failed"
             else
-              echo "$(date -u +%H:%M) UTC: a build is already running"
+              echo "$(date -u +%H:%M) UTC: last build ${age}s ago"
             fi
-            sleep 600
+            sleep 300
           done
       - name: Start the next loop
         if: ${{ !cancelled() }}   # cancelling a run by hand stops the chain (the schedule restarts it within 3 hours)
