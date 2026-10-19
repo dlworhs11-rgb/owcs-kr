@@ -1150,13 +1150,15 @@ const applyLive = (today) => {
     Object.entries(ad.matches || {}).forEach(([id, o]) => {
       const m = D.matches.find((x) => x.id === id);
       if (!m) return;
-      // a typed series score counts while it is at least as far as the automatic one (a stale 2-0 must not hide the 3-0)
-      if ((o.sa != null || o.sb != null) && (o.sa || 0) + (o.sb || 0) >= (m.sa || 0) + (m.sb || 0)) {
+      // a typed series score counts while it is at least as far as the automatic one (a stale 2-0 must not hide the 3-0);
+      // 'force' (강제 on the admin page) wins even below it, to undo a misread that went too high
+      if ((o.sa != null || o.sb != null) && (o.force || (o.sa || 0) + (o.sb || 0) >= (m.sa || 0) + (m.sb || 0))) {
         if (o.sa != null && m.sa !== o.sa) { m.sa = o.sa; changed = true; }
         if (o.sb != null && m.sb !== o.sb) { m.sb = o.sb; changed = true; }
       }
       if (o.potm && m.potm !== o.potm) { m.potm = o.potm; changed = true; }
       if ((o.sa != null || o.sb != null) && Math.max(m.sa || 0, m.sb || 0) >= Math.floor((m.bo || 5) / 2) + 1 && !m.played) { m.played = true; m.live = false; changed = true; }
+      if (o.force && Math.max(m.sa || 0, m.sb || 0) < Math.floor((m.bo || 5) / 2) + 1 && m.played) { m.played = false; m.live = true; changed = true; }
       Object.entries(o.maps || {}).forEach(([no, y]) => {
         no = +no;
         let x = m.maps.find((z) => z.no === no);

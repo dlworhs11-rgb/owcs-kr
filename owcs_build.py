@@ -480,8 +480,9 @@ def build_matches(stage):
         rs = m['phase'] == 'rs'
         ao = (adm.get('matches') or {}).get(f"{day}-{m['idx']}" if rs else f"{stage['year']}s{stage['n']}-p{m['idx']}") or {}
         # a typed series score counts while it is at least as far as the automatic one: a score typed at 2-0 must not
-        # hold the match at 2-0 after the recorder saw the 3-0 (10-18)
-        if (ao.get('sa') is not None or ao.get('sb') is not None) and (ao.get('sa') or 0) + (ao.get('sb') or 0) >= (sa or 0) + (sb or 0):
+        # hold the match at 2-0 after the recorder saw the 3-0 (10-18). 'force' (강제 on the admin page) wins even below it,
+        # to undo a misread that went too high
+        if (ao.get('sa') is not None or ao.get('sb') is not None) and (ao.get('force') or (ao.get('sa') or 0) + (ao.get('sb') or 0) >= (sa or 0) + (sb or 0)):
             sa, sb = ao.get('sa', sa) or 0, ao.get('sb', sb) or 0
             live = max(sa, sb) < need
             played = not live
