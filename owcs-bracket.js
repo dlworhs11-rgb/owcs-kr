@@ -188,7 +188,7 @@
       if (lcq) {
         const up = lcq.matches.find((x) => /승자조 결승/.test(x.round)), semi = lcq.matches.find((x) => /패자조 준결승/.test(x.round)),
           fin = lcq.matches.find((x) => /패자조 결승/.test(x.round));
-        lcqHtml = '<div class="box pre lane">' + lane('5–8위', '라스트 찬스', '4팀 중 2팀만 플레이오프에 올라가요', '두 번 지면 탈락 · 올라가면 8강', [['go', '2팀 → 8강'], ['ko', '2팀 탈락']])
+        lcqHtml = '<div class="box pre lane">' + lane('5–8위', '라스트 찬스', '4팀 중 2팀만 플레이오프에 올라가요', '5·6위는 두 번, 7·8위는 한 번 지면 탈락 · 올라가면 8강', [['go', '2팀 → 8강'], ['ko', '2팀 탈락']])
           + (up && semi && fin
             ? tree([{ title: '첫 경기', ms: [up, semi], opts: [{ round: true, short: true, title: '이기면 바로 진출', ph: ['5위', '6위'] }, { round: true, short: true, title: '지면 탈락', ph: ['7위', '8위'] }] },
                     { title: '마지막 한 자리', ms: [fin], opts: [{ round: true, short: true, title: '이기면 진출', ph: ['5·6위전 패자', '7·8위전 승자'] }] }])

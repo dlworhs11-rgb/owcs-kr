@@ -483,7 +483,8 @@ class Component extends DCLogic {
           const m = byId[x.id], played = m ? m.played && !m.live && new Date(m.date).getTime() <= NOW : x.played, live = !!(m && m.live);
           const rows = m ? [[m.a, m.sa], [m.b, m.sb]] : x.rows.map((r) => [r.a, r.s]);
           const top = Math.max(rows[0][1] || 0, rows[1][1] || 0), shown = (played || live) && !SP;
-          return { when: x.when, tag: live ? 'LIVE' : x.round && x.round !== c.title ? x.round : '', tagC: live ? '#D92D20' : '#6B6B72',
+          const bo = (m && m.bo) || x.bo;
+          return { when: x.when + (bo ? ' · BO' + bo : ''), tag: live ? 'LIVE' : x.round && x.round !== c.title ? x.round : '', tagC: live ? '#D92D20' : '#6B6B72',
             bd: live ? '2px solid #D92D20' : x.id === nextId ? '2px solid #7D39EB' : '1px solid #E1E1DB',
             rows: rows.map(([a, sc]) => { const st = !played || SP ? winStyle(true) : winStyle(sc === top);
               return { n: a === 'TBD' ? '미정' : NAME(a), logo: a === 'TBD' ? 'transparent' : logo(a), lo: played && !SP && sc !== top ? .45 : 1, c: a === 'TBD' ? '#E1E1DB' : col(a), s: shown ? sc : '–', w: st.w, t: a === 'TBD' ? '#9A9AA0' : st.t }; }) };

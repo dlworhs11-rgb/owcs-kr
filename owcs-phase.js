@@ -3,7 +3,7 @@
 //   - html[data-owcs-po] is set on every page
 //   - the menu item 순위 reads 대진표 (it still opens ?view=standings, which now starts with the bracket)
 //   - home: the standings section (bracket only; the final standings are not shown) moves up
-//     right under TODAY, above the schedule
+//     right under TODAY, above the schedule; the final standings follow it, smaller
 // ?phase=po previews it; ?date=YYYY-MM-DD picks the day like the home page does.
 (function () {
   var D = window.OWCS;
@@ -37,7 +37,9 @@
     S + ' > [data-sec=stand]{order:1}' +
     P + '[data-sec=stand]{display:flex;flex-direction:column}' +
     P + '[data-sec=stand] > #tournament{order:-2;margin-top:0 !important}' +
-    P + '[data-sec=stand] > :not(#tournament){display:none !important}' +   // final regular-season standings: not shown during the playoffs
+    // final regular-season standings stay, smaller, under the bracket: the seeds come from them
+    P + '[data-sec=stand] > :not(#tournament){margin-top:56px}' +
+    P + '[data-sec=stand] > :not(#tournament) h2{font-size:calc(var(--ts,1) * 48px) !important}' +
     P + '#tournament h3{font-size:calc(var(--ts,1) * 96px) !important;margin:14px 0 24px !important}' +
     P + '#tournament > div:first-child{font-size:15px !important}' +
     '@media (max-width:899px){' + P + '#tournament h3{font-size:calc(var(--ts,1) * 60px) !important;margin:10px 0 20px !important}}';
