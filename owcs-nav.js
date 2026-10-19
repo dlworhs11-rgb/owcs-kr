@@ -1,21 +1,55 @@
-// The top of every page laid out like the home page (the reference, measured from it): a 45px tool bar
-// (다크 모드 · language) above a 76px header, the logo (30px mark + 28px wordmark) on the content column's left
-// edge, and the menu (일정 · 결과 · 순위 · 직관 · 선수 · 방송) with the home page's link size, at the spot the home
-// page's own layout puts it: 110.5px left of the page centre (half of its 136px logo block minus its 357px right block).
-// The home page itself is left as it is.
+// The top of every page laid out like the home page (the reference, measured from it): one 76px header row with
+// the logo (30px mark + 28px wordmark) on the content column's left edge, the menu (일정 · 결과 · 순위 · 직관 · 선수 · 방송)
+// in the middle, and on the right the language picker (🌐 KOR ⌄: KOR · ENG · JPN · CHN with flags) and a ⋮ menu that holds
+// 스포일러 방지 · 다크 모드. Phones / tablets: the picker sits next to the ☰ button, whose menu holds the two switches.
+// The page's own switches (the home page's tool bar, the results page's spoiler switch, owcs-dark.js's floating button)
+// stay in the page but hidden; the picker and the ⋮ menu press them, so each page keeps its own behaviour.
 (function () {
   // the menu sits exactly in the middle of the header on every page, the home page too, so it never moves
   // between pages whatever the window width
   var centre = '@media (min-width:900px){#dc-root header{position:relative}' +
     'header nav{position:absolute !important;left:50% !important;top:50% !important;transform:translate(-50%,-50%) !important;display:flex !important;gap:6px !important;margin:0 !important;overflow:visible !important}}';
-  if (/Home/.test(decodeURIComponent(location.pathname).split('/').pop())) {
-    var hs = document.createElement('style');
-    hs.textContent = centre;
-    (document.head || document.documentElement).appendChild(hs);
-    return;
-  }
-  var css = [
-    centre,
+  var HOME = /Home/.test(decodeURIComponent(location.pathname).split('/').pop());
+  // --- the language picker + ⋮ menu (all pages, the home page too) ---
+  var hw = [
+    '#dc-root [data-screen-label]{position:relative}',
+    '[data-owcs-tools],[data-owcs-langpill],[data-owcs-darkbtn],[data-owcs-lang]{display:none !important}',
+    '[data-owcs-hw]{position:absolute;z-index:20;display:flex;align-items:center;gap:4px;font-family:"Pretendard Variable",Pretendard,system-ui,sans-serif;color:var(--ink,#0B0B0F);text-align:left}',
+    // owcs-theme.js pads every child of a screen to the content column; the picker is not a section
+    '#dc-root [data-screen-label] > [data-owcs-hw],[data-owcs-hw]{padding:0 !important;margin:0 !important;background:transparent !important;border:0 !important}',
+    'html [data-owcs-hw] *{box-sizing:border-box}',
+    '[data-owcs-hw] .w{position:relative}',
+    '[data-owcs-hw] .lb{display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 12px;border:1px solid var(--line,#E6E6E1);border-radius:10px;background:var(--paper,#fff);color:inherit;font-family:inherit;font-size:15px;font-weight:700;line-height:1;cursor:pointer}',
+    '[data-owcs-hw] .mb{display:grid;place-items:center;width:40px;height:40px;padding:0;border:0;border-radius:10px;background:transparent;color:inherit;cursor:pointer}',
+    '[data-owcs-hw] .lb:hover,[data-owcs-hw] .mb:hover,[data-owcs-hw] .it:hover{background:var(--paper3,#F1F1ED)}',
+    '[data-owcs-hw] .dd{display:none;position:absolute;top:calc(100% + 6px);right:0;min-width:150px;padding:6px;border-radius:12px;background:var(--paper,#fff);border:1px solid var(--line,#E6E6E1);box-shadow:0 10px 30px rgba(0,0,0,.12)}',
+    '[data-owcs-hw] .w.open .dd{display:block}',
+    '[data-owcs-hw] .it{display:flex;align-items:center;gap:12px;width:100%;height:42px;padding:0 12px;border:0;border-radius:8px;background:transparent;color:var(--mute,#6B6B72);font-family:inherit;font-size:15px;font-weight:500;white-space:nowrap;text-align:left;cursor:pointer}',
+    // the chosen language: darker and bold, no colour
+    '[data-owcs-hw] .it.on{color:var(--ink,#0B0B0F);font-weight:800}',
+    '[data-owcs-hw] .fl{flex:none;display:block;width:22px;height:15px;border-radius:2px;box-shadow:0 0 0 1px rgba(0,0,0,.14)}',
+    '[data-owcs-hw] .hsw{color:var(--ink,#0B0B0F);font-size:14px;font-weight:600}',
+    '[data-owcs-hw] .htr{position:relative;flex:none;width:30px;height:18px;border-radius:999px;background:#B9B9B3}',
+    '[data-owcs-hw] .son .htr{background:#7D39EB}',
+    '[data-owcs-hw] .hkn{position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:#fff}',
+    '[data-owcs-hw] .son .hkn{left:14px}',
+    '[data-owcs-hw] .my{display:flex;align-items:center;gap:8px;height:36px;padding:0 12px;font-size:13px;font-weight:700;white-space:nowrap}',
+    '[data-owcs-hw] .my:empty{display:none}',
+    'html[data-owcs-dark] [data-owcs-hw]{color:#F2F2F5}',
+    'html[data-owcs-dark] [data-owcs-hw] .lb,html[data-owcs-dark] [data-owcs-hw] .dd{background:#16161C;border-color:#2E2E37}',
+    'html[data-owcs-dark] [data-owcs-hw] .it{color:#A3A3AD}',
+    'html[data-owcs-dark] [data-owcs-hw] .it.on,html[data-owcs-dark] [data-owcs-hw] .hsw{color:#F2F2F5}',
+    'html[data-owcs-dark] [data-owcs-hw] .lb:hover,html[data-owcs-dark] [data-owcs-hw] .mb:hover,html[data-owcs-dark] [data-owcs-hw] .it:hover{background:#24242C}',
+    '@media (max-width:899.98px){',
+    '  [data-owcs-hw] .lb{height:36px;padding:0 10px;font-size:14px}',
+    '  [data-owcs-hw] .mw{display:none}',
+    '  [data-owcs-mtop] [data-owcs-hw]{position:static}',
+    '}'
+  ].join('\n');
+  var hst = document.createElement('style');
+  hst.textContent = centre + '\n' + hw;
+  (document.head || document.documentElement).appendChild(hst);
+  var css = HOME ? '' : [
     '@media (min-width:900px){',
     '  #dc-root header{position:relative}',
     '  header nav a{height:44px !important;padding:0 16px !important;font-size:16px !important;font-weight:600 !important;white-space:nowrap;box-sizing:border-box}',
@@ -32,25 +66,9 @@
     '  body.streams-page header nav a:hover,body.ticket-page header nav a:hover{background:#F1F1ED !important}',
     '  html[data-owcs-dark] body.streams-page header nav a:hover,html[data-owcs-dark] body.ticket-page header nav a:hover{background:#24242C !important}',
     '  header .brand span{font-size:28px !important;line-height:normal !important;letter-spacing:.56px !important}',
-    // the tool bar above the header, like the home page's
-    // the bar's 45px is reserved on the header from the first paint, and the bar sits in it (absolute), so nothing
-    // moves when the bar is added a moment later (the design pages render their header after the script runs)
-    '  #dc-root [data-screen-label]{position:relative}',
-    '  #dc-root header,body.streams-page > header,body.ticket-page > header{margin-top:45px !important}',
-    '  [data-owcs-bar]{position:absolute !important;top:0;left:0;right:0;display:flex;justify-content:flex-end;align-items:center;gap:8px;height:45px;padding:0 max(56px, calc(50% - 680px));box-sizing:border-box;border-bottom:1px solid #E6E6E1;font:600 13px "Pretendard Variable",Pretendard,system-ui,sans-serif;color:#0B0B0F;z-index:11}',
-    '  html[data-owcs-dark] [data-owcs-bar]{border-bottom-color:#2E2E37;color:#F2F2F5}',
+    // the results page's own spoiler switch in its header: the ⋮ menu presses it
     '  header [data-owcs-ownsp]{display:none !important}',
-    '  [data-owcs-bar] .owsp{display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 10px;border:0;border-radius:999px;background:transparent;color:inherit;font:inherit;cursor:pointer}',
-    '  [data-owcs-bar] .owsp .tr{position:relative;display:inline-block;width:30px;height:18px;border-radius:999px;background:#B9B9B3}',
-    '  [data-owcs-bar] .owsp.on .tr{background:#7D39EB}',
-    '  [data-owcs-bar] .owsp .kn{position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:#fff}',
-    '  [data-owcs-bar] .owsp.on .kn{left:14px}',
-    '  [data-owcs-bar] [data-owcs-darkbtn]{position:static !important;height:32px !important;padding:0 10px !important;border:0 !important;border-radius:999px !important;background:transparent !important;color:inherit !important;box-shadow:none !important;font:inherit !important}',
-    '  [data-owcs-bar] [data-owcs-lang]{position:static !important;padding:2px !important;border:0 !important;box-shadow:none !important;background:#E6E6E1 !important;font:700 12px "Pretendard Variable",Pretendard,system-ui,sans-serif !important}',
-    '  html[data-owcs-dark] [data-owcs-bar] [data-owcs-lang]{background:#24242C !important}',
-    '  html[data-owcs-dark] [data-owcs-bar] [data-owcs-lang] button[style*="background: transparent"]{color:#F2F2F5 !important}',
     '}',
-    '@media (max-width:899.98px){[data-owcs-bar]{display:none}}',
     // --- 직관 안내 banner under the menu, as on the home page (desktop: 80 px QR + 예매하기, phone / tablet: 56 px QR) ---
     '[data-owcs-tk]{padding:20px max(56px, calc(50% - 680px));background:transparent}',
     '[data-owcs-tk] a{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:20px;padding:12px 18px 12px 12px;border-radius:18px;background:#0B0B0F;color:#fff;text-decoration:none;font-family:"Pretendard Variable",Pretendard,system-ui,sans-serif}',
@@ -76,7 +94,7 @@
     '@media (max-width:899.98px){',
     '  [data-owcs-mtop]{display:block;color:#0B0B0F;font-family:"Pretendard Variable",Pretendard,system-ui,sans-serif;text-align:left}',
     '  [data-owcs-mtop] *{box-sizing:content-box}',
-    // 스포일러 방지 · 다크 모드 · language live in the menu the menu button opens (as on the home page)
+    // 스포일러 방지 · 다크 모드 live in the menu the menu button opens (as on the home page); the language picker sits next to it
     '  [data-owcs-mtop] .tb{display:none;justify-content:flex-start;align-items:center;flex-wrap:wrap;gap:8px 12px;padding:12px 20px;border-bottom:1px solid #E6E6E1;font-size:13px}',
     '  [data-owcs-mtop].open .tb{display:flex}',
     '  [data-owcs-mtop] .sw{display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 10px;border:none;border-radius:999px;background:transparent;font:inherit;font-size:13px;font-weight:600;color:inherit !important;cursor:pointer}',
@@ -84,9 +102,6 @@
     '  [data-owcs-mtop] .on .tr{background:#7D39EB}',
     '  [data-owcs-mtop] .kn{position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:#fff}',
     '  [data-owcs-mtop] .on .kn{left:14px}',
-    '  [data-owcs-mtop] .lg{display:flex;padding:2px;border-radius:999px;background:#E6E6E1}',
-    '  [data-owcs-mtop] .lg button{height:28px;padding:0 10px;border:none;border-radius:999px;background:transparent;color:#0B0B0F !important;font:inherit;font-size:12px;font-weight:700;cursor:pointer}',
-    '  [data-owcs-mtop] .lg button.on{background:#0B0B0F;color:#fff !important}',
     '  [data-owcs-mtop] .hd{position:relative;border-bottom:1px solid #E6E6E1}',
     '  [data-owcs-mtop] .row{display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 12px 0 20px}',
     '  [data-owcs-mtop] .brand{display:flex;align-items:center;gap:8px;color:inherit;text-decoration:none}',
@@ -106,30 +121,30 @@
     '  html[data-owcs-dark] [data-owcs-mtop]{color:#F2F2F5}',
     '  html[data-owcs-dark] [data-owcs-mtop] .tb,html[data-owcs-dark] [data-owcs-mtop] .hd{border-bottom-color:#2E2E37}',
     '  html[data-owcs-dark] [data-owcs-mtop] .kn{background:#16161C}',
-    '  html[data-owcs-dark] [data-owcs-mtop] .lg{background:#24242C}',
-    '  html[data-owcs-dark] [data-owcs-mtop] .lg button{color:#F2F2F5 !important}',
-    '  html[data-owcs-dark] [data-owcs-mtop] .lg button.on{background:#F2F2F5;color:#16161C !important}',
     '  html[data-owcs-dark] [data-owcs-mtop] .se{background:#0E0E12;border-color:#2E2E37}',
     '  html[data-owcs-dark] [data-owcs-mtop] nav a{background:#24242C;color:#F2F2F5 !important}',
-    // the page's own phone header and the floating 다크 모드 / language switches give way to it
+    // the page's own phone header gives way to it
     '  #dc-root [data-screen-label] > header,body.streams-page > header,body.ticket-page > header{display:none !important}',
-    '  [data-owcs-darkbtn],[data-owcs-lang]{display:none !important}',
     '}'
   ].join('\n');
-  var st = document.createElement('style');
-  st.textContent = css;
-  (document.head || document.documentElement).appendChild(st);
+  if (css) {
+    var st = document.createElement('style');
+    st.textContent = css;
+    (document.head || document.documentElement).appendChild(st);
+  }
 
   var LANG = (function () {
+    if (window.OWCSi18n && window.OWCSi18n.lang) return window.OWCSi18n.lang;
     var l;
     try { l = localStorage.getItem('owcs-lang'); } catch (e) {}
     var n = (navigator.languages && navigator.languages[0] || navigator.language || 'ko').toLowerCase();
-    return /^(ko|ja|en)$/.test(l || '') ? l : /^ja/.test(n) ? 'ja' : /^ko/.test(n) ? 'ko' : 'en';
+    return /^(ko|ja|en|zh)$/.test(l || '') ? l : /^ja/.test(n) ? 'ja' : /^ko/.test(n) ? 'ko' : /^zh/.test(n) ? 'zh' : 'en';
   })();
   var T = {   // the home page's own labels (Home v6 I18N)
-    ko: { nav: ['일정', '결과', '순위', '직관', '선수', '방송'], spoiler: '스포일러 방지', dark: '다크 모드' },
-    ja: { nav: ['日程', '結果', '順位', '観戦', '選手', '配信'], spoiler: 'ネタバレ防止', dark: 'ダークモード' },
-    en: { nav: ['Schedule', 'Results', 'Standings', 'Tickets', 'Players', 'Live'], spoiler: 'No spoilers', dark: 'Dark mode' }
+    ko: { nav: ['일정', '결과', '순위', '직관', '선수', '방송'], spoiler: '스포일러 방지', dark: '다크 모드', lang: '언어', more: '설정' },
+    ja: { nav: ['日程', '結果', '順位', '観戦', '選手', '配信'], spoiler: 'ネタバレ防止', dark: 'ダークモード', lang: '言語', more: '設定' },
+    en: { nav: ['Schedule', 'Results', 'Standings', 'Tickets', 'Players', 'Live'], spoiler: 'No spoilers', dark: 'Dark mode', lang: 'Language', more: 'Settings' },
+    zh: { nav: ['赛程', '结果', '排名', '现场观赛', '选手', '直播'], spoiler: '防剧透', dark: '深色模式', lang: '语言', more: '设置' }
   }[LANG];
   var HREFS = ['OWCS KR Home v6.dc.html', 'OWCS KR Results.dc.html', 'OWCS KR Home v6.dc.html?view=standings',
                'OWCS KR 직관.html', 'OWCS KR Home v6.dc.html?view=teams', 'OWCS KR 방송.html'];
@@ -145,12 +160,14 @@
     return s;
   }
 
-  // the page's own spoiler switch (results page), so the phone tool bar can drive it
-  function spoilerBtn() {
-    return Array.prototype.find.call(document.querySelectorAll('header button'), function (b) {
-      return /스포일러|ネタバレ|spoiler/i.test(b.textContent) && !b.closest('[data-owcs-mtop]');
+  // the page's own switches: the results page's spoiler switch in its header, the home page's tool bar (hidden)
+  function ownBtn(re) {
+    return Array.prototype.find.call(document.querySelectorAll('header button, [data-owcs-tools] button'), function (b) {
+      return re.test(b.textContent) && !b.closest('[data-owcs-mtop],[data-owcs-hw]');
     });
   }
+  var SP_RE = /스포일러|ネタバレ|spoiler|剧透/i, DK_RE = /다크|ダーク|dark|深色/i;
+  function spoilerBtn() { return ownBtn(SP_RE); }
 
   // 스포일러 방지 is one site-wide setting (localStorage 'owcs-spoiler'): pages with spoilers read it, the others
   // just keep it, so the switch is in the same place on every page
@@ -164,29 +181,106 @@
     if (own) own.click(); else { try { localStorage.setItem('owcs-spoiler', spStored() ? '0' : '1'); } catch (e) {} }
     setTimeout(after, 60);
   }
+  // 다크 모드: the home page switches in place; the other pages reload into it (as owcs-dark.js's own button does)
+  function darkToggle(after) {
+    var own = ownBtn(DK_RE);
+    if (own) { own.click(); setTimeout(after, 60); return; }
+    try { localStorage.setItem('owcs-dark', isDark() ? '0' : '1'); } catch (e) {}
+    location.reload();
+  }
+
+  // --- language picker (🌐 KOR ⌄) + ⋮ menu ---
+  function star(cx, cy, r) {
+    var p = [];
+    for (var i = 0; i < 10; i++) {
+      var a = -Math.PI / 2 + i * Math.PI / 5, q = i % 2 ? r * 0.382 : r;
+      p.push((cx + q * Math.cos(a)).toFixed(2) + ',' + (cy + q * Math.sin(a)).toFixed(2));
+    }
+    return '<polygon points="' + p.join(' ') + '"/>';
+  }
+  function svg(body) { return '<svg class="fl" viewBox="0 0 36 24" preserveAspectRatio="none" aria-hidden="true">' + body + '</svg>'; }
+  var FLAGS = {
+    // 태극기: taegeuk on the top-left / bottom-right diagonal, the four trigrams drawn as plain bars
+    ko: svg('<rect width="36" height="24" fill="#fff"/><g transform="rotate(33.69 18 12)"><path d="M12 12a6 6 0 0 1 12 0z" fill="#CD2E3A"/><path d="M12 12a6 6 0 0 0 12 0z" fill="#0047A0"/>' +
+      '<circle cx="15" cy="12" r="3" fill="#CD2E3A"/><circle cx="21" cy="12" r="3" fill="#0047A0"/></g><g fill="#000">' +
+      [[6.5, 4.3, -56.31], [29.5, 19.7, -56.31], [29.5, 4.3, 56.31], [6.5, 19.7, 56.31]].map(function (t) {
+        return '<g transform="translate(' + t[0] + ' ' + t[1] + ') rotate(' + t[2] + ')"><rect x="-3" y="-2.1" width="6" height="1"/><rect x="-3" y="-0.5" width="6" height="1"/><rect x="-3" y="1.1" width="6" height="1"/></g>';
+      }).join('') + '</g>'),
+    en: svg('<rect width="36" height="24" fill="#fff"/><g fill="#B22234">' + [0, 2, 4, 6, 8, 10, 12].map(function (k) {
+        return '<rect y="' + (k * 24 / 13).toFixed(3) + '" width="36" height="' + (24 / 13).toFixed(3) + '"/>';
+      }).join('') + '</g><rect width="15" height="12.92" fill="#3C3B6E"/><g fill="#fff">' + [0, 1, 2, 3].map(function (r) {
+        return [0, 1, 2, 3, 4].map(function (c) { return '<circle cx="' + (1.8 + c * 2.85 + (r % 2) * 1.2) + '" cy="' + (1.8 + r * 3.1) + '" r=".55"/>'; }).join('');
+      }).join('') + '</g>'),
+    ja: svg('<rect width="36" height="24" fill="#fff"/><circle cx="18" cy="12" r="7.2" fill="#BC002D"/>'),
+    zh: svg('<rect width="36" height="24" fill="#EE1C25"/><g fill="#FFFF00">' + star(6, 6, 3.6) + star(12, 2.4, 1.2) + star(14.4, 4.8, 1.2) + star(14.4, 8.4, 1.2) + star(12, 10.8, 1.2) + '</g>')
+  };
+  var CODES = [['ko', 'KOR'], ['en', 'ENG'], ['ja', 'JPN'], ['zh', 'CHN']];
+  var GLOBE = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>';
+  var CHEV = '<svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 4.5l3 3 3-3"/></svg>';
+  var KEBAB = '<svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><circle cx="10" cy="4" r="1.8"/><circle cx="10" cy="10" r="1.8"/><circle cx="10" cy="16" r="1.8"/></svg>';
+  function setLang(l) {
+    if (window.OWCSi18n) { window.OWCSi18n.set(l); return; }
+    try { localStorage.setItem('owcs-lang', l); } catch (e) {}
+    if (l !== LANG) location.reload();
+  }
+  var HW = null;
+  function headerWidget() {
+    if (HW) return HW;
+    var w = document.createElement('div');
+    w.setAttribute('data-owcs-hw', '');
+    var cur = CODES.filter(function (x) { return x[0] === LANG; })[0] || CODES[0];
+    w.innerHTML = '<div class="w lw"><button class="lb" aria-haspopup="true" aria-label="' + T.lang + '">' + GLOBE + '<span>' + cur[1] + '</span>' + CHEV + '</button><div class="dd">' +
+      CODES.map(function (x) { return '<button class="it' + (x[0] === LANG ? ' on' : '') + '" data-l="' + x[0] + '">' + FLAGS[x[0]] + x[1] + '</button>'; }).join('') + '</div></div>' +
+      '<div class="w mw"><button class="mb" aria-haspopup="true" aria-label="' + T.more + '">' + KEBAB + '</button><div class="dd">' +
+      '<div class="my"></div>' +
+      '<button class="it hsw sp"><span class="htr"><span class="hkn"></span></span>' + T.spoiler + '</button>' +
+      '<button class="it hsw dk"><span class="htr"><span class="hkn"></span></span>' + T.dark + '</button></div></div>';
+    var lw = w.querySelector('.lw'), mw = w.querySelector('.mw');
+    function sync() {
+      w.querySelector('.sp').classList.toggle('son', spOn());
+      w.querySelector('.dk').classList.toggle('son', isDark());
+      // 내 팀 (home page tool bar): shown at the top of the ⋮ menu
+      var my = document.querySelector('[data-owcs-tools] > span');
+      w.querySelector('.my').innerHTML = my ? my.innerHTML : '';
+    }
+    w.querySelector('.lb').onclick = function (e) { e.stopPropagation(); mw.classList.remove('open'); lw.classList.toggle('open'); };
+    w.querySelector('.mb').onclick = function (e) { e.stopPropagation(); lw.classList.remove('open'); sync(); mw.classList.toggle('open'); };
+    Array.prototype.forEach.call(w.querySelectorAll('[data-l]'), function (b) {
+      b.onclick = function () { lw.classList.remove('open'); setLang(b.getAttribute('data-l')); };
+    });
+    w.querySelector('.sp').onclick = function (e) { e.stopPropagation(); spToggle(sync); };
+    w.querySelector('.dk').onclick = function (e) { e.stopPropagation(); darkToggle(sync); };
+    w.querySelector('.mw .dd').onclick = function (e) { e.stopPropagation(); };
+    // a click elsewhere closes the menus (not the page's own hidden switch the ⋮ menu just pressed)
+    document.addEventListener('click', function (e) {
+      if (e.target.closest && e.target.closest('[data-owcs-hw],[data-owcs-tools],[data-owcs-ownsp]')) return;
+      lw.classList.remove('open'); mw.classList.remove('open');
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { lw.classList.remove('open'); mw.classList.remove('open'); } });
+    return (HW = w);
+  }
+  // put the picker (absolute) in the screen at top / right (px from the host's top and right edges)
+  function pin(host, top, right) {
+    var w = headerWidget();
+    if (w.parentNode !== host) host.appendChild(w);
+    if (getComputedStyle(host).position === 'static') host.style.position = 'relative';
+    var t = Math.round(top) + 'px', r = Math.round(right) + 'px';
+    if (w.style.top !== t) w.style.top = t;
+    if (w.style.right !== r) w.style.right = r;
+  }
 
   function mobileTop() {
     var m = document.createElement('div');
     m.setAttribute('data-owcs-mtop', '');
-    var dark = isDark(), sp = spoilerBtn();
+    var dark = isDark();
     m.innerHTML = '<div class="hd"><div class="row"><a class="brand" href="OWCS KR Home v6.dc.html"><span class="mk"><i></i></span><span class="wm">OWCS KR</span></a>' +
       '<span class="ic"><button class="hm" aria-label="메뉴"><span></span><span></span></button></span></div>' +
       '<nav>' + T.nav.map(function (l, k) { return '<a href="' + HREFS[k] + '">' + l + '</a>'; }).join('') + '</nav></div>' +
       '<div class="tb">' +
       '<button class="sw sp"><span class="tr"><span class="kn"></span></span>' + T.spoiler + '</button>' +
-      '<button class="sw dk' + (dark ? ' on' : '') + '"><span class="tr"><span class="kn"></span></span>' + T.dark + '</button>' +
-      '<div class="lg">' + [['ko', '한국어'], ['ja', '日本語'], ['en', 'EN']].map(function (x) {
-        return '<button data-l="' + x[0] + '"' + (x[0] === LANG ? ' class="on"' : '') + '>' + x[1] + '</button>';
-      }).join('') + '</div></div>';
+      '<button class="sw dk' + (dark ? ' on' : '') + '"><span class="tr"><span class="kn"></span></span>' + T.dark + '</button></div>';
     m.querySelector('.hm').onclick = function () { m.classList.toggle('open'); };
     m.querySelector('.dk').onclick = function () { try { localStorage.setItem('owcs-dark', isDark() ? '0' : '1'); } catch (e) {} location.reload(); };
-    Array.prototype.forEach.call(m.querySelectorAll('.lg button'), function (b) {
-      b.onclick = function () {
-        var l = b.getAttribute('data-l');
-        try { localStorage.setItem('owcs-lang', l); } catch (e) {}
-        if (l !== LANG) location.reload();
-      };
-    });
     var spb = m.querySelector('.sp');
     spb.onclick = function () { spToggle(function () { syncSpoiler(m); }); };
     syncSpoiler(m);
@@ -194,7 +288,7 @@
   }
   function syncSpoiler(m) { m.querySelector('.sp').classList.toggle('on', spOn()); }
 
-  // phone / tablet: the home page's top (tool bar, header, menu chips, 직관 안내) at the top of the page
+  // phone / tablet: the home page's top (header, menu chips, 직관 안내) at the top of the page, the picker next to ☰
   function placeMobile() {
     var host, before;
     var scr = Array.prototype.find.call(document.querySelectorAll('#dc-root [data-screen-label]'), function (x) { return x.offsetWidth > 0; });
@@ -207,8 +301,20 @@
       m = mobileTop();
       host.insertBefore(m, before);
     }
+    var ic = m.querySelector('.ic'), w = headerWidget();
+    if (w.parentNode !== ic) ic.insertBefore(w, ic.firstChild);
     var tk = m.nextElementSibling && m.nextElementSibling.matches('[data-owcs-tk]') ? m.nextElementSibling : null;
     if (!tk) { tk = ticket(); tk.classList.add('m'); host.insertBefore(tk, m.nextSibling); }
+  }
+
+  // the home page on a phone / tablet keeps its own header: the picker goes just left of its ☰ button
+  function placeHomeMobile() {
+    var scr = Array.prototype.find.call(document.querySelectorAll('#dc-root [data-screen-label]'), function (x) { return x.offsetWidth > 0; });
+    var h = scr && Array.prototype.find.call(scr.querySelectorAll('header'), function (x) { return x.offsetWidth > 0; });
+    var hm = h && h.querySelector('button[aria-label]');
+    if (!hm) return;
+    var pr = scr.getBoundingClientRect(), br = hm.getBoundingClientRect();
+    pin(scr, br.top - pr.top + (br.height - 36) / 2, pr.right - br.left + 2);
   }
 
   // desktop: the 직관 안내 banner right under the header, where the home page has it
@@ -219,49 +325,25 @@
     h.parentNode.insertBefore(ticket(), h.nextSibling);
   }
 
-  // put the bar above the visible header and move the floating 다크 모드 / language switches into it (wide screens;
-  // on phones they stay floating). The design runtime re-renders, so this re-checks when the page changes.
+  // desktop: the picker and ⋮ at the right end of the header row, as far from the edge as the logo is.
+  // The design runtime re-renders, so this re-checks when the page changes.
   function place() {
-    if (window.innerWidth < 900) { placeMobile(); return; }
-    var h = Array.prototype.find.call(document.querySelectorAll('header'), function (x) { return x.offsetWidth > 0; });
+    if (window.innerWidth < 900) { if (HOME) placeHomeMobile(); else placeMobile(); return; }
+    var h = Array.prototype.find.call(document.querySelectorAll('header'), function (x) { return x.offsetWidth > 0 && !x.closest('[data-owcs-mtop]'); });
     if (!h) return;
-    // the wordmark's letter spacing as on the home page (.02em)
-    Array.prototype.forEach.call(h.querySelectorAll('span,div'), function (x) {
-      if (!x.children.length && x.textContent.trim() === 'OWCS KR' && x.style.letterSpacing !== '0.56px') x.style.letterSpacing = '0.56px';
-    });
-    placeTicket(h);
-    var bar = h.previousElementSibling && h.previousElementSibling.hasAttribute('data-owcs-bar') ? h.previousElementSibling : null;
-    if (!bar) {
-      bar = document.querySelector('[data-owcs-bar]') || document.createElement('div');
-      bar.setAttribute('data-owcs-bar', '');
-      h.parentNode.insertBefore(bar, h);
+    if (!HOME) {
+      // the wordmark's letter spacing as on the home page (.02em)
+      Array.prototype.forEach.call(h.querySelectorAll('span,div'), function (x) {
+        if (!x.children.length && x.textContent.trim() === 'OWCS KR' && x.style.letterSpacing !== '0.56px') x.style.letterSpacing = '0.56px';
+      });
+      placeTicket(h);
+      var own = spoilerBtn();
+      if (own && !own.hasAttribute('data-owcs-ownsp')) (own.parentNode.tagName === 'DIV' && own.parentNode.children.length === 1 ? own.parentNode : own).setAttribute('data-owcs-ownsp', '');
     }
-    // the 다크 모드 switch drawn like the home page's (track + knob), not the floating pill's icon and label
-    var db = document.querySelector('[data-owcs-darkbtn]');
-    if (db && !db.hasAttribute('data-owcs-sw')) {
-      var on = document.documentElement.hasAttribute('data-owcs-dark');
-      db.setAttribute('data-owcs-sw', '');
-      db.innerHTML = '<span style="position:relative;display:inline-block;width:30px;height:18px;border-radius:999px;background:' + (on ? '#7D39EB' : '#B9B9B3') + '"><span style="position:absolute;top:2px;left:' + (on ? '14px' : '2px') + ';width:14px;height:14px;border-radius:50%;background:#fff"></span></span>다크 모드';
-      db.style.setProperty('display', 'inline-flex', 'important');
-      db.style.setProperty('align-items', 'center');
-      db.style.setProperty('gap', '8px');
-    }
-    // 스포일러 방지 first, as on the home page; the page's own switch in the header (results) hides behind it
-    var own = spoilerBtn();
-    if (own && !own.hasAttribute('data-owcs-ownsp')) (own.parentNode.tagName === 'DIV' && own.parentNode.children.length === 1 ? own.parentNode : own).setAttribute('data-owcs-ownsp', '');
-    var spb = bar.querySelector('.owsp');
-    if (!spb) {
-      spb = document.createElement('button');
-      spb.className = 'owsp';
-      spb.innerHTML = '<span class="tr"><span class="kn"></span></span>' + T.spoiler;
-      spb.onclick = function () { spToggle(function () { spb.classList.toggle('on', spOn()); }); };
-      bar.insertBefore(spb, bar.firstChild);
-    }
-    spb.classList.toggle('on', spOn());
-    ['[data-owcs-darkbtn]', '[data-owcs-lang]'].forEach(function (q) {
-      var el = document.querySelector(q);
-      if (el && el.parentNode !== bar) bar.appendChild(el);
-    });
+    var host = h.parentNode, pr = host.getBoundingClientRect(), hr = h.getBoundingClientRect();
+    var logo = h.querySelector('.brand') || h.querySelector('.wrap > *') || h.firstElementChild;
+    var inset = logo ? logo.getBoundingClientRect().left - hr.left : 56;
+    pin(host, hr.top - pr.top + (hr.height - 40) / 2, pr.right - hr.right + inset);
   }
   var busy = false;
   new MutationObserver(function () {
