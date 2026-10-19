@@ -66,7 +66,7 @@ def live_status(players):
                                              headers={'User-Agent': 'Mozilla/5.0', 'Content-Type': 'application/x-www-form-urlencoded'})
                 st = json.loads(urllib.request.urlopen(req, timeout=8).read())
                 if (st.get('CHANNEL') or {}).get('RESULT') == 1:
-                    live[p['id']] = f'https://play.sooplive.co.kr/{bid}'
+                    live[p['id']] = f'https://play.sooplive.com/{bid}'
         except Exception:
             pass
         time.sleep(0.3)
