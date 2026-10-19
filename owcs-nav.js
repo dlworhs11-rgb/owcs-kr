@@ -41,10 +41,10 @@
     'html body a[data-owcs-nv]:hover{color:var(--ink,#0B0B0F) !important}',
     'html[data-owcs-dark] body a[data-owcs-nv][data-owcs-nv]{color:#A3A3AD !important}',
     'html[data-owcs-dark] body a[data-owcs-nv]:hover{color:#F2F2F5 !important}',
-    // light: a lime highlighter stroke under the word, just touching the letters' feet; dark: a thin lime line under it
-    'html body a[data-owcs-nv][data-owcs-nv].cur{color:var(--ink,#0B0B0F) !important;background-image:linear-gradient(var(--ac2,#C6FF33),var(--ac2,#C6FF33)) !important;' +
-      'background-size:calc(100% - 26px) 5px !important;background-position:center bottom 11px !important;background-repeat:no-repeat !important}',
-    'html[data-owcs-dark] body a[data-owcs-nv][data-owcs-nv].cur{color:#F2F2F5 !important;background-size:calc(100% - 26px) 2px !important;background-position:center bottom 7px !important}',
+    // light: a lime highlighter stroke under the word, just touching the letters' feet; dark: a thin lime line under it.
+    // An underline, not a background: it follows the text, so it sits the same on every page whatever the button's size
+    'html body a[data-owcs-nv][data-owcs-nv].cur{color:var(--ink,#0B0B0F) !important;text-decoration:underline var(--ac2,#C6FF33) 5px !important;text-underline-offset:-1px !important;text-decoration-skip-ink:none !important}',
+    'html[data-owcs-dark] body a[data-owcs-nv][data-owcs-nv].cur{color:#F2F2F5 !important;text-decoration-thickness:2px !important;text-underline-offset:3px !important}',
     'html[data-owcs-dark] [data-owcs-hw]{color:#F2F2F5}',
     'html[data-owcs-dark] [data-owcs-hw] .lb,html[data-owcs-dark] [data-owcs-hw] .dd{background:#16161C;border-color:#2E2E37}',
     'html[data-owcs-dark] [data-owcs-hw] .it{color:#A3A3AD}',
