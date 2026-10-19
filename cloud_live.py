@@ -97,6 +97,15 @@ def ensure_wiki(titles):
         time.sleep(2.2)   # Liquipedia API terms: at most 1 request / 2 s
 
 
+def read_replays():
+    """replay codes: the community sheet (one Google CSV, ~1 s), read on every build. Read only with Liquipedia it was
+    missing from the runs in between, which then used the collector's committed copy (10-11) and dropped newer codes (10-19)"""
+    try:
+        node('collector/replays.mjs', '--refresh')
+    except Exception as e:
+        print('replay sheet not read:', e)
+
+
 def collect(prev, now, force=False):
     """refresh the collector data (data/lp, data/site) from Liquipedia when it is old enough"""
     titles = active_titles()
@@ -108,10 +117,6 @@ def collect(prev, now, force=False):
             if os.path.exists(cache_file(t)):   # (kept, so a failed read still leaves the old copy)
                 os.utime(cache_file(t), (0, 0))
         node('collector/run-lp.mjs', '--active-only')
-        try:   # replay codes: the community sheet (Google CSV), re-read with Liquipedia so new codes show without the PC
-            node('collector/replays.mjs', '--refresh')
-        except Exception as e:
-            print('replay sheet not read:', e)
         os.makedirs(os.path.dirname(stamp), exist_ok=True)
         with open(stamp, 'w') as f:
             f.write(str(now.timestamp()))
@@ -121,6 +126,7 @@ def collect(prev, now, force=False):
                 print('fetched=true', file=f)
     else:
         print(f'Liquipedia copy is {int(age // 60)} min old (limit {limit // 60} min): not re-read')
+    read_replays()
     node('collector/build.mjs')
     try:   # next stage linked on Liquipedia: fetch it too (only in this checkout, the collector repo is not changed)
         nxt = owcs_build.next_stage_pages()
@@ -156,6 +162,7 @@ def main():
             if not fast:
                 collect(prev, now, '--force-lp' in sys.argv)
             else:   # the collector's site data is not in its repo: rebuild it from the cached Liquipedia copy (no request)
+                read_replays()
                 node('collector/build.mjs')
             data = owcs_build.build(prev_live=(prev or {}).get('live'), out=out, records=False)
             print(f"built: {data['stage']} · {len(data['matches'])} matches · {sum(m['played'] for m in data['matches'])} played · "
