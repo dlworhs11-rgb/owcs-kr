@@ -130,6 +130,8 @@ body.ticket-page .map{background:#fff}
 body.ticket-page .map iframe{filter:none}
 body.ticket-page footer{background:#0B0B0F;color:#8A8A93;border:0}
 @media (max-width:820px){
+  /* phone: the hero keeps only the address (user); period / hours / age chips and the intro line are hidden */
+  .hero .pc-only,.hero .chips{display:none}
   .grid2,.open{grid-template-columns:minmax(0,1fr)}
   .title h2{font-size:42px}
   .facts{grid-template-columns:96px minmax(0,1fr)}
@@ -165,16 +167,43 @@ body.ticket-page footer{background:#0B0B0F;color:#8A8A93;border:0}
 
 <main class="wrap">
   <div class="hero">
-    <div class="eyebrow">직관 안내 · 2026 OWCS ASIA KOREA STAGE 3</div>
+    <div class="eyebrow">직관 안내 · <span class="stageName">2026 OWCS ASIA KOREA STAGE 3</span></div>
     <h1 class="disp">WDG STUDIO<br>HONGDAE</h1>
-    <p>서울 마포구 상수동 72-1, 홍익대학교 잔다리홀 B1. 정규 리그부터 플레이오프까지 모든 경기를 현장에서 볼 수 있어요.</p>
+    <p>서울 마포구 상수동 72-1, 홍익대학교 잔다리홀 B1.<span class="pc-only"> 정규 리그부터 플레이오프까지 모든 경기를 현장에서 볼 수 있어요.</span></p>
     <div class="chips">
       <span class="chip">기간 <b id="period">10.02 (금) – 11.08 (일)</b></span>
-      <span class="chip">금 <b>17:00–23:00</b></span>
-      <span class="chip">토·일 <b>15:00–21:00</b></span>
+      <span id="hoursChips" style="display:contents"><span class="chip">금 <b>17:00–23:00</b></span>
+      <span class="chip">토·일 <b>15:00–21:00</b></span></span>
       <span class="chip">만 15세 이상</span>
     </div>
   </div>
+
+  <section class="block" id="schedule">
+    <div class="title"><div><div class="ko">예매 정보</div><h2 class="disp">TICKETS</h2></div><small>모든 시간 KST · 상태는 지금 시각 기준</small></div>
+    <div class="tablewrap"><table>
+      <thead><tr><th>경기일</th><th>대회 시간</th><th>경기</th><th>판매 오픈</th><th>상태</th></tr></thead>
+      <tbody id="tickets"></tbody>
+    </table></div>
+    <div class="open" style="margin-top:22px">
+      <div class="card"><h3 class="disp">ROUND ROBIN</h3><ul id="openRR">
+        <li><b>Week 1</b> · 9월 23일 (수) 오후 5 / 6 / 7시 오픈</li>
+        <li><b>Week 2</b> · 9월 30일 (수) 오후 5 / 6 / 7시 오픈</li>
+        <li><b>Week 3</b> · 10월 7일 (수) 오후 5 / 6 / 7시 오픈</li>
+        <li><b>Week 4</b> · 10월 14일 (수) 오후 5 / 6 / 7시 오픈</li>
+      </ul></div>
+      <div class="card"><h3 class="disp">SEEDING &amp; L.C.Q</h3><ul id="openSeed">
+        <li><b>Day 1</b> · 10월 28일 (수) 오후 5시 오픈</li>
+        <li><b>Day 2</b> · 10월 28일 (수) 오후 6시 오픈</li>
+        <li><b>Day 3</b> · 10월 28일 (수) 오후 7시 오픈</li>
+      </ul></div>
+      <div class="card"><h3 class="disp">PLAYOFFS</h3><ul id="openPO">
+        <li><b>Day 1</b> · 11월 4일 (수) 오후 5시 오픈</li>
+        <li><b>Day 2</b> · 11월 4일 (수) 오후 6시 오픈</li>
+        <li><b>Day 3</b> · 11월 4일 (수) 오후 7시 오픈</li>
+      </ul></div>
+    </div>
+    <div class="age"><div class="big">15+</div><div>만 15세 이상 관람가예요. <b>2011년 이전 출생자</b>까지 입장할 수 있고, 2011년 출생자는 생일이 지난 날부터 만 15세가 적용돼요. 생년월일을 가장 먼저 확인하니 증빙 서류를 챙겨 주세요. 만 15세 미만은 보호자와 함께 입장할 수 있어요.</div></div>
+  </section>
 
   <section class="block" id="info">
     <div class="title"><div><div class="ko">대회 정보</div><h2 class="disp">EVENT INFO</h2></div></div>
@@ -182,7 +211,7 @@ body.ticket-page footer{background:#0B0B0F;color:#8A8A93;border:0}
       <div class="card">
         <dl class="facts">
           <dt>대회 기간</dt><dd id="periodLong">10월 2일(금) – 11월 8일(일)</dd>
-          <dt>대회 시간</dt><dd><div class="dots"><span>금</span><span></span><span>17:00 – 23:00</span></div><div class="dots"><span>토, 일</span><span></span><span>15:00 – 21:00</span></div></dd>
+          <dt>대회 시간</dt><dd id="hoursLong"><div class="dots"><span>금</span><span></span><span>17:00 – 23:00</span></div><div class="dots"><span>토, 일</span><span></span><span>15:00 – 21:00</span></div></dd>
           <dt>대회 장소</dt><dd>WDG STUDIO HONGDAE<small>서울 마포구 상수동 72-1, 홍익대학교 잔다리홀 B1</small></dd>
           <dt>관람 시간</dt><dd>360분</dd>
           <dt>관람 등급</dt><dd>만 15세 이상<small>만 15세 미만은 보호자 동반 시 입장 가능</small></dd>
@@ -201,33 +230,6 @@ body.ticket-page footer{background:#0B0B0F;color:#8A8A93;border:0}
         </ul>
       </div>
     </div>
-  </section>
-
-  <section class="block" id="schedule">
-    <div class="title"><div><div class="ko">예매 정보</div><h2 class="disp">TICKETS</h2></div><small>모든 시간 KST · 상태는 지금 시각 기준</small></div>
-    <div class="tablewrap"><table>
-      <thead><tr><th>경기일</th><th>대회 시간</th><th>경기</th><th>판매 오픈</th><th>상태</th></tr></thead>
-      <tbody id="tickets"></tbody>
-    </table></div>
-    <div class="open" style="margin-top:22px">
-      <div class="card"><h3 class="disp">ROUND ROBIN</h3><ul>
-        <li><b>Week 1</b> · 9월 23일 (수) 오후 5 / 6 / 7시 오픈</li>
-        <li><b>Week 2</b> · 9월 30일 (수) 오후 5 / 6 / 7시 오픈</li>
-        <li><b>Week 3</b> · 10월 7일 (수) 오후 5 / 6 / 7시 오픈</li>
-        <li><b>Week 4</b> · 10월 14일 (수) 오후 5 / 6 / 7시 오픈</li>
-      </ul></div>
-      <div class="card"><h3 class="disp">SEEDING &amp; L.C.Q</h3><ul>
-        <li><b>Day 1</b> · 10월 28일 (수) 오후 5시 오픈</li>
-        <li><b>Day 2</b> · 10월 28일 (수) 오후 6시 오픈</li>
-        <li><b>Day 3</b> · 10월 28일 (수) 오후 7시 오픈</li>
-      </ul></div>
-      <div class="card"><h3 class="disp">PLAYOFFS</h3><ul>
-        <li><b>Day 1</b> · 11월 4일 (수) 오후 5시 오픈</li>
-        <li><b>Day 2</b> · 11월 4일 (수) 오후 6시 오픈</li>
-        <li><b>Day 3</b> · 11월 4일 (수) 오후 7시 오픈</li>
-      </ul></div>
-    </div>
-    <div class="age"><div class="big">15+</div><div>만 15세 이상 관람가예요. <b>2011년 이전 출생자</b>까지 입장할 수 있고, 2011년 출생자는 생일이 지난 날부터 만 15세가 적용돼요. 생년월일을 가장 먼저 확인하니 증빙 서류를 챙겨 주세요. 만 15세 미만은 보호자와 함께 입장할 수 있어요.</div></div>
   </section>
 
   <section class="block" id="guide">
@@ -281,10 +283,11 @@ body.ticket-page footer{background:#0B0B0F;color:#8A8A93;border:0}
 
 </main>
 
-<footer><div class="wrap">비공식 팬 사이트입니다. Blizzard Entertainment 및 OWCS 공식 운영과 관련이 없습니다. 직관 정보는 2026 OWCS ASIA KOREA STAGE 3 공식 예매 안내를 옮긴 것이라, 바뀐 내용은 티켓링크 공지를 확인해 주세요.<div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;margin-top:14px"><span style="width:100%;font-size:13px;color:#8A8A93">OWCS 공식 채널</span><a href="https://x.com/OW_Esports_Asia" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;height:40px;padding:0;color:#fff;text-decoration:none;font-size:14px;font-weight:600"><img src="assets/icons/x.png" alt="" style="width:28px;height:28px;border-radius:8px">X</a><a href="https://www.instagram.com/ow_esports_kr/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;height:40px;padding:0;color:#fff;text-decoration:none;font-size:14px;font-weight:600"><img src="assets/icons/instagram.png" alt="" style="width:28px;height:28px;border-radius:8px">Instagram</a><a href="https://www.sooplive.co.kr/station/owesports" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;height:40px;padding:0;color:#fff;text-decoration:none;font-size:14px;font-weight:600"><img src="assets/icons/soop.png" alt="" style="width:28px;height:28px;border-radius:8px">SOOP 방송국</a></div></div></footer>
+<footer><div class="wrap">비공식 팬 사이트입니다. Blizzard Entertainment 및 OWCS 공식 운영과 관련이 없습니다. 직관 정보는 <span class="stageName">2026 OWCS ASIA KOREA STAGE 3</span> 공식 예매 안내를 옮긴 것이라, 바뀐 내용은 티켓링크 공지를 확인해 주세요.<div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;margin-top:14px"><span style="width:100%;font-size:13px;color:#8A8A93">OWCS 공식 채널</span><a href="https://x.com/OW_Esports_Asia" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;height:40px;padding:0;color:#fff;text-decoration:none;font-size:14px;font-weight:600"><img src="assets/icons/x.png" alt="" style="width:28px;height:28px;border-radius:8px">X</a><a href="https://www.instagram.com/ow_esports_kr/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;height:40px;padding:0;color:#fff;text-decoration:none;font-size:14px;font-weight:600"><img src="assets/icons/instagram.png" alt="" style="width:28px;height:28px;border-radius:8px">Instagram</a><a href="https://www.sooplive.co.kr/station/owesports" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;height:40px;padding:0;color:#fff;text-decoration:none;font-size:14px;font-weight:600"><img src="assets/icons/soop.png" alt="" style="width:28px;height:28px;border-radius:8px">SOOP 방송국</a></div></div></footer>
 
 <script>
-// ticket sale windows (KST) from the official notice; the state column follows the current time
+// ticket sale windows (KST) from the official notice; the state column follows the current time.
+// Used only until owcs-data.js loads (first paint); after that regularRows() builds the same rows from the Liquipedia schedule.
 var ROWS = [
   ['WEEK 1 DAY 1', '2026-10-02', '금', '17:00', '2026-09-23T17:00', '2026-10-02T21:00'],
   ['WEEK 1 DAY 2', '2026-10-03', '토', '15:00', '2026-09-23T18:00', '2026-10-03T19:00'],
@@ -314,20 +317,66 @@ var ymd = function (ms) { var d = new Date(ms + 9 * 3600e3); return d.getUTCFull
 var dowOf = function (day) { return DOWS[new Date(day + 'T12:00:00+09:00').getUTCDay()]; };
 var q = new URLSearchParams(location.search);
 var now = q.get('date') ? kst(q.get('date') + 'T' + (q.get('time') || '12:00')) : Date.now();
+var uniq = function (d, i, a) { return a.indexOf(d) === i; };
+// the Wednesday before a day (the day itself if Wednesday counts as a week back)
+var wedBefore = function (day) { var t = kst(day + 'T12:00'); return t - ((new Date(t + 9 * 3600e3).getUTCDay() + 4) % 7 || 7) * 86400e3; };
+// session start = the hour of the day's first known match (17:15 -> 17:00, as on the official notice); sales close 4 h later
+var startOf = function (ms, day) { var t = ms.filter(function (m) { return m.day === day && !m.tbd; }).map(function (m) { return m.time; }).sort()[0]; return t ? t.slice(0, 2) + ':00' : ''; };
+var plusH = function (day, t, h) { var e = kst(day + 'T' + t) + h * 3600e3; return ymd(e) + 'T' + new Date(e + 9 * 3600e3).toISOString().slice(11, 16); };
+// regular season: one week per Friday–Sunday block, sales open on the Wednesday of the week before at 17 / 18 / 19시
+// (official notice: week 1 of 10.02 opened 09.23)
+function regularRows(D) {
+  var ms = D ? D.matches.filter(function (m) { return m.phase === 'rs'; }) : [];
+  var days = ms.map(function (m) { return m.day; }).filter(uniq).sort();
+  if (!days.length) return ROWS.map(function (r) { return r.concat('rs' + r[0].split(' ')[1]); });
+  var out = [], wk = 0, first = null, i = 0, wed;
+  days.forEach(function (day) {
+    if (first === null || kst(day + 'T12:00') - kst(first + 'T12:00') >= 5 * 86400e3) { wk++; first = day; i = 0; wed = ymd(wedBefore(day) - 7 * 86400e3); }
+    var s = startOf(ms, day);
+    out.push(['WEEK ' + wk + ' DAY ' + (i + 1), day, dowOf(day), s, wed + 'T' + (17 + Math.min(i, 2)) + ':00', s ? plusH(day, s, 4) : '', 'rs' + wk]);
+    i++;
+  });
+  return out;
+}
 function playoffRows(D) {
   var out = [];
   BLOCKS.forEach(function (b) {
     var ms = D ? D.matches.filter(function (m) { return b.k === 'po' ? m.phase === 'po' : m.phase === 'seed' || m.phase === 'lcq'; }) : [];
-    var days = ms.length ? ms.map(function (m) { return m.day; }).filter(function (d, i, a) { return a.indexOf(d) === i; }).sort() : b.days;
-    var first = new Date(days[0] + 'T12:00:00+09:00').getTime(), back = (new Date(first + 9 * 3600e3).getUTCDay() + 4) % 7 || 7;
-    var wed = ymd(first - back * 86400e3);
+    var days = ms.length ? ms.map(function (m) { return m.day; }).filter(uniq).sort() : b.days;
+    var wed = ymd(wedBefore(days[0]));
     days.forEach(function (day, i) {
-      var known = ms.filter(function (m) { return m.day === day && !m.tbd; }).map(function (m) { return m.time; }).sort()[0] || '';
-      var close = known ? ymd(kst(day + 'T' + known) + 4 * 3600e3) + 'T' + new Date(kst(day + 'T' + known) + 13 * 3600e3).toISOString().slice(11, 16) : '';
-      out.push([b.name + ' DAY ' + (i + 1), day, dowOf(day), known, wed + 'T' + (17 + Math.min(i, 2)) + ':00', close]);
+      var s = startOf(ms, day);
+      out.push([b.name + ' DAY ' + (i + 1), day, dowOf(day), s, wed + 'T' + (17 + Math.min(i, 2)) + ':00', s ? plusH(day, s, 4) : '', b.k]);
     });
   });
   return out;
+}
+// 오픈 안내 cards: regular season one line per week, the other blocks one line per day
+var pm = function (t) { return '오후 ' + (+t.slice(11, 13) - 12) + '시'; };
+var mdLong = function (s) { return +s.slice(5, 7) + '월 ' + +s.slice(8, 10) + '일 (' + dowOf(s.slice(0, 10)) + ')'; };
+function drawOpen(rows) {
+  var rr = rows.filter(function (r) { return r[6].slice(0, 2) === 'rs'; });
+  document.getElementById('openRR').innerHTML = rr.map(function (r) { return r[6]; }).filter(uniq).map(function (g, n) {
+    var w = rr.filter(function (r) { return r[6] === g; });
+    return '<li><b>Week ' + (n + 1) + '</b> · ' + mdLong(w[0][4]) + ' 오후 ' + w.map(function (r) { return +r[4].slice(11, 13) - 12; }).join(' / ') + '시 오픈</li>';
+  }).join('');
+  [['seed', 'openSeed'], ['po', 'openPO']].forEach(function (b) {
+    document.getElementById(b[1]).innerHTML = rows.filter(function (r) { return r[6] === b[0]; }).map(function (r, i) {
+      return '<li><b>Day ' + (i + 1) + '</b> · ' + mdLong(r[4]) + ' ' + pm(r[4]) + ' 오픈</li>';
+    }).join('');
+  });
+}
+// 대회 시간: regular-season days grouped by start time, 360-minute sessions (금 17:00–23:00 · 토·일 15:00–21:00)
+function drawHours(rows) {
+  var by = {}, order = '월화수목금토일';
+  rows.forEach(function (r) { if (r[6].slice(0, 2) === 'rs' && r[3]) (by[r[3]] = by[r[3]] || []).push(r[2]); });
+  var g = Object.keys(by).map(function (t) {
+    var d = by[t].filter(uniq).sort(function (a, b) { return order.indexOf(a) - order.indexOf(b); });
+    return { d: d, t: t, e: plusH('2000-01-01', t, 6).slice(11) };
+  }).sort(function (a, b) { return order.indexOf(a.d[0]) - order.indexOf(b.d[0]); });
+  if (!g.length) return;
+  document.getElementById('hoursChips').innerHTML = g.map(function (x) { return '<span class="chip">' + x.d.join('·') + ' <b>' + x.t + '–' + x.e + '</b></span>'; }).join('\n      ');
+  document.getElementById('hoursLong').innerHTML = g.map(function (x) { return '<div class="dots"><span>' + x.d.join(', ') + '</span><span></span><span>' + x.t + ' – ' + x.e + '</span></div>'; }).join('');
 }
 function draw() {
   var D = window.OWCS;
@@ -336,7 +385,10 @@ function draw() {
   var from = D ? D.stageRange[0] : '2026-10-02', to = D ? D.stageEnd || D.stageRange[1] : '2026-11-08';
   document.getElementById('period').textContent = md(from) + ' (' + dowOf(from) + ') – ' + md(to) + ' (' + dowOf(to) + ')';
   document.getElementById('periodLong').textContent = +from.slice(5, 7) + '월 ' + +from.slice(8) + '일(' + dowOf(from) + ') – ' + +to.slice(5, 7) + '월 ' + +to.slice(8) + '일(' + dowOf(to) + ')';
-  var rows = ROWS.concat(playoffRows(D));
+  if (D && D.stageNo) [].forEach.call(document.querySelectorAll('.stageName'), function (el) { el.textContent = (D.year || from.slice(0, 4)) + ' OWCS ASIA KOREA STAGE ' + D.stageNo; });
+  var rows = regularRows(D).concat(playoffRows(D));
+  drawOpen(rows);
+  drawHours(rows);
   var body = document.getElementById('tickets'), next = null;
   body.innerHTML = '';
   var team = function (c) { return D && D.teams.filter(function (x) { return x.a === c; })[0]; };
