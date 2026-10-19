@@ -1072,7 +1072,6 @@ const params = new URLSearchParams(location.search);
 // ?date=2026-10-11 (optionally &time=18:30) previews another day; default = now
 const LOADED = Date.now();
 const nowMs = () => params.get('date') ? new Date(params.get('date') + 'T' + (params.get('time') || '12:00') + ':00+09:00').getTime() : window.__owcsNow ? window.__owcsNow + (Date.now() - LOADED) : Date.now();
-const MATCH_LEN = 3 * 3600e3;
 // Liquipedia has no start time yet (tbd): the time shown is a guess, so say so
 const tmOf = (m) => m.tbd ? '시간 미정' : m.time;
 const startTxt = (m) => m.tbd ? '시작 시간 발표 전' : m.time + ' KST 시작';
@@ -1209,12 +1208,18 @@ const liveRelay = (onChange) => {
   };
   return es;
 };
-const state = (m, now) => {
-  const t0 = new Date(m.date).getTime();
+// a match day runs in order: only the first start time is exact, later matches start when the one before ends
+const scored = (m) => m.played && (m.sa || m.sb);
+const kstDay = (ms) => new Date(ms + 9 * 3600e3).toISOString().slice(0, 10);
+const state = (m, now, all = []) => {
   if (m.live) return 'live';
-  if (m.played && (m.sa || m.sb)) return 'done';
-  if (now >= t0 && now < t0 + MATCH_LEN) return 'live';
-  return now < t0 ? 'up' : 'done';
+  if (scored(m)) return 'done';
+  const t0 = new Date(m.date).getTime(), day = kstDay(t0);
+  if (now >= new Date(day + 'T00:00:00+09:00').getTime() + 864e5) return 'done';   // safety net: no score by midnight KST, Liquipedia fills it later
+  const prev = all.filter((x) => x !== m && kstDay(new Date(x.date).getTime()) === day && new Date(x.date).getTime() < t0)
+    .sort((x, y) => new Date(y.date) - new Date(x.date))[0];
+  if (!prev) return now >= t0 ? 'live' : 'up';
+  return scored(prev) ? 'live' : 'up';
 };
 const norm = (s) => s.toLowerCase().replace(/\s+/g, '');
 const resolve = (tok) => {
@@ -1312,7 +1317,7 @@ class Component extends DCLogic {
     const showBans = P.showBans ?? true;
     const SP = this.state.spoiler, L = I18N[this.state.lang], MY = this.state.myTeam, DM = this.state.dark;
     const setMy = (a) => this.setState((s) => { const v = s.myTeam === a ? null : a; try { v ? localStorage.setItem('owcs-myteam', v) : localStorage.removeItem('owcs-myteam'); } catch (e) {} return v ? { myTeam: v, myPick: false, sel: v } : { myTeam: v, myPick: false }; });
-    const M = D.matches.map((m) => ({ ...m, st: state(m, now) }));
+    const M = D.matches.map((m) => ({ ...m, st: state(m, now, D.matches) }));
     // the TODAY box can step back through earlier match days (‹ ›); vday = the day it shows, today unless picked
     const dayList = [...new Set(M.map((m) => m.day).filter((d) => d < today)), today];
     const vday = dayList.includes(this.state.vday) ? this.state.vday : today, back = vday !== today, vi = dayList.indexOf(vday);

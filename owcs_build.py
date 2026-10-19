@@ -460,7 +460,10 @@ def build_matches(stage):
                 if not cur['winner']:
                     cur['winner'] = h['winner']
             maps.sort(key=lambda x: x['no'] or 0)
-            sa, sb = max(sa, sc['sa']), max(sb, sc['sb'])
+            # the broadcast reading counts only when it is the same series further along (0-1 -> 0-3); a reading that
+            # contradicts it (Liquipedia 3-1, broadcast 2-3) is a misread, and a per-team max would make an impossible 3-3
+            if sc['sa'] >= (sa or 0) and sc['sb'] >= (sb or 0):
+                sa, sb = sc['sa'], sc['sb']
             live = max(sa, sb) < need
             played = not live
         # first heroes per player, from data/picks.json (filled by hand or by a hero-recognition tool)
@@ -730,7 +733,7 @@ def build_bracket(stage, matches, standings, playoffs):
             c = col(m['round'], 'po-' + m['round'])
         d = datetime.date.fromisoformat(m['day'])
         done = m['played'] and not m['live']
-        c['matches'].append(dict(id=m['id'], round=m['round'], day=m['day'], live=m['live'], played=done,
+        c['matches'].append(dict(id=m['id'], round=m['round'], day=m['day'], live=m['live'], played=done, bo=m.get('bo'),
                                  when=f"{d.month:02d}.{d.day:02d} ({DOW_KO[d.weekday()]})" + ('' if m['tbd'] else ' ' + m['time']),
                                  rows=[dict(n=full.get(a, a), a=a, s=s if (done or m['live']) else None) for a, s in ((m['a'], m['sa']), (m['b'], m['sb']))]))
     final = next((x for c in cols for x in c['matches'] if x['round'] == '결승' and x['played']), None)
@@ -749,7 +752,8 @@ def stage_brief(stage):
         dt, tbd = start_of(m)
         out.append(dict(id=f"{stage['year']}s{stage['n']}-p{m['idx']}", n=m['idx'], phase=m['phase'], round=m.get('round'), day=dt.date().isoformat(),
                         date=dt.isoformat(), time=dt.strftime('%H:%M'), tbd=tbd, a=short(m['team1'] or 'TBD'), b=short(m['team2'] or 'TBD'),
-                        sa=m['score1'], sb=m['score2'], played=m['played'], live=False))
+                        sa=m['score1'], sb=m['score2'], played=m['played'], live=False,
+                        bo=m.get('bestof') or (7 if m['phase'] == 'po' else 5)))
     return out if layout else []
 
 

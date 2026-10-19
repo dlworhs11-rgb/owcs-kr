@@ -156,7 +156,9 @@
         const shown = !SP && (played || live) && rows[0].a !== 'TBD';
         const top = Math.max(+rows[0].s || 0, +rows[1].s || 0);
         const day = String(x.when || '').split(' ').slice(0, opt && opt.short ? 1 : 2).join(' ');
-        const head = (opt && opt.round ? '<span>' + esc(opt.title || x.round) + '</span>' : '') + (live ? '<em>LIVE</em>' : '<span>' + esc(day) + '</span>');
+        const bo = (m && m.bo) || x.bo, boTxt = bo ? 'BO' + bo : '';   // seeding deciders / LCQ BO5, playoffs BO7 (from Liquipedia)
+        const head = (opt && opt.round ? '<span>' + esc(opt.title || x.round) + '</span>' : '')
+          + (live ? '<em>LIVE</em>' + (boTxt ? '<span>' + boTxt + '</span>' : '') : '<span>' + esc(day) + (boTxt ? ' · ' + boTxt : '') + '</span>');
         return '<div class="m' + (live ? ' live' : '') + '"><div class="mh">' + head + '</div>' + rows.map((r) => {
           const cls = r.a === 'TBD' ? 'tbd' : shown && played && +r.s < top ? 'lose' : '';
           const win = /^결승$/.test(x.round) && shown && played && +r.s === top ? '<span class="wt">우승</span>' : '';
