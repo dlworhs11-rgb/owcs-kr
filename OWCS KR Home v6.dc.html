@@ -1317,7 +1317,7 @@ class Component extends DCLogic {
     const showBans = P.showBans ?? true;
     const SP = this.state.spoiler, L = I18N[this.state.lang], MY = this.state.myTeam, DM = this.state.dark;
     const setMy = (a) => this.setState((s) => { const v = s.myTeam === a ? null : a; try { v ? localStorage.setItem('owcs-myteam', v) : localStorage.removeItem('owcs-myteam'); } catch (e) {} return v ? { myTeam: v, myPick: false, sel: v } : { myTeam: v, myPick: false }; });
-    const M = D.matches.map((m) => ({ ...m, st: state(m, now, D.matches) }));
+    const M = D.matches.map((m) => { const st = state(m, now, D.matches); return { ...m, st, nr: st === 'done' && !scored(m) }; });   // nr: over by the clock with no score yet (recorder off, postponed): no 0:0
     // the TODAY box can step back through earlier match days (‹ ›); vday = the day it shows, today unless picked
     const dayList = [...new Set(M.map((m) => m.day).filter((d) => d < today)), today];
     const vday = dayList.includes(this.state.vday) ? this.state.vday : today, back = vday !== today, vi = dayList.indexOf(vday);
@@ -1386,9 +1386,9 @@ class Component extends DCLogic {
       // days before today (KST) show no matches at all: no score, logo or team name
       const g = M.filter((m) => m.day === ds && ds >= today).map((m) => {
         const o = orient(m.a, m.sa, m.b, m.sb);
-        const label = m.st === 'up' || SP ? o[0] + '·' + o[2] : o[0] + ' ' + o[1] + ':' + o[3] + ' ' + o[2];
-        const hide = m.st === 'up' || SP;
-        return { label, a: o[0], b: o[2], sa: hide ? '' : o[1], sb: hide ? '' : o[3], oa: !hide && m.st === 'done' && o[1] < o[3] ? .4 : 1, ob: !hide && m.st === 'done' && o[3] < o[1] ? .4 : 1, la: logoBg(o[0], DM), lb: logoBg(o[2], DM), mid: m.st === 'up' || SP ? 'vs' : o[1] + ':' + o[3], past: ds < today, now: ds === today, next: ds > today };
+        const label = m.st === 'up' || SP || m.nr ? o[0] + '·' + o[2] : o[0] + ' ' + o[1] + ':' + o[3] + ' ' + o[2];
+        const hide = m.st === 'up' || SP || m.nr;
+        return { label, a: o[0], b: o[2], sa: hide ? '' : o[1], sb: hide ? '' : o[3], oa: !hide && m.st === 'done' && o[1] < o[3] ? .4 : 1, ob: !hide && m.st === 'done' && o[3] < o[1] ? .4 : 1, la: logoBg(o[0], DM), lb: logoBg(o[2], DM), mid: m.st === 'up' || SP || m.nr ? 'vs' : o[1] + ':' + o[3], past: ds < today, now: ds === today, next: ds > today };
       });
       // stage of the day's matches on the date row: 시드전 · LCQ / PO 8강 / PO 4강 / PO 결승
       const dm = M.filter((m) => m.day === ds && ds >= today && m.phase && m.phase !== 'rs');
@@ -1420,7 +1420,7 @@ class Component extends DCLogic {
     const card = (m) => {
       const o = orient(m.a, m.sa, m.b, m.sb);
       return { date: md(m.date), dow: dow(m.date), a: o[0], b: o[2], la: logoBg(o[0], DM), lb: logoBg(o[2], DM), oa: !SP && m.st === 'done' && o[1] < o[3] ? .4 : 1, ob: !SP && m.st === 'done' && o[3] < o[1] ? .4 : 1,
-        mid: m.st === 'up' || SP ? 'vs' : o[1] + ' : ' + o[3], time: m.tbd ? '시간 미정' : m.time + ' KST', tm: tmOf(m), live: m.st === 'live', up: m.st === 'up', done: m.st === 'done',
+        mid: m.st === 'up' || SP || m.nr ? 'vs' : o[1] + ' : ' + o[3], time: m.tbd ? '시간 미정' : m.time + ' KST', tm: tmOf(m), live: m.st === 'live', up: m.st === 'up', done: m.st === 'done',
         bd: MY && (m.a === MY || m.b === MY) ? '2px solid ' + col(MY) : '1px solid var(--line,#E6E6E1)' };
     };
     const whenOf = (m) => (m.day === today ? '오늘 ' : md(m.date) + ' (' + dow(m.date) + ') ') + tmOf(m);
@@ -1435,15 +1435,15 @@ class Component extends DCLogic {
     const outT = new Set();
     if (poMode && !SP) {
       D.standings.forEach((s) => { if ((st[s.a] || {}).rank > D.lcq) outT.add(s.a); });
-      M.forEach((m) => { if (m.st === 'done' && (m.phase === 'po' || (m.phase === 'lcq' && /하위|결승/.test(m.label || '')))) outT.add(m.sa > m.sb ? m.b : m.a); });
+      M.forEach((m) => { if (m.st === 'done' && !m.nr && (m.phase === 'po' || (m.phase === 'lcq' && /하위|결승/.test(m.label || '')))) outT.add(m.sa > m.sb ? m.b : m.a); });
     }
     const sel = team(this.state.sel);
     const selM = M.filter((m) => m.a === sel.a || m.b === sel.a);
-    const selLast = selM.filter((m) => m.st === 'done').slice(-1)[0], selNext = selM.find((m) => m.st === 'up');
+    const selLast = selM.filter((m) => m.st === 'done' && !m.nr).slice(-1)[0], selNext = selM.find((m) => m.st === 'up');
     const tokens = this.state.q.split(/[,，\/]+/).map((s) => s.trim()).filter(Boolean);
     const ids = tokens.map(resolve);
     const valid = ids.length > 0 && ids.every(Boolean);
-    const found = valid ? M.filter((m) => m.st === 'done' && ids.every((id) => m.a === id || m.b === id)).reverse() : [];
+    const found = valid ? M.filter((m) => m.st === 'done' && !m.nr && ids.every((id) => m.a === id || m.b === id)).reverse() : [];
     const liveCount = Object.keys(D.live).filter((id) => D.players.some((p) => p.id === id)).length;
     const left = upcoming;
     const hs = hero ? orient(hero.a, hero.sa, hero.b, hero.sb) : ['', 0, '', 0];
@@ -1517,7 +1517,7 @@ class Component extends DCLogic {
       showPanel: (!!sh && (sh.st === 'live' || preShow)) || (!!sh && sh.st === 'done' && !!picked),
       resTop: matchDay && !!sh && sh.st === 'done', resBottom: matchDay && !(sh && sh.st === 'done'),
       poster: todays.map((m) => {
-        const o = orient(m.a, m.sa, m.b, m.sb), done = m.st === 'done', shown = done && !SP, nx = m === sh;
+        const o = orient(m.a, m.sa, m.b, m.sb), done = m.st === 'done', shown = done && !SP && !m.nr, nx = m === sh;
         const nm = (a) => a === 'TBD' ? '미정' : a, lg = (a) => a === 'TBD' ? 'transparent' : logoBg(a, true);
         return { time: m.tbd ? '미정' : m.time, next: nx, a: nm(o[0]), b: nm(o[2]), la: lg(o[0]), lb: lg(o[2]),
           oa: shown && o[1] < o[3] ? .4 : 1, ob: shown && o[3] < o[1] ? .4 : 1,
@@ -1558,7 +1558,7 @@ class Component extends DCLogic {
         // each half tinted with its team colour; the losing half fades with its logo
         bg: tintBg(hs[0], hs[2], !SP && hero && hero.st === 'done' && hs[1] < hs[3] ? .1 : .28, !SP && hero && hero.st === 'done' && hs[3] < hs[1] ? .1 : .28, '#15151B', true),
         pill: hero && hero.st === 'live' ? '#D92D20' : '#3A3A44', padB: sh && sh.st === 'done' && ((hero && hero.vod) || sh.vod) ? '40px' : '18px',
-        status: !hero ? '' : hero.st === 'live' ? 'LIVE · ' + Math.max(1, heroSet) + '세트' : hero.st === 'done' ? '종료' : hero.tbd ? '시간 미정' : hero.time + ' 시작' },
+        status: !hero ? '' : hero.st === 'live' ? 'LIVE · ' + Math.max(1, heroSet) + '세트' : hero.st === 'done' ? (hero.nr ? '결과 대기' : '종료') : hero.tbd ? '시간 미정' : hero.time + ' 시작' },
       // broadcast crew in Korean (the source lists them romanized)
       cast: hero && hero.casters.length ? hero.casters.map((c) => ({ 'Sim Ji-soo': '심지수', 'Park Han-eol': '박한얼', 'AKaros': '장지수', 'Strings': '홍현성', 'ChangSik': '창식', 'Aid': '에이드' })[c] || c).join(' · ') : '발표 전',
       potmLine: hero && hero.potm && !SP ? hero.potm : '',
@@ -1581,10 +1581,10 @@ class Component extends DCLogic {
       mapsD: heroMaps, mapsM: heroMaps, mapsS: heroMaps.slice(0, 2),
       showRes: matchDay, resHint: SP ? '스포일러 방지 중 · 점수는 숨겨요' : '결과를 누르면 ' + (sh && sh.st === 'done' ? '아래에서' : '위에서') + ' 세트별 맵 · 밴 · 첫 조합을 볼 수 있어요',
       // all of today's matches, in order (not started yet: 0 : 0 and its start time); the POTM's face sits behind the card
-      todayRes: todays.map((m) => { const o = orient(m.a, m.sa, m.b, m.sb), on = m === (sh && sh.st === 'done' ? picked : hero), sel = on && todays.length > 1 && m.st !== 'up', done = m.st === 'done' && !SP;
+      todayRes: todays.map((m) => { const o = orient(m.a, m.sa, m.b, m.sb), on = m === (sh && sh.st === 'done' ? picked : hero), sel = on && todays.length > 1 && m.st !== 'up', done = m.st === 'done' && !SP && !m.nr;
         const pm = done && m.potm ? D.players.find((x) => x.id.toLowerCase() === m.potm.toLowerCase() && x.photo) : null, f = pm && pm.face;
         const face = !pm ? '' : "url('" + pm.photo + "') " + (f ? Math.round(f[0] * 100) + '% ' + Math.round(f[1] * 100) + '%/auto ' + Math.round(110 / f[2]) + '%' : 'center 18%/auto 260%') + ' no-repeat, #2A2A32';   // round avatar on the POTM line
-        return { a: o[0], b: o[2], la: logoBg(o[0], m.st !== 'up' || DM), lb: logoBg(o[2], m.st !== 'up' || DM), mid: SP ? 'vs' : m.st === 'up' ? '0 : 0' : o[1] + ' : ' + o[3],
+        return { a: o[0], b: o[2], la: logoBg(o[0], m.st !== 'up' || DM), lb: logoBg(o[2], m.st !== 'up' || DM), mid: SP || m.nr ? 'vs' : m.st === 'up' ? '0 : 0' : o[1] + ' : ' + o[3],
           oa: done && o[1] < o[3] ? .4 : 1, ob: done && o[3] < o[1] ? .4 : 1,
           bg: m.st === 'live' ? 'linear-gradient(135deg, rgba(217,45,32,.82), rgba(140,22,16,.78))' : m.st === 'up' ? 'transparent' : sel ? '#0B0B0F' : 'rgba(24,24,30,.82)',
           lift: sel ? 'translateY(-4px)' : 'none', sh: sel ? '0 10px 20px rgba(0,0,0,.3)' : 'none',
@@ -1604,7 +1604,7 @@ class Component extends DCLogic {
         out: rsOver && !SP && i >= D.lcq, op: rsOver && !SP && i >= D.lcq ? .5 : 1,
         po: i === D.playoffs - 1, pi: i === D.lcq - 1, bg: MY === s.a ? 'color-mix(in oklch, ' + col(s.a) + ' 12%, transparent)' : 'transparent' })),
       spoiler: SP, spoilBlur: SP ? 'blur(7px)' : 'none', toggleSpoiler: () => this.setState((s) => { try { localStorage.setItem('owcs-spoiler', s.spoiler ? '0' : '1'); } catch (e) {} return { spoiler: !s.spoiler }; }),
-      hsA: SP || !hero || hero.st === 'up' ? '–' : hs[1], hsB: SP || !hero || hero.st === 'up' ? '–' : hs[3],
+      hsA: SP || !hero || hero.st === 'up' || hero.nr ? '–' : hs[1], hsB: SP || !hero || hero.st === 'up' || hero.nr ? '–' : hs[3],
       spoilTrack: SP ? 'var(--ac,#7D39EB)' : '#B9B9B3', spoilKnob: SP ? '14px' : '2px',
       darkTrack: this.state.dark ? 'var(--ac,#7D39EB)' : '#B9B9B3', darkKnob: this.state.dark ? '14px' : '2px', toggleDark: () => this.setState((s) => { try { localStorage.setItem('owcs-dark', s.dark ? '0' : '1'); } catch (e) {} return { dark: !s.dark }; }),
       L, langs: [['ko', '한국어'], ['ja', '日本語'], ['en', 'EN']].map(([k, label]) => ({ label, bg: this.state.lang === k ? 'var(--ink,#0B0B0F)' : 'transparent', fg: this.state.lang === k ? 'var(--paper,#FFFFFF)' : 'var(--ink,#0B0B0F)', go: () => window.OWCSi18n ? window.OWCSi18n.set(k) : this.setState({ lang: k }) })),
