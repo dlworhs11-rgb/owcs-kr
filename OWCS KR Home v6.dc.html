@@ -1529,7 +1529,7 @@ class Component extends DCLogic {
           oa: shown && o[1] < o[3] ? .4 : 1, ob: shown && o[3] < o[1] ? .4 : 1,
           mid: shown ? o[1] + ' : ' + o[3] : 'vs', midC: shown ? '#fff' : '#8A8A93', op: done ? .6 : 1,
           bg: tintBg(o[0], o[2], nx ? .26 : .14, nx ? .26 : .14, '#26262E'),
-          ring: nx ? 'inset 0 0 0 2px var(--ac2,#C6FF33)' : 'none' };
+          ring: 'none' };   // no lime outline on the next match (user, 2026-10-19)
       }),
       posterSub: 'SOOP owesports · ' + todays.length + '경기',
       posterNote: sh ? '다음 경기 ' + startTxt(sh) + ' · 방송이 시작되면 이곳에 자동으로 표시돼요' : '',
@@ -1577,7 +1577,7 @@ class Component extends DCLogic {
         const nm = (a) => a === 'TBD' ? '미정' : a, lg = (a) => a === 'TBD' ? 'transparent' : logoBg(a, true), k = i ? .14 : .26;
         return { day: md(m.date) + ' (' + dow(m.date) + ')', dayShort: md(m.date) + ' ' + dow(m.date), time: m.tbd ? '미정' : m.time,
           a: nm(m.a), b: nm(m.b), la: lg(m.a), lb: lg(m.b), bg: tintBg(m.a, m.b, k, k, '#26262E'),
-          ring: i ? 'none' : 'inset 0 0 0 2px var(--ac2,#C6FF33)' };
+          ring: 'none' };
       }),
       offNoteShort: nextM ? md(nextM.date) + ' ' + startTxt(nextM) : '',
       countdown: [{ v: pad(Math.floor(diff / 86400)), l: '일' }, { v: pad(Math.floor(diff % 86400 / 3600)), l: '시간' }, { v: pad(Math.floor(diff % 3600 / 60)), l: '분' }, { v: pad(diff % 60), l: '초' }],
