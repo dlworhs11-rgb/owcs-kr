@@ -1,0 +1,123 @@
+{
+ "ZETA": [
+  {
+   "id": "Crusty",
+   "role": "coach"
+  },
+  {
+   "id": "Twilight",
+   "role": "coach"
+  }
+ ],
+ "CR": [
+  {
+   "id": "Moon",
+   "role": "head coach"
+  },
+  {
+   "id": "Kong",
+   "role": "assistant coach"
+  },
+  {
+   "id": "Izayaki",
+   "role": "assistant coach"
+  },
+  {
+   "id": "Twinkl",
+   "role": "general manager"
+  },
+  {
+   "id": "Pavane",
+   "role": "assistant general manager"
+  }
+ ],
+ "T1": [
+  {
+   "id": "RUSH",
+   "role": "head coach"
+  },
+  {
+   "id": "Fleta",
+   "role": "coach"
+  },
+  {
+   "id": "GgulTaek",
+   "role": "coach"
+  }
+ ],
+ "ZAN": [
+  {
+   "id": "KariV",
+   "role": "head coach"
+  },
+  {
+   "id": "Ado",
+   "role": "coach"
+  },
+  {
+   "id": "Mircalla",
+   "role": "coach"
+  },
+  {
+   "id": "sihu",
+   "role": "general manager"
+  }
+ ],
+ "FLC": [
+  {
+   "id": "NineK",
+   "role": "head coach"
+  },
+  {
+   "id": "SP9RK1E",
+   "role": "coach"
+  },
+  {
+   "id": "Junkbuck",
+   "role": "coach"
+  },
+  {
+   "id": "Levi",
+   "role": "team manager"
+  }
+ ],
+ "O2": [
+  {
+   "id": "O2Boss",
+   "role": "head coach"
+  },
+  {
+   "id": "Cane",
+   "role": "coach"
+  },
+  {
+   "id": "Chilhwa",
+   "role": "coach"
+  },
+  {
+   "id": "Myunb0ng",
+   "role": "coach"
+  }
+ ],
+ "CB": [
+  {
+   "id": "Krillin",
+   "role": "coach"
+  }
+ ],
+ "PF": [
+  {
+   "id": "SEON",
+   "role": "head coach"
+  },
+  {
+   "id": "Mandu",
+   "role": "coach"
+  },
+  {
+   "id": "rexi",
+   "role": "general manager"
+  }
+ ],
+ "SEIJI": []
+}

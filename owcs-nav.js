@@ -4,11 +4,20 @@
 // page's own layout puts it: 110.5px left of the page centre (half of its 136px logo block minus its 357px right block).
 // The home page itself is left as it is.
 (function () {
-  if (/Home/.test(decodeURIComponent(location.pathname).split('/').pop())) return;
+  // the menu sits exactly in the middle of the header on every page, the home page too, so it never moves
+  // between pages whatever the window width
+  var centre = '@media (min-width:900px){#dc-root header{position:relative}' +
+    'header nav{position:absolute !important;left:50% !important;top:50% !important;transform:translate(-50%,-50%) !important;display:flex !important;gap:6px !important;margin:0 !important;overflow:visible !important}}';
+  if (/Home/.test(decodeURIComponent(location.pathname).split('/').pop())) {
+    var hs = document.createElement('style');
+    hs.textContent = centre;
+    (document.head || document.documentElement).appendChild(hs);
+    return;
+  }
   var css = [
+    centre,
     '@media (min-width:900px){',
     '  #dc-root header{position:relative}',
-    '  header nav{position:absolute !important;left:calc(50% - 110.5px) !important;top:50% !important;transform:translate(-50%,-50%) !important;display:flex !important;gap:6px !important;margin:0 !important;overflow:visible !important}',
     '  header nav a{height:44px !important;padding:0 16px !important;font-size:16px !important;font-weight:600 !important;white-space:nowrap;box-sizing:border-box}',
     // tickets / streams pages: their own header markup, sized like the design pages
     '  header .wrap{max-width:none !important;height:75px !important;padding:0 max(56px, calc(50% - 680px)) !important;box-sizing:border-box}',
@@ -28,10 +37,16 @@
     // moves when the bar is added a moment later (the design pages render their header after the script runs)
     '  #dc-root [data-screen-label]{position:relative}',
     '  #dc-root header,body.streams-page > header,body.ticket-page > header{margin-top:45px !important}',
-    '  [data-owcs-bar]{position:absolute !important;top:0;left:0;right:0;display:flex;justify-content:flex-end;align-items:center;gap:8px;height:45px;padding:0 max(56px, calc(50% - 680px));box-sizing:border-box;border-bottom:1px solid #E6E6E1;font:600 13px Pretendard,system-ui,sans-serif;color:#0B0B0F;z-index:11}',
+    '  [data-owcs-bar]{position:absolute !important;top:0;left:0;right:0;display:flex;justify-content:flex-end;align-items:center;gap:8px;height:45px;padding:0 max(56px, calc(50% - 680px));box-sizing:border-box;border-bottom:1px solid #E6E6E1;font:600 13px "Pretendard Variable",Pretendard,system-ui,sans-serif;color:#0B0B0F;z-index:11}',
     '  html[data-owcs-dark] [data-owcs-bar]{border-bottom-color:#2E2E37;color:#F2F2F5}',
+    '  header [data-owcs-ownsp]{display:none !important}',
+    '  [data-owcs-bar] .owsp{display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 10px;border:0;border-radius:999px;background:transparent;color:inherit;font:inherit;cursor:pointer}',
+    '  [data-owcs-bar] .owsp .tr{position:relative;display:inline-block;width:30px;height:18px;border-radius:999px;background:#B9B9B3}',
+    '  [data-owcs-bar] .owsp.on .tr{background:#7D39EB}',
+    '  [data-owcs-bar] .owsp .kn{position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:#fff}',
+    '  [data-owcs-bar] .owsp.on .kn{left:14px}',
     '  [data-owcs-bar] [data-owcs-darkbtn]{position:static !important;height:32px !important;padding:0 10px !important;border:0 !important;border-radius:999px !important;background:transparent !important;color:inherit !important;box-shadow:none !important;font:inherit !important}',
-    '  [data-owcs-bar] [data-owcs-lang]{position:static !important;padding:2px !important;border:0 !important;box-shadow:none !important;background:#E6E6E1 !important;font:700 12px Pretendard,system-ui,sans-serif !important}',
+    '  [data-owcs-bar] [data-owcs-lang]{position:static !important;padding:2px !important;border:0 !important;box-shadow:none !important;background:#E6E6E1 !important;font:700 12px "Pretendard Variable",Pretendard,system-ui,sans-serif !important}',
     '  html[data-owcs-dark] [data-owcs-bar] [data-owcs-lang]{background:#24242C !important}',
     '  html[data-owcs-dark] [data-owcs-bar] [data-owcs-lang] button[style*="background: transparent"]{color:#F2F2F5 !important}',
     '}',
@@ -65,7 +80,6 @@
     '  [data-owcs-mtop] .tb{display:none;justify-content:flex-start;align-items:center;flex-wrap:wrap;gap:8px 12px;padding:12px 20px;border-bottom:1px solid #E6E6E1;font-size:13px}',
     '  [data-owcs-mtop].open .tb{display:flex}',
     '  [data-owcs-mtop] .sw{display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 10px;border:none;border-radius:999px;background:transparent;font:inherit;font-size:13px;font-weight:600;color:inherit !important;cursor:pointer}',
-    '  [data-owcs-mtop] .sw.ph{display:none}',
     '  [data-owcs-mtop] .tr{position:relative;width:30px;height:18px;border-radius:999px;background:#B9B9B3}',
     '  [data-owcs-mtop] .on .tr{background:#7D39EB}',
     '  [data-owcs-mtop] .kn{position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:#fff}',
@@ -138,6 +152,19 @@
     });
   }
 
+  // 스포일러 방지 is one site-wide setting (localStorage 'owcs-spoiler'): pages with spoilers read it, the others
+  // just keep it, so the switch is in the same place on every page
+  function spStored() { try { return localStorage.getItem('owcs-spoiler') === '1'; } catch (e) { return false; } }
+  function spOn() {
+    var own = spoilerBtn(), tr = own && own.querySelector('span');
+    return own ? /125, 57, 235|7D39EB/i.test(tr && tr.getAttribute('style') || '') : spStored();
+  }
+  function spToggle(after) {
+    var own = spoilerBtn();
+    if (own) own.click(); else { try { localStorage.setItem('owcs-spoiler', spStored() ? '0' : '1'); } catch (e) {} }
+    setTimeout(after, 60);
+  }
+
   function mobileTop() {
     var m = document.createElement('div');
     m.setAttribute('data-owcs-mtop', '');
@@ -146,7 +173,7 @@
       '<span class="ic"><button class="hm" aria-label="메뉴"><span></span><span></span></button></span></div>' +
       '<nav>' + T.nav.map(function (l, k) { return '<a href="' + HREFS[k] + '">' + l + '</a>'; }).join('') + '</nav></div>' +
       '<div class="tb">' +
-      '<button class="sw sp' + (sp ? '' : ' ph') + '"><span class="tr"><span class="kn"></span></span>' + T.spoiler + '</button>' +
+      '<button class="sw sp"><span class="tr"><span class="kn"></span></span>' + T.spoiler + '</button>' +
       '<button class="sw dk' + (dark ? ' on' : '') + '"><span class="tr"><span class="kn"></span></span>' + T.dark + '</button>' +
       '<div class="lg">' + [['ko', '한국어'], ['ja', '日本語'], ['en', 'EN']].map(function (x) {
         return '<button data-l="' + x[0] + '"' + (x[0] === LANG ? ' class="on"' : '') + '>' + x[1] + '</button>';
@@ -161,20 +188,11 @@
       };
     });
     var spb = m.querySelector('.sp');
-    spb.onclick = function () {
-      var own = spoilerBtn();
-      if (!own) return;
-      own.click();
-      setTimeout(function () { syncSpoiler(m); }, 60);
-    };
+    spb.onclick = function () { spToggle(function () { syncSpoiler(m); }); };
     syncSpoiler(m);
     return m;
   }
-  function syncSpoiler(m) {
-    var own = spoilerBtn(), tr = own && own.querySelector('span');
-    var on = tr && /125, 57, 235|7D39EB/i.test(tr.getAttribute('style') || '');
-    m.querySelector('.sp').classList.toggle('on', !!on);
-  }
+  function syncSpoiler(m) { m.querySelector('.sp').classList.toggle('on', spOn()); }
 
   // phone / tablet: the home page's top (tool bar, header, menu chips, 직관 안내) at the top of the page
   function placeMobile() {
@@ -228,6 +246,18 @@
       db.style.setProperty('align-items', 'center');
       db.style.setProperty('gap', '8px');
     }
+    // 스포일러 방지 first, as on the home page; the page's own switch in the header (results) hides behind it
+    var own = spoilerBtn();
+    if (own && !own.hasAttribute('data-owcs-ownsp')) (own.parentNode.tagName === 'DIV' && own.parentNode.children.length === 1 ? own.parentNode : own).setAttribute('data-owcs-ownsp', '');
+    var spb = bar.querySelector('.owsp');
+    if (!spb) {
+      spb = document.createElement('button');
+      spb.className = 'owsp';
+      spb.innerHTML = '<span class="tr"><span class="kn"></span></span>' + T.spoiler;
+      spb.onclick = function () { spToggle(function () { spb.classList.toggle('on', spOn()); }); };
+      bar.insertBefore(spb, bar.firstChild);
+    }
+    spb.classList.toggle('on', spOn());
     ['[data-owcs-darkbtn]', '[data-owcs-lang]'].forEach(function (q) {
       var el = document.querySelector(q);
       if (el && el.parentNode !== bar) bar.appendChild(el);

@@ -92,7 +92,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 </header>
 
 <section style="padding:56px 56px 80px;background:#F6F6F3">
-<div style="display:flex;gap:8px;font-size:14px;color:#6B6B72;margin-bottom:28px"><a href="OWCS KR Home v6.dc.html" style="color:#6B6B72">선수</a><span>/</span><a href="OWCS KR Home v6.dc.html" style="color:#6B6B72">{{ teamName }}</a><span>/</span><span style="color:#0B0B0F;font-weight:600">{{ pid }}</span></div>
+<div style="display:flex;gap:8px;font-size:14px;color:#6B6B72;margin-bottom:28px"><a href="OWCS KR Home v6.dc.html" style="color:#6B6B72">{{ crumb }}</a><span>/</span><a href="OWCS KR Home v6.dc.html" style="color:#6B6B72">{{ teamName }}</a><span>/</span><span style="color:#0B0B0F;font-weight:600">{{ pid }}</span></div>
 <div style="display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:center">
 <div style="position:relative;aspect-ratio:4/5;border-radius:32px;overflow:hidden;background:{{ teamColor }}">
 <div style="position:absolute;left:-8%;right:-8%;top:-4%;height:78%;background:{{ teamMark }};opacity:.22"></div>
@@ -187,12 +187,18 @@ const D = window.OWCS || { teams: [], players: [], matches: [], standings: [], l
 const TEAM = Object.fromEntries(D.teams.map((t) => [t.a, t]));
 const ABBR = Object.fromEntries(D.teams.map((t) => [t.n, t.a]));
 const want = (new URLSearchParams(location.search).get('p') || '').toLowerCase();
+// coaches (D.staff, per team) open on this same page with ?p=<handle>; players win if a handle is both
+const STAFF = Object.entries(D.staff || {}).flatMap(([a, list]) => list.map((x) => ({ id: x.id, team: a, roleFull: x.role, ko: x.ko, birth: x.birth,
+  photo: x.photo, lp: x.lp, namu: x.namu, instagram: x.instagram, x: x.x, youtube: x.youtube, chzzk: x.chzzk, soop: x.soop, discord: x.discord,
+  staff: true, awardCount: 0 })));
 const pick = () => D.players.find((p) => p.id.toLowerCase() === want)
+  || STAFF.find((p) => p.id.toLowerCase() === want)
   || D.players.find((p) => D.live[p.id])
   || D.players.slice().sort((a, b) => b.awardCount - a.awardCount)[0] || { id: '?', team: '', role: '', roleFull: '', awards: [] };
 const handleOf = (url) => (url || '').replace(/\/+$/, '').split('/').pop();
 const ICON = { CHZZK: 'assets/icons/chzzk.png', SOOP: 'assets/icons/soop.png', YouTube: 'assets/icons/youtube.png', Discord: 'assets/icons/discord.png',
-  Instagram: 'assets/icons/instagram.png', X: 'assets/icons/x.png', Liquipedia: 'assets/icons/liquipedia.png' };
+  Instagram: 'assets/icons/instagram.png', X: 'assets/icons/x.png', Liquipedia: 'assets/icons/liquipedia.png',
+  Namu: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Crect width='34' height='34' rx='9' fill='%2300A495'/%3E%3Ctext x='17' y='23' font-family='sans-serif' font-size='15' font-weight='700' fill='%23fff' text-anchor='middle'%3E%EB%82%98%EB%AC%B4%3C/text%3E%3C/svg%3E" };
 // roster photo: scale so every face is the same height and sits at the same spot (face box from data/faces.json)
 const facePx = (p, F) => { const f = p.face || [0.5, 0.36, 0.34, 1]; return { h: Math.round(F / f[2]) + 'px', tf: 'translate(' + (-f[0] * 100).toFixed(1) + '%, ' + (-f[1] * 100).toFixed(1) + '%)' }; };
 const nameFs = (id, room) => Math.min(44, Math.floor(room / (id.length * 0.5))) + 'px';
@@ -234,13 +240,19 @@ class Component extends DCLogic {
         me.discord && { label: 'Discord', handle: '디스코드 서버', href: me.discord, icon: ICON.Discord },
         me.instagram && { label: 'Instagram', handle: '@' + handleOf(me.instagram), href: me.instagram, icon: ICON.Instagram },
         me.x && { label: 'X', handle: '@' + handleOf(me.x), href: me.x, icon: ICON.X },
-        me.lp && { label: 'Liquipedia', handle: '선수 문서', href: me.lp, icon: ICON.Liquipedia },
+        me.lp && { label: 'Liquipedia', handle: me.staff ? '스태프 문서' : '선수 문서', href: me.lp, icon: ICON.Liquipedia },
+        me.namu && { label: '나무위키', handle: '인물 문서', href: me.namu, icon: ICON.Namu },
       ].filter(Boolean).map((l) => ({ ...l, live: !!l.live, bd: l.live ? '#D92D20' : '#E6E6E1' })),
-      facts: [
+      facts: me.staff ? [
+        { k: '직책', v: me.roleFull + (me.ko ? ' · ' + me.ko : '') },
+        { k: '소속', v: t.n + (st >= 0 ? ' · 현재 ' + (st + 1) + '위' : '') },
+        { k: '생년월일', v: me.birth ? me.birth.split('-').map((x, i) => i ? x.padStart(2, '0') : x).join('.') : '–' },
+      ] : [
         { k: '포지션', v: me.roleFull + (me.ko ? ' · ' + me.ko : '') },
         { k: '소속', v: t.n + (st >= 0 ? ' · 현재 ' + (st + 1) + '위' : '') },
         { k: 'POTM', v: me.awardCount + '회' + (me.name ? ' · ' + me.name : '') },
       ],
+      crumb: me.staff ? '스태프' : '선수',
       insta: (me.insta || []).map((x) => ({ url: x.url, img: x.img, text: x.text, date: x.date ? x.date.replace(/-/g, '.') : '' })), hasInsta: !!(me.insta || []).length,
       igProfile: me.instagram || '#', igHandle: me.instagram ? '@' + handleOf(me.instagram) : '',
       records: (me.achievements || []).slice(0, 8).map((a) => ({ y: a.y, ev: a.ev, team: a.team, res: a.res, win: a.place === 1, other: a.place !== 1 })),

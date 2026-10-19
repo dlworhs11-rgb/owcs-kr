@@ -159,40 +159,64 @@ def lp_wiki(comp):
         return fh.read()
 
 
-STAFF_KO = {'head coach': '감독', 'coach': '코치', 'assistant coach': '보조 코치', 'analyst': '분석관', 'manager': '매니저', 'team manager': '매니저'}
+# order on the site: coaches, analysts, then front office
+STAFF_KO = {'head coach': '감독', 'coach': '코치', 'strategic coach': '전략 코치', 'assistant coach': '보조 코치', 'analyst': '분석관',
+            'general manager': '단장', 'assistant general manager': '부단장', 'manager': '매니저', 'team manager': '매니저'}
+STAFF_LINKS = ('instagram', 'x', 'youtube', 'chzzk', 'soop', 'discord')   # full URLs in data/staff.json
 
 
-def stage_staff(comp):
-    """coaching staff per team from the stage page's Participants list ({{Person|Crusty|role=head coach|type=staff}})"""
+def stage_blocks(comp):
+    """(team name, wikitext block) per team of the stage page's Participants list"""
     w = lp_wiki(comp)
     i = w.find('==Participants==')
     if i < 0:
-        return {}
+        return []
     w = w[i:]
     j = w.find('\n==', 20)
     w = w[:j] if j > 0 else w
     alias = {k: v for k, v in load('aliases.json').items() if not k.startswith('_')}
-    sp = os.path.join(HERE, 'data', 'staff.json')
-    info = json.load(open(sp, encoding='utf-8')) if os.path.exists(sp) else {}
-    out = {}
+    out = []
     for blk in re.split(r'\{\{Opponent\|', w)[1:]:
         name = blk.split('\n', 1)[0].split('|')[0].strip()
         name = alias.get(name.lower(), name)
-        if not is_team(name):
-            continue
+        if is_team(name):
+            out.append((name, blk))
+    return out
+
+
+def stage_teams(comp):
+    return [name for name, _ in stage_blocks(comp)]
+
+
+def stage_staff(comp):
+    """staff per team. Who: the team page's active Organization (data/team_staff.json, fetch_staff.py) - it is current and
+    has the head coaches and managers the stage page leaves out; a team without a team page falls back to the stage page's
+    Participants list ({{Person|Crusty|role=head coach|type=staff}}). Role and spelling: the stage page when it lists the person."""
+    sp = os.path.join(HERE, 'data', 'staff.json')
+    info = json.load(open(sp, encoding='utf-8')) if os.path.exists(sp) else {}
+    tp = os.path.join(HERE, 'data', 'team_staff.json')
+    org = json.load(open(tp, encoding='utf-8')) if os.path.exists(tp) else {}
+    out = {}
+
+    def add(a, pid, role):
+        more = info.get(pid.lower(), {})   # fetch_staff.py: real name, birthday, country, career, links, photo (Namuwiki)
+        out.setdefault(a, []).append(dict(id=pid, role=STAFF_KO.get(role, role.title()), ko=more.get('name', ''),
+                                          birth=more.get('birth', ''), country=more.get('country', ''), photo=more.get('photo', ''),
+                                          career=more.get('career', []), namu=more.get('namu', ''), lp=more.get('lp', ''),
+                                          **{k: more[k] for k in STAFF_LINKS if more.get(k)}))
+    for name, blk in stage_blocks(comp):
+        a = team(name)['a']
+        listed = {}
         for pm in re.finditer(r'\{\{Person\|([^{}]*)\}\}', blk):
             parts = pm.group(1).split('|')
             kv = dict(x.split('=', 1) for x in parts[1:] if '=' in x)
-            if kv.get('type', '').strip().lower() != 'staff':
-                continue
-            role = kv.get('role', '').strip().lower()
-            pid = parts[0].strip()
-            more = info.get(pid.lower(), {})   # fetch_staff.py: real name, birthday, country, career, photo (Namuwiki)
-            out.setdefault(team(name)['a'], []).append(dict(id=pid, role=STAFF_KO.get(role, role.title()), ko=more.get('name', ''),
-                                                            birth=more.get('birth', ''), country=more.get('country', ''), photo=more.get('photo', ''),
-                                                            career=more.get('career', []), namu=more.get('namu', ''), lp=more.get('lp', '')))
+            if kv.get('type', '').strip().lower() == 'staff':
+                listed[parts[0].strip().lower()] = (parts[0].strip(), kv.get('role', '').strip().lower())
+        for p in org.get(a) or [dict(id=pid, role=role) for pid, role in listed.values()]:
+            add(a, *listed.get(p['id'].lower(), (p['id'], p['role'])))
+    order = list(STAFF_KO.values())
     for a in out:
-        out[a].sort(key=lambda p: next((k for k, r in enumerate(STAFF_KO.values()) if r == p['role']), 99))
+        out[a].sort(key=lambda p: order.index(p['role']) if p['role'] in order else 99)
     return out
 
 

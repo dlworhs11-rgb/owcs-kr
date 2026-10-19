@@ -394,7 +394,7 @@ const resolve = (tok) => {
   const part = D.teams.find((t) => norm(t.n).includes(k) || t.ko.includes(tok.trim())); return part ? part.a : null;
 };
 class Component extends DCLogic {
-  state = (() => { const t = new URLSearchParams(location.search).get('tab'); const k = TABS.some((x) => x.k === t) ? t : 'results'; const st = Number(new URLSearchParams(location.search).get('stage')); return { bk: PO_ON ? 'cur' : 'last', tabD: k, tabM: k, st: STAGE_NOS.includes(st) ? st : (D.stageNo || 1), q: new URLSearchParams(location.search).get('q') || '', sp: false, openRows: {}, openMaps: {} }; })();
+  state = (() => { const t = new URLSearchParams(location.search).get('tab'); const k = TABS.some((x) => x.k === t) ? t : 'results'; const st = Number(new URLSearchParams(location.search).get('stage')); return { bk: PO_ON ? 'cur' : 'last', tabD: k, tabM: k, st: STAGE_NOS.includes(st) ? st : (D.stageNo || 1), q: new URLSearchParams(location.search).get('q') || '', sp: (() => { try { return localStorage.getItem('owcs-spoiler') === '1'; } catch (e) { return false; } })(), openRows: {}, openMaps: {} }; })();
   tabs(key) {
     const cur = this.state[key];
     return TABS.map((t) => ({ ...t, on: cur === t.k, off: cur !== t.k, go: () => this.setState({ [key]: t.k }) }));
@@ -445,7 +445,7 @@ class Component extends DCLogic {
       })() : null,
       ratesNote: (D.year || '') + ' 코리아 스테이지 1–' + (D.stageNo || '') + ' (정규 리그 + 플레이오프) ' + D.history.length + '경기 기준',
       rates: RATES.map((t, i) => { const s = D.standings.find((x) => x.a === t.a); return { r: i + 1, n: NAME(t.a), logo: logo(t.a), c: col(t.a), wl: t.w + '-' + t.l, pct: Math.round(t.p * 100) + '%', sets: t.sw + '-' + t.sl, stage: s ? s.w + '-' + s.l : '–' }; }),
-      toggleSpoiler: () => this.setState((s) => ({ sp: !s.sp })), spoilAttr: SP ? '1' : '0', spoilTrack: SP ? '#7D39EB' : '#B9B9B3', spoilKnob: SP ? '14px' : '2px', blur: 'none',
+      toggleSpoiler: () => this.setState((s) => { try { localStorage.setItem('owcs-spoiler', s.sp ? '0' : '1'); } catch (e) {} return { sp: !s.sp }; }), spoilAttr: SP ? '1' : '0', spoilTrack: SP ? '#7D39EB' : '#B9B9B3', spoilKnob: SP ? '14px' : '2px', blur: 'none',
       nav: [
         { label: '일정', href: 'OWCS KR Home v6.dc.html' }, { label: '결과', href: 'OWCS KR Results.dc.html' },
         { label: '순위', href: 'OWCS KR Home v6.dc.html?view=standings' }, { label: '직관', href: 'OWCS KR 직관.html' },
