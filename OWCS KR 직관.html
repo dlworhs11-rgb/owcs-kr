@@ -129,9 +129,9 @@ body.ticket-page .age .big{color:#D92D20}
 body.ticket-page .map{background:#fff}
 body.ticket-page .map iframe{filter:none}
 body.ticket-page footer{background:#0B0B0F;color:#8A8A93;border:0}
+/* phone and tablet (up to iPad landscape 1180px): no hero, the page opens on TICKETS (user) */
+@media (max-width:1180px){.hero{display:none}}
 @media (max-width:820px){
-  /* phone: the hero keeps only the address (user); period / hours / age chips and the intro line are hidden */
-  .hero .pc-only,.hero .chips{display:none}
   .grid2,.open{grid-template-columns:minmax(0,1fr)}
   .title h2{font-size:42px}
   .facts{grid-template-columns:96px minmax(0,1fr)}
@@ -169,7 +169,7 @@ body.ticket-page footer{background:#0B0B0F;color:#8A8A93;border:0}
   <div class="hero">
     <div class="eyebrow">직관 안내 · <span class="stageName">2026 OWCS ASIA KOREA STAGE 3</span></div>
     <h1 class="disp">WDG STUDIO<br>HONGDAE</h1>
-    <p>서울 마포구 상수동 72-1, 홍익대학교 잔다리홀 B1.<span class="pc-only"> 정규 리그부터 플레이오프까지 모든 경기를 현장에서 볼 수 있어요.</span></p>
+    <p>서울 마포구 상수동 72-1, 홍익대학교 잔다리홀 B1. 정규 리그부터 플레이오프까지 모든 경기를 현장에서 볼 수 있어요.</p>
     <div class="chips">
       <span class="chip">기간 <b id="period">10.02 (금) – 11.08 (일)</b></span>
       <span id="hoursChips" style="display:contents"><span class="chip">금 <b>17:00–23:00</b></span>
