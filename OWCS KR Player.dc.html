@@ -201,7 +201,12 @@ class Component extends DCLogic {
     const me = pick();
     const t = TEAM[me.team] || { n: me.team, color: '#55555C', ko: '' };
     const live = D.live[me.id];
-    const stream = live || me.soop || me.chzzk || me.youtube || '';
+    // both SOOP and CHZZK: link the one with the latest broadcast (D.lastStream, KST start times); SOOP on a tie
+    const ls = (D.lastStream || {})[me.id] || {};
+    const main = me.chzzk && (!me.soop || (ls.chzzk || '') > (ls.soop || '')) ? me.chzzk : me.soop;
+    const lastOn = ls[main && main === me.chzzk ? 'chzzk' : 'soop'];
+    const ago = lastOn ? Math.max(0, Math.floor((Date.now() - new Date(lastOn.replace(' ', 'T') + '+09:00')) / 864e5)) : -1;
+    const stream = live || main || me.youtube || '';
     const platform = (u) => /sooplive/.test(u) ? 'SOOP' : /chzzk/.test(u) ? 'CHZZK' : /youtube/.test(u) ? 'YouTube' : '';
     const st = D.standings.findIndex((s) => s.a === me.team);
     const mates = D.players.filter((p) => p.team === me.team);
@@ -217,12 +222,14 @@ class Component extends DCLogic {
       photoNote: me.photo ? '' : '사진 준비 중',
       isLive: !!live,
       streamHead: live ? '지금 방송 중' : '개인 방송',
-      streamSub: stream ? platform(stream) + (live ? ' 생방송' : ' 방송국') : '등록된 방송 없음',
+      streamSub: stream ? platform(stream) + (live ? ' 생방송' : ' 방송국' + (ago < 0 ? '' : ' · 최근 방송 ' + (ago ? ago + '일 전' : '오늘'))) : '등록된 방송 없음',
       streamIcon: stream ? ICON[platform(stream)] : '',
       streamHref: stream || '#', streamCta: live ? '방송 보러가기 →' : '방송국 가기 →',
       links: [
-        me.chzzk && { label: 'CHZZK', handle: live && /chzzk/.test(live) ? '지금 방송 중' : '치지직 채널', href: live && /chzzk/.test(live) ? live : me.chzzk, icon: ICON.CHZZK, live: !!live && /chzzk/.test(live) },
-        me.soop && { label: 'SOOP', handle: live && !/chzzk/.test(live) ? '지금 방송 중' : 'SOOP 방송국', href: live && !/chzzk/.test(live) ? live : me.soop, icon: ICON.SOOP, live: !!live && !/chzzk/.test(live) },
+        ...[
+          me.chzzk && { label: 'CHZZK', handle: live && /chzzk/.test(live) ? '지금 방송 중' : '치지직 채널', href: live && /chzzk/.test(live) ? live : me.chzzk, icon: ICON.CHZZK, live: !!live && /chzzk/.test(live), main: me.chzzk === main },
+          me.soop && { label: 'SOOP', handle: live && !/chzzk/.test(live) ? '지금 방송 중' : 'SOOP 방송국', href: live && !/chzzk/.test(live) ? live : me.soop, icon: ICON.SOOP, live: !!live && !/chzzk/.test(live), main: me.soop === main },
+        ].sort((x, y) => !!(y && (y.live || (!live && y.main))) - !!(x && (x.live || (!live && x.main)))),   // the channel in use now first
         me.youtube && { label: 'YouTube', handle: '@' + handleOf(me.youtube).replace(/^@/, ''), href: me.youtube, icon: ICON.YouTube },
         me.discord && { label: 'Discord', handle: '디스코드 서버', href: me.discord, icon: ICON.Discord },
         me.instagram && { label: 'Instagram', handle: '@' + handleOf(me.instagram), href: me.instagram, icon: ICON.Instagram },

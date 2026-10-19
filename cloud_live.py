@@ -174,9 +174,11 @@ def main():
 
     if '--fast' in sys.argv and prev:   # live-score push: reuse the stream list and replays from the last deploy (seconds saved)
         data['live'], data['ytLive'] = prev.get('live', {}), prev.get('ytLive')
+        data['lastStream'] = prev.get('lastStream', {})
         vods = {m['day']: m['vod'] for m in prev.get('matches', []) if m.get('vod')}
     else:
         data['live'] = b.live_status(data['players'])
+        data['lastStream'] = b.last_streams(data['players'], (prev or {}).get('lastStream'))   # SOOP or CHZZK: whichever streamed last
         data['ytLive'] = b.yt_live((prev or {}).get('ytLive'), data['matches'], data.get('stageNo'))
         vods = b.soop_vods(data['matches'], data.get('stageNo'), data.get('year'))
     for m in data['matches']:

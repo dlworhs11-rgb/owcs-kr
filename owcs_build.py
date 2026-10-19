@@ -17,7 +17,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.environ.get('OWCSKR_DATA') or os.path.join(HERE, 'OWCSKR', 'data')
 KST = datetime.timezone(datetime.timedelta(hours=9))
 sys.path.insert(0, HERE)  # python -I leaves the script folder off the path
-from owcs_cloud import soop_vods, live_status, upcoming_ics, write_ics, ICS_FILE  # noqa: E402,F401
+from owcs_cloud import soop_vods, live_status, last_streams, upcoming_ics, write_ics, ICS_FILE  # noqa: E402,F401
 # The stage on the page (regular season + its playoffs) is picked from the collector data, see find_stages().
 # OWCS_STAGE=2026/3 pins one stage by hand.
 
@@ -820,7 +820,7 @@ def build(check_live=False, prev_live=None, out=HERE, records=True):
                 stageEnd=max([stage['end'].isoformat()] + [m['day'] for m in matches]),
                 playoffs=playoffs, lcq=lcq,
                 format=f'1–{playoffs}위 플레이오프 시드 결정전 · {playoffs + 1}–{lcq}위 라스트 찬스 예선 · 전 경기 3선승제',
-                teams=teams, players=players, matches=matches, live=live,
+                teams=teams, players=players, matches=matches, live=live, lastStream=last_streams(players) if check_live else {},
                 history=history, bracket=bracket, lastStage=last or dict(label='', title='', champion=None, columns=[]), pastStages=past,
                 tiebreak='승수가 같으면 세트 득실 → 맞대결 성적 순으로 순위를 정해요.',
                 standings=standings, staff=stage_staff(stage['po']),

@@ -131,8 +131,8 @@ footer{padding:32px 0 56px;background:#0B0B0F;color:#8A8A93;font-size:13px;line-
     function platform(p) {
     var live = D.live[p.id];
     if (live) return { cls: /chzzk/.test(live) ? 'chzzk' : 'soop', label: /chzzk/.test(live) ? 'CHZZK' : 'SOOP', href: live };   // live shows on the photo ring; the button keeps its platform colour
-    if (p.soop && !p.chzzk) return { cls: 'soop', label: 'SOOP', href: p.soop };
-    if (p.chzzk) return { cls: 'chzzk', label: 'CHZZK', href: p.chzzk };
+    var ls = (D.lastStream || {})[p.id] || {};   // both channels: the one with the latest broadcast, SOOP on a tie
+    if (p.chzzk && (!p.soop || (ls.chzzk || '') > (ls.soop || ''))) return { cls: 'chzzk', label: 'CHZZK', href: p.chzzk };
     if (p.soop) return { cls: 'soop', label: 'SOOP', href: p.soop };
     return { cls: 'none', label: '채널 없음', href: '' };
   }

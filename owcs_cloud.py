@@ -73,6 +73,37 @@ def live_status(players):
     return live
 
 
+def last_streams(players, prev=None):
+    """players with both a SOOP and a CHZZK channel -> {id: {'soop': start, 'chzzk': start}} of their latest broadcast
+    ('YYYY-MM-DD HH:MM:SS', KST). CHZZK lives under 10 minutes are skipped: some players open one only to post
+    'SOOP으로 오세용'. A channel that cannot be read keeps the date from `prev`."""
+    out = {}
+    for p in players:
+        if not (p.get('soop') and p.get('chzzk')):
+            continue
+        d = dict((prev or {}).get(p['id']) or {})
+        try:
+            cid = p['chzzk'].rstrip('/').split('/')[-1]
+            req = urllib.request.Request(f'https://api.chzzk.naver.com/service/v3/channels/{cid}/live-detail', headers={'User-Agent': 'Mozilla/5.0'})
+            c = json.loads(urllib.request.urlopen(req, timeout=8).read()).get('content') or {}
+            o, e = c.get('openDate'), c.get('closeDate')
+            if o and not (e and (datetime.datetime.fromisoformat(e) - datetime.datetime.fromisoformat(o)).total_seconds() < 600):
+                d['chzzk'] = o
+        except Exception:
+            pass
+        try:
+            bid = p['soop'].rstrip('/').split('/')[-1]
+            req = urllib.request.Request(f'https://chapi.sooplive.co.kr/api/{bid}/station', headers={'User-Agent': 'Mozilla/5.0'})
+            s = (json.loads(urllib.request.urlopen(req, timeout=8).read()).get('station') or {}).get('broad_start')
+            if s:
+                d['soop'] = s
+        except Exception:
+            pass
+        out[p['id']] = d
+        time.sleep(0.3)
+    return out
+
+
 YT_JP = 'https://www.youtube.com/@ow_esports_jp/live'
 YT_FEED = 'https://www.youtube.com/feeds/videos.xml?channel_id=UCDMOG3oKXEh5Omaw9FaVqDw'
 
