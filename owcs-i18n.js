@@ -67,7 +67,7 @@
     ['플레이오프 시드 결정전', 'プレーオフシード決定戦', 'playoff seeding'], ['라스트 찬스 예선', 'ラストチャンス予選', 'last chance qualifier'], ['전 경기 3선승제', '全試合3本先取', 'all matches first to 3'],
     // teams
     ['팀 & 선수 라인업', 'チーム & 選手', 'Teams & Rosters'], ['팀 & 선수', 'チーム & 選手', 'Teams & Players'], ['한글 이름', '韓国語名', 'Korean name'], ['최근 경기', '最近の試合', 'Last match'],
-    ['로스터', 'ロスター', 'Roster'], ['공식 X', '公式X', 'Official X'], ['인스타그램', 'Instagram', 'Instagram'], ['지금 방송 중인 선수 없음', '配信中の選手はいません', 'No players live'],
+    ['로스터', 'ロスター', 'Roster'], ['스태프', 'スタッフ', 'Staff'], ['감독', '監督', 'Head coach'], ['코치', 'コーチ', 'Coach'], ['보조 코치', 'アシスタントコーチ', 'Assistant coach'], ['분석관', 'アナリスト', 'Analyst'], ['직책', '役職', 'Role'], ['생년월일', '生年月日', 'Birthday'], ['스태프 문서', 'スタッフ記事', 'Staff page'], ['인물 문서', '人物記事', 'Profile'], ['나무위키', 'NamuWiki', 'NamuWiki'], ['공식 X', '公式X', 'Official X'], ['인스타그램', 'Instagram', 'Instagram'], ['지금 방송 중인 선수 없음', '配信中の選手はいません', 'No players live'],
     // results
     ['이번 시즌 결과', '今シーズンの結果', 'This season'], ['지난 시즌 · 대진표', '過去シーズン · トーナメント表', 'Past seasons · Brackets'], ['대진표', 'トーナメント表', 'Bracket'], ['경우의 수', 'プレーオフ条件', 'Scenarios'],
     ['팀별 승률', 'チーム別勝率', 'Win rates'], ['지난 경기 검색', '過去の試合を検索', 'Search past matches'], ['팀 약칭·이름으로 검색 · 두 팀은 쉼표로 구분', 'チーム略称・名前で検索 · 2チームはカンマ区切り', 'Search by team · separate two teams with a comma'],
@@ -177,6 +177,7 @@
     [/^(\d+)회$/, J ? '$1回' : '$1×'],
     [/^(\d+)명$/, J ? '$1人' : '$1'],
     [/^로스터 (\d+)명$/, J ? 'ロスター $1人' : 'Roster · $1'],
+    [/^스태프진 (\d+)명$/, J ? 'スタッフ $1人' : 'Staff · $1'],
     [/^● 방송 중 (\d+)명$/, J ? '● 配信中 $1人' : '● $1 live'],
     [/^지금 방송 중인 선수 (\d+)명$/, J ? '配信中の選手 $1人' : '$1 players live now'],
     [/^(SOOP|CHZZK) 방송 중 ↗$/, J ? '$1 配信中 ↗' : '$1 live ↗'],
@@ -251,7 +252,9 @@
   function doEl(el) {
     for (var i = 0; i < ATTRS.length; i++) {
       var v = el.getAttribute && el.getAttribute(ATTRS[i]);
-      if (v && HANGUL.test(v) && lang !== 'ko') el.setAttribute(ATTRS[i], tr(v));
+      if (!v || !HANGUL.test(v) || lang === 'ko') continue;
+      var t = tr(v);   // write only on change: an unchanged write still fires the observer and loops forever
+      if (t !== v) el.setAttribute(ATTRS[i], t);
     }
   }
   function walk(root) {
