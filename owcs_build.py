@@ -862,6 +862,135 @@ def seeding_of(matches, standings, playoffs):
     return rank_by(rec.values(), games, [s['a'] for s in standings])
 
 
+# international events of the season (after a Korea stage ends the site follows these, see owcs-phase.js)
+INTL_EVENTS = [('Champions Clash', 'cc', '챔피언스 클래시'), ('Midseason Championship', 'msc', '미드시즌 챔피언십'),
+               ('World Finals', 'wf', '월드 파이널')]
+INTL_ROUND = {'opening matches': '개막전', 'upper bracket finals': '승자전', 'lower bracket finals': '패자전',
+              'seeding decider matches': '최종전', 'elimination matches': '패자전', 'decider matches': '최종전',
+              'grand final': '결승', 'grand finals': '결승', 'final': '결승', 'third place match': '3위 결정전'}
+INTL_WORDS = [('upper bracket', '승자조'), ('lower bracket', '패자조'), ('quarterfinals', '8강'), ('quarterfinal', '8강'),
+              ('semifinals', '4강'), ('semifinal', '4강'), ('finals', '결승'), ('final', '결승')]
+
+
+def ko_round(r):
+    """'Upper Bracket Quarterfinals' -> '승자조 8강', 'Lower Bracket Round 1' -> '패자조 1라운드'"""
+    low = (r or '').lower().strip()
+    if low in INTL_ROUND:
+        return INTL_ROUND[low]
+    for en, ko in INTL_WORDS:
+        low = low.replace(en, ko)
+    low = re.sub(r'round (\d+)', lambda x: x.group(1) + '라운드', low)
+    return low if re.fullmatch(r'[가-힣0-9 ]*', low) else r
+
+
+def intl_layout(comp):
+    """Liquipedia match idx -> (section, round) of an international event page: the section is the deepest heading
+    under ==Results== ('Group A', 'Playoffs'), the round the <!-- comment --> above the match"""
+    out, sec, rnd, idx, on = {}, None, None, 0, False
+    for t in re.finditer(r'^(==+)\s*(.*?)\s*\1\s*$|<!--\s*(.*?)\s*-->|\{\{\s*Match\s*(?=[|}\n])', lp_wiki(comp), re.M):
+        if t.group(1):
+            h = re.sub(r'\{\{Stage\|([^}]*)\}\}', r'\1', t.group(2))
+            if len(t.group(1)) == 2:
+                on = h.lower() == 'results'
+            if on and len(t.group(1)) > 2:
+                sec, rnd = h, None
+        elif t.group(3) is not None:
+            rnd = t.group(3)
+        else:
+            out[idx] = (sec or '', rnd or '')
+            idx += 1
+    return out
+
+
+def wiki_field(comp, key):
+    r = re.search(r'^\|' + key + r'=([^\n|]*)', lp_wiki(comp), re.M)
+    return r.group(1).strip() if r else ''
+
+
+def logo_slug(name):
+    return re.sub(r'[^a-z0-9]+', '-', name.lower()).strip('-')
+
+
+def intl_logo(name):
+    """(light, dark) of a foreign team, from assets/logos-intl/<slug>[-dark].<ext> (fetch_intl_logos.py); dark falls back to light"""
+    d = os.path.join(HERE, 'assets', 'logos-intl')
+    files = os.listdir(d) if os.path.isdir(d) else []
+    pick = lambda stem: next(('assets/logos-intl/' + f for f in files if os.path.splitext(f)[0] == stem), '')
+    light, dark = pick(logo_slug(name)), pick(logo_slug(name) + '-dark')
+    return light, dark or light
+
+
+def intl_team(name, reg):
+    """short name of a team at an international event: the Korea entry for Korean teams, else Liquipedia's short name;
+    kept apart from TEAMS / NEW_TEAMS so foreign teams never show up in the Korea team list or calendar files"""
+    if name in TEAMS:
+        return TEAMS[name]['a']
+    if name not in reg:
+        taken = {t['a'] for t in TEAMS.values()} | set(reg.values())
+        a = intl_shorts().get(name) or lp_short(name) or abbrev(name)
+        base, i = a, 2
+        while a in taken:
+            a, i = f'{base}{i}', i + 1
+        reg[name] = a
+    return reg[name]
+
+
+def intl_shorts():
+    """Liquipedia short names of foreign teams (TL, WBG), saved by fetch_intl_logos.py"""
+    f = os.path.join(HERE, 'assets', 'logos-intl', 'teams.json')
+    return json.load(open(f, encoding='utf-8')) if os.path.exists(f) else {}
+
+
+def intl_team_info(name, reg):
+    """team card of an international event: Korea teams keep their site logos, foreign teams the Liquipedia ones"""
+    if name in TEAMS:
+        t, lg = TEAMS[name], TEAMS[name]['logo']
+        return dict(a=t['a'], n=name, ko=t['ko'], kr=True, color=t['color'], logo='assets/logos2/' + lg[0], logoDark='assets/logos2/' + lg[1])
+    light, dark = intl_logo(name)
+    return dict(a=intl_team(name, reg), n=name, ko=name, kr=False, color=NEW_COLOR, logo=light, logoDark=dark)
+
+
+def build_intl(year):
+    """the season's international events from the collector's Liquipedia pages (main page = playoffs, '/Group Stage'):
+    the same match shape as the Korea matches (maps, bans, scores), times in KST, Korean teams flagged"""
+    events, reg = [], {}
+    for name, key, ko in INTL_EVENTS:
+        comp = f'OWCS {year}/{name}'
+        sdate, edate = wiki_field(comp, 'sdate'), wiki_field(comp, 'edate')
+        if not sdate and not lp_page(comp):
+            continue
+        ms, seen, names = [], set(), {t.lower(): t for t in TEAMS}
+        for sub, part in ((comp + '/Group Stage', 'g'), (comp, 'p')):
+            lay, bo = intl_layout(sub), None
+            for m in sorted(lp_page(sub), key=lambda x: x['idx']):   # page order: a best-of carries on until the next one
+                bo = m.get('bestof') or bo
+                sec, rnd = lay.get(m['idx'], ('', ''))
+                if not m.get('date'):
+                    continue
+                dt = datetime.datetime.fromisoformat(m['date']).astimezone(KST)
+                t1, t2 = (names.setdefault((t or '').lower(), t) if is_team(t) else 'TBD' for t in (m['team1'], m['team2']))   # one spelling per team
+                for t in (t1, t2):
+                    if is_team(t):
+                        seen.add(t)
+                maps = [dict(no=mp['n'], map=mp['map'], mode=MODE_KO.get(mp.get('mode'), mp.get('mode') or ''),
+                             winner={1: 'a', 2: 'b'}.get(mp.get('winner')), sa=mp.get('score1'), sb=mp.get('score2'),
+                             bans=[dict(t=s, h=h, code=hero_code(h)) for s, h in (('a', (mp.get('bans') or {}).get('t1')), ('b', (mp.get('bans') or {}).get('t2'))) if h],
+                             banFirst={1: 'a', 2: 'b'}.get(mp.get('banstart')), src='liquipedia')
+                        for mp in m.get('maps') or [] if mp.get('map')]
+                ms.append(dict(id=f'{year}{key}-{part}{m["idx"]}', part='group' if part == 'g' else 'playoffs',
+                               section=sec if part == 'g' else '플레이오프', round=ko_round(rnd),
+                               date=dt.isoformat(), day=dt.date().isoformat(), time=dt.strftime('%H:%M'),
+                               a=intl_team(t1, reg) if is_team(t1) else 'TBD', b=intl_team(t2, reg) if is_team(t2) else 'TBD',
+                               sa=m.get('score1'), sb=m.get('score2'), played=bool(m.get('played')), live=False,
+                               bo=bo or 5, maps=maps, phase='intl'))
+        ms.sort(key=lambda x: x['date'])
+        days = [x['day'] for x in ms]
+        events.append(dict(key=f'{year}{key}', name=f'OWCS {year} {name}', ko=f'{year} {ko}', city=wiki_field(comp, 'city'),
+                           start=sdate or (min(days) if days else ''), end=edate or (max(days) if days else ''),
+                           teams=[intl_team_info(t, reg) for t in sorted(seen)], matches=ms))
+    return events
+
+
 def build(check_live=False, prev_live=None, out=HERE, records=True):
     """owcs-data.js + calendar files into `out`; records = also write 기록/<date>.md (PC)"""
     with open(os.path.join(HERE, 'data', 'socials.json'), encoding='utf-8') as f:
@@ -917,7 +1046,7 @@ def build(check_live=False, prev_live=None, out=HERE, records=True):
                 playoffs=playoffs, lcq=lcq,
                 format=f'1–{playoffs}위 플레이오프 시드 결정전 · {playoffs + 1}–{lcq}위 라스트 찬스 예선 · 전 경기 3선승제',
                 teams=teams, players=players, matches=matches, live=live, lastStream=last_streams(players) if check_live else {},
-                history=history, bracket=bracket, lastStage=last or dict(label='', title='', champion=None, columns=[]), pastStages=past,
+                history=history, intl=build_intl(stage['year']), bracket=bracket, lastStage=last or dict(label='', title='', champion=None, columns=[]), pastStages=past,
                 tiebreak='승수가 같으면 세트 득실 → 맞대결 성적 순으로 순위를 정해요.',
                 standings=standings, staff=stage_staff(stage['po']),
                 sources='데이터: Liquipedia (CC-BY-SA 3.0)')
