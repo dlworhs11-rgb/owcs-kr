@@ -41,7 +41,7 @@
 .m{position:relative;background:var(--b-card);border:1px solid var(--b-line);border-radius:10px;min-width:0}
 .m.live{border:2px solid #D92D20}
 .m.next{border:2px solid var(--b-ac)}
-.mh{display:flex;justify-content:space-between;gap:4px;padding:3px 7px;font-size:10.5px;color:var(--b-mute);border-bottom:1px solid var(--b-line);white-space:nowrap;overflow:hidden}
+.mh{display:flex;justify-content:space-between;gap:4px;padding:3px 7px;font-size:11px;color:var(--b-mute);border-bottom:1px solid var(--b-line);white-space:nowrap;overflow:hidden}
 .mh em{font-style:normal;font-weight:800;color:#D92D20}
 .r{display:grid;grid-template-columns:16px minmax(0,1fr) auto;align-items:center;gap:5px;height:27px;padding:0 7px}
 .r+.r{border-top:1px solid var(--b-line)}
@@ -87,7 +87,7 @@
 .cw .ck{display:inline-block;height:24px;line-height:24px;padding:0 10px;border-radius:999px;background:var(--b-ac2);color:#0B0B0F;font-size:12px;font-weight:800;letter-spacing:.04em}
 .cw .cn{font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:800;font-size:38px;line-height:1;margin:6px 0 4px;word-break:keep-all}
 .cw .cs{font-size:14px;font-weight:700;opacity:.85}
-.wt{display:inline-block;margin-left:6px;height:18px;line-height:18px;padding:0 6px;border-radius:999px;background:var(--b-ac2);color:#0B0B0F;font-size:10.5px;font-weight:800;vertical-align:1px}
+.wt{display:inline-block;margin-left:6px;height:18px;line-height:18px;padding:0 6px;border-radius:999px;background:var(--b-ac2);color:#0B0B0F;font-size:11px;font-weight:800;vertical-align:1px}
 @container (min-width:640px){.cw .cb{padding:28px 30px}.cw:not(.nop) .cb{min-height:240px}.cw .cb i{width:88px;height:88px}.cw .cn{font-size:60px}.cw .cs{font-size:16px}}
 .fin{font-size:11.5px;color:var(--b-mute);margin:10px 2px 0;line-height:1.5}
 @container (min-width:640px){.r{height:32px;grid-template-columns:20px minmax(0,1fr) auto;gap:7px;padding:0 10px}.r i{width:20px;height:20px}.r b{font-size:14.5px}.r s{font-size:20px}.mh{font-size:11.5px;padding:4px 10px}.tree{gap:0 26px}.link .m::after{right:-14px;width:13px}.into .m::before{left:-14px;width:13px}.merge .cm::after{right:-14px}}
