@@ -52,11 +52,6 @@ h1{font-size:clamp(56px,8vw,96px);line-height:.86;margin:12px 0 0}
 /* tabs: 시즌 일정 / 시드·LCQ / 플레이오프 / 국제대회. The one for now opens first and keeps a lime dot */
 .row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px 16px;margin-bottom:18px}
 .tabs{display:flex;gap:8px;min-width:0;max-width:100%;overflow-x:auto;scrollbar-width:none}
-/* team filter folded into one button: 팀 고르기 ▾ opens the logos; once picked it reads [logo] T1 경기만 × */
-.tp{flex:none;display:inline-flex;align-items:center;gap:7px;height:40px;padding:0 14px;border-radius:12px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font:inherit;font-size:14px;font-weight:700;cursor:pointer}
-.tp i.lg{width:22px;height:22px}
-.tp .x{font-size:16px;line-height:1;color:var(--mute);margin-left:2px}
-.tp.on{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
 .bar[hidden]{display:none}
 .tabs::-webkit-scrollbar{display:none}
 .tab{flex:none;display:inline-flex;align-items:center;gap:8px;height:46px;padding:0 20px;border-radius:12px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font:inherit;font-size:16px;font-weight:800;cursor:pointer;white-space:nowrap}
@@ -130,7 +125,6 @@ footer{padding:32px 0 56px;background:#0B0B0F;color:#8A8A93;font-size:13px;line-
   .wrap{padding:0 16px}
   .row{margin-bottom:14px}
   .tabs{gap:6px;margin:0 -16px;padding:0 16px;max-width:none;width:calc(100% + 32px)}
-  .tp{height:36px;font-size:13px}
   .tab{height:42px;padding:0 15px;font-size:15px}
   .ib{padding:18px 16px;border-radius:18px;margin-bottom:18px}
   .ib .n{font-size:34px}
@@ -181,9 +175,8 @@ html[data-owcs-dark] .eyebrow,html[data-owcs-dark] .day.today .dd b{color:#B89BF
   </div>
   <div class="row">
     <div class="tabs" id="tabs" role="tablist"></div>
-    <button class="tp" id="tp" aria-expanded="false"></button>
   </div>
-  <div class="bar" id="bar" hidden>
+  <div class="bar" id="bar">
     <div class="chips" id="chips"></div>
   </div>
   <div id="list"></div>
@@ -384,24 +377,15 @@ html[data-owcs-dark] .eyebrow,html[data-owcs-dark] .day.today .dd b{color:#B89BF
       if (em) em.hidden = any || !ws.length;
     });
   }
-  var tp = document.getElementById('tp'), bar = document.getElementById('bar');
   function setTeam(t) {
     F.team = t;
     try { sessionStorage.setItem('owcs-sched-team', F.team); } catch (e2) {}
-    tp.classList.toggle('on', !!t);
-    tp.innerHTML = t ? logo(t) + esc(t) + ' 경기만<span class="x" aria-label="전체 팀 보기">×</span>' : '팀 고르기 ▾';
     apply();
   }
-  function fold(open) { bar.hidden = !open; tp.setAttribute('aria-expanded', open); }
-  tp.onclick = function (e) {
-    if (F.team && e.target.closest('.x')) { setTeam(''); fold(false); return; }
-    fold(bar.hidden);
-  };
   chips.onclick = function (e) {
     var b = e.target.closest('button'); if (!b) return;
     var t = b.getAttribute('data-t');
     setTeam(F.team === t ? '' : t);
-    fold(false);
   };
   show(cur);
   setTeam(F.team);

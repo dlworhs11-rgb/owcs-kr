@@ -79,8 +79,16 @@ def node(*args):
         raise RuntimeError(f"node {' '.join(args)} failed: {(r.stderr or r.stdout).strip()[-300:]}")
 
 
+def mark_fetched():
+    if os.environ.get('GITHUB_OUTPUT'):   # the workflow saves the Liquipedia cache only when this run read something new
+        with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+            print('fetched=true', file=f)
+
+
 def ensure_wiki(titles):
-    """Liquipedia pages the build reads but the collector does not re-fetch (an older stage's playoff page)"""
+    """Liquipedia pages the build reads but the collector does not re-fetch (an older stage's playoff page).
+    A page read here is saved with the cache too (10-20: it was not, so every run asked again until Liquipedia
+    answered 429 and the site lost its brackets); on a 429 the rest wait for the next run instead of asking again"""
     for t in titles:
         f = cache_file(t)
         if os.path.exists(f):
@@ -95,8 +103,11 @@ def ensure_wiki(titles):
                 with open(f, 'w', encoding='utf-8') as fh:
                     fh.write(text)
                 print('fetched', t)
+                mark_fetched()
         except Exception as e:
             print('not fetched:', t, e)
+            if getattr(e, 'code', None) == 429:
+                return
         time.sleep(2.2)   # Liquipedia API terms: at most 1 request / 2 s
 
 
@@ -124,9 +135,7 @@ def collect(prev, now, force=False):
         with open(stamp, 'w') as f:
             f.write(str(now.timestamp()))
         print(f'Liquipedia re-read ({len(titles)} pages, limit {limit // 60} min)')
-        if os.environ.get('GITHUB_OUTPUT'):   # the workflow saves the Liquipedia cache only after a re-read
-            with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
-                print('fetched=true', file=f)
+        mark_fetched()
     else:
         print(f'Liquipedia copy is {int(age // 60)} min old (limit {limit // 60} min): not re-read')
     read_replays()
@@ -196,6 +205,18 @@ def main():
         except Exception:
             traceback.print_exc()
             print('! build failed: keeping the deployed data')
+    if data is not None and prev and prev.get('stage') == data.get('stage'):
+        # a Liquipedia page missing this run (429): keep the last deploy's brackets and playoff matches, not blank ones
+        for k in ('bracket', 'lastStage', 'pastStages'):
+            if not data.get(k) or (k == 'lastStage' and not data[k].get('columns')):
+                if prev.get(k):
+                    data[k] = prev[k]
+                    print('! kept from the last deploy:', k)
+        ids = {m['id'] for m in data['matches']}
+        lost = [m for m in prev.get('matches', []) if m['id'] not in ids]
+        if lost:
+            data['matches'] += lost
+            print(f'! kept {len(lost)} matches from the last deploy')
     if data is None:
         data = prev
     if data is None and os.path.exists(os.path.join(HERE, 'owcs-data.js')):
