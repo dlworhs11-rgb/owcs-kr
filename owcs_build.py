@@ -540,12 +540,13 @@ def build_matches(stage):
     out.sort(key=lambda x: (x['date'], x['phase'] != 'lcq'))
     replays = soop_replays(stage['year'])
     for x in out:
-        x['vod'] = soop_vod(replays, x['day'], match_start(x)) or (VOD_LIST if x['played'] else None)
+        x['vod'] = soop_vod(replays, x['day'], *replay_point(x)) or (VOD_LIST if x['played'] else None)
     return out, lives
 
 
 def vod_starts(day):
-    """map 1 ban screens found afterwards in the SOOP replay, for days pick_watch.py did not record: [{teams, banTs}]"""
+    """read afterwards in the SOOP replay, per match: the map 1 ban screen (for days pick_watch.py did not record)
+    and the first frame whose HUD shows heroes: [{teams, banTs, heroTs}]"""
     f = os.path.join(HERE, 'data', 'vod_starts.json')
     if not os.path.exists(f):
         return []
@@ -560,6 +561,15 @@ def match_start(x):
         if s.get('game') == 1 and s.get('banTs') and {short(t) for t in s.get('teams') or []} == {x['a'], x['b']}:
             return s['banTs']
     return None if x.get('tbd') else datetime.datetime.fromisoformat(x['date']).timestamp()
+
+
+def replay_point(x):
+    """(epoch seconds, lead) where the replay link opens: 30 s before map 1's first heroes when the replay was read
+    (user, 2026-10-20: not at the ban screen), else 90 s before the match start"""
+    for s in vod_starts(x['day']):
+        if s.get('heroTs') and {short(t) for t in s['teams']} == {x['a'], x['b']}:
+            return s['heroTs'], 30
+    return match_start(x), 90
 
 
 def potm_awards():
@@ -746,9 +756,9 @@ def build_history(stages, year):
         stage = '스테이지 ' + c.split('Stage ')[1].split('/')[0] + (' 플레이오프' if c.endswith('/Korea') else '')
         start = week0.get(c.replace('/Regular Season', ''))
         a, b, day = short(m['team1']), short(m['team2']), dt.date().isoformat()
-        t0 = match_start(dict(day=day, a=a, b=b, date=dt.isoformat())) if dt.hour or dt.minute else None
+        t0 = replay_point(dict(day=day, a=a, b=b, date=dt.isoformat())) if dt.hour or dt.minute else (None,)
         out.append(dict(date=day, stage=stage, week=((dt.date() - start).days // 7 + 1) if start else None,
-                        a=a, b=b, sa=m['score1'], sb=m['score2'], vod=soop_vod(replays, day, t0),
+                        a=a, b=b, sa=m['score1'], sb=m['score2'], vod=soop_vod(replays, day, *t0),
                         maps=history_maps(m)))
     out.sort(key=lambda x: x['date'], reverse=True)
     return out

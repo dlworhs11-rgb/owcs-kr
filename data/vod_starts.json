@@ -5,21 +5,24 @@
     "Cheeseburger",
     "Poker Face"
    ],
-   "banTs": 1790928810
+   "banTs": 1790928810,
+   "heroTs": 1790928936
   },
   {
    "teams": [
     "Team Falcons",
     "ZETA DIVISION"
    ],
-   "banTs": 1790934285
+   "banTs": 1790934285,
+   "heroTs": 1790934337
   },
   {
    "teams": [
     "SEIJI ESPORTS",
     "T1"
    ],
-   "banTs": 1790940120
+   "banTs": 1790940120,
+   "heroTs": 1790940680
   }
  ],
  "2026-10-03": [
@@ -28,21 +31,24 @@
     "Cheeseburger",
     "ZANSIDE GAMING"
    ],
-   "banTs": 1791008040
+   "banTs": 1791008040,
+   "heroTs": 1791008244
   },
   {
    "teams": [
     "T1",
     "ZETA DIVISION"
    ],
-   "banTs": 1791012927
+   "banTs": 1791012927,
+   "heroTs": 1791012977
   },
   {
    "teams": [
     "Crazy Raccoon",
     "O2 Blast"
    ],
-   "banTs": 1791019926
+   "banTs": 1791019926,
+   "heroTs": 1791019996
   }
  ],
  "2026-10-04": [
@@ -51,21 +57,24 @@
     "O2 Blast",
     "SEIJI ESPORTS"
    ],
-   "banTs": 1791094275
+   "banTs": 1791094275,
+   "heroTs": 1791094375
   },
   {
    "teams": [
     "Crazy Raccoon",
     "ZANSIDE GAMING"
    ],
-   "banTs": 1791101025
+   "banTs": 1791101025,
+   "heroTs": 1791101229
   },
   {
    "teams": [
     "Team Falcons",
     "Poker Face"
    ],
-   "banTs": 1791108207
+   "banTs": 1791108207,
+   "heroTs": 1791108387
   }
  ],
  "2026-10-09": [
@@ -74,21 +83,24 @@
     "Team Falcons",
     "O2 Blast"
    ],
-   "banTs": 1791533997
+   "banTs": 1791533997,
+   "heroTs": 1791534057
   },
   {
    "teams": [
     "Poker Face",
     "T1"
    ],
-   "banTs": 1791538371
+   "banTs": 1791538371,
+   "heroTs": 1791538451
   },
   {
    "teams": [
     "SEIJI ESPORTS",
     "ZETA DIVISION"
    ],
-   "banTs": 1791543687
+   "banTs": 1791543687,
+   "heroTs": 1791543883
   }
  ],
  "2026-10-10": [
@@ -97,21 +109,24 @@
     "SEIJI ESPORTS",
     "ZANSIDE GAMING"
    ],
-   "banTs": 1791612651
+   "banTs": 1791612651,
+   "heroTs": 1791612839
   },
   {
    "teams": [
     "Crazy Raccoon",
     "T1"
    ],
-   "banTs": 1791620286
+   "banTs": 1791620286,
+   "heroTs": 1791620372
   },
   {
    "teams": [
     "Cheeseburger",
     "Team Falcons"
    ],
-   "banTs": 1791627006
+   "banTs": 1791627006,
+   "heroTs": 1791627082
   }
  ],
  "2026-10-11": [
@@ -120,30 +135,102 @@
     "O2 Blast",
     "ZANSIDE GAMING"
    ],
-   "banTs": 1791699117
+   "banTs": 1791699117,
+   "heroTs": 1791699249
   },
   {
    "teams": [
     "Cheeseburger",
     "Crazy Raccoon"
    ],
-   "banTs": 1791707889
+   "banTs": 1791707889,
+   "heroTs": 1791707971
   },
   {
    "teams": [
     "Poker Face",
     "ZETA DIVISION"
    ],
-   "banTs": 1791715092
+   "banTs": 1791715092,
+   "heroTs": 1791715224
+  }
+ ],
+ "2026-10-16": [
+  {
+   "teams": [
+    "Team Falcons",
+    "SEIJI ESPORTS"
+   ],
+   "banTs": 1792138269,
+   "heroTs": 1792138405
+  },
+  {
+   "teams": [
+    "Cheeseburger",
+    "T1"
+   ],
+   "banTs": 1792143921,
+   "heroTs": 1792143995
+  },
+  {
+   "teams": [
+    "O2 Blast",
+    "ZETA DIVISION"
+   ],
+   "banTs": 1792149406,
+   "heroTs": 1792149440
+  }
+ ],
+ "2026-10-17": [
+  {
+   "teams": [
+    "O2 Blast",
+    "Poker Face"
+   ],
+   "banTs": 1792217609,
+   "heroTs": 1792217701
+  },
+  {
+   "teams": [
+    "Crazy Raccoon",
+    "Team Falcons"
+   ],
+   "banTs": 1792226476,
+   "heroTs": 1792226530
+  },
+  {
+   "teams": [
+    "T1",
+    "ZANSIDE GAMING"
+   ],
+   "banTs": 1792231856,
+   "heroTs": 1792231898
   }
  ],
  "2026-10-18": [
   {
    "teams": [
+    "Cheeseburger",
+    "SEIJI ESPORTS"
+   ],
+   "banTs": 1792303926,
+   "heroTs": 1792303960
+  },
+  {
+   "teams": [
+    "Crazy Raccoon",
+    "Poker Face"
+   ],
+   "banTs": 1792308970,
+   "heroTs": 1792309032
+  },
+  {
+   "teams": [
     "ZANSIDE GAMING",
     "ZETA DIVISION"
    ],
-   "banTs": 1792314210
+   "banTs": 1792314210,
+   "heroTs": 1792314267
   }
  ]
 }

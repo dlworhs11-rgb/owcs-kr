@@ -51,9 +51,9 @@ def soop_replays(year):
     return vods
 
 
-def soop_vod(replays, day, start=None):
+def soop_vod(replays, day, start=None, lead=90):
     """SOOP replay url of a Korea match on `day` (YYYY-MM-DD, KST). With the match start (epoch seconds) it is the
-    part of the broadcast holding that moment, opened 90 s before it; without, the first broadcast of that day."""
+    part of the broadcast holding that moment, opened `lead` seconds before it; without, the first broadcast of that day."""
     on_day = sorted((v for v in replays if datetime.datetime.fromtimestamp(v['start'], KST).date().isoformat() == day
                      or datetime.datetime.fromtimestamp(v['end'], KST).date().isoformat() == day), key=lambda v: v['start'])
     if not on_day:
@@ -61,7 +61,7 @@ def soop_vod(replays, day, start=None):
     if start:
         for v in on_day:
             if v['start'] <= start < v['end']:
-                return f"https://vod.sooplive.com/player/{v['no']}?change_second={max(0, int(start - v['start']) - 90)}"
+                return f"https://vod.sooplive.com/player/{v['no']}?change_second={max(0, int(start - v['start']) - lead)}"
     return f"https://vod.sooplive.com/player/{on_day[0]['no']}"
 
 
