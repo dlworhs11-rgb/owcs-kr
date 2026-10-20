@@ -3,11 +3,11 @@
 <head>
 <meta name="description" content="OWCS 코리아 선수 프로필, 개인 방송, 대회 업적, 팀 로스터.">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="OWCS KR">
-<meta property="og:title" content="OWCS KR 선수">
+<meta property="og:site_name" content="OWticker">
+<meta property="og:title" content="OWticker 선수">
 <meta property="og:description" content="OWCS 코리아 선수 프로필, 개인 방송, 대회 업적, 팀 로스터.">
-<meta property="og:url" content="https://dlworhs11-rgb.github.io/owcs-kr/OWCS%20KR%20Player.dc.html">
-<meta property="og:image" content="https://dlworhs11-rgb.github.io/owcs-kr/assets/og-home.jpg">
+<meta property="og:url" content="https://owticker.com/OWCS%20KR%20Player.dc.html">
+<meta property="og:image" content="https://owticker.com/assets/og-owticker.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -65,7 +65,7 @@
 <template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#0B0B0F"/><rect x="38" y="38" width="24" height="24" fill="#C6FF33"/></svg></template>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,800&family=JetBrains+Mono:wght@500;600&display=swap">
 <style>
 body{margin:0;background:#E7E7E2;font-family:'Pretendard Variable',Pretendard,system-ui,sans-serif;color:#0B0B0F;-webkit-font-smoothing:antialiased}
 a{color:#7D39EB}a:hover{color:#0B0B0F}
@@ -84,7 +84,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <div style="display:flex;gap:10px;align-items:center"><span style="background:#0B0B0F;color:#C6FF33;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;padding:4px 10px;border-radius:6px">2e</span><span style="font-size:15px;font-weight:600">선수 상세 · 데스크톱</span></div>
 <div data-screen-label="Player Desktop" style="width:1440px;background:#fff;border-radius:20px;overflow:hidden">
 <header style="display:flex;align-items:center;justify-content:space-between;height:76px;padding:0 56px;border-bottom:1px solid #E6E6E1">
-<a href="OWCS KR Home v6.dc.html" style="display:flex;align-items:center;gap:10px;color:#0B0B0F;text-decoration:none"><div style="width:30px;height:30px;background:#0B0B0F;border-radius:7px;display:grid;place-items:center"><div style="width:10px;height:10px;background:#C6FF33;border-radius:2px"></div></div><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px">OWCS KR</span></a>
+<a href="OWCS KR Home v6.dc.html" style="display:flex;align-items:center;gap:10px;color:#0B0B0F;text-decoration:none"><div style="width:30px;height:30px;background:#0B0B0F;border-radius:7px;display:grid;place-items:center"><div style="width:10px;height:10px;background:#C6FF33;border-radius:2px"></div></div><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px"><span class="owt"><b>OW</b>TICKER</span></span></a>
 <nav style="display:flex;gap:6px">
 <sc-for list="{{ nav }}" as="n" hint-placeholder-count="6"><a href="{{ n.href }}" style="display:flex;align-items:center;height:44px;padding:0 16px;border-radius:999px;font-size:16px;font-weight:600;color:#0B0B0F;text-decoration:none" style-hover="background:#F1F1ED;color:#0B0B0F">{{ n.label }}</a></sc-for>
 </nav>
@@ -144,7 +144,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <div data-screen-label="Player Mobile" style="width:390px;background:#fff;border-radius:36px;overflow:hidden;border:8px solid #0B0B0F">
 <header style="display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 12px 0 8px;border-bottom:1px solid #E6E6E1">
 <a href="OWCS KR Home v6.dc.html" style="width:44px;height:44px;display:grid;place-items:center;color:#0B0B0F;text-decoration:none;font-size:22px">‹</a>
-<span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px">OWCS KR</span>
+<span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px"><span class="owt"><b>OW</b>TICKER</span></span>
 <button style="width:44px;height:44px;border:none;background:transparent;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px"><span style="width:20px;height:2px;background:#0B0B0F"></span><span style="width:20px;height:2px;background:#0B0B0F"></span></button>
 </header>
 <section style="padding:20px 20px 32px;background:#F6F6F3">
@@ -264,7 +264,7 @@ class Component extends DCLogic {
         fs: nameFs(p.id, 172), fsM: nameFs(p.id, 136), mbg: t.color, obg: '#F2F2EE',
         photo: p.photo ? "center 15%/cover no-repeat url('" + p.photo + "'), " + (p.id === me.id ? t.color : '#F2F2EE') : (p.id === me.id ? 'repeating-linear-gradient(135deg,rgba(255,255,255,.18) 0 6px,rgba(255,255,255,.06) 6px 12px)' : 'repeating-linear-gradient(135deg,#E2E2DD 0 6px,#F2F2EE 6px 12px)'),
         note: p.photo ? '' : p.id.slice(0, 2).toUpperCase() })),
-      footNote: '비공식 팬 사이트입니다. Blizzard Entertainment 및 OWCS 공식 운영과 관련이 없습니다. ' + (D.sources || ''),
+      footNote: '비공식 팬 사이트입니다. Blizzard Entertainment 및 WDG와 관련이 없습니다. ' + (D.sources || ''),
     };
   }
 }

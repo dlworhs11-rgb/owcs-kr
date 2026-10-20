@@ -12,8 +12,8 @@
   const WIN_AT = Object.fromEntries([...['Antarctic Peninsula', 'Busan', 'Ilios', 'Lijiang Tower', 'Nepal', 'Oasis', 'Samoa'].map((n) => [n, 2]),
     ...['New Junk City', 'Suravasa', 'Aatlis'].map((n) => [n, 3])]);   // first to this many wins the map
   const MAP_HAVE = 'antarctic anubis atlis blizzard-world busan circuit-royal colosseo dorado eichenwalde esperanca gibraltar gridsbolten hanaoka havana hollywood ilios junkertown kings-row lijiang-tower lunasapphire midtown nepal neon-junction new-junk-city new-queen-street numbani oasis paraiso rialto route66 samoa shambali suravasa'.split(' ');
-  const mapBg = (name) => { const k0 = deaccent(name).toLowerCase().replace(/[.:']/g, '').trim().replace(/\s+/g, '-'); const k = MAP_FILE[k0] || k0;
-    return MAP_HAVE.includes(k) ? "linear-gradient(90deg, #15151B 0, #15151B calc(100% - 330px), rgba(21,21,27,.3) calc(100% - 140px), rgba(21,21,27,.25) 100%), url('assets/maps/" + k + ".webp') right center / auto 100% no-repeat, #15151B" : 'transparent'; };
+  const mapBg = (name, short) => { const k0 = deaccent(name).toLowerCase().replace(/[.:']/g, '').trim().replace(/\s+/g, '-'); const k = MAP_FILE[k0] || k0;
+    return MAP_HAVE.includes(k) ? "linear-gradient(90deg, #15151B 0, #15151B calc(100% - " + (short ? 215 : 330) + "px), rgba(21,21,27,.3) calc(100% - " + (short ? 90 : 140) + "px), rgba(21,21,27,.25) 100%), url('assets/maps/" + k + ".webp') right center / auto 100% no-repeat, #15151B" : 'transparent'; };
   const heroName = (h) => { const k = (h || '').toLowerCase(), en = (h || '').replace(/\b\w/g, (c) => c.toUpperCase()); return HERO_KO[k] && !(window.OWCSi18n && window.OWCSi18n.lang !== 'ko') ? HERO_KO[k] + ' · ' + en : en; };
   const pad = (n) => String(n).padStart(2, '0');
   // push maps report distance in metres; everything else is a round count
@@ -48,7 +48,7 @@
         winner: SP ? '?' : (w || '–'), wlogo: SP || !w ? '' : logoOf(w), score: SP || !w ? '' : score,
         // the phone row shows the winner's number in lime and the loser's in grey (winner's number first)
         scoreHi: SP || !w || !score ? '' : score.split(' : ')[0], scoreLo: SP || !w || !score ? '' : score.split(' : ')[1],
-        done: !!w || m.st === 'done', recording, bg: mapBg(x.map),
+        done: !!w || m.st === 'done', recording, bg: mapBg(x.map), bgS: mapBg(x.map, true),
         chev: open ? '−' : '+', isOpen: open, showBans: open && showBans && x.bans.length > 0, showComps: open && comps.length > 0,
         showRec: open && !comps.length, comps,
         recNote: recording ? '기록 중이에요. 세트가 끝나면 양 팀 조합이 올라와요.' : '이 세트의 첫 조합 기록이 아직 없어요.',

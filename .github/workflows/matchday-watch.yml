@@ -30,7 +30,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           left() {
-            curl -s "https://dlworhs11-rgb.github.io/owcs-kr/owcs-data.js?t=$(date +%s)" | python3 -c '
+            curl -s "https://owticker.com/owcs-data.js?t=$(date +%s)" | python3 -c '
           import sys, json, datetime
           s = sys.stdin.read(); d = json.loads(s[s.index("{"):s.rindex("}") + 1])
           kst = datetime.timezone(datetime.timedelta(hours=9)); now = datetime.datetime.now(kst)

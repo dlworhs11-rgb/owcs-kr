@@ -57,7 +57,10 @@
     '}'
   ].join('\n');
   var hst = document.createElement('style');
-  hst.textContent = centre + '\n' + hw;
+  // wordmark: italic caps, OW in lime (darker lime on the light header so it stays readable)
+  var owt = '.owt{font-style:italic;letter-spacing:.02em;padding-right:.06em}.owt b{font-weight:inherit;color:var(--owt,#6E8F14)}' +
+    'html[data-owcs-dark] .owt b{color:#C6FF33}';
+  hst.textContent = centre + '\n' + hw + '\n' + owt;
   (document.head || document.documentElement).appendChild(hst);
   var css = HOME ? '' : [
     '@media (min-width:900px){',
@@ -301,7 +304,7 @@
     var m = document.createElement('div');
     m.setAttribute('data-owcs-mtop', '');
     var dark = isDark();
-    m.innerHTML = '<div class="hd"><div class="row"><a class="brand" href="OWCS KR Home v6.dc.html"><span class="mk"><i></i></span><span class="wm">OWCS KR</span></a>' +
+    m.innerHTML = '<div class="hd"><div class="row"><a class="brand" href="OWCS KR Home v6.dc.html"><span class="mk"><i></i></span><span class="wm"><span class="owt"><b>OW</b>TICKER</span></span></a>' +
       '<span class="ic"><button class="hm" aria-label="메뉴"><span></span><span></span></button></span></div>' +
       '<nav>' + T.nav.map(function (l, k) { return '<a href="' + HREFS[k] + '">' + l + '</a>'; }).join('') + '</nav></div>' +
       '<div class="tb">' +
@@ -363,7 +366,7 @@
     if (!HOME) {
       // the wordmark's letter spacing as on the home page (.02em)
       Array.prototype.forEach.call(h.querySelectorAll('span,div'), function (x) {
-        if (!x.children.length && x.textContent.trim() === 'OWCS KR' && x.style.letterSpacing !== '0.56px') x.style.letterSpacing = '0.56px';
+        if (x.classList.contains('owt') && x.parentNode.style.letterSpacing !== '0.56px') x.parentNode.style.letterSpacing = '0.56px';
       });
       placeTicket(h);
       var own = spoilerBtn();
