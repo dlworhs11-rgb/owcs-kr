@@ -60,7 +60,27 @@
   // wordmark: italic caps, OW in lime (darker lime on the light header so it stays readable)
   var owt = '.owt{font-style:italic;letter-spacing:.02em;padding-right:.06em}.owt b{font-weight:inherit;color:var(--owt,#6E8F14)}' +
     'html[data-owcs-dark] .owt b{color:#C6FF33}';
-  hst.textContent = centre + '\n' + hw + '\n' + owt;
+  // shared footer (same as the home page): wordmark + channels | contact | notes, on the paper sheet, a hairline on top
+  var F = 'html body footer.owft';
+  var ft = [
+    F + '{--fi:#0B0B0F;--fm:#55555C;background:transparent !important;color:var(--fi) !important;border:0 !important;border-top:1px solid color-mix(in srgb, var(--fi) 16%, transparent) !important;padding:56px 0 72px;font-size:13px;line-height:1.6}',
+    'html[data-owcs-dark] body footer.owft{--fi:#F2F2F5;--fm:#A3A3AD}',
+    '#dc-root ' + F + '{padding:56px 56px 72px}',
+    F + ' .ft-g{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1.4fr);gap:40px}',
+    F + ' .ft-logo{font-family:var(--disp,"Barlow Condensed"),"Barlow Condensed",sans-serif;font-weight:800;font-size:32px;line-height:1.2}',
+    F + ' .ft-desc{font-size:15px;color:var(--fm);margin-top:10px;max-width:420px}',
+    F + ' .ft-ch{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;margin-top:18px}',
+    F + ' .ft-k{width:100%;font-size:13px;color:var(--fm)}',
+    F + ' .ft-ch a{display:inline-flex;align-items:center;gap:8px;height:40px;color:var(--fi);text-decoration:none;font-size:14px;font-weight:600}',
+    F + ' .ft-ch img{width:28px;height:28px;border-radius:8px}',
+    F + ' .ft-mail{display:block;font-size:15px;color:var(--fi);margin-top:8px;text-decoration:underline}',
+    F + ' .ft-note{font-size:13px;color:var(--fm)}',
+    '@media (max-width:1180px){' + F + ' .ft-g{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px}}',
+    '@media (max-width:899.98px){' + F + ',#dc-root ' + F + '{padding:32px 20px 40px}' + F + ' .wrap{padding:0}' +
+      F + ' .ft-g{display:flex;flex-direction:column;gap:14px}' + F + ' .ft-logo{font-size:26px}' + F + ' .ft-desc{font-size:14px;margin-top:0}' +
+      F + ' .ft-ch{margin-top:2px}' + F + ' .ft-mail{margin-top:4px;font-size:14px}' + F + ' .ft-note{font-size:12px}}'
+  ].join('\n');
+  hst.textContent = centre + '\n' + hw + '\n' + owt + '\n' + ft;
   (document.head || document.documentElement).appendChild(hst);
   var css = HOME ? '' : [
     '@media (min-width:900px){',

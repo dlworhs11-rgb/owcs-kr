@@ -90,7 +90,7 @@
       '@media (max-width:899.98px){' + H + '#dc-root [data-screen-label] > section[data-today]{padding:20px 8px 32px !important}' + H + '[data-tm="light"] section[data-today] [data-tbox]{border-radius:20px !important;padding:22px 10px 26px !important}}',
       H + '[data-tm="light"] section[data-today] [data-tcard] a{color:var(--ink,#0B0B0F) !important;border-color:color-mix(in srgb, var(--ink,#0B0B0F) 25%, transparent) !important}',
       // footer on the sheet: ink text instead of white
-      H + 'footer{color:var(--ink,#0B0B0F) !important;border-top:0 !important}',
+      H + 'footer{color:var(--ink,#0B0B0F) !important;border-top:1px solid color-mix(in srgb, var(--ink,#0B0B0F) 16%, transparent) !important}',
       H + 'footer [style*="color: rgb(255, 255, 255)"]{color:var(--ink,#0B0B0F) !important}',
       H + 'footer [style*="color: rgb(138, 138, 147)"],' + H + 'footer [style*="color: rgb(181, 181, 189)"],' + H + 'footer [style*="color: rgb(201, 201, 209)"]{color:var(--mute,#55555C) !important}'
     ].join('\n');
@@ -117,7 +117,7 @@
       L + '#dc-root [data-screen-label]{background:#F1EDE5 repeating-linear-gradient(135deg, rgba(60,45,25,.045) 0 1px, transparent 1px 11px) fixed !important}',
       L + '#dc-root [data-screen-label] section,' + L + '#dc-root [data-screen-label] footer,' + L + '#dc-root [data-screen-label] > div:first-child,' + L + '#dc-root [data-screen-label] > header{background:transparent !important;background-image:none !important}',
       L + '[data-owcs-bg]::before,' + L + '[data-owcs-bg]::after{display:none !important}',
-      L + 'footer{color:var(--ink,#0B0B0F) !important;border-top:0 !important}',
+      L + 'footer{color:var(--ink,#0B0B0F) !important;border-top:1px solid color-mix(in srgb, var(--ink,#0B0B0F) 16%, transparent) !important}',
       L + 'footer [style*="color: rgb(255, 255, 255)"]{color:var(--ink,#0B0B0F) !important}',
       L + 'footer [style*="color: rgb(138, 138, 147)"],' + L + 'footer [style*="color: rgb(181, 181, 189)"],' + L + 'footer [style*="color: rgb(201, 201, 209)"]{color:var(--mute,#55555C) !important}'
     ].join('\n');
