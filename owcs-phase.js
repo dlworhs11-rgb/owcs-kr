@@ -5,11 +5,25 @@
 //   - home: the standings section (bracket only; the final standings are not shown) moves up
 //     right under TODAY, above the schedule; the final standings follow it, smaller
 // ?phase=po previews it; ?date=YYYY-MM-DD picks the day like the home page does.
+//
+// International mode (owcs-data.js intl[], owcs-intl.js): from 3 days after the Korea stage final (stageEnd) until an
+// international event ends (2026: 11-11 ~ 12-06 World Finals). An event with no Korea stage ending before it starts
+// takes the 3 weeks before its start. Sets html[data-owcs-intl], puts <owcs-intl> at the top of the home page in place
+// of TODAY (the Korea schedule, bracket and standings stay below), the menu item 순위 reads the event name and opens it.
+// ?phase=intl&event=2026msc previews an event; ?date= works as above.
 (function () {
   var D = window.OWCS;
   if (!D || !D.stageRange || !D.stageRange[1]) return;
   var q = new URLSearchParams(location.search);
   var now = q.get('date') ? new Date(q.get('date') + 'T' + (q.get('time') || '12:00') + ':00+09:00').getTime() : Date.now();
+  var dayMs = function (s) { return new Date(s + 'T00:00:00+09:00').getTime(); };
+  var ev = (D.intl || []).filter(function (e) {
+    if (q.get('phase') === 'intl') return e.key === q.get('event') || !q.get('event');
+    if (!e.start || !e.end) return false;
+    var s = dayMs(e.start), from = D.stageEnd && dayMs(D.stageEnd) < s ? dayMs(D.stageEnd) + 3 * 86400e3 : s - 21 * 86400e3;
+    return now >= from && now < dayMs(e.end) + 86400e3;
+  }).pop();
+  if (ev) { intl(ev); return; }
   var rsEnd = new Date(D.stageRange[1] + 'T23:59:59+09:00').getTime();
   var stEnd = new Date((D.stageEnd || D.stageRange[1]) + 'T23:59:59+09:00').getTime();
   var po = q.get('phase') === 'po' || (now > rsEnd && now <= stEnd);
@@ -57,4 +71,53 @@
   function soon() { if (busy) return; busy = true; setTimeout(function () { busy = false; relabel(); }, 30); }
   function start() { relabel(); new MutationObserver(soon).observe(document.body, { childList: true, subtree: true, characterData: true }); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+
+  function intl(e) {
+    var html = document.documentElement, name = e.ko.replace(/^\d{4}\s*/, '');
+    html.setAttribute('data-owcs-intl', e.key);
+    if (window.customElements && !customElements.get('owcs-intl') && !document.querySelector('script[src*="owcs-intl.js"]')) {
+      var sc = document.createElement('script'); sc.src = 'owcs-intl.js?v=' + encodeURIComponent(D.generated || ''); (document.head || html).appendChild(sc);   // only pages in this mode load it
+    }
+    var css = document.createElement('style');
+    css.textContent = 'html[data-owcs-intl] #dc-root [data-today]{display:none !important}' +
+      '[data-owcs-intlsec]{padding:40px 56px 56px;background:var(--paper,#fff)}' +
+      '@media (max-width:899px){[data-owcs-intlsec]{padding:20px 16px 32px}}';
+    (document.head || html).appendChild(css);
+    // home page: one <owcs-intl> per screen (desktop, tablet, phone), right where TODAY was. The design runtime
+    // re-renders, so this re-checks whenever the page changes.
+    function place() {
+      Array.prototype.forEach.call(document.querySelectorAll('#dc-root [data-screen-label] > section[data-today]'), function (t) {
+        var p = t.previousElementSibling;
+        if (p && p.hasAttribute('data-owcs-intlsec')) return;
+        var s = document.createElement('section');
+        s.setAttribute('data-owcs-intlsec', '');
+        s.id = 'intl';
+        s.innerHTML = '<owcs-intl event="' + e.key + '"></owcs-intl>';
+        t.parentNode.insertBefore(s, t);
+      });
+      // menu item 순위 → the event (월드 파이널 …), every page, every language
+      Array.prototype.forEach.call(document.querySelectorAll('a[href*="view=standings"], a[href="standings"]'), function (a) {
+        var w = document.createTreeWalker(a, NodeFilter.SHOW_TEXT), n;
+        while ((n = w.nextNode())) { var k = n.nodeValue.trim(); if (/^(순위|順位|Standings|排名|대진표|トーナメント|Bracket)$/.test(k)) n.nodeValue = n.nodeValue.replace(k, name); }
+      });
+    }
+    function show() {
+      var s = Array.prototype.find.call(document.querySelectorAll('[data-owcs-intlsec]'), function (x) { return x.offsetWidth > 0; });
+      if (s) s.scrollIntoView({ block: 'start' });
+    }
+    // the menu item opens the event: on the home page scroll to it, from other pages land on the home page and scroll
+    document.addEventListener('click', function (ev2) {
+      var a = ev2.target.closest && ev2.target.closest('a[href*="view=standings"], a[href="standings"]');
+      if (!a || !document.querySelector('[data-owcs-intlsec]')) return;
+      ev2.preventDefault(); show();
+    }, true);
+    var busy = false;
+    function start2() {
+      place();
+      new MutationObserver(function () { if (busy) return; busy = true; setTimeout(function () { busy = false; place(); }, 50); })
+        .observe(document.body, { childList: true, subtree: true, characterData: true });
+      if (q.get('view') === 'standings') setTimeout(show, 400);
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start2); else start2();
+  }
 })();

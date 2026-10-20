@@ -932,6 +932,14 @@ def ko_round(r):
     return low if re.fullmatch(r'[가-힣0-9 ]*', low) else r
 
 
+def lp_raw(comp):
+    """data/lp/<slug>.json as the collector wrote it (keeps fields site/matches.json drops)"""
+    title = comp.replace('OWCS ', LP_NAME + '/', 1)
+    slug = re.sub(r'[^a-z0-9]+', '-', title.lower().replace(LP_NAME.lower(), 'owcs')).strip('-')
+    f = os.path.join(SRC, 'lp', slug + '.json')
+    return json.load(open(f, encoding='utf-8')).get('matches', []) if os.path.exists(f) else []
+
+
 def intl_layout(comp):
     """Liquipedia match idx -> (section, round) of an international event page: the section is the deepest heading
     under ==Results== ('Group A', 'Playoffs'), the round the <!-- comment --> above the match"""
@@ -1010,7 +1018,10 @@ def build_intl(year):
             continue
         ms, seen, names = [], set(), {t.lower(): t for t in TEAMS}
         for sub, part in ((comp + '/Group Stage', 'g'), (comp, 'p')):
+            # where each match sits: the collector stores it with the match (section / round); the wiki copy when
+            # there is one (the cloud only keeps the active pages' wiki)
             lay, bo = intl_layout(sub), None
+            lay = lay or {m['idx']: (m.get('section') or '', m.get('round') or '') for m in lp_raw(sub)}
             for m in sorted(lp_page(sub), key=lambda x: x['idx']):   # page order: a best-of carries on until the next one
                 bo = m.get('bestof') or bo
                 sec, rnd = lay.get(m['idx'], ('', ''))
