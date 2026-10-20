@@ -349,7 +349,7 @@ const PAST = (no) => {
   const list = D.history.filter((x) => x.stage === '스테이지 ' + no || x.stage === '스테이지 ' + no + ' 플레이오프').slice().reverse();
   // history weeks count calendar weeks from the stage start; a break week would leave a gap (1, 3, 4 ...), so number the match weeks
   const wks = [...new Set(list.filter((x) => !x.stage.endsWith('플레이오프')).map((x) => x.week))].sort((a, b) => a - b);
-  return list.map((x, i) => ({ id: 's' + no + '-' + i, date: x.date, a: x.a, b: x.b, sa: x.sa, sb: x.sb, played: true, past: true,
+  return list.map((x, i) => ({ id: 's' + no + '-' + i, date: x.date, a: x.a, b: x.b, sa: x.sa, sb: x.sb, vod: x.vod, played: true, past: true,
     group: x.stage.endsWith('플레이오프') ? round(x) : (wks.indexOf(x.week) + 1) + '주차' }));
 };
 

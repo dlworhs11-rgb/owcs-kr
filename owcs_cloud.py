@@ -9,43 +9,60 @@ KST = datetime.timezone(datetime.timedelta(hours=9))
 ICS_FILE = 'owcs-kr-upcoming.ics'   # calendar subscription: matches not played yet (rebuilt by cloud_live.py every ~10 min)
 
 
-def soop_vods(matches=(), stage=None, year=None):
-    """match day -> SOOP replay, one VOD per broadcast day, titled '2026 OWCS ASIA l KOREA STAGE 3 - Week W Day D'
-    (regular season and the seeding / LCQ week) or '... STAGE 3 - PLAYOFFS DAY D'. Day D is the D-th match day of
-    that week / of the playoffs in `matches` (owcs-data.js matches: day, week, phase). Titles cached 30 min."""
+_REPLAYS = None
+
+
+def soop_replays(year):
+    """OWCS Korea broadcast replays on SOOP owesports since 1 January of `year`: [{no, start, end}] in epoch seconds.
+    The list API gives 20 a page, newest first, and only the upload time (= broadcast end) and the length, so
+    start = end - length. Cached 30 min in data/soop_vods.json (a stale copy is used when SOOP cannot be read)."""
+    global _REPLAYS
+    if _REPLAYS is not None:
+        return _REPLAYS
     cache = os.path.join(HERE, 'data', 'soop_vods.json')
-    data = None
-    if os.path.exists(cache) and time.time() - os.path.getmtime(cache) < 1800:
+    old = None
+    if os.path.exists(cache):
         with open(cache, encoding='utf-8') as f:
-            data = json.load(f)
-    if data is None:
-        data = []
-        try:
-            for page in (1, 2):
-                url = f'https://chapi.sooplive.co.kr/api/owesports/vods/review?keyword=&orderby=reg_date&perPage=60&field=title,contents&page={page}'
-                r = json.loads(urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'}), timeout=15).read())
-                data += [dict(no=v['title_no'], title=v['title_name']) for v in r.get('data', [])]
-            with open(cache, 'w', encoding='utf-8') as f:
-                json.dump(data, f, ensure_ascii=False)
-        except Exception:
-            if os.path.exists(cache):
-                with open(cache, encoding='utf-8') as f:
-                    data = json.load(f)
-    days = {}   # 'po' or week number -> match days in order
-    for m in matches:
-        days.setdefault('po' if m.get('phase') == 'po' else m.get('week'), set()).add(m['day'])
-    days = {k: sorted(v) for k, v in days.items()}
-    out = {}
-    for v in sorted(data or [], key=lambda v: v['no']):
-        t = v['title'].upper()
-        m = re.search(r'(\d{4}) OWCS\b.*\bKOREA STAGE (\d+)\s*-\s*(?:WEEK (\d+) DAY (\d+)|(?:PLAYOFFS?|FINALS?) DAY (\d+))', t)
-        if not m or (stage and int(m.group(2)) != stage) or (year and int(m.group(1)) != year):
-            continue
-        key, n = (int(m.group(3)), int(m.group(4))) if m.group(3) else ('po', int(m.group(5)))
-        ds = days.get(key, [])
-        if 0 < n <= len(ds):
-            out[ds[n - 1]] = f"https://vod.sooplive.com/player/{v['no']}"
-    return out
+            old = json.load(f)
+        if not (isinstance(old, dict) and old.get('year') == year):   # older cache format / another season
+            old = None
+    if old and time.time() - os.path.getmtime(cache) < 1800:
+        _REPLAYS = old['vods']
+        return _REPLAYS
+    vods = []
+    try:
+        for page in range(1, 31):
+            url = f'https://chapi.sooplive.co.kr/api/owesports/vods/review?keyword=&orderby=reg_date&field=title,contents&page={page}'
+            r = json.loads(urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'}), timeout=15).read())
+            rows = r.get('data', [])
+            for v in rows:
+                if not re.search(r'\bOWCS\b.*\bKOREA\b', v['title_name'].upper()):
+                    continue
+                end = datetime.datetime.fromisoformat(v['reg_date']).replace(tzinfo=KST).timestamp()
+                vods.append(dict(no=v['title_no'], start=int(end - v['ucc']['total_file_duration'] / 1000), end=int(end)))
+            if not rows or rows[-1]['reg_date'] < f'{year}-01-01' or page >= (r.get('meta') or {}).get('last_page', page):
+                break
+        with open(cache, 'w', encoding='utf-8') as f:
+            json.dump(dict(year=year, vods=vods), f)
+    except Exception as e:
+        print('SOOP replays not read:', e)
+        vods = old['vods'] if old else []
+    _REPLAYS = vods
+    return vods
+
+
+def soop_vod(replays, day, start=None):
+    """SOOP replay url of a Korea match on `day` (YYYY-MM-DD, KST). With the match start (epoch seconds) it is the
+    part of the broadcast holding that moment, opened 90 s before it; without, the first broadcast of that day."""
+    on_day = sorted((v for v in replays if datetime.datetime.fromtimestamp(v['start'], KST).date().isoformat() == day
+                     or datetime.datetime.fromtimestamp(v['end'], KST).date().isoformat() == day), key=lambda v: v['start'])
+    if not on_day:
+        return None
+    if start:
+        for v in on_day:
+            if v['start'] <= start < v['end']:
+                return f"https://vod.sooplive.com/player/{v['no']}?change_second={max(0, int(start - v['start']) - 90)}"
+    return f"https://vod.sooplive.com/player/{on_day[0]['no']}"
 
 
 def live_status(players):

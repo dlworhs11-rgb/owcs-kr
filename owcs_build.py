@@ -17,7 +17,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.environ.get('OWCSKR_DATA') or os.path.join(HERE, 'OWCSKR', 'data')
 KST = datetime.timezone(datetime.timedelta(hours=9))
 sys.path.insert(0, HERE)  # python -I leaves the script folder off the path
-from owcs_cloud import soop_vods, live_status, last_streams, upcoming_ics, write_ics, ICS_FILE  # noqa: E402,F401
+from owcs_cloud import soop_replays, soop_vod, live_status, last_streams, upcoming_ics, write_ics, ICS_FILE  # noqa: E402,F401
 # The stage on the page (regular season + its playoffs) is picked from the collector data, see find_stages().
 # OWCS_STAGE=2026/3 pins one stage by hand.
 
@@ -530,10 +530,18 @@ def build_matches(stage):
             potm=potm, casters=adm.get('casters') or [c for c in (m.get('casters') or []) if c] or live_cast(day),   # Liquipedia per match beats the screen read
             stream='https://play.sooplive.com/owesports/embed?autoPlay=true&mutePlay=true', maps=maps))
     out.sort(key=lambda x: (x['date'], x['phase'] != 'lcq'))
-    vods = soop_vods(out, stage['n'], stage['year'])
+    replays = soop_replays(stage['year'])
     for x in out:
-        x['vod'] = vods.get(x['day']) or (VOD_LIST if x['played'] else None)
+        x['vod'] = soop_vod(replays, x['day'], match_start(x)) or (VOD_LIST if x['played'] else None)
     return out, lives
+
+
+def match_start(x):
+    """epoch seconds the match began: the map 1 hero-ban screen pick_watch.py saw, else the scheduled time"""
+    for s in live_sets(x['day']):
+        if s.get('game') == 1 and s.get('banTs') and {short(t) for t in s.get('teams') or []} == {x['a'], x['b']}:
+            return s['banTs']
+    return None if x.get('tbd') else datetime.datetime.fromisoformat(x['date']).timestamp()
 
 
 def potm_awards():
@@ -698,6 +706,7 @@ def short(name):
 def build_history(stages, year):
     """every played Korea match of the season (regular seasons + playoffs) for the results search, newest first"""
     week0 = {s['po']: s['week0'] for s in stages}
+    replays = soop_replays(year)
     out = []
     for m in load('site/matches.json'):
         c = m['competition']
@@ -707,7 +716,8 @@ def build_history(stages, year):
         stage = '스테이지 ' + c.split('Stage ')[1].split('/')[0] + (' 플레이오프' if c.endswith('/Korea') else '')
         start = week0.get(c.replace('/Regular Season', ''))
         out.append(dict(date=dt.date().isoformat(), stage=stage, week=((dt.date() - start).days // 7 + 1) if start else None,
-                        a=short(m['team1']), b=short(m['team2']), sa=m['score1'], sb=m['score2']))
+                        a=short(m['team1']), b=short(m['team2']), sa=m['score1'], sb=m['score2'],
+                        vod=soop_vod(replays, dt.date().isoformat(), dt.timestamp() if dt.hour or dt.minute else None)))
     out.sort(key=lambda x: x['date'], reverse=True)
     return out
 

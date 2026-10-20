@@ -182,15 +182,14 @@ def main():
     if '--fast' in sys.argv and prev:   # live-score push: reuse the stream list and replays from the last deploy (seconds saved)
         data['live'], data['ytLive'] = prev.get('live', {}), prev.get('ytLive')
         data['lastStream'] = prev.get('lastStream', {})
-        vods = {m['day']: m['vod'] for m in prev.get('matches', []) if m.get('vod')}
-    else:
+        vods = {m['id']: m['vod'] for m in prev.get('matches', []) if m.get('vod')}
+        for m in data['matches']:
+            if vods.get(m['id']):
+                m['vod'] = vods[m['id']]
+    else:   # replays: owcs_build.build already put one on each match (soop_vod, opened at the match start)
         data['live'] = b.live_status(data['players'])
         data['lastStream'] = b.last_streams(data['players'], (prev or {}).get('lastStream'))   # SOOP or CHZZK: whichever streamed last
         data['ytLive'] = b.yt_live((prev or {}).get('ytLive'), data['matches'], data.get('stageNo'))
-        vods = b.soop_vods(data['matches'], data.get('stageNo'), data.get('year'))
-    for m in data['matches']:
-        if vods.get(m['day']):
-            m['vod'] = vods[m['day']]
     stamp = now.isoformat(timespec='seconds')
     data['liveChecked'] = stamp
     same = prev and {k: v for k, v in prev.items() if k not in VOLATILE} == {k: v for k, v in data.items() if k not in VOLATILE}
