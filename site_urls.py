@@ -47,6 +47,17 @@ def stub(new):
             f'<a style="color:#C6FF33" href="{url}">OWticker</a></body></html>\n')
 
 
+def write_crawl_files(out):
+    """robots.txt and sitemap.xml for search engines, written by the build (the .gitignore keeps only listed files in git):
+    the sitemap lists the short addresses above, not the old names, which are only forwarding pages"""
+    urls = [SITE + new for new in PAGES.values()] + [SITE + v for v in VIEWS.values()]
+    with open(os.path.join(out, 'robots.txt'), 'w', encoding='utf-8', newline='') as fh:
+        fh.write(f'User-agent: *\nAllow: /\n\nSitemap: {SITE}sitemap.xml\n')
+    with open(os.path.join(out, 'sitemap.xml'), 'w', encoding='utf-8', newline='') as fh:
+        fh.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+                 + ''.join(f'  <url><loc>{u}</loc></url>\n' for u in urls) + '</urlset>\n')
+
+
 def apply(out):
     """rename the pages in the built site folder `out` and rewrite the links in its .html / .js"""
     for f in os.listdir(out):
@@ -70,3 +81,4 @@ def apply(out):
                 fh.write(page)
         with open(src, 'w', encoding='utf-8', newline='') as fh:
             fh.write(stub(new))
+    write_crawl_files(out)   # robots.txt + sitemap.xml with the short addresses

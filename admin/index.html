@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>OWCS KR 관리자</title>
+<style>
+  :root { --bg:#0B0B0F; --card:#15151B; --line:#2A2A33; --ink:#F2F2F5; --mute:#8A8A93; --ac:#C6FF33; --red:#FF5A4F; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.45 'Pretendard','Malgun Gothic',system-ui,sans-serif; }
+  header { position:sticky; top:0; z-index:5; display:flex; flex-wrap:wrap; align-items:center; gap:12px; padding:14px 20px; background:#0B0B0FEE; border-bottom:1px solid var(--line); backdrop-filter:blur(6px); }
+  h1 { margin:0; font-size:18px; }
+  main { max-width:1100px; margin:0 auto; padding:20px; display:flex; flex-direction:column; gap:18px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px; }
+  .row { display:flex; flex-wrap:wrap; align-items:center; gap:10px; }
+  label { font-size:13px; color:var(--mute); }
+  input, select { background:#0B0B0F; color:var(--ink); border:1px solid var(--line); border-radius:10px; padding:8px 10px; font:inherit; min-width:0; }
+  input[type=number] { width:64px; text-align:center; font-size:18px; font-weight:700; }
+  select:focus, input:focus { outline:2px solid var(--ac); outline-offset:1px; }
+  .set { border-color:var(--ac); }
+  button { font:inherit; cursor:pointer; border-radius:10px; border:1px solid var(--line); background:#22222A; color:var(--ink); padding:8px 14px; }
+  button.primary { background:var(--ac); color:#0B0B0F; border-color:var(--ac); font-weight:800; }
+  .mt { font-size:20px; font-weight:800; }
+  .auto { font-size:12px; color:var(--mute); }
+  .tabs { display:flex; gap:6px; margin:14px 0 10px; flex-wrap:wrap; }
+  .tabs button.on { border-color:var(--ac); color:var(--ac); }
+  .grid5 { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:8px; }
+  .slot { display:flex; flex-direction:column; gap:4px; }
+  .slot select { width:100%; }
+  .team { font-weight:800; margin:12px 0 6px; }
+  #status { font-size:13px; color:var(--mute); }
+  #status.ok { color:var(--ac); } #status.err { color:var(--red); }
+  #token { display:none; }
+  @media (max-width:720px) {
+    .grid5 { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    header { padding:10px 12px; gap:8px; } h1 { font-size:15px; width:100%; }
+    main { padding:12px; gap:12px; } .card { padding:14px; }
+    input, select { font-size:16px; }   /* 16px: iPhone does not zoom in on tap */
+    .mt { font-size:17px; } #status { width:100%; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>OWCS KR 관리자 · 수동 입력</h1>
+  <input type="date" id="date">
+  <button class="primary" id="save">저장 (Ctrl+S)</button>
+  <button id="token">토큰</button>
+  <span id="status">입력한 칸만 사이트에 덮어써요 · 비워두면 자동 기록 그대로</span>
+</header>
+<main id="app"></main>
+<script>
+const $ = (s, el = document) => el.querySelector(s);
+const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+let S = null, ADM = null, TAB = {};
+const today = () => new Date(Date.now() + 9 * 3600e3).toISOString().slice(0, 10);
+$('#date').value = new URLSearchParams(location.search).get('date') || today();
+$('#date').onchange = () => load();
+
+const heroOpts = (sel) => '<option value="">–</option>' + S.heroes.map((h) => `<option value="${esc(h.k)}"${h.k === sel ? ' selected' : ''}>${esc(h.ko)}</option>`).join('');
+const opts = (list, sel, lab = (x) => x) => '<option value="">–</option>' + list.map((x) => `<option value="${esc(x)}"${x === sel ? ' selected' : ''}>${esc(lab(x))}</option>`).join('');
+const heroKo = (k) => (S.heroes.find((h) => h.k === k) || {}).ko || k || '';
+
+// On this PC (admin_server.py, port 8799) it saves to the local file. Anywhere else (<site>/admin/ on a phone, PC off)
+// it reads the site data and saves data/live_admin/<date>.json straight to GitHub with a token kept on this device only;
+// the push rebuilds the site in about 2 minutes.
+const LOCAL = location.port === '8799';
+const REPO = 'dlworhs11-rgb/owcs-kr';
+const tok = () => { try { return localStorage.getItem('owcsAdminToken') || ''; } catch (e) { return ''; } };
+let SHA = null;
+const gh = (path, opt = {}) => fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, { cache: 'no-store', ...opt,
+  headers: { Accept: 'application/vnd.github+json', Authorization: 'Bearer ' + tok(), ...(opt.headers || {}) } });
+const b64 = (s) => { let r = ''; new TextEncoder().encode(s).forEach((c) => { r += String.fromCharCode(c); }); return btoa(r); };
+const unb64 = (s) => new TextDecoder().decode(Uint8Array.from(atob(s.replace(/\s/g, '')), (c) => c.charCodeAt(0)));
+const script = (src) => new Promise((ok, no) => { const s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = () => no(new Error('사이트 데이터를 못 불러왔어요')); document.head.appendChild(s); });
+const nowKst = () => new Date(Date.now() + 9 * 3600e3).toISOString().slice(0, 19) + '+09:00';
+
+async function remoteState(date) {   // the same shape admin_server.state() gives
+  await script('../owcs-data.js?t=' + Date.now());
+  const d = window.OWCS, meta = await (await fetch('meta.json?t=' + Date.now(), { cache: 'no-store' })).json();
+  const teams = Object.fromEntries(d.teams.map((t) => [t.a, t]));
+  const roster = (a) => d.players.filter((p) => p.team === a).sort((x, y) => ((x.order ?? 9) - (y.order ?? 9)) || (x.id < y.id ? -1 : x.id > y.id ? 1 : 0)).map((p) => p.id);
+  let admin = { date, casters: [], matches: {} };
+  SHA = null;
+  const r = await gh(`data/live_admin/${date}.json`);
+  if (r.ok) { const j = await r.json(); SHA = j.sha; admin = JSON.parse(unb64(j.content)); }
+  else if (r.status === 401) throw new Error('토큰이 틀렸거나 만료됐어요 → 위 "토큰" 버튼');
+  else if (r.status !== 404) throw new Error('GitHub ' + r.status);
+  return { date, admin, heroes: meta.heroes, maps: meta.maps,
+    matches: d.matches.filter((m) => m.day === date).map((m) => ({ id: m.id, time: m.time, a: m.a, b: m.b, an: (teams[m.a] || {}).n || m.a, bn: (teams[m.b] || {}).n || m.b,
+      bo: m.bo || 5, sa: m.sa, sb: m.sb, potm: m.potm, casters: m.casters || [], ra: roster(m.a), rb: roster(m.b),
+      maps: (m.maps || []).map((x) => ({ no: x.no, map: x.map, winner: x.winner, sa: x.sa, sb: x.sb, bans: x.bans || [], banFirst: x.banFirst, comps: x.comps })) })) };
+}
+function askToken() {
+  $('#app').innerHTML = `<section class="card"><div class="mt">처음 한 번: GitHub 토큰 넣기</div>
+    <p class="auto">이 기기에만 저장돼요. 토큰이 있어야 저장할 수 있어요.</p>
+    <div class="row"><input id="tk" type="password" style="flex:1;min-width:220px" placeholder="github_pat_..." autocomplete="off"><button class="primary" id="tkok">확인</button></div></section>`;
+  $('#tkok').onclick = () => { try { localStorage.setItem('owcsAdminToken', $('#tk').value.trim()); } catch (e) {} load(); };
+}
+if (!LOCAL) {
+  $('#token').style.display = 'inline-block';
+  $('#token').onclick = () => { if (tok() && !confirm('이 기기의 토큰을 지우고 새로 넣을까요?')) return; try { localStorage.removeItem('owcsAdminToken'); } catch (e) {} askToken(); };
+}
+
+async function load() {
+  const st = $('#status');
+  if (!LOCAL && !tok()) return askToken();
+  try {
+    S = LOCAL ? await (await fetch('/api/state?date=' + $('#date').value)).json() : await remoteState($('#date').value);
+  } catch (e) { st.className = 'err'; st.textContent = '불러오기 실패: ' + e.message; return; }
+  ADM = S.admin || {};
+  ADM.date = S.date; ADM.casters = ADM.casters || []; ADM.matches = ADM.matches || {};
+  render();
+}
+function am(id) { return ADM.matches[id] = ADM.matches[id] || { maps: {} }; }
+function amap(id, no) { const m = am(id); m.maps = m.maps || {}; return m.maps[no] = m.maps[no] || {}; }
+
+function render() {
+  const autoCast = (S.matches[0] || {}).casters || [];
+  let h = `<section class="card"><div class="row"><span class="mt">해설진</span>
+    <input id="casters" style="flex:1;min-width:240px" placeholder="예: 심지수, 장지수" value="${esc(ADM.casters.join(', '))}">
+    <span class="auto">자동: ${esc(autoCast.join(' · ') || '없음')}</span></div></section>`;
+  if (!S.matches.length) h += '<section class="card">이 날짜에는 경기가 없어요.</section>';
+  S.matches.forEach((m) => {
+    const a = am(m.id), no = TAB[m.id] || 1, x = amap(m.id, no), auto = m.maps.find((y) => y.no === no) || {};
+    const ban = (i) => (x.bans || [])[i] || {}, abn = (i) => (auto.bans || [])[i] || {};
+    const comp = (t, i) => ((x.comps || {})[t] || [])[i] || [], acomp = (t, i) => ((auto.comps || {})[t] || [])[i] || [];
+    h += `<section class="card" data-m="${esc(m.id)}">
+      <div class="row"><span class="mt">${esc(m.time)} · ${esc(m.a)} vs ${esc(m.b)}</span>
+        <span class="auto">자동 점수 ${m.sa ?? 0} : ${m.sb ?? 0}${m.potm ? ' · POTM ' + esc(m.potm) : ''}</span></div>
+      <div class="row" style="margin-top:10px">
+        <label>${esc(m.a)}</label><input type="number" min="0" max="4" data-f="sa" value="${a.sa ?? ''}" class="${a.sa != null ? 'set' : ''}">
+        <span>:</span><input type="number" min="0" max="4" data-f="sb" value="${a.sb ?? ''}" class="${a.sb != null ? 'set' : ''}"><label>${esc(m.b)}</label>
+        <label style="margin-left:14px">POTM</label><select data-f="potm">${opts([...m.ra, ...m.rb], a.potm)}</select>
+        <label style="margin-left:14px" title="자동 점수가 잘못 높게 읽혔을 때: 체크하면 적은 점수가 자동보다 낮아도 이김"><input type="checkbox" data-f="force" ${a.force ? 'checked' : ''}> 강제</label>
+      </div>
+      <div class="tabs">${Array.from({ length: m.bo }, (_, i) => `<button data-tab="${i + 1}" class="${i + 1 === no ? 'on' : ''}">${i + 1}세트</button>`).join('')}</div>
+      <div class="row">
+        <label>맵</label><select data-x="map">${opts(S.maps, x.map)}</select><span class="auto">자동: ${esc(auto.map || '없음')}</span>
+        <label style="margin-left:10px">세트 점수</label><input type="number" min="0" data-ms="sa" value="${x.sa ?? ''}" class="${x.sa != null ? 'set' : ''}"><span>:</span><input type="number" min="0" data-ms="sb" value="${x.sb ?? ''}" class="${x.sb != null ? 'set' : ''}">
+        <span class="auto">자동: ${auto.sa != null ? auto.sa + ' : ' + auto.sb : '없음'}</span>
+        <label style="margin-left:10px">세트 승리</label><select data-x="winner">${opts(['a', 'b'], x.winner, (t) => m[t])}</select><span class="auto">자동: ${esc(auto.winner ? m[auto.winner] : '없음')}</span>
+      </div>
+      <div class="row" style="margin-top:10px">
+        <label>선벤</label><select data-x="banFirst">${opts(['a', 'b'], x.banFirst, (t) => m[t])}</select>
+        <select data-ban="0">${heroOpts(ban(0).h)}</select>
+        <label>후벤</label><select data-ban="1">${heroOpts(ban(1).h)}</select>
+        <span class="auto">자동: ${esc([abn(0), abn(1)].filter((b) => b.h).map((b) => (m[b.t] || '?') + ' ' + heroKo(b.h)).join(' / ') || '없음')}</span>
+      </div>
+      ${['a', 'b'].map((t) => `<div class="team">${esc(m[t])} 첫 조합</div><div class="grid5">${[0, 1, 2, 3, 4].map((i) => `
+        <div class="slot"><select data-cp="${t}${i}p">${opts(t === 'a' ? m.ra : m.rb, comp(t, i)[0] || '')}</select>
+        <select data-cp="${t}${i}h">${heroOpts(comp(t, i)[1] || '')}</select>
+        <span class="auto">${esc(acomp(t, i)[0] ? acomp(t, i)[0] + ' ' + heroKo(acomp(t, i)[1]) : '')}</span></div>`).join('')}</div>`).join('')}
+    </section>`;
+  });
+  $('#app').innerHTML = h;
+  $('#casters').oninput = (e) => { ADM.casters = e.target.value.split(/[,·\/]/).map((s) => s.trim()).filter(Boolean); };
+  document.querySelectorAll('[data-m]').forEach((sec) => {
+    const id = sec.dataset.m, a = am(id), no = TAB[id] || 1, x = amap(id, no);
+    sec.querySelectorAll('[data-f]').forEach((el) => el.onchange = () => { const v = el.value; if (el.type === 'checkbox') a[el.dataset.f] = el.checked || null; else if (el.type === 'number') a[el.dataset.f] = v === '' ? null : +v; else a[el.dataset.f] = v || null; });
+    sec.querySelectorAll('[data-tab]').forEach((b) => b.onclick = () => { TAB[id] = +b.dataset.tab; render(); });
+    sec.querySelectorAll('[data-x]').forEach((el) => el.onchange = () => { x[el.dataset.x] = el.value || null; syncBans(x); });
+    sec.querySelectorAll('[data-ms]').forEach((el) => el.onchange = () => { x[el.dataset.ms] = el.value === '' ? null : +el.value; });
+    sec.querySelectorAll('[data-ban]').forEach((el) => el.onchange = () => { x._b = x._b || []; x._b[+el.dataset.ban] = el.value || null; syncBans(x); });
+    sec.querySelectorAll('[data-cp]').forEach((el) => el.onchange = () => {
+      const [, t, i, k] = el.dataset.cp.match(/^([ab])(\d)([ph])$/);
+      x.comps = x.comps || {}; x.comps[t] = x.comps[t] || [[], [], [], [], []];
+      x.comps[t][+i] = x.comps[t][+i] || []; x.comps[t][+i][k === 'p' ? 0 : 1] = el.value || '';
+    });
+    // keep the hand-picked bans in the shape the site uses: [{t, h}] with banFirst's team first
+    x._b = (x.bans || []).map((b) => b.h);
+  });
+}
+function syncBans(x) {
+  const f = x.banFirst, o = f === 'a' ? 'b' : f === 'b' ? 'a' : null, b = x._b || [];
+  x.bans = f && b[0] ? [{ t: f, h: b[0] }, ...(b[1] ? [{ t: o, h: b[1] }] : [])] : [];
+}
+function clean() {
+  // drop empty entries so the site only overrides what was typed
+  const out = { date: ADM.date, casters: ADM.casters, matches: {} };
+  Object.entries(ADM.matches).forEach(([id, m]) => {
+    const o = {};
+    ['sa', 'sb'].forEach((k) => { if (m[k] != null) o[k] = m[k]; });
+    if (m.force && (o.sa != null || o.sb != null)) o.force = true;   // the typed score wins even below the automatic one
+    if (m.potm) o.potm = m.potm;
+    const maps = {};
+    Object.entries(m.maps || {}).forEach(([no, x]) => {
+      const y = {};
+      if (x.map) y.map = x.map;
+      if (x.winner) y.winner = x.winner;
+      if (x.sa != null && x.sb != null) { y.sa = x.sa; y.sb = x.sb; }
+      if ((x.bans || []).length) { y.bans = x.bans; y.banFirst = x.banFirst; }
+      const cp = {};
+      ['a', 'b'].forEach((t) => { const r = ((x.comps || {})[t] || []).map((s) => [s && s[0] || '', s && s[1] || '']); if (r.some((s) => s[0] || s[1])) cp[t] = r; });
+      if (Object.keys(cp).length) y.comps = cp;
+      if (Object.keys(y).length) maps[no] = y;
+    });
+    if (Object.keys(maps).length) o.maps = maps;
+    if (Object.keys(o).length) out.matches[id] = o;
+  });
+  return out;
+}
+async function saveRemote(body) {
+  body.at = nowKst();
+  const r = await gh(`data/live_admin/${body.date}.json`, { method: 'PUT', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message: `Admin page (phone): hand entries for ${body.date}`, content: b64(JSON.stringify(body, null, 1)), ...(SHA ? { sha: SHA } : {}) }) });
+  if (r.status === 409 || r.status === 422) throw new Error('다른 곳(PC)에서 먼저 바뀌었어요. 새로고침하고 다시 입력');
+  if (r.status === 401 || r.status === 403) throw new Error('토큰 권한이 없어요 (Contents 쓰기 필요)');
+  if (!r.ok) throw new Error('GitHub ' + r.status);
+  SHA = (await r.json()).content.sha;
+  return { ok: true, at: body.at, note: '약 2분 뒤 사이트에 반영돼요' };
+}
+async function save() {
+  const st = $('#status');
+  if (!S) return;
+  st.className = ''; st.textContent = '저장 중…';
+  try {
+    const j = LOCAL ? await (await fetch('/api/save', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-OWCS-Admin': '1' }, body: JSON.stringify(clean()) })).json()
+      : await saveRemote(clean());
+    if (!j.ok) throw new Error(j.error || 'error');
+    st.className = 'ok'; st.textContent = '저장됨 ' + j.at.slice(11, 19) + ' · ' + (j.note || '1~2초 안에 사이트에 반영돼요');
+  } catch (e) { st.className = 'err'; st.textContent = '저장 실패: ' + e.message; }
+}
+$('#save').onclick = save;
+addEventListener('keydown', (e) => { if ((e.ctrlKey || e.metaKey) && e.key === 's') { e.preventDefault(); save(); } });
+load();
+</script>
+</body>
+</html>

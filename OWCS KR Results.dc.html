@@ -525,7 +525,7 @@ class Component extends DCLogic {
           stake: m.live ? 'LIVE' : hot ? [m.a, m.b].filter((a, i) => racing([ka, kb][i])).join('·') + ' ' + [ka, kb].find(racing).tag : '순위 싸움' };
       }),
       tiebreak: D.tiebreak,
-      footNote: '비공식 팬 사이트입니다. Blizzard Entertainment 및 WDG와 관련이 없습니다. ' + (D.sources || ''),
+      footNote: '비공식 팬 사이트입니다. Blizzard Entertainment, WDG, 각 팀과 제휴하거나 승인받지 않았습니다. Overwatch®와 영웅 이미지는 Blizzard Entertainment, Inc.의 상표·저작물이고, 팀 로고와 선수 사진의 권리는 각 소유자에게 있으며 요청하면 바로 내립니다. ' + (D.sources || ''),
     };
   }
 }

@@ -26,7 +26,7 @@ import owcs_build  # noqa: E402
 import site_urls  # noqa: E402
 
 SITE_FILES = ['index.html', 'OWCS KR Home v6.dc.html', 'OWCS KR Player.dc.html', 'OWCS KR Results.dc.html',
-              'OWCS KR 일정.html', 'OWCS KR 방송.html', 'OWCS KR 직관.html', 'support.js']
+              'OWCS KR 일정.html', 'OWCS KR 방송.html', 'OWCS KR 직관.html', 'support.js', '404.html']
 VOLATILE = ('generated', 'liveChecked')
 COLLECTOR = os.path.dirname(owcs_build.SRC)
 LP_API = 'https://liquipedia.net/overwatch/api.php'

@@ -35,10 +35,10 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 2
-      # a push that only changes data/live_scores, live_sets or live_maps (the PC's live map scores, map names, first heroes, broadcast capture) takes the fast path
+      # a push that only changes data/live_scores, live_sets, live_maps or live_admin (phone admin page, the PC's live map scores, map names, first heroes, broadcast capture) takes the fast path
       - id: kind
         run: |
-          if [ "${{ github.event_name }}" = "push" ] && [ -z "$(git diff --name-only HEAD^ HEAD | grep -v -E '^data/(live_scores|live_sets|live_maps)/')" ]; then echo "fast=--fast" >> "$GITHUB_OUTPUT"; fi
+          if [ "${{ github.event_name }}" = "push" ] && [ -z "$(git diff --name-only HEAD^ HEAD | grep -v -E '^data/(live_scores|live_sets|live_maps|live_admin)/')" ]; then echo "fast=--fast" >> "$GITHUB_OUTPUT"; fi
       - uses: actions/checkout@v4
         with:
           repository: dlworhs11-rgb/OWCSKR
