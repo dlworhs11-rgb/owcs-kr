@@ -105,6 +105,8 @@
     // --- 직관 안내 banner under the menu, as on the home page (desktop: 80 px QR + 예매하기, phone / tablet: 56 px QR) ---
     '[data-owcs-tk]{padding:20px max(56px, calc(50% - 680px));background:transparent}',
     '[data-owcs-tk] a{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:20px;padding:12px 18px 12px 12px;border-radius:18px;background:#0B0B0F;color:#fff;text-decoration:none;font-family:"Pretendard Variable",Pretendard,system-ui,sans-serif}',
+    // results / player pages turn every hovered link ink (a:hover), which hid the white text on the black banner
+    '[data-owcs-tk] a:hover{color:#fff}',
     '[data-owcs-tk] img{display:block;width:80px;height:80px;border-radius:10px;background:#fff;padding:4px;box-sizing:border-box}',
     '[data-owcs-tk] .k{display:block;font-size:13px;font-weight:700;color:#C6FF33}',
     '[data-owcs-tk] .v{display:block;font-family:"Barlow Condensed",sans-serif;font-weight:800;font-size:30px;line-height:1;margin-top:6px}',
@@ -202,7 +204,7 @@
     });
   }
 
-  function isDark() { try { return localStorage.getItem('owcs-dark') === '1'; } catch (e) { return document.documentElement.hasAttribute('data-owcs-dark'); } }
+  function isDark() { try { var v = localStorage.getItem('owcs-dark'); return v === null ? !!(window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) : v === '1'; } catch (e) { return document.documentElement.hasAttribute('data-owcs-dark'); } }
 
   function ticket() {
     var s = document.createElement('section');

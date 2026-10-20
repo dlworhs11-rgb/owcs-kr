@@ -97,7 +97,7 @@
   }
   // dark mode on the other pages (results, player): the same dark sheet as the home page, bands without their own fills
   var darkQ = new URLSearchParams(location.search).get('dark'), darkOn = darkQ === '1';
-  if (darkQ !== '0' && darkQ !== '1') { try { darkOn = localStorage.getItem('owcs-dark') === '1'; } catch (e) {} }
+  if (darkQ !== '0' && darkQ !== '1') { var darkV = null; try { darkV = localStorage.getItem('owcs-dark'); } catch (e) {} darkOn = darkV === null ? !!(window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) : darkV === '1'; }
   if (!/Home|^(index|standings|players)?(\.html)?$/.test(decodeURIComponent(location.pathname).split('/').pop()) && darkOn) {
     var X = 'html[data-owcs-bgb][data-owcs-dark] ';
     document.documentElement.setAttribute('data-owcs-bgb', '');

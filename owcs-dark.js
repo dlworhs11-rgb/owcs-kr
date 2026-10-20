@@ -5,7 +5,9 @@
   var KEY = 'owcs-dark';
   var q = new URLSearchParams(location.search).get('dark');
   var on = false;
-  try { if (q === '1' || q === '0') localStorage.setItem(KEY, q); on = localStorage.getItem(KEY) === '1'; } catch (e) { on = q === '1'; }
+  // nothing picked yet: follow the phone / computer setting (a half-dark page came from Safari darkening the light one)
+  var sys = !!(window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches);
+  try { if (q === '1' || q === '0') localStorage.setItem(KEY, q); var v = localStorage.getItem(KEY); on = v === null ? sys : v === '1'; } catch (e) { on = q ? q === '1' : sys; }
   var html = document.documentElement;
   if (on) html.setAttribute('data-owcs-dark', '');
 
@@ -30,6 +32,8 @@
     R + 'header nav a:hover{background:#24242C !important;color:#F2F2F5 !important}',
     // buttons without their own text colour (the stage picker) take the page's light text
     R + 'button{color:inherit}',
+    // desktop logo mark: light square in dark mode, as on the home and schedule pages
+    R + 'header div[style*="width: 30px"][style*="border-radius: 7px"][style*="background: rgb(11, 11, 15)"]{background-color:#F2F2F5 !important}',
     // selected tab (black in light mode) turns light, as on the schedule page
     R + 'button[data-owcs-tab][style*="background: rgb(11, 11, 15)"]{background-color:#F2F2F5 !important;color:#0B0B0F !important;border-color:#F2F2F5 !important}',
     R + 'input{background:#16161C !important;color:#F2F2F5 !important;border-color:#2E2E37 !important}',
