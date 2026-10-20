@@ -1,11 +1,11 @@
-// Visitor count (GoatCounter: free, no cookies). Only on the public site, never on this PC.
-// Set CODE to the site code chosen at goatcounter.com sign-up (https://CODE.goatcounter.com shows the numbers).
+// Visitor count (Cloudflare Web Analytics: free, no cookies). Only on the public site, never on this PC or the preview.
+// Numbers: Cloudflare dashboard > Analytics & Logs > Web Analytics > owticker.com.
 (function () {
-  var CODE = '';
-  if (!CODE || !/github\.io$/.test(location.hostname)) return;
+  var TOKEN = '65f031c79bfe401d97ff39f4d79069e7';
+  if (!TOKEN || !/(^|\.)owticker\.com$/.test(location.hostname)) return;
   var s = document.createElement('script');
-  s.async = true;
-  s.src = 'https://gc.zgo.at/count.js';
-  s.setAttribute('data-goatcounter', 'https://' + CODE + '.goatcounter.com/count');
+  s.defer = true;
+  s.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+  s.setAttribute('data-cf-beacon', JSON.stringify({ token: TOKEN }));
   document.head.appendChild(s);
 })();
