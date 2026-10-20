@@ -433,6 +433,7 @@ draw();
 if (window.OWCS) draw();
 // keep it current with the page open: states follow the clock, and the cloud-built owcs-data.js is re-read every minute
 setInterval(function () {
+  if (document.hidden) return;   // tab not shown: no download (GitHub Pages traffic)
   if (!q.get('date')) now = Date.now();
   var s = document.createElement('script');
   s.src = 'owcs-data.js?v=' + Date.now();

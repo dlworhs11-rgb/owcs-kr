@@ -173,6 +173,7 @@ footer{padding:32px 0 56px;background:#0B0B0F;color:#8A8A93;font-size:13px;line-
   render();
   // pick up a rebuilt owcs-data.js without a reload
   setInterval(function () {
+    if (document.hidden) return;   // tab not shown: no download (GitHub Pages traffic)
     var s = document.createElement('script');
     s.src = 'owcs-data.js?v=' + Date.now();
     s.onload = function () { s.remove(); if (window.OWCS && (window.OWCS.generated !== D.generated || window.OWCS.liveChecked !== D.liveChecked)) { D = window.OWCS; render(); } };

@@ -281,7 +281,7 @@ html[data-owcs-dark] .eyebrow,html[data-owcs-dark] .day.today .dd b{color:#B89BF
       : hide ? '<span class="pill done">종료</span>'
       : '<span class="sc"><span class="' + (s[0] > s[1] ? 'w' : '') + '">' + s[0] + '</span>:<span class="' + (s[1] > s[0] ? 'w' : '') + '">' + s[1] + '</span></span>';
     if (st === 'live' && !hide) right = '<span class="sc"><span>' + s[0] + '</span>:<span>' + s[1] + '</span></span> ' + right;
-    var tm = m.tbd ? '시간 미정' : esc(window.OWCSi18n ? OWCSi18n.hm(/T/.test(m.date || '') ? m.date : m.day, m.time) : m.time);   // reader's zone in ja / en / zh
+    var tm = m.tbd ? '시간 미정' : esc(window.OWCSi18n && OWCSi18n.hm ? OWCSi18n.hm(/T/.test(m.date || '') ? m.date : m.day, m.time) : m.time);   // reader's zone in ja / en / zh
     var rd = intl ? [m.section, m.round].filter(Boolean).join(' ') : (m.round || m.label || '');
     var lbl = m.phase === 'rs' || !rd ? tm : esc(rd) + ' · ' + tm;
     var tag = st === 'live' ? 'a href="OWCS KR Home v6.dc.html"' : st === 'done' && !intl ? 'a href="OWCS KR Results.dc.html?q=' + encodeURIComponent(m.a) + '"' : 'div';

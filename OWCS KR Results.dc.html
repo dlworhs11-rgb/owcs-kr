@@ -520,7 +520,7 @@ class Component extends DCLogic {
         const ka = caseOf(m.a), kb = caseOf(m.b);
         const hot = [ka, kb].some(racing);
         const axe = axeOf(LEFT.indexOf(m));
-        return { when: mdw(m.date) + ' ' + (window.OWCSi18n ? OWCSi18n.hm(m.date, m.time) : m.time), a: m.a, b: m.b, ca: logo(m.a), cb: logo(m.b), oa: 1, ob: 1,
+        return { when: mdw(m.date) + ' ' + (window.OWCSi18n && OWCSi18n.hm ? OWCSi18n.hm(m.date, m.time) : m.time), a: m.a, b: m.b, ca: logo(m.a), cb: logo(m.b), oa: 1, ob: 1,
           isAxe: !m.live && !!axe, noAxe: m.live || !axe, axeSub: axe === D.lcq ? '지면 탈락' : '지면 직행 실패',
           stake: m.live ? 'LIVE' : hot ? [m.a, m.b].filter((a, i) => racing([ka, kb][i])).join('·') + ' ' + [ka, kb].find(racing).tag : '순위 싸움' };
       }),

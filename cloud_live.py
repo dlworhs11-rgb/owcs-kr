@@ -8,6 +8,8 @@ Runs in GitHub Actions (.github/workflows/pages.yml) every ~10 min, on every pus
      (+ data/live_scores and data/live_maps pushed from the PC on match days); if it fails, the deployed copy stays
   3. refresh `live` (which players stream on CHZZK / SOOP) and match-day SOOP VOD links
   4. rebuild the calendar-subscription files (matches not played yet)
+  4b. stamp each page's own scripts with a content hash (owcs-i18n.js?v=1a2b3c4d), so a browser never mixes a new page
+      with a script it cached before the deploy (GitHub Pages caches for 10 min: 10-20 "OWCSi18n.hm is not a function")
   5. set `liveChecked` = now; bump `generated` only when the content really changed,
      so open pages reload only when there is something new
 
@@ -144,6 +146,27 @@ def collect(prev, now, force=False):
     ensure_wiki([s['po'].replace('OWCS ', owcs_build.LP_NAME + '/', 1) for s in stages[max(0, i - 1):i + 1]])
 
 
+def stamp_scripts(out):
+    """add ?v=<content hash> to every <script src="./x.js"> of the built pages, so a deploy is picked up at once"""
+    import hashlib
+    ver = {}
+    def tag(m):
+        f = m.group(2)
+        p = os.path.join(out, f)
+        if f not in ver:
+            ver[f] = hashlib.sha1(open(p, 'rb').read()).hexdigest()[:8] if os.path.isfile(p) else None
+        return m.group(0) if not ver[f] else f'{m.group(1)}{f}?v={ver[f]}"'
+    for f in os.listdir(out):
+        if f.endswith('.html'):
+            p = os.path.join(out, f)
+            with open(p, encoding='utf-8') as fh:
+                text = fh.read()
+            new = re.sub(r'(<script src="(?:\./)?)([\w.-]+\.js)"', tag, text)
+            if new != text:
+                with open(p, 'w', encoding='utf-8', newline='') as fh:
+                    fh.write(new)
+
+
 def main():
     sys.stdout.reconfigure(encoding='utf-8', errors='replace')
     out = sys.argv[sys.argv.index('--out') + 1] if '--out' in sys.argv else '_site'
@@ -197,6 +220,7 @@ def main():
     data['generated'] = prev['generated'] if same else stamp
     write_data(os.path.join(out, 'owcs-data.js'), data)
     b.write_ics(data, out)   # subscription calendar: only matches not played yet, so rebuild it on every run
+    stamp_scripts(out)   # after owcs-data.js is written: its hash goes on the pages too
     print(f"live streams: {len(data['live'])} {sorted(data['live'])} · {'unchanged' if same else 'changed'} · generated {data['generated']}")
     site_urls.apply(out)   # short English addresses: owticker.com/schedule, /results ... (old names forward)
 
