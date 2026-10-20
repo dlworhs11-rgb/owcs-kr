@@ -46,8 +46,11 @@
     'html[data-owcs-dark] body a[data-owcs-nv][data-owcs-nv]{color:#A3A3AD !important}',
     'html[data-owcs-dark] body a[data-owcs-nv]:hover{color:#F2F2F5 !important}',
     // light: a lime highlighter stroke under the word, just touching the letters' feet; dark: a thin lime line under it.
+    // menu links: no underline but the current page's. Not inline on the pages' links: an inline text-decoration made
+    // iPhone Safari draw the home page's current-page underline thin (순위 · 선수), unlike every other page's
+    'header nav a{text-decoration:none}',
     // An underline, not a background: it follows the text, so it sits the same on every page whatever the button's size
-    'html body a[data-owcs-nv][data-owcs-nv].cur{color:var(--ink,#0B0B0F) !important;text-decoration:underline var(--ac2,#C6FF33) 5px !important;text-underline-offset:-1px !important;text-decoration-skip-ink:none !important}',
+    'html body a[data-owcs-nv][data-owcs-nv].cur{color:var(--ink,#0B0B0F) !important;text-decoration-line:underline !important;text-decoration-style:solid !important;text-decoration-color:var(--ac2,#C6FF33) !important;text-decoration-thickness:5px !important;text-underline-offset:-1px !important;text-decoration-skip-ink:none !important}',
     'html[data-owcs-dark] body a[data-owcs-nv][data-owcs-nv].cur{color:#F2F2F5 !important;text-decoration-thickness:2px !important;text-underline-offset:3px !important}',
     'html[data-owcs-dark] [data-owcs-hw]{color:#F2F2F5}',
     'html[data-owcs-dark] [data-owcs-hw] .lb,html[data-owcs-dark] [data-owcs-hw] .dd{background:#16161C;border-color:#2E2E37}',
