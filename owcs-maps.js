@@ -18,7 +18,8 @@
   const pad = (n) => String(n).padStart(2, '0');
   // push maps report distance in metres; everything else is a round count
   const pts = (v) => (v == null ? '' : Number.isInteger(+v) ? String(v) : (+v).toFixed(1) + 'm');
-  /* m: a match from owcs-data.js (with m.st = 'live' | 'done' | 'up'); o: { spoiler, showBans, isOpen(key), toggle(key) } */
+  /* m: a match from owcs-data.js (with m.st = 'live' | 'done' | 'up'); o: { spoiler, showBans, noComps, isOpen(key), toggle(key) }
+     noComps: an earlier stage with no first-hero record at all, so no '기록 없음' note */
   // winner's logo next to its name on the map art: the white logo (the rows are dark), else the team colour
   const logoOf = (a) => { const t = ((window.OWCS || {}).teams || []).find((x) => x.a === a); if (!t) return '';
     const u = t.logoDark || t.logoOnColor || t.logo; return u ? "url('" + u + "') center / contain no-repeat" : t.color || ''; };
@@ -50,7 +51,7 @@
         scoreHi: SP || !w || !score ? '' : score.split(' : ')[0], scoreLo: SP || !w || !score ? '' : score.split(' : ')[1],
         done: !!w || m.st === 'done', recording, bg: mapBg(x.map), bgS: mapBg(x.map, true),
         chev: open ? '−' : '+', isOpen: open, showBans: open && showBans && x.bans.length > 0, showComps: open && comps.length > 0,
-        showRec: open && !comps.length, comps,
+        showRec: open && !comps.length && !o.noComps, comps,
         recNote: recording ? '기록 중이에요. 세트가 끝나면 양 팀 조합이 올라와요.' : '이 세트의 첫 조합 기록이 아직 없어요.',
         recNoteShort: recording ? '세트가 끝나면 조합이 올라와요.' : '첫 조합 기록 없음',
         // replay code (community sheet): a small copy chip at the right end of the last ban card; its own row only

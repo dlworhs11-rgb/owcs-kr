@@ -371,6 +371,23 @@ def start_of(m):
     return dt.replace(hour=h, minute=mi), True
 
 
+def lp_maps(m):
+    """a Liquipedia match's maps as the pages use them: map, mode, winner side, map score, bans"""
+    maps = []
+    for mp in m.get('maps') or []:
+        if not mp.get('map'):
+            continue
+        bans = mp.get('bans') or {}
+        first = 'a' if mp.get('banstart') == 1 else ('b' if mp.get('banstart') == 2 else None)
+        md = mp.get('mode') or MAP_MODE.get(mp['map']) or ''   # Liquipedia: 'Hybrid', sometimes 'hybrid', sometimes none
+        md = md[:1].upper() + md[1:]
+        maps.append(dict(no=mp['n'], map=mp['map'], mode=MODE_KO.get(md, md),
+                         winner={1: 'a', 2: 'b'}.get(mp.get('winner')),
+                         bans=[x for x in [dict(t='a', h=bans.get('t1')), dict(t='b', h=bans.get('t2'))] if x['h']],
+                         banFirst=first, src='liquipedia', sa=mp.get('score1'), sb=mp.get('score2')))
+    return maps
+
+
 def build_matches(stage):
     global PICKS
     PICKS = load_picks()
@@ -387,16 +404,7 @@ def build_matches(stage):
         if day not in lives:
             lives[day] = live_day(day)
         lv = (lives[day] or {}).get(f"{t1} vs {t2}") or (lives[day] or {}).get(f"{t2} vs {t1}")
-        maps = []
-        for mp in m.get('maps') or []:
-            if not mp.get('map'):
-                continue
-            bans = mp.get('bans') or {}
-            first = 'a' if mp.get('banstart') == 1 else ('b' if mp.get('banstart') == 2 else None)
-            maps.append(dict(no=mp['n'], map=mp['map'], mode=MODE_KO.get(mp.get('mode'), mp.get('mode') or ''),
-                             winner={1: 'a', 2: 'b'}.get(mp.get('winner')),
-                             bans=[x for x in [dict(t='a', h=bans.get('t1')), dict(t='b', h=bans.get('t2'))] if x['h']],
-                             banFirst=first, src='liquipedia', sa=mp.get('score1'), sb=mp.get('score2')))
+        maps = lp_maps(m)
         sa, sb, played, potm, live = m['score1'], m['score2'], m['played'], m.get('potm'), False
         need = (m.get('bestof') or (7 if m['phase'] == 'po' else 5)) // 2 + 1   # maps to win the series
         if lv and lv['maps']:
@@ -713,6 +721,18 @@ def short(name):
     return team(name)['a'] if name in TEAMS or name in STAGE_TEAMS else name
 
 
+def history_maps(m):
+    """maps of a finished match for the results page of an earlier stage (Liquipedia only; no first heroes)"""
+    rp = m.get('replays') or []
+    maps = lp_maps(m)
+    for x in maps:
+        x['bans'] = [dict(b, code=hero_code(b['h'])) for b in x['bans']]
+        del x['src']
+        if 0 < x['no'] <= len(rp) and rp[x['no'] - 1]:
+            x['replay'] = rp[x['no'] - 1]
+    return maps
+
+
 def build_history(stages, year):
     """every played Korea match of the season (regular seasons + playoffs) for the results search, newest first"""
     week0 = {s['po']: s['week0'] for s in stages}
@@ -728,7 +748,8 @@ def build_history(stages, year):
         a, b, day = short(m['team1']), short(m['team2']), dt.date().isoformat()
         t0 = match_start(dict(day=day, a=a, b=b, date=dt.isoformat())) if dt.hour or dt.minute else None
         out.append(dict(date=day, stage=stage, week=((dt.date() - start).days // 7 + 1) if start else None,
-                        a=a, b=b, sa=m['score1'], sb=m['score2'], vod=soop_vod(replays, day, t0)))
+                        a=a, b=b, sa=m['score1'], sb=m['score2'], vod=soop_vod(replays, day, t0),
+                        maps=history_maps(m)))
     out.sort(key=lambda x: x['date'], reverse=True)
     return out
 
