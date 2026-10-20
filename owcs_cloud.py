@@ -163,12 +163,16 @@ def upcoming_ics(data, now=None, team=None):
     now = now or datetime.datetime.now(KST)
     names = {t['a']: t['n'] for t in data['teams']}
     teams = (team,) if isinstance(team, str) else tuple(team or ())
-    title = 'OWCS KR ' + ('·'.join(teams if len(teams) > 1 else [names.get(x, x) for x in teams]) + ' ' if teams else '') + '남은 경기'
+    title = (' · '.join(teams if len(teams) > 1 else [names.get(x, x) for x in teams]) if teams else 'OWCS KR') + ' 남은 경기'
+    # calendar colour = the team's colour (first team when several; site green for every team). Apple Calendar reads it,
+    # Google Calendar ignores colours in subscribed files and picks its own.
+    colors = {t['a']: t.get('color') for t in data['teams']}
+    color = (colors.get(teams[0]) if teams else None) or '#C6FF33'
     esc = lambda x: str(x).replace('\\', '\\\\').replace(';', '\\;').replace(',', '\\,')
     utc = lambda dt: dt.astimezone(datetime.timezone.utc).strftime('%Y%m%dT%H%M%SZ')
     stamp = utc(now)
     lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//OWCS KR fan//KO', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
-             'X-WR-CALNAME:' + title, 'X-WR-TIMEZONE:Asia/Seoul', 'REFRESH-INTERVAL;VALUE=DURATION:PT6H', 'X-PUBLISHED-TTL:PT6H']
+             'X-WR-CALNAME:' + title, 'X-APPLE-CALENDAR-COLOR:' + color, 'X-WR-TIMEZONE:Asia/Seoul', 'REFRESH-INTERVAL;VALUE=DURATION:PT6H', 'X-PUBLISHED-TTL:PT6H']
     for m in data['matches']:
         t0 = datetime.datetime.fromisoformat(m['date'])
         if m.get('played') or t0 <= now or (teams and m['a'] not in teams and m['b'] not in teams):
