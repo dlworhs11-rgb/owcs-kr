@@ -66,7 +66,7 @@
 
   // switch (the home page has its own 다크 모드 toggle)
   function button() {
-    if (/Home/.test(decodeURIComponent(location.pathname).split('/').pop()) || document.querySelector('[data-owcs-darkbtn]')) return;
+    if (/Home|^(index|standings|players)?(\.html)?$/.test(decodeURIComponent(location.pathname).split('/').pop()) || document.querySelector('[data-owcs-darkbtn]')) return;
     var b = document.createElement('button');
     b.setAttribute('data-owcs-darkbtn', '');
     b.textContent = on ? '☀ 라이트 모드' : '☾ 다크 모드';

@@ -48,7 +48,7 @@
   // menu label: 순위 → 대진표 (every page, every language)
   var MAP = { '순위': '대진표', '順位': 'トーナメント', 'Standings': 'Bracket' };
   function relabel() {
-    Array.prototype.forEach.call(document.querySelectorAll('a[href*="view=standings"]'), function (a) {
+    Array.prototype.forEach.call(document.querySelectorAll('a[href*="view=standings"], a[href="standings"]'), function (a) {
       var w = document.createTreeWalker(a, NodeFilter.SHOW_TEXT), n;
       while ((n = w.nextNode())) { var k = n.nodeValue.trim(); if (MAP[k]) n.nodeValue = n.nodeValue.replace(k, MAP[k]); }
     });

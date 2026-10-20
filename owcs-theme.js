@@ -74,7 +74,7 @@
   }
   // "B" background (home page): one warm paper sheet with fine hatching from the top bar to the footer; sections
   // lose their own fills, edge lines and glows and are told apart by spacing only. ?bg=old shows the previous look.
-  if (/Home/.test(decodeURIComponent(location.pathname).split('/').pop()) && new URLSearchParams(location.search).get('bg') !== 'old') {
+  if (/Home|^(index|standings|players)?(\.html)?$/.test(decodeURIComponent(location.pathname).split('/').pop()) && new URLSearchParams(location.search).get('bg') !== 'old') {
     var H = 'html[data-owcs-bgb] ';
     document.documentElement.setAttribute('data-owcs-bgb', '');
     css += '\n' + [
@@ -98,7 +98,7 @@
   // dark mode on the other pages (results, player): the same dark sheet as the home page, bands without their own fills
   var darkQ = new URLSearchParams(location.search).get('dark'), darkOn = darkQ === '1';
   if (darkQ !== '0' && darkQ !== '1') { try { darkOn = localStorage.getItem('owcs-dark') === '1'; } catch (e) {} }
-  if (!/Home/.test(decodeURIComponent(location.pathname).split('/').pop()) && darkOn) {
+  if (!/Home|^(index|standings|players)?(\.html)?$/.test(decodeURIComponent(location.pathname).split('/').pop()) && darkOn) {
     var X = 'html[data-owcs-bgb][data-owcs-dark] ';
     document.documentElement.setAttribute('data-owcs-bgb', '');
     css += '\n' + [
@@ -109,7 +109,7 @@
     ].join('\n');
   }
   // light mode on the other pages: the home page's warm paper sheet, bands without their own fills
-  if (!/Home/.test(decodeURIComponent(location.pathname).split('/').pop()) && !darkOn && new URLSearchParams(location.search).get('bg') !== 'old') {
+  if (!/Home|^(index|standings|players)?(\.html)?$/.test(decodeURIComponent(location.pathname).split('/').pop()) && !darkOn && new URLSearchParams(location.search).get('bg') !== 'old') {
     var L = 'html[data-owcs-bgb]:not([data-owcs-dark]) ';
     document.documentElement.setAttribute('data-owcs-bgb', '');
     css += '\n' + [
@@ -178,8 +178,9 @@
 // (tool bar, header, 직관 안내) and that one section, in every layout. The home page itself is unchanged; the menus on
 // every page link here instead of scrolling the home page.
 (function () {
-  if (!/Home/.test(decodeURIComponent(location.pathname).split('/').pop())) return;
-  var view = new URLSearchParams(location.search).get('view');
+  if (!/Home|^(index|standings|players)?(\.html)?$/.test(decodeURIComponent(location.pathname).split('/').pop())) return;
+  var view = new URLSearchParams(location.search).get('view') ||   // owticker.com/standings, /players: the view is the address
+    { standings: 'standings', players: 'teams' }[decodeURIComponent(location.pathname).split('/').pop().replace(/\.html$/, '')];
   var KEY = { standings: 'STANDINGS', teams: 'TEAMS' }[view];
   if (!KEY) return;
   document.documentElement.setAttribute('data-owcs-view', view);

@@ -9,7 +9,7 @@
   // between pages whatever the window width
   var centre = '@media (min-width:900px){#dc-root header{position:relative}' +
     'header nav{position:absolute !important;left:50% !important;top:50% !important;transform:translate(-50%,-50%) !important;display:flex !important;gap:6px !important;margin:0 !important;overflow:visible !important}}';
-  var HOME = /Home/.test(decodeURIComponent(location.pathname).split('/').pop());
+  var HOME = /Home|^(index|standings|players)?(\.html)?$/.test(decodeURIComponent(location.pathname).split('/').pop());
   // --- the language picker + ⋮ menu (all pages, the home page too) ---
   var hw = [
     '#dc-root [data-screen-label]{position:relative}',
@@ -186,7 +186,10 @@
     var a = document.createElement('a');
     a.href = href;
     var f = decodeURIComponent(a.pathname).split('/').pop(), v = new URLSearchParams(a.search).get('view') || '';
-    if (/Player/.test(f)) { f = 'OWCS KR Home v6.dc.html'; v = 'teams'; }
+    f = f.replace(/\.html$/, '');   // the site's short addresses: / (home), standings, players, player, schedule ...
+    if (/^(standings|players)$/.test(f)) { v = f === 'players' ? 'teams' : f; f = ''; }
+    if (/Player|^player$/.test(f)) { f = ''; v = 'teams'; }
+    if (/Home|^index$/.test(f)) f = '';
     return f + '?' + v;
   }
   function markNav() {

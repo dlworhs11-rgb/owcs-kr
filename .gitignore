@@ -13,6 +13,7 @@
 !/cloud_live.py
 !/owcs_cloud.py
 !/owcs_build.py
+!/site_urls.py
 !/data/
 /data/*
 !/data/socials.json

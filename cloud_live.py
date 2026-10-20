@@ -21,6 +21,7 @@ sys.path.insert(0, HERE)
 os.makedirs(os.path.join(HERE, 'data'), exist_ok=True)   # soop_vods() caches here
 import owcs_cloud as b  # noqa: E402
 import owcs_build  # noqa: E402
+import site_urls  # noqa: E402
 
 SITE_FILES = ['index.html', 'OWCS KR Home v6.dc.html', 'OWCS KR Player.dc.html', 'OWCS KR Results.dc.html',
               'OWCS KR 일정.html', 'OWCS KR 방송.html', 'OWCS KR 직관.html', 'support.js']
@@ -197,6 +198,7 @@ def main():
     write_data(os.path.join(out, 'owcs-data.js'), data)
     b.write_ics(data, out)   # subscription calendar: only matches not played yet, so rebuild it on every run
     print(f"live streams: {len(data['live'])} {sorted(data['live'])} · {'unchanged' if same else 'changed'} · generated {data['generated']}")
+    site_urls.apply(out)   # short English addresses: owticker.com/schedule, /results ... (old names forward)
 
 
 if __name__ == '__main__':
