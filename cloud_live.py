@@ -144,6 +144,8 @@ def collect(prev, now, force=False):
     cur = owcs_build.current_stage(stages, now.date())
     i = stages.index(cur)
     ensure_wiki([s['po'].replace('OWCS ', owcs_build.LP_NAME + '/', 1) for s in stages[max(0, i - 1):i + 1]])
+    # the season's international events: dates and city (infobox), group / round names when the collector has none
+    ensure_wiki([f"{owcs_build.LP_NAME}/{cur['year']}/{name}{sub}" for name, _, _ in owcs_build.INTL_EVENTS for sub in ('', '/Group Stage')])
 
 
 def stamp_scripts(out):
