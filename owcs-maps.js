@@ -32,8 +32,11 @@
       // copy the code; the button's [data-l] label (or the button) says 복사됨 for 1.5 s
       const copyReplay = (e) => {
         if (e && e.stopPropagation) e.stopPropagation();
-        const b = e && e.currentTarget, l = b && (b.querySelector('[data-l]') || b), was = l && l.textContent;
-        const done = () => { if (l) { l.textContent = '복사됨'; setTimeout(() => { l.textContent = was; }, 1500); } };
+        // rapid clicks: keep the first label and restart one timer, so the label always comes back
+        const b = e && e.currentTarget, l = b && (b.querySelector('[data-l]') || b);
+        if (l && l._was == null) l._was = l.textContent;
+        const done = () => { if (l) { l.textContent = '복사됨'; clearTimeout(l._t);
+          l._t = setTimeout(() => { l.textContent = l._was; l._was = null; }, 1500); } };
         if (navigator.clipboard) navigator.clipboard.writeText(x.replay).then(done, done); else done();
       };
       // Control / Flashpoint end at a fixed score (2 / 3): once the map's winner is known, its score is that, even when
