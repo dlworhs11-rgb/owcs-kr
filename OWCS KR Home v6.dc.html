@@ -1080,6 +1080,8 @@ const nowMs = () => params.get('date') ? new Date(params.get('date') + 'T' + (pa
 // shown time: KST in Korean, the reader's zone in ja / en / zh (owcs-i18n.js); m.time itself stays KST for the maths
 const hmOf = (m) => window.OWCSi18n ? OWCSi18n.hm(m.date, m.time) : m.time;
 const tmOf = (m) => m.tbd ? '시간 미정' : hmOf(m);
+// zone tag next to a bare time, outside Korean only (owcs-i18n.js turns 'KST' into JST / 北京时间 / PT ...)
+const zOf = () => window.OWCSi18n && OWCSi18n.zone !== 'KST' ? ' KST' : '';
 const startTxt = (m) => m.tbd ? '시작 시간 발표 전' : hmOf(m) + ' KST 시작';
 const vsOf = (m) => m.a === 'TBD' && m.b === 'TBD' ? (m.round || m.label) + ' · 대진 미정' : m.a + ' vs ' + m.b;
 const STAGE_SHORT = D.stage.replace(/^\d{4} OWCS KR /, '');
@@ -1548,7 +1550,7 @@ class Component extends DCLogic {
       poster: todays.map((m) => {
         const o = orient(m.a, m.sa, m.b, m.sb), done = m.st === 'done', shown = done && !SP && !m.nr, nx = m === sh;
         const nm = (a) => a === 'TBD' ? '미정' : a, lg = (a) => a === 'TBD' ? 'transparent' : logoBg(a, true);
-        return { time: m.tbd ? '미정' : hmOf(m), next: nx, a: nm(o[0]), b: nm(o[2]), la: lg(o[0]), lb: lg(o[2]),
+        return { time: m.tbd ? '미정' : hmOf(m) + zOf(), next: nx, a: nm(o[0]), b: nm(o[2]), la: lg(o[0]), lb: lg(o[2]),
           oa: shown && o[1] < o[3] ? .4 : 1, ob: shown && o[3] < o[1] ? .4 : 1,
           mid: shown ? o[1] + ' : ' + o[3] : 'vs', midC: shown ? '#fff' : '#8A8A93', op: done ? .6 : 1,
           bg: tintBg(o[0], o[2], nx ? .26 : .14, nx ? .26 : .14, '#26262E'),
@@ -1598,7 +1600,7 @@ class Component extends DCLogic {
       nextNone: !upcoming.length,
       nextList: upcoming.slice(0, 3).map((m, i) => {
         const nm = (a) => a === 'TBD' ? '미정' : a, lg = (a) => a === 'TBD' ? 'transparent' : logoBg(a, true), k = i ? .14 : .26;
-        return { day: md(m.date) + ' (' + dow(m.date) + ')', dayShort: md(m.date) + ' ' + dow(m.date), time: m.tbd ? '미정' : hmOf(m),
+        return { day: md(m.date) + ' (' + dow(m.date) + ')', dayShort: md(m.date) + ' ' + dow(m.date), time: m.tbd ? '미정' : hmOf(m) + zOf(),
           a: nm(m.a), b: nm(m.b), la: lg(m.a), lb: lg(m.b), bg: tintBg(m.a, m.b, k, k, '#26262E'),
           ring: 'none' };
       }),

@@ -210,6 +210,7 @@
     [/시간 미정 경기는 Liquipedia에 시간이 올라오면 바뀌어요\./g, P('時間未定の試合は、Liquipediaに時間が載ると更新されます。', 'TBD times update once Liquipedia posts them.', '时间待定的比赛会在 Liquipedia 公布时间后更新。')],
     [/직관 정보는$/, P('観戦情報は', 'Ticket info is copied from the', '观赛信息转载自')],
     [/^ ?공식 예매 안내를 옮긴 것이라, 바뀐 내용은 티켓링크 공지를 확인해 주세요\./, P('の公式販売案内を転載したものです。変更はTicketlinkのお知らせをご確認ください。', ' official sales notice; check Ticketlink for any changes.', ' 官方售票公告，如有变动请以 Ticketlink 公告为准。')],
+    [/ \(서울 시간\)/g, P(' (ソウル時間)', ' (Seoul time)', ' (首尔时间)')],
     [/경기 (\d+)개/g, P('$1試合', '$1 matches', '$1场比赛')],
     [/LCQ 경쟁/g, P('LCQ争い', 'LCQ race', 'LCQ 争夺')], [/플레이오프 경쟁/g, P('プレーオフ争い', 'playoff race', '季后赛争夺')],
     [/ \(지난 시즌\)/g, P(' (前シーズン)', ' (last season)', ' (上赛季)')],
@@ -312,10 +313,10 @@
   function doNode(n) {
     var cur = n.data;
     if (lang === 'ko') { if (ORIG.has(n) && ORIG.get(n).t === cur) n.data = ORIG.get(n).o; return; }
-    var kst = ZONE !== 'KST' && /KST/.test(cur);
+    var kst = ZONE !== 'KST' && /KST/.test(cur);
     if (!HANGUL.test(cur) && !kst) return;
     var t = HANGUL.test(cur) ? tr(cur) : cur;
-    if (kst) t = t.replace(/KST/g, ZONE);
+    if (kst) t = t.replace(/KST/g, ZONE);
     if (t !== cur) { ORIG.set(n, { o: cur, t: t }); n.data = t; }
   }
   var ATTRS = ['placeholder', 'title', 'alt', 'aria-label'];

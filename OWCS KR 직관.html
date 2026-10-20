@@ -382,8 +382,9 @@ function drawHours(rows) {
     return { d: d, t: t, e: plusH('2000-01-01', t, 6).slice(11) };
   }).sort(function (a, b) { return order.indexOf(a.d[0]) - order.indexOf(b.d[0]); });
   if (!g.length) return;
-  document.getElementById('hoursChips').innerHTML = g.map(function (x) { return '<span class="chip">' + x.d.join('·') + ' <b>' + x.t + '–' + x.e + '</b></span>'; }).join('\n      ');
-  document.getElementById('hoursLong').innerHTML = g.map(function (x) { return '<div class="dots"><span>' + x.d.join(', ') + '</span><span></span><span>' + x.t + ' – ' + x.e + '</span></div>'; }).join('');
+  var kz = I18() ? ' (서울 시간)' : '';   // venue hours stay Seoul time, said so outside Korean ('KST' would be relabelled)
+  document.getElementById('hoursChips').innerHTML = g.map(function (x) { return '<span class="chip">' + x.d.join('·') + ' <b>' + x.t + '–' + x.e + kz + '</b></span>'; }).join('\n      ');
+  document.getElementById('hoursLong').innerHTML = g.map(function (x) { return '<div class="dots"><span>' + x.d.join(', ') + '</span><span></span><span>' + x.t + ' – ' + x.e + kz + '</span></div>'; }).join('');
 }
 function draw() {
   var D = window.OWCS;
