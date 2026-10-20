@@ -536,9 +536,19 @@ def build_matches(stage):
     return out, lives
 
 
+def vod_starts(day):
+    """map 1 ban screens found afterwards in the SOOP replay, for days pick_watch.py did not record: [{teams, banTs}]"""
+    f = os.path.join(HERE, 'data', 'vod_starts.json')
+    if not os.path.exists(f):
+        return []
+    with open(f, encoding='utf-8') as fh:
+        return json.load(fh).get(day, [])
+
+
 def match_start(x):
-    """epoch seconds the match began: the map 1 hero-ban screen pick_watch.py saw, else the scheduled time"""
-    for s in live_sets(x['day']):
+    """epoch seconds the match began: the map 1 hero-ban screen pick_watch.py saw (or found later in the replay),
+    else the scheduled time"""
+    for s in live_sets(x['day']) + [dict(s, game=1) for s in vod_starts(x['day'])]:
         if s.get('game') == 1 and s.get('banTs') and {short(t) for t in s.get('teams') or []} == {x['a'], x['b']}:
             return s['banTs']
     return None if x.get('tbd') else datetime.datetime.fromisoformat(x['date']).timestamp()
@@ -715,9 +725,10 @@ def build_history(stages, year):
         dt = datetime.datetime.fromisoformat(m['date']).astimezone(KST)
         stage = '스테이지 ' + c.split('Stage ')[1].split('/')[0] + (' 플레이오프' if c.endswith('/Korea') else '')
         start = week0.get(c.replace('/Regular Season', ''))
-        out.append(dict(date=dt.date().isoformat(), stage=stage, week=((dt.date() - start).days // 7 + 1) if start else None,
-                        a=short(m['team1']), b=short(m['team2']), sa=m['score1'], sb=m['score2'],
-                        vod=soop_vod(replays, dt.date().isoformat(), dt.timestamp() if dt.hour or dt.minute else None)))
+        a, b, day = short(m['team1']), short(m['team2']), dt.date().isoformat()
+        t0 = match_start(dict(day=day, a=a, b=b, date=dt.isoformat())) if dt.hour or dt.minute else None
+        out.append(dict(date=day, stage=stage, week=((dt.date() - start).days // 7 + 1) if start else None,
+                        a=a, b=b, sa=m['score1'], sb=m['score2'], vod=soop_vod(replays, day, t0)))
     out.sort(key=lambda x: x['date'], reverse=True)
     return out
 

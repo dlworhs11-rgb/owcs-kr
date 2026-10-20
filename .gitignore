@@ -29,6 +29,7 @@
 !/data/live_sets/
 !/data/live_cast/
 !/data/live_admin/
+!/data/vod_starts.json
 
 # built by GitHub Actions on every deploy (cloud_live.py); the PC copy is only for the local preview
 /owcs-data.js
