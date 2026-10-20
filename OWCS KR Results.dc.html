@@ -55,7 +55,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <header style="display:flex;align-items:center;justify-content:space-between;height:76px;padding:0 56px;border-bottom:1px solid #E6E6E1">
 <a href="OWCS KR Home v6.dc.html" style="display:flex;align-items:center;gap:10px;color:#0B0B0F;text-decoration:none"><div style="width:30px;height:30px;background:#0B0B0F;border-radius:7px;display:grid;place-items:center"><div style="width:10px;height:10px;background:#C6FF33;border-radius:2px"></div></div><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px"><span class="owt"><b>OW</b>TICKER</span></span></a>
 <nav style="display:flex;gap:6px">
-<sc-for list="{{ nav }}" as="n" hint-placeholder-count="6"><a href="{{ n.href }}" style="display:flex;align-items:center;height:44px;padding:0 16px;border-radius:999px;font-size:16px;font-weight:600;color:#0B0B0F;text-decoration:none" style-hover="background:#F1F1ED;color:#0B0B0F">{{ n.label }}</a></sc-for>
+<sc-for list="{{ nav }}" as="n" hint-placeholder-count="7"><a href="{{ n.href }}" style="display:flex;align-items:center;height:44px;padding:0 16px;border-radius:999px;font-size:16px;font-weight:600;color:#0B0B0F;text-decoration:none" style-hover="background:#F1F1ED;color:#0B0B0F">{{ n.label }}</a></sc-for>
 </nav>
 <div style="display:flex;justify-content:flex-end;width:200px"><button onClick="{{ toggleSpoiler }}" style="display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 14px;border:1px solid #E6E6E1;border-radius:999px;background:#fff;font:inherit;font-size:14px;font-weight:600;color:#0B0B0F;cursor:pointer"><span style="position:relative;width:30px;height:18px;border-radius:999px;background:{{ spoilTrack }}"><span style="position:absolute;top:2px;left:{{ spoilKnob }};width:14px;height:14px;border-radius:50%;background:#fff"></span></span>스포일러 방지</button></div>
 </header>
@@ -471,9 +471,9 @@ class Component extends DCLogic {
       rates: RATES.map((t, i) => { const s = D.standings.find((x) => x.a === t.a); return { r: i + 1, n: NAME(t.a), logo: logo(t.a), c: col(t.a), wl: t.w + '-' + t.l, pct: Math.round(t.p * 100) + '%', sets: t.sw + '-' + t.sl, stage: s ? s.w + '-' + s.l : '–' }; }),
       toggleSpoiler: () => this.setState((s) => { try { localStorage.setItem('owcs-spoiler', s.sp ? '0' : '1'); } catch (e) {} return { sp: !s.sp }; }), spoilAttr: SP ? '1' : '0', spoilTrack: SP ? '#7D39EB' : '#B9B9B3', spoilKnob: SP ? '14px' : '2px', blur: 'none',
       nav: [
-        { label: '일정', href: 'OWCS KR 일정.html' }, { label: '결과', href: 'OWCS KR Results.dc.html' },
-        { label: '순위', href: 'OWCS KR Home v6.dc.html?view=standings' }, { label: '직관', href: 'OWCS KR 직관.html' },
-        { label: '선수', href: 'OWCS KR Home v6.dc.html?view=teams' }, { label: '방송', href: 'OWCS KR 방송.html' },
+        { label: '홈', href: 'OWCS KR Home v6.dc.html' }, { label: '일정', href: 'OWCS KR 일정.html' }, { label: '결과', href: 'OWCS KR Results.dc.html' },
+        { label: '순위', href: 'OWCS KR Home v6.dc.html?view=standings' },
+        { label: '선수', href: 'OWCS KR Home v6.dc.html?view=teams' }, { label: '방송', href: 'OWCS KR 방송.html' }, { label: '직관', href: 'OWCS KR 직관.html' },
       ],
       seasonLabel: anyBracket ? ls.label : (D.year || '') + ' ' + (CUR ? STAGE : '스테이지 ' + this.state.st),
       // the season button picks the stage on the results tab (other tabs show their own label)

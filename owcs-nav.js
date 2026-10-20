@@ -1,5 +1,5 @@
 // The top of every page laid out like the home page (the reference, measured from it): one 76px header row with
-// the logo (30px mark + 28px wordmark) on the content column's left edge, the menu (일정 · 결과 · 순위 · 직관 · 선수 · 방송)
+// the logo (30px mark + 28px wordmark) on the content column's left edge, the menu (홈 · 일정 · 결과 · 순위 · 선수 · 방송 · 직관)
 // in the middle, and on the right the language picker (🌐 KOR ⌄: KOR · ENG · JPN · CHN with flags) and a ⋮ menu that holds
 // 스포일러 방지 · 다크 모드. Phones / tablets: the picker sits next to the ☰ button, whose menu holds the two switches.
 // The page's own switches (the home page's tool bar, the results page's spoiler switch, owcs-dark.js's floating button)
@@ -35,6 +35,10 @@
     '[data-owcs-hw] .son .hkn{left:14px}',
     '[data-owcs-hw] .my{display:flex;align-items:center;gap:8px;height:36px;padding:0 12px;font-size:13px;font-weight:700;white-space:nowrap}',
     '[data-owcs-hw] .my:empty{display:none}',
+    // phone / tablet menu chips (the home page's and the other pages' copy): centred when they fit (tablet);
+    // on a phone they don't fit, so they start at the left and scroll
+    '@media (max-width:899.98px){[data-owcs-mtop] nav a:first-child,header nav a[data-owcs-nv]:first-child{margin-left:auto !important}' +
+    '[data-owcs-mtop] nav a:last-child,header nav a[data-owcs-nv]:last-child{margin-right:auto !important}}',
     // the menu: the page you are on in ink with a short lime bar under it (the site's accent), the others muted
     // (html body + the doubled attribute: beats the phone menu's own chip colours, light and dark)
     'html body a[data-owcs-nv][data-owcs-nv]{color:var(--mute,#6B6B72) !important}',
@@ -138,7 +142,7 @@
     '  [data-owcs-mtop] .kn{position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:#fff}',
     '  [data-owcs-mtop] .on .kn{left:14px}',
     '  [data-owcs-mtop] .hd{position:relative;border-bottom:1px solid #E6E6E1}',
-    '  [data-owcs-mtop] .row{display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 12px 0 20px}',
+    '  [data-owcs-mtop] .row{display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 12px 0 20px;margin:0}',   // margin 0: the schedule page has its own .row with a margin that pushed the menu 14px down
     '  [data-owcs-mtop] .brand{display:flex;align-items:center;gap:8px;color:inherit;text-decoration:none}',
     '  [data-owcs-mtop] .mk{width:24px;height:24px;background:#0B0B0F;border-radius:6px;display:grid;place-items:center}',
     '  [data-owcs-mtop] .mk i{width:8px;height:8px;background:#C6FF33;border-radius:2px}',
@@ -176,13 +180,13 @@
     return /^(ko|ja|en|zh)$/.test(l || '') ? l : /^ja/.test(n) ? 'ja' : /^ko/.test(n) ? 'ko' : /^zh/.test(n) ? 'zh' : 'en';
   })();
   var T = {   // the home page's own labels (Home v6 I18N)
-    ko: { nav: ['일정', '결과', '순위', '직관', '선수', '방송'], spoiler: '스포일러 방지', dark: '다크 모드', lang: '언어', more: '설정' },
-    ja: { nav: ['日程', '結果', '順位', '観戦', '選手', '配信'], spoiler: 'ネタバレ防止', dark: 'ダークモード', lang: '言語', more: '設定' },
-    en: { nav: ['Schedule', 'Results', 'Standings', 'Tickets', 'Players', 'Live'], spoiler: 'No spoilers', dark: 'Dark mode', lang: 'Language', more: 'Settings' },
-    zh: { nav: ['赛程', '结果', '排名', '现场观赛', '选手', '直播'], spoiler: '防剧透', dark: '深色模式', lang: '语言', more: '设置' }
+    ko: { nav: ['홈', '일정', '결과', '순위', '선수', '방송', '직관'], spoiler: '스포일러 방지', dark: '다크 모드', lang: '언어', more: '설정' },
+    ja: { nav: ['ホーム', '日程', '結果', '順位', '選手', '配信', '観戦'], spoiler: 'ネタバレ防止', dark: 'ダークモード', lang: '言語', more: '設定' },
+    en: { nav: ['Home', 'Schedule', 'Results', 'Standings', 'Players', 'Live', 'Tickets'], spoiler: 'No spoilers', dark: 'Dark mode', lang: 'Language', more: 'Settings' },
+    zh: { nav: ['首页', '赛程', '结果', '排名', '选手', '直播', '现场观赛'], spoiler: '防剧透', dark: '深色模式', lang: '语言', more: '设置' }
   }[LANG];
-  var HREFS = ['OWCS KR 일정.html', 'OWCS KR Results.dc.html', 'OWCS KR Home v6.dc.html?view=standings',
-               'OWCS KR 직관.html', 'OWCS KR Home v6.dc.html?view=teams', 'OWCS KR 방송.html'];
+  var HREFS = ['OWCS KR Home v6.dc.html', 'OWCS KR 일정.html', 'OWCS KR Results.dc.html', 'OWCS KR Home v6.dc.html?view=standings',
+               'OWCS KR Home v6.dc.html?view=teams', 'OWCS KR 방송.html', 'OWCS KR 직관.html'];
   // which menu item is this page: the file name, and for the home page its ?view= (a player's page counts as 선수)
   function navKey(href) {
     var a = document.createElement('a');
