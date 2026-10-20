@@ -510,6 +510,13 @@ def build_matches(stage):
                 w, l = ('sa', 'sb') if x['winner'] == 'a' else ('sb', 'sa')
                 if (x.get(w) or 0) < tgt:
                     x[w], x[l] = tgt, min(x.get(l) or 0, tgt - 1)
+            # Escort / Hybrid: the map ends the moment the winner scores its last point, so the HUD showed it one short
+            # (10-16 Neon Junction 3:3 on screen, 4:3 final): the winner has at least one more than the loser
+            if MAP_MODE.get(x.get('map')) in ('Escort', 'Hybrid') and x.get('winner') in ('a', 'b') \
+                    and isinstance(x.get('sa'), int) and isinstance(x.get('sb'), int):
+                w, l = ('sa', 'sb') if x['winner'] == 'a' else ('sb', 'sa')
+                if x[w] <= x[l]:
+                    x[w] = x[l] + 1
         out.append(dict(
             # regular season ids stay '<day>-<idx>' (calendar UIDs people already subscribed to); playoff ids do not
             # carry the day, so a rescheduled playoff match keeps its calendar entry
