@@ -79,6 +79,8 @@ table{width:100%;border-collapse:collapse;font-size:15px}
 th{font-size:13px;font-weight:700;color:var(--mute);text-align:left;padding:12px 14px;border-bottom:2px solid #fff}
 td{padding:14px;border-bottom:1px solid var(--line);vertical-align:middle}
 td.n{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:20px;white-space:nowrap}
+td.op .ol{display:none}
+td.n small.tz{display:block;font-family:inherit;font-size:12px;font-weight:600;color:var(--dim);letter-spacing:.02em}
 tr.today td{background:color-mix(in srgb,var(--ac) 14%,transparent)}
 .wk{font-weight:700;white-space:nowrap}.wk small{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--dim);font-weight:500}
 .owl{width:16px;height:16px;flex:none}
@@ -150,7 +152,7 @@ body.ticket-page footer{background:#0B0B0F;color:#8A8A93;border:0}
   #schedule td.stt{grid-area:1/2;justify-self:end}
   #schedule td.n{grid-area:2/1;font-size:18px}
   #schedule td.op{grid-area:2/2;justify-self:end;font-size:12px;color:var(--dim)}
-  #schedule td.op:before{content:"판매 오픈 "}
+  #schedule td.op .ol{display:inline}
   #schedule td.mv{grid-area:3/1/4/3}
 }
 </style>
@@ -352,13 +354,18 @@ function playoffRows(D) {
   return out;
 }
 // 오픈 안내 cards: regular season one line per week, the other blocks one line per day
-var pm = function (t) { return '오후 ' + (+t.slice(11, 13) - 12) + '시'; };
+// shown times: KST in Korean; in ja / en / zh the reader's zone from owcs-i18n.js (online sales and match times only;
+// the venue hours stay KST, people there are in Seoul)
+var I18 = function () { return window.OWCSi18n && OWCSi18n.zone !== 'KST' ? OWCSi18n : null; };
+var H = function (day, t) { return I18() ? I18().hm(day, t) : t; };
+var pm = function (t) { return I18() ? H(t.slice(0, 10), t.slice(11, 16)) + ' KST' : '오후 ' + (+t.slice(11, 13) - 12) + '시'; };
 var mdLong = function (s) { return +s.slice(5, 7) + '월 ' + +s.slice(8, 10) + '일 (' + dowOf(s.slice(0, 10)) + ')'; };
 function drawOpen(rows) {
   var rr = rows.filter(function (r) { return r[6].slice(0, 2) === 'rs'; });
   document.getElementById('openRR').innerHTML = rr.map(function (r) { return r[6]; }).filter(uniq).map(function (g, n) {
     var w = rr.filter(function (r) { return r[6] === g; });
-    return '<li><b>Week ' + (n + 1) + '</b> · ' + mdLong(w[0][4]) + ' 오후 ' + w.map(function (r) { return +r[4].slice(11, 13) - 12; }).join(' / ') + '시 오픈</li>';
+    return '<li><b>Week ' + (n + 1) + '</b> · ' + mdLong(w[0][4]) + (I18() ? ' ' + w.map(function (r) { return H(r[4].slice(0, 10), r[4].slice(11, 16)); }).join(' / ') + ' KST 오픈'
+      : ' 오후 ' + w.map(function (r) { return +r[4].slice(11, 13) - 12; }).join(' / ') + '시 오픈') + '</li>';
   }).join('');
   [['seed', 'openSeed'], ['po', 'openPO']].forEach(function (b) {
     document.getElementById(b[1]).innerHTML = rows.filter(function (r) { return r[6] === b[0]; }).map(function (r, i) {
@@ -403,11 +410,11 @@ function draw() {
     var ms = D ? D.matches.filter(function (m) { return m.day === r[1] && !(m.a === 'TBD' && m.b === 'TBD'); }) : [];
     var vs = ms.length ? '<div class="vs">' + ms.map(function (m) {
       var lg = function (c) { var x = team(c); var f = x && (dark && x.logoDark || x.logo); return f ? '<img src="' + f + '" alt="">' : ''; };
-      return '<div><span class="t">' + (m.tbd ? '' : m.time) + '</span>' + lg(m.a) + m.a + '<span class="x">vs</span>' + lg(m.b) + m.b + '</div>';
+      return '<div><span class="t">' + (m.tbd ? '' : H(m.date, m.time)) + '</span>' + lg(m.a) + m.a + '<span class="x">vs</span>' + lg(m.b) + m.b + '</div>';
     }).join('') + '</div>' : '<span style="color:var(--dim);white-space:nowrap">대진 발표 전</span>';
     var tr = document.createElement('tr');
     if (next.r === r) tr.className = 'today';
-    tr.innerHTML = '<td class="wk">' + md(r[1]) + ' (' + r[2] + ')<small>' + stage + ' ' + r[0] + '<img class="owl pc" src="assets/icons/overwatch.svg" alt=""></small></td><td class="n">' + (r[3] || '발표 전') + '</td><td class="mv">' + vs + '</td><td class="op" style="white-space:nowrap">' + md(r[4]) + ' ' + r[4].slice(11) + '</td><td class="stt">' + (st[1] === 'b-open' ? '<a class="badge b-open" href="' + TICKET_URL + '" target="_blank" rel="noopener" title="티켓링크에서 예매">' + st[0] + ' ↗</a>' : '<span class="badge ' + st[1] + '">' + st[0] + '</span>') + '</td>';
+    tr.innerHTML = '<td class="wk">' + md(r[1]) + ' (' + r[2] + ')<small>' + stage + ' ' + r[0] + '<img class="owl pc" src="assets/icons/overwatch.svg" alt=""></small></td><td class="n">' + (r[3] ? H(r[1], r[3]) + (I18() ? '<small class="tz">' + I18().zone + '</small>' : '') : '발표 전') + '</td><td class="mv">' + vs + '</td><td class="op" style="white-space:nowrap"><span class="ol">판매 오픈 </span>' + md(r[4]) + ' ' + H(r[4].slice(0, 10), r[4].slice(11, 16)) + (I18() ? ' KST' : '') + '</td><td class="stt">' + (st[1] === 'b-open' ? '<a class="badge b-open" href="' + TICKET_URL + '" target="_blank" rel="noopener" title="티켓링크에서 예매">' + st[0] + ' ↗</a>' : '<span class="badge ' + st[1] + '">' + st[0] + '</span>') + '</td>';
     body.appendChild(tr);
   });
   // the "다음 직관 가능 경기일" card was removed (user); the next match day is still marked in the TICKETS table

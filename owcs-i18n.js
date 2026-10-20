@@ -13,8 +13,52 @@
   try { if (LANGS.test(q)) localStorage.setItem(KEY, q); lang = localStorage.getItem(KEY) || guess; } catch (e) { lang = q || guess; }
   if (!LANGS.test(lang)) lang = 'ko';
 
+  // Times: the data holds KST. ko stays KST; ja shows Japan time (same clock, label JST), zh Beijing time (1 h earlier),
+  // en this device's own zone. Pages call OWCSi18n.hm(iso) for a match time; every "KST" on the page becomes ZONE.
+  var TZ = lang === 'ja' ? 'Asia/Tokyo' : lang === 'zh' ? 'Asia/Shanghai' : lang === 'en' ? (function () {
+    try { return Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC'; } catch (e) { return 'UTC'; } })() : 'Asia/Seoul';
+  if (/^Asia\/Seoul$/.test(TZ)) TZ = 'Asia/Seoul';
+  var ZONE = TZ === 'Asia/Seoul' ? 'KST' : lang === 'ja' ? 'JST' : lang === 'zh' ? '北京时间' : (function () {
+    var z = function (o) { try { var p = new Intl.DateTimeFormat('en-US', Object.assign({ timeZone: TZ }, o)).formatToParts(new Date()); for (var i = 0; i < p.length; i++) if (p[i].type === 'timeZoneName') return p[i].value; } catch (e) {} return ''; };
+    var g = z({ timeZoneName: 'shortGeneric' });   // "PT", "ET"; long names ("United Kingdom Time") -> "GMT+1"
+    return g && g.length <= 4 ? g : z({ timeZoneName: 'short' }) || TZ;
+  })();
+  var ZONE_LONG = lang === 'ja' ? '日本時間 (JST)' : lang === 'zh' ? '北京时间 (UTC+8)' : ZONE;
+  var hmFmt = null, dayFmt = null;
+  // iso = '2026-10-23T17:00:00+09:00' (or day + 'T' + 'HH:MM'); returns 'HH:MM' in TZ, with a note when the date moves
+  function hm(iso, t) {
+    if (t && !/T/.test(iso)) iso = iso + 'T' + t + ':00+09:00';
+    if (TZ === 'Asia/Seoul') return t || iso.slice(11, 16);
+    var ms = new Date(iso).getTime();
+    if (isNaN(ms)) return t || '';
+    try {
+      hmFmt = hmFmt || new Intl.DateTimeFormat('en-GB', { timeZone: TZ, hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
+      dayFmt = dayFmt || new Intl.DateTimeFormat('en-CA', { timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit' });
+      var out = hmFmt.format(ms), d = dayFmt.format(ms), k = new Date(ms + 9 * 3600e3).toISOString().slice(0, 10);
+      if (d < k) out += P(' (前日)', ' (prev day)', ' (前一天)');
+      else if (d > k) out += P(' (翌日)', ' (next day)', ' (次日)');
+      return out;
+    } catch (e) { return t || iso.slice(11, 16); }
+  }
+
   // [korean, japanese, english, chinese (simplified)]
   var T = [
+    // left in Korean until 2026-10-20 (found by opening every page in ja / en / zh)
+    ['지난 시즌', '前シーズン', 'last season', '上赛季'], ['다음 글', '次へ', 'Next', '下一篇'], ['이전 글', '前へ', 'Previous', '上一篇'], ['메뉴', 'メニュー', 'Menu', '菜单'],
+    ['다음 경기일', '次の試合日', 'Next match day', '下一个比赛日'], ['이전 경기일', '前の試合日', 'Previous match day', '上一个比赛日'], ['지금', '今', 'Now', '现在'],
+    ['오버워치 이스포츠 공식 유튜브 쇼츠', 'オーバーウォッチ eスポーツ公式 YouTube ショート', 'Overwatch Esports official YouTube Shorts', '守望先锋电竞官方 YouTube Shorts'],
+    ['티켓링크에서 예매', 'Ticketlinkで購入', 'Buy on Ticketlink', '在 Ticketlink 购票'], ['전체 경기 일정', '全試合日程', 'Full schedule', '全部赛程'], ['OWCS 공식 채널', 'OWCS公式チャンネル', 'Official OWCS channels', 'OWCS 官方频道'],
+    ['결과를 누르면 아래에서 세트별 맵 · 밴 · 첫 조합을 볼 수 있어요', '結果をタップすると、下にセットごとのマップ · BAN · 初期構成が表示されます', 'Tap a result to see each map, the bans and the opening comps below', '点击结果，即可在下方查看每局的地图 · 禁用 · 首发阵容'],
+    ['경기 승률', '試合勝率', 'Match win rate', '比赛胜率'], ['구글 캘린더 구독', 'Googleカレンダーで購読', 'Subscribe in Google Calendar', '在 Google 日历中订阅'],
+    ['구글 캘린더에 전체 일정 추가', 'Googleカレンダーに全日程を追加', 'Add the full schedule to Google Calendar', '将全部赛程添加到 Google 日历'], ['날짜별 경기', '日付別の試合', 'Matches by date', '按日期查看比赛'],
+    ['남은 경기', '残りの試合', 'Remaining matches', '剩余比赛'], ['남은 경기만 추가', '残りの試合だけ追加', 'Add remaining matches only', '仅添加剩余比赛'], ['다시보기', 'リプレイ', 'Replay', '回放'],
+    ['단장', 'GM', 'General manager', '领队'], ['대진 발표 전', '対戦カード未発表', 'Matchups TBA', '对阵待公布'], ['스태프진', 'スタッフ', 'Staff', '教练组'], ['시즌 일정', 'シーズン日程', 'Season schedule', '赛季赛程'],
+    ['두 팀을 쉼표로 검색하면(예: PF,CR) 결과 탭 위쪽에 상대 전적이 나와요.', '2チームをカンマ区切りで検索すると(例: PF,CR)、結果タブの上に対戦成績が表示されます。', 'Search two teams with a comma (e.g. PF,CR) to see their head-to-head above the results tab.', '用逗号搜索两支战队（例: PF,CR），结果标签上方会显示交手战绩。'],
+    ['승수가 같으면 세트 득실 → 맞대결 성적 순으로 순위를 정해요.', '勝数が同じ場合は、セット得失 → 直接対決の成績の順で順位を決めます。', 'Teams level on wins are ranked by map differential, then head-to-head.', '胜场相同时，依次按地图净胜 → 交手战绩排名。'],
+    ['오늘로', '今日へ', 'Today', '回到今天'], ['이날 결과', 'この日の結果', 'Results of the day', '当日结果'], ['이번 스테이지', '今ステージ', 'This stage', '本阶段'], ['전체 팀', '全チーム', 'All teams', '全部战队'],
+    ['지난 경기', '前回の試合', 'Last match day', '上一比赛日'], ['직관 안내 ·', '観戦案内 ·', 'Tickets ·', '现场观赛 ·'], ['팀 고르기 ▾', 'チームを選ぶ ▾', 'Pick a team ▾', '选择战队 ▾'],
+    ['팀별 경우의 수', 'チーム別プレーオフ条件', 'Scenarios by team', '各队晋级形势'],
+    ['정규 리그 경기가 모두 끝났어요.', 'レギュラーシーズンの試合はすべて終了しました。', 'The regular season is over.', '常规赛已全部结束。'], ['시즌 결과 보기', 'シーズン結果を見る', 'See season results', '查看赛季结果'],
     // navigation / common
     ['일정', '日程', 'Schedule', '赛程'], ['결과', '結果', 'Results', '结果'], ['순위', '順位', 'Standings', '排名'], ['직관', '観戦', 'Tickets', '现场观赛'], ['선수', '選手', 'Players', '选手'], ['방송', '配信', 'Live', '直播'],
     ['홈', 'ホーム', 'Home', '首页'], ['팀', 'チーム', 'Team', '战队'], ['한국어', '한국어', '한국어', '한국어'],
@@ -54,7 +98,7 @@
     // mobile schedule header: small buttons next to the title, my-team picker
     ['캘린더 구독', 'カレンダー登録', 'Subscribe', '订阅日历'], ['공유', '共有', 'Share', '分享'], ['☆ 내 팀 고르기', '☆ マイチームを選ぶ', '☆ Pick my team', '☆ 选择我的战队'],
     ['다시 누르면 해제돼요 · 선수 섹션의 내 팀과 같이 바뀌어요', 'もう一度押すと解除 · 選手セクションのマイチームと連動します', 'Tap again to clear · Linked with My team in the players section', '再点一次即取消 · 与选手栏目的我的战队同步'],
-    ['경기 일정', '試合日程', 'Schedule', '比赛赛程'], ['일정 공유', '日程を共有', 'Share schedule', '分享赛程'], ['최근 · 다가오는 경기', '最近 · 今後の試合', 'Recent · Upcoming', '最近 · 即将进行'], ['모든 시간 KST', '時間はすべてKST', 'All times KST', '时间均为 KST'], ['전체 일정 보기 →', 'すべての日程 →', 'Full schedule →', '查看全部赛程 →'],
+    ['경기 일정', '試合日程', 'Schedule', '比赛赛程'], ['일정 공유', '日程を共有', 'Share schedule', '分享赛程'], ['최근 · 다가오는 경기', '最近 · 今後の試合', 'Recent · Upcoming', '最近 · 即将进行'], ['모든 시간 KST', '時間はすべて' + ZONE_LONG, 'All times ' + ZONE, '时间均为' + ZONE_LONG], ['전체 일정 보기 →', 'すべての日程 →', 'Full schedule →', '查看全部赛程 →'],
     ['구글 캘린더', 'Googleカレンダー', 'Google Calendar', 'Google 日历'], ['링크 복사', 'リンクをコピー', 'Copy link', '复制链接'], ['복사됨', 'コピー済み', 'Copied', '已复制'], ['링크를 복사했어요', 'リンクをコピーしました', 'Link copied', '链接已复制'],
     ['링크 복사됨 ✓', 'リンクをコピーしました ✓', 'Link copied ✓', '链接已复制 ✓'], ['일정 링크 복사', '日程リンクをコピー', 'Copy schedule link', '复制赛程链接'],
     ['전체 경기 캘린더에 추가', '全試合をカレンダーに追加', 'Add all matches to calendar', '将全部比赛加入日历'], ['남은 경기만 캘린더에 추가', '残りの試合をカレンダーに追加', 'Add remaining matches to calendar', '将剩余比赛加入日历'],
@@ -117,7 +161,7 @@
     ['오시는 길', 'アクセス', 'Getting there', '交通指南'], ['지하철 2·6호선', '地下鉄2・6号線', 'Subway lines 2 & 6', '地铁 2·6 号线'], ['지도를 불러오는 중이에요', '地図を読み込み中', 'Loading map', '地图加载中'], ['안 보이면 오른쪽 네이버 지도 · 카카오맵 버튼을 눌러 주세요', '表示されない場合は右のNAVER地図・KakaoMapを押してください', 'If it does not load, use the NAVER Map or KakaoMap buttons', '如果无法显示，请点击右侧 NAVER 地图 · KakaoMap 按钮'],
     ['주소', '住所', 'Address', '地址'], ['서울 마포구 상수동 72-1', 'ソウル市麻浦区上水洞72-1', '72-1 Sangsu-dong, Mapo-gu, Seoul', '首尔麻浦区上水洞 72-1'], ['홍익대학교 잔다리홀 B1 · WDG STUDIO HONGDAE', '弘益大学チャンダリホールB1 · WDG STUDIO HONGDAE', 'Hongik Univ. Jandari Hall B1 · WDG STUDIO HONGDAE', '弘益大学 Jandari Hall B1 · WDG STUDIO HONGDAE'],
     ['홍대입구역', '弘大入口駅', 'Hongik Univ. Stn', '弘大入口站'], ['홍익대학교 방면', '弘益大学方面', 'toward Hongik Univ.', '弘益大学方向'], ['상수역', '上水駅', 'Sangsu Stn', '上水站'], ['가장 가까운 역', '最寄り駅', 'closest station', '最近车站'], ['합정역', '合井駅', 'Hapjeong Stn', '合井站'], ['2·6호선 환승', '2・6号線乗換', 'Lines 2 & 6 transfer', '2·6 号线换乘'],
-    ['네이버 지도 ↗', 'NAVER地図 ↗', 'NAVER Map ↗', 'NAVER 地图 ↗'], ['카카오맵 ↗', 'KakaoMap ↗', 'KakaoMap ↗', 'KakaoMap ↗'], ['예매 정보', 'チケット情報', 'Ticket sales', '售票信息'], ['모든 시간 KST · 상태는 지금 시각 기준', '時間はすべてKST · 状態は現在時刻基準', 'All times KST · status as of now', '时间均为 KST · 状态以当前时间为准'],
+    ['네이버 지도 ↗', 'NAVER地図 ↗', 'NAVER Map ↗', 'NAVER 地图 ↗'], ['카카오맵 ↗', 'KakaoMap ↗', 'KakaoMap ↗', 'KakaoMap ↗'], ['예매 정보', 'チケット情報', 'Ticket sales', '售票信息'], ['모든 시간 KST · 상태는 지금 시각 기준', '時間はすべて' + ZONE_LONG + ' · 状態は現在時刻基準', 'All times ' + ZONE + ' · status as of now', '时间均为' + ZONE_LONG + ' · 状态以当前时间为准'],
     ['만 15세 이상 관람가예요.', '15歳以上が観覧できます。', 'Ages 15 and up.', '15 周岁以上可观看。'], ['2011년 이전 출생자', '2011年以前生まれ', 'Born before 2011', '2011 年以前出生者'],
     ['까지 입장할 수 있고, 2011년 출생자는 생일이 지난 날부터 만 15세가 적용돼요. 생년월일을 가장 먼저 확인하니 증빙 서류를 챙겨 주세요. 만 15세 미만은 보호자와 함께 입장할 수 있어요.', 'まで入場でき、2011年生まれは誕生日以降に15歳として扱われます。生年月日を最初に確認するので証明書類をお持ちください。15歳未満は保護者同伴で入場できます。', 'can enter; if born in 2011 you count as 15 from your birthday. Birth dates are checked first, so bring ID. Under 15 may enter with a guardian.', '可以入场；2011 年出生者从生日当天起视为满 15 周岁。入场时会先核对出生日期，请携带证明文件。未满 15 周岁可由监护人陪同入场。'],
     ['티켓 수령 · 관람 안내', 'チケット受取 · 観覧案内', 'Pick-up & house rules', '取票 · 观赛须知'], ['티켓 수령', 'チケット受取', 'Ticket pick-up', '取票'], ['경기 관람', '観覧', 'At the venue', '现场观赛'],
@@ -159,18 +203,38 @@
   function P(j, e, z) { return lang === 'ja' ? j : lang === 'zh' ? z : e; }
   // number patterns (order matters)
   var RULES = [
+    // sentences that share a text node with others (footers, calendar labels)
+    [/비공식 팬 사이트입니다\. Blizzard Entertainment 및 WDG와 관련이 없습니다\./g, P('非公式ファンサイトです。Blizzard Entertainment および WDGとは関係ありません。', 'Unofficial fan site. Not affiliated with Blizzard Entertainment or WDG.', '非官方粉丝网站。与 Blizzard Entertainment 及 WDG 无关。')],
+    [/방송 상태는 CHZZK·SOOP에서 몇 분마다 확인해요\./g, P('配信状況はCHZZK・SOOPで数分ごとに確認しています。', 'Live status is checked on CHZZK and SOOP every few minutes.', '直播状态每隔几分钟从 CHZZK·SOOP 检查一次。')],
+    [/일정은 Liquipedia에서 10분마다 가져와요\./g, P('日程はLiquipediaから10分ごとに取得しています。', 'The schedule is pulled from Liquipedia every 10 minutes.', '赛程每 10 分钟从 Liquipedia 获取一次。')],
+    [/시간 미정 경기는 Liquipedia에 시간이 올라오면 바뀌어요\./g, P('時間未定の試合は、Liquipediaに時間が載ると更新されます。', 'TBD times update once Liquipedia posts them.', '时间待定的比赛会在 Liquipedia 公布时间后更新。')],
+    [/직관 정보는$/, P('観戦情報は', 'Ticket info is copied from the', '观赛信息转载自')],
+    [/^ ?공식 예매 안내를 옮긴 것이라, 바뀐 내용은 티켓링크 공지를 확인해 주세요\./, P('の公式販売案内を転載したものです。変更はTicketlinkのお知らせをご確認ください。', ' official sales notice; check Ticketlink for any changes.', ' 官方售票公告，如有变动请以 Ticketlink 公告为准。')],
+    [/경기 (\d+)개/g, P('$1試合', '$1 matches', '$1场比赛')],
+    [/LCQ 경쟁/g, P('LCQ争い', 'LCQ race', 'LCQ 争夺')], [/플레이오프 경쟁/g, P('プレーオフ争い', 'playoff race', '季后赛争夺')],
+    [/ \(지난 시즌\)/g, P(' (前シーズン)', ' (last season)', ' (上赛季)')],
+    // results page: playoff scenarios (whole sentences, several can sit in one line)
+    [/남은 경기 결과와 관계없이 1–(\d+)위 안이에요\./g, P('残り試合の結果に関係なく1–$1位以内です。', 'Top $1 no matter how the remaining matches go.', '无论剩余比赛结果如何，都在前$1名之内。')],
+    [/남은 경기를 모두 이겨도 (\d+)위 안에 들 수 없어요\./g, P('残り試合に全勝しても$1位以内に入れません。', "Can't make the top $1 even by winning every remaining match.", '即使赢下所有剩余比赛，也无法进入前$1名。')],
+    [/남은 (\d+)경기 중 (\d+)승 하면 플레이오프 확정\./g, P('残り$1試合中$2勝でプレーオフ確定。', 'Win $2 of the last $1 to clinch the playoffs.', '剩余$1场中赢$2场即锁定季后赛。')],
+    [/남은 (\d+)경기 중 (\d+)승 하면 (\d+)위 안 확정\./g, P('残り$1試合中$2勝で$3位以内確定。', 'Win $2 of the last $1 to clinch the top $3.', '剩余$1场中赢$2场即锁定前$3名。')],
+    [/다른 팀 결과와 세트 득실에 따라 플레이오프가 갈려요\./g, P('他チームの結果とセット得失でプレーオフ進出が決まります。', 'Playoffs depend on other results and map differential.', '能否进入季后赛取决于其他队伍的结果和地图净胜。')],
+    [/다른 팀 결과에 따라 (\d+)위 안에 들 수 있어요\./g, P('他チームの結果次第で$1位以内に入れます。', 'Can still make the top $1, depending on other results.', '视其他队伍结果，仍可进入前$1名。')],
+    [/ ?최소 라스트 찬스 예선은 확정이에요\./g, P(' 少なくともラストチャンス予選は確定です。', ' The last chance qualifier is already locked in.', ' 至少已锁定最后机会预选赛。')],
+    [/플레이오프 직행은 어렵지만 라스트 찬스 예선은 확정이에요\./g, P('プレーオフ直行は難しいものの、ラストチャンス予選は確定です。', 'A direct playoff spot is out of reach, but the last chance qualifier is locked in.', '难以直接晋级季后赛，但已锁定最后机会预选赛。')],
     [/^(\d+)승 (\d+)패$/, P('$1勝 $2敗', '$1W $2L', '$1胜 $2负')],
     [/^(\d+)주차$/, P('第$1週', 'Week $1', '第$1周')],
     [/(\d+)주차/g, P('第$1週', 'week $1', '第$1周')],
     [/\((월|화|수|목|금|토|일)\)/g, function (m, d) { return '(' + DOW[d][col - 1] + ')'; }],
     [/^(\d+)월 (\d+)일 ?\((월|화|수|목|금|토|일)\)/, function (m, mo, d, w) { return P(mo + '月' + d + '日(' + DOW[w][0] + ')', MON[mo - 1] + ' ' + d + ' (' + DOW[w][1] + ')', mo + '月' + d + '日(' + DOW[w][2] + ')'); }],
     [/(\d+)월 (\d+)일/g, function (m, mo, d) { return P(mo + '月' + d + '日', MON[mo - 1] + ' ' + d, mo + '月' + d + '日'); }],
+    [/(\d\d:\d\d(?: \([^)]*\))?(?: \/ \d\d:\d\d(?: \([^)]*\))?)*) KST 오픈/g, P('$1 (' + ZONE + ') 販売開始', 'on sale $1 ' + ZONE, '$1 (' + ZONE + ') 开售')],
     [/오후 ([\d /]+)시 오픈/g, P('午後$1時 販売開始', 'on sale $1 PM', '下午$1点 开售')],
     [/^(월|화|수|목|금|토|일) · (\d\d:\d\d)$/, function (m, d, t) { return DOW[d][col - 1] + ' · ' + t; }],
     [/^오늘 (\d\d:\d\d)$/, P('今日 $1', 'Today $1', '今天 $1')],
     [/^LIVE · (\d+)세트$/, P('LIVE · 第$1セット', 'LIVE · Map $1', 'LIVE · 第$1局')],
     [/^(\d\d:\d\d) 시작$/, P('$1 開始', 'Starts $1', '$1 开始')],
-    [/^(\d\d:\d\d) KST 시작$/, P('$1 KST 開始', 'Starts $1 KST', '$1 KST 开始')],
+    [/^(\d\d:\d\d(?: \([^)]*\))?) KST 시작$/, P('$1 ' + ZONE + ' 開始', 'Starts $1 ' + ZONE, '$1 ' + ZONE + ' 开始')],
     [/^(\d+)위$/, P('$1位', '#$1', '第$1名')],
     [/^현재 (\d+)위$/, P('現在$1位', 'currently #$1', '目前第$1名')],
     [/^(\d+)–(\d+)위 플레이오프 시드 결정전$/, P('$1–$2位 プレーオフシード決定戦', '#$1–$2 playoff seeding', '第$1–$2名 季后赛种子决定战')],
@@ -190,7 +254,7 @@
     [/^경우의 수 공개 중 · 정규 리그 종료까지 (\d+)주$/, P('プレーオフ条件を公開中 · レギュラーシーズン終了まで$1週', 'Scenarios live · $1 weeks left in the regular season', '晋级形势公开中 · 距常规赛结束还有$1周')],
     [/^경우의 수는 정규 리그 종료 (\d)주 전부터 공개돼요 · 현재 (\d+)주 남음$/, P('プレーオフ条件は終了$1週前から公開 · 残り$2週', 'Scenarios open $1 weeks before the end · $2 weeks left', '晋级形势在常规赛结束前$1周公开 · 目前还剩$2周')],
     [/^(.*) 지난 경기 (\d+)건$/, P('$1 過去の試合 $2件', '$1 · $2 past matches', '$1 往期比赛 $2场')],
-    [/^(\d+)경기 · 모든 시간 KST$/, P('$1試合 · 時間はすべてKST', '$1 matches · all times KST', '$1场比赛 · 时间均为 KST')],
+    [/^(\d+)경기 · 모든 시간 KST$/, P('$1試合 · 時間はすべて' + ZONE_LONG, '$1 matches · all times ' + ZONE, '$1场比赛 · 时间均为' + ZONE_LONG)],
     [/^판매 (오픈|마감) /, function (m, k) { return k === '오픈' ? P('販売開始 ', 'Sale opens ', '开售 ') : P('販売締切 ', 'Sale closes ', '停售 '); }],
     [/^마지막 확인 /, P('最終確認 ', 'Last checked ', '最后检查 ')],
     [/^(\d+)승 (\d+)패 · /, P('$1勝 $2敗 · ', '$1W $2L · ', '$1胜 $2负 · ')],
@@ -248,8 +312,10 @@
   function doNode(n) {
     var cur = n.data;
     if (lang === 'ko') { if (ORIG.has(n) && ORIG.get(n).t === cur) n.data = ORIG.get(n).o; return; }
-    if (!HANGUL.test(cur)) return;
-    var t = tr(cur);
+    var kst = ZONE !== 'KST' && /KST/.test(cur);
+    if (!HANGUL.test(cur) && !kst) return;
+    var t = HANGUL.test(cur) ? tr(cur) : cur;
+    if (kst) t = t.replace(/KST/g, ZONE);
     if (t !== cur) { ORIG.set(n, { o: cur, t: t }); n.data = t; }
   }
   var ATTRS = ['placeholder', 'title', 'alt', 'aria-label'];
@@ -280,7 +346,7 @@
     try { localStorage.setItem(KEY, l); } catch (e) {}
     if (l !== lang) location.reload();
   }
-  window.OWCSi18n = { lang: lang, set: set, t: function (s) { return lang === 'ko' ? s : tr(s); } };
+  window.OWCSi18n = { lang: lang, set: set, t: function (s) { return lang === 'ko' ? s : tr(s); }, hm: hm, tz: TZ, zone: ZONE };
   document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang;
 
   function start() {

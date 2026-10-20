@@ -182,7 +182,7 @@ def upcoming_ics(data, now=None, team=None):
                  f"DTEND;VALUE=DATE:{(datetime.date.fromisoformat(m['day']) + datetime.timedelta(days=1)).strftime('%Y%m%d')}"]
                 if m.get('tbd') else [f'DTSTART:{utc(t0)}', f'DTEND:{utc(t0 + datetime.timedelta(hours=2))}'])
         lines += ['BEGIN:VEVENT', f"UID:owcs-{m['id']}@owcskr.fan", f'DTSTAMP:{stamp}', *when,
-                  'SUMMARY:' + esc(f"[OWCS KR] {vs}"),
+                  'SUMMARY:' + esc(vs),
                   'DESCRIPTION:' + esc(f"{data['stage']} {label}" + (' · 시작 시간 발표 전' if m.get('tbd') else '')
                                        + ' · SOOP owesports 생중계 https://www.sooplive.com/station/owesports'),
                   'LOCATION:' + esc('WDG STUDIO HONGDAE · SOOP owesports'), 'END:VEVENT']
