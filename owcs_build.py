@@ -565,9 +565,10 @@ def match_start(x):
 
 def replay_point(x):
     """(epoch seconds, lead) where the replay link opens: 30 s before map 1's first heroes when the replay was read
-    (user, 2026-10-20: not at the ban screen), else 90 s before the match start"""
-    for s in vod_starts(x['day']):
-        if s.get('heroTs') and {short(t) for t in s['teams']} == {x['a'], x['b']}:
+    (user, 2026-10-20: not at the ban screen; pick_watch.py saves it live, older days were read off the replay),
+    else 90 s before the match start"""
+    for s in vod_starts(x['day']) + [s for s in live_sets(x['day']) if s.get('game') == 1]:
+        if s.get('heroTs') and {short(t) for t in s.get('teams') or []} == {x['a'], x['b']}:
             return s['heroTs'], 30
     return match_start(x), 90
 
