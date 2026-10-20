@@ -62,13 +62,13 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <section style="padding:64px 56px 0;background:#F6F6F3">
 <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px">
 <div><div style="font-size:15px;font-weight:700;color:#7D39EB">결과 · 대진표</div><h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:120px;line-height:.84;margin:8px 0 0">RESULTS</h1></div>
-<sc-if value="{{ showStD }}"><div style="position:relative"><button onClick="{{ stToggleD }}" style="display:flex;align-items:center;gap:10px;height:48px;padding:0 18px;border-radius:12px;border:1px solid #0B0B0F;background:#fff;font:inherit;font-size:15px;font-weight:600;color:#0B0B0F;cursor:pointer">{{ seasonLabelD }} <span>{{ stChevD }}</span></button>
-<sc-if value="{{ stOpenD }}"><div style="position:absolute;right:0;top:54px;z-index:20;min-width:100%;padding:6px;border-radius:12px;border:1px solid #0B0B0F;background:#fff;box-shadow:0 8px 24px rgba(0,0,0,.12);display:flex;flex-direction:column;gap:2px"><sc-for list="{{ stOpts }}" as="o" hint-placeholder-count="3"><button onClick="{{ o.go }}" style="height:44px;padding:0 14px;border:none;border-radius:8px;background:{{ o.bg }};color:{{ o.fg }};font:inherit;font-size:15px;font-weight:700;text-align:left;white-space:nowrap;cursor:pointer">{{ o.label }}</button></sc-for></div></sc-if></div></sc-if>
+<sc-if value="{{ showStD }}"><div style="position:relative"><button onClick="{{ stToggleD }}" style="display:flex;align-items:center;gap:10px;height:48px;padding:0 18px;border-radius:12px;border:1px solid #E6E6E1;background:#fff;font:inherit;font-size:15px;font-weight:600;color:#0B0B0F;cursor:pointer">{{ seasonLabelD }} <span>{{ stChevD }}</span></button>
+<sc-if value="{{ stOpenD }}"><div style="position:absolute;right:0;top:54px;z-index:20;min-width:100%;padding:6px;border-radius:12px;border:1px solid #E6E6E1;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,.12);display:flex;flex-direction:column;gap:2px"><sc-for list="{{ stOpts }}" as="o" hint-placeholder-count="3"><button onClick="{{ o.go }}" style="height:44px;padding:0 14px;border:none;border-radius:8px;background:{{ o.bg }};color:{{ o.fg }};font:inherit;font-size:15px;font-weight:700;text-align:left;white-space:nowrap;cursor:pointer">{{ o.label }}</button></sc-for></div></sc-if></div></sc-if>
 </div>
-<div style="display:flex;gap:4px;margin-top:40px">
+<div style="display:flex;gap:8px;margin-top:40px">
 <sc-for list="{{ tabsD }}" as="t" hint-placeholder-count="3">
-<sc-if value="{{ t.on }}"><button onClick="{{ t.go }}" style="height:56px;padding:0 24px;border:none;border-radius:14px 14px 0 0;background:#fff;color:#0B0B0F;font:inherit;font-size:16px;font-weight:700;cursor:pointer">{{ t.label }}</button></sc-if>
-<sc-if value="{{ t.off }}"><button onClick="{{ t.go }}" style="height:56px;padding:0 24px;border:none;border-radius:14px 14px 0 0;background:transparent;color:#55555C;font:inherit;font-size:16px;font-weight:600;cursor:pointer">{{ t.label }}</button></sc-if>
+<sc-if value="{{ t.on }}"><button data-owcs-tab="" onClick="{{ t.go }}" style="height:46px;padding:0 20px;border:1px solid #0B0B0F;border-radius:12px;background:#0B0B0F;color:#fff;font:inherit;font-size:16px;font-weight:700;cursor:pointer">{{ t.label }}</button></sc-if>
+<sc-if value="{{ t.off }}"><button onClick="{{ t.go }}" style="height:46px;padding:0 20px;border:1px solid #E6E6E1;border-radius:12px;background:#fff;color:#0B0B0F;font:inherit;font-size:16px;font-weight:700;cursor:pointer">{{ t.label }}</button></sc-if>
 </sc-for>
 </div>
 </section>
@@ -129,7 +129,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 
 <sc-if value="{{ d.bracket }}">
 <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:24px"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:36px">{{ lastTitle }}</div><div style="display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600"><span style="background:#C6FF33;padding:2px 10px;border-radius:6px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:20px">CHAMPION</span>{{ champion }}</div></div>
-<sc-if value="{{ hasBkTabs }}"><div style="display:flex;gap:6px;margin:-8px 0 20px"><sc-for list="{{ bkTabs }}" as="bt" hint-placeholder-count="2"><button onClick="{{ bt.go }}" style="height:36px;padding:0 14px;border-radius:999px;border:1px solid {{ bt.bd }};background:{{ bt.bg }};color:{{ bt.fg }};font:inherit;font-size:13px;font-weight:700;cursor:pointer">{{ bt.label }}</button></sc-for></div></sc-if>
+<sc-if value="{{ hasBkTabs }}"><div style="display:flex;gap:6px;margin:-8px 0 20px"><sc-for list="{{ bkTabs }}" as="bt" hint-placeholder-count="2"><button data-owcs-tab="" onClick="{{ bt.go }}" style="height:36px;padding:0 14px;border-radius:12px;border:1px solid {{ bt.bd }};background:{{ bt.bg }};color:{{ bt.fg }};font:inherit;font-size:13px;font-weight:700;cursor:pointer">{{ bt.label }}</button></sc-for></div></sc-if>
 <div style="display:grid;grid-template-columns:repeat({{ bkCols }},minmax(0,1fr));gap:22px;position:relative;padding:28px;border-radius:24px;background:#F6F6F3">
 <sc-if value="{{ hasChamp }}"><div style="position:absolute;top:calc(50% + 14px);left:60%;transform:translate(-50%,-50%);z-index:2;display:flex;align-items:center;gap:16px;padding:16px 26px 16px 18px;border-radius:20px;background:#0B0B0F;color:#fff;box-shadow:0 12px 30px rgba(11,11,15,.18);white-space:nowrap"><span style="flex:none;width:58px;height:58px;background:{{ champLogo }}"></span><span><span style="display:block;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;letter-spacing:.08em;color:#C6FF33">CHAMPION</span><span style="display:block;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:34px;line-height:1">{{ champion }}</span><span style="display:block;font-size:13px;color:#B5B5BD;margin-top:4px">{{ champLine }}</span></span></div></sc-if>
 <sc-for list="{{ lastBracket }}" as="col" hint-placeholder-count="4">
@@ -211,12 +211,12 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <section style="position:relative;z-index:5;padding:28px 20px 0;background:#F6F6F3">
 <div style="font-size:14px;font-weight:700;color:#7D39EB">결과 · 대진표</div>
 <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:64px;line-height:.86;margin:6px 0 14px">RESULTS</h1>
-<sc-if value="{{ showStM }}"><div style="position:relative;display:inline-block"><button onClick="{{ stToggleM }}" style="display:flex;align-items:center;gap:8px;height:44px;padding:0 14px;border-radius:12px;border:1px solid #0B0B0F;background:#fff;font:inherit;font-size:14px;font-weight:600;color:#0B0B0F">{{ seasonLabelM }} {{ stChevM }}</button>
-<sc-if value="{{ stOpenM }}"><div style="position:absolute;left:0;top:50px;z-index:20;min-width:100%;padding:6px;border-radius:12px;border:1px solid #0B0B0F;background:#fff;box-shadow:0 8px 24px rgba(0,0,0,.12);display:flex;flex-direction:column;gap:2px"><sc-for list="{{ stOpts }}" as="o" hint-placeholder-count="3"><button onClick="{{ o.go }}" style="height:44px;padding:0 14px;border:none;border-radius:8px;background:{{ o.bg }};color:{{ o.fg }};font:inherit;font-size:15px;font-weight:700;text-align:left;white-space:nowrap">{{ o.label }}</button></sc-for></div></sc-if></div></sc-if>
-<div style="display:flex;gap:2px;margin-top:20px">
+<sc-if value="{{ showStM }}"><div style="position:relative;display:inline-block"><button onClick="{{ stToggleM }}" style="display:flex;align-items:center;gap:8px;height:44px;padding:0 14px;border-radius:12px;border:1px solid #E6E6E1;background:#fff;font:inherit;font-size:14px;font-weight:600;color:#0B0B0F">{{ seasonLabelM }} {{ stChevM }}</button>
+<sc-if value="{{ stOpenM }}"><div style="position:absolute;left:0;top:50px;z-index:20;min-width:100%;padding:6px;border-radius:12px;border:1px solid #E6E6E1;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,.12);display:flex;flex-direction:column;gap:2px"><sc-for list="{{ stOpts }}" as="o" hint-placeholder-count="3"><button onClick="{{ o.go }}" style="height:44px;padding:0 14px;border:none;border-radius:8px;background:{{ o.bg }};color:{{ o.fg }};font:inherit;font-size:15px;font-weight:700;text-align:left;white-space:nowrap">{{ o.label }}</button></sc-for></div></sc-if></div></sc-if>
+<div style="display:flex;gap:6px;margin-top:20px">
 <sc-for list="{{ tabsM }}" as="t" hint-placeholder-count="3">
-<sc-if value="{{ t.on }}"><button onClick="{{ t.go }}" style="flex:1;height:48px;border:none;border-radius:12px 12px 0 0;background:#fff;color:#0B0B0F;font:inherit;font-size:14px;font-weight:700">{{ t.short }}</button></sc-if>
-<sc-if value="{{ t.off }}"><button onClick="{{ t.go }}" style="flex:1;height:48px;border:none;background:transparent;color:#55555C;font:inherit;font-size:14px;font-weight:600">{{ t.short }}</button></sc-if>
+<sc-if value="{{ t.on }}"><button data-owcs-tab="" onClick="{{ t.go }}" style="flex:1;height:42px;border:1px solid #0B0B0F;border-radius:12px;background:#0B0B0F;color:#fff;font:inherit;font-size:14px;font-weight:700">{{ t.short }}</button></sc-if>
+<sc-if value="{{ t.off }}"><button onClick="{{ t.go }}" style="flex:1;height:42px;border:1px solid #E6E6E1;border-radius:12px;background:#fff;color:#0B0B0F;font:inherit;font-size:14px;font-weight:700">{{ t.short }}</button></sc-if>
 </sc-for>
 </div>
 </section>
@@ -484,7 +484,7 @@ class Component extends DCLogic {
       stChevD: this.state.tabD !== 'results' ? '' : this.state.stOpen === 'd' ? '▴' : '▾', stChevM: this.state.tabM !== 'results' ? '' : this.state.stOpen === 'm' ? '▴' : '▾',
       stToggleD: () => this.setState((s) => ({ stOpen: s.stOpen === 'd' ? null : 'd', tabD: 'results' })),
       stToggleM: () => this.setState((s) => ({ stOpen: s.stOpen === 'm' ? null : 'm', tabM: 'results' })),
-      stOpts: STAGE_NOS.slice().reverse().map((no) => { const on = this.state.st === no; return { label: (D.year || '') + ' 스테이지 ' + no, bg: on ? '#7D39EB' : 'transparent', fg: on ? '#fff' : '#0B0B0F', go: () => this.setState({ st: no, stOpen: null }) }; }),
+      stOpts: STAGE_NOS.slice().reverse().map((no) => { const on = this.state.st === no; return { label: (D.year || '') + ' 스테이지 ' + no, bg: on ? '#F1F1ED' : 'transparent', fg: on ? '#0B0B0F' : '#6B6B72', go: () => this.setState({ st: no, stOpen: null }) }; }),
       stTabs: STAGE_NOS.map((no) => { const on = this.state.st === no; return { label: '스테이지 ' + no, bg: on ? '#7D39EB' : 'transparent', fg: on ? '#fff' : '#0B0B0F', bd: on ? '#7D39EB' : '#B9B9B3', go: () => this.setState({ st: no }) }; }),
       pastNote: CUR ? '' : '지난 스테이지 맵 상세는 Liquipedia 기록이에요 · 첫 조합은 없어요',
       tabsD: this.tabs('tabD'), tabsM: this.tabs('tabM'),
@@ -496,7 +496,7 @@ class Component extends DCLogic {
       champLogo: (() => { const t = D.teams.find((x) => x.n === ls.champion); return t ? "url('" + (t.logoDark || t.logo) + "') center / contain no-repeat" : 'none'; })(),
       champLine: (ls.title || '') + ' 우승',
       hasBkTabs: !!D.bracket && !!D.lastStage.columns.length,
-      bkTabs: [['cur', D.bracket && D.bracket.label], ['last', D.lastStage.label]].map(([k, label]) => ({ label: (label || '') + (k === 'last' ? ' (지난 시즌)' : ''), bg: this.state.bk === k ? '#7D39EB' : 'transparent', fg: this.state.bk === k ? '#fff' : '#0B0B0F', bd: this.state.bk === k ? '#7D39EB' : '#B9B9B3', go: () => this.setState({ bk: k }) })),
+      bkTabs: [['cur', D.bracket && D.bracket.label], ['last', D.lastStage.label]].map(([k, label]) => ({ label: (label || '') + (k === 'last' ? ' (지난 시즌)' : ''), bg: this.state.bk === k ? '#0B0B0F' : '#fff', fg: this.state.bk === k ? '#fff' : '#0B0B0F', bd: this.state.bk === k ? '#0B0B0F' : '#E6E6E1', go: () => this.setState({ bk: k }) })),
       bkCols: Math.max(1, ls.columns.length),
       hasSeeding: !!(ls.seeding && ls.seeding.length), seedGap: '24px',
       seedNote: '정규 리그 성적 포함 · 1–2위는 플레이오프 4강 직행',

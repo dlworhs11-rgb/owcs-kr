@@ -30,6 +30,8 @@
     R + 'header nav a:hover{background:#24242C !important;color:#F2F2F5 !important}',
     // buttons without their own text colour (the stage picker) take the page's light text
     R + 'button{color:inherit}',
+    // selected tab (black in light mode) turns light, as on the schedule page
+    R + 'button[data-owcs-tab][style*="background: rgb(11, 11, 15)"]{background-color:#F2F2F5 !important;color:#0B0B0F !important;border-color:#F2F2F5 !important}',
     R + 'input{background:#16161C !important;color:#F2F2F5 !important;border-color:#2E2E37 !important}',
     // --- streams page (its own variables) ---
     D + 'body.streams-page{--bg:#13110E;--panel:#16161C;--line:#2E2E37;--ink:#F2F2F5;--mute:#A3A3AD;--dim:#8E8E98;color:#F2F2F5;background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.03) 0 1px,transparent 1px 11px)}',

@@ -38,7 +38,7 @@ h4 small{font-weight:700;color:var(--i-mute);margin-left:6px}
 .tbd{color:var(--i-mute);font-size:14px;padding:4px 2px}
 .days{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
 .days::-webkit-scrollbar{display:none}
-.days button{flex:none;height:40px;padding:0 14px;border-radius:999px;border:1px solid var(--i-line);background:var(--i-card);color:var(--i-ink);font:inherit;font-size:13.5px;font-weight:800;cursor:pointer}
+.days button{flex:none;height:40px;padding:0 14px;border-radius:12px;border:1px solid var(--i-line);background:var(--i-card);color:var(--i-ink);font:inherit;font-size:13.5px;font-weight:800;cursor:pointer}
 .days button.on{background:var(--i-ink);color:var(--i-card);border-color:var(--i-ink)}
 .days button.today::after{content:' · 오늘';color:var(--i-ac)}
 .days button.on.today::after{color:var(--i-ac2)}
