@@ -187,6 +187,15 @@ def main():
     for f in SITE_FILES + [f for f in os.listdir(HERE) if f.startswith('owcs-') and f.endswith('.js') and f != 'owcs-data.js']:
         if os.path.exists(os.path.join(HERE, f)):
             shutil.copy2(os.path.join(HERE, f), os.path.join(out, f))
+    try:   # the admin page also works from a phone at <site>/admin/: it saves through the GitHub API (needs the PC off)
+        import admin_server
+        os.makedirs(os.path.join(out, 'admin'))
+        shutil.copy2(os.path.join(HERE, 'admin', 'index.html'), os.path.join(out, 'admin', 'index.html'))
+        with open(os.path.join(out, 'admin', 'meta.json'), 'w', encoding='utf-8') as f:
+            json.dump({'heroes': admin_server.heroes(), 'maps': admin_server.maps()}, f, ensure_ascii=False)
+    except Exception:
+        traceback.print_exc()
+        print('! admin page not copied')
 
     now = datetime.datetime.now(b.KST)
     prev = fetch_prev(prev_url) if prev_url else None
