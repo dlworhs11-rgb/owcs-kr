@@ -379,6 +379,314 @@
     "Poker Face": 0,
     "Crazy Raccoon": 3
    }
+  },
+  {
+   "banTs": 1792311466,
+   "teams": [
+    "Crazy Raccoon",
+    "Poker Face"
+   ],
+   "game": 3,
+   "map": "Shambali Monastery",
+   "seriesBefore": {
+    "Crazy Raccoon": 2,
+    "Poker Face": 0
+   },
+   "bans": {
+    "initial": {
+     "team": "Poker Face",
+     "hero": "sierra"
+    },
+    "followUp": {
+     "team": "Crazy Raccoon",
+     "hero": "dmon"
+    }
+   },
+   "src": "VOD 210163229 (PC asleep live)",
+   "hudLeft": "Poker Face",
+   "guessed": [],
+   "comps": {
+    "Poker Face": [
+     [
+      "SoLA",
+      "dva"
+     ],
+     [
+      "SORI",
+      "cassidy"
+     ],
+     [
+      "F1nally",
+      "tracer"
+     ],
+     [
+      "Soae",
+      "jetpack-cat"
+     ],
+     [
+      "Caffeine",
+      "doctrine"
+     ]
+    ],
+    "Crazy Raccoon": [
+     [
+      "HeeSang",
+      "symmetra"
+     ],
+     [
+      "Stalk3r",
+      "cassidy"
+     ],
+     [
+      "MAX",
+      "sigma"
+     ],
+     [
+      "CH0R0NG",
+      "mizuki"
+     ],
+     [
+      "vigilante",
+      "doctrine"
+     ]
+    ]
+   },
+   "compAt": "2026-10-18T17:19:22+09:00",
+   "score": {
+    "Crazy Raccoon": 3,
+    "Poker Face": 1
+   }
+  },
+  {
+   "banTs": 1792314205,
+   "teams": [
+    "ZANSIDE GAMING",
+    "ZETA DIVISION"
+   ],
+   "game": 1,
+   "map": "Busan",
+   "seriesBefore": {
+    "ZANSIDE GAMING": 0,
+    "ZETA DIVISION": 0
+   },
+   "bans": {
+    "initial": {
+     "team": "ZETA DIVISION",
+     "hero": "wrecking ball"
+    },
+    "followUp": {
+     "team": "ZANSIDE GAMING",
+     "hero": "tracer"
+    }
+   },
+   "src": "VOD 210163229 (PC asleep live)",
+   "hudLeft": "ZANSIDE GAMING",
+   "guessed": [],
+   "comps": {
+    "ZANSIDE GAMING": [
+     [
+      "Heiser",
+      "dmon"
+     ],
+     [
+      "Taejong",
+      "bastion"
+     ],
+     [
+      "Bekey",
+      "shion"
+     ],
+     [
+      "iR0NY",
+      "doctrine"
+     ],
+     [
+      "OPENER",
+      "jetpack-cat"
+     ]
+    ],
+    "ZETA DIVISION": [
+     [
+      "Bernar",
+      "orisa"
+     ],
+     [
+      "Knife",
+      "emre"
+     ],
+     [
+      "Proper",
+      "soldier-76"
+     ],
+     [
+      "Viol2t",
+      "lifeweaver"
+     ],
+     [
+      "Shu",
+      "ana"
+     ]
+    ]
+   },
+   "compAt": "2026-10-18T18:04:40+09:00",
+   "score": {
+    "ZANSIDE GAMING": 0,
+    "ZETA DIVISION": 2
+   }
+  },
+  {
+   "banTs": 1792315350,
+   "teams": [
+    "ZANSIDE GAMING",
+    "ZETA DIVISION"
+   ],
+   "game": 2,
+   "map": "Suravasa",
+   "seriesBefore": {
+    "ZANSIDE GAMING": 0,
+    "ZETA DIVISION": 1
+   },
+   "bans": {
+    "initial": {
+     "team": "ZANSIDE GAMING",
+     "hero": "cassidy"
+    },
+    "followUp": {
+     "team": "ZETA DIVISION",
+     "hero": "jetpack cat"
+    }
+   },
+   "src": "VOD 210163229 (PC asleep live)",
+   "hudLeft": "ZETA DIVISION",
+   "guessed": [],
+   "comps": {
+    "ZETA DIVISION": [
+     [
+      "Mealgaru",
+      "dmon"
+     ],
+     [
+      "Knife",
+      "widowmaker"
+     ],
+     [
+      "Proper",
+      "tracer"
+     ],
+     [
+      "Viol2t",
+      "lifeweaver"
+     ],
+     [
+      "Shu",
+      "doctrine"
+     ]
+    ],
+    "ZANSIDE GAMING": [
+     [
+      "Heiser",
+      "wrecking-ball"
+     ],
+     [
+      "Taejong",
+      "anran"
+     ],
+     [
+      "Bekey",
+      "tracer"
+     ],
+     [
+      "iR0NY",
+      "sombra"
+     ],
+     [
+      "OPENER",
+      "doctrine"
+     ]
+    ]
+   },
+   "compAt": "2026-10-18T18:25:12+09:00",
+   "score": {
+    "ZANSIDE GAMING": 0,
+    "ZETA DIVISION": 3
+   }
+  },
+  {
+   "banTs": 1792316399,
+   "teams": [
+    "ZANSIDE GAMING",
+    "ZETA DIVISION"
+   ],
+   "game": 3,
+   "map": "Colosseo",
+   "seriesBefore": {
+    "ZANSIDE GAMING": 0,
+    "ZETA DIVISION": 2
+   },
+   "bans": {
+    "initial": {
+     "team": "ZANSIDE GAMING",
+     "hero": "sojourn"
+    },
+    "followUp": {
+     "team": "ZETA DIVISION",
+     "hero": "mauga"
+    }
+   },
+   "src": "VOD 210163229 (PC asleep live)",
+   "hudLeft": "ZETA DIVISION",
+   "guessed": [],
+   "comps": {
+    "ZETA DIVISION": [
+     [
+      "Bernar",
+      "dva"
+     ],
+     [
+      "Knife",
+      "bastion"
+     ],
+     [
+      "Proper",
+      "anran"
+     ],
+     [
+      "Viol2t",
+      "lifeweaver"
+     ],
+     [
+      "Shu",
+      "doctrine"
+     ]
+    ],
+    "ZANSIDE GAMING": [
+     [
+      "Heiser",
+      "wrecking-ball"
+     ],
+     [
+      "Taejong",
+      "bastion"
+     ],
+     [
+      "Bekey",
+      "tracer"
+     ],
+     [
+      "iR0NY",
+      "doctrine"
+     ],
+     [
+      "OPENER",
+      "jetpack-cat"
+     ]
+    ]
+   },
+   "compAt": "2026-10-18T18:42:53+09:00",
+   "score": {
+    "ZANSIDE GAMING": 78,
+    "ZETA DIVISION": 126
+   }
   }
  ]
 }
