@@ -327,11 +327,7 @@
    },
    "src": "SOOP",
    "hudLeft": "Poker Face",
-   "guessed": [
-    "HeeSang",
-    "Stalk3r",
-    "CH0R0NG"
-   ],
+   "guessed": [],
    "comps": {
     "Poker Face": [
      [
@@ -362,15 +358,15 @@
      ],
      [
       "HeeSang",
-      "anran"
+      "symmetra"
      ],
      [
       "Stalk3r",
-      "mei"
+      "sierra"
      ],
      [
       "CH0R0NG",
-      "zarya"
+      "mizuki"
      ],
      [
       "vigilante",
