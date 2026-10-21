@@ -12,7 +12,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "OWticker", "alternateName": "OWCS 코리아 비공식 팬 사이트", "url": "https://owticker.com/", "inLanguage": "ko"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "OWticker", "alternateName": ["옵티컬", "OWticker 옵티컬", "OWCS 코리아 비공식 팬 사이트"], "url": "https://owticker.com/", "inLanguage": "ko"}</script>
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -1774,7 +1774,7 @@ class Component extends DCLogic {
       results: found.map((m) => { const o = orient(m.a, m.sa, m.b, m.sb); return {
         stage: STAGE_SHORT, wk: m.phase === 'rs' || !m.phase ? m.week + '주차' : m.label, date: md(m.date), a: o[0], sa: SP ? '–' : o[1], b: o[2], sb: SP ? '–' : o[3],
         ca: col(o[0]), cb: col(o[2]), ta: o[1] > o[3] ? '#0B0B0F' : '#6B6B72', tb: o[3] > o[1] ? '#0B0B0F' : '#6B6B72' }; }),
-      footNote: '비공식 팬 사이트입니다. Blizzard Entertainment, WDG, 각 팀과 제휴하거나 승인받지 않았습니다. Overwatch®와 영웅 이미지는 Blizzard Entertainment, Inc.의 상표·저작물이고, 팀 로고와 선수 사진의 권리는 각 소유자에게 있으며 요청하면 바로 내립니다. ' + D.sources,
+      footNote: 'OWticker(옵티컬)은 비공식 팬 사이트입니다. Blizzard Entertainment, WDG, 각 팀과 제휴하거나 승인받지 않았습니다. Overwatch®와 영웅 이미지는 Blizzard Entertainment, Inc.의 상표·저작물이고, 팀 로고와 선수 사진의 권리는 각 소유자에게 있으며 요청하면 바로 내립니다. ' + D.sources,
     };
   }
 }
