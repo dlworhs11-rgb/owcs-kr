@@ -111,9 +111,10 @@
     F + ' .ft-mail{display:block;font-size:15px;color:var(--fi);margin-top:8px;text-decoration:underline}',
     F + ' .ft-note{font-size:13px;color:var(--fm)}',
     '@media (max-width:1180px){' + F + ' .ft-g{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px}}',
+    '@media (min-width:900px) and (max-width:1180px){' + F + ' .ft-g>div:nth-child(2){border-left:1px solid color-mix(in srgb, var(--fi) 16%, transparent);padding-left:28px}' + F + ' .ft-note{grid-column:1/-1;border-top:1px solid color-mix(in srgb, var(--fi) 16%, transparent);padding-top:18px}}',
     '@media (max-width:899.98px){' + F + ',#dc-root ' + F + '{padding:32px 20px 40px}' + F + ' .wrap{padding:0}' +
       F + ' .ft-g{display:flex;flex-direction:column;gap:14px}' + F + ' .ft-logo{font-size:26px}' + F + ' .ft-desc{font-size:14px;margin-top:0}' +
-      F + ' .ft-ch{margin-top:2px}' + F + ' .ft-mail{margin-top:4px;font-size:14px}' + F + ' .ft-note{font-size:12px}}'
+      F + ' .ft-ch{margin-top:2px}' + F + ' .ft-g>div+div{border-top:1px solid color-mix(in srgb, var(--fi) 16%, transparent);padding-top:16px}' + F + ' .ft-mail{margin-top:4px;font-size:14px}' + F + ' .ft-note{font-size:12px}}'
   ].join('\n');
   // the wordmark stays hidden until Barlow Condensed 800 italic is in: on an iPhone it was drawn in the wider fallback
   // font first and shrank a moment later (the results / player / home pages load this script before the font's stylesheet).

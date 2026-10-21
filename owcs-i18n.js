@@ -79,6 +79,7 @@
     ['업데이트', '更新', 'Updated', '更新'], ['테스트 모드:', 'テストモード:', 'Test mode:', '测试模式:'], ['결과는 임의로 넣은 값', 'の結果は仮の値', 'results are made up', '结果为虚构数据'], ['TEST · 임의 결과', 'TEST · 仮の結果', 'TEST · fake results', 'TEST · 虚构结果'],
     ['OWCS 한국 경기의 일정, 결과, 선수 정보를 한국 팬을 위해 한곳에 모았어요.', 'OWCS韓国リーグの日程・結果・選手情報をひとつにまとめました。', 'OWCS Korea schedule, results and players, all in one place.', 'OWCS 韩国赛区的赛程、结果和选手信息，一站汇总。'],
     ['문의', 'お問い合わせ', 'Contact', '联系'],
+    ['OWticker 팬 디스코드 · 피드백', 'OWticker ファンDiscord · フィードバック', 'OWticker fan Discord · feedback', 'OWticker 粉丝 Discord · 反馈'],
     // ticket banner
     ['직관 안내 · OWCS ASIA : KOREA STAGE 3', '観戦案内 · OWCS ASIA : KOREA STAGE 3', 'Tickets · OWCS ASIA : KOREA STAGE 3', '现场观赛 · OWCS ASIA : KOREA STAGE 3'], ['직관 안내 · KOREA STAGE 3', '観戦案内 · KOREA STAGE 3', 'Tickets · KOREA STAGE 3', '现场观赛 · KOREA STAGE 3'],
     ['WDG STUDIO HONGDAE에서 직관!', 'WDG STUDIO HONGDAEで観戦しよう!', 'Watch live at WDG STUDIO HONGDAE!', '来 WDG STUDIO HONGDAE 现场观赛!'], ['예매 안내 →', 'チケット案内 →', 'Ticket info →', '购票指南 →'], ['눌러서 예매 안내 보기 →', 'タップしてチケット案内 →', 'Tap for ticket info →', '点击查看购票指南 →'], ['직관 예매 QR', '観戦チケットQR', 'Ticket QR', '购票二维码'],
