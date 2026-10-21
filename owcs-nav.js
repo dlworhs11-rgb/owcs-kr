@@ -49,6 +49,8 @@
     // menu links: no underline but the current page's. Not inline on the pages' links: an inline text-decoration made
     // iPhone Safari draw the home page's current-page underline thin (순위 · 선수), unlike every other page's
     'header nav a{text-decoration:none}',
+    // the 앱 button on the results / player pages in dark mode: owcs-dark.js gives their buttons the light page text (white on lime); keep it ink
+    'html body #dc-root [data-owcs-hw] button.ab{color:#0B0B0F}',
     // An underline, not a background: it follows the text, so it sits the same on every page whatever the button's size
     // current page: a soft olive stroke under the word on the light page (the neon lime was too loud on the beige), a thin lime
     // line in dark mode. Drawn on the label span too: on the home page's views (순위 · 선수) the text sits in a block span inside the
