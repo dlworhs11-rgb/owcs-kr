@@ -1,0 +1,895 @@
+{
+ "date": "2026-10-11",
+ "sets": [
+  {
+   "banTs": 1792400354,
+   "teams": [
+    "O2 Blast",
+    "ZANSIDE GAMING"
+   ],
+   "game": 1,
+   "map": "Nepal",
+   "seriesBefore": {
+    "O2 Blast": 0,
+    "ZANSIDE GAMING": 0
+   },
+   "bans": {
+    "initial": {
+     "team": "ZANSIDE GAMING",
+     "hero": "tracer"
+    },
+    "followUp": {
+     "team": "O2 Blast",
+     "hero": "dva"
+    }
+   },
+   "src": "SOOP",
+   "hudLeft": "ZANSIDE GAMING",
+   "guessed": [],
+   "comps": {
+    "ZANSIDE GAMING": [
+     [
+      "Heiser",
+      "dmon"
+     ],
+     [
+      "Kilo",
+      "bastion"
+     ],
+     [
+      "Bekey",
+      "shion"
+     ],
+     [
+      "OPENER",
+      "doctrine"
+     ],
+     [
+      "iR0NY",
+      "jetpack-cat"
+     ]
+    ],
+    "O2 Blast": [
+     [
+      "Fate",
+      "dmon"
+     ],
+     [
+      "perr",
+      "cassidy"
+     ],
+     [
+      "WuTian",
+      "shion"
+     ],
+     [
+      "Gamjung",
+      "jetpack-cat"
+     ],
+     [
+      "Faith",
+      "doctrine"
+     ]
+    ]
+   },
+   "compAt": "2026-10-11T15:14:40+09:00",
+   "fromVod": true
+  },
+  {
+   "banTs": 1792401485,
+   "teams": [
+    "O2 Blast",
+    "ZANSIDE GAMING"
+   ],
+   "game": 2,
+   "map": "New Junk City",
+   "seriesBefore": {
+    "O2 Blast": 0,
+    "ZANSIDE GAMING": 1
+   },
+   "bans": {
+    "initial": {
+     "team": "O2 Blast",
+     "hero": "cassidy"
+    },
+    "followUp": {
+     "team": "ZANSIDE GAMING",
+     "hero": "mauga"
+    }
+   },
+   "src": "SOOP",
+   "hudLeft": "ZANSIDE GAMING",
+   "guessed": [],
+   "comps": {
+    "ZANSIDE GAMING": [
+     [
+      "Heiser",
+      "dmon"
+     ],
+     [
+      "Kilo",
+      "shion"
+     ],
+     [
+      "Bekey",
+      "tracer"
+     ],
+     [
+      "OPENER",
+      "jetpack-cat"
+     ],
+     [
+      "iR0NY",
+      "doctrine"
+     ]
+    ],
+    "O2 Blast": [
+     [
+      "Fate",
+      "dmon"
+     ],
+     [
+      "perr",
+      "shion"
+     ],
+     [
+      "WuTian",
+      "tracer"
+     ],
+     [
+      "Gamjung",
+      "sombra"
+     ],
+     [
+      "Faith",
+      "jetpack-cat"
+     ]
+    ]
+   },
+   "compAt": "2026-10-11T15:32:20+09:00",
+   "fromVod": true
+  },
+  {
+   "banTs": 1792402957,
+   "teams": [
+    "O2 Blast",
+    "ZANSIDE GAMING"
+   ],
+   "game": 3,
+   "map": "Esperança",
+   "seriesBefore": {
+    "O2 Blast": 0,
+    "ZANSIDE GAMING": 2
+   },
+   "bans": {
+    "initial": {
+     "team": "O2 Blast",
+     "hero": "shion"
+    },
+    "followUp": {
+     "team": "ZANSIDE GAMING",
+     "hero": "illari"
+    }
+   },
+   "src": "SOOP",
+   "hudLeft": "ZANSIDE GAMING",
+   "guessed": [],
+   "comps": {
+    "ZANSIDE GAMING": [
+     [
+      "Heiser",
+      "mauga"
+     ],
+     [
+      "Kilo",
+      "cassidy"
+     ],
+     [
+      "Bekey",
+      "tracer"
+     ],
+     [
+      "OPENER",
+      "jetpack-cat"
+     ],
+     [
+      "iR0NY",
+      "doctrine"
+     ]
+    ],
+    "O2 Blast": [
+     [
+      "Fate",
+      "dmon"
+     ],
+     [
+      "perr",
+      "bastion"
+     ],
+     [
+      "WuTian",
+      "tracer"
+     ],
+     [
+      "Gamjung",
+      "doctrine"
+     ],
+     [
+      "Faith",
+      "jetpack-cat"
+     ]
+    ]
+   },
+   "compAt": "2026-10-11T15:57:23+09:00",
+   "fromVod": true
+  },
+  {
+   "banTs": 1792404083,
+   "teams": [
+    "O2 Blast",
+    "ZANSIDE GAMING"
+   ],
+   "game": 4,
+   "map": "Route 66",
+   "seriesBefore": {
+    "O2 Blast": 1,
+    "ZANSIDE GAMING": 2
+   },
+   "bans": {
+    "initial": {
+     "team": "ZANSIDE GAMING",
+     "hero": "winston"
+    },
+    "followUp": {
+     "team": "O2 Blast",
+     "hero": "ashe"
+    }
+   },
+   "src": "SOOP",
+   "hudLeft": "O2 Blast",
+   "guessed": [],
+   "comps": {
+    "O2 Blast": [
+     [
+      "Fate",
+      "dmon"
+     ],
+     [
+      "perr",
+      "cassidy"
+     ],
+     [
+      "WuTian",
+      "tracer"
+     ],
+     [
+      "Gamjung",
+      "doctrine"
+     ],
+     [
+      "Faith",
+      "jetpack-cat"
+     ]
+    ],
+    "ZANSIDE GAMING": [
+     [
+      "HEESUNG",
+      "dva"
+     ],
+     [
+      "Kilo",
+      "cassidy"
+     ],
+     [
+      "Bekey",
+      "shion"
+     ],
+     [
+      "OPENER",
+      "jetpack-cat"
+     ],
+     [
+      "iR0NY",
+      "doctrine"
+     ]
+    ]
+   },
+   "compAt": "2026-10-11T16:15:43+09:00",
+   "fromVod": true
+  },
+  {
+   "banTs": 1792406150,
+   "teams": [
+    "O2 Blast",
+    "ZANSIDE GAMING"
+   ],
+   "game": 5,
+   "map": "Neon Junction",
+   "seriesBefore": {
+    "O2 Blast": 2,
+    "ZANSIDE GAMING": 2
+   },
+   "bans": {
+    "initial": {
+     "team": "ZANSIDE GAMING",
+     "hero": "bastion"
+    },
+    "followUp": {
+     "team": "O2 Blast",
+     "hero": "zarya"
+    }
+   },
+   "src": "SOOP",
+   "hudLeft": "O2 Blast",
+   "guessed": [],
+   "comps": {
+    "O2 Blast": [
+     [
+      "Fate",
+      "dmon"
+     ],
+     [
+      "perr",
+      "cassidy"
+     ],
+     [
+      "WuTian",
+      "shion"
+     ],
+     [
+      "Gamjung",
+      "doctrine"
+     ],
+     [
+      "Faith",
+      "jetpack-cat"
+     ]
+    ],
+    "ZANSIDE GAMING": [
+     [
+      "HEESUNG",
+      "dmon"
+     ],
+     [
+      "Kilo",
+      "cassidy"
+     ],
+     [
+      "Bekey",
+      "shion"
+     ],
+     [
+      "OPENER",
+      "jetpack-cat"
+     ],
+     [
+      "iR0NY",
+      "doctrine"
+     ]
+    ]
+   },
+   "compAt": "2026-10-11T16:50:09+09:00",
+   "fromVod": true
+  },
+  {
+   "banTs": 1792409180,
+   "teams": [
+    "Cheeseburger",
+    "Crazy Raccoon"
+   ],
+   "game": 1,
+   "map": "Nepal",
+   "seriesBefore": {
+    "Cheeseburger": 0,
+    "Crazy Raccoon": 0
+   },
+   "bans": {
+    "initial": {
+     "team": "Cheeseburger",
+     "hero": "bastion"
+    },
+    "followUp": {
+     "team": "Crazy Raccoon",
+     "hero": "zenyatta"
+    }
+   },
+   "src": "SOOP",
+   "hudLeft": "Cheeseburger",
+   "guessed": [],
+   "comps": {
+    "Cheeseburger": [
+     [
+      "Belosrea",
+      "orisa"
+     ],
+     [
+      "K4NE",
+      "cassidy"
+     ],
+     [
+      "Profit",
+      "tracer"
+     ],
+     [
+      "Trest",
+      "doctrine"
+     ],
+     [
+      "TenTen",
+      "jetpack-cat"
+     ]
+    ],
+    "Crazy Raccoon": [
+     [
+      "JunBin",
+      "wrecking-ball"
+     ],
+     [
+      "HeeSang",
+      "anran"
+     ],
+     [
+      "Stalk3r",
+      "tracer"
+     ],
+     [
+      "LIP",
+      "sombra"
+     ],
+     [
+      "CH0R0NG",
+      "jetpack-cat"
+     ]
+    ]
+   },
+   "compAt": "2026-10-11T17:40:57+09:00",
+   "fromVod": true
+  },
+  {
+   "banTs": 1792410500,
+   "teams": [
+    "Cheeseburger",
+    "Crazy Raccoon"
+   ],
+   "game": 2,
+   "map": "Aatlis",
+   "seriesBefore": {
+    "Cheeseburger": 0,
+    "Crazy Raccoon": 1
+   },
+   "bans": {
+    "initial": {
+     "team": "Cheeseburger",
+     "hero": "anran"
+    },
+    "followUp": {
+     "team": "Crazy Raccoon",
+     "hero": "hazard"
+    }
+   },
+   "src": "SOOP",
+   "hudLeft": "Cheeseburger",
+   "guessed": [],
+   "comps": {
+    "Cheeseburger": [
+     [
+      "Belosrea",
+      "orisa"
+     ],
+     [
+      "K4NE",
+      "cassidy"
+     ],
+     [
+      "Profit",
+      "tracer"
+     ],
+     [
+      "Trest",
+      "sombra"
+     ],
+     [
+      "TenTen",
+      "jetpack-cat"
+     ]
+    ],
+    "Crazy Raccoon": [
+     [
+      "JunBin",
+      "wrecking-ball"
+     ],
+     [
+      "HeeSang",
+      "genji"
+     ],
+     [
+      "Stalk3r",
+      "tracer"
+     ],
+     [
+      "LIP",
+      "sombra"
+     ],
+     [
+      "CH0R0NG",
+      "jetpack-cat"
+     ]
+    ]
+   },
+   "compAt": "2026-10-11T18:02:32+09:00",
+   "fromVod": true
+  },
+  {
+   "banTs": 1792412060,
+   "teams": [
+    "Cheeseburger",
+    "Crazy Raccoon"
+   ],
+   "game": 3,
+   "map": "Esperança",
+   "seriesBefore": {
+    "Cheeseburger": 1,
+    "Crazy Raccoon": 1
+   },
+   "bans": {
+    "initial": {
+     "team": "Cheeseburger",
+     "hero": "doctrine"
+    },
+    "followUp": {
+     "team": "Crazy Raccoon",
+     "hero": "cassidy"
+    }
+   },
+   "src": "SOOP",
+   "hudLeft": "Crazy Raccoon",
+   "guessed": [
+    "Belosrea"
+   ],
+   "comps": {
+    "Crazy Raccoon": [
+     [
+      "JunBin",
+      "winston"
+     ],
+     [
+      "HeeSang",
+      "anran"
+     ],
+     [
+      "Stalk3r",
+      "tracer"
+     ],
+     [
+      "LIP",
+      "sombra"
+     ],
+     [
+      "CH0R0NG",
+      "jetpack-cat"
+     ]
+    ],
+    "Cheeseburger": [
+     [
+      "Belosrea",
+      "hazard"
+     ],
+     [
+      "K4NE",
+      "bastion"
+     ],
+     [
+      "Profit",
+      "tracer"
+     ],
+     [
+      "Trest",
+      "ana"
+     ],
+     [
+      "TenTen",
+      "jetpack-cat"
+     ]
+    ]
+   },
+   "compAt": "2026-10-11T18:29:43+09:00",
+   "fromVod": true
+  },
+  {
+   "banTs": 1792413245,
+   "teams": [
+    "Cheeseburger",
+    "Crazy Raccoon"
+   ],
+   "game": 4,
+   "map": "Neon Junction",
+   "seriesBefore": {
+    "Cheeseburger": 1,
+    "Crazy Raccoon": 2
+   },
+   "bans": {
+    "initial": {
+     "team": "Cheeseburger",
+     "hero": "zarya"
+    },
+    "followUp": {
+     "team": "Crazy Raccoon",
+     "hero": "ana"
+    }
+   },
+   "src": "SOOP",
+   "hudLeft": "Crazy Raccoon",
+   "guessed": [],
+   "comps": {
+    "Crazy Raccoon": [
+     [
+      "MAX",
+      "orisa"
+     ],
+     [
+      "HeeSang",
+      "tracer"
+     ],
+     [
+      "Stalk3r",
+      "cassidy"
+     ],
+     [
+      "LIP",
+      "doctrine"
+     ],
+     [
+      "CH0R0NG",
+      "jetpack-cat"
+     ]
+    ],
+    "Cheeseburger": [
+     [
+      "Belosrea",
+      "dmon"
+     ],
+     [
+      "K4NE",
+      "cassidy"
+     ],
+     [
+      "Profit",
+      "mei"
+     ],
+     [
+      "Trest",
+      "doctrine"
+     ],
+     [
+      "TenTen",
+      "jetpack-cat"
+     ]
+    ]
+   },
+   "compAt": "2026-10-11T18:50:08+09:00",
+   "fromVod": true
+  },
+  {
+   "banTs": 1792416370,
+   "teams": [
+    "Poker Face",
+    "ZETA DIVISION"
+   ],
+   "game": 1,
+   "map": "Samoa",
+   "seriesBefore": {
+    "Poker Face": 0,
+    "ZETA DIVISION": 0
+   },
+   "bans": {
+    "initial": {
+     "team": "Poker Face",
+     "hero": "jetpack cat"
+    },
+    "followUp": {
+     "team": "ZETA DIVISION",
+     "hero": "widowmaker"
+    }
+   },
+   "src": "SOOP",
+   "hudLeft": "Poker Face",
+   "guessed": [],
+   "comps": {
+    "Poker Face": [
+     [
+      "SoLA",
+      "dmon"
+     ],
+     [
+      "SORI",
+      "shion"
+     ],
+     [
+      "F1nally",
+      "tracer"
+     ],
+     [
+      "Soae",
+      "sombra"
+     ],
+     [
+      "Caffeine",
+      "doctrine"
+     ]
+    ],
+    "ZETA DIVISION": [
+     [
+      "Bernar",
+      "dva"
+     ],
+     [
+      "Knife",
+      "emre"
+     ],
+     [
+      "Proper",
+      "tracer"
+     ],
+     [
+      "Viol2t",
+      "doctrine"
+     ],
+     [
+      "Shu",
+      "ana"
+     ]
+    ]
+   },
+   "compAt": "2026-10-11T19:41:53+09:00",
+   "fromVod": true
+  },
+  {
+   "banTs": 1792417429,
+   "teams": [
+    "Poker Face",
+    "ZETA DIVISION"
+   ],
+   "game": 2,
+   "map": "Shambali Monastery",
+   "seriesBefore": {
+    "Poker Face": 0,
+    "ZETA DIVISION": 1
+   },
+   "bans": {
+    "initial": {
+     "team": "Poker Face",
+     "hero": "ana"
+    },
+    "followUp": {
+     "team": "ZETA DIVISION",
+     "hero": "dva"
+    }
+   },
+   "src": "SOOP",
+   "hudLeft": "Poker Face",
+   "guessed": [],
+   "comps": {
+    "Poker Face": [
+     [
+      "SoLA",
+      "dmon"
+     ],
+     [
+      "SORI",
+      "cassidy"
+     ],
+     [
+      "F1nally",
+      "tracer"
+     ],
+     [
+      "Soae",
+      "jetpack-cat"
+     ],
+     [
+      "Caffeine",
+      "doctrine"
+     ]
+    ],
+    "ZETA DIVISION": [
+     [
+      "Bernar",
+      "dmon"
+     ],
+     [
+      "Knife",
+      "cassidy"
+     ],
+     [
+      "Proper",
+      "tracer"
+     ],
+     [
+      "Viol2t",
+      "jetpack-cat"
+     ],
+     [
+      "Shu",
+      "doctrine"
+     ]
+    ]
+   },
+   "compAt": "2026-10-11T19:59:19+09:00",
+   "fromVod": true
+  },
+  {
+   "banTs": 1792418806,
+   "teams": [
+    "Poker Face",
+    "ZETA DIVISION"
+   ],
+   "game": 3,
+   "map": "Esperança",
+   "seriesBefore": {
+    "Poker Face": 0,
+    "ZETA DIVISION": 2
+   },
+   "bans": {
+    "initial": {
+     "team": "Poker Face",
+     "hero": "bastion"
+    },
+    "followUp": {
+     "team": "ZETA DIVISION",
+     "hero": "moira"
+    }
+   },
+   "src": "SOOP",
+   "hudLeft": "Poker Face",
+   "guessed": [],
+   "comps": {
+    "Poker Face": [
+     [
+      "SWOO",
+      "winston"
+     ],
+     [
+      "SORI",
+      "cassidy"
+     ],
+     [
+      "F1nally",
+      "tracer"
+     ],
+     [
+      "Dumbbell",
+      "jetpack-cat"
+     ],
+     [
+      "Caffeine",
+      "doctrine"
+     ]
+    ],
+    "ZETA DIVISION": [
+     [
+      "Mealgaru",
+      "wrecking-ball"
+     ],
+     [
+      "Knife",
+      "cassidy"
+     ],
+     [
+      "Proper",
+      "tracer"
+     ],
+     [
+      "Viol2t",
+      "jetpack-cat"
+     ],
+     [
+      "Shu",
+      "doctrine"
+     ]
+    ]
+   },
+   "compAt": "2026-10-11T20:22:10+09:00",
+   "fromVod": true
+  }
+ ]
+}
