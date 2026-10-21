@@ -78,6 +78,8 @@
     // owcs-dark.js turns the old dark tile light on the results / player pages; one element more specific than its rule
     'html[data-owcs-dark] #dc-root [data-screen-label] header a > div[style*="width: 30px"][style*="border-radius: 7px"][style*="background: rgb(11, 11, 15)"]{background-color:transparent !important}' +
     'a:has(> span .owt) > :first-child:not(span) > *,a:has(> span .owt) > :first-child:not(span):after,[data-owcs-mtop] .mk > *{display:none !important}';
+  // the name under the icon when an iPhone adds the site to its home screen (otherwise the page title)
+  if (!document.querySelector('meta[name="apple-mobile-web-app-title"]')) { var amt = document.createElement('meta'); amt.name = 'apple-mobile-web-app-title'; amt.content = 'OWticker'; (document.head || document.documentElement).appendChild(amt); }
   // shared footer (same as the home page): wordmark + channels | contact | notes, on the paper sheet, a hairline on top
   var F = 'html body footer.owft';
   var ft = [
