@@ -672,6 +672,8 @@ def build_players(socials, stage_teams):
     ap = os.path.join(HERE, 'data', 'achievements.json')   # big-tournament top-4 finishes, from fetch_achievements.py
     ach = json.load(open(ap, encoding='utf-8')) if os.path.exists(ap) else {}
     insta = load_insta()
+    np_ = os.path.join(HERE, 'data', 'player_names.json')   # real name in its own script (박준영), from fetch_names.py
+    real = json.load(open(np_, encoding='utf-8')) if os.path.exists(np_) else {}
     out = []
     for p in load('site/players.json'):
         if p['team'] not in TEAMS and p['team'] not in stage_teams:   # national / other-region rosters
@@ -682,7 +684,7 @@ def build_players(socials, stage_teams):
         role = ROLE.get(p['role'], ('?', '?', 3))
         photo = photos.get(handle.lower())
         out.append(dict(id=handle, ko=p.get('nameKo') or '', team=a, role=role[0], roleFull=role[1], order=role[2],
-                        name=s.get('name', ''), birth=s.get('birth', ''), potm=p.get('potm') or 0,
+                        name=s.get('name', ''), real=real.get(handle.lower(), ''), birth=s.get('birth', ''), potm=p.get('potm') or 0,
                         photo=f'assets/players/{photo}' if photo else '', face=faces.get(os.path.splitext(photo)[0]) if photo else None,
                         soop=soop_url(s.get('soop')) or soop_url(p.get('soop')), chzzk=None if a in SOOP_ONLY else p.get('chzzk'), discord=(s['discord'] or None) if 'discord' in s else p.get('discord'), youtube=p.get('youtube') or (s.get('youtube') and 'https://youtube.com/' + s['youtube']),
                         instagram=s.get('instagram') and 'https://instagram.com/' + s['instagram'],
@@ -850,11 +852,15 @@ def rank_by(recs, games, order=()):
     out = []
     for k in sorted(groups, key=lambda k: (-k[0], -k[1])):
         g = groups[k]
-        h = {r['a']: [0, 0] for r in g}   # wins, set difference against the other level teams
+        h = {r['a']: [0, 0, 0] for r in g}   # wins, set difference, losses against the other level teams
         for a, b, sa, sb in games:
             if a in h and b in h and sa is not None and sb is not None and sa != sb:
                 h[a if sa > sb else b][0] += 1
+                h[b if sa > sb else a][2] += 1
                 h[a][1] += sa - sb; h[b][1] += sb - sa
+        if len(g) > 1:   # level on wins and set difference: the pages say why one is above (tie = [h2h wins, h2h losses])
+            for r in g:
+                r['tie'] = [h[r['a']][0], h[r['a']][2]]
         out += sorted(g, key=lambda r: (-h[r['a']][0], -h[r['a']][1], pos(r['a'])))
     return out
 
