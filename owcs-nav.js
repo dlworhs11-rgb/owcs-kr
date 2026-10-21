@@ -68,8 +68,11 @@
   var owt = '.owt{font-style:italic;letter-spacing:.02em;padding-right:.06em}.owt b{font-weight:inherit;color:var(--owt,#6E8F14)}' +
     'html[data-owcs-dark] .owt b{color:#C6FF33}' +
     // the logo mark: every page's header tile (a dark square with a lime dot, inline on some pages) drawn as the round logo
-    // (grey (#55555C) with a dark-lime top arc on the beige page, light grey and lime in dark mode)
-    'a:has(> span .owt) > :first-child:not(span),[data-owcs-mtop] .mk{background:url(assets/app/logo-light.svg) center/contain no-repeat !important;border-radius:0 !important}' +
+    // (black with a dark-lime top arc on the beige page, light grey and lime in dark mode)
+    'a:has(> span .owt) > :first-child:not(span),[data-owcs-mtop] .mk{background:url(assets/app/logo-light.svg) center/contain no-repeat !important;border-radius:0 !important;flex:none !important}' +
+    // a round mark reads smaller than the old square tile: 34px next to the 28px wordmark, 28px on phones (24px wordmark)
+    'header a:has(> span .owt) > :first-child:not(span){width:34px !important;height:34px !important}' +
+    '@media (max-width:899.98px){header a:has(> span .owt) > :first-child:not(span),[data-owcs-mtop] .mk{width:28px !important;height:28px !important}}' +
     // (dark mode: <html data-owcs-dark> on the other pages; the home page only switches its theme box's --owt to lime)
     'html[data-owcs-dark] a:has(> span .owt) > :first-child:not(span),html[data-owcs-dark] [data-owcs-mtop] .mk,[style*="--owt: #C6FF33"] a:has(> span .owt) > :first-child:not(span),[style*="--owt:#C6FF33"] a:has(> span .owt) > :first-child:not(span){background-image:url(assets/app/logo-dark.svg) !important;background-color:transparent !important}' +
     // owcs-dark.js turns the old dark tile light on the results / player pages; one element more specific than its rule
