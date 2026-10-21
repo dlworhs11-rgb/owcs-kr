@@ -24,7 +24,7 @@
     }
    },
    "src": "SOOP",
-   "hudLeft": "ZANSIDE GAMING",
+   "hudLeft": "O2 Blast",
    "guessed": [],
    "comps": {
     "ZANSIDE GAMING": [
@@ -34,7 +34,7 @@
      ],
      [
       "Kilo",
-      "bastion"
+      "cassidy"
      ],
      [
       "Bekey",
@@ -42,11 +42,11 @@
      ],
      [
       "OPENER",
-      "doctrine"
+      "jetpack-cat"
      ],
      [
       "iR0NY",
-      "jetpack-cat"
+      "doctrine"
      ]
     ],
     "O2 Blast": [
@@ -56,7 +56,7 @@
      ],
      [
       "perr",
-      "cassidy"
+      "bastion"
      ],
      [
       "WuTian",
@@ -64,11 +64,11 @@
      ],
      [
       "Gamjung",
-      "jetpack-cat"
+      "doctrine"
      ],
      [
       "Faith",
-      "doctrine"
+      "jetpack-cat"
      ]
     ]
    },

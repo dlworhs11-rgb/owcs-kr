@@ -24,51 +24,51 @@
     }
    },
    "src": "SOOP",
-   "hudLeft": "ZANSIDE GAMING",
+   "hudLeft": "SEIJI ESPORTS",
    "guessed": [],
    "comps": {
     "ZANSIDE GAMING": [
      [
       "Heiser",
-      "dmon"
+      "mauga"
      ],
      [
       "Taejong",
-      "cassidy"
-     ],
-     [
-      "Bekey",
       "tracer"
      ],
      [
+      "Bekey",
+      "vendetta"
+     ],
+     [
       "iR0NY",
-      "jetpack-cat"
+      "sombra"
      ],
      [
       "OPENER",
-      "doctrine"
+      "jetpack-cat"
      ]
     ],
     "SEIJI ESPORTS": [
      [
       "SENTIER",
-      "mauga"
+      "dmon"
      ],
      [
       "M1nut2",
-      "tracer"
+      "cassidy"
      ],
      [
       "D4RT",
-      "vendetta"
+      "tracer"
      ],
      [
       "OFF",
-      "sombra"
+      "jetpack-cat"
      ],
      [
       "Lavender",
-      "jetpack-cat"
+      "doctrine"
      ]
     ]
    },
