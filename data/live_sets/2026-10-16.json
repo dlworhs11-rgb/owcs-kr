@@ -30,47 +30,48 @@
       "winston"
      ],
      [
+      "MER1T",
+      "sojourn"
+     ],
+     [
       "Checkmate",
       "tracer"
      ],
      [
-      "MER1T",
-      "emre"
+      "Fielder",
+      "sombra"
      ],
      [
       "ChiYo",
       "doctrine"
-     ],
-     [
-      "Fielder",
-      "sombra"
      ]
     ],
     "SEIJI ESPORTS": [
      [
       "SENTIER",
-      "dva"
+      "wrecking-ball"
+     ],
+     [
+      "M1nut2",
+      "shion"
      ],
      [
       "D4RT",
       "tracer"
      ],
      [
-      "M1nut2",
-      "sojourn"
+      "OFF",
+      "sombra"
      ],
      [
       "Lavender",
-      "doctrine"
-     ],
-     [
-      "OFF",
-      "sombra"
+      "kiriko"
      ]
     ]
    },
    "hudLeft": "Team Falcons",
-   "fromTable": true
+   "compAt": "2026-10-16T17:14:19+09:00",
+   "fromVod": true
   },
   {
    "banTs": 1792139687,
