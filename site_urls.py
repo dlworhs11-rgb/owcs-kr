@@ -6,6 +6,7 @@ The source files keep their names (local preview, the preview site and the docs 
   - each old name stays as a small page that forwards to the new address, so links already shared keep working
 GitHub Pages serves /schedule from schedule.html, so links leave out the .html."""
 import os
+import re
 import urllib.parse
 
 HOME = 'OWCS KR Home v6.dc.html'
@@ -19,6 +20,10 @@ PAGES = {   # source file -> short name ('' = the site root, index.html)
 }
 VIEWS = {'standings': 'standings', 'teams': 'players'}   # home ?view= -> its own page
 SITE = 'https://owticker.com/'
+VIEW_META = {   # the home copies get their own title and description, so search and share cards don't show the home page's
+    'standings': ('OWticker 순위 · 대진표', 'OWCS 코리아 정규 리그 팀별 순위와 플레이오프 대진표.'),
+    'players': ('OWticker 팀 & 선수', 'OWCS 코리아 참가 팀과 선수 라인업. 팀을 고르면 로스터와 선수 방송이 보여요.'),
+}
 
 
 def _forms(name):
@@ -35,6 +40,21 @@ def rewrite(text):
             text = text.replace(SITE + f, SITE + new)
             text = text.replace(f, new or './')
     return text
+
+
+def head(page, new, meta=None):
+    """canonical address (and for a home copy its own title / description / og:url) in a renamed page's <head>"""
+    url = SITE + new
+    if meta:
+        title, desc = meta
+        page = re.sub(r'<title>[^<]*</title>', f'<title>{title}</title>', page, count=1)
+        page = re.sub(r'(<meta property="og:title" content=")[^"]*', lambda m: m.group(1) + title, page, count=1)
+        page = re.sub(r'(<meta (?:name="description"|property="og:description") content=")[^"]*', lambda m: m.group(1) + desc, page, count=2)
+        page = re.sub(r'<script type="application/ld\+json">.*?</script>\n', '', page, count=1)   # the site's WebSite data: home only
+    page = re.sub(r'(<meta property="og:url" content=")[^"]*', lambda m: m.group(1) + url, page, count=1)
+    if 'rel="canonical"' not in page:
+        page = page.replace('<head>', f'<head>\n<link rel="canonical" href="{url}">', 1)
+    return page
 
 
 def stub(new):
@@ -78,7 +98,7 @@ def apply(out):
         names = [new or 'index'] + (list(VIEWS.values()) if old == HOME else [])
         for n in names:
             with open(os.path.join(out, n + '.html'), 'w', encoding='utf-8', newline='') as fh:
-                fh.write(page)
+                fh.write(head(page, '' if n == 'index' else n, VIEW_META.get(n)))
         with open(src, 'w', encoding='utf-8', newline='') as fh:
             fh.write(stub(new))
     write_crawl_files(out)   # robots.txt + sitemap.xml with the short addresses

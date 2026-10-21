@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
 <meta name="description" content="OWCS 코리아 선수 프로필, 개인 방송, 대회 업적, 팀 로스터.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="OWticker">
+<title>OWticker 선수</title>
 <meta property="og:title" content="OWticker 선수">
 <meta property="og:description" content="OWCS 코리아 선수 프로필, 개인 방송, 대회 업적, 팀 로스터.">
 <meta property="og:url" content="https://owticker.com/OWCS%20KR%20Player.dc.html">
@@ -206,6 +207,7 @@ const nameFs = (id, room) => Math.min(44, Math.floor(room / (id.length * 0.5))) 
 class Component extends DCLogic {
   renderVals() {
     const me = pick();
+    if (want && me.id.toLowerCase() === want) document.title = 'OWticker 선수 · ' + me.id;   // each player's tab / search title
     const t = TEAM[me.team] || { n: me.team, color: '#55555C', ko: '' };
     const live = D.live[me.id];
     // both SOOP and CHZZK: link the one with the latest broadcast (D.lastStream, KST start times); SOOP on a tie
