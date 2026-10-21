@@ -117,6 +117,31 @@
       F + ' .ft-g{display:flex;flex-direction:column;gap:14px}' + F + ' .ft-logo{font-size:26px}' + F + ' .ft-desc{font-size:14px;margin-top:0}' +
       F + ' .ft-ch{margin-top:2px}' + F + ' .ft-mail{margin-top:4px;font-size:14px}' + F + ' .ft-note{font-size:12px}}'
   ].join('\n');
+  // the wordmark stays hidden until Barlow Condensed 800 italic is in: on an iPhone it was drawn in the wider fallback
+  // font first and shrank a moment later (the results / player / home pages load this script before the font's stylesheet).
+  // Shown anyway after 3s so a font that never arrives can't hide the logo.
+  owt += 'html:not([data-owt-font]) .owt{visibility:hidden}';
+  (function () {
+    var de = document.documentElement, fs = document.fonts;
+    function show() { de.setAttribute('data-owt-font', ''); }
+    function face() {
+      var hit = false;
+      fs.forEach(function (f) { if (/Barlow Condensed/.test(f.family) && f.style === 'italic' && String(f.weight) === '800') hit = true; });
+      return hit;
+    }
+    function test() {
+      if (de.hasAttribute('data-owt-font')) return;
+      // check() is also true while the font's stylesheet hasn't declared the face yet, so the face must exist first
+      if (face() && fs.check("italic 800 24px 'Barlow Condensed'")) show();
+      else if (face()) fs.load("italic 800 24px 'Barlow Condensed'").then(test, show);
+    }
+    if (!fs || !fs.check) { show(); return; }
+    setTimeout(show, 3000);
+    test();
+    fs.addEventListener && fs.addEventListener('loadingdone', test);
+    document.addEventListener('DOMContentLoaded', test);
+    window.addEventListener('load', test);
+  })();
   hst.textContent = centre + '\n' + hw + '\n' + owt + '\n' + ft;
   (document.head || document.documentElement).appendChild(hst);
   var css = HOME ? '' : [
