@@ -45,13 +45,18 @@
     'html body a[data-owcs-nv]:hover{color:var(--ink,#0B0B0F) !important}',
     'html[data-owcs-dark] body a[data-owcs-nv][data-owcs-nv]{color:#A3A3AD !important}',
     'html[data-owcs-dark] body a[data-owcs-nv]:hover{color:#F2F2F5 !important}',
-    // light: a lime highlighter stroke under the word, just touching the letters' feet; dark: a thin lime line under it.
+    // light: an olive highlighter stroke under the word, just touching the letters' feet; dark: a thin lime line under it.
     // menu links: no underline but the current page's. Not inline on the pages' links: an inline text-decoration made
     // iPhone Safari draw the home page's current-page underline thin (순위 · 선수), unlike every other page's
     'header nav a{text-decoration:none}',
     // An underline, not a background: it follows the text, so it sits the same on every page whatever the button's size
-    'html body a[data-owcs-nv][data-owcs-nv].cur{color:var(--ink,#0B0B0F) !important;text-decoration-line:underline !important;text-decoration-style:solid !important;text-decoration-color:var(--ac2,#C6FF33) !important;text-decoration-thickness:5px !important;text-underline-offset:-1px !important;text-decoration-skip-ink:none !important}',
-    'html[data-owcs-dark] body a[data-owcs-nv][data-owcs-nv].cur{color:#F2F2F5 !important;text-decoration-thickness:2px !important;text-underline-offset:3px !important}',
+    // current page: a soft olive stroke under the word on the light page (the neon lime was too loud on the beige), a thin lime
+    // line in dark mode. Drawn on the label span too: on the home page's views (순위 · 선수) the text sits in a block span inside the
+    // flex link, and iPhone Safari drew the link's own underline there thin
+    'html body a[data-owcs-nv][data-owcs-nv].cur{color:var(--ink,#0B0B0F) !important}',
+    'html body a[data-owcs-nv][data-owcs-nv].cur,html body a[data-owcs-nv][data-owcs-nv].cur > span{text-decoration-line:underline !important;text-decoration-style:solid !important;text-decoration-color:var(--nvu,#A9C95A) !important;text-decoration-thickness:var(--nvt,5px) !important;text-underline-offset:var(--nvo,-1px) !important;text-decoration-skip-ink:none !important}',
+    'html[data-owcs-dark] body a[data-owcs-nv][data-owcs-nv].cur{color:#F2F2F5 !important;--nvu:#C6FF33;--nvt:2px;--nvo:3px}',
+    '[style*="--owt: #C6FF33"] a[data-owcs-nv][data-owcs-nv].cur,[style*="--owt:#C6FF33"] a[data-owcs-nv][data-owcs-nv].cur{--nvu:#C6FF33;--nvt:2px;--nvo:3px}',
     'html[data-owcs-dark] [data-owcs-hw]{color:#F2F2F5}',
     'html[data-owcs-dark] [data-owcs-hw] .lb,html[data-owcs-dark] [data-owcs-hw] .dd{background:#16161C;border-color:#2E2E37}',
     'html[data-owcs-dark] [data-owcs-hw] .it{color:#A3A3AD}',
