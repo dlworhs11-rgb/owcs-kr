@@ -212,14 +212,14 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <section style="position:relative;z-index:5;padding:28px 20px 0;background:#F6F6F3">
 <div style="font-size:14px;font-weight:700;color:#7D39EB">결과 · 대진표</div>
 <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:64px;line-height:.86;margin:6px 0 14px">RESULTS</h1>
-<sc-if value="{{ showStM }}"><div style="position:relative;display:inline-block"><button onClick="{{ stToggleM }}" style="display:flex;align-items:center;gap:8px;height:44px;padding:0 14px;border-radius:12px;border:1px solid #E6E6E1;background:#fff;font:inherit;font-size:14px;font-weight:600;color:#0B0B0F">{{ seasonLabelM }} {{ stChevM }}</button>
-<sc-if value="{{ stOpenM }}"><div style="position:absolute;left:0;top:50px;z-index:20;min-width:100%;padding:6px;border-radius:12px;border:1px solid #E6E6E1;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,.12);display:flex;flex-direction:column;gap:2px"><sc-for list="{{ stOpts }}" as="o" hint-placeholder-count="3"><button onClick="{{ o.go }}" style="height:44px;padding:0 14px;border:none;border-radius:8px;background:{{ o.bg }};color:{{ o.fg }};font:inherit;font-size:15px;font-weight:700;text-align:left;white-space:nowrap">{{ o.label }}</button></sc-for></div></sc-if></div></sc-if>
 <div style="display:flex;gap:6px;margin-top:20px">
 <sc-for list="{{ tabsM }}" as="t" hint-placeholder-count="3">
 <sc-if value="{{ t.on }}"><button data-owcs-tab="" onClick="{{ t.go }}" style="flex:1;height:42px;border:1px solid #0B0B0F;border-radius:12px;background:#0B0B0F;color:#fff;font:inherit;font-size:14px;font-weight:700">{{ t.short }}</button></sc-if>
 <sc-if value="{{ t.off }}"><button onClick="{{ t.go }}" style="flex:1;height:42px;border:1px solid #E6E6E1;border-radius:12px;background:#fff;color:#0B0B0F;font:inherit;font-size:14px;font-weight:700">{{ t.short }}</button></sc-if>
 </sc-for>
 </div>
+<sc-if value="{{ showStM }}"><div style="position:relative;display:inline-block;margin-top:14px"><button onClick="{{ stToggleM }}" style="display:flex;align-items:center;gap:8px;height:44px;padding:0 14px;border-radius:12px;border:1px solid #E6E6E1;background:#fff;font:inherit;font-size:14px;font-weight:600;color:#0B0B0F">{{ seasonLabelM }} {{ stChevM }}</button>
+<sc-if value="{{ stOpenM }}"><div style="position:absolute;left:0;top:50px;z-index:20;min-width:100%;padding:6px;border-radius:12px;border:1px solid #E6E6E1;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,.12);display:flex;flex-direction:column;gap:2px"><sc-for list="{{ stOpts }}" as="o" hint-placeholder-count="3"><button onClick="{{ o.go }}" style="height:44px;padding:0 14px;border:none;border-radius:8px;background:{{ o.bg }};color:{{ o.fg }};font:inherit;font-size:15px;font-weight:700;text-align:left;white-space:nowrap">{{ o.label }}</button></sc-for></div></sc-if></div></sc-if>
 </section>
 <section style="padding:24px 20px 40px;background:#fff;min-height:600px">
 <sc-if value="{{ m.results }}" hint-placeholder-val="{{ true }}">
