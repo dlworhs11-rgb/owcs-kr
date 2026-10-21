@@ -42,7 +42,8 @@
 .cm{flex:1;display:flex;flex-direction:column;justify-content:space-around;gap:10px;position:relative}
 .m{position:relative;background:var(--b-card);border:1px solid var(--b-line);border-radius:10px;min-width:0}
 .m.live{border:2px solid #D92D20}
-.m.next{border:2px solid var(--b-ac)}
+.m.next{border:2px solid var(--b-ink)}
+.mh em.nx{position:absolute;top:-8px;right:8px;z-index:1;height:15px;line-height:15px;padding:0 6px;border-radius:999px;background:var(--b-ac2);color:#0B0B0F;font-size:10px}
 .mh{display:flex;justify-content:space-between;gap:4px;padding:3px 7px;font-size:11px;color:var(--b-mute);border-bottom:1px solid var(--b-line);white-space:nowrap;overflow:hidden}
 .mh em{font-style:normal;font-weight:800;color:#D92D20}
 .r{display:grid;grid-template-columns:16px minmax(0,1fr) auto;align-items:center;gap:5px;height:27px;padding:0 7px}
@@ -162,18 +163,26 @@
       const logo = (a) => { const t = team(a); const u = t && (dark ? (t.logoDark || t.logo) : t.logo); return u ? 'style="background-image:url(\'' + esc(u) + '\')"' : 'class="none"'; };
       const name = (r) => { const t = team(r.a); return r.a === 'TBD' ? (r.ph || '미정') : t ? t.a : (r.n || r.a); };
 
+      // next postseason matches (all that start at the same time), marked once the regular season is over
+      const OW = window.OWCS || {}, q = new URLSearchParams(location.search);
+      const now = q.get('date') ? new Date(q.get('date') + 'T' + (q.get('time') || '12:00') + ':00+09:00').getTime() : Date.now();
+      const poOn = OW.stageRange && OW.stageRange[1] && now > new Date(OW.stageRange[1] + 'T23:59:59+09:00').getTime();
+      const upNext = (OW.matches || []).filter((m) => m.phase && m.phase !== 'rs' && !(m.played && !m.live) && new Date(m.date).getTime() + 3 * 3600e3 > now);
+      const nextAt = poOn && upNext.length ? Math.min.apply(null, upNext.map((m) => new Date(m.date).getTime())) : NaN;
+      const nextIds = upNext.filter((m) => new Date(m.date).getTime() === nextAt).map((m) => m.id);
       const chip = (x, opt) => {
         const m = byId[x.id];
         let rows = x.rows.map((r, i) => ({ ...r, ph: opt && opt.ph ? opt.ph[i] : '' }));
         if (m) { rows[0].a = m.a; rows[1].a = m.b; if (m.played || m.live) { rows[0].s = m.sa; rows[1].s = m.sb; } }
         const live = m ? m.live : x.live, played = m ? m.played : x.played;
+        const nx = !live && isCur && nextIds.includes(x.id);
         const shown = !SP && (played || live) && rows[0].a !== 'TBD';
         const top = Math.max(+rows[0].s || 0, +rows[1].s || 0);
         const day = String(x.when || '').split(' ').slice(0, opt && opt.short ? 1 : 2).join(' ');
         const bo = (m && m.bo) || x.bo, boTxt = bo ? 'BO' + bo : '';   // seeding deciders / LCQ BO5, playoffs BO7 (from Liquipedia)
         const head = (opt && opt.round ? '<span>' + esc(opt.title || x.round) + '</span>' : '')
-          + (live ? '<em>LIVE</em>' + (boTxt ? '<span>' + boTxt + '</span>' : '') : '<span>' + esc(day) + (boTxt ? ' · ' + boTxt : '') + '</span>');
-        return '<div class="m' + (live ? ' live' : '') + '"><div class="mh">' + head + '</div>' + rows.map((r) => {
+          + (live ? '<em>LIVE</em>' + (boTxt ? '<span>' + boTxt + '</span>' : '') : '<span>' + esc(day) + (boTxt ? ' · ' + boTxt : '') + '</span>' + (nx ? '<em class="nx">다음 경기</em>' : ''));
+        return '<div class="m' + (live ? ' live' : nx ? ' next' : '') + '"><div class="mh">' + head + '</div>' + rows.map((r) => {
           const cls = r.a === 'TBD' ? 'tbd' : shown && played && +r.s < top ? 'lose' : '';
           const win = /^결승$/.test(x.round) && shown && played && +r.s === top ? '<span class="wt">우승</span>' : '';
           return '<div class="r ' + cls + '"><i ' + logo(r.a) + '></i><b>' + esc(name(r)) + win + '</b><s>' + (shown ? esc(r.s) : '') + '</s></div>';

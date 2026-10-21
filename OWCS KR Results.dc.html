@@ -139,7 +139,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <div style="flex:1;min-height:360px;display:flex;flex-direction:column;justify-content:space-around;gap:16px">
 <sc-for list="{{ col.matches }}" as="m" hint-placeholder-count="1">
 <div style="background:#fff;border:{{ m.bd }};border-radius:14px;overflow:hidden">
-<div style="display:flex;justify-content:space-between;gap:8px;padding:6px 14px;font-size:12px;color:#6B6B72;border-bottom:1px solid #F0F0EB"><span>{{ m.when }}</span><span style="font-weight:700;color:{{ m.tagC }}">{{ m.tag }}</span></div>
+<div style="display:flex;justify-content:space-between;gap:8px;padding:6px 14px;font-size:12px;color:#6B6B72;border-bottom:1px solid #F0F0EB"><span>{{ m.when }}</span><span style="font-weight:700;color:{{ m.tagC }};background:{{ m.tagB }};padding:{{ m.tagP }};border-radius:999px;white-space:nowrap;flex-shrink:0">{{ m.tag }}</span></div>
 <sc-for list="{{ m.rows }}" as="r" hint-placeholder-count="2">
 <div style="display:grid;grid-template-columns:6px 26px minmax(0,1fr) 40px;align-items:center;gap:10px;height:52px;padding-right:14px;border-bottom:1px solid #F0F0EB"><span style="height:100%;background:{{ r.c }}"></span><span style="width:26px;height:26px;background:{{ r.logo }};opacity:{{ r.lo }}"></span><span style="min-width:0;font-size:15px;font-weight:{{ r.w }};color:{{ r.t }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.n }}</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:24px;text-align:right;color:{{ r.t }}">{{ r.s }}</span></div>
 </sc-for>
@@ -454,7 +454,10 @@ class Component extends DCLogic {
     });
     const ls = this.state.bk === 'cur' && D.bracket ? D.bracket : D.lastStage;
     const byId = Object.fromEntries(D.matches.map((m) => [m.id, m]));
-    const nextId = (D.matches.find((m) => m.phase && m.phase !== 'rs' && !(m.played && !m.live) && new Date(m.date).getTime() + 3 * 3600e3 > NOW) || {}).id;
+    // next postseason matches (all that start at the same time), marked once the regular season is over
+    const upNext = D.matches.filter((m) => m.phase && m.phase !== 'rs' && !(m.played && !m.live) && new Date(m.date).getTime() + 3 * 3600e3 > NOW);
+    const nextAt = PO_ON && upNext.length ? Math.min.apply(null, upNext.map((m) => new Date(m.date).getTime())) : NaN;
+    const nextIds = upNext.filter((m) => new Date(m.date).getTime() === nextAt).map((m) => m.id);
     return {
       q: this.state.q, hasQ: tokens.length > 0, onQ: (e) => this.setState({ q: e.target.value }), clearQ: () => this.setState({ q: '' }),
       quick: ['PF,CR', 'CR', 'ZETA,T1'].map((label) => ({ label, go: () => this.setState({ q: label }) })),
@@ -510,8 +513,10 @@ class Component extends DCLogic {
           const rows = m ? [[m.a, m.sa], [m.b, m.sb]] : x.rows.map((r) => [r.a, r.s]);
           const top = Math.max(rows[0][1] || 0, rows[1][1] || 0), shown = (played || live) && !SP;
           const bo = (m && m.bo) || x.bo;
-          return { when: x.when + (bo ? ' · BO' + bo : ''), tag: live ? 'LIVE' : x.round && x.round !== c.title ? x.round : '', tagC: live ? '#D92D20' : '#6B6B72',
-            bd: live ? '2px solid #D92D20' : x.id === nextId ? '2px solid #7D39EB' : '1px solid #E1E1DB',
+          const nx = !live && nextIds.includes(x.id);
+          return { when: x.when + (bo ? ' · BO' + bo : ''), tag: live ? 'LIVE' : nx ? '다음 경기' : x.round && x.round !== c.title ? x.round : '', tagC: live ? '#D92D20' : nx ? '#0B0B0F' : '#6B6B72',
+            tagB: nx ? '#C6FF33' : 'transparent', tagP: nx ? '0 8px' : '0',
+            bd: live ? '2px solid #D92D20' : nx ? '2px solid #0B0B0F' : '1px solid #E1E1DB',
             rows: rows.map(([a, sc]) => { const st = !played || SP ? winStyle(true) : winStyle(sc === top);
               return { n: a === 'TBD' ? '미정' : NAME(a), logo: a === 'TBD' ? 'transparent' : logo(a), lo: played && !SP && sc !== top ? .45 : 1, c: a === 'TBD' ? '#E1E1DB' : col(a), s: shown ? sc : '–', w: st.w, t: a === 'TBD' ? '#9A9AA0' : st.t }; }) };
         }),
