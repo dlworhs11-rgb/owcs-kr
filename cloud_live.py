@@ -251,6 +251,9 @@ def main():
     same = prev and {k: v for k, v in prev.items() if k not in VOLATILE} == {k: v for k, v in data.items() if k not in VOLATILE}
     data['generated'] = prev['generated'] if same else stamp
     write_data(os.path.join(out, 'owcs-data.js'), data)
+    import hashlib   # owcs-ver.json: the data file's hash (same as stamp_scripts' ?v=); open pages poll it, owcs-datapoll.js
+    with open(os.path.join(out, 'owcs-ver.json'), 'w', encoding='utf-8') as f:
+        json.dump({'v': hashlib.sha1(open(os.path.join(out, 'owcs-data.js'), 'rb').read()).hexdigest()[:8]}, f)
     b.write_ics(data, out)   # subscription calendar: only matches not played yet, so rebuild it on every run
     stamp_scripts(out)   # after owcs-data.js is written: its hash goes on the pages too
     print(f"live streams: {len(data['live'])} {sorted(data['live'])} · {'unchanged' if same else 'changed'} · generated {data['generated']}")

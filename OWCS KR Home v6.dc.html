@@ -16,6 +16,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>window.__resources = window.__resources || {};</script>
 <script src="./owcs-data.js"></script>
+<script src="./owcs-datapoll.js"></script>
 <script src="./owcs-phase.js"></script>
 <script src="./owcs-i18n.js"></script>
 <script src="./owcs-stats.js"></script>
@@ -1299,30 +1300,22 @@ class Component extends DCLogic {
   state = { copied: null, now: nowMs(), mapsShown: null, q: '', sel: (() => { try { const my = localStorage.getItem('owcs-myteam'); if (my && D.teams.some((t) => t.a === my)) return my; const v = sessionStorage.getItem('owcs-sel'); if (v && D.teams.some((t) => t.a === v)) return v; } catch (e) {} return (D.standings[0] || {}).a || 'CR'; })(), ms: false, share: false, shareMsg: '', spoiler: (() => { try { return localStorage.getItem('owcs-spoiler') === '1'; } catch (e) { return false; } })(), dark: params.get('dark') ? params.get('dark') === '1' : (() => { const sys = !!(window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches); try { const v = localStorage.getItem('owcs-dark'); return v === null ? sys : v === '1'; } catch (e) { return sys; } })(), lang: (window.OWCSi18n || {}).lang || 'ko', sub: false, subMode: 'all', subTeams: [], myTeam: (() => { try { const v = localStorage.getItem('owcs-myteam'); return D.teams.some((t) => t.a === v) ? v : null; } catch (e) { return null; } })(), tab: 0, myPick: false, month: null, calDay: null, rev: 0, openMaps: {}, vday: null, staffOpen: false };
   componentDidMount() {
     this.t = setInterval(() => this.setState({ now: nowMs() }), 1000);
-    // pick up a rebuilt owcs-data.js (live scores from the PC, the cloud refresh): every 10 s while a match of
-    // today is on or about to start, otherwise every minute. The live scores (small files) still every 5 s on match day:
-    // owcs-data.js is ~45 KB and a site build takes over a minute anyway, so every 15 s is enough for it
-    // (GitHub Pages: ~100 GB a month; 5 s polling of the data was ~32 MB an hour per open page)
-    let lastData = nowMs();
+    // pick up a rebuilt owcs-data.js (live scores from the PC, the cloud refresh): every 5 s while a match of
+    // today is on or about to start (also the live scores, small files), otherwise every minute. owcsDataPoll reads
+    // owcs-ver.json (~20 bytes) and downloads owcs-data.js (~46 KB) only when a build changed it
+    // (GitHub Pages: ~100 GB a month; reading the data itself every 15 s was ~11 MB an hour per open page)
     const poll = () => {
       const now = nowMs(), today = dayOf(now);
       const on = D.matches.some((m) => m.day === today && ((!m.played && now >= new Date(m.date).getTime() - 30 * 60e3) || (m.played && !m.potm)));   // also until the last POTM is in
       this.r = setTimeout(poll, on ? 5000 : 60000);   // match day: new live scores within ~5 s
       if (document.hidden) return;   // tab not shown: nothing fetched; back on screen polls at once (below)
-      if (!on || now - lastData >= 15000) {
-        lastData = now;
-        const s = document.createElement('script');
-        s.src = 'owcs-data.js?v=' + now;
-        // swapped in place, no reload: a reload reuses the browser's cached owcs-data.js (10 min), so it looked stale
-        // and the page reloaded again and again
-        s.onload = () => { s.remove(); if (window.OWCS && window.OWCS.generated > D.generated) { Object.assign(D, window.OWCS); applyLive(dayOf(nowMs())); this.setState((st) => ({ rev: st.rev + 1 })); } };
-        s.onerror = () => s.remove();
-        document.head.appendChild(s);
-      }
+      // swapped in place, no reload: a reload reuses the browser's cached owcs-data.js (10 min), so it looked stale
+      // and the page reloaded again and again
+      owcsDataPoll((got) => { if (got && window.OWCS && window.OWCS.generated > D.generated) { Object.assign(D, window.OWCS); applyLive(dayOf(nowMs())); this.setState((st) => ({ rev: st.rev + 1 })); } });
       if (on) try { liveScores(today, () => this.setState((st) => ({ rev: st.rev + 1 }))); } catch (e) {}
     };
     this.r = setTimeout(poll, 10000);
-    this.onVis = () => { if (!document.hidden) { clearTimeout(this.r); lastData = 0; poll(); } };
+    this.onVis = () => { if (!document.hidden) { clearTimeout(this.r); poll(); } };
     document.addEventListener('visibilitychange', this.onVis);
     try { this.es = liveRelay(() => this.setState((st) => ({ rev: st.rev + 1 }))); } catch (e) {}
     // my team set on another page/tab (results, live) shows up here too

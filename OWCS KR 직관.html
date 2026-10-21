@@ -423,6 +423,7 @@ function draw() {
 draw();
 </script>
 <script src="./owcs-data.js"></script>
+<script src="./owcs-datapoll.js"></script>
 <script src="./owcs-phase.js"></script>
 <script src="./owcs-i18n.js"></script>
 <script src="./owcs-stats.js"></script>
@@ -435,10 +436,7 @@ if (window.OWCS) draw();
 setInterval(function () {
   if (document.hidden) return;   // tab not shown: no download (GitHub Pages traffic)
   if (!q.get('date')) now = Date.now();
-  var s = document.createElement('script');
-  s.src = 'owcs-data.js?v=' + Date.now();
-  s.onload = s.onerror = function () { s.remove(); draw(); };
-  document.head.appendChild(s);
+  owcsDataPoll(function () { draw(); });
 }, 60000);
 </script>
 </body>
