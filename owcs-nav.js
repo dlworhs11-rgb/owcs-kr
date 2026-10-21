@@ -70,8 +70,18 @@
   ].join('\n');
   var hst = document.createElement('style');
   // wordmark: italic caps, OW in lime (darker lime on the light header so it stays readable)
-  var owt = '.owt{font-style:italic;letter-spacing:.02em;padding-right:.06em}.owt b{font-weight:inherit;color:var(--owt,#6E8F14)}' +
+  // leaned 8deg past the italic, with a diagonal cut through the legs of K and R: two mask stripes over those letters
+  // (em boxes = the K and R advance boxes measured on TICKER, so they hold at every size and a cut never runs into the E;
+  // the .1em side padding keeps the italic overhang inside the mask
+  // and the negative margins give the same width as before)
+  var owt = '.owt{font-style:italic;letter-spacing:.02em;display:inline-block;line-height:1.214;padding:0 .1em;margin:0 -.04em 0 -.1em;transform:skewX(-8deg);' +
+      '--owcut:linear-gradient(150deg,transparent 58.6%,#000 59.1%,#000 63.5%,transparent 64%);' +
+      '-webkit-mask:var(--owcut) 2.502em 0/.511em 100% no-repeat,var(--owcut) 3.46em 0/.487em 100% no-repeat,linear-gradient(#000,#000);-webkit-mask-composite:xor;' +
+      'mask:var(--owcut) 2.502em 0/.511em 100% no-repeat,var(--owcut) 3.46em 0/.487em 100% no-repeat,linear-gradient(#000,#000);mask-composite:exclude}' +
+      '.owt b{font-weight:inherit;color:var(--owt,#6E8F14)}' +
     'html[data-owcs-dark] .owt b{color:#C6FF33}' +
+    // phones / tablets: the top bar's wordmark 24px on every page (schedule / streams / live-viewing gave it 26px from their own .brand span rule)
+    '[data-owcs-mtop] .wm span{font-size:inherit !important}' +
     // the logo mark: every page's header tile (a dark square with a lime dot, inline on some pages) drawn as the round logo
     // (black with a dark-lime top arc on the beige page, light grey and lime in dark mode)
     'a:has(> span .owt) > :first-child:not(span),[data-owcs-mtop] .mk{background:url(assets/app/logo-light.svg) center/contain no-repeat !important;border-radius:0 !important;flex:none !important}' +
