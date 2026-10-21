@@ -138,9 +138,15 @@ footer{padding:32px 0 56px;background:#0B0B0F;color:#8A8A93;font-size:13px;line-
     if (p.soop) return { cls: 'soop', label: 'SOOP', href: p.soop };
     return { cls: 'none', label: '채널 없음', href: '' };
   }
+  // 🎂 next to the name on the player's birthday (KST), same rule as the home page: Feb 29 shows on Feb 28 in other years
+  function today() { var d = new Date(Date.now() + 9 * 3600e3); return d.toISOString().slice(0, 10); }
+  function isBday(p, td) {
+    var bk = (p.birth || '').slice(5), lp = !(+td.slice(0, 4) % 4);
+    return /^\d\d-\d\d$/.test(bk) && (bk === '02-29' && !lp ? '02-28' : bk) === td.slice(5);
+  }
   function esc(s) { return String(s || '').replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function render() {
-    var L = D.live || {}, n = 0, html = '';
+    var L = D.live || {}, n = 0, html = '', td = shownDay = today();
     var order = (D.standings || []).map(function (s) { return s.a; });
     function isLive(p) { return !!L[p.id]; }
     function liveIn(a) { return D.players.filter(function (p) { return p.team === a && isLive(p); }).length; }
@@ -158,7 +164,7 @@ footer{padding:32px 0 56px;background:#0B0B0F;color:#8A8A93;font-size:13px;line-
         var tag = pf.href ? 'a' : 'div';
         html += '<' + tag + (pf.href ? ' href="' + esc(pf.href) + '" target="_blank" rel="noopener"' : '') + ' class="p' + (live ? ' live' : '') + '">' +
           '<span class="av" style="' + (p.photo ? "background-image:url('" + esc(p.photo) + "')" : '') + '">' + (p.photo ? '' : esc(p.id.slice(0, 2).toUpperCase())) + '</span>' +
-          '<span class="who"><b>' + esc(p.id) + '</b><small>' + esc(p.roleFull) + '</small></span>' +
+          '<span class="who"><b>' + esc(p.id) + (isBday(p, td) ? '<span title="오늘 생일이에요!" style="font-size:.8em;margin-left:3px">🎂</span>' : '') + '</b><small>' + esc(p.roleFull) + '</small></span>' +
           '<span class="go ' + pf.cls + '">' + esc(pf.label) + (pf.href ? ' ↗' : '') + '</span></' + tag + '>';
       });
       html += '</div></section>';
@@ -171,10 +177,12 @@ footer{padding:32px 0 56px;background:#0B0B0F;color:#8A8A93;font-size:13px;line-
     document.getElementById('checked').innerHTML = '<span>마지막 확인 ' + esc(g) + '</span>' +
       (stale ? ' · <span>방송 확인이 30분 넘게 멈춰 있어 실제와 다를 수 있어요</span>' : '');
   }
+  var shownDay = '';
   render();
   // pick up a rebuilt owcs-data.js without a reload
   setInterval(function () {
     if (document.hidden) return;   // tab not shown: no download (GitHub Pages traffic)
+    if (today() !== shownDay) render();   // midnight KST: birthday cake moves to the new day
     owcsDataPoll(function (got) { if (got && window.OWCS && (window.OWCS.generated !== D.generated || window.OWCS.liveChecked !== D.liveChecked)) { D = window.OWCS; render(); } });
   }, 60000);
 })();
