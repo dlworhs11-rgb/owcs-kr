@@ -78,7 +78,7 @@
       '--owcut:linear-gradient(150deg,transparent 58.6%,#000 59.1%,#000 63.5%,transparent 64%);' +
       '-webkit-mask:var(--owcut) 2.502em 0/.511em 100% no-repeat,var(--owcut) 3.46em 0/.487em 100% no-repeat,linear-gradient(#000,#000);-webkit-mask-composite:xor;' +
       'mask:var(--owcut) 2.502em 0/.511em 100% no-repeat,var(--owcut) 3.46em 0/.487em 100% no-repeat,linear-gradient(#000,#000);mask-composite:exclude}' +
-      '.owt b{font-weight:inherit;color:var(--owt,#C6FF33)}' +
+      '.owt b{font-weight:inherit;color:var(--owt,#6E8F14)}' +
     'html[data-owcs-dark] .owt b{color:#C6FF33}' +
     // phones / tablets: the top bar's wordmark 24px on every page (schedule / streams / live-viewing gave it 26px from their own .brand span rule)
     '[data-owcs-mtop] .wm span{font-size:inherit !important}' +
