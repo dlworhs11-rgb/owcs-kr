@@ -160,6 +160,31 @@ def yt_live(prev=None, matches=(), stage_no=None, now=None):
         return prev or ''
 
 
+IG_EMBED = 'https://www.instagram.com/ow_esports_kr/embed/'
+
+
+def ig_reels(prev=None, checked=None, now=None):
+    """Newest videos (reels) on the official Instagram @ow_esports_kr, newest first: (shortcodes, checked time).
+    Read from the account's public embed page (its data API answers 429 without a login), at most once an hour;
+    in between, or when Instagram can't be read, the previous list stays. The home page plays them in Instagram's
+    own embed beside the 방송 예정 board."""
+    now = now or datetime.datetime.now(KST)
+    prev = list(prev or [])
+    try:
+        if checked and now - datetime.datetime.fromisoformat(checked) < datetime.timedelta(hours=1):
+            return prev, checked
+    except ValueError:
+        pass
+    try:
+        req = urllib.request.Request(IG_EMBED, headers={'User-Agent': 'Mozilla/5.0'})   # a full browser UA gets the script-built page with no data in it
+        html = urllib.request.urlopen(req, timeout=10).read().decode('utf-8', 'replace').replace('\\"', '"')
+        found = re.findall(r'"__typename":"GraphVideo","id":"\d+","shortcode":"([\w-]+)".*?"taken_at_timestamp":(\d+)', html, re.S)
+        ids = [c for c, _ in sorted(dict(found).items(), key=lambda x: -int(x[1]))][:6]
+        return (ids or prev), now.isoformat(timespec='seconds')
+    except Exception:
+        return prev, checked
+
+
 def upcoming_ics(data, now=None, team=None):
     """iCalendar text with every match that has not started yet, so a subscribed Google Calendar keeps itself current
     (new playoff dates appear once they are in the schedule, finished matches drop out)."""

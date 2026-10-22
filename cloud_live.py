@@ -28,7 +28,7 @@ import site_urls  # noqa: E402
 SITE_FILES = ['index.html', 'OWCS KR Home v6.dc.html', 'OWCS KR Player.dc.html', 'OWCS KR Results.dc.html',
               'OWCS KR 일정.html', 'OWCS KR 방송.html', 'OWCS KR 직관.html', 'support.js', '404.html',
               'naver47dd45ef166fd4aa1393b2a3ed899fef.html', 'favicon.ico', 'apple-touch-icon.png']   # Naver Search Advisor ownership check: keep it
-VOLATILE = ('generated', 'liveChecked')
+VOLATILE = ('generated', 'liveChecked', 'igChecked')
 COLLECTOR = os.path.dirname(owcs_build.SRC)
 LP_API = 'https://liquipedia.net/overwatch/api.php'
 LP_UA = 'OWCSKR-fansite/0.1 (+https://github.com/dlworhs11-rgb/OWCSKR)'   # same as the collector
@@ -241,6 +241,7 @@ def main():
     if '--fast' in sys.argv and prev:   # live-score push: reuse the stream list and replays from the last deploy (seconds saved)
         data['live'], data['ytLive'] = prev.get('live', {}), prev.get('ytLive')
         data['lastStream'] = prev.get('lastStream', {})
+        data['igReels'], data['igChecked'] = prev.get('igReels', []), prev.get('igChecked')
         vods = {m['id']: m['vod'] for m in prev.get('matches', []) if m.get('vod')}
         for m in data['matches']:
             if vods.get(m['id']):
@@ -249,6 +250,7 @@ def main():
         data['live'] = b.live_status(data['players'])
         data['lastStream'] = b.last_streams(data['players'], (prev or {}).get('lastStream'))   # SOOP or CHZZK: whichever streamed last
         data['ytLive'] = b.yt_live((prev or {}).get('ytLive'), data['matches'], data.get('stageNo'))
+        data['igReels'], data['igChecked'] = b.ig_reels((prev or {}).get('igReels'), (prev or {}).get('igChecked'))   # official Instagram reels, hourly
     stamp = now.isoformat(timespec='seconds')
     # a fast push copied the stream list: keep the time it was really checked, so the page's 30-minute stall warning still works
     data['liveChecked'] = prev.get('liveChecked') or stamp if '--fast' in sys.argv and prev else stamp
