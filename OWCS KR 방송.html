@@ -150,6 +150,7 @@ footer{padding:32px 0 56px;background:#0B0B0F;color:#8A8A93;font-size:13px;line-
   function esc(s) { return String(s || '').replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function render() {
     var L = D.live || {}, n = 0, html = '', td = shownDay = today();
+    var dk = document.documentElement.hasAttribute('data-owcs-dark');   // dark mode: the logo drawn for dark backgrounds, as on the home page
     var order = (D.standings || []).map(function (s) { return s.a; });
     function isLive(p) { return !!L[p.id]; }
     function liveIn(a) { return D.players.filter(function (p) { return p.team === a && isLive(p); }).length; }
@@ -160,7 +161,7 @@ footer{padding:32px 0 56px;background:#0B0B0F;color:#8A8A93;font-size:13px;line-
       var ps = D.players.filter(function (p) { return p.team === t.a; });
       ps = ps.filter(isLive).concat(ps.filter(function (p) { return !isLive(p); }));
       var liveCnt = ps.filter(isLive).length; n += liveCnt;
-      html += '<section class="team"><h2><i style="background-image:url(\'' + esc(t.logo) + '\')"></i>' + esc(t.n) +
+      html += '<section class="team"><h2><i style="background-image:url(\'' + esc(dk && t.logoDark || t.logo) + '\')"></i>' + esc(t.n) +
         '<span class="' + (liveCnt ? 'on' : '') + '">' + (liveCnt ? '● 방송 중 ' + liveCnt + '명' : '방송 없음') + '</span></h2><div class="rows">';
       ps.forEach(function (p) {
         var pf = platform(p), live = isLive(p);

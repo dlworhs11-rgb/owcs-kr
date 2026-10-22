@@ -248,7 +248,8 @@ def main():
         data['lastStream'] = b.last_streams(data['players'], (prev or {}).get('lastStream'))   # SOOP or CHZZK: whichever streamed last
         data['ytLive'] = b.yt_live((prev or {}).get('ytLive'), data['matches'], data.get('stageNo'))
     stamp = now.isoformat(timespec='seconds')
-    data['liveChecked'] = stamp
+    # a fast push copied the stream list: keep the time it was really checked, so the page's 30-minute stall warning still works
+    data['liveChecked'] = prev.get('liveChecked') or stamp if '--fast' in sys.argv and prev else stamp
     same = prev and {k: v for k, v in prev.items() if k not in VOLATILE} == {k: v for k, v in data.items() if k not in VOLATILE}
     data['generated'] = prev['generated'] if same else stamp
     write_data(os.path.join(out, 'owcs-data.js'), data)

@@ -69,7 +69,7 @@ def live_status(players):
     """which players are streaming right now (CHZZK polling API, SOOP player API); best effort"""
     live = {}
     for p in players:
-        try:
+        try:   # CHZZK and SOOP each in their own try: a CHZZK error must not skip the SOOP check
             if p['chzzk']:
                 cid = p['chzzk'].rstrip('/').split('/')[-1]
                 req = urllib.request.Request(f'https://api.chzzk.naver.com/polling/v2/channels/{cid}/live-status', headers={'User-Agent': 'Mozilla/5.0'})
@@ -77,6 +77,9 @@ def live_status(players):
                 if (st.get('content') or {}).get('status') == 'OPEN':
                     live[p['id']] = p['chzzk'] + '/live' if '/live' not in p['chzzk'] else p['chzzk']
                     continue
+        except Exception:
+            pass
+        try:
             if p['soop']:
                 bid = p['soop'].rstrip('/').split('/')[-1]
                 req = urllib.request.Request('https://live.sooplive.co.kr/afreeca/player_live_api.php', data=f'bid={bid}'.encode(),
