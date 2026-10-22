@@ -165,13 +165,13 @@ IG_EMBED = 'https://www.instagram.com/ow_esports_kr/embed/'
 
 def ig_reels(prev=None, checked=None, now=None):
     """Newest videos (reels) on the official Instagram @ow_esports_kr, newest first: (shortcodes, checked time).
-    Read from the account's public embed page (its data API answers 429 without a login), at most once an hour;
+    Read from the account's public embed page (its data API answers 429 without a login), at most every 5 minutes (each build);
     in between, or when Instagram can't be read, the previous list stays. The home page plays them in Instagram's
     own embed beside the 방송 예정 board."""
     now = now or datetime.datetime.now(KST)
     prev = list(prev or [])
     try:
-        if checked and now - datetime.datetime.fromisoformat(checked) < datetime.timedelta(hours=1):
+        if checked and now - datetime.datetime.fromisoformat(checked) < datetime.timedelta(minutes=5):
             return prev, checked
     except ValueError:
         pass

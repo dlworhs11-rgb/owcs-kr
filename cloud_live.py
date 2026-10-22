@@ -250,7 +250,7 @@ def main():
         data['live'] = b.live_status(data['players'])
         data['lastStream'] = b.last_streams(data['players'], (prev or {}).get('lastStream'))   # SOOP or CHZZK: whichever streamed last
         data['ytLive'] = b.yt_live((prev or {}).get('ytLive'), data['matches'], data.get('stageNo'))
-        data['igReels'], data['igChecked'] = b.ig_reels((prev or {}).get('igReels'), (prev or {}).get('igChecked'))   # official Instagram reels, hourly
+        data['igReels'], data['igChecked'] = b.ig_reels((prev or {}).get('igReels'), (prev or {}).get('igChecked'))   # official Instagram reels, every build (5 min at most)
     stamp = now.isoformat(timespec='seconds')
     # a fast push copied the stream list: keep the time it was really checked, so the page's 30-minute stall warning still works
     data['liveChecked'] = prev.get('liveChecked') or stamp if '--fast' in sys.argv and prev else stamp
