@@ -152,35 +152,6 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <sc-if value="{{ hasSeeding }}"><div style="margin-top:{{ seedGap }};padding:20px 22px;border-radius:20px;background:#F6F6F3"><div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px"><span style="font-size:15px;font-weight:700">시드 결정전 순위</span><span style="font-size:12px;color:#6B6B72">{{ seedNote }}</span></div><sc-for list="{{ seeding }}" as="sd" hint-placeholder-count="4"><div style="display:grid;grid-template-columns:28px 5px minmax(0,1fr) auto;align-items:center;gap:10px;height:40px;border-top:1px solid #E6E6E1"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px">{{ sd.r }}</span><span style="height:22px;background:{{ sd.c }}"></span><span style="font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ sd.n }}</span><span style="font-size:13px;color:#55555C">{{ sd.rec }}</span></div></sc-for></div></sc-if>
 </sc-if>
 
-<sc-if value="{{ d.cases }}">
-<div style="display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:40px;align-items:start">
-<div>
-<div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:36px;padding-bottom:12px;border-bottom:2px solid #0B0B0F">팀별 경우의 수</div>
-<sc-for list="{{ cases }}" as="c" hint-placeholder-count="8">
-<div style="display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:16px;align-items:center;min-height:72px;border-bottom:1px solid #ECECE7;padding:10px 4px">
-<span style="display:flex;align-items:center;gap:10px"><span style="width:5px;height:32px;border-radius:3px;background:{{ c.c }}"></span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px">{{ c.r }}</span></span>
-<span><span style="display:flex;align-items:center;gap:10px;font-size:17px;font-weight:700"><span style="flex:none;width:28px;height:28px;background:{{ c.logo }}"></span>{{ c.n }} <span style="font-weight:500;color:#6B6B72;font-size:14px">{{ c.wl }}</span></span><span style="display:block;font-size:14px;color:#55555C;margin-top:3px;line-height:1.5">{{ c.note }}</span><sc-if value="{{ c.axe }}"><span style="display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-top:6px;font-size:13px;font-weight:700;color:#C62F35"><span style="flex:none;font-weight:800;color:#fff;background:#E5484D;padding:2px 8px;border-radius:6px">단두대 매치</span>{{ c.axe }}</span></sc-if></span>
-<sc-if value="{{ c.sure }}"><span style="font-size:13px;font-weight:700;background:#C6FF33;padding:5px 10px;border-radius:8px">{{ c.tag }}</span></sc-if>
-<sc-if value="{{ c.maybe }}"><span style="font-size:13px;font-weight:700;color:#5B22C2;border:1px solid #7D39EB;padding:4px 10px;border-radius:8px">{{ c.tag }}</span></sc-if>
-<sc-if value="{{ c.lsure }}"><span style="font-size:13px;font-weight:700;color:#7A3300;background:#FFD7B5;padding:5px 10px;border-radius:8px">{{ c.tag }}</span></sc-if>
-<sc-if value="{{ c.lmaybe }}"><span style="font-size:13px;font-weight:700;color:#A84A0C;border:1px solid #F08A3C;padding:4px 10px;border-radius:8px">{{ c.tag }}</span></sc-if>
-<sc-if value="{{ c.out }}"><span style="font-size:13px;font-weight:700;color:#55555C;background:#ECECE8;padding:5px 10px;border-radius:8px">{{ c.tag }}</span></sc-if>
-</div>
-</sc-for>
-</div>
-<div style="display:flex;flex-direction:column;gap:12px">
-<div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:36px;padding-bottom:12px;border-bottom:2px solid #0B0B0F">남은 경기</div>
-<sc-for list="{{ remaining }}" as="m" hint-placeholder-count="4">
-<div style="display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border:1px solid #E6E6E1;border-radius:16px">
-<div><div style="font-size:13px;color:#6B6B72">{{ m.when }}</div><div style="display:flex;align-items:center;gap:8px;margin-top:4px"><span style="width:24px;height:24px;background:{{ m.ca }};opacity:{{ m.oa }}"></span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:26px">{{ m.a }}</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:20px;color:#6B6B72">vs</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:26px">{{ m.b }}</span><span style="width:24px;height:24px;background:{{ m.cb }};opacity:{{ m.ob }}"></span></div></div>
-<sc-if value="{{ m.noAxe }}"><span style="font-size:13px;color:#55555C;text-align:right;max-width:150px;line-height:1.4">{{ m.stake }}</span></sc-if>
-<sc-if value="{{ m.isAxe }}"><span style="display:flex;flex-direction:column;align-items:flex-end;gap:4px"><span style="font-size:14px;font-weight:800;color:#fff;background:#E5484D;padding:4px 10px;border-radius:8px">단두대 매치</span><span style="font-size:12px;font-weight:700;color:#C62F35">{{ m.axeSub }}</span></span></sc-if>
-</div>
-</sc-for>
-<div style="padding:18px;border-radius:16px;background:#F6F6F3;font-size:14px;color:#55555C;line-height:1.6">{{ tiebreak }}</div>
-</div>
-</div>
-</sc-if>
 <sc-if value="{{ d.rates }}">
 <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-bottom:12px;border-bottom:2px solid #0B0B0F"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:36px">팀별 승률</span><span style="font-size:14px;color:#6B6B72">{{ ratesNote }}</span></div>
 <div style="display:grid;grid-template-columns:48px minmax(0,1.4fr) 90px minmax(0,1.6fr) 110px 110px;gap:16px;padding:14px 8px 10px;font-size:13px;font-weight:700;color:#55555C;border-bottom:1px solid #ECECE7"><span>#</span><span>팀</span><span style="text-align:center">승-패</span><span>경기 승률</span><span style="text-align:center">세트</span><span style="text-align:center">이번 스테이지</span></div>
@@ -274,20 +245,6 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <sc-if value="{{ m.bracket }}">
 <owcs-bracket spoiler="{{ spoilAttr }}"></owcs-bracket>
 </sc-if>
-<sc-if value="{{ m.cases }}">
-<sc-for list="{{ cases }}" as="c" hint-placeholder-count="8">
-<div style="display:grid;grid-template-columns:40px minmax(0,1fr);gap:10px;padding:14px 0;border-bottom:1px solid #ECECE7">
-<span style="display:flex;align-items:flex-start;gap:6px"><span style="width:4px;height:26px;border-radius:2px;background:{{ c.c }}"></span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:24px;line-height:1">{{ c.r }}</span></span>
-<div><div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span style="display:flex;align-items:center;gap:8px;min-width:0;font-size:15px;font-weight:700"><span style="flex:none;width:24px;height:24px;background:{{ c.logo }}"></span>{{ c.n }}</span>
-<sc-if value="{{ c.sure }}"><span style="font-size:11px;font-weight:700;background:#C6FF33;padding:3px 8px;border-radius:6px">{{ c.tag }}</span></sc-if>
-<sc-if value="{{ c.maybe }}"><span style="font-size:11px;font-weight:700;color:#5B22C2;border:1px solid #7D39EB;padding:2px 8px;border-radius:6px">{{ c.tag }}</span></sc-if>
-<sc-if value="{{ c.lsure }}"><span style="font-size:11px;font-weight:700;color:#7A3300;background:#FFD7B5;padding:3px 8px;border-radius:6px">{{ c.tag }}</span></sc-if>
-<sc-if value="{{ c.lmaybe }}"><span style="font-size:11px;font-weight:700;color:#A84A0C;border:1px solid #F08A3C;padding:2px 8px;border-radius:6px">{{ c.tag }}</span></sc-if>
-<sc-if value="{{ c.out }}"><span style="font-size:11px;font-weight:700;color:#55555C;background:#ECECE8;padding:3px 8px;border-radius:6px">{{ c.tag }}</span></sc-if>
-</div><div style="font-size:13px;color:#55555C;margin-top:4px;line-height:1.5">{{ c.note }}</div><sc-if value="{{ c.axe }}"><div style="display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-top:6px;font-size:12px;font-weight:700;color:#C62F35"><span style="flex:none;font-weight:800;color:#fff;background:#E5484D;padding:2px 7px;border-radius:6px">단두대 매치</span>{{ c.axe }}</div></sc-if></div>
-</div>
-</sc-for>
-</sc-if>
 <sc-if value="{{ m.rates }}">
 <div style="font-size:13px;color:#6B6B72;margin-bottom:6px">{{ ratesNote }}</div>
 <sc-for list="{{ rates }}" as="t" hint-placeholder-count="9">
@@ -331,7 +288,7 @@ const PARAMS = new URLSearchParams(location.search);
 const NOW = PARAMS.get('date') ? new Date(PARAMS.get('date') + 'T' + (PARAMS.get('time') || '12:00') + ':00+09:00').getTime() : Date.now();
 // after the regular season the bracket tab opens on this stage's playoffs (seeding deciders, LCQ, playoffs)
 const PO_ON = !!D.bracket && NOW > new Date(D.stageRange[1] + 'T23:59:59+09:00').getTime();
-const TABS = [{ k: 'results', label: '시즌 결과', short: '결과' }, { k: 'bracket', label: PO_ON ? '플레이오프 대진표' : '지난 시즌 · 대진표', short: '대진표' }, { k: 'cases', label: '경우의 수', short: '경우의 수' }, { k: 'rates', label: '팀별 승률', short: '승률' }];
+const TABS = [{ k: 'results', label: '시즌 결과', short: '결과' }, { k: 'bracket', label: PO_ON ? '플레이오프 대진표' : '지난 시즌 · 대진표', short: '대진표' }, { k: 'rates', label: '팀별 승률', short: '승률' }];
 // 2026 Korea record per current team (all stages, regular season + playoffs)
 const RATES = D.teams.map((t) => {
   let w = 0, l = 0, sw = 0, sl = 0;
@@ -343,8 +300,6 @@ const winStyle = (win) => ({ w: win ? 700 : 500, t: win ? '#0B0B0F' : '#7E7E85' 
 const MY = (() => { try { const v = localStorage.getItem('owcs-myteam'); return TEAM[v] ? v : null; } catch (e) { return null; } })();
 const mine = (a, b, base) => MY && (a === MY || b === MY) ? 'color-mix(in srgb, ' + col(MY) + ' 14%, ' + (base || 'transparent') + ')' : (base || 'transparent');
 const PLAYED = D.matches.filter((m) => m.played && !m.live && new Date(m.date).getTime() <= NOW);
-// 경우의 수 = regular season only (the playoff slots are not part of the table)
-const LEFT = D.matches.filter((m) => (!m.phase || m.phase === 'rs') && (!m.played || m.live || new Date(m.date).getTime() > NOW));
 // results tab stage picker: earlier stages of the year come from D.history (score + Liquipedia maps, no first heroes);
 // playoff games take their round (시드 결정전 / LCQ / 8강 ...) from that stage's bracket in D.pastStages
 const STAGE_NOS = Array.from({ length: D.stageNo || 1 }, (_, i) => i + 1);
@@ -359,64 +314,6 @@ const PAST = (no) => {
     ...(x.stage.endsWith('플레이오프') ? (([group, round]) => ({ group, round }))(slot(x)) : { group: (wks.indexOf(x.week) + 1) + '주차' }) }));
 };
 
-// 경우의 수: every win/loss combination of the remaining matches (2^n), ranked by match wins.
-// best = rank if every tie breaks our way, worst = rank if every tie breaks against us.
-const CASES = (() => {
-  const base = Object.fromEntries(D.standings.map((s) => [s.a, s.w]));
-  const teams = Object.keys(base), n = LEFT.length, out = {};
-  teams.forEach((a) => { out[a] = { best: 99, worst: 0, needPO: null, needLCQ: null, byWins: {}, bestIfLose: {} }; });
-  if (n > 22) return out; // too many to enumerate; leave unknown
-  const own = Object.fromEntries(teams.map((a) => [a, LEFT.map((m, i) => (m.a === a || m.b === a ? i : -1)).filter((i) => i >= 0)]));
-  for (let mask = 0; mask < (1 << n); mask++) {
-    const w = { ...base }, extra = {}, won = [];
-    for (let i = 0; i < n; i++) { const win = (mask >> i) & 1 ? LEFT[i].a : LEFT[i].b; won[i] = win; w[win]++; extra[win] = (extra[win] || 0) + 1; }
-    for (const a of teams) {
-      let above = 0, tied = 0;
-      for (const b of teams) if (b !== a) { if (w[b] > w[a]) above++; else if (w[b] === w[a]) tied++; }
-      const o = out[a], best = above + 1, worst = above + tied + 1, k = extra[a] || 0;
-      o.best = Math.min(o.best, best); o.worst = Math.max(o.worst, worst);
-      o.byWins[k] = Math.max(o.byWins[k] || 0, worst);
-      for (const i of own[a]) if (won[i] !== a) o.bestIfLose[i] = Math.min(o.bestIfLose[i] || 99, best);
-    }
-  }
-  for (const a of teams) {
-    const o = out[a], ks = Object.keys(o.byWins).map(Number).sort((x, y) => x - y);
-    // smallest number of remaining wins that guarantees the spot whatever else happens
-    const need = (cut) => { for (const k of ks) if (ks.filter((j) => j >= k).every((j) => o.byWins[j] <= cut)) return k; return null; };
-    o.needPO = need(D.playoffs); o.needLCQ = need(D.lcq);
-  }
-  return out;
-})();
-// 단두대 매치: both teams are still fighting for the same cut, and whoever loses can no longer make it.
-// returns that cut (D.lcq first: losing = out of the season) or null
-const axeOf = (i) => {
-  const m = LEFT[i], A = CASES[m.a] || {}, B = CASES[m.b] || {};
-  if (!A.bestIfLose || !B.bestIfLose) return null;
-  for (const cut of [D.lcq, D.playoffs]) {
-    const open = (c) => c.best <= cut && c.worst > cut;
-    if (open(A) && open(B) && (A.bestIfLose[i] || 99) > cut && (B.bestIfLose[i] || 99) > cut) return cut;
-  }
-  return null;
-};
-const axeNote = (a) => LEFT.map((m, i) => [m, axeOf(i)]).filter(([m, cut]) => cut && (m.a === a || m.b === a))
-  .map(([m, cut]) => NAME(m.a === a ? m.b : m.a) + '전, 지면 ' + (cut === D.lcq ? '바로 탈락' : '플레이오프 직행 실패')).join(' · ');
-const racing = (k) => k.kind === 'maybe' || k.kind === 'lmaybe';
-const caseOf = (a) => {
-  const c = CASES[a] || {}, left = LEFT.filter((m) => m.a === a || m.b === a).length;
-  const k = caseKind(a, c, left); return { ...k, axe: racing(k) ? axeNote(a) : '' };
-};
-const caseKind = (a, c, left) => {
-  if (c.worst && c.worst <= D.playoffs) return { tag: '플레이오프 확정', kind: 'sure', note: '남은 경기 결과와 관계없이 1–' + D.playoffs + '위 안이에요.' };
-  if (c.best > D.lcq) return { tag: '탈락', kind: 'out', note: '남은 경기를 모두 이겨도 ' + D.lcq + '위 안에 들 수 없어요.' };
-  if (c.best <= D.playoffs) {
-    const lcq = c.worst <= D.lcq ? ' 최소 라스트 찬스 예선은 확정이에요.' : '';
-    const need = c.needPO != null ? '남은 ' + left + '경기 중 ' + c.needPO + '승 하면 플레이오프 확정.' : '다른 팀 결과와 세트 득실에 따라 플레이오프가 갈려요.';
-    return { tag: '플레이오프 경쟁', kind: 'maybe', note: need + lcq };
-  }
-  if (c.worst <= D.lcq) return { tag: 'LCQ 확정', kind: 'lsure', note: '플레이오프 직행은 어렵지만 라스트 찬스 예선은 확정이에요.' };
-  return { tag: 'LCQ 경쟁', kind: 'lmaybe', note: c.needLCQ != null ? '남은 ' + left + '경기 중 ' + c.needLCQ + '승 하면 ' + D.lcq + '위 안 확정.' : '다른 팀 결과에 따라 ' + D.lcq + '위 안에 들 수 있어요.' };
-};
-
 const norm = (s) => s.toLowerCase().replace(/\s+/g, '');
 const resolve = (tok) => {
   const k = norm(tok); if (!k) return null;
@@ -429,7 +326,7 @@ class Component extends DCLogic {
     const cur = this.state[key];
     return TABS.map((t) => ({ ...t, on: cur === t.k, off: cur !== t.k, go: () => this.setState({ [key]: t.k }) }));
   }
-  flags(key) { const c = this.state[key]; return { results: c === 'results', bracket: c === 'bracket', cases: c === 'cases', rates: c === 'rates' }; }
+  flags(key) { const c = this.state[key]; return { results: c === 'results', bracket: c === 'bracket', rates: c === 'rates' }; }
   renderVals() {
     const SP = this.state.sp;
     const anyBracket = this.state.tabD === 'bracket';
@@ -528,16 +425,6 @@ class Component extends DCLogic {
               return { n: a === 'TBD' ? '미정' : NAME(a), logo: a === 'TBD' ? 'transparent' : logo(a), lo: played && !SP && sc !== top ? .45 : 1, c: a === 'TBD' ? '#E1E1DB' : col(a), s: shown ? sc : '–', w: st.w, t: a === 'TBD' ? '#7E7E85' : st.t }; }) };
         }),
       })),
-      cases: D.standings.map((s, i) => { const c = caseOf(s.a); return { r: i + 1, n: NAME(s.a), logo: logo(s.a), c: col(s.a), wl: SP ? '–' : s.w + '-' + s.l, note: c.note, axe: c.axe, tag: c.tag, sure: c.kind === 'sure', maybe: c.kind === 'maybe', lsure: c.kind === 'lsure', lmaybe: c.kind === 'lmaybe', out: c.kind === 'out' }; }),
-      remaining: LEFT.slice(0, 6).map((m) => {
-        const ka = caseOf(m.a), kb = caseOf(m.b);
-        const hot = [ka, kb].some(racing);
-        const axe = axeOf(LEFT.indexOf(m));
-        return { when: mdw(m.date) + ' ' + (window.OWCSi18n && OWCSi18n.hm ? OWCSi18n.hm(m.date, m.time) : m.time), a: m.a, b: m.b, ca: logo(m.a), cb: logo(m.b), oa: 1, ob: 1,
-          isAxe: !m.live && !!axe, noAxe: m.live || !axe, axeSub: axe === D.lcq ? '지면 탈락' : '지면 직행 실패',
-          stake: m.live ? 'LIVE' : hot ? [m.a, m.b].filter((a, i) => racing([ka, kb][i])).join('·') + ' ' + [ka, kb].find(racing).tag : '순위 싸움' };
-      }),
-      tiebreak: D.tiebreak,
       footNote: '비공식 팬 사이트입니다. Blizzard Entertainment, WDG, 각 팀과 제휴하거나 승인받지 않았습니다. Overwatch®와 영웅 이미지는 Blizzard Entertainment, Inc.의 상표·저작물이고, 팀 로고와 선수 사진의 권리는 각 소유자에게 있으며 요청하면 바로 내립니다. ' + (D.sources || ''),
     };
   }
