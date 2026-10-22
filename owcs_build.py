@@ -315,7 +315,12 @@ def live_sets(day):
     if not os.path.exists(f):
         return []
     with open(f, encoding='utf-8') as fh:
-        return json.load(fh).get('sets', [])
+        sets = json.load(fh).get('sets', [])
+    for st in sets:   # files written before a handle fix keep the old spelling
+        for comp in (st.get('comps') or {}).values():
+            for x in comp:
+                if isinstance(x, list) and x: x[0] = HANDLE_FIX.get(x[0], x[0])
+    return sets
 
 
 def live_cast(day):
@@ -575,7 +580,7 @@ def replay_point(x):
 
 def potm_awards():
     """every Player of the Match award in the collector data, newest first, keyed by lowercase handle"""
-    aliases = {'becky': 'bekey'}  # broadcast spelling -> roster handle
+    aliases = {k.lower(): v.lower() for k, v in HANDLE_FIX.items()}  # old spelling -> roster handle
     out = {}
     for m in load('site/matches.json'):
         name = (m.get('potm') or '').strip().lower()
@@ -588,6 +593,7 @@ def potm_awards():
     return out
 
 
+HANDLE_FIX = {'Bekey': 'Becky'}   # collector spelling -> the one on the broadcast, Liquipedia and his own SOOP (김배키이)
 SOOP_ONLY = {'CR', 'ZAN'}   # Crazy Raccoon and ZANSIDE GAMING stream on SOOP only (their CHZZK channels are unused)
 
 
@@ -679,14 +685,16 @@ def build_players(socials, stage_teams):
         if p['team'] not in TEAMS and p['team'] not in stage_teams:   # national / other-region rosters
             continue
         a = team(p['team'])['a']
-        handle = p['handle'].split(' ')[0]
-        s = socials['players'].get(handle, {})
+        old = p['handle'].split(' ')[0]
+        handle = HANDLE_FIX.get(old, old)
+        s = socials['players'].get(handle) or socials['players'].get(old, {})
         role = ROLE.get(p['role'], ('?', '?', 3))
-        photo = photos.get(handle.lower())
+        photo = photos.get(handle.lower()) or photos.get(old.lower())
+        # socials.json "soop": "" drops a wrong collector link (SWOO's pointed at Fearful's channel)
         out.append(dict(id=handle, ko=p.get('nameKo') or '', team=a, role=role[0], roleFull=role[1], order=role[2],
-                        name=s.get('name', ''), real=real.get(handle.lower(), ''), birth=s.get('birth', ''), potm=p.get('potm') or 0,
+                        name=s.get('name', ''), real=real.get(handle.lower()) or real.get(old.lower(), ''), birth=s.get('birth', ''), potm=p.get('potm') or 0,
                         photo=f'assets/players/{photo}' if photo else '', face=faces.get(os.path.splitext(photo)[0]) if photo else None,
-                        soop=soop_url(s.get('soop')) or soop_url(p.get('soop')), chzzk=None if a in SOOP_ONLY else p.get('chzzk'), discord=(s['discord'] or None) if 'discord' in s else p.get('discord'), youtube=p.get('youtube') or (s.get('youtube') and 'https://youtube.com/' + s['youtube']),
+                        soop=soop_url(s['soop']) if 'soop' in s else soop_url(p.get('soop')), chzzk=None if a in SOOP_ONLY else p.get('chzzk'), discord=(s['discord'] or None) if 'discord' in s else p.get('discord'), youtube=p.get('youtube') or (s.get('youtube') and 'https://youtube.com/' + s['youtube']),
                         instagram=s.get('instagram') and 'https://instagram.com/' + s['instagram'],
                         x=s.get('x') and 'https://x.com/' + s['x'], lp=s.get('lp'),
                         insta=sorted([x for x in (insta_post(u) for w, u in insta if w in (handle.lower(), (s.get('instagram') or '').lower())) if x['img']],
