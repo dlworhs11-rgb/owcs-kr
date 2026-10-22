@@ -691,7 +691,8 @@ def build_players(socials, stage_teams):
         role = ROLE.get(p['role'], ('?', '?', 3))
         photo = photos.get(handle.lower()) or photos.get(old.lower())
         # socials.json "soop": "" drops a wrong collector link (SWOO's pointed at Fearful's channel)
-        out.append(dict(id=handle, ko=p.get('nameKo') or '', team=a, role=role[0], roleFull=role[1], order=role[2],
+        out.append(dict(id=handle, ko=s.get('ko') or p.get('nameKo') or '',   # socials.json "ko" fills a missing Korean nick (SoLA)
+                        team=a, role=role[0], roleFull=role[1], order=role[2],
                         name=s.get('name', ''), real=real.get(handle.lower()) or real.get(old.lower(), ''), birth=s.get('birth', ''), potm=p.get('potm') or 0,
                         photo=f'assets/players/{photo}' if photo else '', face=faces.get(os.path.splitext(photo)[0]) if photo else None,
                         soop=soop_url(s['soop']) if 'soop' in s else soop_url(p.get('soop')), chzzk=None if a in SOOP_ONLY else p.get('chzzk'), discord=(s['discord'] or None) if 'discord' in s else p.get('discord'), youtube=p.get('youtube') or (s.get('youtube') and 'https://youtube.com/' + s['youtube']),

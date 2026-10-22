@@ -261,8 +261,11 @@
    "birth": "2004-01-10",
    "lp": "https://liquipedia.net/overwatch/Belosrea"
   },
-  "Trest": {},
+  "Trest": {
+   "name": "Park Chan-woo"
+  },
   "SENTIER": {
+   "name": "Jang Chan-ik",
    "soop": "owsentier",
    "x": "sentier_ow",
    "birth": "2009-05-07",
@@ -282,7 +285,11 @@
    "birth": "2001-01-11",
    "lp": "https://liquipedia.net/overwatch/Skewed"
   },
-  "Bekey": {},
+  "Bekey": {
+   "name": "Kim Il-ha",
+   "birth": "2003-10-02",
+   "lp": "https://liquipedia.net/overwatch/Becky"
+  },
   "iR0NY": {
    "name": "Kim Baek-kang",
    "birth": "2002-01-07",
@@ -327,7 +334,11 @@
    "birth": "2001-11-16",
    "lp": "https://liquipedia.net/overwatch/Faith"
   },
-  "Azent": {},
+  "Azent": {
+   "name": "Jang Hyeon-ik",
+   "birth": "2006-12-30",
+   "lp": "https://liquipedia.net/overwatch/AZENT"
+  },
   "Profit": {
    "soop": "profit",
    "instagram": "profitow",
@@ -358,6 +369,7 @@
    "lp": "https://liquipedia.net/overwatch/Caffeine"
   },
   "SoLA": {
+   "ko": "솔라",
    "x": "Ow_Sola",
    "name": "Shin Eon-woo",
    "birth": "2007-04-09",
