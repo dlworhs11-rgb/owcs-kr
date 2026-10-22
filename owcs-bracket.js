@@ -145,7 +145,8 @@
     selKey() {
       const all = this.stages();
       let k = this.sel;
-      if (k == null) { try { k = sessionStorage.getItem(KEY); } catch (e) { k = null; } }
+      // the schedule page's tabs (part=) always open on this stage: a past stage picked on the home or results page stays there
+      if (k == null && !this.getAttribute('part')) { try { k = sessionStorage.getItem(KEY); } catch (e) { k = null; } }
       // before a new regular season starts the finished stage comes first (the new stage's bracket is still empty)
       const D = window.OWCS || {}, q = new URLSearchParams(location.search);
       const now = q.get('date') ? new Date(q.get('date') + 'T12:00:00+09:00').getTime() : Date.now();
