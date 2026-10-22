@@ -22,7 +22,7 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true   # a newer push (live score) replaces a deploy still running: no queue
+  cancel-in-progress: false  # a deploy that is running finishes; only the newest waiting run is kept (10-22: builds took 5-15 min, so a request every 5 min cancelled each one and nothing deployed for 30 min)
 
 jobs:
   deploy:
