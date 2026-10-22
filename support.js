@@ -21,6 +21,11 @@
   ));
 
   // src/parse.ts
+  // OWCS: <x-dc><template>...</template></x-dc> keeps the browser from fetching {{ }} image URLs before render
+  function unwrapTemplate(t) {
+    const m = /^\s*<template>([\s\S]*)<\/template>\s*$/.exec(t);
+    return m ? m[1] : t;
+  }
   function parseDcDocument(doc) {
     const dc = doc.querySelector("x-dc");
     if (!dc) return null;
@@ -29,7 +34,7 @@
       scriptEl?.getAttribute("data-props") ?? null
     );
     return {
-      template: dc.innerHTML,
+      template: unwrapTemplate(dc.innerHTML),
       js: scriptEl ? scriptEl.textContent || "" : "",
       props,
       preview
@@ -40,7 +45,7 @@
     if (!openMatch) return null;
     const close = src.lastIndexOf("</x-dc>");
     if (close === -1 || close < openMatch.index) return null;
-    const template = src.slice(openMatch.index + openMatch[0].length, close);
+    const template = unwrapTemplate(src.slice(openMatch.index + openMatch[0].length, close));
     const doc = new DOMParser().parseFromString(src, "text/html");
     const scriptEl = doc.querySelector("script[data-dc-script]");
     const { props, preview } = parseDataProps(
