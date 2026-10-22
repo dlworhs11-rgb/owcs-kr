@@ -9,23 +9,27 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@800&amp;display=swap" rel="stylesheet">
 <style>
-:root{--bg:#F6F6F3;--ink:#0B0B0F;--mute:#6B6B72;--line:#E6E6E1;--lime:#C6FF33}
+:root{--bg:#F1EDE5;--ink:#0B0B0F;--mute:#6B6B72;--line:#E6E6E1;--lime:#C6FF33}
 @media (prefers-color-scheme: dark){:root{--bg:#13110E;--ink:#F2F2F5;--mute:#A3A3AD;--line:#2E2E37}}
 html[data-dark]{--bg:#13110E;--ink:#F2F2F5;--mute:#A3A3AD;--line:#2E2E37}
-html[data-light]{--bg:#F6F6F3;--ink:#0B0B0F;--mute:#6B6B72;--line:#E6E6E1}
+html[data-light]{--bg:#F1EDE5;--ink:#0B0B0F;--mute:#6B6B72;--line:#E6E6E1}
 *{box-sizing:border-box}
 html,body{margin:0;height:100%}
-body{background:var(--bg) repeating-linear-gradient(135deg,rgba(128,128,128,.05) 0 1px,transparent 1px 11px);color:var(--ink);
+body{background:var(--bg) repeating-linear-gradient(135deg,rgba(60,45,25,.045) 0 1px,transparent 1px 11px);color:var(--ink);
   font-family:-apple-system,'SF Pro Text','Pretendard Variable',Pretendard,system-ui,sans-serif;
   display:flex;align-items:center;justify-content:center;padding:24px 16px;-webkit-font-smoothing:antialiased}
 main{width:100%;max-width:420px;text-align:center}
 .code{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(88px,30vw,136px);line-height:.9;letter-spacing:-.02em;margin:0;color:var(--ink)}
 .code span{background:var(--lime);color:#0B0B0F;padding:0 .08em}
-h1{font-size:20px;font-weight:700;margin:20px 0 8px}
+h1{font-size:20px;font-weight:700;margin:28px 0 8px}
 p{color:var(--mute);font-size:15px;line-height:1.55;margin:0 0 28px;word-break:keep-all}
 a.home{display:inline-block;background:var(--ink);color:var(--bg);text-decoration:none;font-weight:700;font-size:15px;
   padding:13px 26px;border-radius:999px;border:1px solid var(--line)}
 a.home:hover,a.home:focus-visible{background:var(--lime);color:#0B0B0F;outline:none}
+/* the other menu pages, so a dead link is not a dead end */
+nav{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px;margin-top:28px;font-size:15px;font-weight:600}
+nav a{color:var(--mute);text-decoration:none;padding:6px 2px}
+nav a:hover,nav a:focus-visible{color:var(--ink)}
 </style>
 <script>
 // same dark-mode choice as the rest of the site (localStorage 'owcs-dark' = '1' / '0'); nothing picked: follow the system
@@ -38,6 +42,7 @@ try { var v = localStorage.getItem('owcs-dark'); if (v === '1') document.documen
   <h1>페이지를 찾을 수 없어요</h1>
   <p>주소가 바뀌었거나 없는 페이지예요. 홈에서 다시 찾아보세요.</p>
   <a class="home" href="/">홈으로 가기</a>
+  <nav><a href="/schedule">일정</a><a href="/results">결과</a><a href="/standings">순위</a><a href="/players">선수</a><a href="/streams">방송</a><a href="/tickets">직관</a></nav>
 </main>
 </body>
 </html>

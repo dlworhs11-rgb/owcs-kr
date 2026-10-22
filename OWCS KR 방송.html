@@ -24,7 +24,8 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:'Pretendard Vari
   background-image:repeating-linear-gradient(135deg,rgba(60,45,25,.043) 0 1px,transparent 1px 11px);background-attachment:fixed}   /* same paper as the home page */
 a{color:inherit}
 .disp{font-family:'Barlow Condensed',sans-serif;font-weight:800;letter-spacing:.01em}
-.wrap{max-width:1360px;margin:0 auto;padding:0 24px}
+.wrap{margin:0 auto;padding:0 max(56px, calc(50% - 680px))}   /* the home page's column: the same left edge on every page */
+main.wrap{min-height:100vh}   /* the list is drawn by script: the footer starts below the screen instead of jumping down */
 header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 header .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
@@ -35,7 +36,7 @@ nav{display:flex;gap:4px;overflow-x:auto}
 nav a{height:40px;padding:0 14px;border-radius:999px;display:flex;align-items:center;text-decoration:none;font-weight:600;font-size:15px;color:var(--mute);white-space:nowrap}
 nav a:hover,nav a.on{background:#F1F1ED;color:#0B0B0F}
 .hero{padding:56px 0 28px;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
-.eyebrow{font-size:15px;font-weight:700;color:var(--ac)}
+.eyebrow{font-size:15px;font-weight:700;color:var(--mute)}
 h1{font-size:clamp(56px,8vw,96px);line-height:.86;margin:12px 0 0}
 .count{display:flex;align-items:center;gap:14px;padding:16px 22px;border-radius:20px;background:var(--panel);border:1px solid var(--line)}
 .count b{font-family:'Barlow Condensed',sans-serif;font-size:56px;line-height:1;color:#0B0B0F}
@@ -76,6 +77,8 @@ footer{padding:32px 0 56px;background:#0B0B0F;color:#8A8A93;font-size:13px;line-
   .count small{display:inline;font-size:12px;white-space:nowrap}}
 /* phone / tablet: three teams side by side, each team a column of photo + handle (the whole row opens the stream) */
 @media (max-width:899.98px){
+  .wrap{padding:0 20px}
+  h1{font-size:60px}
   .teams{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
   .team{border-radius:14px;padding-bottom:6px}
   .team h2{flex-direction:column;gap:4px;padding:10px 6px 8px;font-size:12px;line-height:1.2;text-align:center;word-break:break-word}

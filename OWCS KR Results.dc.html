@@ -62,7 +62,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 </header>
 <section style="padding:64px 56px 0;background:#F6F6F3">
 <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px">
-<div><div style="font-size:15px;font-weight:700;color:#7D39EB">결과 · 대진표</div><h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:120px;line-height:.84;margin:8px 0 0">RESULTS</h1></div>
+<div><div style="font-size:15px;font-weight:700;color:#55555C">결과 · 대진표</div><h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:96px;line-height:.86;margin:12px 0 0">RESULTS</h1></div>
 <sc-if value="{{ showStD }}"><div style="position:relative"><button onClick="{{ stToggleD }}" style="display:flex;align-items:center;gap:10px;height:48px;padding:0 18px;border-radius:12px;border:1px solid #E6E6E1;background:#fff;font:inherit;font-size:15px;font-weight:600;color:#0B0B0F;cursor:pointer">{{ seasonLabelD }} <span>{{ stChevD }}</span></button>
 <sc-if value="{{ stOpenD }}"><div style="position:absolute;right:0;top:54px;z-index:20;min-width:100%;padding:6px;border-radius:12px;border:1px solid #E6E6E1;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,.12);display:flex;flex-direction:column;gap:2px"><sc-for list="{{ stOpts }}" as="o" hint-placeholder-count="3"><button onClick="{{ o.go }}" style="height:44px;padding:0 14px;border:none;border-radius:8px;background:{{ o.bg }};color:{{ o.fg }};font:inherit;font-size:15px;font-weight:700;text-align:left;white-space:nowrap;cursor:pointer">{{ o.label }}</button></sc-for></div></sc-if></div></sc-if>
 </div>
@@ -210,8 +210,8 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <button style="width:44px;height:44px;border:none;background:transparent;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px"><span style="width:20px;height:2px;background:#0B0B0F"></span><span style="width:20px;height:2px;background:#0B0B0F"></span></button>
 </header>
 <section style="position:relative;z-index:5;padding:28px 20px 0;background:#F6F6F3">
-<div style="font-size:14px;font-weight:700;color:#7D39EB">결과 · 대진표</div>
-<h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:64px;line-height:.86;margin:6px 0 14px">RESULTS</h1>
+<div style="font-size:14px;font-weight:700;color:#55555C">결과 · 대진표</div>
+<h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:60px;line-height:.86;margin:6px 0 14px">RESULTS</h1>
 <div style="display:flex;gap:6px;margin-top:20px">
 <sc-for list="{{ tabsM }}" as="t" hint-placeholder-count="3">
 <sc-if value="{{ t.on }}"><button data-owcs-tab="" onClick="{{ t.go }}" style="flex:1;height:42px;border:1px solid #0B0B0F;border-radius:12px;background:#0B0B0F;color:#fff;font:inherit;font-size:14px;font-weight:700">{{ t.short }}</button></sc-if>
@@ -334,7 +334,7 @@ const RATES = D.teams.map((t) => {
   D.history.forEach((x) => { if (x.a !== t.a && x.b !== t.a) return; const me = x.a === t.a ? x.sa : x.sb, op = x.a === t.a ? x.sb : x.sa; sw += me; sl += op; if (me > op) w++; else l++; });
   return { a: t.a, w, l, sw, sl, p: w + l ? w / (w + l) : 0 };
 }).sort((x, y) => y.p - x.p || (y.sw - y.sl) - (x.sw - x.sl));
-const winStyle = (win) => ({ w: win ? 700 : 500, t: win ? '#0B0B0F' : '#9A9AA0' });
+const winStyle = (win) => ({ w: win ? 700 : 500, t: win ? '#0B0B0F' : '#7E7E85' });
 // 내 팀 (set on the home page's team card): its matches get a light wash of the team colour, like its standings row
 const MY = (() => { try { const v = localStorage.getItem('owcs-myteam'); return TEAM[v] ? v : null; } catch (e) { return null; } })();
 const mine = (a, b, base) => MY && (a === MY || b === MY) ? 'color-mix(in srgb, ' + col(MY) + ' 14%, ' + (base || 'transparent') + ')' : (base || 'transparent');
@@ -465,7 +465,7 @@ class Component extends DCLogic {
       searchHint: '일치하는 경기가 없어요. ' + D.teams.map((t) => t.a).join(', ') + ' 중에서 찾아보세요.',
       noResults: tokens.length > 0 && found.length === 0,
       results: found.map((x) => ({ stage: x.stage, week: x.week || '–', date: x.date.slice(5).replace('-', '.'), a: x.a, sa: SP ? '–' : x.sa, b: x.b, sb: SP ? '–' : x.sb,
-        bg: mine(x.a, x.b, '#fff'), ca: logo(x.a), cb: logo(x.b), oa: !SP && x.sa < x.sb ? .4 : 1, ob: !SP && x.sb < x.sa ? .4 : 1, ta: x.sa > x.sb ? '#0B0B0F' : '#9A9AA0', tb: x.sb > x.sa ? '#0B0B0F' : '#9A9AA0' })),
+        bg: mine(x.a, x.b, '#fff'), ca: logo(x.a), cb: logo(x.b), oa: !SP && x.sa < x.sb ? .4 : 1, ob: !SP && x.sb < x.sa ? .4 : 1, ta: x.sa > x.sb ? '#0B0B0F' : '#7E7E85', tb: x.sb > x.sa ? '#0B0B0F' : '#7E7E85' })),
       h2h: valid && ids.length === 2 && ids[0] !== ids[1] ? (() => {
         const [A, B] = ids; let wa = 0, wb = 0, sa = 0, sb = 0;
         found.forEach((x) => { const a = x.a === A ? x.sa : x.sb, b = x.a === A ? x.sb : x.sa; sa += a; sb += b; if (a > b) wa++; else wb++; });
@@ -518,7 +518,7 @@ class Component extends DCLogic {
             tagB: nx ? '#C6FF33' : 'transparent', tagP: nx ? '0 8px' : '0',
             bd: live ? '2px solid #D92D20' : nx ? '2px solid #0B0B0F' : '1px solid #E1E1DB',
             rows: rows.map(([a, sc]) => { const st = !played || SP ? winStyle(true) : winStyle(sc === top);
-              return { n: a === 'TBD' ? '미정' : NAME(a), logo: a === 'TBD' ? 'transparent' : logo(a), lo: played && !SP && sc !== top ? .45 : 1, c: a === 'TBD' ? '#E1E1DB' : col(a), s: shown ? sc : '–', w: st.w, t: a === 'TBD' ? '#9A9AA0' : st.t }; }) };
+              return { n: a === 'TBD' ? '미정' : NAME(a), logo: a === 'TBD' ? 'transparent' : logo(a), lo: played && !SP && sc !== top ? .45 : 1, c: a === 'TBD' ? '#E1E1DB' : col(a), s: shown ? sc : '–', w: st.w, t: a === 'TBD' ? '#7E7E85' : st.t }; }) };
         }),
       })),
       cases: D.standings.map((s, i) => { const c = caseOf(s.a); return { r: i + 1, n: NAME(s.a), logo: logo(s.a), c: col(s.a), wl: SP ? '–' : s.w + '-' + s.l, note: c.note, axe: c.axe, tag: c.tag, sure: c.kind === 'sure', maybe: c.kind === 'maybe', lsure: c.kind === 'lsure', lmaybe: c.kind === 'lmaybe', out: c.kind === 'out' }; }),

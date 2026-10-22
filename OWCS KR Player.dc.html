@@ -101,7 +101,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 </div>
 <div>
 <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
-<span style="display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 12px;border-radius:999px;background:#fff;border:1px solid #E6E6E1;font-size:14px;font-weight:600"><span style="width:10px;height:10px;border-radius:50%;background:{{ teamColor }}"></span>{{ teamName }}</span>
+<span style="display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 12px;border-radius:999px;background:#fff;border:1px solid #E6E6E1;font-size:14px;font-weight:600"><span style="flex:none;width:20px;height:20px;background:{{ teamLogo }}"></span>{{ teamName }}</span>
 <span style="display:inline-flex;align-items:center;height:32px;padding:0 12px;border-radius:999px;background:#0B0B0F;color:#fff;font-size:14px;font-weight:600">{{ roleFull }}</span>
 <sc-if value="{{ isLive }}"><span style="display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px;border-radius:999px;background:#D92D20;color:#fff;font-size:13px;font-weight:700;letter-spacing:.04em"><span style="width:6px;height:6px;border-radius:50%;background:#fff"></span>LIVE</span></sc-if>
 </div>
@@ -154,7 +154,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <sc-if value="{{ isLive }}"><span style="position:absolute;top:14px;left:14px;display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 9px;border-radius:999px;background:#D92D20;color:#fff;font-size:11px;font-weight:700"><span style="width:5px;height:5px;border-radius:50%;background:#fff"></span>LIVE</span></sc-if>
 </div>
 <div style="display:flex;gap:6px;margin-top:18px">
-<span style="display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 10px;border-radius:999px;background:#fff;border:1px solid #E6E6E1;font-size:13px;font-weight:600"><span style="width:8px;height:8px;border-radius:50%;background:{{ teamColor }}"></span>{{ teamName }}</span>
+<span style="display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 10px;border-radius:999px;background:#fff;border:1px solid #E6E6E1;font-size:13px;font-weight:600"><span style="flex:none;width:18px;height:18px;background:{{ teamLogo }}"></span>{{ teamName }}</span>
 <span style="display:inline-flex;align-items:center;height:30px;padding:0 10px;border-radius:999px;background:#0B0B0F;color:#fff;font-size:13px;font-weight:600">{{ roleFull }}</span>
 </div>
 <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:104px;line-height:.82;margin:14px 0 18px">{{ pid }}</h1>
@@ -226,7 +226,9 @@ class Component extends DCLogic {
         { label: '선수', href: 'OWCS KR Home v6.dc.html?view=teams' }, { label: '방송', href: 'OWCS KR 방송.html' }, { label: '직관', href: 'OWCS KR 직관.html' },
       ],
       teamMark: (t.logoOnColor || t.logoDark || t.logo) ? "url('" + (t.logoOnColor || t.logoDark || t.logo) + "') center / contain no-repeat" : 'none',   // big team logo behind the photo
-      pid: me.id, pUp: me.id.toUpperCase(), teamName: t.n, teamColor: t.color, roleFull: me.roleFull,
+      pid: me.id, pUp: me.id.toUpperCase(), teamName: t.n, teamColor: t.color,
+      // team logo next to the name in the chip (owcs-dark.js: the dark-background drawing)
+      teamLogo: (t.logo ? "url('" + (document.documentElement.hasAttribute('data-owcs-dark') ? t.logoDark || t.logo : t.logo) + "') center / contain no-repeat" : t.color), roleFull: me.roleFull,
       photoBg: me.photo ? "center bottom/min(100%, 440px) auto no-repeat url('" + me.photo + "')" : 'repeating-linear-gradient(135deg,rgba(255,255,255,.16) 0 8px,rgba(255,255,255,.06) 8px 16px)',
       photoNote: me.photo ? '' : '사진 준비 중',
       isLive: !!live,
