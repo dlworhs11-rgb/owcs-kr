@@ -26,12 +26,43 @@
   if (ev) { intl(ev); return; }
   var rsEnd = new Date(D.stageRange[1] + 'T23:59:59+09:00').getTime();
   var stEnd = new Date((D.stageEnd || D.stageRange[1]) + 'T23:59:59+09:00').getTime();
-  var po = q.get('phase') === 'po' || (now > rsEnd && now <= stEnd);
   var html = document.documentElement;
-  if (!po) {
+  var day = function (s) { return new Date(s + 'T00:00:00+09:00').getTime(); };
+  var done = function (m) { return m.played && !m.live; };
+  // every phase moves on the moment its last match is over, not at midnight (user, 10-23: people want the next
+  // matchup right away). The home page's live scores (relay) end matches in this same window.OWCS, so this re-checks.
+  var rsLast = (D.matches || []).filter(function (m) { return m.phase === 'rs'; }).map(function (m) { return m.day; }).sort().pop();
+  var rsDone = function () {
+    var rs = (D.matches || []).filter(function (m) { return m.phase === 'rs'; });
+    return rs.length > 0 && rs.every(done) && now >= day(rsLast);
+  };
+  var inPo = function () { return q.get('phase') === 'po' || ((now > rsEnd || rsDone()) && now <= stEnd); };
+  homePart();
+
+  // Home shows only the part of the postseason that comes next (user rule, 10-23: no playoff bracket while the LCQ
+  // is still to play): the seeding deciders + LCQ until their last match is over, then the playoffs. Before this
+  // stage starts (the finished stage's bracket) and after it ends, the whole bracket as before.
+  function homePart() {
+    var road = (D.matches || []).filter(function (m) { return m.phase === 'seed' || m.phase === 'lcq'; });
+    if (!road.length || now < day(D.stageRange[0]) || now > stEnd) return;
+    function set() {
+      var part = road.every(done) ? 'po' : 'road';
+      Array.prototype.forEach.call(document.querySelectorAll('#tournament'), function (t) {
+        var b = t.querySelector('owcs-bracket'), k = t.firstElementChild, h = t.querySelector('h3');
+        if (b && b.getAttribute('part') !== part) b.setAttribute('part', part);
+        // only the original words both ways: a translated label (owcs-i18n) is left alone
+        var w = part === 'road' ? ['토너먼트', '플레이오프 가는 길', 'PLAYOFFS', 'SEEDING · LCQ'] : ['플레이오프 가는 길', '토너먼트', 'SEEDING · LCQ', 'PLAYOFFS'];
+        if (k && k.textContent === w[0]) k.textContent = w[1];
+        if (h && h.textContent === w[2]) h.textContent = w[3];
+      });
+    }
+    var busy = false;
+    function go() { set(); new MutationObserver(function () { if (busy) return; busy = true; setTimeout(function () { busy = false; set(); }, 30); }).observe(document.body, { childList: true, subtree: true }); }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go();
+  }
+  if (!inPo()) {
     // home during the regular season: the bracket shows from a week before the seeding deciders / LCQ start; the
     // finished stage's bracket stays until the next regular season starts (the data may switch stage weeks earlier)
-    var day = function (s) { return new Date(s + 'T00:00:00+09:00').getTime(); };
     var post = (D.matches || []).filter(function (m) { return m.phase && m.phase !== 'rs'; }).map(function (m) { return m.day; }).sort()[0];
     var from = (post ? day(post) : rsEnd + 1) - 7 * 86400e3;
     var past = (D.pastStages && D.pastStages.length) || (D.lastStage && D.lastStage.columns && D.lastStage.columns.length);
@@ -39,8 +70,17 @@
     var hide = document.createElement('style');
     hide.textContent = show ? '' : '#tournament{display:none !important}';
     (document.head || html).appendChild(hide);
+    // the last regular-season day: switch to tournament mode as soon as its last match ends on the page
+    if (rsLast && now >= day(rsLast) && now <= rsEnd) {
+      var wait = new MutationObserver(function () { if (inPo()) { wait.disconnect(); hide.textContent = ''; tournament(); } });
+      var watch = function () { wait.observe(document.body, { childList: true, subtree: true, characterData: true }); };
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', watch); else watch();
+    }
     return;
   }
+  tournament();
+
+  function tournament() {
   html.setAttribute('data-owcs-po', '');
 
   var P = 'html[data-owcs-po] ', S = P + '#dc-root [data-screen-label]';
@@ -71,6 +111,7 @@
   function soon() { if (busy) return; busy = true; setTimeout(function () { busy = false; relabel(); }, 30); }
   function start() { relabel(); new MutationObserver(soon).observe(document.body, { childList: true, subtree: true, characterData: true }); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+  }
 
   function intl(e) {
     var html = document.documentElement, name = e.ko.replace(/^\d{4}\s*/, '');

@@ -105,9 +105,9 @@ a.m:hover{background:#EFEFEA}
 .m .tm span{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:22px;line-height:1;white-space:nowrap}
 .m .tm .vs{font-size:16px;color:var(--dim);padding:0 2px}
 .m .tm .lose{opacity:.4}
-/* score: winner lime, loser grey (site rule), on a dark chip so the lime reads on the light card */
-.sc{display:inline-flex;align-items:center;gap:4px;height:30px;padding:0 10px;border-radius:999px;background:#0B0B0F;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:20px;line-height:1;color:#8A8A93}
-.sc .w{color:var(--ac2)}
+/* score like the results page (user, 10-23: the lime-on-black chip was too loud): winner ink, loser grey, no chip */
+.sc{display:inline-flex;align-items:center;gap:4px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:24px;line-height:1;color:#7E7E85;font-variant-numeric:tabular-nums}
+.sc .w{color:var(--ink)}
 .pill{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap}
 .pill.up{border:1px solid var(--ink);color:var(--ink)}
 .pill.up:before{content:"";width:6px;height:6px;border-radius:50%;border:1.5px solid currentColor;box-sizing:border-box}
@@ -156,7 +156,6 @@ html[data-owcs-dark] body{--panel:#16161C;--line:#2E2E37;--ink:#F2F2F5;--mute:#A
 html[data-owcs-dark] a.m:hover{background:#24242C}
 html[data-owcs-dark] .chip.on{border-color:#F2F2F5;box-shadow:inset 0 0 0 1px #F2F2F5}
 html[data-owcs-dark] .pill.done{background:#24242C}
-html[data-owcs-dark] .sc{box-shadow:inset 0 0 0 1px #2E2E37}
 html[data-owcs-dark] .day.today .dd b{color:#B89BFF}
 html[data-owcs-dark] .eyebrow{color:#A3A3AD}
 /* 경우의 수 tab (owcs-cases.js; moved here from the results page 10-23): a card of teams, then the matches left */
