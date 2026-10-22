@@ -1004,6 +1004,19 @@ def intl_logo(name):
     return light, dark or light
 
 
+def other_teams(teams, history, past):
+    """logos of the teams in this season's earlier results that are no longer in the league (ONSIDE Gaming, SuperBad),
+    from assets/logos-intl like the foreign teams (python fetch_intl_logos.py-style download); a team without one stays a grey dot"""
+    known = {t['a'] for t in teams} | {'TBD'}
+    names = {x[k] for x in history for k in ('a', 'b')} | {r['a'] for p in past for c in p['columns'] for x in c['matches'] for r in x['rows']}
+    out, shorts = [], intl_shorts()
+    for n in sorted(names - known):
+        light, dark = intl_logo(n)
+        if light:
+            out.append(dict(a=n, short=shorts.get(n, n), logo=light, logoDark=dark))
+    return out
+
+
 def intl_team(name, reg):
     """short name of a team at an international event: the Korea entry for Korean teams, else Liquipedia's short name;
     kept apart from TEAMS / NEW_TEAMS so foreign teams never show up in the Korea team list or calendar files"""
@@ -1134,6 +1147,7 @@ def build(check_live=False, prev_live=None, out=HERE, records=True):
                 format=f'1–{playoffs}위 플레이오프 시드 결정전 · {playoffs + 1}–{lcq}위 라스트 찬스 예선 · 전 경기 3선승제',
                 teams=teams, players=players, matches=matches, live=live, lastStream=last_streams(players) if check_live else {},
                 history=history, intl=build_intl(stage['year']), bracket=bracket, lastStage=last or dict(label='', title='', champion=None, columns=[]), pastStages=past,
+                otherTeams=other_teams(teams, history, past),
                 tiebreak='승수가 같으면 세트 득실 → 맞대결 성적 순으로 순위를 정해요.',
                 standings=standings, staff=stage_staff(stage['po']),
                 sources='데이터: Liquipedia (CC-BY-SA 3.0)')

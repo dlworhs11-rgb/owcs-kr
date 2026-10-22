@@ -312,10 +312,14 @@ const D = window.OWCS || { teams: [], matches: [], standings: [], history: [], l
 const TEAM = Object.fromEntries(D.teams.map((t) => [t.a, t]));
 const NAME = (a) => (TEAM[a] || { n: a }).n;
 const col = (a) => (TEAM[a] || { color: '#C9C9CF' }).color;
-// team logo cut-out; teams outside the current league get a grey dot
+// team logo cut-out; teams of earlier stages that left the league (D.otherTeams: ONSIDE Gaming, SuperBad) keep theirs,
+// a team with no logo at all gets a grey dot
+const OTHER = Object.fromEntries((D.otherTeams || []).map((t) => [t.a, t]));
+const LT = (a) => TEAM[a] || OTHER[a];
+const SHORT = (a) => (OTHER[a] && OTHER[a].short) || a;   // phone rows show the short name (OSG, not ONSIDE Gaming)
 const DARKPAGE = document.documentElement.hasAttribute('data-owcs-dark');   // owcs-dark.js: use the logo drawn for dark backgrounds
-const logo = (a) => TEAM[a] ? "url('" + (DARKPAGE ? TEAM[a].logoDark || TEAM[a].logo : TEAM[a].logo) + "') center / contain no-repeat transparent" : 'radial-gradient(circle, #C9C9CF 0 45%, transparent 47%)';
-const logoDark = (a) => TEAM[a] ? "url('" + (TEAM[a].logoDark || TEAM[a].logo) + "') center / contain no-repeat transparent" : logo(a);
+const logo = (a) => LT(a) ? "url('" + (DARKPAGE ? LT(a).logoDark || LT(a).logo : LT(a).logo) + "') center / contain no-repeat transparent" : 'radial-gradient(circle, #C9C9CF 0 45%, transparent 47%)';
+const logoDark = (a) => LT(a) ? "url('" + (LT(a).logoDark || LT(a).logo) + "') center / contain no-repeat transparent" : logo(a);
 const DOWS = ['일', '월', '화', '수', '목', '금', '토'];
 const pad = (n) => String(n).padStart(2, '0');
 const kst = (iso) => new Date(new Date(iso).getTime() + 9 * 3600e3);
@@ -346,12 +350,13 @@ const LEFT = D.matches.filter((m) => (!m.phase || m.phase === 'rs') && (!m.playe
 const STAGE_NOS = Array.from({ length: D.stageNo || 1 }, (_, i) => i + 1);
 const PAST = (no) => {
   const bk = (D.pastStages || []).find((p) => p.label === (D.year || '') + ' 스테이지 ' + no);
-  const round = (x) => { const k = [x.a, x.b].sort().join(); for (const c of (bk ? bk.columns : [])) if (c.matches.some((y) => y.day === x.date && y.rows.map((r) => r.a).sort().join() === k)) return c.title; return '플레이오프'; };
+  // [column title, the match's own round] (결승 · 3위전 column: 결승 / 3위 결정전)
+  const slot = (x) => { const k = [x.a, x.b].sort().join(); for (const c of (bk ? bk.columns : [])) { const y = c.matches.find((y) => y.day === x.date && y.rows.map((r) => r.a).sort().join() === k); if (y) return [c.title, y.round]; } return ['플레이오프', null]; };
   const list = D.history.filter((x) => x.stage === '스테이지 ' + no || x.stage === '스테이지 ' + no + ' 플레이오프').slice().reverse();
   // history weeks count calendar weeks from the stage start; a break week would leave a gap (1, 3, 4 ...), so number the match weeks
   const wks = [...new Set(list.filter((x) => !x.stage.endsWith('플레이오프')).map((x) => x.week))].sort((a, b) => a - b);
   return list.map((x, i) => ({ id: 's' + no + '-' + i, date: x.date, a: x.a, b: x.b, sa: x.sa, sb: x.sb, vod: x.vod, maps: x.maps || [], played: true, past: true,
-    group: x.stage.endsWith('플레이오프') ? round(x) : (wks.indexOf(x.week) + 1) + '주차' }));
+    ...(x.stage.endsWith('플레이오프') ? (([group, round]) => ({ group, round }))(slot(x)) : { group: (wks.indexOf(x.week) + 1) + '주차' }) }));
 };
 
 // 경우의 수: every win/loss combination of the remaining matches (2^n), ranked by match wins.
@@ -436,14 +441,16 @@ class Component extends DCLogic {
     const byWeek = {}, CUR = this.state.st === (D.stageNo || 1);
     (CUR ? PLAYED : PAST(this.state.st)).forEach((m) => { const g = m.group || m.week + '주차'; (byWeek[g] = byWeek[g] || []).push(m); });
     const weeks = Object.keys(byWeek).sort((a, b) => byWeek[b][0].date.localeCompare(byWeek[a][0].date)).map((wk) => {
-      const list = byWeek[wk].slice().reverse();
+      // newest first; on the final's day the final comes before the third-place match
+      const list = byWeek[wk].slice().reverse().sort((p, q) => q.date.localeCompare(p.date) || (p.round === '3위 결정전') - (q.round === '3위 결정전'));
+      const r0 = mdw(list[list.length - 1].date), r1 = mdw(list[0].date);
       return {
-        title: wk, range: mdw(list[list.length - 1].date) + ' – ' + mdw(list[0].date),
+        title: wk, range: r0 === r1 ? r0 : r0 + ' – ' + r1,
         games: list.map((m) => {
           let sa = m.sa, sb = m.sb;
           const A = SP ? winStyle(true) : winStyle(sa > sb), B = SP ? winStyle(true) : winStyle(sb > sa);
           if (SP) { sa = '–'; sb = '–'; }
-          return { date: mdw(m.date), dshort: md(m.date), a: m.a, b: m.b, na: NAME(m.a), nb: NAME(m.b), sa, sb, ca: logo(m.a), cb: logo(m.b), oa: !SP && m.played && m.sa < m.sb ? .4 : 1, ob: !SP && m.played && m.sb < m.sa ? .4 : 1, wa: A.w, ta: A.t, wb: B.w, tb: B.t,
+          return { date: mdw(m.date), dshort: md(m.date), a: SHORT(m.a), b: SHORT(m.b), na: NAME(m.a), nb: NAME(m.b), sa, sb, ca: logo(m.a), cb: logo(m.b), oa: !SP && m.played && m.sa < m.sb ? .4 : 1, ob: !SP && m.played && m.sb < m.sa ? .4 : 1, wa: A.w, ta: A.t, wb: B.w, tb: B.t,
             href: 'OWCS KR Home v6.dc.html?date=' + m.day + '#today', vod: m.vod || 'https://www.sooplive.com/station/owesports/vod/review', mine: mine(m.a, m.b),
             hasMaps: !!(m.maps && m.maps.length), open: !!(m.maps && m.maps.length) && !!this.state.openRows[m.id], detailLabel: this.state.openRows[m.id] ? '맵 상세 ▴' : '맵 상세 ▾',
             toggle: () => this.setState((s) => ({ openRows: { ...s.openRows, [m.id]: !s.openRows[m.id] } })),
@@ -464,7 +471,7 @@ class Component extends DCLogic {
       searchSummary: valid ? ids.join(' vs ') + ' 2026 경기 ' + found.length + '건' : '팀을 찾을 수 없어요',
       searchHint: '일치하는 경기가 없어요. ' + D.teams.map((t) => t.a).join(', ') + ' 중에서 찾아보세요.',
       noResults: tokens.length > 0 && found.length === 0,
-      results: found.map((x) => ({ stage: x.stage, week: x.week || '–', date: x.date.slice(5).replace('-', '.'), a: x.a, sa: SP ? '–' : x.sa, b: x.b, sb: SP ? '–' : x.sb,
+      results: found.map((x) => ({ stage: x.stage, week: x.week || '–', date: x.date.slice(5).replace('-', '.'), a: SHORT(x.a), sa: SP ? '–' : x.sa, b: SHORT(x.b), sb: SP ? '–' : x.sb,
         bg: mine(x.a, x.b, '#fff'), ca: logo(x.a), cb: logo(x.b), oa: !SP && x.sa < x.sb ? .4 : 1, ob: !SP && x.sb < x.sa ? .4 : 1, ta: x.sa > x.sb ? '#0B0B0F' : '#7E7E85', tb: x.sb > x.sa ? '#0B0B0F' : '#7E7E85' })),
       h2h: valid && ids.length === 2 && ids[0] !== ids[1] ? (() => {
         const [A, B] = ids; let wa = 0, wb = 0, sa = 0, sb = 0;

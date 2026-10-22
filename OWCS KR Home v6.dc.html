@@ -1149,6 +1149,8 @@ const STAGE_SHORT = D.stage.replace(/^\d{4} OWCS KR /, '');
 // "오늘 결과" cards: the same-width slot on both ends, so the score stays centred on every card - the POTM's bust on the
 // winner's end, the loser's logo faded on the other (cards without a POTM keep the same padding and type)
 // the slots shrink with the window (three cards share the row), so names and score never run into each other
+// POTM as the player page spells it (the broadcast capture writes KNIFE for Knife)
+const potmName = (id) => (D.players.find((x) => x.id.toLowerCase() === id.toLowerCase()) || { id }).id;
 const potmLook = (pm, side, loserLogo) => {
   const W = window.innerWidth || 1440, k = W >= 1360 ? 0 : W >= 1120 ? 1 : 2;
   const slot = [88, 64, 46][k], logo = [56, 42, 30][k];
@@ -1667,7 +1669,7 @@ class Component extends DCLogic {
         status: !hero ? '' : hero.st === 'live' ? 'LIVE · ' + Math.max(1, heroSet) + '세트' : hero.st === 'done' ? (hero.nr ? '결과 대기' : '종료') : hero.tbd ? '시간 미정' : hmOf(hero) + ' 시작' },
       // broadcast crew in Korean (the source lists them romanized)
       cast: hero && hero.casters.length ? hero.casters.map((c) => ({ 'Sim Ji-soo': '심지수', 'Park Han-eol': '박한얼', 'AKaros': '장지수', 'Strings': '홍현성', 'ChangSik': '창식', 'Aid': '에이드' })[c] || c).join(' · ') : '발표 전',
-      potmLine: hero && hero.potm && !SP ? hero.potm : '',
+      potmLine: hero && hero.potm && !SP ? potmName(hero.potm) : '',
       showCrew: (P.showCasters ?? true) && !(sh && sh.st === 'done'),
       nx: nextM ? { when: md(nextM.date) + ' (' + dow(nextM.date) + ') ' + tmOf(nextM), a: nextM.a, b: nextM.b, la: logoBg(nextM.a, true), lb: logoBg(nextM.b, true) } : { when: '–', a: '', b: '', la: 'none', lb: 'none' },
       offNote: nextM ? '다음 경기 ' + md(nextM.date) + ' (' + dow(nextM.date) + ') ' + (nextM.tbd ? '· 시작 시간 발표 전' : hmOf(nextM) + ' KST') + ' · 방송이 시작되면 이곳에 자동으로 표시돼요' : '이번 스테이지 일정이 모두 끝났어요',
@@ -1695,7 +1697,7 @@ class Component extends DCLogic {
           bg: m.st === 'live' ? 'linear-gradient(135deg, rgba(217,45,32,.82), rgba(140,22,16,.78))' : m.st === 'up' ? 'transparent' : sel ? '#0B0B0F' : 'rgba(24,24,30,.82)',
           lift: sel ? 'translateY(-4px)' : 'none', sh: sel ? '0 10px 20px rgba(0,0,0,.3)' : 'none',
           fg: m.st === 'up' ? 'var(--ink,#0B0B0F)' : '#fff', op: 1, face, ...potmLook(pm, o[1] > o[3] ? 'left' : 'right', done && logoBg(o[1] > o[3] ? o[2] : o[0], true)),
-          sub: m.st === 'live' ? '● LIVE' : m.st === 'up' ? (m.tbd ? '시간 미정' : hmOf(m) + ' 시작') : m.potm && !SP ? 'POTM ' + m.potm : '', subC: m.st === 'up' ? 'var(--mute,#6B6B72)' : '#fff',
+          sub: m.st === 'live' ? '● LIVE' : m.st === 'up' ? (m.tbd ? '시간 미정' : hmOf(m) + ' 시작') : m.potm && !SP ? 'POTM ' + potmName(m.potm) : '', subC: m.st === 'up' ? 'var(--mute,#6B6B72)' : '#fff',
           // every card the same dark grey (not faded); the one being looked at turns black and lifts off the page
           bd: sel && m.st !== 'live' ? '2px solid #0B0B0F' : m.st === 'live' ? '2px solid #FF5A4F' : m.st === 'up' ? '2px dashed var(--mute,#9A9AA0)' : '2px solid rgba(255,255,255,.1)',
           go: () => { if (m.st === 'up') return; this.setState({ pick: m.id, mapsShown: true }); const t = document.getElementById('today'); t && t.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }; }),

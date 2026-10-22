@@ -153,7 +153,9 @@ def collect(prev, now, force=False):
     stages = owcs_build.find_stages()
     cur = owcs_build.current_stage(stages, now.date())
     i = stages.index(cur)
-    ensure_wiki([s['po'].replace('OWCS ', owcs_build.LP_NAME + '/', 1) for s in stages[max(0, i - 1):i + 1]])
+    # every stage of this year (the results page picks any of them; 10-22: stage 1 had no bracket, so its playoffs were one
+    # 플레이오프 block) plus the one before, for last season's bracket in January
+    ensure_wiki([s['po'].replace('OWCS ', owcs_build.LP_NAME + '/', 1) for j, s in enumerate(stages[:i + 1]) if s['year'] == cur['year'] or j == i - 1])
     # the season's international events: dates and city (infobox), group / round names when the collector has none
     ensure_wiki([f"{owcs_build.LP_NAME}/{cur['year']}/{name}{sub}" for name, _, _ in owcs_build.INTL_EVENTS for sub in ('', '/Group Stage')])
 
