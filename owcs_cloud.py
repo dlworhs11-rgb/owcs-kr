@@ -184,7 +184,7 @@ def upcoming_ics(data, now=None, team=None):
         # no start time on Liquipedia yet: all-day entry on that day (moves to the real time once it is announced)
         when = ([f"DTSTART;VALUE=DATE:{m['day'].replace('-', '')}",
                  f"DTEND;VALUE=DATE:{(datetime.date.fromisoformat(m['day']) + datetime.timedelta(days=1)).strftime('%Y%m%d')}"]
-                if m.get('tbd') else [f'DTSTART:{utc(t0)}', f'DTEND:{utc(t0 + datetime.timedelta(hours=2))}'])
+                if m.get('tbd') else [f'DTSTART:{utc(t0)}', f'DTEND:{utc(t0 + datetime.timedelta(minutes=120 if (m.get("bo") or 5) >= 7 else 90))}'])   # as the official schedule: BO5 1h30, BO7 2h
         lines += ['BEGIN:VEVENT', f"UID:owcs-{m['id']}@owcskr.fan", f'DTSTAMP:{stamp}', *when,
                   'SUMMARY:' + esc(vs),
                   'DESCRIPTION:' + esc(f"{data['stage']} {label}" + (' · 시작 시간 발표 전' if m.get('tbd') else '')

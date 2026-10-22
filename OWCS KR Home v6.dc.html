@@ -1297,13 +1297,14 @@ const resolve = (tok) => {
   const part = D.teams.find((t) => norm(t.n).includes(k) || t.ko.includes(tok.trim())); return part ? part.a : null;
 };
 const heroName = (h) => window.OWCSMaps.heroName(h);
+const calMin = (m) => (m.bo || 5) >= 7 ? 120 : 90;   // calendar entry length as the official schedule shows it: BO5 1h30, BO7 2h
 const icsEsc = (s) => String(s).replace(/[,;\\]/g, (c) => '\\' + c);
 const icsTime = (ms) => new Date(ms).toISOString().replace(/[-:]/g, '').replace(/\.\d+/, '');
 const icsOf = (list) => {
   const ev = list.map((m) => {
     const t0 = new Date(m.date).getTime();
     const day = (d) => d.replace(/-/g, ''), next = (d) => dayOf(new Date(d + 'T12:00:00+09:00').getTime() + 86400e3);
-    const when = m.tbd ? ['DTSTART;VALUE=DATE:' + day(m.day), 'DTEND;VALUE=DATE:' + day(next(m.day))] : ['DTSTART:' + icsTime(t0), 'DTEND:' + icsTime(t0 + 2 * 3600e3)];
+    const when = m.tbd ? ['DTSTART;VALUE=DATE:' + day(m.day), 'DTEND;VALUE=DATE:' + day(next(m.day))] : ['DTSTART:' + icsTime(t0), 'DTEND:' + icsTime(t0 + calMin(m) * 60e3)];
     return ['BEGIN:VEVENT', 'UID:owcs-' + m.id + '@owcskr.fan', 'DTSTAMP:' + icsTime(t0), ...when,
       'SUMMARY:' + icsEsc(team(m.a).n + ' vs ' + team(m.b).n),
       'DESCRIPTION:' + icsEsc(D.stage + ' ' + (m.label || m.week + '주차') + ' · SOOP owesports 생중계 https://www.sooplive.com/station/owesports'),
@@ -1326,8 +1327,9 @@ const calUrl = (a, to) => !/^https:$/.test(location.protocol) ? calFile(a)
 const subPrev = () => { try { const v = JSON.parse(localStorage.getItem('owcs-subbed') || 'null'); return v === 'ALL' || Array.isArray(v) ? v : null; } catch (e) { return null; } };
 const gcalOf = (m) => {
   const t0 = new Date(m.date).getTime();
+  const day = (d) => d.replace(/-/g, '');   // start time not announced: an all-day entry, as the .ics does
   return 'https://calendar.google.com/calendar/render?' + new URLSearchParams({ action: 'TEMPLATE', text: team(m.a).n + ' vs ' + team(m.b).n,
-    dates: icsTime(t0) + '/' + icsTime(t0 + 2 * 3600e3), details: D.stage + ' ' + (m.label || m.week + '주차') + ' · SOOP owesports https://www.sooplive.com/station/owesports', location: 'SOOP owesports', ctz: (window.OWCSi18n && OWCSi18n.tz) || 'Asia/Seoul' }).toString();
+    dates: m.tbd ? day(m.day) + '/' + day(dayOf(new Date(m.day + 'T12:00:00+09:00').getTime() + 86400e3)) : icsTime(t0) + '/' + icsTime(t0 + calMin(m) * 60e3), details: D.stage + ' ' + (m.label || m.week + '주차') + ' · SOOP owesports https://www.sooplive.com/station/owesports', location: 'SOOP owesports', ctz: (window.OWCSi18n && OWCSi18n.tz) || 'Asia/Seoul' }).toString();
 };
 
 const DARK = { '--owt': '#C6FF33', '--glass': 'rgba(30,30,38,0.72)', '--paper': '#16161C', '--paper2': '#0E0E12', '--paper3': '#24242C', '--chip': '#22222A', '--chipLine': '#3A3A45', '--line': '#2E2E37', '--ink': '#F2F2F5', '--mute': '#A3A3AD', '--banner-edge': '#2E2E37' };
