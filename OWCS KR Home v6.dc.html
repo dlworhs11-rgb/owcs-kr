@@ -1242,7 +1242,36 @@ const applyLive = (today) => {
       });
     });
   }
+  if (changed) restand();
   return changed;
+};
+// standings recounted here the moment a live score ends a match (owcs_build standings_of + rank_by), so the table moves
+// within seconds of the WIN bar instead of waiting for the next owcs-data.js build.
+// Order: wins, set difference, head-to-head among the teams still level, then the order owcs-data.js had them in.
+const restand = () => {
+  const rs = D.matches.filter((m) => m.phase === 'rs' && m.played && !m.live && m.sa != null && m.sb != null);
+  if (!rs.length || !D.standings.length) return;
+  const order = D.standings.map((s) => s.a), rec = {};
+  order.forEach((a) => { rec[a] = { a, w: 0, l: 0, mw: 0, ml: 0, diff: 0 }; });
+  rs.forEach((m) => [[m.a, m.sa, m.sb], [m.b, m.sb, m.sa]].forEach(([t, f, g]) => {
+    const r = rec[t] || (rec[t] = { a: t, w: 0, l: 0, mw: 0, ml: 0, diff: 0 });
+    r[f > g ? 'w' : 'l'] += 1; r.mw += f; r.ml += g; r.diff = r.mw - r.ml;
+  }));
+  const pos = (a) => (order.indexOf(a) + 1 || 99), groups = {};
+  Object.values(rec).forEach((r) => { (groups[r.w + ',' + r.diff] = groups[r.w + ',' + r.diff] || []).push(r); });
+  const out = [];
+  Object.keys(groups).map((k) => k.split(',').map(Number)).sort((p, q) => q[0] - p[0] || q[1] - p[1]).forEach(([w, df]) => {
+    const g = groups[w + ',' + df], h = {};
+    g.forEach((r) => { h[r.a] = [0, 0, 0]; });   // wins, set difference, losses against the other level teams
+    rs.forEach((m) => {
+      if (!h[m.a] || !h[m.b] || m.sa === m.sb) return;
+      const [x, y] = m.sa > m.sb ? [m.a, m.b] : [m.b, m.a];
+      h[x][0] += 1; h[y][2] += 1; h[m.a][1] += m.sa - m.sb; h[m.b][1] += m.sb - m.sa;
+    });
+    if (g.length > 1) g.forEach((r) => { r.tie = [h[r.a][0], h[r.a][2]]; });
+    out.push(...g.sort((p, q) => h[q.a][0] - h[p.a][0] || h[q.a][1] - h[p.a][1] || pos(p.a) - pos(q.a)));
+  });
+  D.standings = out;
 };
 // backup path: the files the PC pushes to GitHub (raw.githubusercontent caches them up to 5 minutes)
 const liveScores = (today, onChange) => {
