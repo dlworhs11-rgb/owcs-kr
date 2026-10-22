@@ -691,11 +691,12 @@ def build_players(socials, stage_teams):
         role = ROLE.get(p['role'], ('?', '?', 3))
         photo = photos.get(handle.lower()) or photos.get(old.lower())
         # socials.json "soop": "" drops a wrong collector link (SWOO's pointed at Fearful's channel)
+        # socials.json "youtube" wins over the collector's (CH0R0NG's @ch0r0ng is gone, @CH0R0NG-f4j is his)
         out.append(dict(id=handle, ko=s.get('ko') or p.get('nameKo') or '',   # socials.json "ko" fills a missing Korean nick (SoLA)
                         team=a, role=role[0], roleFull=role[1], order=role[2],
                         name=s.get('name', ''), real=real.get(handle.lower()) or real.get(old.lower(), ''), birth=s.get('birth', ''), potm=p.get('potm') or 0,
                         photo=f'assets/players/{photo}' if photo else '', face=faces.get(os.path.splitext(photo)[0]) if photo else None,
-                        soop=soop_url(s['soop']) if 'soop' in s else soop_url(p.get('soop')), chzzk=None if a in SOOP_ONLY else p.get('chzzk'), discord=(s['discord'] or None) if 'discord' in s else p.get('discord'), youtube=p.get('youtube') or (s.get('youtube') and 'https://youtube.com/' + s['youtube']),
+                        soop=soop_url(s['soop']) if 'soop' in s else soop_url(p.get('soop')), chzzk=None if a in SOOP_ONLY else p.get('chzzk'), discord=(s['discord'] or None) if 'discord' in s else p.get('discord'), youtube=(s.get('youtube') and 'https://youtube.com/' + s['youtube']) or p.get('youtube'),
                         instagram=s.get('instagram') and 'https://instagram.com/' + s['instagram'],
                         x=s.get('x') and 'https://x.com/' + s['x'], lp=s.get('lp'),
                         insta=sorted([x for x in (insta_post(u) for w, u in insta if w in (handle.lower(), (s.get('instagram') or '').lower())) if x['img']],
