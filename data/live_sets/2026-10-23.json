@@ -337,7 +337,59 @@
      "hero": "bastion"
     }
    },
-   "src": "SOOP"
+   "src": "SOOP",
+   "heroTs": 1792749355,
+   "hudLeft": "Team Falcons",
+   "guessed": [
+    "Kilo"
+   ],
+   "comps": {
+    "Team Falcons": [
+     [
+      "SOMEONE",
+      "orisa"
+     ],
+     [
+      "MER1T",
+      "?"
+     ],
+     [
+      "Checkmate",
+      "symmetra"
+     ],
+     [
+      "Fielder",
+      "kiriko"
+     ],
+     [
+      "ChiYo",
+      "brigitte"
+     ]
+    ],
+    "ZANSIDE GAMING": [
+     [
+      "Heiser",
+      "orisa"
+     ],
+     [
+      "Taejong",
+      "tracer"
+     ],
+     [
+      "Kilo",
+      "sojourn"
+     ],
+     [
+      "iR0NY",
+      "kiriko"
+     ],
+     [
+      "OPENER",
+      "jetpack-cat"
+     ]
+    ]
+   },
+   "compAt": null
   }
  ]
 }
