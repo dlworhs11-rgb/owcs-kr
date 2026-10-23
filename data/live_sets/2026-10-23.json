@@ -494,7 +494,57 @@
      "hero": "hazard"
     }
    },
-   "src": "SOOP"
+   "src": "SOOP",
+   "heroTs": 1792752825,
+   "hudLeft": "Crazy Raccoon",
+   "guessed": [],
+   "comps": {
+    "Crazy Raccoon": [
+     [
+      "JunBin",
+      "orisa"
+     ],
+     [
+      "HeeSang",
+      "tracer"
+     ],
+     [
+      "Stalk3r",
+      "cassidy"
+     ],
+     [
+      "CH0R0NG",
+      "doctrine"
+     ],
+     [
+      "vigilante",
+      "sombra"
+     ]
+    ],
+    "SEIJI ESPORTS": [
+     [
+      "SENTIER",
+      "reinhardt"
+     ],
+     [
+      "M1nut2",
+      "genji"
+     ],
+     [
+      "D4RT",
+      "cassidy"
+     ],
+     [
+      "OFF",
+      "lucio"
+     ],
+     [
+      "Lavender",
+      "doctrine"
+     ]
+    ]
+   },
+   "compAt": null
   }
  ]
 }
