@@ -228,7 +228,7 @@ def stage_staff(comp):
 
 PHASES = [('seeding', 'seed', '시드 결정전'), ('last chance', 'lcq', '라스트 찬스 예선'), ('playoff', 'po', '플레이오프')]
 ROUND_KO = {'upper bracket final': '승자조 결승', 'upper bracket semifinal': '승자조 준결승', 'lower bracket semifinal': '패자조 준결승',
-            'lower bracket final': '패자조 결승', 'quarterfinals': '8강', 'semifinals': '4강', 'grand final': '결승', 'final': '결승',
+            'lower bracket final': '패자조 결승', 'quarterfinals': '6강', 'semifinals': '4강', 'grand final': '결승', 'final': '결승',
             'third place match': '3위 결정전'}
 
 
@@ -939,7 +939,7 @@ def fill_bracket(matches, standings, playoffs, lcq):
     put(lf, res(uf, False), res(ls))
     sd = [m for m in matches if m['phase'] == 'seed']
     seed = [r['a'] for r in seeding_of(matches, standings, playoffs)] if sd and all(res(m) for m in sd) else [None] * 4
-    q1, q2 = at('po', '8강'), at('po', '8강', 1)
+    q1, q2 = at('po', '6강'), at('po', '6강', 1)
     put(q1, seed[3], res(uf))
     put(q2, seed[2], res(lf))
     s1, s2 = at('po', '4강'), at('po', '4강', 1)

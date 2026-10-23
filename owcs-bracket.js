@@ -219,7 +219,7 @@
       if (lcq) {
         const up = lcq.matches.find((x) => /승자조 결승/.test(x.round)), semi = lcq.matches.find((x) => /패자조 준결승/.test(x.round)),
           fin = lcq.matches.find((x) => /패자조 결승/.test(x.round));
-        lcqHtml = '<div class="box pre lane">' + lane('5–8위', '라스트 찬스', '4팀 중 2팀만 플레이오프에 올라가요', '5·6위는 두 번, 7·8위는 한 번 지면 탈락 · 올라가면 8강', [['', '2팀 8강 진출'], ['ko', '2팀 탈락']])
+        lcqHtml = '<div class="box pre lane">' + lane('5–8위', '라스트 찬스', '4팀 중 2팀만 플레이오프에 올라가요', '5·6위는 두 번, 7·8위는 한 번 지면 탈락 · 올라가면 6강', [['', '2팀 6강 진출'], ['ko', '2팀 탈락']])
           + (up && semi && fin
             ? tree([{ title: '첫 경기', ms: [up, semi], opts: [{ round: true, short: true, title: '이기면 바로 진출', ph: ['5위', '6위'] }, { round: true, short: true, title: '지면 탈락', ph: ['7위', '8위'] }] },
                     { title: '마지막 한 자리', ms: [fin], opts: [{ round: true, short: true, title: '이기면 진출', ph: ['5·6위전 패자', '7·8위전 승자'] }] }])
@@ -240,7 +240,7 @@
               + '<span>' + (t.sw != null ? esc(t.sw + '-' + t.sl) : '–') + '</span><span>' + esc(t.w + '-' + t.l) + '</span></div>' + (i === 1 ? '<div class="cut"><span>4강 직행</span></div>' : ''); }).join('')
           + (pre ? '<div class="pend">' + (rsOn ? '정규 리그 진행 중 · 지금 순위라 바뀔 수 있어요' : '결정전 전 · 정규 리그 최종 순위') + '</div>' : '') + '</div>' : '';
         // the say line is the format, not a claim about the four shown: during the regular season 5th can still climb in
-        seedHtml = '<div class="box pre lane">' + lane('1–4위', '시드 결정전', '1–4위는 모두 플레이오프 진출 · 자리만 정해요', '서로 한 번씩 더 붙고, 정규 리그 승패도 합쳐서 순위 계산', [['', '1·2위 4강 직행'], ['', '3·4위 8강부터']])
+        seedHtml = '<div class="box pre lane">' + lane('1–4위', '시드 결정전', '1–4위는 모두 플레이오프 진출 · 자리만 정해요', '서로 한 번씩 더 붙고, 정규 리그 승패도 합쳐서 순위 계산', [['', '1·2위 4강 직행'], ['', '3·4위 6강부터']])
           + sd + '<div class="st">경기</div><div class="rr">' + seed.matches.map((x) => chip(x, { short: true })).join('') + '</div></div>';
       }
       const poHtml = poCols.length ? '<div class="box main"><div class="h"><b>플레이오프 본선</b><span>' + esc(poCols.map((c) => c.title).join(' → ')) + '</span></div>' + tree(poCols)
