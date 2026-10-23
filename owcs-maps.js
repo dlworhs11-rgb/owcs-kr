@@ -21,8 +21,8 @@
     if (ko && !/[\s.:]/.test(en) && k.includes('-')) en = k.replace(/-/g, ' ');   // 'junkerqueen' -> 'junker queen'
     en = en.replace(/(^|[\s.])\p{L}/gu, (c) => c.toUpperCase()); return ko && !(window.OWCSi18n && window.OWCSi18n.lang !== 'ko') ? ko + ' · ' + en : en; };
   const pad = (n) => String(n).padStart(2, '0');
-  // push maps report distance in metres; everything else is a round count
-  const pts = (v) => (v == null ? '' : Number.isInteger(+v) ? String(v) : (+v).toFixed(1) + 'm');
+  // push maps report distance in metres (a whole number off the HUD, decimals from Liquipedia); everything else is a round count
+  const pts = (v, push) => (v == null ? '' : Number.isInteger(+v) ? String(v) + (push ? 'm' : '') : (+v).toFixed(1) + 'm');
   /* m: a match from owcs-data.js (with m.st = 'live' | 'done' | 'up'); o: { spoiler, showBans, noComps, isOpen(key), toggle(key) }
      noComps: an earlier stage with no first-hero record at all, so no '기록 없음' note */
   // winner's logo next to its name on the map art: the white logo (the rows are dark), else the team colour
@@ -51,7 +51,7 @@
       let sa = x.sa, sb = x.sb;
       if (tgt && x.winner === 'a' && (sa == null || sa < tgt)) { sa = tgt; sb = Math.min(sb || 0, tgt - 1); }
       if (tgt && x.winner === 'b' && (sb == null || sb < tgt)) { sb = tgt; sa = Math.min(sa || 0, tgt - 1); }
-      const score = sa != null && sb != null ? (x.winner === 'b' ? pts(sb) + ' : ' + pts(sa) : pts(sa) + ' : ' + pts(sb)) : '';
+      const score = sa != null && sb != null ? (x.winner === 'b' ? pts(sb, push) + ' : ' + pts(sa, push) : pts(sa, push) + ' : ' + pts(sb, push)) : '';
       const comps = x.comps ? ['a', 'b'].map((t) => ({ team: m[t], win: !SP && x.winner === t,
         picks: (x.comps[t] || []).map(([pl, h]) => ({ pl, h, bg: heroBg(h), txt: HERO_IMG[heroKey(h)] ? '' : heroCode(h) })) })) : [];
       return { no: pad(x.no), name: x.map, mode: x.mode + (x.time ? ' · ' + x.time : ''),
