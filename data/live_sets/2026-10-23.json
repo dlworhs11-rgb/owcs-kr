@@ -235,6 +235,21 @@
     "Cheeseburger": 130,
     "O2 Blast": 80
    }
+  },
+  {
+   "banTs": 1792747926,
+   "teams": [
+    "Team Falcons",
+    "ZANSIDE GAMING"
+   ],
+   "game": 1,
+   "map": "Nepal",
+   "seriesBefore": {
+    "Team Falcons": 0,
+    "ZANSIDE GAMING": 0
+   },
+   "bans": null,
+   "src": "SOOP"
   }
  ]
 }
