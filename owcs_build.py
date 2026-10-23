@@ -611,6 +611,7 @@ def potm_awards():
 
 HANDLE_FIX = {'Bekey': 'Becky'}   # collector spelling -> the one on the broadcast, Liquipedia and his own SOOP (김배키이)
 SOOP_ONLY = {'CR', 'ZAN'}   # Crazy Raccoon and ZANSIDE GAMING stream on SOOP only (their CHZZK channels are unused)
+SOOP_FIRST = {'O2', 'PF', 'SEIJI'}   # stream on SOOP; their CHZZK link is kept only for a player with no SOOP channel (fan comment 2026-10-23)
 
 
 
@@ -712,13 +713,14 @@ def build_players(socials, stage_teams):
         s = socials['players'].get(handle) or socials['players'].get(old, {})
         role = ROLE.get(p['role'], ('?', '?', 3))
         photo = photos.get(handle.lower()) or photos.get(old.lower())
+        soop = soop_url(s['soop']) if 'soop' in s else soop_url(p.get('soop'))
         # socials.json "soop": "" drops a wrong collector link (SWOO's pointed at Fearful's channel)
         # socials.json "youtube" wins over the collector's (CH0R0NG's @ch0r0ng is gone, @CH0R0NG-f4j is his)
         out.append(dict(id=handle, ko=s.get('ko') or p.get('nameKo') or '',   # socials.json "ko" fills a missing Korean nick (SoLA)
                         team=a, role=role[0], roleFull=role[1], order=role[2],
                         name=s.get('name', ''), real=real.get(handle.lower()) or real.get(old.lower(), ''), birth=s.get('birth', ''), potm=p.get('potm') or 0,
                         photo=f'assets/players/{photo}' if photo else '', face=faces.get(os.path.splitext(photo)[0]) if photo else None,
-                        soop=soop_url(s['soop']) if 'soop' in s else soop_url(p.get('soop')), chzzk=None if a in SOOP_ONLY else p.get('chzzk'), discord=(s['discord'] or None) if 'discord' in s else p.get('discord'), youtube=(s.get('youtube') and 'https://youtube.com/' + s['youtube']) or p.get('youtube'),
+                        soop=soop, chzzk=None if a in SOOP_ONLY or (a in SOOP_FIRST and soop) else p.get('chzzk'), discord=(s['discord'] or None) if 'discord' in s else p.get('discord'), youtube=(s.get('youtube') and 'https://youtube.com/' + s['youtube']) or p.get('youtube'),
                         instagram=s.get('instagram') and 'https://instagram.com/' + s['instagram'],
                         x=s.get('x') and 'https://x.com/' + s['x'], lp=s.get('lp'),
                         insta=insta_posts(insta, handle, s.get('instagram')),
