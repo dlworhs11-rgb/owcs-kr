@@ -157,6 +157,21 @@
     "O2 Blast": 1
    },
    "scoreFrom": "table"
+  },
+  {
+   "banTs": 1792745398,
+   "teams": [
+    "Cheeseburger",
+    "O2 Blast"
+   ],
+   "game": 3,
+   "map": "Esperança",
+   "seriesBefore": {
+    "Cheeseburger": 2,
+    "O2 Blast": 0
+   },
+   "bans": null,
+   "src": "SOOP"
   }
  ]
 }
