@@ -36,10 +36,12 @@
 .h{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin:0 2px 10px}
 .h b{font-size:15px;font-weight:800}
 .h span{font-size:11.5px;color:var(--b-mute)}
-.tree{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:0 16px}
+.tree{--hg:8px;display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:0 calc(2 * var(--hg))}
 .col{display:flex;flex-direction:column;min-width:0}
 .ct{font-size:11.5px;font-weight:800;color:var(--b-mute);text-align:center;margin-bottom:6px}
-.cm{flex:1;display:flex;flex-direction:column;justify-content:space-around;gap:10px;position:relative}
+/* equal rows in every column, so match centers line up across columns: a pair's midpoint is the next match's center */
+.cm{flex:1;display:grid;grid-auto-rows:1fr}
+.c{position:relative;display:flex;flex-direction:column;justify-content:center;padding:5px 0}
 .m{position:relative;background:var(--b-card);border:1px solid var(--b-line);border-radius:10px;min-width:0}
 .m.live{border:2px solid #D92D20}
 .m.next{border:2px solid var(--b-ink)}
@@ -56,9 +58,12 @@
 .r.lose b,.r.lose s{color:var(--b-mute);font-weight:500}
 .r.lose i{opacity:.45}
 .r.tbd b{color:var(--b-mute);font-weight:500}
-.link .m::after{content:'';position:absolute;top:50%;right:-9px;width:8px;border-top:1.5px solid var(--b-wire)}
-.into .m::before{content:'';position:absolute;top:50%;left:-9px;width:8px;border-top:1.5px solid var(--b-wire)}
-.merge .cm::after{content:'';position:absolute;right:-9px;top:25%;bottom:25%;border-right:1.5px solid var(--b-wire)}
+/* wires: out-stub and in-stub are each half the column gap and meet at its middle, where a pair's vertical runs */
+.link .m::after{content:'';position:absolute;top:calc(50% - .75px);right:calc(-1px - var(--hg));width:calc(var(--hg) + 1px);border-top:1.5px solid var(--b-wire)}
+.into .m::before{content:'';position:absolute;top:calc(50% - .75px);left:calc(-1px - var(--hg));width:calc(var(--hg) + 1px);border-top:1.5px solid var(--b-wire)}
+.merge .c::after{content:'';position:absolute;right:calc(-.75px - var(--hg));border-right:1.5px solid var(--b-wire)}
+.merge .c:nth-child(odd)::after{top:calc(50% - .75px);bottom:0}
+.merge .c:nth-child(even)::after{top:0;bottom:calc(50% - .75px)}
 .extra{margin-top:12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
 .extra .t{font-size:11.5px;font-weight:800;color:var(--b-mute);margin:0 2px 4px}
 .grid{display:grid;gap:12px;margin-top:12px}
@@ -105,10 +110,10 @@
 .wt{display:inline-block;margin-left:6px;height:18px;line-height:18px;padding:0 6px;border-radius:999px;background:var(--b-ac2);color:#0B0B0F;font-size:11px;font-weight:800;vertical-align:1px}
 @container (min-width:640px){.cw .cb{padding:28px 30px}.cw:not(.nop) .cb{min-height:240px}.cw .cb i{width:88px;height:88px}.cw .cn{font-size:60px}.cw .cs{font-size:16px}}
 .fin{font-size:11.5px;color:var(--b-mute);margin:10px 2px 0;line-height:1.5}
-@container (min-width:640px){.r{height:32px;grid-template-columns:20px minmax(0,1fr) auto;gap:7px;padding:0 10px}.r i{width:20px;height:20px}.r b{font-size:14.5px}.r s{font-size:20px}.mh{font-size:11.5px;padding:4px 10px}.tree{gap:0 26px}.link .m::after{right:-14px;width:13px}.into .m::before{left:-14px;width:13px}.merge .cm::after{right:-14px}}
+@container (min-width:640px){.r{height:32px;grid-template-columns:20px minmax(0,1fr) auto;gap:7px;padding:0 10px}.r i{width:20px;height:20px}.r b{font-size:14.5px}.r s{font-size:20px}.mh{font-size:11.5px;padding:4px 10px}.tree{--hg:13px}}
 @container (min-width:900px){.cw img{position:static;height:auto;aspect-ratio:16/9;max-height:560px}.cw:not(.nop) .cb{position:absolute;left:0;right:0;bottom:0;min-height:0;padding:90px 30px 28px;background:linear-gradient(transparent,rgba(0,0,0,.82))}}
 @container (min-width:640px){.ttl{font-size:46px}.top{padding:20px 22px 20px 26px}}
-@container (min-width:900px){.grid:not(.one){grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)}.box{padding:18px 18px 20px}.tree{grid-auto-columns:minmax(0,250px);gap:0 44px}.link .m::after{right:-23px;width:22px}.into .m::before{left:-23px;width:22px}.merge .cm::after{right:-23px}.extra{grid-template-columns:repeat(auto-fill,minmax(0,250px))}}
+@container (min-width:900px){.grid:not(.one){grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)}.box{padding:18px 18px 20px}.tree{grid-auto-columns:minmax(0,250px);--hg:22px}.extra{grid-template-columns:repeat(auto-fill,minmax(0,250px))}}
 `;
 
   const team = (a) => ((window.OWCS || {}).teams || []).find((t) => t.a === a);
@@ -180,7 +185,7 @@
         const shown = !SP && (played || live) && rows[0].a !== 'TBD';
         const top = Math.max(+rows[0].s || 0, +rows[1].s || 0);
         const day = String(x.when || '').split(' ').slice(0, opt && opt.short ? 1 : 2).join(' ');
-        const bo = (m && m.bo) || x.bo, boTxt = bo ? 'BO' + bo : '';   // seeding deciders / LCQ BO5, playoffs BO7 (from Liquipedia)
+        const bo = (m && m.bo) || x.bo, boTxt = bo ? 'FT' + (Math.floor(bo / 2) + 1) : '';   // Overwatch counts first-to (draw maps don't count): BO5 = FT3, BO7 = FT4
         const head = (opt && opt.round ? '<span>' + esc(opt.title || x.round) + '</span>' : '')
           + (live ? '<em>LIVE</em>' + (boTxt ? '<span>' + boTxt + '</span>' : '') : '<span>' + esc(day) + (boTxt ? ' · ' + boTxt : '') + '</span>' + (nx ? '<em class="nx">다음 경기</em>' : ''));
         return '<div class="m' + (live ? ' live' : nx ? ' next' : '') + '"><div class="mh">' + head + '</div>' + rows.map((r) => {
@@ -193,7 +198,7 @@
       // a tree from columns of matches: a column feeds the next one straight (same count) or in pairs (half as many)
       const tree = (cols) => '<div class="tree">' + cols.map((c, i) => {
         const nx = cols[i + 1], cls = ['col', nx ? 'link' : '', i ? 'into' : '', nx && nx.ms.length < c.ms.length ? 'merge' : ''].join(' ');
-        return '<div class="' + cls + '"><div class="ct">' + esc(c.title) + '</div><div class="cm">' + c.ms.map((x, k) => chip(x, (c.opts && c.opts[k]) || c.opt || { short: cols.length > 2 })).join('') + '</div></div>';
+        return '<div class="' + cls + '"><div class="ct">' + esc(c.title) + '</div><div class="cm">' + c.ms.map((x, k) => '<div class="c">' + chip(x, (c.opts && c.opts[k]) || c.opt || { short: cols.length > 2 }) + '</div>').join('') + '</div></div>';
       }).join('') + '</div>';
 
       const po = S.columns.filter((c) => c.key.startsWith('po-'));

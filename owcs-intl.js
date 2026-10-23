@@ -233,7 +233,7 @@ h4 small{font-weight:700;color:var(--i-mute);margin-left:6px}
       }).join('') : '<div class="empty">세트 정보가 아직 없어요.</div>';
       return '<div class="m' + (kr ? ' kr' : '') + (m.live ? ' live' : '') + (open ? ' open' : '') + '"><button class="mrow" data-open="' + m.id + '">'
         + '<span class="mt">' + (m.live ? '<em>LIVE</em>' : '<b>' + esc(m.time) + '</b>') + esc(m.round) + '</span>'
-        + side(m.a, m.sa, 'a') + '<span class="sc">' + sc + '<small>BO' + m.bo + '</small></span>' + side(m.b, m.sb, 'b') + '</button><div class="det">' + det + '</div></div>';
+        + side(m.a, m.sa, 'a') + '<span class="sc">' + sc + '<small>FT' + (Math.floor(m.bo / 2) + 1) + '</small></span>' + side(m.b, m.sb, 'b') + '</button><div class="det">' + det + '</div></div>';
     }
 
     // a section split into lanes: 승자조 (GSL 개막전 · 승자전), 패자조 (패자전 · 최종전); 결승 · 3위 결정전 as cards under them.
@@ -264,7 +264,7 @@ h4 small{font-weight:700;color:var(--i-mute);margin-left:6px}
       const row = (a, s) => '<div class="r' + (a === 'TBD' ? ' tbd' : shown && done && s < top ? ' lose' : '') + '"><i ' + this.logo(a, DK) + '></i><b>' + esc(a === 'TBD' ? '미정' : a) + '</b><s>' + (shown ? s : '') + '</s></div>';
       const kr = this.kr(m.a) || this.kr(m.b);
       const when = short ? md(m.day) : md(m.day) + ' ' + m.time;
-      return '<div class="bm' + (kr ? ' kr' : '') + (m.live ? ' live' : '') + '"><div class="mh">' + (m.live ? '<em>LIVE</em>' : '<span>' + esc(when) + '</span>') + '<span>BO' + m.bo + '</span></div>' + row(m.a, m.sa) + row(m.b, m.sb) + '</div>';
+      return '<div class="bm' + (kr ? ' kr' : '') + (m.live ? ' live' : '') + '"><div class="mh">' + (m.live ? '<em>LIVE</em>' : '<span>' + esc(when) + '</span>') + '<span>FT' + (Math.floor(m.bo / 2) + 1) + '</span></div>' + row(m.a, m.sa) + row(m.b, m.sb) + '</div>';
     }
   }
   customElements.define('owcs-intl', OwcsIntl);
