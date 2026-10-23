@@ -12,12 +12,13 @@ ICS_FILE = 'owcs-kr-upcoming.ics'   # calendar subscription: matches not played 
 _REPLAYS = None
 
 
-def soop_replays(year):
+def soop_replays(year, fresh=False):
     """OWCS Korea broadcast replays on SOOP owesports since 1 January of `year`: [{no, start, end}] in epoch seconds.
     The list API gives 20 a page, newest first, and only the upload time (= broadcast end) and the length, so
-    start = end - length. Cached 30 min in data/soop_vods.json (a stale copy is used when SOOP cannot be read)."""
+    start = end - length. Cached 30 min in data/soop_vods.json (a stale copy is used when SOOP cannot be read);
+    `fresh` reads SOOP regardless (replay_comment.py waiting for tonight's upload)."""
     global _REPLAYS
-    if _REPLAYS is not None:
+    if _REPLAYS is not None and not fresh:
         return _REPLAYS
     cache = os.path.join(HERE, 'data', 'soop_vods.json')
     old = None
@@ -26,7 +27,7 @@ def soop_replays(year):
             old = json.load(f)
         if not (isinstance(old, dict) and old.get('year') == year):   # older cache format / another season
             old = None
-    if old and time.time() - os.path.getmtime(cache) < 1800:
+    if old and not fresh and time.time() - os.path.getmtime(cache) < 1800:
         _REPLAYS = old['vods']
         return _REPLAYS
     vods = []
