@@ -628,6 +628,21 @@
     "SEIJI ESPORTS": 119,
     "Crazy Raccoon": 139
    }
+  },
+  {
+   "banTs": 1792755231,
+   "teams": [
+    "Crazy Raccoon",
+    "SEIJI ESPORTS"
+   ],
+   "game": 3,
+   "map": "Aatlis",
+   "seriesBefore": {
+    "Crazy Raccoon": 2,
+    "SEIJI ESPORTS": 0
+   },
+   "bans": null,
+   "src": "SOOP"
   }
  ]
 }
