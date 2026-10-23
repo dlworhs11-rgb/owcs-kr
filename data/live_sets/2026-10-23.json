@@ -248,7 +248,16 @@
     "Team Falcons": 0,
     "ZANSIDE GAMING": 0
    },
-   "bans": null,
+   "bans": {
+    "initial": {
+     "team": "Team Falcons",
+     "hero": "vendetta"
+    },
+    "followUp": {
+     "team": "ZANSIDE GAMING",
+     "hero": "sombra"
+    }
+   },
    "src": "SOOP"
   }
  ]
