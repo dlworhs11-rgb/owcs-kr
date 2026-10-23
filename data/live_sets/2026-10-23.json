@@ -22,7 +22,59 @@
      "team": "O2 Blast",
      "hero": "dmon"
     }
-   }
+   },
+   "heroTs": 1792743042,
+   "hudLeft": "OEE SEBUARG BIR 4021",
+   "guessed": [
+    "Gamjung"
+   ],
+   "comps": {
+    "OEE SEBUARG BIR 4021": [
+     [
+      "",
+      "cassidy"
+     ],
+     [
+      "",
+      "symmetra"
+     ],
+     [
+      "",
+      "orisa"
+     ],
+     [
+      "",
+      "doctrine"
+     ],
+     [
+      "",
+      "jetpack-cat"
+     ]
+    ],
+    "O2 Blast": [
+     [
+      "Fate",
+      "jetpack-cat"
+     ],
+     [
+      "A1lEN",
+      "bastion"
+     ],
+     [
+      "WuTian",
+      "symmetra"
+     ],
+     [
+      "Gamjung",
+      "doctrine"
+     ],
+     [
+      "",
+      "mauga"
+     ]
+    ]
+   },
+   "compAt": null
   }
  ]
 }
