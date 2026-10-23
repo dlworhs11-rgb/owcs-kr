@@ -1,0 +1,28 @@
+{
+ "date": "2026-10-23",
+ "sets": [
+  {
+   "banTs": 1792743004,
+   "teams": [
+    "OEE SEBUARG BIR 4021",
+    "O2 Blast"
+   ],
+   "game": 1,
+   "map": "Samoa",
+   "seriesBefore": {
+    "OEE SEBUARG BIR 4021": 0,
+    "O2 Blast": 0
+   },
+   "bans": {
+    "initial": {
+     "team": "OEE SEBUARG BIR 4021",
+     "hero": "mercy"
+    },
+    "followUp": {
+     "team": "O2 Blast",
+     "hero": "dmon"
+    }
+   }
+  }
+ ]
+}
