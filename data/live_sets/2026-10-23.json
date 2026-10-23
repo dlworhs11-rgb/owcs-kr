@@ -550,6 +550,21 @@
     "SEIJI ESPORTS": 0
    },
    "scoreFrom": "table"
+  },
+  {
+   "banTs": 1792753764,
+   "teams": [
+    "Crazy Raccoon",
+    "SEIJI ESPORTS"
+   ],
+   "game": 2,
+   "map": "Colosseo",
+   "seriesBefore": {
+    "Crazy Raccoon": 1,
+    "SEIJI ESPORTS": 0
+   },
+   "bans": null,
+   "src": "SOOP"
   }
  ]
 }
