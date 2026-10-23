@@ -471,6 +471,21 @@
     "Team Falcons": 129,
     "ZANSIDE GAMING": 54
    }
+  },
+  {
+   "banTs": 1792752744,
+   "teams": [
+    "Crazy Raccoon",
+    "SEIJI ESPORTS"
+   ],
+   "game": 1,
+   "map": "Samoa",
+   "seriesBefore": {
+    "Crazy Raccoon": 0,
+    "SEIJI ESPORTS": 0
+   },
+   "bans": null,
+   "src": "SOOP"
   }
  ]
 }
