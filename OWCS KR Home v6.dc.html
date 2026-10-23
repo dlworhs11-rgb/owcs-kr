@@ -1199,11 +1199,14 @@ const applyLive = (today) => {
   Object.values(LIVE.sets).forEach((st) => {
     if (st._day !== today) return;
     const tm = (st.teams || []).map(ab);
-    const m = D.matches.find((x) => x.day === today && tm.includes(x.a) && tm.includes(x.b));
+    // one team name misread (10-23: CHEESEBURGER as "OEE SEBUARG BIR 4021"): the other one still finds today's match
+    const known = tm.filter(Boolean);
+    const m = D.matches.find((x) => x.day === today && tm.includes(x.a) && tm.includes(x.b))
+      || (known.length === 1 ? D.matches.find((x) => x.day === today && !x.played && (x.a === known[0] || x.b === known[0])) : null);
     if (!m || !st.game) return;
     // its map / ban screen was read: the match is on even before its listed start (10-02: on air 17:10, listed 17:15)
     if (!m.played && !m.live) { m.live = true; changed = true; }
-    const side = (nm) => ab(nm) === m.a ? 'a' : ab(nm) === m.b ? 'b' : null;
+    const side = (nm) => ab(nm) === m.a ? 'a' : ab(nm) === m.b ? 'b' : !ab(nm) && known.length === 1 ? (known[0] === m.a ? 'b' : 'a') : null;
     let x = m.maps.find((y) => y.no === st.game);
     if (!x) { x = { no: st.game, map: st.map || st.game + '세트', mode: '', winner: null, bans: [], banFirst: null, src: 'live' }; m.maps.push(x); m.maps.sort((p, q) => p.no - q.no); changed = true; }
     if (st.map && /세트$/.test(x.map || '세트')) { x.map = st.map; changed = true; }
@@ -1235,6 +1238,13 @@ const applyLive = (today) => {
       if (o.potm && m.potm !== o.potm) { m.potm = o.potm; changed = true; }
       if ((o.sa != null || o.sb != null) && Math.max(m.sa || 0, m.sb || 0) >= Math.floor((m.bo || 5) / 2) + 1 && !m.played) { m.played = true; m.live = false; changed = true; }
       if (o.force && Math.max(m.sa || 0, m.sb || 0) < Math.floor((m.bo || 5) / 2) + 1 && m.played) { m.played = false; m.live = true; changed = true; }
+      // 'force' also takes back the map winners of that misread (10-23: a 0-3 read off the wrong page left three O2 wins):
+      // maps only the live score added go, and a map keeps a winner only if the admin page gives one
+      if (o.force) {
+        const keep = m.maps.filter((x) => x.src || x.map);
+        if (keep.length !== m.maps.length) { m.maps = keep; changed = true; }
+        m.maps.forEach((x) => { const w = ((o.maps || {})[x.no] || {}).winner || null; if (x.src !== 'liquipedia' || !x.sa) { if (x.winner !== w) { x.winner = w; changed = true; } } });
+      }
       Object.entries(o.maps || {}).forEach(([no, y]) => {
         no = +no;
         let x = m.maps.find((z) => z.no === no);
