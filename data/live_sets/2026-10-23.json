@@ -170,7 +170,16 @@
     "Cheeseburger": 2,
     "O2 Blast": 0
    },
-   "bans": null,
+   "bans": {
+    "initial": {
+     "team": "O2 Blast",
+     "hero": "jetpack cat"
+    },
+    "followUp": {
+     "team": "Cheeseburger",
+     "hero": "junkerqueen"
+    }
+   },
    "src": "SOOP"
   }
  ]
