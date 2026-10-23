@@ -7,6 +7,8 @@
   const deaccent = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   const HERO_COMPACT = Object.fromEntries(Object.keys(HERO_IMG).map((k) => [k.replace(/-/g, ''), k]));   // 'junkerqueen' -> 'junker-queen'
   const heroKey = (h) => { const k = deaccent(h).toLowerCase().replace(/[.:']/g, '').trim().replace(/\s+/g, '-'); return HERO_IMG[k] ? k : HERO_COMPACT[k.replace(/-/g, '')] || k; };
+  const TANKS = 'dmon domina doomfist dva hazard junker-queen mauga orisa ramattra reinhardt roadhog sigma winston wrecking-ball zarya'.split(' ');
+  const tankFirst = (c) => [...c.filter((s) => TANKS.includes(heroKey(s[1]))), ...c.filter((s) => !TANKS.includes(heroKey(s[1])))];
   const heroCode = (h) => String(h || '?').replace(/[^A-Za-z]/g, '').slice(0, 3).toUpperCase();
   const heroBg = (h) => HERO_IMG[heroKey(h)] ? "url('assets/heroes/" + heroKey(h) + ".png') center / cover no-repeat, #1B1B21" : 'repeating-linear-gradient(135deg,#24242B 0 4px,#1B1B21 4px 8px)';
   const MAP_FILE = { 'antarctic-peninsula': 'antarctic', 'throne-of-anubis': 'anubis', 'aatlis': 'atlis', 'watchpoint-gibraltar': 'gibraltar', 'kings-row': 'kings-row', 'route-66': 'route66', 'shambali-monastery': 'shambali' };
@@ -52,8 +54,9 @@
       if (tgt && x.winner === 'a' && (sa == null || sa < tgt)) { sa = tgt; sb = Math.min(sb || 0, tgt - 1); }
       if (tgt && x.winner === 'b' && (sb == null || sb < tgt)) { sb = tgt; sa = Math.min(sa || 0, tgt - 1); }
       const score = sa != null && sb != null ? (x.winner === 'b' ? pts(sb, push) + ' : ' + pts(sa, push) : pts(sa, push) + ' : ' + pts(sb, push)) : '';
+      // tank always first: a hand-entered comp came in damage, damage, tank (10-23 CB vs O2 map 1)
       const comps = x.comps ? ['a', 'b'].map((t) => ({ team: m[t], win: !SP && x.winner === t,
-        picks: (x.comps[t] || []).map(([pl, h]) => ({ pl, h, bg: heroBg(h), txt: HERO_IMG[heroKey(h)] ? '' : heroCode(h) })) })) : [];
+        picks: tankFirst(x.comps[t] || []).map(([pl, h]) => ({ pl, h, bg: heroBg(h), txt: HERO_IMG[heroKey(h)] ? '' : heroCode(h) })) })) : [];
       return { no: pad(x.no), name: x.map, mode: x.mode + (x.time ? ' · ' + x.time : ''),
         winner: SP ? '?' : (w || '–'), wlogo: SP || !w ? '' : logoOf(w), score: SP || !w ? '' : score,
         // the phone row shows the winner's number in lime and the loser's in grey (winner's number first)
