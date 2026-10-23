@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>OWticker 갤러리 문구</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+:root{--bg:#0B0B0F;--panel:#15151B;--line:#26262E;--ink:#F2F2F5;--mute:#A9A9B3;--ac:#7D39EB;--ac2:#C6FF33}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Pretendard Variable',Pretendard,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+main{max-width:640px;margin:0 auto;padding:28px 16px 48px}
+h1{font-size:20px;margin:0 0 6px}
+p.sub{margin:0 0 20px;color:var(--mute);font-size:14px;line-height:1.5}
+.days{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.days button{font:inherit;font-size:14px;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:8px 14px;cursor:pointer}
+.days button.on{background:var(--ac);border-color:var(--ac)}
+textarea{width:100%;height:340px;resize:vertical;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:16px;font:inherit;font-size:15px;line-height:1.6}
+.copy{display:block;width:100%;margin-top:12px;font:inherit;font-size:17px;font-weight:700;color:#0B0B0F;background:var(--ac2);border:0;border-radius:12px;padding:16px;cursor:pointer}
+.copy.done{background:#fff}
+ol{margin:22px 0 0;padding-left:20px;color:var(--mute);font-size:14px;line-height:1.7}
+.empty{color:var(--mute);padding:24px 0}
+</style>
+<script src="./owcs-data.js"></script>
+</head>
+<body>
+<main>
+  <h1>갤러리 글쓰기 문구</h1>
+  <p class="sub">경기일을 고르고 복사 버튼을 누르세요. 경기가 끝나면 다음 경기일이 자동으로 앞에 옵니다.</p>
+  <div class="days" id="days"></div>
+  <textarea id="txt" readonly></textarea>
+  <button class="copy" id="copy" type="button">문구 복사</button>
+  <ol>
+    <li>위 버튼으로 복사</li>
+    <li>갤러리 관리의 글쓰기 기본 문구 칸에 붙여넣기</li>
+    <li>저장</li>
+  </ol>
+  <div class="empty" id="empty" hidden>남은 경기가 없습니다.</div>
+</main>
+<script>
+(function () {
+  var O = window.OWCS || { matches: [], teams: [] };
+  var DOW = ['일', '월', '화', '수', '목', '금', '토'];
+  var teamName = {};
+
+  function name(a) { return a === 'TBD' || !a ? '대진 미정' : (teamName[a] || a); }
+  function clock(m) {
+    if (m.tbd) return '시간 미정';
+    var p = m.time.split(':'), h = +p[0], mi = +p[1];
+    var ap = h < 12 ? '오전' : '오후';
+    var h12 = h % 12 === 0 ? 12 : h % 12;
+    return ap + ' ' + h12 + '시' + (mi ? ' ' + mi + '분' : '');
+  }
+  function dayText(day) {
+    var d = new Date(day + 'T00:00:00+09:00');
+    var kst = new Date(d.getTime() + 9 * 3600 * 1000);
+    return (kst.getUTCMonth() + 1) + '월 ' + kst.getUTCDate() + '일 ' + DOW[kst.getUTCDay()] + '요일';
+  }
+  function build(day) {
+    var ms = O.matches.filter(function (m) { return m.day === day; })
+      .sort(function (a, b) { return a.date < b.date ? -1 : a.date > b.date ? 1 : 0; });
+    var out = ['공지 읽고 규칙에 맞게 글을 작성해 주세요.', '',
+      O.year + ' OWCS ASIA - KOREA STAGE ' + O.stageNo, '', dayText(day)];
+    ms.forEach(function (m) {
+      out.push('');
+      out.push(clock(m) + (m.phase !== 'rs' && m.label ? ' · ' + m.label : ''));
+      out.push(name(m.a) + '  VS  ' + name(m.b));
+    });
+    return out.join('\n');
+  }
+
+  var box = document.getElementById('days'), txt = document.getElementById('txt'), btn = document.getElementById('copy'), empty = document.getElementById('empty');
+  var cur = null;
+
+  function pick(day) {
+    cur = day;
+    txt.value = build(day);
+    Array.prototype.forEach.call(box.children, function (b) { b.classList.toggle('on', b.dataset.day === day); });
+    btn.textContent = '문구 복사';
+    btn.classList.remove('done');
+    delete btn.dataset.copied;
+  }
+  function render() {
+    O = window.OWCS || O;
+    teamName = {};
+    (O.teams || []).concat(O.otherTeams || []).forEach(function (t) { if (t && t.a) teamName[t.a] = t.n; });
+    var days = [];
+    O.matches.forEach(function (m) {
+      if (!m.played && days.indexOf(m.day) < 0) days.push(m.day);
+    });
+    days.sort();
+    box.innerHTML = '';
+    empty.hidden = days.length > 0;
+    txt.hidden = btn.hidden = !days.length;
+    if (!days.length) return;
+    days.forEach(function (day) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.dataset.day = day;
+      b.textContent = dayText(day).replace('요일', '');
+      b.onclick = function () { pick(day); };
+      box.appendChild(b);
+    });
+    var keep = cur && days.indexOf(cur) >= 0 ? cur : days[0];
+    var was = txt.value;
+    pick(keep);
+    if (was && txt.value === was && btn.dataset.copied) { btn.textContent = '복사됨 ✓'; btn.classList.add('done'); }
+  }
+  render();
+  // a page left open follows the site's data (a new owcs-data.js only when a build changed it)
+  setInterval(function () {
+    if (window.owcsDataPoll) window.owcsDataPoll(function (changed) { if (changed) render(); });
+  }, 60000);
+
+  btn.onclick = function () {
+    function ok() { btn.textContent = '복사됨 ✓'; btn.classList.add('done'); btn.dataset.copied = '1'; }
+    function fallback() {
+      txt.select();
+      try { document.execCommand('copy'); ok(); } catch (e) { btn.textContent = '길게 눌러 직접 복사하세요'; }
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt.value).then(ok, fallback);
+    else fallback();
+  };
+})();
+</script>
+<script src="./owcs-datapoll.js"></script>
+</body>
+</html>
