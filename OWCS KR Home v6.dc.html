@@ -1234,7 +1234,8 @@ const applyLive = (today) => {
     if (!x) { x = { no: st.game, map: st.map || st.game + '세트', mode: '', winner: null, bans: [], banFirst: null, src: 'live' }; m.maps.push(x); m.maps.sort((p, q) => p.no - q.no); changed = true; }
     if (st.map && /세트$/.test(x.map || '세트')) { x.map = st.map; changed = true; }
     const ss = st.score || {}, ka = Object.keys(ss).find((t) => side(t) === 'a'), kb = Object.keys(ss).find((t) => side(t) === 'b');
-    if (ka && kb && x.src !== 'liquipedia' && ss[ka] + ss[kb] > (x.sa || 0) + (x.sb || 0)) { x.sa = ss[ka]; x.sb = ss[kb]; changed = true; }   // map score off the HUD; Liquipedia's wins
+    // map score off the HUD; Liquipedia's wins once it has one (10-23: Colosseo listed on Liquipedia with no distance yet hid the HUD's)
+    if (ka && kb && (x.src !== 'liquipedia' || x._hud || x.sa == null || x.sb == null) && ss[ka] + ss[kb] > (x.sa || 0) + (x.sb || 0)) { x.sa = ss[ka]; x.sb = ss[kb]; x._hud = true; changed = true; }
     const bn = st.bans || {};
     if (!x.bans.length && bn.initial && bn.initial.hero) {
       x.bans = [bn.initial, bn.followUp].filter((y) => y && y.hero).map((y) => ({ t: side(y.team), h: y.hero, code: code(y.hero) }));

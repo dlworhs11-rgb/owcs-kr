@@ -448,7 +448,15 @@ def build_matches(stage):
                 potm = lv['potm']['name']   # a half-read name ('?51') stays out
         # map name as soon as the ban screen shows it, and the first heroes off the HUD (pick_watch.py)
         auto_comps = {}
+        # the HUD reads names in capitals, Liquipedia does not (10-23: 'ZANSIDE GAMING' vs 'ZANSIDE Gaming' dropped
+        # FLC-ZAN's map 3 push distance): Liquipedia's spelling for every team name in the set
+        same = {t1.lower(): t1, t2.lower(): t2}
+        fix = lambda n: same.get(n.lower(), n) if isinstance(n, str) else n
         for s in live_sets(day):
+            s = {**s, 'teams': [fix(n) for n in s.get('teams') or []],
+                 'score': {fix(k): v for k, v in (s.get('score') or {}).items()},
+                 'comps': {fix(k): v for k, v in (s.get('comps') or {}).items()} if s.get('comps') else s.get('comps'),
+                 'bans': {k: ({**v, 'team': fix(v.get('team'))} if isinstance(v, dict) else v) for k, v in (s.get('bans') or {}).items()}}
             if set(s.get('teams') or []) != {t1, t2} or not s.get('game'):
                 continue
             cur = next((x for x in maps if x['no'] == s['game']), None)
