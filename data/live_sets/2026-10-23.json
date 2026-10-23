@@ -101,7 +101,57 @@
      "hero": "mauga"
     }
    },
-   "src": "SOOP"
+   "src": "SOOP",
+   "heroTs": 1792744094,
+   "hudLeft": "Cheeseburger",
+   "guessed": [],
+   "comps": {
+    "Cheeseburger": [
+     [
+      "Belosrea",
+      "orisa"
+     ],
+     [
+      "K4NE",
+      "sojourn"
+     ],
+     [
+      "Profit",
+      "symmetra"
+     ],
+     [
+      "Trest",
+      "doctrine"
+     ],
+     [
+      "TenTen",
+      "jetpack-cat"
+     ]
+    ],
+    "O2 Blast": [
+     [
+      "Fate",
+      "dmon"
+     ],
+     [
+      "A1lEN",
+      "sojourn"
+     ],
+     [
+      "WuTian",
+      "hanzo"
+     ],
+     [
+      "Gamjung",
+      "doctrine"
+     ],
+     [
+      "Faith",
+      "?"
+     ]
+    ]
+   },
+   "compAt": null
   }
  ]
 }
