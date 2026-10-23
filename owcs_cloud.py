@@ -76,7 +76,7 @@ def live_status(players):
                 req = urllib.request.Request(f'https://api.chzzk.naver.com/polling/v2/channels/{cid}/live-status', headers={'User-Agent': 'Mozilla/5.0'})
                 st = json.loads(urllib.request.urlopen(req, timeout=8).read())
                 if (st.get('content') or {}).get('status') == 'OPEN':
-                    live[p['id']] = p['chzzk'] + '/live' if '/live' not in p['chzzk'] else p['chzzk']
+                    live[p['id']] = f'https://chzzk.naver.com/live/{cid}'   # <channel>/live is not a CHZZK page: it opens the channel home
                     continue
         except Exception:
             pass
