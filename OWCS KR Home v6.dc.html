@@ -1206,6 +1206,10 @@ const applyLive = (today) => {
     m.maps.sort((p, q) => p.no - q.no);
     if (JSON.stringify(m.maps.map((x) => [x.no, x.winner])) !== was) changed = true;
     if (Math.max(sc.sa, sc.sb) >= Math.floor((m.bo || 5) / 2) + 1) { m.played = true; m.live = false; }
+    // when the last map was won (the "WIN" bar): the TODAY card holds this result for a few minutes before the next match
+    const last = (sc.history || [])[(sc.history || []).length - 1];
+    const endAt = m.played && last && last.at ? new Date(last.at).getTime() : 0;
+    if ((m.endAt || 0) !== endAt) { m.endAt = endAt; changed = true; }
   });
   // broadcast crew read off the waiting screen before the first set (caster_watch.py)
   const c = LIVE.cast;
@@ -1483,7 +1487,9 @@ class Component extends DCLogic {
     // "오늘 결과" strip: a finished match picked there is what the score card and set details show (the live one stays in the strip to go back)
     const picked = todays.find((m) => m.id === this.state.pick && m.st !== 'up');
     const sh = todays.find((m) => m.st === 'live') || todays.find((m) => m.st === 'up') || todays[todays.length - 1];   // the stream panel follows the day, never a result picked below
-    const hero = picked || sh;
+    // a match that just ended stays on the score card for 5 minutes, so viewers see the result before the next one takes over
+    const held = !back && todays.find((m) => m.st === 'done' && m.endAt && now >= m.endAt && now - m.endAt < 5 * 60e3);
+    const hero = picked || held || sh;
     const upcoming = M.filter((m) => m.st === 'up');
     const nextM = upcoming[0];
     const endMs = new Date(D.stageRange[1] + 'T23:59:59+09:00').getTime();
@@ -1782,18 +1788,19 @@ class Component extends DCLogic {
       mapsD: heroMaps, mapsM: heroMaps, mapsS: heroMaps.slice(0, 2),
       showRes: matchDay, resHint: SP ? '스포일러 방지 중 · 점수는 숨겨요' : '결과를 누르면 ' + (sh && sh.st === 'done' ? '아래에서' : '위에서') + ' 세트별 맵 · 밴 · 첫 조합을 볼 수 있어요',
       // all of today's matches, in order (not started yet: 0 : 0 and its start time); the POTM's face sits behind the card
-      todayRes: todays.map((m) => { const o = orient(m.a, m.sa, m.b, m.sb), on = m === (sh && sh.st === 'done' ? picked : hero), sel = on && todays.length > 1 && m.st !== 'up', done = m.st === 'done' && !SP && !m.nr;
+      todayRes: todays.map((m) => { const wait = held && !picked && m.st === 'live', ms = wait ? 'up' : m.st;   // the next match shows as not started yet while the last result is held
+        const o = orient(m.a, m.sa, m.b, m.sb), on = m === (sh && sh.st === 'done' ? picked : hero), sel = on && todays.length > 1 && ms !== 'up', done = ms === 'done' && !SP && !m.nr;
         const pm = done && m.potm ? D.players.find((x) => x.id.toLowerCase() === m.potm.toLowerCase() && x.photo) : null, f = pm && pm.face;
         const face = !pm ? '' : "url('" + pm.photo + "') " + (f ? Math.round(f[0] * 100) + '% ' + Math.round(f[1] * 100) + '%/auto ' + Math.round(110 / f[2]) + '%' : 'center 18%/auto 260%') + ' no-repeat, #2A2A32';   // round avatar on the POTM line
-        return { a: o[0], b: o[2], la: logoBg(o[0], m.st !== 'up' || DM), lb: logoBg(o[2], m.st !== 'up' || DM), mid: SP || m.nr ? 'vs' : m.st === 'up' ? '0 : 0' : o[1] + ' : ' + o[3],
+        return { a: o[0], b: o[2], la: logoBg(o[0], ms !== 'up' || DM), lb: logoBg(o[2], ms !== 'up' || DM), mid: SP || m.nr ? 'vs' : ms === 'up' ? '0 : 0' : o[1] + ' : ' + o[3],
           oa: done && o[1] < o[3] ? .4 : 1, ob: done && o[3] < o[1] ? .4 : 1,
-          bg: m.st === 'live' ? 'linear-gradient(135deg, rgba(217,45,32,.82), rgba(140,22,16,.78))' : m.st === 'up' ? 'transparent' : sel ? '#0B0B0F' : 'rgba(24,24,30,.82)',
+          bg: ms === 'live' ? 'linear-gradient(135deg, rgba(217,45,32,.82), rgba(140,22,16,.78))' : ms === 'up' ? 'transparent' : sel ? '#0B0B0F' : 'rgba(24,24,30,.82)',
           lift: sel ? 'translateY(-4px)' : 'none', sh: sel ? '0 10px 20px rgba(0,0,0,.3)' : 'none',
-          fg: m.st === 'up' ? 'var(--ink,#0B0B0F)' : '#fff', op: 1, face, ...potmLook(pm, o[1] > o[3] ? 'left' : 'right', done && logoBg(o[1] > o[3] ? o[2] : o[0], true)),
-          sub: m.st === 'live' ? '● LIVE' : m.st === 'up' ? (m.tbd ? '시간 미정' : hmOf(m) + ' 시작') : m.potm && !SP ? 'POTM ' + potmName(m.potm) : '', subC: m.st === 'up' ? 'var(--mute,#6B6B72)' : '#fff',
+          fg: ms === 'up' ? 'var(--ink,#0B0B0F)' : '#fff', op: 1, face, ...potmLook(pm, o[1] > o[3] ? 'left' : 'right', done && logoBg(o[1] > o[3] ? o[2] : o[0], true)),
+          sub: ms === 'live' ? '● LIVE' : wait ? '곧 시작' : ms === 'up' ? (m.tbd ? '시간 미정' : hmOf(m) + ' 시작') : m.potm && !SP ? 'POTM ' + potmName(m.potm) : '', subC: ms === 'up' ? 'var(--mute,#6B6B72)' : '#fff',
           // every card the same dark grey (not faded); the one being looked at turns black and lifts off the page
-          bd: sel && m.st !== 'live' ? '2px solid #0B0B0F' : m.st === 'live' ? '2px solid #FF5A4F' : m.st === 'up' ? '2px dashed var(--mute,#9A9AA0)' : '2px solid rgba(255,255,255,.1)',
-          go: () => { if (m.st === 'up') return; this.setState({ pick: m.id, mapsShown: true }); const t = document.getElementById('today'); t && t.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }; }),
+          bd: sel && ms !== 'live' ? '2px solid #0B0B0F' : ms === 'live' ? '2px solid #FF5A4F' : ms === 'up' ? '2px dashed var(--mute,#9A9AA0)' : '2px solid rgba(255,255,255,.1)',
+          go: () => { if (ms === 'up') return; this.setState({ pick: m.id, mapsShown: true }); const t = document.getElementById('today'); t && t.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }; }),
       next3: upcoming.filter((m) => m !== hero && m.day !== today).slice(0, 3).map((m) => ({ when: whenOf(m), a: m.a === 'TBD' ? '미정' : m.a, b: m.b === 'TBD' ? '미정' : m.b, gcal: gcalOf(m), la: logoBg(m.a, this.state.dark), lb: logoBg(m.b, this.state.dark) })),
       standNote: STAGE_SHORT + ' 정규 리그 · ' + (rsOver ? '최종 순위' : md(new Date(now).toISOString()) + ' 기준') + ' · ' + D.format.split(' · ').pop(),
       showBracket, bk, spoilAttr: SP ? '1' : '0',
