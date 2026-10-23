@@ -1181,20 +1181,30 @@ const applyLive = (today) => {
     // the relay comes in time order, so its newest reading stands even when lower (10-23: a 0-3 misread, then the real 1-0),
     // but only over a score the relay itself put there: never below Liquipedia's in owcs-data.js (a map the PC missed)
     const fromRelay = m._relay && m._relay[0] === m.sa && m._relay[1] === m.sb;
-    if (!sc || (!(LIVE.relay.scores && fromRelay) && sc.sa + sc.sb < (m.sa || 0) + (m.sb || 0)) || (sc.sa === m.sa && sc.sb === m.sb)) return;
-    if (LIVE.relay.scores) m._relay = [sc.sa, sc.sb];
-    if (sc.sa + sc.sb < (m.sa || 0) + (m.sb || 0)) {
-      m.maps = m.maps.filter((x) => x.src || x.map);
-      m.maps.forEach((x) => { x.winner = null; });   // the history below gives them back (Liquipedia's maps carry a map score while still on)
-      if (m.played) { m.played = false; m.live = true; }
+    if (!sc || (!(LIVE.relay.scores && fromRelay) && sc.sa + sc.sb < (m.sa || 0) + (m.sb || 0))) return;
+    const same = sc.sa === m.sa && sc.sb === m.sb;
+    if (!same) {
+      if (LIVE.relay.scores) m._relay = [sc.sa, sc.sb];
+      if (sc.sa + sc.sb < (m.sa || 0) + (m.sb || 0)) {
+        m.maps = m.maps.filter((x) => x.src || x.map);
+        m.maps.forEach((x) => { x.winner = null; });   // the history below gives them back (Liquipedia's maps carry a map score while still on)
+        if (m.played) { m.played = false; m.live = true; }
+      }
+      m.sa = sc.sa; m.sb = sc.sb; changed = true;
     }
-    m.sa = sc.sa; m.sb = sc.sb; changed = true;
+    // each reading is the whole history: a map winner an earlier reading gave and this one does not is taken back,
+    // also when the series score did not move (10-23: the 0-3 misread's "map 2 = O2" outlived the real 1-0
+    // and showed as O2 3:2 while CB led 2:1). With the same series score, a winner from elsewhere (Liquipedia) stays.
+    const was = JSON.stringify(m.maps.map((x) => [x.no, x.winner]));
+    m.maps = m.maps.filter((x) => !x._sw || x.src || x.map);
+    m.maps.forEach((x) => { if (x._sw) { x.winner = null; x._sw = false; } });
     (sc.history || []).forEach((h) => {
       const x = m.maps.find((y) => y.no === h.map);
-      if (x) x.winner = h.winner;
-      else m.maps.push({ no: h.map, map: '', mode: '', winner: h.winner, bans: [] });
+      if (x) { if (!same || !x.winner) { x.winner = h.winner; x._sw = true; } }
+      else m.maps.push({ no: h.map, map: '', mode: '', winner: h.winner, bans: [], _sw: true });
     });
     m.maps.sort((p, q) => p.no - q.no);
+    if (JSON.stringify(m.maps.map((x) => [x.no, x.winner])) !== was) changed = true;
     if (Math.max(sc.sa, sc.sb) >= Math.floor((m.bo || 5) / 2) + 1) { m.played = true; m.live = false; }
   });
   // broadcast crew read off the waiting screen before the first set (caster_watch.py)
@@ -1316,12 +1326,15 @@ const liveRelay = (onChange) => {
   if (!window.EventSource || !(window.crypto && crypto.subtle)) return;
   const key = crypto.subtle.importKey('jwk', RELAY.jwk, { name: 'ECDSA', namedCurve: 'P-256' }, false, ['verify']);
   const es = new EventSource('https://ntfy.sh/' + RELAY.topic + '/sse?since=12h');
+  // one at a time, in arrival order: on page load the last 12 h replay at once, and checks that finish out of order
+  // would let an old reading land after a newer one
+  let queue = Promise.resolve();
   es.onmessage = (e) => {
     let body;
     try { body = JSON.parse(JSON.parse(e.data).message); } catch (x) { return; }
     if (!body || typeof body.p !== 'string' || typeof body.s !== 'string') return;
     const sig = Uint8Array.from(atob(body.s), (ch) => ch.charCodeAt(0));
-    key.then((k) => crypto.subtle.verify({ name: 'ECDSA', hash: 'SHA-256' }, k, sig, new TextEncoder().encode(body.p))).then((ok) => {
+    queue = queue.then(() => key).then((k) => crypto.subtle.verify({ name: 'ECDSA', hash: 'SHA-256' }, k, sig, new TextEncoder().encode(body.p))).then((ok) => {
       if (!ok) return;
       const pl = JSON.parse(body.p);
       if (pl.k === 'scores') { LIVE.scores = pl.d; LIVE.relay.scores = true; }
