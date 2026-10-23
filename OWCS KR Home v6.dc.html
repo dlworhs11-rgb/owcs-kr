@@ -1185,7 +1185,7 @@ const applyLive = (today) => {
     if (LIVE.relay.scores) m._relay = [sc.sa, sc.sb];
     if (sc.sa + sc.sb < (m.sa || 0) + (m.sb || 0)) {
       m.maps = m.maps.filter((x) => x.src || x.map);
-      m.maps.forEach((x) => { if (x.src !== 'liquipedia' || x.sa == null) x.winner = null; });
+      m.maps.forEach((x) => { x.winner = null; });   // the history below gives them back (Liquipedia's maps carry a map score while still on)
       if (m.played) { m.played = false; m.live = true; }
     }
     m.sa = sc.sa; m.sb = sc.sb; changed = true;
@@ -1252,7 +1252,7 @@ const applyLive = (today) => {
       if (o.force) {
         const keep = m.maps.filter((x) => x.src || x.map);
         if (keep.length !== m.maps.length) { m.maps = keep; changed = true; }
-        m.maps.forEach((x) => { const w = ((o.maps || {})[x.no] || {}).winner || null; if (x.src !== 'liquipedia' || x.sa == null) { if (x.winner !== w) { x.winner = w; changed = true; } } });
+        m.maps.forEach((x) => { const w = ((o.maps || {})[x.no] || {}).winner || null; if (x.winner !== w) { x.winner = w; changed = true; } });
       }
       Object.entries(o.maps || {}).forEach(([no, y]) => {
         no = +no;

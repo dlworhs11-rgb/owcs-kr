@@ -412,6 +412,11 @@ def build_matches(stage):
         maps = lp_maps(m)
         sa, sb, played, potm, live = m['score1'], m['score2'], m['played'], m.get('potm'), False
         need = (m.get('bestof') or (7 if m['phase'] == 'po' else 5)) // 2 + 1   # maps to win the series
+        # Liquipedia's 'played' is "a map has a winner" (collector/liquipedia.mjs), not "over": 10-23 it had CB-O2 at
+        # 1-0 as played, the live 1-0 was not ahead of it, so the match stayed over and the home page put the next one
+        # LIVE. Over = a side has the maps to win; short of that a match from the last 12 hours is still on
+        if played and max(sa or 0, sb or 0) < need and datetime.datetime.now(KST) - dt < datetime.timedelta(hours=12):
+            played, live = False, True
         if lv and lv['maps']:
             # broadcast capture: fill in maps Liquipedia does not have yet, and the live series score
             lmaps = sorted(lv['maps'], key=lambda x: x.get('game') or 0)
