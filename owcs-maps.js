@@ -12,6 +12,7 @@
   const MAP_FILE = { 'antarctic-peninsula': 'antarctic', 'throne-of-anubis': 'anubis', 'aatlis': 'atlis', 'watchpoint-gibraltar': 'gibraltar', 'kings-row': 'kings-row', 'route-66': 'route66', 'shambali-monastery': 'shambali' };
   const WIN_AT = Object.fromEntries([...['Antarctic Peninsula', 'Busan', 'Ilios', 'Lijiang Tower', 'Nepal', 'Oasis', 'Samoa'].map((n) => [n, 2]),
     ...['New Junk City', 'Suravasa', 'Aatlis'].map((n) => [n, 3])]);   // first to this many wins the map
+  const PUSH_MAPS = ['colosseo', 'esperanca', 'new queen street', 'runasapphire'];
   const MAP_HAVE = 'antarctic anubis atlis blizzard-world busan circuit-royal colosseo dorado eichenwalde esperanca gibraltar gridsbolten hanaoka havana hollywood ilios junkertown kings-row lijiang-tower lunasapphire midtown nepal neon-junction new-junk-city new-queen-street numbani oasis paraiso rialto route66 samoa shambali suravasa'.split(' ');
   const mapBg = (name, short) => { const k0 = deaccent(name).toLowerCase().replace(/[.:']/g, '').trim().replace(/\s+/g, '-'); const k = MAP_FILE[k0] || k0;
     return MAP_HAVE.includes(k) ? "linear-gradient(90deg, #15151B 0, #15151B calc(100% - " + (short ? 215 : 330) + "px), rgba(21,21,27,.3) calc(100% - " + (short ? 90 : 140) + "px), rgba(21,21,27,.25) 100%), url('assets/maps/" + k + ".webp') right center / auto 100% no-repeat, #15151B" : 'transparent'; };
@@ -46,6 +47,7 @@
       // Control / Flashpoint end at a fixed score (2 / 3): once the map's winner is known, its score is that, even when
       // the HUD could not be read (Flashpoint shows points as dots, not digits: 10-18 map 3 stayed at 0 : 0)
       const tgt = WIN_AT[x.map] || { '쟁탈': 2, '플래시포인트': 3 }[x.mode];
+      const push = x.mode === '밀기' || PUSH_MAPS.includes(deaccent(x.map).toLowerCase());   // the mode is blank on some live rows
       let sa = x.sa, sb = x.sb;
       if (tgt && x.winner === 'a' && (sa == null || sa < tgt)) { sa = tgt; sb = Math.min(sb || 0, tgt - 1); }
       if (tgt && x.winner === 'b' && (sb == null || sb < tgt)) { sb = tgt; sa = Math.min(sa || 0, tgt - 1); }
@@ -56,9 +58,10 @@
         winner: SP ? '?' : (w || '–'), wlogo: SP || !w ? '' : logoOf(w), score: SP || !w ? '' : score,
         // the phone row shows the winner's number in lime and the loser's in grey (winner's number first)
         scoreHi: SP || !w || !score ? '' : score.split(' : ')[0], scoreLo: SP || !w || !score ? '' : score.split(' : ')[1],
-        // map still being played: the HUD score so far, team a first like the rows below (Control 1 : 1)
-        liveScore: SP || !recording || x.sa == null || x.sb == null ? '' : m.a + ' ' + pts(x.sa) + ' : ' + pts(x.sb) + ' ' + m.b,
-        liveScoreShort: SP || !recording || x.sa == null || x.sb == null ? '' : pts(x.sa) + ' : ' + pts(x.sb),
+        // map still being played: the HUD score so far, team a first like the rows below (Control 1 : 1).
+        // Not on Push: its mid-map number is a distance that swings back and forth, so the chip stands alone
+        liveScore: SP || !recording || push || x.sa == null || x.sb == null ? '' : m.a + ' ' + pts(x.sa) + ' : ' + pts(x.sb) + ' ' + m.b,
+        liveScoreShort: SP || !recording || push || x.sa == null || x.sb == null ? '' : pts(x.sa) + ' : ' + pts(x.sb),
         done: !!w || m.st === 'done', recording, bg: mapBg(x.map), bgS: mapBg(x.map, true),
         chev: open ? '−' : '+', isOpen: open, showBans: open && showBans && x.bans.length > 0, showComps: open && comps.length > 0,
         showRec: open && !comps.length && !o.noComps, comps,
