@@ -1178,7 +1178,13 @@ const applyLive = (today) => {
     // POTM read off the broadcast card (score_watch.py), as soon as it is pushed
     if (sc && sc.potm && m.potm !== sc.potm) { m.potm = sc.potm; changed = true; }
     // a newer reading, or a corrected one (same number of maps, a misread map given back to the other team)
-    if (!sc || sc.sa + sc.sb < (m.sa || 0) + (m.sb || 0) || (sc.sa === m.sa && sc.sb === m.sb)) return;
+    // the relay comes in time order, so its newest reading stands even when lower (10-23: a 0-3 misread, then the real 1-0)
+    if (!sc || (!LIVE.relay.scores && sc.sa + sc.sb < (m.sa || 0) + (m.sb || 0)) || (sc.sa === m.sa && sc.sb === m.sb)) return;
+    if (sc.sa + sc.sb < (m.sa || 0) + (m.sb || 0)) {
+      m.maps = m.maps.filter((x) => x.src || x.map);
+      m.maps.forEach((x) => { if (x.src !== 'liquipedia' || x.sa == null) x.winner = null; });
+      if (m.played) { m.played = false; m.live = true; }
+    }
     m.sa = sc.sa; m.sb = sc.sb; changed = true;
     (sc.history || []).forEach((h) => {
       const x = m.maps.find((y) => y.no === h.map);
@@ -1243,7 +1249,7 @@ const applyLive = (today) => {
       if (o.force) {
         const keep = m.maps.filter((x) => x.src || x.map);
         if (keep.length !== m.maps.length) { m.maps = keep; changed = true; }
-        m.maps.forEach((x) => { const w = ((o.maps || {})[x.no] || {}).winner || null; if (x.src !== 'liquipedia' || !x.sa) { if (x.winner !== w) { x.winner = w; changed = true; } } });
+        m.maps.forEach((x) => { const w = ((o.maps || {})[x.no] || {}).winner || null; if (x.src !== 'liquipedia' || x.sa == null) { if (x.winner !== w) { x.winner = w; changed = true; } } });
       }
       Object.entries(o.maps || {}).forEach(([no, y]) => {
         no = +no;
