@@ -10,7 +10,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@800&amp;display=swap" rel="stylesheet">
 <style>
 :root{--bg:#F1EDE5;--ink:#0B0B0F;--mute:#6B6B72;--line:#E6E6E1;--lime:#C6FF33}
-@media (prefers-color-scheme: dark){:root{--bg:#13110E;--ink:#F2F2F5;--mute:#A3A3AD;--line:#2E2E37}}
 html[data-dark]{--bg:#13110E;--ink:#F2F2F5;--mute:#A3A3AD;--line:#2E2E37}
 html[data-light]{--bg:#F1EDE5;--ink:#0B0B0F;--mute:#6B6B72;--line:#E6E6E1}
 *{box-sizing:border-box}
@@ -32,8 +31,8 @@ nav a{color:var(--mute);text-decoration:none;padding:6px 2px}
 nav a:hover,nav a:focus-visible{color:var(--ink)}
 </style>
 <script>
-// same dark-mode choice as the rest of the site (localStorage 'owcs-dark' = '1' / '0'); nothing picked: follow the system
-try { var v = localStorage.getItem('owcs-dark'); if (v === '1') document.documentElement.setAttribute('data-dark', ''); else if (v === '0') document.documentElement.setAttribute('data-light', ''); } catch (e) {}
+// same dark-mode choice as the rest of the site (sessionStorage 'owcs-dark' = '1' / '0'); nothing picked this visit: light
+try { var v = sessionStorage.getItem('owcs-dark'); if (v === '1') document.documentElement.setAttribute('data-dark', ''); else if (v === '0') document.documentElement.setAttribute('data-light', ''); } catch (e) {}
 </script>
 </head>
 <body>

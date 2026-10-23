@@ -270,7 +270,7 @@
     });
   }
 
-  function isDark() { try { var v = localStorage.getItem('owcs-dark'); return v === null ? !!(window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) : v === '1'; } catch (e) { return document.documentElement.hasAttribute('data-owcs-dark'); } }
+  function isDark() { try { return sessionStorage.getItem('owcs-dark') === '1'; } catch (e) { return document.documentElement.hasAttribute('data-owcs-dark'); } }
 
   function ticket() {
     var s = document.createElement('section');
@@ -307,7 +307,7 @@
   function darkToggle(after) {
     var own = ownBtn(DK_RE);
     if (own) { own.click(); setTimeout(after, 60); return; }
-    try { localStorage.setItem('owcs-dark', isDark() ? '0' : '1'); } catch (e) {}
+    try { sessionStorage.setItem('owcs-dark', isDark() ? '0' : '1'); } catch (e) {}
     location.reload();
   }
 
@@ -402,7 +402,7 @@
       '<button class="sw sp"><span class="tr"><span class="kn"></span></span>' + T.spoiler + '</button>' +
       '<button class="sw dk' + (dark ? ' on' : '') + '"><span class="tr"><span class="kn"></span></span>' + T.dark + '</button></div>';
     m.querySelector('.hm').onclick = function () { m.classList.toggle('open'); };
-    m.querySelector('.dk').onclick = function () { try { localStorage.setItem('owcs-dark', isDark() ? '0' : '1'); } catch (e) {} location.reload(); };
+    m.querySelector('.dk').onclick = function () { try { sessionStorage.setItem('owcs-dark', isDark() ? '0' : '1'); } catch (e) {} location.reload(); };
     var spb = m.querySelector('.sp');
     spb.onclick = function () { spToggle(function () { syncSpoiler(m); }); };
     syncSpoiler(m);

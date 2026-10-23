@@ -1,13 +1,12 @@
 // Site-wide dark mode for the pages other than home (results, player, tickets, streams).
-// The choice is shared with the home page's 다크 모드 switch (localStorage 'owcs-dark' = '1' / '0'),
-// so whatever was picked last stays on every page and on the next visit. ?dark=1 / ?dark=0 also sets it.
+// The choice is shared with the home page's 다크 모드 switch (sessionStorage 'owcs-dark' = '1' / '0'),
+// so the pick stays while browsing; a new visit always opens light. ?dark=1 / ?dark=0 also sets it.
 (function () {
   var KEY = 'owcs-dark';
   var q = new URLSearchParams(location.search).get('dark');
   var on = false;
-  // nothing picked yet: follow the phone / computer setting (a half-dark page came from Safari darkening the light one)
-  var sys = !!(window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches);
-  try { if (q === '1' || q === '0') localStorage.setItem(KEY, q); var v = localStorage.getItem(KEY); on = v === null ? sys : v === '1'; } catch (e) { on = q ? q === '1' : sys; }
+  var sys = false;   // nothing picked this visit: light
+  try { if (q === '1' || q === '0') sessionStorage.setItem(KEY, q); var v = sessionStorage.getItem(KEY); on = v === null ? sys : v === '1'; } catch (e) { on = q ? q === '1' : sys; }
   var html = document.documentElement;
   if (on) html.setAttribute('data-owcs-dark', '');
 
@@ -78,7 +77,7 @@
     b.textContent = on ? '☀ 라이트 모드' : '☾ 다크 모드';
     b.style.cssText = 'position:fixed;right:16px;bottom:60px;z-index:60;height:34px;padding:0 14px;border-radius:999px;cursor:pointer;font:600 13px/1 Pretendard,system-ui,sans-serif;'
       + (on ? 'background:#F2F2F5;color:#0B0B0F;border:1px solid #F2F2F5' : 'background:#0B0B0F;color:#fff;border:1px solid #0B0B0F') + ';box-shadow:0 4px 18px rgba(0,0,0,.12)';
-    b.onclick = function () { try { localStorage.setItem(KEY, on ? '0' : '1'); } catch (e) {} location.reload(); };
+    b.onclick = function () { try { sessionStorage.setItem(KEY, on ? '0' : '1'); } catch (e) {} location.reload(); };
     document.body.appendChild(b);
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', button); else button();
