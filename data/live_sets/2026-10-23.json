@@ -641,7 +641,16 @@
     "Crazy Raccoon": 2,
     "SEIJI ESPORTS": 0
    },
-   "bans": null,
+   "bans": {
+    "initial": {
+     "team": "SEIJI ESPORTS",
+     "hero": "doctrine"
+    },
+    "followUp": {
+     "team": "Crazy Raccoon",
+     "hero": "bastion"
+    }
+   },
    "src": "SOOP"
   }
  ]
