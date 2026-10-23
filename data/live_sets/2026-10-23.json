@@ -327,7 +327,16 @@
     "Team Falcons": 1,
     "ZANSIDE GAMING": 0
    },
-   "bans": null,
+   "bans": {
+    "initial": {
+     "team": "ZANSIDE GAMING",
+     "hero": "doctrine"
+    },
+    "followUp": {
+     "team": "Team Falcons",
+     "hero": "bastion"
+    }
+   },
    "src": "SOOP"
   }
  ]
