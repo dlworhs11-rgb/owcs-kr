@@ -5,7 +5,8 @@
   // hero portraits and map art (assets copied from the scrim dashboard)
   const HERO_IMG = Object.fromEntries('ana anran ashe baptiste bastion brigitte cassidy dmon doctrine domina doomfist dva echo emre freja genji hanzo hazard illari jetpack-cat junker-queen junkrat juno kiriko lifeweaver lucio mauga mei mercy mizuki moira orisa pharah ramattra reaper reinhardt roadhog shion sierra sigma sojourn soldier-76 sombra symmetra torbjorn tracer vendetta venture widowmaker winston wrecking-ball wuyang zarya zenyatta'.split(' ').map((k) => [k, 1]));
   const deaccent = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-  const heroKey = (h) => deaccent(h).toLowerCase().replace(/[.:']/g, '').trim().replace(/\s+/g, '-');
+  const HERO_COMPACT = Object.fromEntries(Object.keys(HERO_IMG).map((k) => [k.replace(/-/g, ''), k]));   // 'junkerqueen' -> 'junker-queen'
+  const heroKey = (h) => { const k = deaccent(h).toLowerCase().replace(/[.:']/g, '').trim().replace(/\s+/g, '-'); return HERO_IMG[k] ? k : HERO_COMPACT[k.replace(/-/g, '')] || k; };
   const heroCode = (h) => String(h || '?').replace(/[^A-Za-z]/g, '').slice(0, 3).toUpperCase();
   const heroBg = (h) => HERO_IMG[heroKey(h)] ? "url('assets/heroes/" + heroKey(h) + ".png') center / cover no-repeat, #1B1B21" : 'repeating-linear-gradient(135deg,#24242B 0 4px,#1B1B21 4px 8px)';
   const MAP_FILE = { 'antarctic-peninsula': 'antarctic', 'throne-of-anubis': 'anubis', 'aatlis': 'atlis', 'watchpoint-gibraltar': 'gibraltar', 'kings-row': 'kings-row', 'route-66': 'route66', 'shambali-monastery': 'shambali' };
@@ -14,7 +15,9 @@
   const MAP_HAVE = 'antarctic anubis atlis blizzard-world busan circuit-royal colosseo dorado eichenwalde esperanca gibraltar gridsbolten hanaoka havana hollywood ilios junkertown kings-row lijiang-tower lunasapphire midtown nepal neon-junction new-junk-city new-queen-street numbani oasis paraiso rialto route66 samoa shambali suravasa'.split(' ');
   const mapBg = (name, short) => { const k0 = deaccent(name).toLowerCase().replace(/[.:']/g, '').trim().replace(/\s+/g, '-'); const k = MAP_FILE[k0] || k0;
     return MAP_HAVE.includes(k) ? "linear-gradient(90deg, #15151B 0, #15151B calc(100% - " + (short ? 215 : 330) + "px), rgba(21,21,27,.3) calc(100% - " + (short ? 90 : 140) + "px), rgba(21,21,27,.25) 100%), url('assets/maps/" + k + ".webp') right center / auto 100% no-repeat, #15151B" : 'transparent'; };
-  const heroName = (h) => { const k = (h || '').toLowerCase(), en = (h || '').replace(/\b\w/g, (c) => c.toUpperCase()); return HERO_KO[k] && !(window.OWCSi18n && window.OWCSi18n.lang !== 'ko') ? HERO_KO[k] + ' · ' + en : en; };
+  const heroName = (h) => { let k = (h || '').toLowerCase(), en = h || '';
+    if (!HERO_KO[k]) { const c = heroKey(h).replace(/-/g, ' '); if (HERO_KO[c]) k = en = c; }
+    en = en.replace(/\b\w/g, (c) => c.toUpperCase()); return HERO_KO[k] && !(window.OWCSi18n && window.OWCSi18n.lang !== 'ko') ? HERO_KO[k] + ' · ' + en : en; };
   const pad = (n) => String(n).padStart(2, '0');
   // push maps report distance in metres; everything else is a round count
   const pts = (v) => (v == null ? '' : Number.isInteger(+v) ? String(v) : (+v).toFixed(1) + 'm');
