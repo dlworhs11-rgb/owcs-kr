@@ -181,6 +181,93 @@ html[data-owcs-dark] .eyebrow{color:#A3A3AD}
 .csbox .tie{margin:0 22px 22px;padding:12px 14px;border-radius:12px;background:var(--soft);font-size:13px;color:var(--mute);line-height:1.5}
 @media (max-width:899.98px){.csbox{border-radius:18px;margin-bottom:18px}.csbox>h2{padding:14px 14px 8px;font-size:17px}.cr{padding:12px 14px;grid-template-columns:24px minmax(0,1fr) auto}.cr i.lg{width:24px;height:24px}.cr b{font-size:15px}.cr p{font-size:13px}.ct{font-size:12px}.csbox .ms{padding:4px 14px 14px}.csbox .tie{margin:0 14px 14px}}
 html[data-owcs-dark] .ct.out{background:#24242C}
+
+/* the home page's calendar + list under the tabs (user, 10-23: "same as the home page", without its SCHEDULE title,
+   with the Apple / Google subscribe buttons). Phone: the home's small calendar, tap a day to mark it, no list */
+.calsec{--p3:#F1F1ED;margin-top:56px}
+.calhd,.calg{display:grid;grid-template-columns:minmax(0,2.3fr) minmax(0,1fr);gap:28px}
+.calhd{margin-bottom:16px}
+.calg{align-items:start}
+.subs{position:relative;display:flex;flex-wrap:wrap;justify-content:flex-end;gap:10px}
+.subb{display:flex;align-items:center;gap:8px;height:48px;padding:0 18px;border-radius:12px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font:inherit;font-size:15px;font-weight:600;cursor:pointer;white-space:nowrap}
+.subb img,.subb svg{width:18px;height:18px}
+.subb .sh{display:none}
+.subov{position:fixed;inset:0;z-index:40}
+.subpop{position:absolute;top:calc(100% + 10px);right:0;z-index:41;width:360px;padding:18px;border-radius:22px;background:var(--panel);color:var(--ink);border:1px solid var(--line);box-shadow:0 18px 50px rgba(0,0,0,.18);text-align:left}
+.subpop>b{display:block;font-size:16px}
+.subpop .seg{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:12px;padding:4px;border-radius:14px;background:var(--p3)}
+.subpop .seg button{height:38px;border:0;border-radius:10px;font:inherit;font-size:14px;font-weight:700;cursor:pointer;background:transparent;color:var(--ink)}
+.subpop .seg button.on{background:var(--panel)}
+.subpop .hint{font-size:13px;color:var(--mute);margin:12px 0 8px}
+.subpop .tg5{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.subpop .tg5 button{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 2px;border-radius:12px;cursor:pointer;font:inherit;font-size:11px;font-weight:700;color:var(--ink);background:var(--panel);border:1px solid var(--line)}
+.subpop .tg5 i.lg{width:28px;height:28px}
+.subpop .lk{display:flex;flex-direction:column;gap:6px;margin-top:14px}
+.subpop .lk a{display:flex;align-items:center;gap:10px;height:44px;padding:0 14px;border-radius:12px;background:#0B0B0F;color:#fff;text-decoration:none;font-size:14px;font-weight:700}
+.subpop .lk a img{width:18px;height:18px;border-radius:4px;background:#fff}
+.subpop .lk a svg{width:18px;height:18px}
+.subpop .lk a span{margin-left:auto}
+.subpop .lk>button{display:flex;align-items:center;height:44px;padding:0 14px;border-radius:12px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font:inherit;font-size:14px;font-weight:700;cursor:pointer}
+.subpop .dup{font-size:13px;line-height:1.5;color:#D93025}
+.subpop .none{font-size:13px;color:var(--mute)}
+.subpop .sn{font-size:12px;line-height:1.5;color:var(--mute);margin-top:10px}
+.calbox{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:24px}
+.calbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.calbar b{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:32px}
+.calbar div{display:flex;gap:6px}
+.calbar button{width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--panel);font-size:18px;cursor:pointer;color:var(--ink)}
+.cgrid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+.cgrid .wd{font-size:13px;font-weight:600;color:var(--dim);padding:0 8px 6px}
+.cc{position:relative;min-width:0;min-height:96px;margin:0;border-radius:12px;padding:6px 5px;display:flex;flex-direction:column;gap:4px;border:1px solid var(--line);background:transparent;font:inherit;color:inherit;text-align:left;cursor:default}
+.cc .d{height:28px;display:flex;align-items:center;padding-left:4px;font-size:14px;font-weight:600}
+.cc .d.td{width:28px;padding:0;justify-content:center;border-radius:50%;background:#0B0B0F;font-weight:700}
+.cc .tg{position:absolute;top:12px;right:7px;max-width:calc(100% - 44px);font-size:11px;font-weight:800;line-height:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gm{display:flex;align-items:center;gap:1px;white-space:nowrap;overflow:hidden;padding:3px 4px;border-radius:6px;background:var(--p3);font-family:'Barlow Condensed',sans-serif;font-size:11.5px;font-weight:600;line-height:14px}
+.gm.now{background:var(--ac2);color:#0B0B0F;font-weight:700}
+.gm i.lg{width:12px;height:12px}
+.gm i.lg:first-child{margin-right:1px}
+.gm i.lg:last-child{margin-left:1px}
+.gm .v{opacity:.55;font-size:11px;padding:0 2px}
+.gmm{display:none}
+.clist{display:flex;flex-direction:column;gap:10px}
+.clist .hd{display:flex;justify-content:space-between;align-items:baseline;padding:4px 4px 6px}
+.clist .hd b{font-size:18px}
+.clist .hd span{font-size:13px;color:var(--dim)}
+.lc{display:grid;grid-template-columns:72px minmax(0,1fr) 64px;align-items:center;gap:12px;padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-radius:16px}
+.lc .dt b{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:26px;line-height:1}
+.lc .dt small{display:block;font-size:12px;color:var(--dim);margin-top:3px;white-space:nowrap}
+.lc .tm{display:flex;align-items:center;gap:10px;min-width:0}
+.lc .tm i.lg{width:32px;height:32px}
+.lc .tm span{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:22px}
+.lc .tm .mid{font-size:18px;color:var(--dim);padding:0 2px;white-space:nowrap}
+.lc .st{display:flex;justify-content:flex-end}
+@media (max-width:899.98px){
+  .calsec{margin-top:36px}
+  .calhd,.calg{grid-template-columns:minmax(0,1fr)}
+  .calhd{margin-bottom:12px}
+  .subs{gap:6px}
+  .subb{gap:5px;height:34px;padding:0 10px;font-size:12.5px;font-weight:700}
+  .subb img,.subb svg{width:14px;height:14px}
+  .subb .lg2{display:none}
+  .subb .sh{display:inline}
+  .subpop{top:calc(100% + 8px);left:0;width:auto}
+  .calbox{border-radius:16px;padding:10px 4px 8px}
+  .calbar{margin-bottom:6px;padding:0 4px}
+  .calbar b{font-size:22px}
+  .calbar button{width:34px;height:34px;border-radius:10px;font-size:16px}
+  .cgrid{gap:2px}
+  .cgrid .wd{font-size:11px;text-align:center;padding:0 0 3px}
+  .cc{min-height:52px;border-radius:9px;padding:3px 0;align-items:center;gap:2px;border-color:transparent;text-align:center;overflow:hidden}
+  .cc.has{border-color:var(--line);cursor:pointer}
+  .cc.sel{background:var(--p3);border:2px solid var(--ink)}
+  .cc .d,.cc .d.td{width:22px;height:22px;padding:0;justify-content:center;border-radius:50%;font-size:12px;font-weight:700}
+  .cc .tg,.gm{display:none}
+  .gmm{display:flex;align-items:center;justify-content:center;gap:1px;width:100%}
+  .gmm i.lg{width:12px;height:12px}
+  .gmm span{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;line-height:12px;white-space:nowrap;padding:0 1px;letter-spacing:-.02em}
+  .clist{display:none}
+}
+html[data-owcs-dark] .calsec{--p3:#24242C}
 </style>
 <script src="./owcs-nav.js"></script>
 </head>
@@ -205,6 +292,7 @@ html[data-owcs-dark] .ct.out{background:#24242C}
   </div>
   <div id="list"></div>
   <div class="note">모든 시간 KST · 시간 미정 경기는 Liquipedia에 시간이 올라오면 바뀌어요.</div>
+  <section class="calsec" id="cal"></section>
 </main>
 <footer class="owft"><div class="wrap ft-g"><div><div class="ft-logo"><span class="owt"><b>OW</b>TICKER</span></div><div class="ft-desc">OWCS 한국 경기의 일정, 결과, 선수 정보를 한국 팬을 위해 한곳에 모았어요.</div><div class="ft-ch"><span class="ft-k">OWCS 공식 채널</span><a href="https://x.com/OW_Esports_Asia" target="_blank" rel="noopener"><img src="assets/icons/x.png" alt="">X</a><a href="https://www.instagram.com/ow_esports_kr/" target="_blank" rel="noopener"><img src="assets/icons/instagram.png" alt="">Instagram</a><a href="https://www.sooplive.co.kr/station/owesports" target="_blank" rel="noopener"><img src="assets/icons/soop.png" alt="">SOOP 방송국</a></div></div><div><div class="ft-k">문의</div><a class="ft-mail" href="mailto:dlworhs26@gmail.com" style="display:flex;align-items:center;gap:8px;text-decoration:none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>dlworhs26@gmail.com</a><a class="ft-mail" href="https://discord.gg/EEWwKmxKA5" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;margin-left:0;padding:0;text-decoration:none"><img src="assets/icons/discord.png" alt="" style="width:22px;height:22px;border-radius:6px;margin:0;flex:none">OWticker 팬 디스코드 · 피드백</a></div><div class="ft-note">일정은 Liquipedia에서 10분마다 가져와요. 비공식 팬 사이트입니다. Blizzard Entertainment, WDG, 각 팀과 제휴하거나 승인받지 않았습니다. Overwatch®와 영웅 이미지는 Blizzard Entertainment, Inc.의 상표·저작물이고, 팀 로고와 선수 사진의 권리는 각 소유자에게 있으며 요청하면 바로 내립니다.</div></div></footer>
 
@@ -443,6 +531,142 @@ html[data-owcs-dark] .ct.out{background:#24242C}
   };
   show(cur);
   setTeam(F.team);
+
+  // ---- calendar + list under the tabs: the home page's (same rules: no past days, live by the clock, the subscribe sheet) ----
+  var calEl = document.getElementById('cal');
+  var scored = function (m) { return m.played && (m.sa || m.sb); };
+  // the home page's state: live by the clock once the day's match before it has a score; no score by midnight = over
+  function cstate(m) {
+    if (m.live) return 'live';
+    if (scored(m)) return 'done';
+    var t0 = new Date(m.date).getTime(), day = kstDay(t0);
+    if (nowMs >= new Date(day + 'T00:00:00+09:00').getTime() + 864e5) return 'done';
+    var prev = all.filter(function (x) { return x !== m && kstDay(new Date(x.date).getTime()) === day && new Date(x.date).getTime() < t0; })
+      .sort(function (x, y) { return new Date(y.date) - new Date(x.date); })[0];
+    if (!prev) return nowMs >= t0 ? 'live' : 'up';
+    return scored(prev) ? 'live' : 'up';
+  }
+  var CM = all.filter(function (m) { return m.phase !== 'intl'; }).map(function (m) { var st = cstate(m); return Object.assign({}, m, { st: st, nr: st === 'done' && !scored(m) }); });
+  var cUp = CM.filter(function (m) { return m.st === 'up'; }), cNext = cUp[0];
+  var cToday = CM.filter(function (m) { return m.day === today; });
+  var mdOf = function (day) { return day.slice(5).replace('-', '.'); };
+  var dowOf = function (day) { return DOWS[new Date(day + 'T00:00:00Z').getUTCDay()]; };
+  var tmOf = function (m) { return m.tbd ? '시간 미정' : (window.OWCSi18n && OWCSi18n.hm ? OWCSi18n.hm(m.date, m.time) : m.time); };
+  var hideSc = function (m) { return m.st === 'up' || SP || m.nr; };
+  var APPLE = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>';
+  var GCAL = '<img src="assets/icons/gcal.png" alt="">';
+  // subscription feeds: owcs-kr-upcoming[-teams].ics next to the page (same files and links as the home page)
+  var IOS = /iPhone|iPad|iPod/.test(navigator.userAgent) || (/Macintosh/.test(navigator.userAgent) && navigator.maxTouchPoints > 1);
+  var ANDROID = /Android/.test(navigator.userAgent);
+  var APPLE_OK = !/Windows|Android/.test(navigator.userAgent);
+  var calFile = function (a) { var l = [].concat(a || []).map(function (x) { return x.toLowerCase(); }).sort(); return 'owcs-kr-upcoming' + (l.length && l.length < D.teams.length ? '-' + l.join('-') : '') + '.ics'; };
+  var calFeed = function (a) { return location.host + location.pathname.replace(/[^/]*$/, '') + calFile(a); };
+  var calUrl = function (a, to) { return !/^https:$/.test(location.protocol) ? calFile(a)
+    : to === 'apple' ? 'webcal://' + calFeed(a) : 'https://calendar.google.com/calendar/r?cid=' + encodeURIComponent('webcal://' + calFeed(a)); };
+  var subPrev = function () { try { var v = JSON.parse(localStorage.getItem('owcs-subbed') || 'null'); return v === 'ALL' || Array.isArray(v) ? v : null; } catch (e) { return null; } };
+  var first0 = (cNext || CM[CM.length - 1] || { day: today }).day;
+  var S = { y: +first0.slice(0, 4), mo: +first0.slice(5, 7) - 1, sub: false, subTo: 'google', subMode: 'all', subTeams: [], copied: false,
+    calDay: cToday.length ? today : (cNext || CM[CM.length - 1] || {}).day };
+
+  function subPop() {
+    var apple = S.subTo === 'apple', teamsMode = S.subMode === 'teams';
+    var links = ANDROID ? [] : !teamsMode ? [{ label: '전체 남은 경기 구독', href: calUrl('', S.subTo), save: '"ALL"' }]
+      : S.subTeams.length ? [{ label: (S.subTeams.length === 1 ? (TEAM[S.subTeams[0]] || { n: S.subTeams[0] }).n : S.subTeams.join(' · ')) + ' 경기 한 번에 구독', href: calUrl(S.subTeams, S.subTo), save: JSON.stringify(S.subTeams) }] : [];
+    var dup = (function () {
+      var prev = subPrev(); if (!prev) return '';
+      var c = teamsMode ? S.subTeams : 'ALL'; if (c !== 'ALL' && !c.length) return '';
+      var same = prev === c || (Array.isArray(prev) && Array.isArray(c) && prev.slice().sort().join() === c.slice().sort().join());
+      var overlap = prev === 'ALL' || c === 'ALL' || prev.some(function (x) { return c.indexOf(x) >= 0; });
+      if (same || !overlap) return '';
+      return '전에 ' + (prev === 'ALL' ? '전체 경기' : prev.join(' · ')) + ' 구독을 눌렀어요. 같이 구독하면 같은 경기가 두 번 보여요. 예전 캘린더를 지우고 구독하세요.';
+    })();
+    var note = (ANDROID ? '안드로이드는 링크로 구독을 추가할 수 없어요. 주소를 복사해서 PC 구글 캘린더 → 다른 캘린더 + → URL로 추가에 붙여 넣으면 폰에도 보여요. '
+      : apple ? '아이폰·아이패드·맥 캘린더에 바로 구독돼요. '
+      : IOS ? '폰 구글 캘린더 앱은 링크로 구독을 추가할 수 없어요. 주소를 복사해서 PC 구글 캘린더 → 다른 캘린더 + → URL로 추가에 붙여 넣으세요. ' : '') +
+      '여러 팀을 골라도 캘린더 하나로 한 번에 구독돼요. 새 일정(플레이오프 포함)이 생기면 자동으로 들어와요. 알림은 따로 울리지 않아요.';
+    return '<div class="subov" data-act="close"></div><div class="subpop"><b>' + (apple ? '애플 캘린더에 남은 경기 구독' : '구글 캘린더에 남은 경기 구독') + '</b>' +
+      '<div class="seg"><button data-act="all" class="' + (teamsMode ? '' : 'on') + '">전체 경기</button><button data-act="teams" class="' + (teamsMode ? 'on' : '') + '">팀 고르기</button></div>' +
+      (teamsMode ? '<div class="hint">구독할 팀을 고르세요 · 여러 팀 가능</div><div class="tg5">' + D.teams.map(function (t) {
+        var on = S.subTeams.indexOf(t.a) >= 0, c = t.color || '#0B0B0F';
+        return '<button data-act="tm" data-t="' + esc(t.a) + '" title="' + esc(t.n) + '"' + (on ? ' style="background:color-mix(in srgb, ' + c + ' 16%, var(--panel));border:2px solid ' + c + '"' : '') + '>' + logo(t.a) + esc(t.a) + '</button>';
+      }).join('') + '</div>' : '') +
+      '<div class="lk">' + links.map(function (l) { return '<a href="' + esc(l.href) + '" data-save="' + esc(l.save) + '" target="_blank" rel="noopener">' + (apple ? APPLE : GCAL) + esc(l.label) + '<span>↗</span></a>'; }).join('') +
+      (!teamsMode || S.subTeams.length ? '<button data-act="copy">' + (S.copied ? '구독 주소를 복사했어요' : '구독 주소 복사') + '</button>' : '') +
+      (dup ? '<div class="dup">' + esc(dup) + '</div>' : '') +
+      (teamsMode && !S.subTeams.length ? '<div class="none">팀을 하나 이상 고르면 구독 버튼이 나와요</div>' : '') +
+      '</div><div class="sn">' + esc(note) + '</div></div>';
+  }
+
+  function chipOf(m, day) {
+    var h = hideSc(m), lo = !h && m.st === 'done';
+    var fa = lo && m.sa < m.sb ? ' style="opacity:.4"' : '', fb = lo && m.sb < m.sa ? ' style="opacity:.4"' : '';
+    var la = logo(m.a).replace('<i ', '<i' + fa + ' '), lb = logo(m.b).replace('<i ', '<i' + fb + ' ');
+    return '<div class="gm' + (day === today ? ' now' : '') + '">' + la + '<b>' + esc(m.a) + '</b><span style="padding-left:2px">' + (h ? '' : m.sa) + '</span><span class="v">vs</span><span style="padding-right:2px">' + (h ? '' : m.sb) + '</span><b>' + esc(m.b) + '</b>' + lb + '</div>' +
+      '<div class="gmm"' + (day < today ? ' style="opacity:.75"' : '') + '>' + la + '<span>' + (h ? 'vs' : m.sa + ':' + m.sb) + '</span>' + lb + '</div>';
+  }
+
+  function drawCal() {
+    var Y = S.y, Mo = S.mo;
+    var first = new Date(Date.UTC(Y, Mo, 1)).getUTCDay(), nd = new Date(Date.UTC(Y, Mo + 1, 0)).getUTCDate();
+    var cells = '';
+    for (var i = 0; i < first; i++) cells += '<div class="cc"></div>';
+    for (var d = 1; d <= nd; d++) {
+      var ds = Y + '-' + pad(Mo + 1) + '-' + pad(d);
+      // days before today show no matches at all (as on the home page)
+      var g = CM.filter(function (m) { return m.day === ds && ds >= today; });
+      var ko = g.filter(function (m) { return m.phase && m.phase !== 'rs'; });
+      var tag = !ko.length ? '' : ko.every(function (m) { return m.phase === 'po'; })
+        ? 'PO ' + (ko.some(function (m) { return m.round === '결승'; }) ? '결승' : ko[0].round || '') : '시드전 · LCQ';
+      var red = (first + d - 1) % 7 === 0 || HOL.indexOf(ds) >= 0;
+      var dcol = red ? (ds < today ? (DARK ? '#C9797C' : '#B4535A') : (DARK ? '#FF6B6E' : '#C8102E')) : ds < today ? '#707077' : 'var(--ink)';
+      var isT = ds === today, has = g.length > 0, sel = has && ds === S.calDay;
+      cells += '<button type="button" class="cc' + (has ? ' has' : '') + (sel ? ' sel' : '') + '"' + (has ? ' data-day="' + ds + '"' : ' tabindex="-1"') +
+        ' aria-label="' + (Mo + 1) + '월 ' + d + '일' + (has ? ', 경기 ' + g.length + '개' : '') + '" aria-pressed="' + sel + '">' +
+        (tag ? '<span class="tg">' + esc(tag) + '</span>' : '') +
+        '<div class="d' + (isT ? ' td' : '') + '" style="color:' + (isT ? (red ? '#FF6B6E' : '#fff') : dcol) + '">' + d + '</div>' +
+        g.map(function (m) { return chipOf(m, ds); }).join('') + '</button>';
+    }
+    // the list: today's matches and the ones still to come (finished days are left out), 7 at most
+    var listM = cToday.concat(cUp.filter(function (m) { return m.day !== today; })).slice(0, 7);
+    var lc = listM.map(function (m) {
+      var h = hideSc(m), lo = !SP && m.st === 'done';
+      var mine = MY && (m.a === MY || m.b === MY) ? ' style="border:2px solid ' + ((TEAM[MY] || {}).color || 'var(--ac)') + '"' : '';
+      var pill = m.st === 'live' ? '<span class="pill live">LIVE</span>' : m.st === 'up' ? '<span class="pill up">예정</span>' : '<span class="pill done">종료</span>';
+      return '<div class="lc"' + mine + '><div class="dt"><b>' + mdOf(m.day) + '</b><small>' + dowOf(m.day) + ' · ' + esc(tmOf(m)) + '</small></div>' +
+        '<div class="tm">' + logo(m.a).replace('<i ', '<i' + (lo && m.sa < m.sb ? ' style="opacity:.4"' : '') + ' ') + '<span>' + esc(m.a) + '</span><span class="mid">' + (h ? 'vs' : m.sa + ' : ' + m.sb) + '</span><span>' + esc(m.b) + '</span>' +
+        logo(m.b).replace('<i ', '<i' + (lo && m.sb < m.sa ? ' style="opacity:.4"' : '') + ' ') + '</div><div class="st">' + pill + '</div></div>';
+    }).join('');
+    calEl.innerHTML =
+      '<div class="calhd"><div class="subs">' +
+        (APPLE_OK ? '<button class="subb" data-act="apple">' + APPLE + '<span class="lg2">애플 캘린더 구독</span><span class="sh">애플 캘린더</span></button>' : '') +
+        '<button class="subb" data-act="google">' + GCAL + '<span class="lg2">구글 캘린더 구독</span><span class="sh">구글 캘린더</span></button>' +
+        (S.sub ? subPop() : '') + '</div><div></div></div>' +
+      '<div class="calg"><div class="calbox"><div class="calbar"><b>' + Y + '. ' + pad(Mo + 1) + '</b><div><button data-act="prev" aria-label="이전 달">‹</button><button data-act="next" aria-label="다음 달">›</button></div></div>' +
+        '<div class="cgrid">' + DOWS.map(function (w) { return '<div class="wd">' + w + '</div>'; }).join('') + cells + '</div></div>' +
+        '<div class="clist"><div class="hd"><b>최근 · 다가오는 경기</b><span>모든 시간 KST</span></div>' + lc + '</div></div>';
+  }
+
+  if (calEl && CM.length) {
+    calEl.onclick = function (e) {
+      var a = e.target.closest('[data-act],[data-day],[data-save]'); if (!a) return;
+      var act = a.getAttribute('data-act');
+      if (a.hasAttribute('data-save')) { try { localStorage.setItem('owcs-subbed', a.getAttribute('data-save')); } catch (e2) {} return; }
+      if (a.hasAttribute('data-day')) S.calDay = a.getAttribute('data-day');
+      else if (act === 'prev' || act === 'next') { var t = new Date(Date.UTC(S.y, S.mo + (act === 'next' ? 1 : -1), 1)); S.y = t.getUTCFullYear(); S.mo = t.getUTCMonth(); }
+      else if (act === 'apple' || act === 'google') { S.sub = !(S.sub && S.subTo === act); S.subTo = act; }
+      else if (act === 'close') S.sub = false;
+      else if (act === 'all' || act === 'teams') S.subMode = act;
+      else if (act === 'tm') { var k = a.getAttribute('data-t'), j = S.subTeams.indexOf(k); if (j >= 0) S.subTeams.splice(j, 1); else S.subTeams.push(k); }
+      else if (act === 'copy') {
+        var u = 'https://' + calFeed(S.subMode === 'all' ? '' : S.subTeams);
+        var done = function () { S.copied = true; drawCal(); setTimeout(function () { S.copied = false; drawCal(); }, 2500); };
+        try { navigator.clipboard.writeText(u).then(done, function () { window.prompt('구독 주소', u); }); } catch (e3) { window.prompt('구독 주소', u); }
+        return;
+      }
+      drawCal();
+    };
+    drawCal();
+  }
 })();
 </script>
 <script src="./owcs-theme-wise.js"></script>
