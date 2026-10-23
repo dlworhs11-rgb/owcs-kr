@@ -85,7 +85,7 @@
     ['WDG STUDIO HONGDAE에서 직관!', 'WDG STUDIO HONGDAEで観戦しよう!', 'Watch live at WDG STUDIO HONGDAE!', '来 WDG STUDIO HONGDAE 现场观赛!'], ['예매 안내 →', 'チケット案内 →', 'Ticket info →', '购票指南 →'], ['눌러서 예매 안내 보기 →', 'タップしてチケット案内 →', 'Tap for ticket info →', '点击查看购票指南 →'], ['직관 예매 QR', '観戦チケットQR', 'Ticket QR', '购票二维码'],
     // today
     ['오늘의 경기', '今日の試合', "Today's match", '今日比赛'], ['오늘은 경기가 없어요', '今日は試合がありません', 'No match today', '今天没有比赛'], ['다음 경기', '次の試合', 'Next match', '下一场比赛'], ['다음 일정', '次の日程', 'Up next', '接下来'],
-    ['방송 예정', '配信予定', 'Starting soon', '即将直播'], ['경기 종료', '試合終了', 'Finished', '比赛结束'], ['오늘 경기 종료', '本日の試合終了', "Today's matches are over", '今日比赛已结束'],
+    ['방송 예정', '配信予定', 'Starting soon', '即将直播'], ['첫 경기까지', '最初の試合まで', 'First match in', '距首场比赛'], ['경기 종료', '試合終了', 'Finished', '比赛结束'], ['오늘 경기 종료', '本日の試合終了', "Today's matches are over", '今日比赛已结束'],
     ['방송이 시작되면 이곳에 자동으로 표시돼요', '配信が始まるとここに自動で表示されます', 'The stream appears here automatically when it starts', '直播开始后会自动显示在这里'],
     ['오늘 경기가 모두 끝났어요', '本日の試合はすべて終了しました', "All of today's matches are over", '今日比赛已全部结束'], ['다시보기는 SOOP owesports 방송국에서 볼 수 있어요', 'アーカイブはSOOP owesportsで見られます', 'Replays are on SOOP owesports', '回放请到 SOOP owesports 观看'],
     ['정규 리그 일정이 끝났어요', 'レギュラーシーズンは終了しました', 'The regular season is over', '常规赛已结束'],
