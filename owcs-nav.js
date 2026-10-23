@@ -479,36 +479,36 @@
   var AT = {
     ko: { add: '앱 설치', addS: '앱', ok: '알겠어요',
       tip: '홈 화면에 추가하는 법', more: '더보기', share: '공유', home: '홈 화면에 추가', menu: '메뉴', fin: '추가',
-      hMore: '화면 아래쪽에서 <b>⋯</b> 버튼. 없으면 주소창 왼쪽 <b>☰</b> 아이콘', hShareM: '열린 메뉴의 맨 위', hShareB: '화면 아래쪽 버튼', hShareT: '주소창 근처 버튼',
+      hMore: '<b>⋯</b> 버튼. 안 보이면 주소창의 <b>☰</b> 아이콘', hShareM: '열린 메뉴의 맨 위', hShareB: '네모에 위쪽 화살표 모양. 화면 위나 아래에 있어요', hShareT: '네모에 위쪽 화살표 모양. 화면 위나 아래에 있어요',
       hHome: '목록을 아래로 조금 내리면 있어요', hFin: '오른쪽 위. 누르면 끝!', hMenu: '화면 오른쪽 위 ⋮ 버튼', hHomeA: '<b>앱 설치</b>라고 되어 있을 수도 있어요',
       keep: '이 안내는 위에 그대로 있어요. 보면서 하나씩 따라 하세요', nohome: '공유 목록에 <b>홈 화면에 추가</b>가 없으면: 목록 속 <b>Safari에서 열기</b>를 누른 뒤 처음부터 다시 해 주세요',
-      inT: '브라우저에서 열어 주세요', inapp: '이 앱 안의 화면에서는 설치가 안 돼요. 메뉴에서 <b>다른 브라우저로 열기</b>를 누른 뒤 다시 해 주세요.', ext: '브라우저로 열기' },
+      inT: '브라우저에서 열어 주세요', inapp: '이 앱 안의 화면에서는 설치가 안 돼요. <b>⋯</b> 메뉴나 공유 버튼에서 <b>Safari에서 열기</b>(또는 <b>브라우저로 열기</b>)를 누른 뒤, 다시 <b>앱</b> 버튼을 눌러 주세요.', ext: '브라우저로 열기' },
     en: { add: 'Get app', addS: 'App', ok: 'Got it',
       tip: 'How to add it to your home screen', more: 'More', share: 'Share', home: 'Add to Home Screen', menu: 'Menu', fin: 'Add',
-      hMore: 'The <b>⋯</b> button at the bottom. If there is none, the <b>☰</b> icon left of the address', hShareM: 'Top of the menu that opens', hShareB: 'A button at the bottom', hShareT: 'Near the address bar',
+      hMore: 'The <b>⋯</b> button. If there is none, the <b>☰</b> icon in the address bar', hShareM: 'Top of the menu that opens', hShareB: 'A square with an up arrow, at the top or bottom of the screen', hShareT: 'A square with an up arrow, at the top or bottom of the screen',
       hHome: 'Scroll the list down a little', hFin: 'Top right, and you\'re done!', hMenu: 'The ⋮ button at the top right', hHomeA: 'It may say <b>Install app</b>',
       keep: 'This guide stays up here. Follow it step by step', nohome: 'No <b>Add to Home Screen</b> in the share list? Tap <b>Open in Safari</b> there, then start again',
-      inT: 'Open in your browser', inapp: 'Apps can\'t be installed from this in-app browser. Choose <b>Open in browser</b> from its menu, then try again.', ext: 'Open in browser' },
+      inT: 'Open in your browser', inapp: 'Apps can\'t be installed from this in-app browser. In the <b>⋯</b> menu or the share button, choose <b>Open in Safari</b> (or <b>Open in browser</b>), then tap <b>App</b> again.', ext: 'Open in browser' },
     ja: { add: 'アプリ', addS: 'アプリ', ok: 'OK',
       tip: 'ホーム画面への追加方法', more: 'その他', share: '共有', home: 'ホーム画面に追加', menu: 'メニュー', fin: '追加',
-      hMore: '下の<b>⋯</b>ボタン。なければアドレス左の<b>☰</b>アイコン', hShareM: '開いたメニューの一番上', hShareB: '下のボタン', hShareT: 'アドレスバー付近のボタン',
+      hMore: '<b>⋯</b>ボタン。なければアドレスバーの<b>☰</b>アイコン', hShareM: '開いたメニューの一番上', hShareB: '四角に上向き矢印のアイコン。画面の上か下にあります', hShareT: '四角に上向き矢印のアイコン。画面の上か下にあります',
       hHome: 'リストを少し下にスクロール', hFin: '右上。これで完了！', hMenu: '右上の ⋮ ボタン', hHomeA: '<b>アプリをインストール</b>の場合も',
       keep: 'この案内は上に表示されたままです', nohome: '共有リストに<b>ホーム画面に追加</b>がない場合：<b>Safariで開く</b>を押して最初からやり直してください',
-      inT: 'ブラウザで開いてください', inapp: 'このアプリ内ブラウザではインストールできません。メニューから<b>ブラウザで開く</b>を選んでください。', ext: 'ブラウザで開く' },
+      inT: 'ブラウザで開いてください', inapp: 'このアプリ内ブラウザではインストールできません。<b>⋯</b>メニューか共有ボタンから<b>Safariで開く</b>（または<b>ブラウザで開く</b>）を選び、もう一度<b>アプリ</b>を押してください。', ext: 'ブラウザで開く' },
     zh: { add: '安装', addS: '安装', ok: '知道了',
       tip: '如何添加到主屏幕', more: '更多', share: '分享', home: '添加到主屏幕', menu: '菜单', fin: '添加',
-      hMore: '屏幕下方的<b>⋯</b>按钮。没有的话点地址栏左侧的<b>☰</b>图标', hShareM: '打开的菜单最上方', hShareB: '屏幕下方的按钮', hShareT: '地址栏附近的按钮',
+      hMore: '<b>⋯</b>按钮。没有的话点地址栏里的<b>☰</b>图标', hShareM: '打开的菜单最上方', hShareB: '方框加向上箭头的图标，在屏幕顶部或底部', hShareT: '方框加向上箭头的图标，在屏幕顶部或底部',
       hHome: '将列表向下滑一点', hFin: '右上角，完成！', hMenu: '右上角的 ⋮ 按钮', hHomeA: '也可能显示为<b>安装应用</b>',
       keep: '此说明会一直显示在上方', nohome: '分享列表里没有<b>添加到主屏幕</b>？请点<b>在 Safari 中打开</b>，然后重新开始',
-      inT: '请在浏览器中打开', inapp: '此应用内浏览器无法安装。请在菜单中选择<b>在浏览器中打开</b>后重试。', ext: '在浏览器中打开' }
+      inT: '请在浏览器中打开', inapp: '此应用内浏览器无法安装。请在<b>⋯</b>菜单或分享按钮中选择<b>在 Safari 中打开</b>（或<b>在浏览器中打开</b>），然后再点一次<b>安装</b>。', ext: '在浏览器中打开' }
   }[LANG];
   var UA = navigator.userAgent || '';
   var IPAD = /iPad/.test(UA) || (/Macintosh/.test(UA) && navigator.maxTouchPoints > 1);
   var IOS = IPAD || /iPhone|iPod/.test(UA);
-  var SAFARI = IOS && !/CriOS|FxiOS|EdgiOS|OPiOS|Whale|NAVER|KAKAOTALK/i.test(UA);
+  var SAFARI = IOS && !/CriOS|FxiOS|EdgiOS|OPiOS|Whale|NAVER|KAKAOTALK|GSA\//i.test(UA);
   var SAFARI26 = SAFARI && +((UA.match(/Version\/(\d+)/) || [])[1] || 0) >= 26;   // the compact bar: share is under ⋯
   var ANDROID = /Android/.test(UA);
-  var INAPP = /KAKAOTALK|Twitter|dcinside|Reddit|Instagram|FBAN|FBAV|NAVER\(inapp|Line\/|DaumApps|everytimeApp|BAND\//i.test(UA);
+  var INAPP = /KAKAOTALK|GSA\/|Twitter|dcinside|Reddit|Instagram|FBAN|FBAV|NAVER\(inapp|Line\/|DaumApps|everytimeApp|BAND\//i.test(UA);
   var BIP = null;   // Chrome's install prompt, kept for the button
   function standalone() { return !!((window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone); }
   function canAdd() { return !standalone() && !!(BIP || IOS || ANDROID); }
@@ -600,7 +600,10 @@
       title = AT.inT;
       body = '<p>' + AT.inapp + '</p>';
       // KakaoTalk can hand the page to the phone's own browser (Safari / Chrome) itself
-      if (/KAKAOTALK/i.test(UA)) ext = '<a href="kakaotalk://web/openExternal?url=' + encodeURIComponent(location.origin + location.pathname + '?app=1') + '">' + AT.ext + '</a>';
+      var back = location.origin + location.pathname + '?app=1';
+      if (/KAKAOTALK/i.test(UA)) ext = '<a href="kakaotalk://web/openExternal?url=' + encodeURIComponent(back) + '">' + AT.ext + '</a>';
+      // other iPhone apps (Google, X ...): iOS 17+ opens x-safari-https:// links in Safari itself
+      else if (IOS) ext = '<a href="x-safari-' + back + '">' + AT.ext + '</a>';
     } else {
       // where the first button is: Safari 26's compact bar ⋯ bottom right, older iPhone Safari's share bottom middle,
       // iPad / Chrome / other iPhone browsers / Android browsers top right
