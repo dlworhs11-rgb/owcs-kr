@@ -511,7 +511,8 @@
   var INAPP = /KAKAOTALK|GSA\/|Twitter|dcinside|Reddit|Instagram|FBAN|FBAV|NAVER\(inapp|Line\/|DaumApps|everytimeApp|BAND\//i.test(UA);
   var BIP = null;   // Chrome's install prompt, kept for the button
   function standalone() { return !!((window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone); }
-  function canAdd() { return !standalone() && !!(BIP || IOS || ANDROID); }
+  // phones and tablets only: a computer's Chrome / Edge offers an install too, but the app is for phones (10-23)
+  function canAdd() { return !standalone() && (IOS || ANDROID); }
   function appHead() {
     var h = document.head;
     if (!h || h.querySelector('link[rel="manifest"]')) return;
@@ -632,7 +633,7 @@
     }
     appGuide();
   }
-  // the top bar's 앱 설치 button (every page; on a computer only when the browser offers an install)
+  // the top bar's 앱 설치 button (every page; never on a computer)
   function appSync() {
     var w = HW, b = w && w.querySelector('.ab'), show = canAdd() || INAPP;
     if (!w) return;
