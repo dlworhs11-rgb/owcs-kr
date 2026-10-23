@@ -1512,7 +1512,7 @@ class Component extends DCLogic {
     const curPO = M.find((m) => m.phase !== 'rs' && m.st !== 'done');
     const bk = !showBracket ? { title: '', note: '', champion: '', columns: [] } : {
       title: lang === '영문' ? 'PLAYOFFS' : '플레이오프 대진표',
-      note: BK.label + ' · ' + md(BK.start + 'T12:00:00+09:00') + ' – ' + md(BK.end + 'T12:00:00+09:00') + ' · 시드 결정전 3선승 · 플레이오프 4선승',
+      note: BK.label + ' · ' + md(BK.start + 'T12:00:00+09:00') + ' – ' + md(BK.end + 'T12:00:00+09:00') + ' · ' + (D.seedName || '시드 결정전') + ' 3선승 · 플레이오프 4선승',
       champion: SP ? '' : BK.champion || '',
       // the seeding deciders (6 matches) drop out once they are over and the playoffs are on: the results page keeps them
       columns: BK.columns.filter((c) => !(c.key === 'seed' && c.matches.every((x) => (byId[x.id] || {}).st === 'done') && BK.columns.some((d) => d.key.startsWith('po-') && d.matches.some((x) => (byId[x.id] || {}).st !== 'up')))).map((c) => ({ title: c.title,
@@ -1820,7 +1820,7 @@ class Component extends DCLogic {
       next3: upcoming.filter((m) => m !== hero && m.day !== today).slice(0, 3).map((m) => ({ when: whenOf(m), a: m.a === 'TBD' ? '미정' : m.a, b: m.b === 'TBD' ? '미정' : m.b, gcal: gcalOf(m), la: logoBg(m.a, this.state.dark), lb: logoBg(m.b, this.state.dark) })),
       standNote: STAGE_SHORT + ' 정규 리그 · ' + (rsOver ? '최종 순위' : md(new Date(now).toISOString()) + ' 기준') + ' · ' + D.format.split(' · ').pop(),
       showBracket, bk, spoilAttr: SP ? '1' : '0',
-      poLegend: '1–' + D.playoffs + '위 플레이오프 시드 결정전', piLegend: (D.playoffs + 1) + '–' + D.lcq + '위 라스트 찬스 예선',
+      poLegend: '1–' + D.playoffs + '위 플레이오프 ' + (D.seedName || '시드 결정전'), piLegend: (D.playoffs + 1) + '–' + D.lcq + '위 라스트 찬스 예선',
       poLine: '플레이오프 진출선', piLine: '라스트 찬스 진출선', poShort: '플레이오프', piShort: 'LCQ',
       standings: D.standings.map((s, i) => ({ r: i + 1, a: s.a, c: col(s.a), logo: logoBg(s.a, DM), n: team(s.a).n,
         wl: SP ? '–-–' : s.w + '-' + s.l, w: SP ? '–' : s.w, l: SP ? '–' : s.l, sd: SP ? '–' : (s.diff > 0 ? '+' : '') + s.diff,
@@ -1839,7 +1839,7 @@ class Component extends DCLogic {
       standLink: showBracket ? '대진표 · 지난 시즌 보기' : casesOn ? '경우의 수 보기' : '전체 순위 보기',
       standBg: '#0B0B0F',
       standHref: showBracket ? 'OWCS KR Results.dc.html?tab=bracket' + (params.get('date') ? '&date=' + params.get('date') : '') : casesOn ? 'OWCS KR 일정.html?tab=cases' : 'OWCS KR Results.dc.html',
-      casesNote: allOver ? '이번 스테이지 일정이 모두 끝났어요 · 다음 스테이지 일정이 나오면 자동으로 바뀌어요' : rsOver ? '정규 리그가 끝났어요 · 1–' + D.playoffs + '위는 시드 결정전, ' + (D.playoffs + 1) + '–' + D.lcq + '위는 라스트 찬스 예선으로 플레이오프가 이어져요' : casesOn ? '경우의 수 공개 중 · 정규 리그 종료까지 ' + weeksLeft + '주' : '경우의 수는 정규 리그 ' + (timing === '종료 1주 전부터' ? '종료 1주 전' : '종료 2주 전') + '부터 공개돼요 · 현재 ' + weeksLeft + '주 남음',
+      casesNote: allOver ? '이번 스테이지 일정이 모두 끝났어요 · 다음 스테이지 일정이 나오면 자동으로 바뀌어요' : rsOver ? '정규 리그가 끝났어요 · 1–' + D.playoffs + '위는 ' + (D.seedName || '시드 결정전') + ', ' + (D.playoffs + 1) + '–' + D.lcq + '위는 라스트 찬스 예선으로 플레이오프가 이어져요' : casesOn ? '경우의 수 공개 중 · 정규 리그 종료까지 ' + weeksLeft + '주' : '경우의 수는 정규 리그 ' + (timing === '종료 1주 전부터' ? '종료 1주 전' : '종료 2주 전') + '부터 공개돼요 · 현재 ' + weeksLeft + '주 남음',
       ps: (() => {
         // player search (right of the TEAMS title): a team by name (티원, 제타) opens its roster; a player by handle, 한글 닉, real name (박준영), romanized name; coaching staff too.
         // Case, spaces and hyphens ignored; K4NE is found by 'kane' (digit letters), 프로핏 by its 초성 'ㅍㄹㅍ'.

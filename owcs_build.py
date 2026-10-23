@@ -24,7 +24,7 @@ from owcs_cloud import soop_replays, soop_vod, live_status, last_streams, upcomi
 TEAMS = {
     'ZETA DIVISION':  dict(a='ZETA',  ko='제타 디비전',     logo=('ZETA-light.png', 'ZETA-white.png'),  color='#2A2A30'),
     'Crazy Raccoon':  dict(a='CR',    ko='크레이지 라쿤',   logo=('CR.png', 'CR.png'),    color='#E11919'),
-    'Cheeseburger':   dict(a='CB',    ko='치즈버거',        logo=('CB.png', 'CB.png'),    color='#DF751F'),
+    'Cheeseburger':   dict(a='CB',    en='CHEESEBURGER', ko='치즈버거',        logo=('CB.png', 'CB.png'),    color='#DF751F'),
     'T1':             dict(a='T1',    ko='T1',              logo=('T1.png', 'T1.png'),    color='#C8102E'),
     'Team Falcons':   dict(a='FLC',   ko='팀 팔콘스',       logo=('FLC.png', 'FLC.png'),  color='#02A862'),
     'O2 Blast':       dict(a='O2',    ko='O2 블래스트',     logo=('O2-light.png', 'O2-dark.png'),    color='#CD2221'),
@@ -264,6 +264,11 @@ def stage_carries(comp):
     return "Results of ''Regular Season'' carry over" in lp_wiki(comp)
 
 
+def seed_name(comp):
+    """the seeding deciders are called 2차 라운드로빈 from 2026 stage 2 (the stages that carry the regular-season record over)"""
+    return '2차 라운드로빈' if stage_carries(comp) else '시드 결정전'
+
+
 def hero_code(h):
     return ''.join(w[0] for w in h.split()).upper()[:3] if ' ' in (h or '') else (h or '?')[:3].upper()
 
@@ -371,7 +376,11 @@ def stage_raw(stage):
     for m in lp_page(stage['po']):
         ph = layout.get(m['idx'])
         if ph:
-            po.append(dict(m, phase=ph[0], phaseName=ph[1], round=ph[2]))
+            name, rnd = ph[1], ph[2]
+            if ph[0] == 'seed':   # the name of the deciders changed with stage 2; the round keeps matching it when the page gives no round
+                name = seed_name(stage['po'])
+                rnd = name if rnd == ph[1] else rnd
+            po.append(dict(m, phase=ph[0], phaseName=name, round=rnd))
     return rs + po
 
 
@@ -563,7 +572,7 @@ def build_matches(stage):
             date=dt.isoformat(), day=day, time=dt.strftime('%H:%M'), tbd=tbd, week=week,
             n=m['idx'], phase=m['phase'], round=None if rs else m['round'],
             label=f'정규 리그 {week}주차' if rs else (m['phaseName'] if m['round'] == m['phaseName'] else f"{m['phaseName']} {m['round']}"),
-            group=f'{week}주차' if rs else ('플레이오프' if m['phase'] == 'po' else '시드 결정전 · LCQ'),
+            group=f'{week}주차' if rs else ('플레이오프' if m['phase'] == 'po' else seed_name(stage['po']) + ' · LCQ'),
             bo=need * 2 - 1,
             a=short(t1), b=short(t2), sa=sa, sb=sb, played=played, live=live,
             potm=potm, casters=adm.get('casters') or [c for c in (m.get('casters') or []) if c] or live_cast(day),   # Liquipedia per match beats the screen read
@@ -819,7 +828,7 @@ def build_bracket(stage, matches, standings, playoffs):
     ms = [m for m in matches if m['phase'] != 'rs']
     if not ms:
         return None
-    full = {v['a']: k for k, v in {**TEAMS, **NEW_TEAMS}.items()}
+    full = {v['a']: v.get('en', k) for k, v in {**TEAMS, **NEW_TEAMS}.items()}
     cols = []
 
     def col(title, key):
@@ -829,7 +838,7 @@ def build_bracket(stage, matches, standings, playoffs):
 
     for m in sorted(ms, key=lambda m: ({'seed': 0, 'lcq': 1, 'po': 2}[m['phase']], m['n'])):   # Liquipedia page order
         if m['phase'] == 'seed':
-            c = col('시드 결정전', 'seed')
+            c = col(seed_name(stage['po']), 'seed')
         elif m['phase'] == 'lcq':
             c = col('LCQ', 'lcq')
         elif m['round'] == '3위 결정전' and cols and cols[-1]['key'] == 'po-결승':
@@ -1178,7 +1187,8 @@ def build(check_live=False, prev_live=None, out=HERE, records=True):
                 stageRange=[stage['start'].isoformat(), stage['end'].isoformat()],
                 stageEnd=max([stage['end'].isoformat()] + [m['day'] for m in matches]),
                 playoffs=playoffs, lcq=lcq,
-                format=f'1–{playoffs}위 플레이오프 시드 결정전 · {playoffs + 1}–{lcq}위 라스트 찬스 예선 · 전 경기 3선승제',
+                seedName=seed_name(stage['po']),
+                format=f'1–{playoffs}위 플레이오프 {seed_name(stage["po"])} · {playoffs + 1}–{lcq}위 라스트 찬스 예선 · 전 경기 3선승제',
                 teams=teams, players=players, matches=matches, live=live, lastStream=last_streams(players) if check_live else {},
                 history=history, intl=build_intl(stage['year']), bracket=bracket, lastStage=last or dict(label='', title='', champion=None, columns=[]), pastStages=past,
                 otherTeams=other_teams(teams, history, past),

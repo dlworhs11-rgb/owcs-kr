@@ -366,7 +366,7 @@ html[data-owcs-dark] .calsec{--p3:#24242C}
     { k: 'season', label: '시즌 일정', on: RS.length > 0, over: over(RS) },
     // 경우의 수: the last two weeks of the regular season (as on the home page), never the tab that opens first
     { k: 'cases', label: '경우의 수', on: !!CS, over: true },
-    { k: 'road', label: '시드 결정전 · LCQ', on: ROAD.length > 0 || cols.some(function (c) { return c.key === 'seed' || c.key === 'lcq'; }), over: over(ROAD) },
+    { k: 'road', label: (D.seedName || '시드 결정전') + ' · LCQ', on: ROAD.length > 0 || cols.some(function (c) { return c.key === 'seed' || c.key === 'lcq'; }), over: over(ROAD) },
     { k: 'po', label: '플레이오프', on: PO.length > 0 || cols.some(function (c) { return /^po-/.test(c.key); }), over: over(PO) },
     { k: 'intl', label: IT ? IT.ko.replace(/^\d{4}\s*/, '') : '', on: !!IT, over: IT ? nowMs > endOf(IT.end) : true }
   ].filter(function (t) { return t.on; });
@@ -472,7 +472,7 @@ html[data-owcs-dark] .calsec{--p3:#24242C}
         '<section class="csbox"><h2>남은 경기<span>이 경기에 걸린 것</span></h2><div class="ms">' + games + '</div>' +
         (D.tiebreak ? '<div class="tie">' + esc(D.tiebreak) + '</div>' : '') + '</section>';
     },
-    road: function () { return BK('road') + (ROAD.length ? '<div class="sub">날짜별 경기</div>' + days(ROAD, '시드 결정전 · 라스트 찬스 예선') : '') + EMPTY; },
+    road: function () { return BK('road') + (ROAD.length ? '<div class="sub">날짜별 경기</div>' + days(ROAD, (D.seedName || '시드 결정전') + ' · 라스트 찬스 예선') : '') + EMPTY; },
     po: function () { return BK('po') + (PO.length ? '<div class="sub">날짜별 경기</div>' + days(PO, '플레이오프') : '') + EMPTY; },
     intl: function () { var ms = (IT.matches || []).slice().sort(byDate); return intlHead(IT) + (ms.length ? days(ms, IT.ko.replace(/^\d{4}\s*/, ''), TEAMI) : '') + EMPTY; }
   };

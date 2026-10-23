@@ -241,7 +241,7 @@
               + '<span>' + (t.sw != null ? esc(t.sw + '-' + t.sl) : '–') + '</span><span>' + (carry ? esc(t.w + '-' + t.l) : '') + '</span></div>' + (i === 1 ? '<div class="cut"><span>4강 직행</span></div>' : ''); }).join('')
           + (pre ? '<div class="pend">' + (rsOn ? '정규 리그 진행 중 · 지금 순위라 바뀔 수 있어요' : '결정전 전 · 정규 리그 최종 순위') + '</div>' : '') + '</div>' : '';
         // the say line is the format, not a claim about the four shown: during the regular season 5th can still climb in
-        seedHtml = '<div class="box pre lane">' + lane('1–4위', '시드 결정전', '1–4위는 모두 플레이오프 진출 · 자리만 정해요', carry ? '서로 한 번씩 더 붙고, 정규 리그 승패도 합쳐서 순위 계산' : '서로 한 번씩 붙고, 결정전 결과만으로 순위 계산', [['', '1·2위 4강 직행'], ['', '3·4위 6강부터']])
+        seedHtml = '<div class="box pre lane">' + lane('1–4위', carry ? '2차 라운드로빈' : '시드 결정전', '1–4위는 모두 플레이오프 진출 · 자리만 정해요', carry ? '서로 한 번씩 더 붙고, 정규 리그 승패도 합쳐서 순위 계산' : '서로 한 번씩 붙고, 결정전 결과만으로 순위 계산', [['', '1·2위 4강 직행'], ['', '3·4위 6강부터']])
           + sd + '<div class="st">경기</div><div class="rr">' + seed.matches.map((x) => chip(x, { short: true })).join('') + '</div></div>';
       }
       const poHtml = poCols.length ? '<div class="box main"><div class="h"><b>플레이오프 본선</b><span>' + esc(poCols.map((c) => c.title).join(' → ')) + '</span></div>' + tree(poCols)
