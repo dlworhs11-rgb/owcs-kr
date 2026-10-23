@@ -78,6 +78,21 @@
     "O2 Blast": 0
    },
    "scoreFrom": "table"
+  },
+  {
+   "banTs": 1792743994,
+   "teams": [
+    "Cheeseburger",
+    "O2 Blast"
+   ],
+   "game": 2,
+   "map": "New Junk City",
+   "seriesBefore": {
+    "Cheeseburger": 1,
+    "O2 Blast": 0
+   },
+   "bans": null,
+   "src": "SOOP"
   }
  ]
 }
