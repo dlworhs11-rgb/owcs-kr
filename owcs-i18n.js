@@ -140,7 +140,7 @@
     ['팀별 순위', 'チーム順位', 'Standings', '战队排名'], ['플레이오프 진출선', 'プレーオフ圏', 'Playoff line', '季后赛线'], ['라스트 찬스 진출선', 'ラストチャンス圏', 'Last chance line', '最后机会线'], ['플레이오프', 'プレーオフ', 'Playoffs', '季后赛'],
     ['경우의 수 보기', 'プレーオフ条件を見る', 'Playoff scenarios', '查看晋级形势'],
     ['전체 순위 · 경우의 수 보기', '全順位・プレーオフ条件を見る', 'Full standings & scenarios', '完整排名 · 晋级形势'], ['전체 순위 보기', '全順位を見る', 'Full standings', '查看完整排名'],
-    ['플레이오프 시드 결정전', 'プレーオフシード決定戦', 'playoff seeding', '季后赛种子决定战'], ['라스트 찬스 예선', 'ラストチャンス予選', 'last chance qualifier', '最后机会预选赛'], ['전 경기 3선승제', '全試合3本先取', 'all matches first to 3', '全部比赛 BO5'],
+    ['플레이오프 시드 결정전', 'プレーオフシード決定戦', 'playoff seeding', '季后赛种子决定战'], ['라스트 찬스 예선', 'ラストチャンス予選', 'last chance qualifier', '最后机会预选赛'], ['전 경기 3선승제', '全試合3本先取', 'all matches first to 3', '全部比赛 先赢3局'],
     // teams
     ['팀 & 선수 라인업', 'チーム & 選手', 'Teams & Rosters', '战队 & 选手阵容'], ['팀 & 선수', 'チーム & 選手', 'Teams & Players', '战队 & 选手'], ['한글 이름', '韓国語名', 'Korean name', '韩文名'], ['최근 경기', '最近の試合', 'Last match', '最近比赛'],
     ['로스터', 'ロスター', 'Roster', '阵容'], ['스태프', 'スタッフ', 'Staff', '教练组'], ['감독', '監督', 'Head coach', '主教练'], ['코치', 'コーチ', 'Coach', '教练'], ['보조 코치', 'アシスタントコーチ', 'Assistant coach', '助理教练'], ['분석관', 'アナリスト', 'Analyst', '分析师'], ['직책', '役職', 'Role', '职务'], ['생년월일', '生年月日', 'Birthday', '出生日期'], ['스태프 문서', 'スタッフ記事', 'Staff page', '教练组页面'], ['인물 문서', '人物記事', 'Profile', '人物页面'], ['나무위키', 'NamuWiki', 'NamuWiki', 'NamuWiki'], ['공식 X', '公式X', 'Official X', '官方 X'], ['인스타그램', 'Instagram', 'Instagram', 'Instagram'], ['지금 방송 중인 선수 없음', '配信中の選手はいません', 'No players live', '暂无选手直播'],
@@ -154,6 +154,7 @@
     ['플레이오프 직행은 어렵지만 라스트 찬스 예선은 확정이에요.', 'プレーオフ直行は難しいですが、ラストチャンス予選は確定です。', 'Direct playoffs are out of reach, but the LCQ is secured.', '直接晋级季后赛已无望，但已锁定最后机会预选赛。'],
     ['최소 라스트 찬스 예선은 확정이에요.', '少なくともラストチャンス予選は確定です。', 'At least the LCQ is secured.', '至少已锁定最后机会预选赛。'],
     ['경기 기준', '試合基準', 'matches', '场比赛为准'],
+    ['이번 스테이지 결과는 숨겼어요', '今ステージの結果は非表示', 'this stage hidden', '已隐藏本赛段结果'],
     // playoffs (seeding deciders / LCQ / bracket)
     ['플레이오프 대진표', 'プレーオフ トーナメント表', 'Playoff bracket', '季后赛对阵图'], ['플레이오프 가는 길', 'プレーオフへの道', 'Road to the playoffs', '季后赛之路'],['대진표 · 지난 시즌 보기', 'トーナメント表 · 過去シーズン', 'Bracket · past seasons', '对阵图 · 往届赛季'], ['시드 결정전', 'シード決定戦', 'Seeding deciders', '种子决定战'],
     ['시드 결정전 순위', 'シード決定戦 順位', 'Seeding standings', '种子决定战排名'], ['승자조 결승', '勝者側決勝', 'Upper final', '胜者组决赛'], ['패자조 준결승', '敗者側準決勝', 'Lower semifinal', '败者组半决赛'], ['패자조 결승', '敗者側決勝', 'Lower final', '败者组决赛'],
@@ -245,6 +246,10 @@
     [/^ ?공식 예매 안내를 옮긴 것이라, 바뀐 내용은 티켓링크 공지를 확인해 주세요\./, P('の公式販売案内を転載したものです。変更はTicketlinkのお知らせをご確認ください。', ' official sales notice; check Ticketlink for any changes.', ' 官方售票公告，如有变动请以 Ticketlink 公告为准。')],
     [/ \(서울 시간\)/g, P(' (ソウル時間)', ' (Seoul time)', ' (首尔时间)')],
     [/경기 (\d+)개/g, P('$1試合', '$1 matches', '$1场比赛')],
+    [/^남은 (\d+)경기의 모든 승패·세트 점수 조합 기준$/, P('残り$1試合の全勝敗・セットスコアのパターンから', 'Every win/loss and set score of the $1 matches left', '基于剩余$1场比赛的全部胜负与局分组合')],
+    [/남은 1경기는 져도 1세트만 따면 (플레이오프|\d+위 안) 확정\./g, P('残り1試合は負けても1セット取れば$1確定。', 'Even if it loses the last match, taking one set clinches $1.', '剩余1场即使输，只要拿下1局即锁定$1。')],
+    [/남은 1경기는 져도 (\d+)세트 이상 따면 (플레이오프|\d+위 안) 확정\./g, P('残り1試合は負けても$1セット以上取れば$2確定。', 'Even if it loses the last match, taking $1 sets or more clinches $2.', '剩余1场即使输，只要拿下$1局以上即锁定$2。')],
+    [/남은 (\d+)경기 중 (\d+)승 하고 세트 득실 합계 ([+-]?\d+) 이상이면 (플레이오프|\d+위 안) 확정\./g, P('残り$1試合中$2勝し、セット得失の合計が$3以上なら$4確定。', 'Win $2 of the last $1 with a combined set difference of $3 or better to clinch $4.', '剩余$1场中赢$2场且净胜局总和不低于$3，即锁定$4。')],
     [/^남은 (\d+)경기의 모든 승패 조합 기준$/, P('残り$1試合の全勝敗パターンから', 'Every win/loss combo of the $1 matches left', '基于剩余$1场比赛的全部胜负组合')],
     [/LCQ 경쟁/g, P('LCQ争い', 'LCQ race', 'LCQ 争夺')], [/플레이오프 경쟁/g, P('プレーオフ争い', 'playoff race', '季后赛争夺')],
     [/ \(지난 시즌\)/g, P(' (前シーズン)', ' (last season)', ' (上赛季)')],

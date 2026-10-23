@@ -290,11 +290,14 @@ const NOW = PARAMS.get('date') ? new Date(PARAMS.get('date') + 'T' + (PARAMS.get
 const PO_ON = !!D.bracket && NOW > new Date(D.stageRange[1] + 'T23:59:59+09:00').getTime();
 const TABS = [{ k: 'results', label: '시즌 결과', short: '결과' }, { k: 'bracket', label: PO_ON ? '플레이오프 대진표' : '지난 시즌 · 대진표', short: '대진표' }, { k: 'rates', label: '팀별 승률', short: '승률' }];
 // 2026 Korea record per current team (all stages, regular season + playoffs)
-const RATES = D.teams.map((t) => {
+// 스포일러 방지: this stage's matches (정규 리그 + 플레이오프) leave the totals, so the rates read as they stood before it
+const CUR_RE = new RegExp('^스테이지 ' + (D.stageNo || 0) + '( |$)');
+const ratesOf = (hide) => { const H = hide ? D.history.filter((x) => !CUR_RE.test(x.stage || '')) : D.history; return { n: H.length, list: D.teams.map((t) => {
   let w = 0, l = 0, sw = 0, sl = 0;
-  D.history.forEach((x) => { if (x.a !== t.a && x.b !== t.a) return; const me = x.a === t.a ? x.sa : x.sb, op = x.a === t.a ? x.sb : x.sa; sw += me; sl += op; if (me > op) w++; else l++; });
+  H.forEach((x) => { if (x.a !== t.a && x.b !== t.a) return; const me = x.a === t.a ? x.sa : x.sb, op = x.a === t.a ? x.sb : x.sa; sw += me; sl += op; if (me > op) w++; else l++; });
   return { a: t.a, w, l, sw, sl, p: w + l ? w / (w + l) : 0 };
-}).sort((x, y) => y.p - x.p || (y.sw - y.sl) - (x.sw - x.sl));
+}).sort((x, y) => y.p - x.p || (y.sw - y.sl) - (x.sw - x.sl)) }; };
+const RATES = ratesOf(false), RATES_SP = ratesOf(true);
 const winStyle = (win) => ({ w: win ? 700 : 500, t: win ? '#0B0B0F' : '#7E7E85' });
 // 내 팀 (set on the home page's team card): its matches get a light wash of the team colour, like its standings row
 const MY = (() => { try { const v = localStorage.getItem('owcs-myteam'); return TEAM[v] ? v : null; } catch (e) { return null; } })();
@@ -375,8 +378,9 @@ class Component extends DCLogic {
         found.forEach((x) => { const a = x.a === A ? x.sa : x.sb, b = x.a === A ? x.sb : x.sa; sa += a; sb += b; if (a > b) wa++; else wb++; });
         return { na: NAME(A), nb: NAME(B), la: logoDark(A), lb: logoDark(B), wa: SP ? '–' : wa, wb: SP ? '–' : wb, note: '2026 상대 전적 ' + found.length + '경기 · 세트 ' + (SP ? '–' : sa + ':' + sb) };
       })() : null,
-      ratesNote: (D.year || '') + ' 코리아 스테이지 1–' + (D.stageNo || '') + ' (정규 리그 + 플레이오프) ' + D.history.length + '경기 기준',
-      rates: RATES.map((t, i) => { const s = D.standings.find((x) => x.a === t.a); return { r: i + 1, n: NAME(t.a), logo: logo(t.a), c: col(t.a), wl: t.w + '-' + t.l, pct: Math.round(t.p * 100) + '%', sets: t.sw + '-' + t.sl, stage: s ? s.w + '-' + s.l : '–' }; }),
+      ratesNote: SP && D.stageNo > 1 ? (D.year || '') + ' 코리아 스테이지 1–' + (D.stageNo - 1) + ' ' + RATES_SP.n + '경기 기준 · 스포일러 방지 중 · 이번 스테이지 결과는 숨겼어요'
+        : (D.year || '') + ' 코리아 스테이지 1–' + (D.stageNo || '') + ' (정규 리그 + 플레이오프) ' + RATES.n + '경기 기준',
+      rates: (SP ? RATES_SP : RATES).list.map((t, i) => { const s = D.standings.find((x) => x.a === t.a); return { r: i + 1, n: NAME(t.a), logo: logo(t.a), c: col(t.a), wl: t.w + '-' + t.l, pct: Math.round(t.p * 100) + '%', sets: t.sw + '-' + t.sl, stage: s && !SP ? s.w + '-' + s.l : '–' }; }),
       toggleSpoiler: () => this.setState((s) => { try { localStorage.setItem('owcs-spoiler', s.sp ? '0' : '1'); } catch (e) {} return { sp: !s.sp }; }), spoilAttr: SP ? '1' : '0', spoilTrack: SP ? '#7D39EB' : '#B9B9B3', spoilKnob: SP ? '14px' : '2px', blur: 'none',
       nav: [
         { label: '홈', href: 'OWCS KR Home v6.dc.html' }, { label: '일정', href: 'OWCS KR 일정.html' }, { label: '결과', href: 'OWCS KR Results.dc.html' },
@@ -418,7 +422,7 @@ class Component extends DCLogic {
           const top = Math.max(rows[0][1] || 0, rows[1][1] || 0), shown = (played || live) && !SP;
           const bo = (m && m.bo) || x.bo;
           const nx = !live && nextIds.includes(x.id);
-          return { when: x.when + (bo ? ' · BO' + bo : ''), tag: live ? 'LIVE' : nx ? '다음 경기' : x.round && x.round !== c.title ? x.round : '', tagC: live ? '#D92D20' : nx ? '#0B0B0F' : '#6B6B72',
+          return { when: x.when + (bo ? ' · FT' + (Math.floor(bo / 2) + 1) : ''), tag: live ? 'LIVE' : nx ? '다음 경기' : x.round && x.round !== c.title ? x.round : '', tagC: live ? '#D92D20' : nx ? '#0B0B0F' : '#6B6B72',
             tagB: nx ? '#C6FF33' : 'transparent', tagP: nx ? '0 8px' : '0',
             bd: live ? '2px solid #D92D20' : nx ? '2px solid #0B0B0F' : '1px solid #E1E1DB',
             rows: rows.map(([a, sc]) => { const st = !played || SP ? winStyle(true) : winStyle(sc === top);
