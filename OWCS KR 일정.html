@@ -468,7 +468,7 @@ html[data-owcs-dark] .calsec{--p3:#24242C}
           '<div class="tm"><span style="display:flex;align-items:center;gap:8px">' + logo(m.a) + '<span>' + esc(m.a) + '</span></span><span class="vs">vs</span>' +
           '<span style="display:flex;align-items:center;gap:8px"><span>' + esc(m.b) + '</span>' + logo(m.b) + '</span></div><div>' + stake + '</div></div>';
       }).join('');
-      return '<section class="csbox"><h2>팀별 경우의 수<span>남은 ' + CS.left.length + '경기의 모든 승패 조합 기준</span></h2>' + rows + '</section>' +
+      return '<section class="csbox"><h2>팀별 경우의 수<span>남은 ' + CS.left.length + '경기의 모든 ' + (CS.bySets ? '승패·세트 점수' : '승패') + ' 조합 기준</span></h2>' + rows + '</section>' +
         '<section class="csbox"><h2>남은 경기<span>이 경기에 걸린 것</span></h2><div class="ms">' + games + '</div>' +
         (D.tiebreak ? '<div class="tie">' + esc(D.tiebreak) + '</div>' : '') + '</section>';
     },
@@ -559,7 +559,8 @@ html[data-owcs-dark] .calsec{--p3:#24242C}
   var IOS = /iPhone|iPad|iPod/.test(navigator.userAgent) || (/Macintosh/.test(navigator.userAgent) && navigator.maxTouchPoints > 1);
   var ANDROID = /Android/.test(navigator.userAgent);
   var APPLE_OK = !/Windows|Android/.test(navigator.userAgent);
-  var calFile = function (a) { var l = [].concat(a || []).map(function (x) { return x.toLowerCase(); }).sort(); return 'owcs-kr-upcoming' + (l.length && l.length < D.teams.length ? '-' + l.join('-') : '') + '.ics'; };
+  var ICS_SLUG = { SEJ: 'seiji', ROZE: 'zan' }; // calendar files keep the names published before the abbreviation changed
+  var calFile = function (a) { var l = [].concat(a || []).map(function (x) { return ICS_SLUG[x] || x.toLowerCase(); }).sort(); return 'owcs-kr-upcoming' + (l.length && l.length < D.teams.length ? '-' + l.join('-') : '') + '.ics'; };
   var calFeed = function (a) { return location.host + location.pathname.replace(/[^/]*$/, '') + calFile(a); };
   var calUrl = function (a, to) { return !/^https:$/.test(location.protocol) ? calFile(a)
     : to === 'apple' ? 'webcal://' + calFeed(a) : 'https://calendar.google.com/calendar/r?cid=' + encodeURIComponent('webcal://' + calFeed(a)); };

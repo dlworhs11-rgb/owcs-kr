@@ -5,6 +5,12 @@
 // The page's own switches (the home page's tool bar, the results page's spoiler switch, owcs-dark.js's floating button)
 // stay in the page but hidden; the picker and the ⋮ menu press them, so each page keeps its own behaviour.
 (function () {
+  // SEIJI -> SEJ and ZAN -> ROZE (2026-10-23): a team picked before the change keeps working
+  try {
+    var NEW = { SEIJI: 'SEJ', ZAN: 'ROZE' }, mt = localStorage.getItem('owcs-myteam'), sb = localStorage.getItem('owcs-subbed');
+    if (mt && NEW[mt]) localStorage.setItem('owcs-myteam', NEW[mt]);
+    if (sb) localStorage.setItem('owcs-subbed', sb.replace(/"(SEIJI|ZAN)"/g, function (_, c) { return '"' + NEW[c] + '"'; }));
+  } catch (e) {}
   // the menu sits exactly in the middle of the header on every page, the home page too, so it never moves
   // between pages whatever the window width
   var centre = '@media (min-width:900px){#dc-root header{position:relative}' +
