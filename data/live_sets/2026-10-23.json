@@ -651,7 +651,59 @@
      "hero": "bastion"
     }
    },
-   "src": "SOOP"
+   "src": "SOOP",
+   "heroTs": 1792755402,
+   "hudLeft": "SEIJI ESPORTS",
+   "guessed": [
+    "OFF"
+   ],
+   "comps": {
+    "SEIJI ESPORTS": [
+     [
+      "DOX",
+      "roadhog"
+     ],
+     [
+      "M1nut2",
+      "symmetra"
+     ],
+     [
+      "D4RT",
+      "soldier-76"
+     ],
+     [
+      "OFF",
+      "wuyang"
+     ],
+     [
+      "Lavender",
+      "kiriko"
+     ]
+    ],
+    "Crazy Raccoon": [
+     [
+      "MAX",
+      "orisa"
+     ],
+     [
+      "HeeSang",
+      "shion"
+     ],
+     [
+      "Stalk3r",
+      "sierra"
+     ],
+     [
+      "LIP",
+      "jetpack-cat"
+     ],
+     [
+      "vigilante",
+      "sombra"
+     ]
+    ]
+   },
+   "compAt": null
   }
  ]
 }
