@@ -1,0 +1,60 @@
+{
+ "date": "2026-10-23",
+ "casters": [],
+ "matches": {
+  "2026-10-23-27": {
+   "maps": {
+    "1": {
+     "map": "Samoa",
+     "comps": {
+      "a": [
+       [
+        "K4NE",
+        "cassidy"
+       ],
+       [
+        "Profit",
+        "tracer"
+       ],
+       [
+        "Belosrea",
+        "orisa"
+       ],
+       [
+        "Trest",
+        "doctrine"
+       ],
+       [
+        "TenTen",
+        "jetpack-cat"
+       ]
+      ],
+      "b": [
+       [
+        "A1lEN",
+        "bastion"
+       ],
+       [
+        "WuTian",
+        "tracer"
+       ],
+       [
+        "Fate",
+        "mauga"
+       ],
+       [
+        "Gamjung",
+        "doctrine"
+       ],
+       [
+        "Faith",
+        "jetpack-cat"
+       ]
+      ]
+     }
+    }
+   }
+  }
+ },
+ "at": "2026-10-23T17:18:01+09:00"
+}
