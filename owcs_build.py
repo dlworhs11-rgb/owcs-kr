@@ -28,12 +28,15 @@ TEAMS = {
     'T1':             dict(a='T1',    ko='T1',              logo=('T1.png', 'T1.png'),    color='#C8102E'),
     'Team Falcons':   dict(a='FLC',   ko='팀 팔콘스',       logo=('FLC.png', 'FLC.png'),  color='#02A862'),
     'O2 Blast':       dict(a='O2',    ko='O2 블래스트',     logo=('O2-light.png', 'O2-dark.png'),    color='#CD2221'),
-    'SEIJI ESPORTS':  dict(a='SEIJI', ko='세이지 이스포츠', logo=('SEIJI-light.png', 'SEIJI-dark.png'), color='#3E8FA8'),
-    'ZANSIDE GAMING': dict(a='ZAN',   ko='잔사이드 게이밍', logo=('ZAN-light.png', 'ZAN-dark.png'),   color='#4A4A55'),
+    # f = the file stem the team's photo and calendar files were published under (kept when the abbreviation changed, 2026-10-23)
+    'SEIJI ESPORTS':  dict(a='SEJ',   f='SEIJI', ko='세이지 이스포츠', logo=('SEIJI-light.png', 'SEIJI-dark.png'), color='#3E8FA8'),
+    # renamed RØDE ZANSIDE GAMING, abbreviation ROZE (user, 2026-10-23); Liquipedia may still list it as ZANSIDE GAMING
+    'ZANSIDE GAMING': dict(a='ROZE',  f='ZAN',   en='RØDE ZANSIDE GAMING', ko='잔사이드 게이밍', logo=('ZAN-light.png', 'ZAN-dark.png'),   color='#4A4A55'),
     'Poker Face':     dict(a='PF',    ko='포커페이스',      logo=('PF-light.png', 'PF-dark.png'),    color='#501F64'),
 }
 # logos drawn on the team-colour panel: ZETA's dark variant is a different emblem and T1's red mark vanishes on red
 ON_COLOR = {'ZETA': 'ZETA-white.png', 'T1': 'T1-white.png'}
+NAME_ALIAS = {'RØDE ZANSIDE GAMING': 'ZANSIDE GAMING', 'RODE ZANSIDE GAMING': 'ZANSIDE GAMING'}   # the same team under its new name
 NEW_COLOR = '#8A8A93'   # grey for a team not in TEAMS yet (newly promoted)
 NEW_TEAMS = {}          # full name -> fallback entry, filled by team() during a build
 WARNED = set()          # NEW_TEAMS already reported (--watch prints the warning once)
@@ -43,6 +46,7 @@ STAGE_TEAMS = set()     # teams of the stage on the page; only these get a fallb
 def team(name):
     """TEAMS entry of a team; a team not listed there (promoted from the open qualifier, renamed) gets a fallback:
     Liquipedia short name if the cached team page has one, else initials / first letters, grey colour, no logo"""
+    name = NAME_ALIAS.get(name, name)
     if name in TEAMS:
         return TEAMS[name]
     if name not in NEW_TEAMS:
@@ -610,8 +614,8 @@ def potm_awards():
 
 
 HANDLE_FIX = {'Bekey': 'Becky'}   # collector spelling -> the one on the broadcast, Liquipedia and his own SOOP (김배키이)
-SOOP_ONLY = {'CR', 'ZAN'}   # Crazy Raccoon and ZANSIDE GAMING stream on SOOP only (their CHZZK channels are unused)
-SOOP_FIRST = {'O2', 'PF', 'SEIJI'}   # stream on SOOP; their CHZZK link is kept only for a player with no SOOP channel (fan comment 2026-10-23)
+SOOP_ONLY = {'CR', 'ROZE'}   # Crazy Raccoon and ZANSIDE GAMING stream on SOOP only (their CHZZK channels are unused)
+SOOP_FIRST = {'O2', 'PF', 'SEJ'}   # stream on SOOP; their CHZZK link is kept only for a player with no SOOP channel (fan comment 2026-10-23)
 
 
 
@@ -1151,10 +1155,10 @@ def build(check_live=False, prev_live=None, out=HERE, records=True):
     for full, t in list(TEAMS.items()) + list(NEW_TEAMS.items()):
         s = socials['teams'].get(full, {})
         logo = t['logo'] or ('', '')
-        teams.append(dict(a=t['a'], n=full, ko=t['ko'], color=t['color'],
+        teams.append(dict(a=t['a'], n=t.get('en', full), ko=t['ko'], color=t['color'],
                           logo=logo[0] and 'assets/logos2/' + logo[0], logoDark=logo[1] and 'assets/logos2/' + logo[1],
                           logoOnColor=logo[1] and 'assets/logos2/' + ON_COLOR.get(t['a'], logo[1]),
-                          photo=('assets/teams/' + t['a'] + '.webp') if os.path.exists(os.path.join(HERE, 'assets', 'teams', t['a'] + '.webp')) else '',
+                          photo=('assets/teams/' + t.get('f', t['a']) + '.webp') if os.path.exists(os.path.join(HERE, 'assets', 'teams', t.get('f', t['a']) + '.webp')) else '',
                           x=s.get('x') and 'https://x.com/' + s['x'], instagram=s.get('instagram') and 'https://instagram.com/' + s['instagram'], youtube=s.get('youtube') and 'https://www.youtube.com/' + s['youtube'],
                           lp=s.get('lp'), new=full not in TEAMS))
     if NEW_TEAMS and NEW_TEAMS.keys() != WARNED:

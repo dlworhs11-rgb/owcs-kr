@@ -223,15 +223,20 @@ def upcoming_ics(data, now=None, team=None):
     return '\r\n'.join(lines) + '\r\n'
 
 
+# calendar file names keep the codes teams had when people subscribed (SEIJI -> SEJ, ZAN -> ROZE on 2026-10-23): the pages build the same names
+ICS_SLUG = {'SEJ': 'seiji', 'ROZE': 'zan'}
+
+
 def write_ics(data, folder=HERE):
     """owcs-kr-upcoming.ics (every team) + one file for every combination of teams, so picking several teams on the
     site is still a single subscription: owcs-kr-upcoming-<team>-<team>....ics, codes lower case in alphabetical order"""
     import itertools
-    codes = sorted(t['a'] for t in data['teams'])
+    slug = lambda c: ICS_SLUG.get(c, c.lower())
+    codes = sorted((t['a'] for t in data['teams']), key=slug)
     with open(os.path.join(folder, ICS_FILE), 'w', encoding='utf-8', newline='') as f:
         f.write(upcoming_ics(data))
     for k in range(1, len(codes)):
         for combo in itertools.combinations(codes, k):
-            name = ICS_FILE.replace('.ics', '-' + '-'.join(c.lower() for c in combo) + '.ics')
+            name = ICS_FILE.replace('.ics', '-' + '-'.join(slug(c) for c in combo) + '.ics')
             with open(os.path.join(folder, name), 'w', encoding='utf-8', newline='') as f:
                 f.write(upcoming_ics(data, team=combo))
