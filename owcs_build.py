@@ -258,6 +258,12 @@ def stage_format(comp):
     return po, po + (int(nxt.group(1)) if nxt else 4)
 
 
+def stage_carries(comp):
+    """True when the stage page says the regular-season results carry over into the seeding deciders (2026 stages 2 and 3);
+    stage 1 and the stages before it started the deciders from zero"""
+    return "Results of ''Regular Season'' carry over" in lp_wiki(comp)
+
+
 def hero_code(h):
     return ''.join(w[0] for w in h.split()).upper()[:3] if ' ' in (h or '') else (h or '?')[:3].upper()
 
@@ -838,9 +844,10 @@ def build_bracket(stage, matches, standings, playoffs):
                                  rows=[dict(n=full.get(a, a), a=a, s=s if (done or m['live']) else None) for a, s in ((m['a'], m['sa']), (m['b'], m['sb']))]))
     final = next((x for c in cols for x in c['matches'] if x['round'] == '결승' and x['played']), None)
     champ = final and max(final['rows'], key=lambda r: r['s'] or 0)['n']
-    seeding = seeding_of(matches, standings, playoffs)
+    carry = stage_carries(stage['po'])
+    seeding = seeding_of(matches, standings, playoffs, carry)
     label = f"{stage['year']} 스테이지 {stage['n']}"
-    return dict(label=label, title=label + ' 플레이오프', champion=champ, columns=cols, seeding=seeding,
+    return dict(label=label, title=label + ' 플레이오프', champion=champ, columns=cols, seeding=seeding, carry=carry,
                 start=min(m['day'] for m in ms), end=max(m['day'] for m in ms))
 
 
@@ -902,7 +909,7 @@ def rank_by(recs, games, order=()):
     return out
 
 
-def fill_bracket(matches, standings, playoffs, lcq):
+def fill_bracket(matches, standings, playoffs, lcq, carry=True):
     """Liquipedia leaves a playoff slot TBD until someone edits the page; fill the slots the format already decides,
     from the final standings and the results so far. A team Liquipedia has put in a slot always stays.
     The format of 2026 stages 1 and 2: LCQ upper final = 5th v 6th, lower semi = 7th v 8th, lower final = upper-final
@@ -938,7 +945,7 @@ def fill_bracket(matches, standings, playoffs, lcq):
     put(ls, rank[playoffs + 2], rank[playoffs + 3])
     put(lf, res(uf, False), res(ls))
     sd = [m for m in matches if m['phase'] == 'seed']
-    seed = [r['a'] for r in seeding_of(matches, standings, playoffs)] if sd and all(res(m) for m in sd) else [None] * 4
+    seed = [r['a'] for r in seeding_of(matches, standings, playoffs, carry)] if sd and all(res(m) for m in sd) else [None] * 4
     q1, q2 = at('po', '6강'), at('po', '6강', 1)
     put(q1, seed[3], res(uf))
     put(q2, seed[2], res(lf))
@@ -949,19 +956,19 @@ def fill_bracket(matches, standings, playoffs, lcq):
     put(at('po', '3위 결정전'), res(s1, False), res(s2, False))
 
 
-def seeding_of(matches, standings, playoffs):
-    """seeding decider table: the regular-season record carries over (Liquipedia format), plus the decider results"""
+def seeding_of(matches, standings, playoffs, carry=True):
+    """seeding decider table: the regular-season record carries over when the stage page says so (carry), plus the decider results"""
     seeds = [m for m in matches if m['phase'] == 'seed']
     teams = sorted({t for m in seeds for t in (m['a'], m['b']) if t != 'TBD'})
     if not teams and standings and all(m['played'] for m in matches if m['phase'] == 'rs'):
         teams = [s['a'] for s in standings[:playoffs]]
-    rec = {s['a']: dict(a=s['a'], w=s['w'], l=s['l'], diff=s['diff'], sw=0, sl=0) for s in standings if s['a'] in teams}
+    rec = {s['a']: dict(a=s['a'], w=s['w'] if carry else 0, l=s['l'] if carry else 0, diff=s['diff'] if carry else 0, sw=0, sl=0) for s in standings if s['a'] in teams}
     for m in seeds:
         if m['played'] and not m['live'] and m['a'] in rec and m['b'] in rec:
             win, lose = (m['a'], m['b']) if m['sa'] > m['sb'] else (m['b'], m['a'])
             rec[win]['w'] += 1; rec[win]['sw'] += 1; rec[lose]['l'] += 1; rec[lose]['sl'] += 1
             rec[m['a']]['diff'] += m['sa'] - m['sb']; rec[m['b']]['diff'] += m['sb'] - m['sa']
-    games = [(m['a'], m['b'], m['sa'], m['sb']) for m in matches if m['phase'] in ('rs', 'seed') and m['played'] and not m['live']]
+    games = [(m['a'], m['b'], m['sa'], m['sb']) for m in matches if m['phase'] in (('rs', 'seed') if carry else ('seed',)) and m['played'] and not m['live']]
     return rank_by(rec.values(), games, [s['a'] for s in standings])
 
 
@@ -1140,7 +1147,7 @@ def build(check_live=False, prev_live=None, out=HERE, records=True):
             if best:
                 m['potm'] = next(i for i in ids if i.lower() == best[0])
     standings = standings_of(stage, matches)
-    fill_bracket(matches, standings, playoffs, lcq)
+    fill_bracket(matches, standings, playoffs, lcq, stage_carries(stage['po']))
     live =live_status(players) if check_live else (prev_live or {})
     bracket = build_bracket(stage, matches, standings, playoffs)
     last = prev and build_bracket(prev, stage_brief(prev), standings_of(prev), playoffs)

@@ -55,6 +55,7 @@
     ['5·6위전 패자', '5·6位戦の敗者', 'Loser of 5th v 6th', '5·6名之战败者'], ['7·8위전 승자', '7·8位戦の勝者', 'Winner of 7th v 8th', '7·8名之战胜者'],
     ['결정전', '決定戦', 'Decider', '决定战'], ['합산', '合計', 'Total', '合计'], ['4강 직행', '準決勝へ直行', 'Straight to the semis', '直通四强'],
     ['1–4위는 모두 플레이오프 진출 · 자리만 정해요', '1–4位は全員プレーオフ進出 · 順位だけを決めます', '1st–4th all make the playoffs · this only sets the seeds', '第1–4名全部晋级季后赛 · 只决定种子顺位'],
+    ['서로 한 번씩 붙고, 결정전 결과만으로 순위 계산', '総当たりで1回ずつ対戦し、決定戦の結果だけで順位を決定', 'They play each other once; only the decider results count', '彼此交手一次，仅按决定战结果计算排名'],
     ['서로 한 번씩 더 붙고, 정규 리그 승패도 합쳐서 순위 계산', '総当たりでもう1回ずつ対戦し、レギュラーシーズンの勝敗と合算して順位を決定', 'They play each other once more; regular-season wins and losses count too', '彼此再交手一次，并与常规赛胜负合并计算排名'],
     ['1·2위 4강 직행', '1·2位は準決勝へ直行', '1st–2nd straight to the semis', '第1·2名直通四强'], ['3·4위 6강부터', '3·4位は準々決勝から', '3rd–4th start in the quarter-finals', '第3·4名从六强开始'],
     ['정규 리그 진행 중 · 지금 순위라 바뀔 수 있어요', 'レギュラーシーズン進行中 · 現在の順位のため変わる可能性があります', 'Regular season still on · current standings, may change', '常规赛进行中 · 当前排名，可能变化'],
