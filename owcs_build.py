@@ -384,7 +384,8 @@ def lp_maps(m):
             continue
         bans = mp.get('bans') or {}
         first = 'a' if mp.get('banstart') == 1 else ('b' if mp.get('banstart') == 2 else None)
-        md = mp.get('mode') or MAP_MODE.get(mp['map']) or ''   # Liquipedia: 'Hybrid', sometimes 'hybrid', sometimes none
+        # a known map's mode wins over Liquipedia's (10-23: New Junk City typed as Hybrid); Liquipedia: 'Hybrid', sometimes 'hybrid', sometimes none
+        md = MAP_MODE.get(mp['map']) or mp.get('mode') or ''
         md = md[:1].upper() + md[1:]
         maps.append(dict(no=mp['n'], map=mp['map'], mode=MODE_KO.get(md, md),
                          winner={1: 'a', 2: 'b'}.get(mp.get('winner')),
@@ -1077,7 +1078,7 @@ def build_intl(year):
                 for t in (t1, t2):
                     if is_team(t):
                         seen.add(t)
-                maps = [dict(no=mp['n'], map=mp['map'], mode=MODE_KO.get(mp.get('mode'), mp.get('mode') or ''),
+                maps = [dict(no=mp['n'], map=mp['map'], mode=MODE_KO.get(MAP_MODE.get(mp['map']) or mp.get('mode'), mp.get('mode') or ''),
                              winner={1: 'a', 2: 'b'}.get(mp.get('winner')), sa=mp.get('score1'), sb=mp.get('score2'),
                              bans=[dict(t=s, h=h, code=hero_code(h)) for s, h in (('a', (mp.get('bans') or {}).get('t1')), ('b', (mp.get('bans') or {}).get('t2'))) if h],
                              banFirst={1: 'a', 2: 'b'}.get(mp.get('banstart')), src='liquipedia')
