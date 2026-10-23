@@ -74,9 +74,10 @@
    },
    "compAt": "2026-10-23T17:12:10+09:00",
    "score": {
-    "OEE SEBUARG BIR 4021": 1,
+    "OEE SEBUARG BIR 4021": 2,
     "O2 Blast": 0
-   }
+   },
+   "scoreFrom": "table"
   }
  ]
 }
