@@ -573,7 +573,57 @@
      "hero": "jetpack cat"
     }
    },
-   "src": "SOOP"
+   "src": "SOOP",
+   "heroTs": 1792754211,
+   "hudLeft": "SEIJI ESPORTS",
+   "guessed": [],
+   "comps": {
+    "SEIJI ESPORTS": [
+     [
+      "SENTIER",
+      "wrecking-ball"
+     ],
+     [
+      "M1nut2",
+      "sojourn"
+     ],
+     [
+      "D4RT",
+      "tracer"
+     ],
+     [
+      "OFF",
+      "lifeweaver"
+     ],
+     [
+      "Lavender",
+      "kiriko"
+     ]
+    ],
+    "Crazy Raccoon": [
+     [
+      "MAX",
+      "sigma"
+     ],
+     [
+      "HeeSang",
+      "shion"
+     ],
+     [
+      "Stalk3r",
+      "sierra"
+     ],
+     [
+      "CH0R0NG",
+      "doctrine"
+     ],
+     [
+      "vigilante",
+      "zenyatta"
+     ]
+    ]
+   },
+   "compAt": null
   }
  ]
 }
