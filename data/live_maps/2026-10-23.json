@@ -455,6 +455,218 @@
    },
    "totalsVerified": true,
    "reading": "ocr"
+  },
+  {
+   "match": "Cheeseburger vs O2 Blast",
+   "matchNo": 1,
+   "game": 2,
+   "map": "New Junk City",
+   "mapTime": null,
+   "frame": "m05_table1_1792750084.png",
+   "teams": {
+    "Cheeseburger": [
+     {
+      "name": "?32",
+      "e": 13,
+      "a": 0,
+      "d": 1,
+      "dmg": 5941,
+      "heal": 7,
+      "mit": 100
+     },
+     {
+      "name": "?33",
+      "e": 13,
+      "a": 14,
+      "d": 1,
+      "dmg": 2450,
+      "heal": 6281,
+      "mit": 3756
+     },
+     {
+      "name": "?34",
+      "e": 18,
+      "a": 14,
+      "d": 0,
+      "dmg": 4199,
+      "heal": 9064,
+      "mit": 0
+     },
+     {
+      "name": "?35",
+      "e": 14,
+      "a": 4,
+      "d": 1,
+      "dmg": 6548,
+      "heal": 0,
+      "mit": 159
+     },
+     {
+      "name": "?36",
+      "e": 19,
+      "a": 5,
+      "d": 1,
+      "dmg": 8635,
+      "heal": 518,
+      "mit": 6303
+     }
+    ],
+    "O2 Blast": [
+     {
+      "name": "?37",
+      "e": 3,
+      "a": 2,
+      "d": 9,
+      "dmg": 7458,
+      "heal": 444,
+      "mit": 6995
+     },
+     {
+      "name": "Irony",
+      "e": 1,
+      "a": 3,
+      "d": 5,
+      "dmg": 3428,
+      "heal": 5238,
+      "mit": 0
+     },
+     {
+      "name": "?38",
+      "e": 1,
+      "a": 0,
+      "d": 6,
+      "dmg": 4288,
+      "heal": 0,
+      "mit": 0
+     },
+     {
+      "name": "?39",
+      "e": 2,
+      "a": 0,
+      "d": 8,
+      "dmg": 2325,
+      "heal": 6734,
+      "mit": 0
+     },
+     {
+      "name": "?40",
+      "e": 4,
+      "a": 0,
+      "d": 3,
+      "dmg": 4812,
+      "heal": 750,
+      "mit": 50
+     }
+    ]
+   },
+   "totalsVerified": false,
+   "reading": "ocr"
+  },
+  {
+   "match": "Cheeseburger vs O2 Blast",
+   "matchNo": 1,
+   "game": 3,
+   "map": "Esperança",
+   "mapTime": "10:10",
+   "frame": "m06_table1_1792751015.png",
+   "teams": {
+    "Cheeseburger": [
+     {
+      "name": "?41",
+      "e": 27,
+      "a": 0,
+      "d": 3,
+      "dmg": 6788,
+      "heal": 15,
+      "mit": 176
+     },
+     {
+      "name": "?42",
+      "e": 16,
+      "a": 23,
+      "d": 7,
+      "dmg": 3722,
+      "heal": 7321,
+      "mit": 3971
+     },
+     {
+      "name": "?43",
+      "e": 15,
+      "a": 22,
+      "d": 4,
+      "dmg": 4683,
+      "heal": 10699,
+      "mit": 1480
+     },
+     {
+      "name": "?44",
+      "e": 23,
+      "a": 0,
+      "d": 7,
+      "dmg": 10560,
+      "heal": 0,
+      "mit": 370
+     },
+     {
+      "name": "?45",
+      "e": 29,
+      "a": 9,
+      "d": 3,
+      "dmg": 11268,
+      "heal": 2862,
+      "mit": 15246
+     }
+    ],
+    "O2 Blast": [
+     {
+      "name": "?46",
+      "e": 18,
+      "a": 4,
+      "d": 8,
+      "dmg": 10389,
+      "heal": 1483,
+      "mit": 9593
+     },
+     {
+      "name": "Irony",
+      "e": 11,
+      "a": 14,
+      "d": 7,
+      "dmg": 5349,
+      "heal": 10231,
+      "mit": 0
+     },
+     {
+      "name": "?47",
+      "e": 11,
+      "a": 0,
+      "d": 10,
+      "dmg": 8918,
+      "heal": 0,
+      "mit": 0
+     },
+     {
+      "name": "?48",
+      "e": 6,
+      "a": 12,
+      "d": 8,
+      "dmg": 3967,
+      "heal": 6494,
+      "mit": 1449
+     },
+     {
+      "name": "?49",
+      "e": 17,
+      "a": 0,
+      "d": 6,
+      "dmg": 7811,
+      "heal": 100,
+      "mit": 620
+     }
+    ]
+   },
+   "totalsVerified": false,
+   "reading": "ocr"
   }
  ],
  "matches": [
@@ -464,7 +676,15 @@
    "mapWins": {
     "Cheeseburger": 1
    },
-   "potm": null
+   "potm": {
+    "name": "Someone",
+    "team": "O2 Blast",
+    "elims": 0,
+    "deaths": 2,
+    "dmgPerMin": 1,
+    "screenName": "Someone",
+    "method": "closest elims+deaths"
+   }
   }
  ],
  "unknownNames": [
@@ -622,8 +842,103 @@
    "id": "?31",
    "map": "04",
    "row": 9
+  },
+  {
+   "id": "?32",
+   "map": "05",
+   "row": 0
+  },
+  {
+   "id": "?33",
+   "map": "05",
+   "row": 1
+  },
+  {
+   "id": "?34",
+   "map": "05",
+   "row": 2
+  },
+  {
+   "id": "?35",
+   "map": "05",
+   "row": 3
+  },
+  {
+   "id": "?36",
+   "map": "05",
+   "row": 4
+  },
+  {
+   "id": "?37",
+   "map": "05",
+   "row": 5
+  },
+  {
+   "id": "?38",
+   "map": "05",
+   "row": 7
+  },
+  {
+   "id": "?39",
+   "map": "05",
+   "row": 8
+  },
+  {
+   "id": "?40",
+   "map": "05",
+   "row": 9
+  },
+  {
+   "id": "?41",
+   "map": "06",
+   "row": 0
+  },
+  {
+   "id": "?42",
+   "map": "06",
+   "row": 1
+  },
+  {
+   "id": "?43",
+   "map": "06",
+   "row": 2
+  },
+  {
+   "id": "?44",
+   "map": "06",
+   "row": 3
+  },
+  {
+   "id": "?45",
+   "map": "06",
+   "row": 4
+  },
+  {
+   "id": "?46",
+   "map": "06",
+   "row": 5
+  },
+  {
+   "id": "?47",
+   "map": "06",
+   "row": 7
+  },
+  {
+   "id": "?48",
+   "map": "06",
+   "row": 8
+  },
+  {
+   "id": "?49",
+   "map": "06",
+   "row": 9
   }
  ],
- "unknownMaps": [],
+ "unknownMaps": [
+  {
+   "map": "06",
+   "frame": "m06_table1_1792751015.png"
+  }
+ ],
  "note": "reading=ocr: numbers, match/game/map read from the broadcast screen; totalsVerified = sums match the team-totals page; mapTime = damage / damage-per-minute from the totals page."
 }

@@ -389,8 +389,87 @@
    },
    "compAt": "2026-10-23T18:56:51+09:00",
    "score": {
+    "Team Falcons": 3,
+    "ZANSIDE GAMING": 0
+   },
+   "scoreFrom": "table"
+  },
+  {
+   "banTs": 1792750233,
+   "teams": [
+    "Team Falcons",
+    "ZANSIDE GAMING"
+   ],
+   "game": 3,
+   "map": "Colosseo",
+   "seriesBefore": {
     "Team Falcons": 2,
     "ZANSIDE GAMING": 0
+   },
+   "bans": {
+    "initial": {
+     "team": "ZANSIDE GAMING",
+     "hero": "dva"
+    },
+    "followUp": {
+     "team": "Team Falcons",
+     "hero": "jetpack cat"
+    }
+   },
+   "src": "SOOP",
+   "heroTs": 1792750332,
+   "hudLeft": "Team Falcons",
+   "guessed": [],
+   "comps": {
+    "Team Falcons": [
+     [
+      "SOMEONE",
+      "zarya"
+     ],
+     [
+      "MER1T",
+      "cassidy"
+     ],
+     [
+      "Checkmate",
+      "tracer"
+     ],
+     [
+      "Fielder",
+      "doctrine"
+     ],
+     [
+      "ChiYo",
+      "brigitte"
+     ]
+    ],
+    "ZANSIDE GAMING": [
+     [
+      "Heiser",
+      "dmon"
+     ],
+     [
+      "Taejong",
+      "genji"
+     ],
+     [
+      "Kilo",
+      "sojourn"
+     ],
+     [
+      "iR0NY",
+      "kiriko"
+     ],
+     [
+      "OPENER",
+      "lucio"
+     ]
+    ]
+   },
+   "compAt": "2026-10-23T19:13:40+09:00",
+   "score": {
+    "Team Falcons": 129,
+    "ZANSIDE GAMING": 54
    }
   }
  ]
