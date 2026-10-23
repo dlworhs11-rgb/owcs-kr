@@ -1334,9 +1334,13 @@ const liveRelay = (onChange) => {
   // one at a time, in arrival order: on page load the last 12 h replay at once, and checks that finish out of order
   // would let an old reading land after a newer one
   let queue = Promise.resolve();
+  // replayed messages (sent before this page opened) only fill LIVE; it is applied once, 300 ms after the last one,
+  // so the in-between states don't show (10-23: a replayed 강제 fix put CB-O2 back to live, CB jumped behind T1/FLC and back)
+  const opened = Date.now() / 1000 - 5, replayDays = new Set();
+  let replayTimer = 0;
   es.onmessage = (e) => {
-    let body;
-    try { body = JSON.parse(JSON.parse(e.data).message); } catch (x) { return; }
+    let body, sent = 0;
+    try { const ev = JSON.parse(e.data); sent = ev.time || 0; body = JSON.parse(ev.message); } catch (x) { return; }
     if (!body || typeof body.p !== 'string' || typeof body.s !== 'string') return;
     const sig = Uint8Array.from(atob(body.s), (ch) => ch.charCodeAt(0));
     queue = queue.then(() => key).then((k) => crypto.subtle.verify({ name: 'ECDSA', hash: 'SHA-256' }, k, sig, new TextEncoder().encode(body.p))).then((ok) => {
@@ -1347,6 +1351,12 @@ const liveRelay = (onChange) => {
       else if (pl.k === 'admin') { LIVE.admin = pl.d; LIVE.relay.admin = true; }
       else if (pl.k === 'set' && pl.d) { LIVE.sets[pl.d.banTs] = { ...pl.d, _day: pl.date }; LIVE.relay['set' + pl.d.banTs] = true; }
       else return;
+      if (sent && sent < opened) {
+        replayDays.add(pl.date);
+        clearTimeout(replayTimer);
+        replayTimer = setTimeout(() => { let ch = false; replayDays.forEach((d) => { ch = applyLive(d) || ch; }); replayDays.clear(); if (ch) onChange(); }, 300);
+        return;
+      }
       if (applyLive(pl.date)) onChange();
     }).catch(() => {});
   };
