@@ -91,7 +91,16 @@
     "Cheeseburger": 1,
     "O2 Blast": 0
    },
-   "bans": null,
+   "bans": {
+    "initial": {
+     "team": "O2 Blast",
+     "hero": "cassidy"
+    },
+    "followUp": {
+     "team": "Cheeseburger",
+     "hero": "mauga"
+    }
+   },
    "src": "SOOP"
   }
  ]
