@@ -340,9 +340,7 @@
    "src": "SOOP",
    "heroTs": 1792749355,
    "hudLeft": "Team Falcons",
-   "guessed": [
-    "Kilo"
-   ],
+   "guessed": [],
    "comps": {
     "Team Falcons": [
      [
@@ -355,7 +353,7 @@
      ],
      [
       "Checkmate",
-      "symmetra"
+      "tracer"
      ],
      [
       "Fielder",
