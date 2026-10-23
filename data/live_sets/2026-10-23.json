@@ -314,6 +314,21 @@
     "ZANSIDE GAMING": 1
    },
    "scoreFrom": "table"
+  },
+  {
+   "banTs": 1792749271,
+   "teams": [
+    "Team Falcons",
+    "ZANSIDE GAMING"
+   ],
+   "game": 2,
+   "map": "Aatlis",
+   "seriesBefore": {
+    "Team Falcons": 1,
+    "ZANSIDE GAMING": 0
+   },
+   "bans": null,
+   "src": "SOOP"
   }
  ]
 }
