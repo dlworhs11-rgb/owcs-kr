@@ -258,7 +258,57 @@
      "hero": "sombra"
     }
    },
-   "src": "SOOP"
+   "src": "SOOP",
+   "heroTs": 1792748001,
+   "hudLeft": "Team Falcons",
+   "guessed": [],
+   "comps": {
+    "Team Falcons": [
+     [
+      "SOMEONE",
+      "orisa"
+     ],
+     [
+      "MER1T",
+      "sojourn"
+     ],
+     [
+      "Checkmate",
+      "tracer"
+     ],
+     [
+      "Fielder",
+      "doctrine"
+     ],
+     [
+      "ChiYo",
+      "brigitte"
+     ]
+    ],
+    "ZANSIDE GAMING": [
+     [
+      "Heiser",
+      "orisa"
+     ],
+     [
+      "Taejong",
+      "?"
+     ],
+     [
+      "Kilo",
+      "sojourn"
+     ],
+     [
+      "iR0NY",
+      "doctrine"
+     ],
+     [
+      "OPENER",
+      "jetpack-cat"
+     ]
+    ]
+   },
+   "compAt": null
   }
  ]
 }
