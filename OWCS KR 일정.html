@@ -329,8 +329,8 @@ html[data-owcs-dark] .calsec{--p3:#24242C}
   var today = kstDay(nowMs);
 
   // team logo; TM is the team table to look in (a world tournament has its own, foreign teams included)
-  function logo(a, cls, TM) {
-    var t = (TM || TEAM)[a], u = t && (DARK ? (t.logoDark || t.logo) : t.logo);
+  function logo(a, cls, TM, light) {
+    var t = (TM || TEAM)[a], u = t && (DARK && !light ? (t.logoDark || t.logo) : t.logo);
     return u ? '<i class="lg ' + (cls || '') + '" style="background-image:url(\'' + esc(u) + '\')" title="' + esc(t.n) + '"></i>' : '<i class="lg tbd ' + (cls || '') + '"></i>';
   }
   function state(m) { return m.live ? 'live' : m.played ? 'done' : 'up'; }
@@ -400,7 +400,7 @@ html[data-owcs-dark] .calsec{--p3:#24242C}
     var mine = MY && (m.a === MY || m.b === MY) ? ' mine' : '';
     var kr = intl && ((TM[m.a] || {}).kr || (TM[m.b] || {}).kr) ? ' kr' : '';
     return '<' + tag + ' class="m' + mine + kr + '" data-st="' + st + '" data-a="' + esc(m.a) + '" data-b="' + esc(m.b) + '">' +
-      '<div class="lb"><span>' + lbl + '</span><span>BO' + (m.bo || 5) + '</span></div>' +
+      '<div class="lb"><span>' + lbl + '</span><span>FT' + (Math.floor((m.bo || 5) / 2) + 1) + '</span></div>' +
       '<div class="tm"><span class="' + lose(s[0], s[1]).trim() + '" style="display:flex;align-items:center;gap:8px">' + logo(m.a, '', TM) + '<span>' + esc(m.a) + '</span></span>' + mid +
       '<span class="' + lose(s[1], s[0]).trim() + '" style="display:flex;align-items:center;gap:8px"><span>' + esc(m.b) + '</span>' + logo(m.b, '', TM) + '</span></div>' +
       '<div>' + right + '</div></' + tag.split(' ')[0] + '>';
@@ -599,9 +599,13 @@ html[data-owcs-dark] .calsec{--p3:#24242C}
 
   function chipOf(m, day) {
     var h = hideSc(m), lo = !h && m.st === 'done';
-    var fa = lo && m.sa < m.sb ? ' style="opacity:.4"' : '', fb = lo && m.sb < m.sa ? ' style="opacity:.4"' : '';
-    var la = logo(m.a).replace('<i ', '<i' + fa + ' '), lb = logo(m.b).replace('<i ', '<i' + fb + ' ');
-    return '<div class="gm' + (day === today ? ' now' : '') + '">' + la + '<b>' + esc(m.a) + '</b><span style="padding-left:2px">' + (h ? '' : m.sa) + '</span><span class="v">vs</span><span style="padding-right:2px">' + (h ? '' : m.sb) + '</span><b>' + esc(m.b) + '</b>' + lb + '</div>' +
+    // the loser's logo faded; added inside the logo's own style attribute (a second style attribute is dropped, and the logo with it)
+    var fade = function (html, on) { return on ? html.replace('style="', 'style="opacity:.4;') : html; };
+    var fa = lo && m.sa < m.sb, fb = lo && m.sb < m.sa;
+    var la = fade(logo(m.a), fa), lb = fade(logo(m.b), fb);
+    // today's chip is lime in both themes, so it takes the logos drawn for light backgrounds (the dark-mode white ones vanish on it)
+    var now = day === today, ca = now ? fade(logo(m.a, '', null, true), fa) : la, cb = now ? fade(logo(m.b, '', null, true), fb) : lb;
+    return '<div class="gm' + (now ? ' now' : '') + '">' + ca + '<b>' + esc(m.a) + '</b><span style="padding-left:2px">' + (h ? '' : m.sa) + '</span><span class="v">vs</span><span style="padding-right:2px">' + (h ? '' : m.sb) + '</span><b>' + esc(m.b) + '</b>' + cb + '</div>' +
       '<div class="gmm"' + (day < today ? ' style="opacity:.75"' : '') + '>' + la + '<span>' + (h ? 'vs' : m.sa + ':' + m.sb) + '</span>' + lb + '</div>';
   }
 
