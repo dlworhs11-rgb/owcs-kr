@@ -1817,7 +1817,8 @@ class Component extends DCLogic {
           .map(({ t }) => ({ n: t.n, sub: t.ko + ' · 로스터 보기', logo: logoBg(t.a, DM), go: () => pickTeam(t.a) }));
         const pk = D.players.find((p) => p.id.toLowerCase() === PS_PICK.toLowerCase()) || D.players[0] || {};
         return { q: raw, has: !!raw, open: !!q, hits, teamHits, none: !!q && !hits.length && !teamHits.length,
-          ph: '선수 검색 · ' + [pk.id, pk.ko, pk.real].filter(Boolean).join(', '),
+          // other languages: Korean names are no use as an example to a reader who can't type them
+          ph: '선수 검색 · ' + [pk.id, pk.ko, pk.real].filter((s) => s && (!window.OWCSi18n || OWCSi18n.lang === 'ko' || !/[가-힣]/.test(s))).join(', '),
           phM: 'ex) ' + [pk.id, pk.ko].filter(Boolean).join(', '),   // phone: the search icon already says what it is
           onQ: (e) => this.setState({ pq: e.target.value }), clear: () => this.setState({ pq: '' }),
           onKey: (e) => { if (e.key === 'Enter' && teamHits[0]) teamHits[0].go(); else if (e.key === 'Enter' && hits[0]) location.href = hits[0].href; else if (e.key === 'Escape') this.setState({ pq: '' }); } };

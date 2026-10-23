@@ -84,6 +84,10 @@
     ['오늘로', '今日へ', 'Today', '回到今天'], ['이날 결과', 'この日の結果', 'Results of the day', '当日结果'], ['이번 스테이지', '今ステージ', 'This stage', '本阶段'], ['전체 팀', '全チーム', 'All teams', '全部战队'],
     ['지난 경기', '前回の試合', 'Last match day', '上一比赛日'], ['직관 안내 ·', '観戦案内 ·', 'Tickets ·', '现场观赛 ·'], ['팀 고르기 ▾', 'チームを選ぶ ▾', 'Pick a team ▾', '选择战队 ▾'],
     ['팀별 경우의 수', 'チーム別プレーオフ条件', 'Scenarios by team', '各队晋级形势'],
+    ['이 경기에 걸린 것', 'この試合で決まること', 'What rides on each match', '这场比赛关系到什么'], ['조건에 맞는 경기가 없어요.', '条件に合う試合はありません。', 'No matches fit these filters.', '没有符合条件的比赛。'],
+    // player search box (placeholder: '선수 검색 · LIP, 이재원'; Korean names drop out) and the reels buttons' hover text
+    ['선수 검색', '選手検索', 'Search players', '搜索选手'], ['이전 릴스', '前のリール', 'Previous reel', '上一个短视频'], ['다음 릴스', '次のリール', 'Next reel', '下一个短视频'],
+    ['오버워치 이스포츠 공식 인스타그램 릴스', 'Overwatch Esports 公式Instagramリール', 'Overwatch Esports Instagram reels', 'Overwatch Esports 官方 Instagram 短视频'],
     ['정규 리그 경기가 모두 끝났어요.', 'レギュラーシーズンの試合はすべて終了しました。', 'The regular season is over.', '常规赛已全部结束。'], ['시즌 결과 보기', 'シーズン結果を見る', 'See season results', '查看赛季结果'],
     // navigation / common
     ['일정', '日程', 'Schedule', '赛程'], ['결과', '結果', 'Results', '结果'], ['순위', '順位', 'Standings', '排名'], ['직관', '観戦', 'Tickets', '现场观赛'], ['선수', '選手', 'Players', '选手'], ['방송', '配信', 'Live', '直播'],
@@ -241,6 +245,7 @@
     [/^ ?공식 예매 안내를 옮긴 것이라, 바뀐 내용은 티켓링크 공지를 확인해 주세요\./, P('の公式販売案内を転載したものです。変更はTicketlinkのお知らせをご確認ください。', ' official sales notice; check Ticketlink for any changes.', ' 官方售票公告，如有变动请以 Ticketlink 公告为准。')],
     [/ \(서울 시간\)/g, P(' (ソウル時間)', ' (Seoul time)', ' (首尔时间)')],
     [/경기 (\d+)개/g, P('$1試合', '$1 matches', '$1场比赛')],
+    [/^남은 (\d+)경기의 모든 승패 조합 기준$/, P('残り$1試合の全勝敗パターンから', 'Every win/loss combo of the $1 matches left', '基于剩余$1场比赛的全部胜负组合')],
     [/LCQ 경쟁/g, P('LCQ争い', 'LCQ race', 'LCQ 争夺')], [/플레이오프 경쟁/g, P('プレーオフ争い', 'playoff race', '季后赛争夺')],
     [/ \(지난 시즌\)/g, P(' (前シーズン)', ' (last season)', ' (上赛季)')],
     // results page: playoff scenarios (whole sentences, several can sit in one line)
