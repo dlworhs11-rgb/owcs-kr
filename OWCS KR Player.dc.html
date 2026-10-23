@@ -191,7 +191,7 @@ const ABBR = Object.fromEntries(D.teams.map((t) => [t.n, t.a]));
 const want = (new URLSearchParams(location.search).get('p') || '').toLowerCase();
 // coaches (D.staff, per team) open on this same page with ?p=<handle>; players win if a handle is both
 const STAFF = Object.entries(D.staff || {}).flatMap(([a, list]) => list.map((x) => ({ id: x.id, team: a, roleFull: x.role, ko: x.ko, birth: x.birth,
-  photo: x.photo, lp: x.lp, namu: x.namu, instagram: x.instagram, x: x.x, youtube: x.youtube, chzzk: x.chzzk, soop: x.soop, discord: x.discord,
+  photo: x.photo, lp: x.lp, namu: x.namu, instagram: x.instagram, x: x.x, youtube: x.youtube, chzzk: x.chzzk, soop: x.soop, discord: x.discord, insta: x.insta,
   staff: true, awardCount: 0 })));
 const pick = () => D.players.find((p) => p.id.toLowerCase() === want)
   || STAFF.find((p) => p.id.toLowerCase() === want)

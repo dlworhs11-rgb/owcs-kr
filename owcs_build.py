@@ -196,6 +196,7 @@ def stage_staff(comp):
     info = json.load(open(sp, encoding='utf-8')) if os.path.exists(sp) else {}
     tp = os.path.join(HERE, 'data', 'team_staff.json')
     org = json.load(open(tp, encoding='utf-8')) if os.path.exists(tp) else {}
+    insta = load_insta()
     out = {}
 
     def add(a, pid, role):
@@ -203,6 +204,7 @@ def stage_staff(comp):
         out.setdefault(a, []).append(dict(id=pid, role=STAFF_KO.get(role, role.title()), ko=more.get('name', ''),
                                           birth=more.get('birth', ''), country=more.get('country', ''), photo=more.get('photo', ''),
                                           career=more.get('career', []), namu=more.get('namu', ''), lp=more.get('lp', ''),
+                                          insta=insta_posts(insta, pid, (more.get('instagram') or '').rstrip('/').rsplit('/', 1)[-1]),
                                           **{k: more[k] for k in STAFF_LINKS if more.get(k)}))
     for name, blk in stage_blocks(comp):
         a = team(name)['a']
@@ -676,6 +678,12 @@ def insta_post(url):
     return dict(url=url, img=img_rel if os.path.exists(img) else '', text=(meta or {}).get('text', ''), date=(meta or {}).get('date', ''))
 
 
+def insta_posts(insta, *who):
+    """newest 4 posts listed under any of these names (handle or Instagram account); posts whose photo could not be read are left out"""
+    who = {w.lower() for w in who if w}
+    return sorted([x for x in (insta_post(u) for w, u in insta if w in who) if x['img']], key=lambda x: x['date'], reverse=True)[:4]
+
+
 def build_players(socials, stage_teams):
     photos = {os.path.splitext(f)[0].lower(): f for f in os.listdir(os.path.join(HERE, 'assets', 'players'))}
     awards = potm_awards()
@@ -705,8 +713,7 @@ def build_players(socials, stage_teams):
                         soop=soop_url(s['soop']) if 'soop' in s else soop_url(p.get('soop')), chzzk=None if a in SOOP_ONLY else p.get('chzzk'), discord=(s['discord'] or None) if 'discord' in s else p.get('discord'), youtube=(s.get('youtube') and 'https://youtube.com/' + s['youtube']) or p.get('youtube'),
                         instagram=s.get('instagram') and 'https://instagram.com/' + s['instagram'],
                         x=s.get('x') and 'https://x.com/' + s['x'], lp=s.get('lp'),
-                        insta=sorted([x for x in (insta_post(u) for w, u in insta if w in (handle.lower(), (s.get('instagram') or '').lower())) if x['img']],
-                                     key=lambda x: x['date'], reverse=True)[:4],   # newest first; posts whose photo could not be read are left out
+                        insta=insta_posts(insta, handle, s.get('instagram')),
                         achievements=[{k: v for k, v in x.items() if k != 'k'} for x in ach.get(handle.lower()) or ach.get((s.get('lp') or '').rsplit('/', 1)[-1].lower(), [])][:10],   # Liquipedia may spell the handle differently (iR0NY -> Irony)
                         awards=awards.get(handle.lower(), [])[:6], awardCount=len(awards.get(handle.lower(), []))))
     out.sort(key=lambda x: (x['team'], x['order'], -x['potm']))
