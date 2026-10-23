@@ -204,7 +204,9 @@ h4 small{font-weight:700;color:var(--i-mute);margin-left:6px}
       const cur = secs.find((x) => x.n === this.sec);
       const bracket = cur ? '<h4>대진표</h4>' + (secs.length > 1 ? '<div class="pick">' + secs.map((x) => '<button data-sec="' + esc(x.n) + '" class="' + (x.n === this.sec ? 'on' : '') + '">' + esc(label(x.n)) + '</button>').join('') + '</div>' : '') + this.lanes(cur.ms, SP, DK) : '';
 
-      this.shadowRoot.innerHTML = '<style>' + CSS + '</style><div class="w' + (DK ? ' dark' : '') + '">' + hero + teamsH + dayH + bracket + '</div>';
+      // the day tab's ' · 오늘' is CSS content, which the page translator cannot reach
+      const todayTxt = window.OWCSi18n ? window.OWCSi18n.t('오늘') : '오늘';
+      this.shadowRoot.innerHTML = '<style>' + CSS.replace("' · 오늘'", JSON.stringify(' · ' + todayTxt)) + '</style><div class="w' + (DK ? ' dark' : '') + '">' + hero + teamsH + dayH + bracket + '</div>';
       this.shadowRoot.querySelectorAll('[data-sec]').forEach((b) => b.addEventListener('click', () => { this.sec = b.dataset.sec; this.render(); }));
       this.shadowRoot.querySelectorAll('[data-day]').forEach((b) => b.addEventListener('click', () => { this.day = b.dataset.day; this.render(); }));
       this.shadowRoot.querySelectorAll('[data-open]').forEach((b) => b.addEventListener('click', () => {

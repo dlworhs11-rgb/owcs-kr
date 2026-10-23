@@ -43,6 +43,32 @@
 
   // [korean, japanese, english, chinese (simplified)]
   var T = [
+    // left in Korean until 2026-10-23: the home results box, the ticket ID table, and the bracket (its shadow root was not walked)
+    ['오늘 결과', '今日の結果', "Today's results", '今日结果'], ['오늘', '今日', 'today', '今天'],
+    ['결과를 누르면 위에서 세트별 맵 · 밴 · 첫 조합을 볼 수 있어요', '結果をタップすると、上にセットごとのマップ · BAN · 初期構成が表示されます', 'Tap a result to see each map, the bans and the opening comps above', '点击结果，即可在上方查看每局的地图 · 禁用 · 首发阵容'],
+    ['스포일러 방지 중 · 점수는 숨겨요', 'ネタバレ防止中 · スコアは非表示', 'Spoiler-free mode · scores hidden', '防剧透模式 · 隐藏比分'],
+    ['인정 조건', '有効な条件', 'What counts', '有效条件'], ['인정', '有効', 'accepted', '有效'], ['미성년만', '未成年のみ', 'Minors only', '仅限未成年'], ['(성년은 불가)', '(成人は不可)', '(not for adults)', '(成人不可)'],
+    ['라스트 찬스', 'ラストチャンス', 'Last Chance', '最后机会赛'], ['4팀 중 2팀만 플레이오프에 올라가요', '4チーム中2チームだけがプレーオフへ', 'Only 2 of the 4 teams reach the playoffs', '4支队伍中只有2支进入季后赛'],
+    ['5·6위는 두 번, 7·8위는 한 번 지면 탈락 · 올라가면 8강', '5·6位は2敗、7·8位は1敗で敗退 · 勝ち上がれば準々決勝', '5th–6th are out after two losses, 7th–8th after one · winners reach the quarter-finals', '5·6名输两场、7·8名输一场即淘汰 · 晋级者进入八强'],
+    ['2팀 8강 진출', '2チーム準々決勝へ', '2 teams to the quarter-finals', '2队晋级八强'], ['2팀 탈락', '2チーム敗退', '2 teams out', '2队淘汰'],
+    ['첫 경기', '1試合目', 'First match', '首场比赛'], ['이기면 바로 진출', '勝てば即進出', 'Win and you are in', '获胜直接晋级'], ['마지막 한 자리', '最後の1枠', 'The last spot', '最后一个名额'], ['이기면 진출', '勝てば進出', 'Win to go through', '获胜即晋级'],
+    ['5·6위전 패자', '5·6位戦の敗者', 'Loser of 5th v 6th', '5·6名之战败者'], ['7·8위전 승자', '7·8位戦の勝者', 'Winner of 7th v 8th', '7·8名之战胜者'],
+    ['결정전', '決定戦', 'Decider', '决定战'], ['합산', '合計', 'Total', '合计'], ['4강 직행', '準決勝へ直行', 'Straight to the semis', '直通四强'],
+    ['1–4위는 모두 플레이오프 진출 · 자리만 정해요', '1–4位は全員プレーオフ進出 · 順位だけを決めます', '1st–4th all make the playoffs · this only sets the seeds', '第1–4名全部晋级季后赛 · 只决定种子顺位'],
+    ['서로 한 번씩 더 붙고, 정규 리그 승패도 합쳐서 순위 계산', '総当たりでもう1回ずつ対戦し、レギュラーシーズンの勝敗と合算して順位を決定', 'They play each other once more; regular-season wins and losses count too', '彼此再交手一次，并与常规赛胜负合并计算排名'],
+    ['1·2위 4강 직행', '1·2位は準決勝へ直行', '1st–2nd straight to the semis', '第1·2名直通四强'], ['3·4위 8강부터', '3·4位は準々決勝から', '3rd–4th start in the quarter-finals', '第3·4名从八强开始'],
+    ['정규 리그 진행 중 · 지금 순위라 바뀔 수 있어요', 'レギュラーシーズン進行中 · 現在の順位のため変わる可能性があります', 'Regular season still on · current standings, may change', '常规赛进行中 · 当前排名，可能变化'],
+    ['결정전 전 · 정규 리그 최종 순위', '決定戦前 · レギュラーシーズン最終順位', 'Before the deciders · final regular-season standings', '决定战前 · 常规赛最终排名'],
+    ['플레이오프 본선', 'プレーオフ本戦', 'Playoffs', '季后赛正赛'], ['CHAMPION · 우승', 'CHAMPION · 優勝', 'CHAMPION', 'CHAMPION · 冠军'], ['이번 시즌', '今シーズン', 'This season', '本赛季'],
+    // international mode (owcs-intl, from 3 days after the stage final)
+    ['국제 대회', '国際大会', 'International', '国际赛事'], ['참가 팀', '参加チーム', 'Teams', '参赛队伍'], ['한국 시간', '韓国時間', 'Korea time', '韩国时间'],
+    ['A조', 'Aグループ', 'Group A', 'A组'], ['B조', 'Bグループ', 'Group B', 'B组'], ['C조', 'Cグループ', 'Group C', 'C组'], ['D조', 'Dグループ', 'Group D', 'D组'],
+    ['광저우', '広州', 'Guangzhou', '广州'], ['파리', 'パリ', 'Paris', '巴黎'], ['도쿄', '東京', 'Tokyo', '东京'], ['스톡홀름', 'ストックホルム', 'Stockholm', '斯德哥尔摩'], ['리야드', 'リヤド', 'Riyadh', '利雅得'], ['서울', 'ソウル', 'Seoul', '首尔'],
+    ['날짜 미정', '日程未定', 'Date TBD', '日期待定'], ['이날은 경기가 없어요.', 'この日は試合がありません。', 'No matches this day.', '当天没有比赛。'],
+    ['참가 팀이 정해지면 여기에 나와요.', '参加チームが決まるとここに表示されます。', 'Teams appear here once they are set.', '参赛队伍确定后会显示在这里。'], ['세트 정보가 아직 없어요.', 'セット情報はまだありません。', 'No map details yet.', '暂无小局信息。'],
+    ['승자조', '勝者側', 'Upper bracket', '胜者组'], ['패자조', '敗者側', 'Lower bracket', '败者组'],
+    ['토너먼트', 'トーナメント', 'Tournament', '淘汰赛'],
+    ['대진은 정규 리그가 끝나면 채워져요', '組み合わせはレギュラーシーズン終了後に決まります', 'Matchups fill in when the regular season ends', '对阵将在常规赛结束后确定'],
     // left in Korean until 2026-10-20 (found by opening every page in ja / en / zh)
     ['지난 시즌', '前シーズン', 'last season', '上赛季'], ['다음 글', '次へ', 'Next', '下一篇'], ['이전 글', '前へ', 'Previous', '上一篇'], ['메뉴', 'メニュー', 'Menu', '菜单'],
     ['다음 경기일', '次の試合日', 'Next match day', '下一个比赛日'], ['이전 경기일', '前の試合日', 'Previous match day', '上一个比赛日'], ['지금', '今', 'Now', '现在'],
@@ -205,7 +231,9 @@
   // number patterns (order matters)
   var RULES = [
     // sentences that share a text node with others (footers, calendar labels)
-    [/비공식 팬 사이트입니다\. Blizzard Entertainment, WDG, 각 팀과 제휴하거나 승인받지 않았습니다\. Overwatch®와 영웅 이미지는 Blizzard Entertainment, Inc\.의 상표·저작물이고, 팀 로고와 선수 사진의 권리는 각 소유자에게 있으며 요청하면 바로 내립니다\./g, P('非公式ファンサイトです。Blizzard Entertainment、WDG、各チームとの提携・承認はありません。Overwatch®およびヒーロー画像はBlizzard Entertainment, Inc.の商標・著作物です。チームロゴと選手写真の権利は各所有者にあり、ご要望があればすぐに削除します。', 'Unofficial, non-commercial fan site. Not affiliated with, sponsored or endorsed by Blizzard Entertainment, WDG or any team. Overwatch is a trademark of Blizzard Entertainment, Inc., in the U.S. and/or other countries; hero art © Blizzard Entertainment, Inc. Team logos and player photos belong to their owners and are removed on request.', '非官方粉丝网站。与 Blizzard Entertainment、WDG 及各战队无合作或授权关系。Overwatch® 及英雄图片为 Blizzard Entertainment, Inc. 的商标或作品，战队标志和选手照片的权利归各自所有者，如有要求将立即删除。')],
+    // home footer: the site's Korean alias before the notice and the data source after it (10-23: whole footer stayed Korean)
+    [/^OWticker\(옵티컬\)은 /, 'OWticker · '],
+    [/데이터: Liquipedia/g, P('データ: Liquipedia', 'Data: Liquipedia', '数据: Liquipedia')],    [/비공식 팬 사이트입니다\. Blizzard Entertainment, WDG, 각 팀과 제휴하거나 승인받지 않았습니다\. Overwatch®와 영웅 이미지는 Blizzard Entertainment, Inc\.의 상표·저작물이고, 팀 로고와 선수 사진의 권리는 각 소유자에게 있으며 요청하면 바로 내립니다\./g, P('非公式ファンサイトです。Blizzard Entertainment、WDG、各チームとの提携・承認はありません。Overwatch®およびヒーロー画像はBlizzard Entertainment, Inc.の商標・著作物です。チームロゴと選手写真の権利は各所有者にあり、ご要望があればすぐに削除します。', 'Unofficial, non-commercial fan site. Not affiliated with, sponsored or endorsed by Blizzard Entertainment, WDG or any team. Overwatch is a trademark of Blizzard Entertainment, Inc., in the U.S. and/or other countries; hero art © Blizzard Entertainment, Inc. Team logos and player photos belong to their owners and are removed on request.', '非官方粉丝网站。与 Blizzard Entertainment、WDG 及各战队无合作或授权关系。Overwatch® 及英雄图片为 Blizzard Entertainment, Inc. 的商标或作品，战队标志和选手照片的权利归各自所有者，如有要求将立即删除。')],
     [/방송 상태는 CHZZK·SOOP에서 몇 분마다 확인해요\./g, P('配信状況はCHZZK・SOOPで数分ごとに確認しています。', 'Live status is checked on CHZZK and SOOP every few minutes.', '直播状态每隔几分钟从 CHZZK·SOOP 检查一次。')],
     [/일정은 Liquipedia에서 10분마다 가져와요\./g, P('日程はLiquipediaから10分ごとに取得しています。', 'The schedule is pulled from Liquipedia every 10 minutes.', '赛程每 10 分钟从 Liquipedia 获取一次。')],
     [/시간 미정 경기는 Liquipedia에 시간이 올라오면 바뀌어요\./g, P('時間未定の試合は、Liquipediaに時間が載ると更新されます。', 'TBD times update once Liquipedia posts them.', '时间待定的比赛会在 Liquipedia 公布时间后更新。')],
@@ -293,7 +321,7 @@
       if (!HANGUL.test(whole)) out = whole;
       else {
         var names = koNames();
-        var parts = core.split(/( · | – | \/ |, |: )/), res = [];
+        var parts = core.split(/( · | – | \/ |, |: | → )/), res = [];   // → : the bracket's round chain '8강 → 4강 → 결승'
         for (var i = 0; i < parts.length; i++) {
           var p = parts[i];
           if (i % 2) { res.push(p); continue; }
@@ -332,8 +360,8 @@
   function walk(root) {
     if (!root) return;
     if (root.nodeType === 3) { doNode(root); return; }
-    if (root.nodeType !== 1 || /^(SCRIPT|STYLE|TEMPLATE|NOSCRIPT)$/.test(root.tagName)) return;
-    doEl(root);
+    if (root.nodeType !== 11 && (root.nodeType !== 1 || /^(SCRIPT|STYLE|TEMPLATE|NOSCRIPT)$/.test(root.tagName))) return;
+    if (root.nodeType === 1) doEl(root);
     var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT, null);
     var n;
     while ((n = w.nextNode())) {
@@ -357,6 +385,11 @@
     st.textContent = '[style*="text-orientation: upright"]{text-orientation:mixed !important;transform:rotate(180deg)}';
     document.head.appendChild(st);
     run();
+    watch(document.body);
+    roots.forEach(function (r) { walk(r); watch(r); });
+    started = true;
+  }
+  function watch(root) {
     new MutationObserver(function (muts) {
       if (busy) return;
       busy = true;
@@ -367,7 +400,18 @@
           else m.addedNodes.forEach(walk);
         });
       } finally { busy = false; }
-    }).observe(document.body, { subtree: true, childList: true, characterData: true, attributes: true, attributeFilter: ATTRS });
+    }).observe(root, { subtree: true, childList: true, characterData: true, attributes: true, attributeFilter: ATTRS });
+  }
+  // components that draw into a shadow root (owcs-bracket, owcs-intl) are out of the page walker's and the observer's
+  // reach (10-23: the whole home bracket stayed Korean in en/ja/zh): every shadow root made after this script is
+  // watched like the page. This script loads before the components, so it sees each attachShadow.
+  var roots = [], started = false, attach = Element.prototype.attachShadow;
+  if (lang !== 'ko' && attach) {
+    Element.prototype.attachShadow = function (o) {
+      var r = attach.call(this, o);
+      if (started) watch(r); else roots.push(r);
+      return r;
+    };
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
 })();

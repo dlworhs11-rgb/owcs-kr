@@ -227,13 +227,15 @@
         // a line under 2위 marks 4강 직행. Before the deciders it shows the regular-season order (this stage only)
         const DD = window.OWCS || {};
         const pre = !(S.seeding && S.seeding.length) && S === all[0] && (DD.standings || []).length >= 4;
+        const rsOn = (DD.matches || []).some((m) => m.phase === 'rs' && !m.played);
         const sTeams = S.seeding && S.seeding.length ? S.seeding : pre ? DD.standings.slice(0, 4).map((t) => ({ a: t.a, w: t.w, l: t.l })) : [];
         const sd = !SP && sTeams.length ? '<div class="sd"><div class="sh"><span>순위</span><span>팀</span><span>결정전</span><span>합산</span></div>'
           + sTeams.map((t, i) => { const tm = team(t.a) || {};
             return '<div class="sr"><em style="background:' + esc(tm.color || 'var(--b-wire)') + '"></em><u>' + (i + 1) + '</u><i ' + logo(t.a) + '></i><b>' + esc(t.a) + (tm.n && tm.n !== t.a ? '<small>' + esc(tm.n) + '</small>' : '') + '</b>'
               + '<span>' + (t.sw != null ? esc(t.sw + '-' + t.sl) : '–') + '</span><span>' + esc(t.w + '-' + t.l) + '</span></div>' + (i === 1 ? '<div class="cut"><span>4강 직행</span></div>' : ''); }).join('')
-          + (pre ? '<div class="pend">결정전 전 · 지금 정규 리그 순위</div>' : '') + '</div>' : '';
-        seedHtml = '<div class="box pre lane">' + lane('1–4위', '시드 결정전', '4팀 모두 플레이오프 진출 확정 · 자리만 정해요', '서로 한 번씩 더 붙고, 정규 리그 승패도 합쳐서 순위 계산', [['', '1·2위 4강 직행'], ['', '3·4위 8강부터']])
+          + (pre ? '<div class="pend">' + (rsOn ? '정규 리그 진행 중 · 지금 순위라 바뀔 수 있어요' : '결정전 전 · 정규 리그 최종 순위') + '</div>' : '') + '</div>' : '';
+        // the say line is the format, not a claim about the four shown: during the regular season 5th can still climb in
+        seedHtml = '<div class="box pre lane">' + lane('1–4위', '시드 결정전', '1–4위는 모두 플레이오프 진출 · 자리만 정해요', '서로 한 번씩 더 붙고, 정규 리그 승패도 합쳐서 순위 계산', [['', '1·2위 4강 직행'], ['', '3·4위 8강부터']])
           + sd + '<div class="st">경기</div><div class="rr">' + seed.matches.map((x) => chip(x, { short: true })).join('') + '</div></div>';
       }
       const poHtml = poCols.length ? '<div class="box main"><div class="h"><b>플레이오프 본선</b><span>' + esc(poCols.map((c) => c.title).join(' → ')) + '</span></div>' + tree(poCols)

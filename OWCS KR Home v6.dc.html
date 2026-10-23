@@ -1772,7 +1772,7 @@ class Component extends DCLogic {
         // below the LCQ line once the regular season is over: out of the stage
         out: rsOver && !SP && i >= D.lcq, op: rsOver && !SP && i >= D.lcq ? .5 : 1,
         // level on wins and set difference (owcs_build rank_by): why this one is above, from their games against each other
-        tie: SP || !s.tie ? '' : (({ ja: ['直接対決 優勢', '直接対決 劣勢', '同率'], en: ['H2H won', 'H2H lost', 'Tied'] })[this.state.lang] || ['맞대결 우세', '맞대결 열세', '동률'])[s.tie[0] > s.tie[1] ? 0 : s.tie[0] < s.tie[1] ? 1 : 2],
+        tie: SP || !s.tie ? '' : (({ ja: ['直接対決 優勢', '直接対決 劣勢', '同率'], en: ['H2H won', 'H2H lost', 'Tied'], zh: ['交锋占优', '交锋劣势', '同分'] })[this.state.lang] || ['맞대결 우세', '맞대결 열세', '동률'])[s.tie[0] > s.tie[1] ? 0 : s.tie[0] < s.tie[1] ? 1 : 2],
         po: i === D.playoffs - 1, pi: i === D.lcq - 1, bg: MY === s.a ? 'color-mix(in oklch, ' + col(s.a) + ' 12%, transparent)' : 'transparent' })),
       spoiler: SP, spoilBlur: SP ? 'blur(7px)' : 'none', toggleSpoiler: () => this.setState((s) => { try { localStorage.setItem('owcs-spoiler', s.spoiler ? '0' : '1'); } catch (e) {} return { spoiler: !s.spoiler }; }),
       hsA: SP || !hero || hero.st === 'up' || hero.nr ? '–' : hs[1], hsB: SP || !hero || hero.st === 'up' || hero.nr ? '–' : hs[3],
