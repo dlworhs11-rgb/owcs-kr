@@ -1178,8 +1178,11 @@ const applyLive = (today) => {
     // POTM read off the broadcast card (score_watch.py), as soon as it is pushed
     if (sc && sc.potm && m.potm !== sc.potm) { m.potm = sc.potm; changed = true; }
     // a newer reading, or a corrected one (same number of maps, a misread map given back to the other team)
-    // the relay comes in time order, so its newest reading stands even when lower (10-23: a 0-3 misread, then the real 1-0)
-    if (!sc || (!LIVE.relay.scores && sc.sa + sc.sb < (m.sa || 0) + (m.sb || 0)) || (sc.sa === m.sa && sc.sb === m.sb)) return;
+    // the relay comes in time order, so its newest reading stands even when lower (10-23: a 0-3 misread, then the real 1-0),
+    // but only over a score the relay itself put there: never below Liquipedia's in owcs-data.js (a map the PC missed)
+    const fromRelay = m._relay && m._relay[0] === m.sa && m._relay[1] === m.sb;
+    if (!sc || (!(LIVE.relay.scores && fromRelay) && sc.sa + sc.sb < (m.sa || 0) + (m.sb || 0)) || (sc.sa === m.sa && sc.sb === m.sb)) return;
+    if (LIVE.relay.scores) m._relay = [sc.sa, sc.sb];
     if (sc.sa + sc.sb < (m.sa || 0) + (m.sb || 0)) {
       m.maps = m.maps.filter((x) => x.src || x.map);
       m.maps.forEach((x) => { if (x.src !== 'liquipedia' || x.sa == null) x.winner = null; });
