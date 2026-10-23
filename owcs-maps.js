@@ -56,6 +56,9 @@
         winner: SP ? '?' : (w || '–'), wlogo: SP || !w ? '' : logoOf(w), score: SP || !w ? '' : score,
         // the phone row shows the winner's number in lime and the loser's in grey (winner's number first)
         scoreHi: SP || !w || !score ? '' : score.split(' : ')[0], scoreLo: SP || !w || !score ? '' : score.split(' : ')[1],
+        // map still being played: the HUD score so far, team a first like the rows below (Control 1 : 1)
+        liveScore: SP || !recording || x.sa == null || x.sb == null ? '' : m.a + ' ' + pts(x.sa) + ' : ' + pts(x.sb) + ' ' + m.b,
+        liveScoreShort: SP || !recording || x.sa == null || x.sb == null ? '' : pts(x.sa) + ' : ' + pts(x.sb),
         done: !!w || m.st === 'done', recording, bg: mapBg(x.map), bgS: mapBg(x.map, true),
         chev: open ? '−' : '+', isOpen: open, showBans: open && showBans && x.bans.length > 0, showComps: open && comps.length > 0,
         showRec: open && !comps.length && !o.noComps, comps,
