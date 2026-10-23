@@ -654,9 +654,7 @@
    "src": "SOOP",
    "heroTs": 1792755402,
    "hudLeft": "SEIJI ESPORTS",
-   "guessed": [
-    "OFF"
-   ],
+   "guessed": [],
    "comps": {
     "SEIJI ESPORTS": [
      [
@@ -673,7 +671,7 @@
      ],
      [
       "OFF",
-      "wuyang"
+      "jetpack-cat"
      ],
      [
       "Lavender",
@@ -691,7 +689,7 @@
      ],
      [
       "Stalk3r",
-      "sierra"
+      "junkrat"
      ],
      [
       "LIP",
