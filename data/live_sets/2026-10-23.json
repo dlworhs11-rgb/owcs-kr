@@ -180,7 +180,57 @@
      "hero": "junkerqueen"
     }
    },
-   "src": "SOOP"
+   "src": "SOOP",
+   "heroTs": 1792745544,
+   "hudLeft": "Cheeseburger",
+   "guessed": [],
+   "comps": {
+    "Cheeseburger": [
+     [
+      "Belosrea",
+      "winston"
+     ],
+     [
+      "K4NE",
+      "sojourn"
+     ],
+     [
+      "Profit",
+      "tracer"
+     ],
+     [
+      "Trest",
+      "kiriko"
+     ],
+     [
+      "TenTen",
+      "doctrine"
+     ]
+    ],
+    "O2 Blast": [
+     [
+      "Fate",
+      "dmon"
+     ],
+     [
+      "A1lEN",
+      "tracer"
+     ],
+     [
+      "WuTian",
+      "ashe"
+     ],
+     [
+      "Gamjung",
+      "kiriko"
+     ],
+     [
+      "Faith",
+      "lifeweaver"
+     ]
+    ]
+   },
+   "compAt": null
   }
  ]
 }
