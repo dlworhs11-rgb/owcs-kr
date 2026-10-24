@@ -1205,7 +1205,7 @@ def build(check_live=False, prev_live=None, out=HERE, records=True):
     fill_bracket(matches, standings, playoffs, lcq, stage_carries(stage['po']))
     live =live_status(players) if check_live else (prev_live or {})
     bracket = build_bracket(stage, matches, standings, playoffs)
-    last = prev and build_bracket(prev, stage_brief(prev), standings_of(prev), playoffs)
+    last = prev and build_bracket(prev, stage_brief(prev), standings_of(prev), stage_format(prev['po'])[0])   # its own playoff size, as `past` below (10-24)
     # every earlier stage's bracket, newest first: the home page and the results page let you pick one
     past = []
     for s_ in stages[:stages.index(stage)][::-1]:
