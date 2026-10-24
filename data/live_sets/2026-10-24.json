@@ -499,13 +499,7 @@
    "src": "SOOP",
    "heroTs": 1792831798,
    "hudLeft": "T1",
-   "guessed": [
-    "Proud",
-    "ZEST",
-    "Bliss",
-    "MER1T",
-    "Fielder"
-   ],
+   "guessed": [],
    "comps": {
     "T1": [
      [
@@ -518,7 +512,7 @@
      ],
      [
       "ZEST",
-      "symmetra"
+      "tracer"
      ],
      [
       "Bliss",
