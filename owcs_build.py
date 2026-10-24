@@ -22,20 +22,20 @@ from owcs_cloud import soop_replays, soop_vod, live_status, last_streams, upcomi
 # OWCS_STAGE=2026/3 pins one stage by hand.
 
 TEAMS = {
-    'ZETA DIVISION':  dict(a='ZETA',  ko='제타 디비전',     logo=('ZETA-light.png', 'ZETA-white.png'),  color='#2A2A30'),
-    'Crazy Raccoon':  dict(a='CR',    ko='크레이지 라쿤',   logo=('CR.png', 'CR.png'),    color='#E11919'),
-    'Cheeseburger':   dict(a='CB',    en='CHEESEBURGER', ko='치즈버거',        logo=('CB.png', 'CB.png'),    color='#DF751F'),
-    'T1':             dict(a='T1',    ko='T1',              logo=('T1.png', 'T1.png'),    color='#C8102E'),
-    'Team Falcons':   dict(a='FLC',   ko='팀 팔콘스',       logo=('FLC.png', 'FLC.png'),  color='#02A862'),
-    'O2 Blast':       dict(a='O2',    ko='O2 블래스트',     logo=('O2-light.png', 'O2-dark.png'),    color='#CD2221'),
+    'ZETA DIVISION':  dict(a='ZETA',  ko='제타 디비전',     logo=('ZETA-light.webp', 'ZETA-white.webp'),  color='#2A2A30'),
+    'Crazy Raccoon':  dict(a='CR',    ko='크레이지 라쿤',   logo=('CR.webp', 'CR.webp'),  color='#E11919'),
+    'Cheeseburger':   dict(a='CB',    en='CHEESEBURGER', ko='치즈버거',        logo=('CB.webp', 'CB.webp'),  color='#DF751F'),
+    'T1':             dict(a='T1',    ko='T1',              logo=('T1.webp', 'T1.webp'),  color='#C8102E'),
+    'Team Falcons':   dict(a='FLC',   ko='팀 팔콘스',       logo=('FLC.webp', 'FLC.webp'),  color='#02A862'),
+    'O2 Blast':       dict(a='O2',    ko='O2 블래스트',     logo=('O2-light.webp', 'O2-dark.webp'),  color='#CD2221'),
     # f = the file stem the team's photo and calendar files were published under (kept when the abbreviation changed, 2026-10-23)
-    'SEIJI ESPORTS':  dict(a='SEJ',   f='SEIJI', ko='세이지 이스포츠', logo=('SEIJI-light.png', 'SEIJI-dark.png'), color='#3E8FA8'),
+    'SEIJI ESPORTS':  dict(a='SEJ',   f='SEIJI', ko='세이지 이스포츠', logo=('SEIJI-light.webp', 'SEIJI-dark.webp'), color='#3E8FA8'),
     # renamed RØDE ZANSIDE GAMING, abbreviation ROZE (user, 2026-10-23); Liquipedia may still list it as ZANSIDE GAMING
-    'ZANSIDE GAMING': dict(a='ROZE',  f='ZAN',   en='RØDE ZANSIDE GAMING', ko='잔사이드 게이밍', logo=('ZAN-light.png', 'ZAN-dark.png'),   color='#4A4A55'),
-    'Poker Face':     dict(a='PF',    ko='포커페이스',      logo=('PF-light.png', 'PF-dark.png'),    color='#501F64'),
+    'ZANSIDE GAMING': dict(a='ROZE',  f='ZAN',   en='RØDE ZANSIDE GAMING', ko='잔사이드 게이밍', logo=('ZAN-light.webp', 'ZAN-dark.webp'), color='#4A4A55'),
+    'Poker Face':     dict(a='PF',    ko='포커페이스',      logo=('PF-light.webp', 'PF-dark.webp'),  color='#501F64'),
 }
 # logos drawn on the team-colour panel: ZETA's dark variant is a different emblem and T1's red mark vanishes on red
-ON_COLOR = {'ZETA': 'ZETA-white.png', 'T1': 'T1-white.png'}
+ON_COLOR = {'ZETA': 'ZETA-white.webp', 'T1': 'T1-white.webp'}
 NAME_ALIAS = {'RØDE ZANSIDE GAMING': 'ZANSIDE GAMING', 'RODE ZANSIDE GAMING': 'ZANSIDE GAMING'}   # the same team under its new name
 NEW_COLOR = '#8A8A93'   # grey for a team not in TEAMS yet (newly promoted)
 NEW_TEAMS = {}          # full name -> fallback entry, filled by team() during a build
