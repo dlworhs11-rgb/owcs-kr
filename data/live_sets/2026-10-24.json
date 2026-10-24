@@ -656,9 +656,7 @@
    "src": "SOOP",
    "heroTs": 1792834425,
    "hudLeft": "Team Falcons",
-   "guessed": [
-    "DONGHAK"
-   ],
+   "guessed": [],
    "comps": {
     "Team Falcons": [
      [
@@ -685,7 +683,7 @@
     "T1": [
      [
       "DONGHAK",
-      "roadhog"
+      "junker-queen"
      ],
      [
       "Proud",
