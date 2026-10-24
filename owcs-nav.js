@@ -165,7 +165,9 @@
     // the phone menu chips sit in a scroller that clips an outside ring: draw it inside
     '@media (max-width:899.98px){:where([data-owcs-mtop] nav a,header nav a[data-owcs-nv])' + FC + '{outline-offset:-3px}}'
   ].join('\n');
-  hst.textContent = centre + '\n' + hw + '\n' + owt + '\n' + ft + '\n' + fr;
+  // line breaks (10-24): headings balanced, paragraphs without a one-word last line. Specificity 0: an own text-wrap wins
+  var tw = ':where(h1,h2,h3,h4){text-wrap:balance}\n:where(p,li,blockquote,figcaption,footer .ft-desc,footer .ft-note){text-wrap:pretty}';
+  hst.textContent = centre + '\n' + hw + '\n' + owt + '\n' + ft + '\n' + fr + '\n' + tw;
   (document.head || document.documentElement).appendChild(hst);
   var css = HOME ? '' : [
     '@media (min-width:900px){',
