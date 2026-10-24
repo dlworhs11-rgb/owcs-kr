@@ -23,7 +23,57 @@
      "hero": "cassidy"
     }
    },
-   "src": "SOOP"
+   "src": "SOOP",
+   "heroTs": 1792822717,
+   "hudLeft": "ZETA DIVISION",
+   "guessed": [],
+   "comps": {
+    "ZETA DIVISION": [
+     [
+      "Bernar",
+      "jetpack-cat"
+     ],
+     [
+      "Knife",
+      "bastion"
+     ],
+     [
+      "",
+      "symmetra"
+     ],
+     [
+      "",
+      "dmon"
+     ],
+     [
+      "",
+      "doctrine"
+     ]
+    ],
+    "CHEESEBURGER": [
+     [
+      "",
+      "pharah"
+     ],
+     [
+      "",
+      "symmetra"
+     ],
+     [
+      "",
+      "doomfist"
+     ],
+     [
+      "",
+      "?"
+     ],
+     [
+      "",
+      "doctrine"
+     ]
+    ]
+   },
+   "compAt": null
   }
  ]
 }
