@@ -275,7 +275,7 @@ const OTHER = Object.fromEntries((D.otherTeams || []).map((t) => [t.a, t]));
 const LT = (a) => TEAM[a] || OTHER[a];
 const SHORT = (a) => (OTHER[a] && OTHER[a].short) || a;   // phone rows show the short name (OSG, not ONSIDE Gaming)
 const DARKPAGE = document.documentElement.hasAttribute('data-owcs-dark');   // owcs-dark.js: use the logo drawn for dark backgrounds
-const logo = (a) => LT(a) ? "url('" + (DARKPAGE ? LT(a).logoDark || LT(a).logo : LT(a).logo) + "') center / contain no-repeat transparent" : 'radial-gradient(circle, #C9C9CF 0 45%, transparent 47%)';
+const logo = (a) => LT(a) ? "url('" + (DARKPAGE ? LT(a).logoDark || LT(a).logo : LT(a).logo) + "') center / contain no-repeat transparent" : 'radial-gradient(circle, ' + (DARKPAGE ? '#4A4A55' : '#C9C9CF') + ' 0 45%, transparent 47%)';
 const logoDark = (a) => LT(a) ? "url('" + (LT(a).logoDark || LT(a).logo) + "') center / contain no-repeat transparent" : logo(a);
 const DOWS = ['일', '월', '화', '수', '목', '금', '토'];
 const pad = (n) => String(n).padStart(2, '0');
