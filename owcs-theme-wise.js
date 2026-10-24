@@ -1,12 +1,75 @@
 // Optional "Wise" look (from DESIGN-wise.md): sage canvas, white 24px cards, one lime-green accent,
 // near-black ink, the default fonts. The default design stays as it is.
 // Switch: the floating button (bottom-left), or ?theme=wise / ?theme=default (remembered in this browser).
+// ?theme=calm is a second, quieter look (see calm() below); like wise it only applies while the query is on the link.
 (function () {
   var KEY = 'owcs-theme';
   var q = new URLSearchParams(location.search).get('theme');
   try { if (q === 'wise' || q === 'default') localStorage.setItem(KEY, q); } catch (e) {}
-  var theme = q === 'wise' ? 'wise' : 'default';
+  var theme = q === 'wise' ? 'wise' : q === 'calm' ? 'calm' : 'default';
   try { localStorage.removeItem(KEY); } catch (e) {}   // drop a Wise choice remembered from the old switch
+
+  // ?theme=calm (10-24): a quieter second look for comparison. No hatch, lime only on the primary CTA and NEXT, one red
+  // (#D92D20) for LIVE and the last-chance line, radii 8 / 14 / 999, display titles ~48px, one flat card style.
+  // Colours that are not named here stay as the default look. Not sticky: the query has to be on the link, as with wise.
+  function calm() {
+    document.documentElement.setAttribute('data-owcs-theme', 'calm');
+    // html:root[..][..] outranks the page's own html[data-owcs-bgb]:not([data-owcs-dark]) rules (owcs-theme.js / owcs-dark.js)
+    var C = 'html:root[data-owcs-theme="calm"][data-owcs-theme] ';
+    var LIME = ['[style*="background: var(--ac2"]', '[style*="background: rgb(198, 255, 51)"]'];
+    var KEEP = ':not([style*="letter-spacing: 0.04em"]):not([style*="height: 40px"]):not([style*="height: 36px"])';   // NEXT, the CTAs
+    var TITLE = 'clamp(40px,4vw,48px) !important';
+    var rules = [
+      // red: LIVE, last-chance line and labels share one value
+      C + '#dc-root,' + C + '#dc-root [style*="--ac"]{--pi:#D92D20 !important}',
+      C + 'span[style*="background: var(--pi"]{color:#fff !important}',
+      C + '.ax em,' + C + '.m .ax2{background:#D92D20 !important}',
+      C + '.tab .now{background:#D92D20 !important}',
+      // no hatch (page paper, bars, placeholders, the ticket page glows)
+      C + 'body{background-image:none !important}',
+      C + '#dc-root [data-screen-label],' + C + '[data-owcs-mtop],' + C + '[data-owcs-tk].m,' + C + 'body.ticket-page .next{background-image:none !important}',
+      C + '[style*="repeating-linear-gradient"]{background-image:none !important;background-color:rgba(128,128,140,.18) !important}',
+      C + '[style*="repeating-linear-gradient"][style*="rgba(255, 255, 255"]{background-color:rgba(255,255,255,.12) !important}',
+      C + '[style*="repeating-linear-gradient"][style*="rgb(26, 26, 32)"],' + C + '[style*="repeating-linear-gradient"][style*="rgb(36, 36, 43)"]{background-color:#1B1B21 !important}',
+      // no glass
+      C + '*{backdrop-filter:none !important;-webkit-backdrop-filter:none !important}',
+      C + 'header{background-color:rgba(255,255,255,.97) !important}',
+      'html:root[data-owcs-theme="calm"][data-owcs-dark] body.streams-page header,html:root[data-owcs-theme="calm"][data-owcs-dark] body.ticket-page header{background-color:rgba(14,14,18,.97) !important}',
+      // lime: only the primary CTA and NEXT keep it. Chips and badges turn neutral / green, text on dark turns light
+      C + LIME.map(function (s) { return s + KEEP; }).join(',' + C) + '{background:#F6F3EC !important;color:#0B0B0F !important;outline:1px solid #D9D5CA;outline-offset:-1px}',
+      C + '[style*="color: var(--ac2"]:not([data-tl]),' + C + '[style*="color: rgb(198, 255, 51)"]{color:#fff !important}',   /* [data-tl]: the date label owcs-theme.js inks on light days */
+      C + '[style*="border: 1px solid var(--ac2"]{border-color:#fff !important}',
+      C + '[style*="color: rgb(212, 212, 218)"]{color:#9C9CA8 !important}',
+      C + '[data-owcs-tk] .k,' + C + '.ib .k,' + C + '.ib .ts em{color:#C9C9D1 !important}',
+      C + '.ib:before{background:#fff !important}',
+      C + '.ib .dd2{background:#fff !important}',
+      C + '.dd .tag{color:#fff !important}',
+      C + '.gm.now .v,' + C + '[style*="background: var(--ac2"] > span > span[style*="opacity: 0.55"]{opacity:.8 !important}',   /* "vs" in the today chips: AA on the pale chip */
+      C + '.gm.now{background:#F6F3EC !important;outline:1px solid #D9D5CA;outline-offset:-1px}',
+      C + '.ct.sure,' + C + 'body.ticket-page .b-open{background:#2E9E5B !important;color:#0B0B0F !important}',
+      C + 'body.ticket-page .list li:before{background:var(--mute) !important}',
+      'html:root[data-owcs-theme="calm"][data-owcs-dark] body a[data-owcs-nv][data-owcs-nv].cur{--nvu:#F2F2F5 !important}',   /* menu underline: lime stays on the CTA */
+      // display titles
+      C + '.hero h1,' + C + 'main h1,' + C + '.title h2,' + C + '#tournament h3{font-size:' + TITLE + '}',
+      C + 'h1[style*="96px"],' + C + 'h2[style*="96px"],' + C + 'h2[style*="72px"],' + C + 'h2[style*="60px"],' + C + 'h2[style*="56px"],' + C + 'h2[style*="46px"],' + C + 'h2[style*="44px"]{font-size:' + TITLE + '}',
+      // flat cards: 14px, no shadow
+      C + '.done-note,' + C + '.wk,' + C + '.csbox,' + C + '.ib,' + C + '.calbox,' + C + '.lc,' + C + '.m,' + C + '.subpop,' +
+        C + '.count,' + C + '.team,' + C + '.p,' + C + 'body.ticket-page .next,' + C + 'body.ticket-page .card,' + C + 'body.ticket-page .map,' +
+        C + 'body.ticket-page .st,' + C + 'body.ticket-page .tablewrap,' + C + 'body.ticket-page .age,' + C + '[data-owcs-tk] a{border-radius:14px !important}',
+      C + '.tab,' + C + '.subb,' + C + '.calbar button,' + C + '.cc,' + C + '.gm,' + C + '.ct,' + C + '.ax em,' + C + '.m .ax2,' + C + '.csbox .tie,' +
+        C + '.subpop .lk a,' + C + '.subpop .lk>button,' + C + '.subpop .tg5 button,' + C + '.subpop .seg button,' + C + '.brand i,' +
+        C + 'body.ticket-page .cta,' + C + '[data-owcs-tk] img,' + C + '[data-owcs-hw] .lb,' + C + '[data-owcs-hw] .mb,' + C + '[data-owcs-hw] .ab{border-radius:8px !important}',
+      C + '[data-owcs-hw] .dd{border-radius:14px !important}',
+      C + '.card,' + C + '.wk,' + C + '.csbox,' + C + '.team,' + C + '.next,' + C + '.map,' + C + '.st,' + C + '.tablewrap{box-shadow:none !important}'
+    ];
+    // inline radii (home, results, player) -> 8 / 14; pills, circles and 2-4px marks stay
+    var to8 = [5, 6, 7, 9, 10, 11, 12], to14 = [13, 14, 16, 18, 20, 22, 24, 32];
+    to8.forEach(function (n) { rules.push(C + '[style*="border-radius: ' + n + 'px;"]:not([data-screen-label]){border-radius:8px !important}'); });
+    to14.forEach(function (n) { rules.push(C + '[style*="border-radius: ' + n + 'px;"]:not([data-screen-label]){border-radius:14px !important}'); });
+    var st = document.createElement('style');
+    st.textContent = rules.join('\n');
+    (document.head || document.documentElement).appendChild(st);
+  }
 
   // switch button, on every page
   function button() {
@@ -23,6 +86,7 @@
     document.body.appendChild(b);
   }
   // the on-page switch button is gone; ?theme=wise still opens the Wise look for a one-off comparison
+  if (theme === 'calm') { calm(); return; }
   if (theme !== 'wise') return;
 
   document.documentElement.setAttribute('data-owcs-theme', 'wise');
