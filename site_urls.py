@@ -28,7 +28,7 @@ VIEWS = {'standings': 'standings', 'teams': 'players'}   # home ?view= -> its ow
 SITE = 'https://owticker.com/'
 VIEW_META = {   # the home copies get their own title and description, so search and share cards don't show the home page's
     'standings': ('OWticker 순위 · 대진표', 'OWCS 코리아 정규 리그 팀별 순위와 플레이오프 대진표.'),
-    'players': ('OWticker 팀 & 선수', 'OWCS 코리아 참가 팀과 선수 라인업. 팀을 고르면 로스터와 선수 방송이 보여요.'),
+    'players': ('OWticker 팀 & 선수', 'OWCS 코리아 참가 팀과 선수 라인업, 팀별 로스터와 선수 방송.'),
 }
 
 

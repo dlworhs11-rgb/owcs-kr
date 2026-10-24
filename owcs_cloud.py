@@ -247,15 +247,15 @@ def upcoming_ics(data, now=None, team=None):
         label = m.get('label') or f"{m['week']}주차"
         vs = f"{names.get(m['a'], m['a'])} vs {names.get(m['b'], m['b'])}"
         if 'TBD' in (m['a'], m['b']):
-            vs = (m.get('round') or label) + (f" · {names.get(m['a'], m['a'])} vs 미정" if m['a'] != 'TBD' else ' · 대진 미정')
+            vs = (m.get('round') or label) + (f" - {names.get(m['a'], m['a'])} vs TBD" if m['a'] != 'TBD' else ' - 대진 미정')
         # no start time on Liquipedia yet: all-day entry on that day (moves to the real time once it is announced)
         when = ([f"DTSTART;VALUE=DATE:{m['day'].replace('-', '')}",
                  f"DTEND;VALUE=DATE:{(datetime.date.fromisoformat(m['day']) + datetime.timedelta(days=1)).strftime('%Y%m%d')}"]
                 if m.get('tbd') else [f'DTSTART:{utc(t0)}', f'DTEND:{utc(t0 + datetime.timedelta(minutes=120 if (m.get("bo") or 5) >= 7 else 90))}'])   # as the official schedule: BO5 1h30, BO7 2h
         lines += ['BEGIN:VEVENT', f"UID:owcs-{m['id']}@owcskr.fan", f'DTSTAMP:{stamp}', *when,
                   'SUMMARY:' + esc(vs),
-                  'DESCRIPTION:' + esc(f"{data['stage']} {label}" + (' · 시작 시간 발표 전' if m.get('tbd') else '')
-                                       + ' · SOOP owesports 생중계 https://www.sooplive.com/station/owesports'),
+                  'DESCRIPTION:' + esc(f"{data['stage']} {label}" + (' - 경기 시각 미정' if m.get('tbd') else '')
+                                       + ' - SOOP owesports https://www.sooplive.com/station/owesports'),
                   'LOCATION:' + esc('WDG STUDIO HONGDAE · SOOP owesports'), 'END:VEVENT']
     lines.append('END:VCALENDAR')
     return '\r\n'.join(fold_ics(x) for x in lines) + '\r\n'
