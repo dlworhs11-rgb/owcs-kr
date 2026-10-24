@@ -963,7 +963,7 @@ class Component extends DCLogic {
     window.addEventListener('storage', this.onStore);
   }
   ticking() { return Array.prototype.some.call(document.querySelectorAll('[data-owcs-tick]'), (x) => { const r = x.getBoundingClientRect(); return r.width > 0 && r.bottom > 0 && r.top < window.innerHeight; }); }
-  componentWillUnmount() { clearInterval(this.t); clearTimeout(this.r); clearTimeout(this.ct); window.removeEventListener('storage', this.onStore); document.removeEventListener('visibilitychange', this.onVis); }
+  componentWillUnmount() { clearInterval(this.t); clearTimeout(this.r); clearTimeout(this.ct); window.removeEventListener('storage', this.onStore); document.removeEventListener('visibilitychange', this.onVis); if (this.es) this.es.close(); }
   copy(key, text) {
     try { navigator.clipboard && navigator.clipboard.writeText(text).catch(() => {}); } catch (e) {}
     this.setState({ copied: key }); clearTimeout(this.ct);
