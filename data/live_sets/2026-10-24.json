@@ -394,6 +394,21 @@
     "ZETA DIVISION": 6,
     "CHEESEBURGER": 99
    }
+  },
+  {
+   "banTs": 1792830481,
+   "teams": [
+    "Team Falcons",
+    "T1"
+   ],
+   "game": 1,
+   "map": "Busan",
+   "seriesBefore": {
+    "Team Falcons": 0,
+    "T1": 0
+   },
+   "bans": null,
+   "src": "SOOP"
   }
  ]
 }
