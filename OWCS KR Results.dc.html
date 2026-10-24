@@ -77,7 +77,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 </header>
 <section style="padding:64px 56px 0;background:#F6F6F3">
 <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px">
-<div><div style="font-size:15px;font-weight:700;color:#55555C">결과 · 대진표</div><h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:96px;line-height:.86;margin:12px 0 0">RESULTS</h1></div>
+<div><div style="font-size:15px;font-weight:700;color:#55555C">결과 / 대진표</div><h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:96px;line-height:.86;margin:12px 0 0">RESULTS</h1></div>
 <sc-if value="{{ showStD }}"><div style="position:relative"><button onClick="{{ stToggleD }}" aria-expanded="{{ stExpD }}" style="display:flex;align-items:center;gap:10px;height:48px;padding:0 18px;border-radius:12px;border:1px solid #E6E6E1;background:#fff;font:inherit;font-size:15px;font-weight:600;color:#0B0B0F;cursor:pointer">{{ seasonLabelD }} <span>{{ stChevD }}</span></button>
 <sc-if value="{{ stOpenD }}"><div style="position:absolute;right:0;top:54px;z-index:20;min-width:100%;padding:6px;border-radius:12px;border:1px solid #E6E6E1;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,.12);display:flex;flex-direction:column;gap:2px"><sc-for list="{{ stOpts }}" as="o" hint-placeholder-count="3"><button onClick="{{ o.go }}" style="height:44px;padding:0 14px;border:none;border-radius:8px;background:{{ o.bg }};color:{{ o.fg }};font:inherit;font-size:15px;font-weight:700;text-align:left;white-space:nowrap;cursor:pointer">{{ o.label }}</button></sc-for></div></sc-if></div></sc-if>
 </div>
@@ -182,7 +182,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 </sc-for>
 </sc-if>
 </section>
-<footer class="owft"><div class="ft-g"><div><div class="ft-logo"><span class="owt"><b>OW</b>TICKER</span></div><div class="ft-desc">OWCS 한국 경기의 일정, 결과, 선수 정보를 한국 팬을 위해 한곳에 모았어요.</div><div class="ft-ch"><span class="ft-k">OWCS 공식 채널</span><a href="https://x.com/OW_Esports_Asia" target="_blank" rel="noopener"><img src="assets/icons/x.png" alt="">X</a><a href="https://www.instagram.com/ow_esports_kr/" target="_blank" rel="noopener"><img src="assets/icons/instagram.png" alt="">Instagram</a><a href="https://www.sooplive.co.kr/station/owesports" target="_blank" rel="noopener"><img src="assets/icons/soop.png" alt="">SOOP 방송국</a></div></div><div><div class="ft-k">문의</div><a class="ft-mail" href="mailto:dlworhs26@gmail.com" style="display:flex;align-items:center;gap:8px;text-decoration:none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>dlworhs26@gmail.com</a><a class="ft-mail" href="https://discord.gg/EEWwKmxKA5" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;margin-left:0;padding:0;text-decoration:none"><img src="assets/icons/discord.png" alt="" style="width:22px;height:22px;border-radius:6px;margin:0;flex:none">OWticker 팬 디스코드 · 피드백</a></div><div class="ft-note">{{ footNote }}</div></div></footer>
+<footer class="owft"><div class="ft-g"><div><div class="ft-logo"><span class="owt"><b>OW</b>TICKER</span></div><div class="ft-desc">OWCS 한국 경기의 일정, 결과, 선수 정보를 한곳에</div><div class="ft-ch"><span class="ft-k">OWCS 공식 채널</span><a href="https://x.com/OW_Esports_Asia" target="_blank" rel="noopener"><img src="assets/icons/x.png" alt="">X</a><a href="https://www.instagram.com/ow_esports_kr/" target="_blank" rel="noopener"><img src="assets/icons/instagram.png" alt="">Instagram</a><a href="https://www.sooplive.co.kr/station/owesports" target="_blank" rel="noopener"><img src="assets/icons/soop.png" alt="">SOOP 방송국</a></div></div><div><div class="ft-k">문의</div><a class="ft-mail" href="mailto:dlworhs26@gmail.com" style="display:flex;align-items:center;gap:8px;text-decoration:none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>dlworhs26@gmail.com</a><a class="ft-mail" href="https://discord.gg/EEWwKmxKA5" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;margin-left:0;padding:0;text-decoration:none"><img src="assets/icons/discord.png" alt="" style="width:22px;height:22px;border-radius:6px;margin:0;flex:none">OWticker 팬 디스코드 / 피드백</a></div><div class="ft-note">{{ footNote }}</div></div></footer>
 </div>
 </div>
 
@@ -195,7 +195,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <button style="width:44px;height:44px;border:none;background:transparent;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px"><span style="width:20px;height:2px;background:#0B0B0F"></span><span style="width:20px;height:2px;background:#0B0B0F"></span></button>
 </header>
 <section style="position:relative;z-index:5;padding:28px 20px 0;background:#F6F6F3">
-<div style="font-size:14px;font-weight:700;color:#55555C">결과 · 대진표</div>
+<div style="font-size:14px;font-weight:700;color:#55555C">결과 / 대진표</div>
 <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:60px;line-height:.86;margin:6px 0 14px">RESULTS</h1>
 <div style="display:flex;gap:6px;margin-top:20px">
 <sc-for list="{{ tabsM }}" as="t" hint-placeholder-count="3">
@@ -270,7 +270,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 </sc-for>
 </sc-if>
 </section>
-<footer class="owft"><div class="ft-g"><div><div class="ft-logo"><span class="owt"><b>OW</b>TICKER</span></div><div class="ft-desc">OWCS 한국 경기의 일정, 결과, 선수 정보를 한국 팬을 위해 한곳에 모았어요.</div><div class="ft-ch"><span class="ft-k">OWCS 공식 채널</span><a href="https://x.com/OW_Esports_Asia" target="_blank" rel="noopener"><img src="assets/icons/x.png" alt="">X</a><a href="https://www.instagram.com/ow_esports_kr/" target="_blank" rel="noopener"><img src="assets/icons/instagram.png" alt="">Instagram</a><a href="https://www.sooplive.co.kr/station/owesports" target="_blank" rel="noopener"><img src="assets/icons/soop.png" alt="">SOOP 방송국</a></div></div><div><div class="ft-k">문의</div><a class="ft-mail" href="mailto:dlworhs26@gmail.com" style="display:flex;align-items:center;gap:8px;text-decoration:none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>dlworhs26@gmail.com</a><a class="ft-mail" href="https://discord.gg/EEWwKmxKA5" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;margin-left:0;padding:0;text-decoration:none"><img src="assets/icons/discord.png" alt="" style="width:22px;height:22px;border-radius:6px;margin:0;flex:none">OWticker 팬 디스코드 · 피드백</a></div><div class="ft-note">{{ footNote }}</div></div></footer>
+<footer class="owft"><div class="ft-g"><div><div class="ft-logo"><span class="owt"><b>OW</b>TICKER</span></div><div class="ft-desc">OWCS 한국 경기의 일정, 결과, 선수 정보를 한곳에</div><div class="ft-ch"><span class="ft-k">OWCS 공식 채널</span><a href="https://x.com/OW_Esports_Asia" target="_blank" rel="noopener"><img src="assets/icons/x.png" alt="">X</a><a href="https://www.instagram.com/ow_esports_kr/" target="_blank" rel="noopener"><img src="assets/icons/instagram.png" alt="">Instagram</a><a href="https://www.sooplive.co.kr/station/owesports" target="_blank" rel="noopener"><img src="assets/icons/soop.png" alt="">SOOP 방송국</a></div></div><div><div class="ft-k">문의</div><a class="ft-mail" href="mailto:dlworhs26@gmail.com" style="display:flex;align-items:center;gap:8px;text-decoration:none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>dlworhs26@gmail.com</a><a class="ft-mail" href="https://discord.gg/EEWwKmxKA5" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;margin-left:0;padding:0;text-decoration:none"><img src="assets/icons/discord.png" alt="" style="width:22px;height:22px;border-radius:6px;margin:0;flex:none">OWticker 팬 디스코드 / 피드백</a></div><div class="ft-note">{{ footNote }}</div></div></footer>
 </div>
 </div>
 
@@ -302,7 +302,7 @@ const PARAMS = new URLSearchParams(location.search);
 const NOW = PARAMS.get('date') ? new Date(PARAMS.get('date') + 'T' + (PARAMS.get('time') || '12:00') + ':00+09:00').getTime() : Date.now();
 // after the regular season the bracket tab opens on this stage's playoffs (seeding deciders, LCQ, playoffs)
 const PO_ON = !!D.bracket && NOW > new Date(D.stageRange[1] + 'T23:59:59+09:00').getTime();
-const TABS = [{ k: 'results', label: '시즌 결과', short: '결과' }, { k: 'bracket', label: PO_ON ? '플레이오프 대진표' : '지난 시즌 · 대진표', short: '대진표' }, { k: 'rates', label: '팀별 승률', short: '승률' }];
+const TABS = [{ k: 'results', label: '시즌 결과', short: '결과' }, { k: 'bracket', label: PO_ON ? '플레이오프 대진표' : '지난 시즌 / 대진표', short: '대진표' }, { k: 'rates', label: '팀별 승률', short: '승률' }];
 // 2026 Korea record per current team (all stages, regular season + playoffs)
 // 스포일러 방지: this stage's matches (정규 리그 + 플레이오프) leave the totals, so the rates read as they stood before it
 const CUR_RE = new RegExp('^스테이지 ' + (D.stageNo || 0) + '( |$)');
@@ -351,7 +351,7 @@ class Component extends DCLogic {
     const ids = tokens.map(resolve);
     const valid = ids.length > 0 && ids.every(Boolean);
     const found = valid ? D.history.filter((x) => ids.every((id) => x.a === id || x.b === id)) : [];
-    // grouped by week, then 시드 결정전 · LCQ and 플레이오프 (owcs-data.js group), newest first
+    // grouped by week, then the seeding & LCQ group and 플레이오프 (owcs-data.js group), newest first
     const byWeek = {}, CUR = this.state.st === (D.stageNo || 1);
     (CUR ? PLAYED : PAST(this.state.st)).forEach((m) => { const g = m.group || m.week + '주차'; (byWeek[g] = byWeek[g] || []).push(m); });
     const weeks = Object.keys(byWeek).sort((a, b) => byWeek[b][0].date.localeCompare(byWeek[a][0].date)).map((wk) => {
@@ -392,7 +392,7 @@ class Component extends DCLogic {
         found.forEach((x) => { const a = x.a === A ? x.sa : x.sb, b = x.a === A ? x.sb : x.sa; sa += a; sb += b; if (a > b) wa++; else wb++; });
         return { na: NAME(A), nb: NAME(B), la: logoDark(A), lb: logoDark(B), wa: SP ? '–' : wa, wb: SP ? '–' : wb, note: '2026 상대 전적 ' + found.length + '경기 · 세트 ' + (SP ? '–' : sa + ':' + sb) };
       })() : null,
-      ratesNote: SP && D.stageNo > 1 ? (D.year || '') + ' 코리아 스테이지 1–' + (D.stageNo - 1) + ' ' + RATES_SP.n + '경기 기준 · 스포일러 방지 중 · 이번 스테이지 결과는 숨겼어요'
+      ratesNote: SP && D.stageNo > 1 ? (D.year || '') + ' 코리아 스테이지 1–' + (D.stageNo - 1) + ' ' + RATES_SP.n + '경기 기준 / 스포일러 방지 중'
         : (D.year || '') + ' 코리아 스테이지 1–' + (D.stageNo || '') + ' (정규 리그 + 플레이오프) ' + RATES.n + '경기 기준',
       rates: (SP ? RATES_SP : RATES).list.map((t, i) => { const s = D.standings.find((x) => x.a === t.a); return { r: i + 1, n: NAME(t.a), logo: logo(t.a), c: col(t.a), wl: t.w + '-' + t.l, pct: Math.round(t.p * 100) + '%', sets: t.sw + '-' + t.sl, stage: s && !SP ? s.w + '-' + s.l : '–' }; }),
       toggleSpoiler: () => this.setState((s) => { try { localStorage.setItem('owcs-spoiler', s.sp ? '0' : '1'); } catch (e) {} return { sp: !s.sp }; }), spoilAttr: SP ? '1' : '0', spoilTrack: SP ? '#7D39EB' : '#B9B9B3', spoilKnob: SP ? '14px' : '2px', blur: 'none',
@@ -415,7 +415,7 @@ class Component extends DCLogic {
       stToggleM: () => this.setState((s) => ({ stOpen: s.stOpen === 'm' ? null : 'm', tabM: 'results' })),
       stOpts: STAGE_NOS.slice().reverse().map((no) => { const on = this.state.st === no; return { label: (D.year || '') + ' 스테이지 ' + no, bg: on ? '#F1F1ED' : 'transparent', fg: on ? '#0B0B0F' : '#6B6B72', go: () => this.setState({ st: no, stOpen: null }) }; }),
       stTabs: STAGE_NOS.map((no) => { const on = this.state.st === no; return { label: '스테이지 ' + no, bg: on ? '#7D39EB' : 'transparent', fg: on ? '#fff' : '#0B0B0F', bd: on ? '#7D39EB' : '#B9B9B3', go: () => this.setState({ st: no }) }; }),
-      pastNote: CUR ? '' : '지난 스테이지 맵 상세는 Liquipedia 기록이에요 · 첫 조합은 없어요',
+      pastNote: CUR ? '' : '지난 스테이지 맵 상세는 Liquipedia 기록 (첫 조합 없음)',
       tabsD: this.tabs('tabD'), tabsM: this.tabs('tabM'),
       d: this.flags('tabD'), m: this.flags('tabM'),
       weeks,
@@ -428,8 +428,8 @@ class Component extends DCLogic {
       bkTabs: [['cur', D.bracket && D.bracket.label], ['last', D.lastStage.label]].map(([k, label]) => ({ label: (label || '') + (k === 'last' ? ' (지난 시즌)' : ''), bg: this.state.bk === k ? '#0B0B0F' : '#fff', fg: this.state.bk === k ? '#fff' : '#0B0B0F', bd: this.state.bk === k ? '#0B0B0F' : '#E6E6E1', go: () => this.setState({ bk: k }) })),
       bkCols: Math.max(1, ls.columns.length),
       hasSeeding: !!(ls.seeding && ls.seeding.length), seedGap: '24px',
-      seedNote: '정규 리그 성적 포함 · 1–2위는 플레이오프 4강 직행',
-      seeding: (ls.seeding || []).map((t, i) => ({ r: i + 1, n: NAME(t.a), c: col(t.a), rec: SP ? '–' : t.w + '승 ' + t.l + '패 · 득실 ' + (t.diff > 0 ? '+' : '') + t.diff + ' · 결정전 ' + t.sw + '-' + t.sl })),
+      seedNote: '정규 리그 성적 포함 / 1–2위 4강 직행',
+      seeding: (ls.seeding || []).map((t, i) => ({ r: i + 1, n: NAME(t.a), c: col(t.a), rec: SP ? '–' : t.w + '승 ' + t.l + '패 / 득실 ' + (t.diff > 0 ? '+' : '') + t.diff + ' / 결정전 ' + t.sw + '-' + t.sl })),
       lastBracket: ls.columns.map((c) => ({
         title: c.title,
         matches: c.matches.map((x) => {
@@ -443,10 +443,10 @@ class Component extends DCLogic {
             tagB: nx ? '#C6FF33' : 'transparent', tagP: nx ? '0 8px' : '0',
             bd: live ? '2px solid #D92D20' : nx ? '2px solid #0B0B0F' : '1px solid #E1E1DB',
             rows: rows.map(([a, sc]) => { const st = !played || SP ? winStyle(true) : winStyle(sc === top);
-              return { n: a === 'TBD' ? '미정' : NAME(a), logo: a === 'TBD' ? 'transparent' : logo(a), lo: played && !SP && sc !== top ? .45 : 1, c: a === 'TBD' ? '#E1E1DB' : col(a), s: shown ? sc : '–', w: st.w, t: a === 'TBD' ? '#7E7E85' : st.t }; }) };
+              return { n: a === 'TBD' ? 'TBD' : NAME(a), logo: a === 'TBD' ? 'transparent' : logo(a), lo: played && !SP && sc !== top ? .45 : 1, c: a === 'TBD' ? '#E1E1DB' : col(a), s: shown ? sc : '–', w: st.w, t: a === 'TBD' ? '#7E7E85' : st.t }; }) };
         }),
       })),
-      footNote: '비공식 팬 사이트입니다. Blizzard Entertainment, WDG, 각 팀과 제휴하거나 승인받지 않았습니다. Overwatch®와 영웅 이미지는 Blizzard Entertainment, Inc.의 상표·저작물이고, 팀 로고와 선수 사진의 권리는 각 소유자에게 있으며 요청하면 바로 내립니다. ' + (D.sources || ''),
+      footNote: '본 웹사이트는 비공식 팬 사이트로, Blizzard Entertainment, WDG, OWCS 참가팀과 제휴하거나 승인받지 않았습니다. Overwatch®와 영웅 이미지는 Blizzard Entertainment, Inc.의 상표 및 저작물이며, 팀 로고와 선수 사진의 권리는 각 소유자에게 있습니다. ' + (D.sources || ''),
     };
   }
 }
