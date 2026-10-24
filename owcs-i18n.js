@@ -222,6 +222,26 @@
     ['WDG STUDIO HONGDAE 지도', 'WDG STUDIO HONGDAE 地図', 'WDG STUDIO HONGDAE map', 'WDG STUDIO HONGDAE 地图'],
     ['정규 리그 판매가 끝났어요. 시드 결정전·LCQ는 10.28, 플레이오프는 11.04 오픈이에요.', 'レギュラーシーズンの販売は終了しました。シード決定戦・LCQは10.28、プレーオフは11.04に販売開始です。', 'Regular-season sales are over. Seeding/LCQ open 10.28, playoffs 11.04.', '常规赛售票已结束。种子决定战·LCQ 于 10.28 开售，季后赛于 11.04 开售。'],
     ['스테이지 3', 'ステージ3', 'Stage 3', '第三阶段'], ['정규 리그', 'レギュラーシーズン', 'regular season', '常规赛'], ['기준', '時点', 'as of', '截至'], ['주 남음', '週残り', 'weeks left', '周剩余'],
+    // left in Korean until 2026-10-24: the calendar-subscribe sheet (home and schedule), the stream picker, replay codes,
+    // the player search, spoiler notes and the today box's status labels
+    ['중계 선택', '配信を選択', 'Choose stream', '选择直播'], ['리플레이 코드', 'リプレイコード', 'Replay code', '回放代码'],
+    ['리플레이 코드 복사', 'リプレイコードをコピー', 'Copy replay code', '复制回放代码'], ['복사', 'コピー', 'Copy', '复制'],
+    ['스포일러 방지 중이라 순위를 가렸어요', 'ネタバレ防止中のため順位を隠しています', 'Standings hidden · spoiler-free mode', '防剧透模式 · 已隐藏排名'],
+    ['스포일러 방지 중이라 경우의 수를 가렸어요.', 'ネタバレ防止中のためプレーオフ条件を隠しています。', 'Scenarios hidden · spoiler-free mode.', '防剧透模式 · 已隐藏晋级形势。'],
+    ['결과 보기', '結果を見る', 'Show results', '查看结果'], ['지우기', 'クリア', 'Clear', '清除'], ['검색 결과가 없어요', '検索結果がありません', 'No results', '没有搜索结果'],
+    ['오늘 생일이에요!', '今日が誕生日です！', 'Birthday today!', '今天生日！'], ['생일 축하해요!', 'お誕生日おめでとう！', 'Happy birthday!', '生日快乐！'],
+    ['곧 시작', 'まもなく開始', 'Starting soon', '即将开始'], ['결과 대기', '結果待ち', 'Awaiting result', '等待结果'], ['일정 종료', '日程終了', 'Schedule over', '赛程结束'],
+    ['최종 순위', '最終順位', 'final standings', '最终排名'],
+    ['애플 캘린더 구독', 'Appleカレンダーで購読', 'Subscribe in Apple Calendar', '在 Apple 日历中订阅'],
+    ['애플 캘린더에 남은 경기 구독', 'Appleカレンダーで残りの試合を購読', 'Subscribe in Apple Calendar', '用 Apple 日历订阅剩余比赛'],
+    ['구글 캘린더에 남은 경기 구독', 'Googleカレンダーで残りの試合を購読', 'Subscribe in Google Calendar', '用 Google 日历订阅剩余比赛'],
+    ['전체 경기', '全試合', 'All matches', '全部比赛'], ['팀 고르기', 'チームを選ぶ', 'Pick teams', '选择战队'],
+    ['구독할 팀을 고르세요 · 여러 팀 가능', '購読するチームを選んでください · 複数選択可', 'Pick the teams to subscribe to · several allowed', '选择要订阅的战队 · 可多选'],
+    ['전체 남은 경기 구독', '残り全試合を購読', 'Subscribe to all remaining matches', '订阅全部剩余比赛'],
+    ['구독 주소', '購読URL', 'Subscription URL', '订阅地址'], ['구독 주소 복사', '購読URLをコピー', 'Copy subscription URL', '复制订阅地址'],
+    ['구독 주소를 복사했어요', '購読URLをコピーしました', 'Subscription URL copied', '已复制订阅地址'],
+    ['팀을 하나 이상 고르면 구독 버튼이 나와요', 'チームを1つ以上選ぶと購読ボタンが表示されます', 'Pick at least one team to show the subscribe button', '至少选择一支战队后会显示订阅按钮'],
+    ['이전 달', '前の月', 'Previous month', '上个月'], ['다음 달', '次の月', 'Next month', '下个月'],
   ];
   // [japanese, english, chinese]
   var DOW = { '일': ['日', 'Sun', '周日'], '월': ['月', 'Mon', '周一'], '화': ['火', 'Tue', '周二'], '수': ['水', 'Wed', '周三'], '목': ['木', 'Thu', '周四'], '금': ['金', 'Fri', '周五'], '토': ['土', 'Sat', '周六'] };
@@ -237,6 +257,18 @@
   // number patterns (order matters)
   var RULES = [
     // sentences that share a text node with others (footers, calendar labels)
+    // calendar-subscribe sheet (home and schedule): its note joins two or three sentences in one text node (10-24)
+    [/안드로이드는 링크로 구독을 추가할 수 없어요\. 주소를 복사해서 PC 구글 캘린더 → 다른 캘린더 \+ → URL로 추가에 붙여 넣으면 폰에도 보여요\./g, P('Androidではリンクから購読を追加できません。URLをコピーしてPC版Googleカレンダー → 他のカレンダー + → URLで追加 に貼り付けると、スマホにも表示されます。', 'Android cannot add a subscription from a link. Copy the URL and paste it in Google Calendar on a computer → Other calendars + → From URL; it then shows on your phone too.', 'Android 无法通过链接添加订阅。复制地址后，在电脑版 Google 日历 → 其他日历 + → 通过网址添加 中粘贴，手机上也会显示。')],
+    [/폰 구글 캘린더 앱은 링크로 구독을 추가할 수 없어요\. 주소를 복사해서 PC 구글 캘린더 → 다른 캘린더 \+ → URL로 추가에 붙여 넣으세요\./g, P('スマホのGoogleカレンダーアプリはリンクから購読を追加できません。URLをコピーしてPC版Googleカレンダー → 他のカレンダー + → URLで追加 に貼り付けてください。', 'The Google Calendar phone app cannot add a subscription from a link. Copy the URL and paste it in Google Calendar on a computer → Other calendars + → From URL.', '手机版 Google 日历应用无法通过链接添加订阅。请复制地址，在电脑版 Google 日历 → 其他日历 + → 通过网址添加 中粘贴。')],
+    [/아이폰·아이패드·맥 캘린더에 바로 구독돼요\./g, P('iPhone・iPad・Macのカレンダーにそのまま購読できます。', 'Subscribes straight into the iPhone, iPad and Mac Calendar.', '可直接订阅到 iPhone、iPad、Mac 日历。')],
+    [/여러 팀을 골라도 캘린더 하나로 한 번에 구독돼요\. 새 일정\(플레이오프 포함\)이 생기면 자동으로 들어와요\./g, P('複数チームを選んでもカレンダー1つでまとめて購読できます。新しい日程(プレーオフ含む)は自動で追加されます。', 'Pick several teams and it is still one calendar. New matches (playoffs too) are added automatically.', '选择多支战队也只需订阅一个日历。新赛程(包括季后赛)会自动加入。')],
+    [/알림은 따로 울리지 않아요\./g, P('通知は届きません。', 'There are no separate alerts.', '不会另外发送提醒。')],
+    // '전에 CR · T1 구독을 눌렀어요. …': the earlier pick goes into the sentence ('전체 경기' too, or the rule would leave Korean)
+    [/전에 (.+?) 구독을 눌렀어요\. 같이 구독하면 같은 경기가 두 번 보여요\. 예전 캘린더를 지우고 구독하세요\./, function (m, x) {
+      x = x === '전체 경기' ? P('全試合', 'all matches', '全部比赛') : x;
+      return P('以前に ' + x + ' を購読しています。両方購読すると同じ試合が2回表示されます。古いカレンダーを削除してから購読してください。', 'You subscribed to ' + x + ' before. With both, every match shows up twice: remove the old calendar first.', '你之前订阅过 ' + x + '。两个都订阅会让同一场比赛出现两次，请先删除旧日历再订阅。');
+    }],
+    [/^(.+) 경기 한 번에 구독$/, P('$1 の試合をまとめて購読', 'Subscribe to $1 matches', '一次订阅 $1 的比赛')],
     // home footer: the site's Korean alias before the notice and the data source after it (10-23: whole footer stayed Korean)
     [/^OWticker\(옵티컬\)은 /, 'OWticker · '],
     [/데이터: Liquipedia/g, P('データ: Liquipedia', 'Data: Liquipedia', '数据: Liquipedia')],    [/비공식 팬 사이트입니다\. Blizzard Entertainment, WDG, 각 팀과 제휴하거나 승인받지 않았습니다\. Overwatch®와 영웅 이미지는 Blizzard Entertainment, Inc\.의 상표·저작물이고, 팀 로고와 선수 사진의 권리는 각 소유자에게 있으며 요청하면 바로 내립니다\./g, P('非公式ファンサイトです。Blizzard Entertainment、WDG、各チームとの提携・承認はありません。Overwatch®およびヒーロー画像はBlizzard Entertainment, Inc.の商標・著作物です。チームロゴと選手写真の権利は各所有者にあり、ご要望があればすぐに削除します。', 'Unofficial, non-commercial fan site. Not affiliated with, sponsored or endorsed by Blizzard Entertainment, WDG or any team. Overwatch is a trademark of Blizzard Entertainment, Inc., in the U.S. and/or other countries; hero art © Blizzard Entertainment, Inc. Team logos and player photos belong to their owners and are removed on request.', '非官方粉丝网站。与 Blizzard Entertainment、WDG 及各战队无合作或授权关系。Overwatch® 及英雄图片为 Blizzard Entertainment, Inc. 的商标或作品，战队标志和选手照片的权利归各自所有者，如有要求将立即删除。')],
