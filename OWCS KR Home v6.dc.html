@@ -1307,7 +1307,7 @@ class Component extends DCLogic {
       countdown: [{ v: pad(Math.floor(diff / 86400)), l: '일' }, { v: pad(Math.floor(diff % 86400 / 3600)), l: '시간' }, { v: pad(Math.floor(diff % 3600 / 60)), l: '분' }, { v: pad(diff % 60), l: '초' }],
       showCasters: P.showCasters ?? true,
       showMaps, mapsExpanded: showMaps ? 'true' : 'false', toggleMaps: () => this.setState({ mapsShown: !showMaps }),
-      mapsHint: showMaps ? '세트별 상세 접기' : '경기 정보 펼쳐보기', mapsChev: showMaps ? '▴' : '▾',
+      mapsHint: showMaps ? '경기 정보 접기' : '경기 정보 펼쳐보기', mapsChev: showMaps ? '▴' : '▾',
       mapsD: heroMaps, mapsM: heroMaps, mapsS: heroMaps.slice(0, 2),
       showRes: matchDay, resHint: SP ? '스포일러 방지 중 · 점수는 숨겨요' : '결과를 누르면 ' + (sh && sh.st === 'done' ? '아래에서' : '위에서') + ' 세트별 맵 · 밴 · 첫 조합을 볼 수 있어요',
       // all of today's matches, in order (not started yet: 0 : 0 and its start time); the POTM's face sits behind the card
