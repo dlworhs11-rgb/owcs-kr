@@ -960,6 +960,7 @@ class Component extends DCLogic {
   copy(key, text) {
     try { navigator.clipboard && navigator.clipboard.writeText(text).catch(() => {}); } catch (e) {}
     this.setState({ copied: key }); clearTimeout(this.ct);
+    if (window.owcsSay) owcsSay(key === 'link' ? '링크를 복사했어요' : '복사됨');
     this.ct = setTimeout(() => this.setState({ copied: null }), 1600);
   }
   renderVals() {
@@ -1173,7 +1174,7 @@ class Component extends DCLogic {
       subCopyShow: this.state.subMode === 'all' || this.state.subTeams.length > 0,
       subCopyLabel: this.state.copied === 'sub' ? '구독 주소를 복사했어요' : '구독 주소 복사',
       subCopy: () => { const u = 'https://' + calFeed(this.state.subMode === 'all' ? '' : this.state.subTeams);
-        const done = () => { this.setState({ copied: 'sub' }); setTimeout(() => this.setState((s) => (s.copied === 'sub' ? { copied: null } : null)), 2500); };
+        const done = () => { this.setState({ copied: 'sub' }); if (window.owcsSay) owcsSay('구독 주소를 복사했어요'); setTimeout(() => this.setState((s) => (s.copied === 'sub' ? { copied: null } : null)), 2500); };
         try { navigator.clipboard.writeText(u).then(done, () => window.prompt('구독 주소', u)); } catch (e) { window.prompt('구독 주소', u); } },
       subDup: (() => { const prev = subPrev(); if (!prev) return '';
         const cur = this.state.subMode === 'all' ? 'ALL' : this.state.subTeams; if (cur !== 'ALL' && !cur.length) return '';
@@ -1362,7 +1363,9 @@ class Component extends DCLogic {
         const teamHits = !q ? [] : D.teams.map((t) => ({ t, s: score([t.a, t.n, t.ko, ...(TEAM_ALIAS[t.a] || [])]) })).filter((x) => x.s).sort((x, y) => y.s - x.s).slice(0, 3)
           .map(({ t }) => ({ n: t.n, sub: t.ko + ' · 로스터 보기', logo: logoBg(t.a, DM), go: () => pickTeam(t.a) }));
         const pk = D.players.find((p) => p.id.toLowerCase() === PS_PICK.toLowerCase()) || D.players[0] || {};
-        return { q: raw, has: !!raw, open: !!q, hits, teamHits, none: !!q && !hits.length && !teamHits.length,
+        const none = !!q && !hits.length && !teamHits.length;
+        if (none !== this.psNone) { this.psNone = none; if (none && window.owcsSay) owcsSay('검색 결과가 없어요'); }   // read out once (10-24)
+        return { q: raw, has: !!raw, open: !!q, hits, teamHits, none,
           // other languages: Korean names are no use as an example to a reader who can't type them
           ph: '선수 검색 · ' + [pk.id, pk.ko, pk.real].filter((s) => s && (!window.OWCSi18n || OWCSi18n.lang === 'ko' || !/[가-힣]/.test(s))).join(', '),
           phM: 'ex) ' + [pk.id, pk.ko].filter(Boolean).join(', '),   // phone: the search icon already says what it is

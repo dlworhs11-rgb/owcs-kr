@@ -55,7 +55,7 @@
         // rapid clicks: keep the first label and restart one timer, so the label always comes back
         const b = e && e.currentTarget, l = b && (b.querySelector('[data-l]') || b);
         if (l && l._was == null) l._was = l.textContent;
-        const done = () => { if (l) { l.textContent = '복사됨'; clearTimeout(l._t);
+        const done = () => { if (window.owcsSay) window.owcsSay('복사됨'); if (l) { l.textContent = '복사됨'; clearTimeout(l._t);
           l._t = setTimeout(() => { l.textContent = l._was; l._was = null; }, 1500); } };
         if (navigator.clipboard) navigator.clipboard.writeText(x.replay).then(done, done); else done();
       };

@@ -680,6 +680,29 @@
   }
   appInit();
 
+  // --- status messages for screen readers (검색 결과 없음, 복사됨 ...): one polite live region per page, in the page from
+  // the start (a region added together with its text is mostly not read). Pages call window.owcsSay(text) (10-24)
+  var SAY = null, sayT = 0;
+  function sayBox() {
+    if (SAY && SAY.isConnected) return SAY;
+    if (!document.body) return null;
+    SAY = document.createElement('div');
+    SAY.setAttribute('role', 'status');
+    SAY.setAttribute('data-owcs-say', '');
+    SAY.style.cssText = 'position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0';
+    document.body.appendChild(SAY);
+    return SAY;
+  }
+  window.owcsSay = function (text) {
+    var box = sayBox();
+    if (!box) return;
+    var t = window.OWCSi18n ? window.OWCSi18n.t(text) : text;   // already in the page's language, not Korean first
+    clearTimeout(sayT);
+    box.textContent = '';   // emptied first, so the same message twice is read twice
+    sayT = setTimeout(function () { box.textContent = t; }, 150);
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', sayBox); else sayBox();
+
   var busy = false;
   new MutationObserver(function () {
     // until the 직관 안내 banner is in, place at once (before the first paint): put in 50 ms later it pushed the page down
