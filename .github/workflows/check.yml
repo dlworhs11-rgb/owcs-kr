@@ -31,3 +31,5 @@ jobs:
         run: for f in owcs-*.js support.js; do node --check "$f" || exit 1; done
       - name: Lists agree (site_check.py)
         run: python site_check.py
+      - name: Data build contracts with the collector (build_check.py)
+        run: python build_check.py
