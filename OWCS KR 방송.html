@@ -177,11 +177,22 @@ footer{padding:32px 0 56px;background:#0B0B0F;color:#8A8A93;font-size:13px;line-
     document.getElementById('liveN').textContent = n;
     drawChecked();
   }
+  // the data's KST time as 'YYYY-MM-DD HH:MM'; ja / en / zh in the reader's zone with its name, like the match times
+  // (OWCSi18n.hm). Date and time both move, so a US evening is not shown under the KST date (10-24)
+  function shownAt(iso) {
+    var kst = iso.replace('T', ' ').slice(0, 16), I = window.OWCSi18n, ms = Date.parse(iso);
+    if (!I || I.lang === 'ko' || !(ms > 0)) return kst;
+    try {
+      var day = new Intl.DateTimeFormat('en-CA', { timeZone: I.tz, year: 'numeric', month: '2-digit', day: '2-digit' }).format(ms);
+      var hm = new Intl.DateTimeFormat('en-GB', { timeZone: I.tz, hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).format(ms);
+      return day + ' ' + hm + ' ' + I.zone;
+    } catch (e) { return kst; }
+  }
   // 마지막 확인: a build that only re-checked the streams keeps the same owcs-data.js, so the newer check time is the one
   // owcs-ver.json brought (window.owcsChecked, owcs-datapoll.js); both are KST ISO strings, so the later sorts last (10-24)
   function drawChecked() {
     var iso = [window.owcsChecked, D.liveChecked].filter(Boolean).sort().pop() || '';
-    var g = (iso || D.generated || '').replace('T', ' ').slice(0, 16);
+    var g = shownAt(iso || D.generated || '');
     // warn only when the live check has stalled (no check in 30+ minutes), not every time nobody is live
     var t = Date.parse(iso), stale = !(t > 0) || Date.now() - t > 30 * 60000;
     document.getElementById('checked').innerHTML = '<span>마지막 확인 ' + esc(g) + '</span>' +
