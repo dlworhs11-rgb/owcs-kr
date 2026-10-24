@@ -731,7 +731,59 @@
      "hero": "wrecking ball"
     }
    },
-   "src": "SOOP"
+   "src": "SOOP",
+   "heroTs": 1792837092,
+   "hudLeft": "Poker Face",
+   "guessed": [
+    "OFF"
+   ],
+   "comps": {
+    "Poker Face": [
+     [
+      "SoLA",
+      "orisa"
+     ],
+     [
+      "SORI",
+      "cassidy"
+     ],
+     [
+      "F1nally",
+      "symmetra"
+     ],
+     [
+      "Soae",
+      "jetpack-cat"
+     ],
+     [
+      "Caffeine",
+      "doctrine"
+     ]
+    ],
+    "SEIJI ESPORTS": [
+     [
+      "SENTIER",
+      "dmon"
+     ],
+     [
+      "M1nut2",
+      "bastion"
+     ],
+     [
+      "D4RT",
+      "symmetra"
+     ],
+     [
+      "OFF",
+      "jetpack-cat"
+     ],
+     [
+      "Lavender",
+      "doctrine"
+     ]
+    ]
+   },
+   "compAt": null
   }
  ]
 }
