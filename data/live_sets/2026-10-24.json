@@ -158,6 +158,21 @@
     "ZETA DIVISION": 3
    },
    "scoreFrom": "table"
+  },
+  {
+   "banTs": 1792825396,
+   "teams": [
+    "CHEESEBURGER",
+    "ZETA DIVISION"
+   ],
+   "game": 3,
+   "map": "Aatlis",
+   "seriesBefore": {
+    "CHEESEBURGER": 1,
+    "ZETA DIVISION": 1
+   },
+   "bans": null,
+   "src": "SOOP"
   }
  ]
 }
