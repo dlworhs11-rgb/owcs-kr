@@ -703,6 +703,41 @@
   };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', sayBox); else sayBox();
 
+  // --- 본문 바로가기: the first Tab on every page shows a link past the header and menu to the page's content: <main>, or
+  // on the dc pages (no <main>) the first section of the screen in view (10-24)
+  function skipTarget() {
+    var vis = function (x) { return x && x.offsetWidth > 0; };
+    var main = Array.prototype.find.call(document.querySelectorAll('main'), vis);
+    if (main) return main;
+    var scr = Array.prototype.find.call(document.querySelectorAll('#dc-root [data-screen-label]'), vis);
+    // past the header, the phone top bar and the 직관 안내 banner (this script's or the home page's own)
+    return scr && (Array.prototype.find.call(scr.querySelectorAll('section'), function (x) {
+      return vis(x) && !x.closest('header,[data-owcs-mtop],[data-owcs-tk]') && !x.querySelector('a[href*="ticketlink"]');
+    }) || scr);
+  }
+  function skipLink() {
+    if (!document.body || document.querySelector('a[data-owcs-skip]')) return;
+    var st = document.createElement('style');
+    st.textContent = 'a[data-owcs-skip]{position:fixed;left:12px;top:-80px;z-index:2147483000;padding:10px 16px;border-radius:10px;' +
+      'background:#0B0B0F;color:#fff;font:700 15px/1.2 Pretendard,system-ui,sans-serif;text-decoration:none;outline:2px solid #C6FF33;outline-offset:2px}' +
+      'a[data-owcs-skip]:focus{top:12px}';
+    document.head.appendChild(st);
+    var a = document.createElement('a');
+    a.setAttribute('data-owcs-skip', '');
+    a.href = '#';
+    a.textContent = '본문 바로가기';
+    a.onclick = function (e) {
+      e.preventDefault();
+      var t = skipTarget();
+      if (!t) return;
+      if (!t.hasAttribute('tabindex')) t.setAttribute('tabindex', '-1');
+      t.focus({ preventScroll: true });
+      t.scrollIntoView({ block: 'start' });
+    };
+    document.body.insertBefore(a, document.body.firstChild);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', skipLink); else skipLink();
+
   var busy = false;
   new MutationObserver(function () {
     // until the 직관 안내 banner is in, place at once (before the first paint): put in 50 ms later it pushed the page down
