@@ -22,10 +22,19 @@ def site_data():
 
 def heroes():
     t = open(os.path.join(HERE, 'owcs-maps.js'), encoding='utf-8').read()
-    ko = dict(re.findall(r"'([a-z0-9 .:\-]+)': '([^']+)'", t[t.index('HERO_KO'):t.index('};', t.index('HERO_KO'))]))
+    import unicodedata
     img = re.search(r"HERO_IMG = Object\.fromEntries\('([^']+)'", t)
-    keys = sorted(set(ko) | set((img.group(1).split() if img else [])))
-    return sorted(({'k': k, 'ko': ko.get(k, k)} for k in keys if k != 'd.va'), key=lambda h: h['ko'])
+    img = img.group(1).split() if img else []
+    compact = {k.replace('-', ''): k for k in img}
+
+    # owcs-maps.js heroKey(): 'junker queen', 'soldier: 76', 'torbjörn', 'd.va' -> junker-queen, soldier-76, torbjorn, dva,
+    # the keys the recorders save; the two spellings used to show up as two entries, one without its Korean name (10-24)
+    def key(h):
+        h = ''.join(c for c in unicodedata.normalize('NFD', h) if not unicodedata.combining(c))
+        k = re.sub(r'\s+', '-', re.sub(r"[.:']", '', h.lower()).strip())
+        return k if k in img else compact.get(k.replace('-', ''), k)
+    ko = {key(k): v for k, v in re.findall(r"'([^']+)': '([^']+)'", t[t.index('HERO_KO'):t.index('};', t.index('HERO_KO'))])}
+    return sorted(({'k': k, 'ko': ko.get(k, k)} for k in set(ko) | set(img)), key=lambda h: h['ko'])
 
 
 def maps():
