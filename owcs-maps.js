@@ -16,8 +16,10 @@
     ...['New Junk City', 'Suravasa', 'Aatlis'].map((n) => [n, 3])]);   // first to this many wins the map
   const PUSH_MAPS = ['colosseo', 'esperanca', 'new queen street', 'runasapi'];
   const MAP_HAVE = 'antarctic anubis atlis blizzard-world busan circuit-royal colosseo dorado eichenwalde esperanca gibraltar gridsbolten hanaoka havana hollywood ilios junkertown kings-row lijiang-tower lunasapphire midtown nepal neon-junction new-junk-city new-queen-street numbani oasis paraiso rialto route66 samoa shambali suravasa'.split(' ');
+  // the art's right end under the 승리 label and score: shade .75 -> .55 (was .3 -> .25: the 13 px grey label measured
+  // 2.9-4.5:1 over bright maps, 10-24; now 6.3-7.3:1 median, 4.7:1 on the brightest pixel)
   const mapBg = (name, short) => { const k0 = deaccent(name).toLowerCase().replace(/[.:']/g, '').trim().replace(/\s+/g, '-'); const k = MAP_FILE[k0] || k0;
-    return MAP_HAVE.includes(k) ? "linear-gradient(90deg, #15151B 0, #15151B calc(100% - " + (short ? 215 : 330) + "px), rgba(21,21,27,.3) calc(100% - " + (short ? 90 : 140) + "px), rgba(21,21,27,.25) 100%), url('assets/maps/" + k + ".webp') right center / auto 100% no-repeat, #15151B" : 'transparent'; };
+    return MAP_HAVE.includes(k) ? "linear-gradient(90deg, #15151B 0, #15151B calc(100% - " + (short ? 215 : 330) + "px), rgba(21,21,27,.75) calc(100% - " + (short ? 90 : 140) + "px), rgba(21,21,27,.55) 100%), url('assets/maps/" + k + ".webp') right center / auto 100% no-repeat, #15151B" : 'transparent'; };
   const HERO_KO_K = Object.fromEntries(Object.entries(HERO_KO).map(([k, v]) => [heroKey(k), v]));   // 'torbjorn', 'soldier 76' match too
   const heroName = (h) => { const k = heroKey(h), ko = HERO_KO_K[k]; let en = h || '';
     if (ko && !/[\s.:]/.test(en) && k.includes('-')) en = k.replace(/-/g, ' ');   // 'junkerqueen' -> 'junker queen'
