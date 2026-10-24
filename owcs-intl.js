@@ -10,6 +10,7 @@
   const DOW = ['일', '월', '화', '수', '목', '금', '토'];
   const md = (d) => d.slice(5, 7) + '.' + d.slice(8, 10);
   const dow = (d) => DOW[new Date(d + 'T12:00:00+09:00').getUTCDay()];
+  const ft = (m) => (m.bo ? 'FT' + (Math.floor(m.bo / 2) + 1) : '');   // no bo yet: no FT label (as owcs-bracket.js)
 
   const CSS = `
 :host{display:block;container-type:inline-size;font-family:inherit}
@@ -165,7 +166,7 @@ h4 small{font-weight:700;color:var(--i-mute);margin-left:6px}
       if (this.day == null || !days.includes(this.day)) this.day = days.includes(today) ? today : (days.find((d) => d > today) || days[days.length - 1]);
 
       // event card
-      const dates = e.start ? md(e.start) + ' – ' + md(e.end) : '날짜 미정';
+      const dates = e.start ? md(e.start) + ' – ' + md(e.end || e.start) : '날짜 미정';
       const city = CITY[e.city] || e.city || '';
       let kick = '<span class="kick">국제 대회</span>', extra = '';
       if (live.length) kick = '<span class="kick live">LIVE</span>';
@@ -233,7 +234,7 @@ h4 small{font-weight:700;color:var(--i-mute);margin-left:6px}
       }).join('') : '<div class="empty">세트 정보가 아직 없어요.</div>';
       return '<div class="m' + (kr ? ' kr' : '') + (m.live ? ' live' : '') + (open ? ' open' : '') + '"><button class="mrow" data-open="' + m.id + '">'
         + '<span class="mt">' + (m.live ? '<em>LIVE</em>' : '<b>' + esc(m.time) + '</b>') + esc(m.round) + '</span>'
-        + side(m.a, m.sa, 'a') + '<span class="sc">' + sc + '<small>FT' + (Math.floor(m.bo / 2) + 1) + '</small></span>' + side(m.b, m.sb, 'b') + '</button><div class="det">' + det + '</div></div>';
+        + side(m.a, m.sa, 'a') + '<span class="sc">' + sc + '<small>' + ft(m) + '</small></span>' + side(m.b, m.sb, 'b') + '</button><div class="det">' + det + '</div></div>';
     }
 
     // a section split into lanes: 승자조 (GSL 개막전 · 승자전), 패자조 (패자전 · 최종전); 결승 · 3위 결정전 as cards under them.
@@ -264,7 +265,7 @@ h4 small{font-weight:700;color:var(--i-mute);margin-left:6px}
       const row = (a, s) => '<div class="r' + (a === 'TBD' ? ' tbd' : shown && done && s < top ? ' lose' : '') + '"><i ' + this.logo(a, DK) + '></i><b>' + esc(a === 'TBD' ? '미정' : a) + '</b><s>' + (shown ? s : '') + '</s></div>';
       const kr = this.kr(m.a) || this.kr(m.b);
       const when = short ? md(m.day) : md(m.day) + ' ' + m.time;
-      return '<div class="bm' + (kr ? ' kr' : '') + (m.live ? ' live' : '') + '"><div class="mh">' + (m.live ? '<em>LIVE</em>' : '<span>' + esc(when) + '</span>') + '<span>FT' + (Math.floor(m.bo / 2) + 1) + '</span></div>' + row(m.a, m.sa) + row(m.b, m.sb) + '</div>';
+      return '<div class="bm' + (kr ? ' kr' : '') + (m.live ? ' live' : '') + '"><div class="mh">' + (m.live ? '<em>LIVE</em>' : '<span>' + esc(when) + '</span>') + '<span>' + ft(m) + '</span></div>' + row(m.a, m.sa) + row(m.b, m.sb) + '</div>';
     }
   }
   customElements.define('owcs-intl', OwcsIntl);
