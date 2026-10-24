@@ -1,5 +1,5 @@
-// 경우의 수 (what each team still needs), shown under the home page's standings during the last weeks of the regular season.
-// Moved here from the results page (10-23: the user wanted it next to the standings, not in 결과).
+// 경우의 수 (what each team still needs), shown on the schedule page's standings during the last two weeks of the regular season.
+// Gives { kind: 'unknown' } for every team when too many matches are left to enumerate (10-24).
 // OWCSCases(D, now, NAME) -> { left, caseOf(a), axeOf(i), racing(k) }
 (function () {
   window.OWCSCases = function (D, NOW, NAME) {
@@ -15,7 +15,7 @@
       const base = Object.fromEntries(D.standings.map((s) => [s.a, s.w]));
       const diff0 = Object.fromEntries(D.standings.map((s) => [s.a, BYSETS ? (s.diff || 0) : 0]));
       teams.forEach((a) => { out[a] = { best: 99, worst: 0, needPO: null, needLCQ: null, own: {}, bestIfLose: {} }; });
-      if (n > 22) return out; // too many to enumerate; leave unknown
+      if (n > 22) { teams.forEach((a) => { out[a].unknown = true; }); return out; } // too many to enumerate
       const done = D.matches.filter((m) => (!m.phase || m.phase === 'rs') && m.played && !m.live && !LEFT.includes(m) && m.sa != null && m.sb != null)
         .map((m) => [m.a, m.b, m.sa, m.sb]);
       const lose = BYSETS ? [0, 1, 2] : [0]; // sets the loser takes
@@ -103,6 +103,7 @@
       return '남은 ' + left + '경기 중 ' + th.k + '승 하고 세트 득실 합계 ' + (th.d > 0 ? '+' : '') + th.d + ' 이상이면 ' + goal + ' 확정.';
     };
     const caseKind = (c, left) => {
+      if (c.unknown) return { tag: '계산 불가', kind: 'unknown', note: '남은 경기가 너무 많아 경우의 수를 계산하지 않았어요.' };
       if (c.worst && c.worst <= D.playoffs) return { tag: '플레이오프 확정', kind: 'sure', note: '남은 경기 결과와 관계없이 1–' + D.playoffs + '위 안이에요.' };
       if (c.best > D.lcq) return { tag: '탈락', kind: 'out', note: '남은 경기를 모두 이겨도 ' + D.lcq + '위 안에 들 수 없어요.' };
       if (c.best <= D.playoffs) {
