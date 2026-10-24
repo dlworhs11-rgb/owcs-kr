@@ -427,10 +427,21 @@
   }
   function syncSpoiler(m) { m.querySelector('.sp').classList.toggle('on', spOn()); m.querySelector('.sp').setAttribute('aria-checked', spOn() ? 'true' : 'false'); }
 
-  // phone / tablet: the home page's top (header, menu chips, 직관 안내) at the top of the page, the picker next to ☰
+  // phone / tablet: the home page's top (header, menu chips, 직관 안내) at the top of the page, the picker next to ☰.
+  // A dc page (results, player) waits for its screen: put at the top of <body> first and moved into the screen once React
+  // drew it, the 211 px bar pushed the page down and back (results on a phone: CLS 0.25, 10-24). The observer below
+  // places it in the same frame the screen appears. React never coming (a failed CDN): <body> after 4 s, as before.
+  // A dc page loads support.js in its <head>, which is read by the time the body is (this script runs before both)
+  var dcWait = 0, dcLate = false;
+  function dcEarly() {
+    if (dcLate || !document.querySelector('script[src*="support.js"]')) return false;
+    if (!dcWait) dcWait = setTimeout(function () { dcLate = true; place(); }, 4000);
+    return true;
+  }
   function placeMobile() {
     var host, before;
     var scr = Array.prototype.find.call(document.querySelectorAll('#dc-root [data-screen-label]'), function (x) { return x.offsetWidth > 0; });
+    if (!scr && dcEarly()) return;
     if (scr) { host = scr; before = scr.firstElementChild; }
     else if (document.body && document.body.firstElementChild) { host = document.body; before = document.body.firstElementChild; }
     if (!host) return;
