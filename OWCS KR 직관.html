@@ -26,6 +26,7 @@
 <style>
 :root{--bg:#0B0B0F;--panel:#15151B;--line:#26262E;--ink:#F2F2F5;--mute:#A9A9B3;--dim:#8E8E98;--ac:#7D39EB;--ac2:#C6FF33;--red:#D92D20}
 *{box-sizing:border-box}
+main{word-break:keep-all;overflow-wrap:break-word}   /* Korean breaks between words, not inside them (10-24) */
 @media (prefers-reduced-motion: no-preference){html{scroll-behavior:smooth}}   /* jumps at once with reduced motion (10-24) */
 body{margin:0;background:var(--bg);color:var(--ink);font-family:'Pretendard Variable',Pretendard,system-ui,sans-serif;-webkit-font-smoothing:antialiased;
   background-image:radial-gradient(90% 60% at 0% 0%,color-mix(in srgb,var(--ac) 22%,transparent),transparent 60%),radial-gradient(60% 50% at 100% 40%,color-mix(in srgb,var(--red) 10%,transparent),transparent 65%),repeating-linear-gradient(135deg,rgba(255,255,255,.028) 0 1px,transparent 1px 12px);background-attachment:fixed}
