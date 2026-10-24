@@ -2,7 +2,8 @@ name: Deploy site
 
 # Builds the whole site here (no PC needed): Liquipedia via the OWCSKR collector (re-read every 30 min, every 10 min
 # around today's matches), streams / SOOP VODs every run. Also runs on every push from the PC (live map scores).
-# GitHub's own schedule runs late or not at all, so refresh-loop.yml asks for a build every 10 minutes.
+# GitHub's own schedule runs late or not at all: most builds are asked for from outside (cron-job.org, matchday-watch.yml,
+# the collector's server). Which trigger does what, and what to check when builds stop: README.md, '빌드는 누가 일으키나'.
 on:
   push:
     branches: [main]
@@ -51,15 +52,18 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: '22'
-      # Liquipedia copy between runs (pages + fetch time), so the collector does not re-read every 10 min.
-      # lp2 (2026-10-20): fresh start, so the committed data/lp files with match section / round are not covered by an older copy
+      # Liquipedia copy between runs (raw pages + fetch time), so the collector does not re-read every 10 min.
+      # Only the raw wiki (data/lp-cache) and run-lp's status file: data/lp is the collector's committed output, and a cached
+      # copy laid over it hid every later collector fix and re-parse (lp2 had to be started fresh by hand on 10-20; P2-07).
+      # The active pages' data/lp files are made again on every run from the raw copy (cloud_live.collect), the rest come
+      # from the commit. wiki1 (2026-10-24): first key without data/lp
       - uses: actions/cache/restore@v5
         with:
           path: |
             OWCSKR/data/lp-cache
-            OWCSKR/data/lp
-          key: owcskr-lp2-${{ github.run_id }}
-          restore-keys: owcskr-lp2-
+            OWCSKR/data/lp/_status.json
+          key: owcskr-wiki1-${{ github.run_id }}
+          restore-keys: owcskr-wiki1-
       - id: pages
         uses: actions/configure-pages@v6
       - id: build
@@ -69,10 +73,17 @@ jobs:
         with:
           path: |
             OWCSKR/data/lp-cache
-            OWCSKR/data/lp
-          key: owcskr-lp2-${{ github.run_id }}
+            OWCSKR/data/lp/_status.json
+          key: owcskr-wiki1-${{ github.run_id }}
       - uses: actions/upload-pages-artifact@v5
         with:
           path: _site
       - id: deployment
         uses: actions/deploy-pages@v5
+      # the site is deployed either way (the last good data stays up); after FAIL_ALARM (3) failed data builds in a row
+      # the run ends red so GitHub sends its failure mail (cloud_live.stamp_build; the count lives in owcs-data.js)
+      - name: Fail the run after repeated data build failures
+        if: fromJSON(steps.build.outputs.build_fails || '0') >= 3
+        run: |
+          echo "::error::data build failed ${{ steps.build.outputs.build_fails }} times in a row; the deployed data is from the last good build (dataBuilt in owcs-ver.json). See the build step's log."
+          exit 1

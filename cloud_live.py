@@ -1,11 +1,13 @@
 """Build the public site folder for GitHub Pages: the whole data build runs here, so the site needs no PC.
 
 Runs in GitHub Actions (.github/workflows/pages.yml) every ~10 min, on every push and by hand:
-  1. collector (github.com/dlworhs11-rgb/OWCSKR, checked out in ./OWCSKR, Liquipedia cache kept by actions/cache):
-     re-read the active Liquipedia pages when the copy is older than 30 min (10 min around today's matches),
-     pick up the next stage once Liquipedia links it, then node collector/build.mjs
+  1. collector (github.com/dlworhs11-rgb/OWCSKR, checked out in ./OWCSKR; only the raw Liquipedia copy data/lp-cache
+     is kept by actions/cache, data/lp always starts from the collector's commit): run-lp.mjs --discover (new stages,
+     events), re-read the active Liquipedia pages when the copy is older than 30 min (10 min around today's matches;
+     a run with failed pages flags them and the next run tries again), then node collector/build.mjs
   2. owcs_build.build(): schedule, results, standings, brackets, players -> owcs-data.js
      (+ data/live_scores and data/live_maps pushed from the PC on match days); if it fails, the deployed copy stays
+     with its `dataBuilt` time, and FAIL_ALARM failures in a row end the run red after the deploy (stamp_build)
   3. refresh `live` (which players stream on CHZZK / SOOP) and match-day SOOP VOD links
   4. rebuild the calendar-subscription files (matches not played yet)
   4b. stamp each page's own scripts with a content hash (owcs-i18n.js?v=1a2b3c4d), so a browser never mixes a new page
@@ -27,7 +29,13 @@ import owcs_build  # noqa: E402
 import site_urls  # noqa: E402
 
 SITE_FILES = site_urls.SITE_FILES   # the one list of deployed root files lives in site_urls.py
-VOLATILE = ('generated', 'liveChecked', 'igChecked')
+# fields every build may rewrite: left out of content_hash and of the "changed?" test. dataBuilt = when the data build
+# last worked (kept from the last deploy when it fails), buildFails = data builds failed in a row (P1-04)
+VOLATILE = ('generated', 'liveChecked', 'igChecked', 'dataBuilt', 'buildFails')
+FAIL_ALARM = 3   # this many failed data builds in a row: the run ends red after the deploy, so GitHub mails it
+LP_PROBLEMS = ('ERR', 'MISSING', 'SHRINK', 'MOVED', 'DATE?', 'STOP')   # run-lp.mjs lines always printed in full
+LP_FAILED = ('ERR', 'SHRINK', 'STOP')   # ... the ones that mean a page was not read (collector without _status.json)
+DAY = 86400
 COLLECTOR = os.path.dirname(owcs_build.SRC)
 LP_API = 'https://liquipedia.net/overwatch/api.php'
 LP_UA = 'OWCSKR-fansite/0.1 (+https://github.com/dlworhs11-rgb/OWCSKR)'   # same as the collector
@@ -67,14 +75,29 @@ def cache_file(title):
     return os.path.join(owcs_build.SRC, 'lp-cache', re.sub(r'[^a-z0-9]+', '_', title, flags=re.I) + '.wiki')
 
 
+def lp_file(title):
+    """data/lp/<file>.json of a Liquipedia page, named as the collector names it (run-lp.mjs fileOf)"""
+    slug = re.sub(r'[^a-z0-9]+', '-', re.sub(r'^Overwatch (Champions Series|World Cup)/', '', title), flags=re.I).lower()
+    return os.path.join(owcs_build.SRC, 'lp', ('owwc-' if 'World Cup' in title else 'owcs-') + slug + '.json')
+
+
+def is_active(title, active):
+    """the collector's rule (RC-12, run-lp.mjs isActive): a full title ('Overwatch ...', as --discover writes them)
+    matches only that page; an older short entry ('2026/Asia/Stage 3') matches every title containing it"""
+    return any(title == a if a.startswith('Overwatch ') else a in title for a in active if isinstance(a, str) and a)
+
+
 def active_titles():
-    """the pages `node collector/run-lp.mjs --active-only` re-reads (same filter as the collector)"""
+    """the pages `node collector/run-lp.mjs --active-only` re-reads (run-lp.mjs titlesOf + its skip rule): core and
+    the World Cup pages listed in active.json by their exact title or already collected, when active, plus any page
+    with no data/lp file yet (fetched whatever active.json says: a page --discover found that the collector has not
+    committed yet). No year rule for the World Cup (it was '20(23|26)$')"""
     with open(os.path.join(owcs_build.SRC, 'competitions.json'), encoding='utf-8') as f:
         comps = json.load(f)
     with open(os.path.join(owcs_build.SRC, 'active.json'), encoding='utf-8') as f:
         active = json.load(f)
-    titles = comps['core'] + [t for t in comps.get('world_cup', []) if re.search(r'20(23|26)$', t)]
-    return [t for t in titles if any(a in t for a in active)]
+    wc = [t for t in comps.get('world_cup') or [] if t in active or os.path.exists(lp_file(t))]
+    return [t for t in comps['core'] + wc if is_active(t, active) or not os.path.exists(lp_file(t))]
 
 
 def match_window(prev, now):
@@ -83,53 +106,140 @@ def match_window(prev, now):
     return bool(starts) and min(starts) - datetime.timedelta(minutes=30) <= now <= max(starts) + datetime.timedelta(hours=4)
 
 
-def node(*args):
+def node(*args, ok=(0,)):
+    """run a collector script in the checkout -> its output lines. Prints the last 3 lines and every line in
+    LP_PROBLEMS (10-24: only the last 3 were shown, usually DONE, so a page that failed never showed in the log).
+    An exit code outside `ok` raises"""
     r = subprocess.run(['node', *args], cwd=COLLECTOR, capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=600)
-    print(f"node {' '.join(args)}: " + ' | '.join((r.stdout or '').strip().splitlines()[-3:]))
-    if r.returncode:
-        raise RuntimeError(f"node {' '.join(args)} failed: {(r.stderr or r.stdout).strip()[-300:]}")
+    lines = (r.stdout or '').strip().splitlines()
+    print(f"node {' '.join(args)}: " + ' | '.join(lines[-3:]))
+    for line in lines:
+        if line.startswith(LP_PROBLEMS):
+            print('    ' + line)
+    if r.returncode not in ok:
+        raise RuntimeError(f"node {' '.join(args)} failed (exit {r.returncode}): {(r.stderr or r.stdout).strip()[-300:]}")
+    return lines
+
+
+def lp_failures(lines, since):
+    """(pages run-lp.mjs could not read, rate limit or None) for a run that started at `since` (epoch s).
+    run-lp exits 0 even when pages failed (2 only with --strict), so the exit code says nothing: data/lp/_status.json
+    has the count when this run wrote it; an older collector without that file -> its ERR / SHRINK / STOP lines"""
+    try:
+        with open(os.path.join(owcs_build.SRC, 'lp', '_status.json'), encoding='utf-8') as f:
+            st = json.load(f)
+        at = datetime.datetime.fromisoformat(str(st['updatedAt']).replace('Z', '+00:00')).timestamp()
+        if at >= since - 5:
+            return int(st.get('failures') or 0), st.get('rateLimit')
+    except (OSError, ValueError, KeyError, TypeError, AttributeError):
+        pass
+    return sum(1 for x in lines if x.startswith(LP_FAILED)), next((x for x in lines if x.startswith('STOP')), None)
+
+
+def set_output(key, value):
+    """a step output for pages.yml (GITHUB_OUTPUT); nothing outside Actions"""
+    if os.environ.get('GITHUB_OUTPUT'):
+        with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as f:
+            print(f'{key}={value}', file=f)
 
 
 def mark_fetched():
-    if os.environ.get('GITHUB_OUTPUT'):   # the workflow saves the Liquipedia cache only when this run read something new
-        with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
-            print('fetched=true', file=f)
+    set_output('fetched', 'true')   # the workflow saves the Liquipedia cache only when this run read something new
 
 
-def ensure_wiki(titles):
-    """Liquipedia pages the build reads but the collector does not re-fetch (an older stage's playoff page).
+def seen_at(v):
+    """a _missing.json value -> epoch seconds. The site writes floats; an older collector wrote ISO strings into the
+    same file (RI-10: float - str raised a TypeError that stopped the whole data build). Anything else = never"""
+    if isinstance(v, (int, float)) and not isinstance(v, bool):
+        return float(v)
+    if isinstance(v, str):
+        try:
+            t = datetime.datetime.fromisoformat(v.strip().replace('Z', '+00:00'))
+            return (t if t.tzinfo else t.replace(tzinfo=datetime.timezone.utc)).timestamp()
+        except ValueError:
+            return 0.0
+    return 0.0
+
+
+def event_days(title):
+    """(first, last) day of a page's event: |sdate= / |edate= of the cached wiki, else the dates of its matches in
+    data/lp; None when neither has one"""
+    days = []
+    try:
+        with open(cache_file(title), encoding='utf-8') as f:
+            text = f.read()
+        for k in ('sdate', 'edate'):
+            m = re.search(r'^\|\s*' + k + r'\s*=\s*(\d{4}-\d\d-\d\d)', text, re.M)
+            if m:
+                days.append(datetime.date.fromisoformat(m.group(1)))
+    except (OSError, ValueError):
+        pass
+    if not days:
+        try:
+            with open(lp_file(title), encoding='utf-8') as f:
+                days = [owcs_build.kst_day(m['date']) for m in json.load(f).get('matches', []) if m.get('date')]
+        except (OSError, ValueError, KeyError, TypeError, AttributeError):
+            days = []
+    return (min(days), max(days)) if days else None
+
+
+def wiki_max_age(title, today):
+    """how long ensure_wiki keeps its copy of a page (P2-07): 6 h from 30 days before the event to 30 days after it
+    (dates, city, groups, results still change), 7 days otherwise. No dates at all: near when the page is of this year
+    or later (just announced)"""
+    span = event_days(title)
+    if span:
+        near = span[0] - datetime.timedelta(days=30) <= today <= span[1] + datetime.timedelta(days=30)
+    else:
+        y = re.search(r'/(\d{4})(?:/|$)', title)
+        near = not y or int(y.group(1)) >= today.year
+    return 6 * 3600 if near else 7 * DAY
+
+
+def write_text(path, text):
+    """write via a temporary file: a half-written copy would be read as the whole page"""
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path + '.tmp', 'w', encoding='utf-8') as fh:
+        fh.write(text)
+    os.replace(path + '.tmp', path)
+
+
+def ensure_wiki(titles, today):
+    """Liquipedia pages the build reads but the collector does not re-fetch (an older stage's playoff page, the
+    season's international events), read again when the copy is older than wiki_max_age (it was kept forever, so an
+    event page read before its dates were out stayed without them).
     A page read here is saved with the cache too (10-20: it was not, so every run asked again until Liquipedia
     answered 429 and the site lost its brackets); on a 429 the rest wait for the next run instead of asking again.
-    A page Liquipedia does not have yet (this year's events before they are created) is noted in lp-cache/_missing.json
-    and asked again after 6 h, not on every run (10-24: it was asked every run, and printed nothing)"""
+    A page Liquipedia does not have (yet) is noted in lp-cache/_missing.json and asked again after 6 h, not on every
+    run (10-24: it was asked every run, and printed nothing); an older copy of it is kept"""
     seen_f = os.path.join(owcs_build.SRC, 'lp-cache', '_missing.json')
     try:
         with open(seen_f, encoding='utf-8') as fh:
             missing = json.load(fh)
     except (OSError, ValueError):
         missing = {}
+    if not isinstance(missing, dict):
+        missing = {}
     for t in titles:
         f = cache_file(t)
-        if os.path.exists(f) or time.time() - missing.get(t, 0) < 6 * 3600:
+        if os.path.exists(f) and time.time() - os.path.getmtime(f) < wiki_max_age(t, today):
             continue
+        if time.time() - seen_at(missing.get(t)) < 6 * 3600:
+            continue
+        old = os.path.exists(f)
         url = LP_API + '?' + urllib.parse.urlencode(dict(format='json', action='query', prop='revisions', rvprop='content', rvslots='main', titles=t))
         try:
             req = urllib.request.Request(url, headers={'User-Agent': LP_UA, 'Accept-Encoding': 'gzip'})
             r = json.loads(gzip.decompress(urllib.request.urlopen(req, timeout=30).read()))
             text = (list(r['query']['pages'].values())[0].get('revisions') or [{}])[0].get('slots', {}).get('main', {}).get('*')
             if text is not None:
-                os.makedirs(os.path.dirname(f), exist_ok=True)
-                with open(f, 'w', encoding='utf-8') as fh:
-                    fh.write(text)
-                print('fetched', t)
-                mark_fetched()
+                write_text(f, text)
+                print('refreshed' if old else 'fetched', t)
             else:
                 missing[t] = time.time()
-                os.makedirs(os.path.dirname(seen_f), exist_ok=True)
-                with open(seen_f, 'w', encoding='utf-8') as fh:
-                    json.dump(missing, fh, ensure_ascii=False)
-                print('missing on Liquipedia, asked again in 6 h:', t)
-                mark_fetched()   # the workflow saves lp-cache (with this note) only on a run that marks it
+                write_text(seen_f, json.dumps(missing, ensure_ascii=False))
+                print('missing on Liquipedia, asked again in 6 h:', t, '(older copy kept)' if old else '')
+            mark_fetched()   # the workflow saves lp-cache (with the page or this note) only on a run that marks it
         except Exception as e:
             print('not fetched:', t, e)
             if getattr(e, 'code', None) == 429:
@@ -146,43 +256,106 @@ def read_replays():
         print('replay sheet not read:', e)
 
 
-def collect(prev, now, force=False):
-    """refresh the collector data (data/lp, data/site) from Liquipedia when it is old enough"""
-    titles = active_titles()
-    stamp = os.path.join(owcs_build.SRC, 'lp-cache', '_fetched.txt')   # last re-read (file times may not survive the cache)
-    age = now.timestamp() - float(open(stamp).read()) if os.path.exists(stamp) else None
-    limit = 600 if match_window(prev, now) else 1800
-    if force or age is None or age > limit - 60:
-        for t in titles:   # the collector keeps its copy for 6 h: date it back so the pages are read again now
-            if os.path.exists(cache_file(t)):   # (kept, so a failed read still leaves the old copy)
-                os.utime(cache_file(t), (0, 0))
-        node('collector/run-lp.mjs', '--active-only')
-        os.makedirs(os.path.dirname(stamp), exist_ok=True)
-        with open(stamp, 'w') as f:
-            f.write(str(now.timestamp()))
-        print(f'Liquipedia re-read ({len(titles)} pages, limit {limit // 60} min)')
-        mark_fetched()
-    else:
-        print(f'Liquipedia copy is {int(age // 60)} min old (limit {limit // 60} min): not re-read')
-    read_replays()
-    node('collector/build.mjs')
-    try:   # next stage linked on Liquipedia: fetch it too (only in this checkout, the collector repo is not changed)
+def discover():
+    """`node collector/run-lp.mjs --discover` (P1-14): new stage / event pages (World Cup years too) into the
+    checkout's competitions.json, active.json rewritten with full titles. On every run: the checkout starts from the
+    collector's commit and data/lp is not cached (P2-07), so each run has to work from the same page lists. The
+    collector caches what it reads for this (page list, newest stage page: 6 h), so most runs send no request.
+    -> True when it ran; False for an older collector without --discover (it would read every page instead) or a
+    failed discover: then the '|next=' fallback (owcs_build.next_stage_pages)"""
+    try:
+        with open(os.path.join(COLLECTOR, 'collector', 'run-lp.mjs'), encoding='utf-8') as f:
+            if "'--discover'" not in f.read():
+                return False
+        lines = node('collector/run-lp.mjs', '--discover', ok=(0, 2))
+    except Exception as e:
+        print('discover failed:', e)
+        flag(f'Liquipedia --discover failed, page lists as committed ({type(e).__name__}: {e})')
+        return False
+    for line in lines:
+        if line.startswith(('ADDED', 'ACTIVE+', 'ACTIVE-')):
+            print('    ' + line)
+    if any(x.startswith('ERR') for x in lines):
+        flag('Liquipedia --discover failed, page lists as committed - see the log')
+        return False
+    return True
+
+
+def reread(titles, stamp, now, limit):
+    """re-read the active pages now. A page that fails keeps its old copy and that copy's file time (so the runs in
+    between rebuild from it without asking again); with any failure _fetched.txt is not written, so the next run tries
+    again (P1-04) - not after a 429 (Liquipedia asks us to slow down: the usual wait)"""
+    old = {}
+    for t in titles:   # the collector keeps its copy for 6 h: date it back so the pages are read again now
+        f = cache_file(t)
+        if os.path.exists(f):
+            old[t] = os.path.getmtime(f)
+            os.utime(f, (0, 0))
+    since = time.time()
+    lines = node('collector/run-lp.mjs', '--active-only', ok=(0, 2))
+    for t, mt in old.items():   # not read again: the old copy gets its time back
+        if os.path.exists(cache_file(t)) and os.path.getmtime(cache_file(t)) < 1:
+            os.utime(cache_file(t), (mt, mt))
+    mark_fetched()   # the pages that were read are saved with the cache either way
+    failures, rate = lp_failures(lines, since)
+    moved = [x for x in lines if x.startswith('MOVED')]
+    if moved:
+        flag('Liquipedia page moved, fix data/competitions.json in the collector: ' + ' ; '.join(moved))
+    if failures and not rate:
+        flag(f'Liquipedia: {failures} page(s) not read (old copies kept), asked again next run - ERR / MISSING / SHRINK lines in the log')
+        return
+    if rate:
+        flag(f'Liquipedia rate limit (429), {failures} page(s) not read (old copies kept): next try in {limit // 60} min')
+    os.makedirs(os.path.dirname(stamp), exist_ok=True)
+    with open(stamp, 'w') as f:
+        f.write(str(now.timestamp()))
+    print(f'Liquipedia re-read ({len(titles)} pages, limit {limit // 60} min)')
+
+
+def next_stage_fallback():
+    """next stage linked on Liquipedia ('|next='), for a collector without --discover: fetch it too (only in this
+    checkout, the collector repo is not changed)"""
+    try:
         nxt = owcs_build.next_stage_pages()
         if nxt:
             owcs_build.add_next_stage(nxt)
             print('next stage added for this run:', *nxt)
-            node('collector/run-lp.mjs', '--active-only')
+            node('collector/run-lp.mjs', '--active-only', ok=(0, 2))
             node('collector/build.mjs')
     except Exception as e:
         print('next stage check skipped:', e)
+
+
+def collect(prev, now, force=False, fast=False):
+    """refresh the collector data (data/lp, data/site) from Liquipedia when it is old enough.
+    fast (a push with only live data): no Liquipedia re-read and no ensure_wiki, the rest as on any run"""
+    found = discover()
+    titles = active_titles()
+    stamp = os.path.join(owcs_build.SRC, 'lp-cache', '_fetched.txt')   # last re-read (file times may not survive the cache)
+    age = now.timestamp() - float(open(stamp).read()) if os.path.exists(stamp) else None
+    limit = 600 if match_window(prev, now) else 1800
+    if not fast and (force or age is None or age > limit - 60):
+        reread(titles, stamp, now, limit)
+    else:
+        # data/lp is not kept between runs (P2-07: the collector's commit wins), so the active pages' files are made
+        # again from the cached wiki copies (no request while a copy is under 6 h old)
+        node('collector/run-lp.mjs', '--active-only', ok=(0, 2))
+        if age is not None:
+            print(f'Liquipedia copy is {int(age // 60)} min old (limit {limit // 60} min): not re-read')
+    read_replays()
+    node('collector/build.mjs')
+    if not found:
+        next_stage_fallback()
+    if fast:
+        return
     stages = owcs_build.find_stages()
     cur = owcs_build.current_stage(stages, now.date())
     i = stages.index(cur)
     # every stage of this year (the results page picks any of them; 10-22: stage 1 had no bracket, so its playoffs were one
     # 플레이오프 block) plus the one before, for last season's bracket in January
-    ensure_wiki([s['po'].replace('OWCS ', owcs_build.LP_NAME + '/', 1) for j, s in enumerate(stages[:i + 1]) if s['year'] == cur['year'] or j == i - 1])
+    ensure_wiki([s['po'].replace('OWCS ', owcs_build.LP_NAME + '/', 1) for j, s in enumerate(stages[:i + 1]) if s['year'] == cur['year'] or j == i - 1], now.date())
     # the season's international events: dates and city (infobox), group / round names when the collector has none
-    ensure_wiki([f"{owcs_build.LP_NAME}/{cur['year']}/{name}{sub}" for name, _, _ in owcs_build.INTL_EVENTS for sub in ('', '/Group Stage')])
+    ensure_wiki([f"{owcs_build.LP_NAME}/{cur['year']}/{name}{sub}" for name, _, _ in owcs_build.INTL_EVENTS for sub in ('', '/Group Stage')], now.date())
 
 
 def content_hash(data):
@@ -228,6 +401,22 @@ def stamp_scripts(out, fixed=None):
                     fh.write(new)
 
 
+def stamp_build(data, prev, built, stamp):
+    """dataBuilt / buildFails on the data about to be deployed (P1-04). A build that worked: dataBuilt = now, count 0.
+    A failed one redeploys the last deploy's data, which keeps its dataBuilt (the pages show it is old), and counts on
+    from the last deploy's buildFails: the count lives in the deployed owcs-data.js, which every run reads already
+    (--prev), so it needs no cache or commit; a run that cannot read the last deploy starts again at 1.
+    From FAIL_ALARM in a row the build step's output `build_fails` makes pages.yml end red after the deploy"""
+    if built:
+        data['dataBuilt'], data['buildFails'] = stamp, 0
+    else:
+        data['buildFails'] = int((prev or {}).get('buildFails') or 0) + 1
+        print(f"! data build failed {data['buildFails']} time(s) in a row; last good build {data.get('dataBuilt') or 'unknown'}")
+        if data['buildFails'] >= FAIL_ALARM:
+            flag(f"data build failed {data['buildFails']} times in a row (last good build {data.get('dataBuilt') or 'unknown'}): this run ends red after the deploy")
+    set_output('build_fails', data['buildFails'])
+
+
 def main():
     sys.stdout.reconfigure(encoding='utf-8', errors='replace')
     out = sys.argv[sys.argv.index('--out') + 1] if '--out' in sys.argv else '_site'
@@ -253,12 +442,9 @@ def main():
     data = None
     if os.path.isdir(COLLECTOR):
         try:
-            fast = '--fast' in sys.argv   # push with only live map scores: no Liquipedia / collector, just rebuild with the new scores
-            if not fast:
-                collect(prev, now, '--force-lp' in sys.argv)
-            else:   # the collector's site data is not in its repo: rebuild it from the cached Liquipedia copy (no request)
-                read_replays()
-                node('collector/build.mjs')
+            # --fast: a push with only live map scores, no Liquipedia re-read; the collector's site data is not in its
+            # repo, so it is still rebuilt from the cached Liquipedia copy
+            collect(prev, now, '--force-lp' in sys.argv, fast='--fast' in sys.argv)
             data = owcs_build.build(prev_live=(prev or {}).get('live'), out=out, records=False)
             print(f"built: {data['stage']} · {len(data['matches'])} matches · {sum(m['played'] for m in data['matches'])} played · "
                   f"{len(data['players'])} players · standings {[(s['a'], s['w'], s['l']) for s in data['standings']]}")
@@ -277,6 +463,7 @@ def main():
         if lost:
             data['matches'] += lost
             print(f'! kept {len(lost)} matches from the last deploy:', ' '.join(m['id'] for m in lost))
+    built = data is not None
     if data is None:
         data = prev
     if data is None and os.path.exists(os.path.join(HERE, 'owcs-data.js')):
@@ -302,12 +489,15 @@ def main():
     stamp = now.isoformat(timespec='seconds')
     # a fast push copied the stream list: keep the time it was really checked, so the page's 30-minute stall warning still works
     data['liveChecked'] = prev.get('liveChecked') or stamp if '--fast' in sys.argv and prev else stamp
+    stamp_build(data, prev, built, stamp)
     same = prev and {k: v for k, v in prev.items() if k not in VOLATILE} == {k: v for k, v in data.items() if k not in VOLATILE}
     data['generated'] = prev['generated'] if same else stamp
     write_data(os.path.join(out, 'owcs-data.js'), data)
-    ver = content_hash(data)   # owcs-ver.json: open pages poll it (owcs-datapoll.js); checked = the stream check time
+    # owcs-ver.json: open pages poll it (owcs-datapoll.js); checked = the stream check time, dataBuilt = the last data
+    # build that worked (also read by the collector's tools/healthcheck.py)
+    ver = content_hash(data)
     with open(os.path.join(out, 'owcs-ver.json'), 'w', encoding='utf-8') as f:
-        json.dump({'v': ver, 'checked': data.get('liveChecked')}, f)
+        json.dump({'v': ver, 'checked': data.get('liveChecked'), 'dataBuilt': data.get('dataBuilt')}, f)
     b.write_ics(data, out)   # subscription calendar: only matches not played yet, so rebuild it on every run
     stamp_scripts(out, {'owcs-data.js': ver})   # after owcs-data.js is written: the same version goes on the pages
     print(f"live streams: {len(data['live'])} {sorted(data['live'])} · {'unchanged' if same else 'changed'} · generated {data['generated']}")
