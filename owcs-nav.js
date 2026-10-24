@@ -112,7 +112,7 @@
     '#dc-root ' + F + '{padding:56px 56px 72px}',
     F + ' .ft-g{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1.4fr);gap:40px}',
     F + ' .ft-logo{font-family:var(--disp,"Barlow Condensed"),"Barlow Condensed",sans-serif;font-weight:800;font-size:32px;line-height:1.2}',
-    F + ' .ft-desc{font-size:15px;color:var(--fm);margin-top:10px;max-width:420px}',
+    F + ' .ft-desc{font-size:15px;color:var(--fm);margin-top:10px;max-width:420px;word-break:keep-all;overflow-wrap:break-word}',   // Korean words stay whole (10-24)
     F + ' .ft-ch{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;margin-top:18px}',
     F + ' .ft-k{width:100%;font-size:13px;color:var(--fm)}',
     F + ' .ft-ch a{display:inline-flex;align-items:center;gap:8px;height:40px;color:var(--fi);text-decoration:none;font-size:14px;font-weight:600}',
@@ -120,7 +120,7 @@
     F + ' .ft-mail{display:block;font-size:15px;color:var(--fi);margin-top:8px;text-decoration:underline}',
     // the mail / chat links were 22px high on phones (the 22px icon): at least a 24px target, the home page's own footer too (10-24)
     'footer a[href^="mailto:"],footer a[href*="discord."]{min-height:24px}',
-    F + ' .ft-note{font-size:13px;color:var(--fm)}',
+    F + ' .ft-note{font-size:13px;color:var(--fm);word-break:keep-all;overflow-wrap:break-word}',
     '@media (max-width:1180px){' + F + ' .ft-g{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px}}',
     '@media (min-width:900px) and (max-width:1180px){' + F + ' .ft-g>div:nth-child(2){border-left:1px solid color-mix(in srgb, var(--fi) 16%, transparent);padding-left:28px}' + F + ' .ft-note{grid-column:1/-1;border-top:1px solid color-mix(in srgb, var(--fi) 16%, transparent);padding-top:18px}}',
     '@media (max-width:899.98px){' + F + ',#dc-root ' + F + '{padding:32px 20px 40px}' + F + ' .wrap{padding:0}' +
