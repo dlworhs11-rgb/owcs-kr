@@ -1048,9 +1048,7 @@
    },
    "heroTs": 1792843221,
    "hudLeft": "Poker Face",
-   "guessed": [
-    "D4RT"
-   ],
+   "guessed": [],
    "comps": {
     "Poker Face": [
      [
@@ -1085,7 +1083,7 @@
      ],
      [
       "D4RT",
-      "reaper"
+      "tracer"
      ],
      [
       "OFF",
