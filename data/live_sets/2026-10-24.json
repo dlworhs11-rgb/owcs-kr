@@ -339,7 +339,62 @@
      "hero": "dva"
     }
    },
-   "src": "SOOP"
+   "src": "SOOP",
+   "heroTs": 1792828331,
+   "hudLeft": "ZETA DIVISION",
+   "guessed": [
+    "Knife",
+    "K4NE",
+    "Profit",
+    "TenTen"
+   ],
+   "comps": {
+    "ZETA DIVISION": [
+     [
+      "Bernar",
+      "dmon"
+     ],
+     [
+      "Knife",
+      "sojourn"
+     ],
+     [
+      "Proper",
+      "tracer"
+     ],
+     [
+      "Viol2t",
+      "sombra"
+     ],
+     [
+      "Shu",
+      "wuyang"
+     ]
+    ],
+    "CHEESEBURGER": [
+     [
+      "Belosrea",
+      "orisa"
+     ],
+     [
+      "K4NE",
+      "sojourn"
+     ],
+     [
+      "Profit",
+      "symmetra"
+     ],
+     [
+      "Trest",
+      "kiriko"
+     ],
+     [
+      "TenTen",
+      "doctrine"
+     ]
+    ]
+   },
+   "compAt": null
   }
  ]
 }
