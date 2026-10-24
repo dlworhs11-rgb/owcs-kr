@@ -107,7 +107,7 @@
       if (c.worst && c.worst <= D.playoffs) return { tag: '플레이오프 확정', kind: 'sure', note: '남은 경기 결과와 관계없이 1–' + D.playoffs + '위 확정' };
       if (c.best > D.lcq) return { tag: '탈락', kind: 'out', note: '남은 경기를 모두 이겨도 ' + D.lcq + '위 안 진입 불가' };
       if (c.best <= D.playoffs) {
-        const lcq = c.worst <= D.lcq ? ' 최소 LCQ 확정' : '';
+        const lcq = c.worst <= D.lcq ? ' / 최소 LCQ 확정' : '';   // joins the note before it: '… 결정 / 최소 LCQ 확정' (10-24)
         const need = c.needPO ? needText(c.needPO, left, '플레이오프') : '다른 팀 결과와 세트 득실에 따라 결정';
         return { tag: '플레이오프 경쟁', kind: 'maybe', note: need + lcq };
       }
