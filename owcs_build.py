@@ -471,11 +471,25 @@ def build_matches(stage):
         # FLC-ZAN's map 3 push distance): Liquipedia's spelling for every team name in the set
         same = {t1.lower(): t1, t2.lower(): t2}
         fix = lambda n: same.get(n.lower(), n) if isinstance(n, str) else n
+        known = {x.lower() for x in (*TEAMS, *NAME_ALIAS, *STAGE_TEAMS)}
+
+        def renamed(s, f):   # every team name in a live set through f
+            return {**s, 'teams': [f(n) for n in s.get('teams') or []],
+                    'score': {f(k): v for k, v in (s.get('score') or {}).items()},
+                    'comps': {f(k): v for k, v in (s.get('comps') or {}).items()} if s.get('comps') else s.get('comps'),
+                    'bans': {k: ({**v, 'team': f(v.get('team'))} if isinstance(v, dict) else v) for k, v in (s.get('bans') or {}).items()}}
         for s in live_sets(day):
-            s = {**s, 'teams': [fix(n) for n in s.get('teams') or []],
-                 'score': {fix(k): v for k, v in (s.get('score') or {}).items()},
-                 'comps': {fix(k): v for k, v in (s.get('comps') or {}).items()} if s.get('comps') else s.get('comps'),
-                 'bans': {k: ({**v, 'team': fix(v.get('team'))} if isinstance(v, dict) else v) for k, v in (s.get('bans') or {}).items()}}
+            s = renamed(s, fix)
+            # one name misread off the HUD (10-23 CB-O2 map 1: 'OEE SEBUARG BIR 4021' for Cheeseburger dropped the map's
+            # bans and comps): the other name is one of this match's teams and the misread one is no team at all, so it is
+            # the opponent. A day's file holds every match's maps, hence the "no team at all" check
+            n = s.get('teams') or []
+            if len(set(n)) == 2 and len({t1, t2} & set(n)) == 1:
+                bad = next(x for x in n if x not in (t1, t2))
+                if isinstance(bad, str) and bad.lower() not in known:
+                    good = t2 if t1 in n else t1
+                    s = renamed(s, lambda x, bad=bad, good=good: good if x == bad else x)
+                    print(f'! {day} map {s.get("game")}: HUD team name {bad!r} taken as {good}')
             if set(s.get('teams') or []) != {t1, t2} or not s.get('game'):
                 continue
             cur = next((x for x in maps if x['no'] == s['game']), None)
