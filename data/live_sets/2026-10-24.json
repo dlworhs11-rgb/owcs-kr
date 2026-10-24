@@ -565,7 +565,16 @@
     "Team Falcons": 0,
     "T1": 2
    },
-   "bans": null,
+   "bans": {
+    "initial": {
+     "team": "T1",
+     "hero": "jetpack cat"
+    },
+    "followUp": {
+     "team": "Team Falcons",
+     "hero": "vendetta"
+    }
+   },
    "src": "SOOP"
   }
  ]
