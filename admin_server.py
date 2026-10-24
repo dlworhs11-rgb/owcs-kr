@@ -29,9 +29,11 @@ def heroes():
 
 
 def maps():
-    t = open(os.path.join(HERE, 'owcs_build.py'), encoding='utf-8').read()
-    blk = t[t.index('MAP_MODE = {'):t.index('}', t.index('MAP_MODE = {'))]
-    return sorted(re.findall(r"""['"]([^'"]+)['"]: '(?:Control|Hybrid|Escort|Push|Flashpoint|Clash)'""", blk))
+    # the table itself: a regex over the source cut "King's Row" at its apostrophe into "s Row" (10-24)
+    if HERE not in sys.path:
+        sys.path.insert(0, HERE)   # python -I leaves the script folder off the path
+    import owcs_build
+    return sorted(owcs_build.MAP_MODE)
 
 
 def admin_file(date):
