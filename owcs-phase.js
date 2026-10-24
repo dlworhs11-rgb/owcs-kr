@@ -100,7 +100,7 @@
   (document.head || html).appendChild(st);
 
   // menu label: 순위 → 대진표 (every page, every language)
-  var MAP = { '순위': '대진표', '順位': 'トーナメント', 'Standings': 'Bracket', '排名': '对阵图' };   // zh too: the dc pages kept 排名 (10-24)
+  var MAP = { '순위': '대진표', '順位': 'トーナメント表', 'Standings': 'Bracket', '排名': '对阵图' };   // zh too: the dc pages kept 排名 (10-24)
   function relabel() {
     Array.prototype.forEach.call(document.querySelectorAll('a[href*="view=standings"], a[href="standings"]'), function (a) {
       var w = document.createTreeWalker(a, NodeFilter.SHOW_TEXT), n;
