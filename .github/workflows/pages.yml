@@ -80,10 +80,11 @@ jobs:
           path: _site
       - id: deployment
         uses: actions/deploy-pages@v5
-      # the site is deployed either way (the last good data stays up); after FAIL_ALARM (3) failed data builds in a row
-      # the run ends red so GitHub sends its failure mail (cloud_live.stamp_build; the count lives in owcs-data.js)
+      # the site is deployed either way (the last good data stays up); at FAIL_ALARM (3) failed data builds in a row, and
+      # every FAIL_REPEAT (12) runs after that, the run ends red so GitHub mails it once an hour, not every run
+      # (cloud_live.stamp_build / build_alarm; the count lives in owcs-data.js)
       - name: Fail the run after repeated data build failures
-        if: fromJSON(steps.build.outputs.build_fails || '0') >= 3
+        if: steps.build.outputs.build_alarm == '1'
         run: |
           echo "::error::data build failed ${{ steps.build.outputs.build_fails }} times in a row; the deployed data is from the last good build (dataBuilt in owcs-ver.json). See the build step's log."
           exit 1

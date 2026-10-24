@@ -33,6 +33,12 @@ SITE_FILES = site_urls.SITE_FILES   # the one list of deployed root files lives 
 # last worked (kept from the last deploy when it fails), buildFails = data builds failed in a row (P1-04)
 VOLATILE = ('generated', 'liveChecked', 'igChecked', 'dataBuilt', 'buildFails')
 FAIL_ALARM = 3   # this many failed data builds in a row: the run ends red after the deploy, so GitHub mails it
+FAIL_REPEAT = 12  # then only every 12th failed run ends red again (builds run every ~5 min: one mail an hour, not 12)
+
+
+def build_alarm(fails):
+    """does a run with this many failed data builds in a row end red? (the first time and then every FAIL_REPEAT)"""
+    return fails >= FAIL_ALARM and (fails - FAIL_ALARM) % FAIL_REPEAT == 0
 LP_PROBLEMS = ('ERR', 'MISSING', 'SHRINK', 'MOVED', 'DATE?', 'STOP')   # run-lp.mjs lines always printed in full
 LP_FAILED = ('ERR', 'SHRINK', 'STOP')   # ... the ones that mean a page was not read (collector without _status.json)
 DAY = 86400
@@ -406,15 +412,17 @@ def stamp_build(data, prev, built, stamp):
     A failed one redeploys the last deploy's data, which keeps its dataBuilt (the pages show it is old), and counts on
     from the last deploy's buildFails: the count lives in the deployed owcs-data.js, which every run reads already
     (--prev), so it needs no cache or commit; a run that cannot read the last deploy starts again at 1.
-    From FAIL_ALARM in a row the build step's output `build_fails` makes pages.yml end red after the deploy"""
+    At FAIL_ALARM in a row, and every FAIL_REPEAT after that, the build step's output `build_alarm` makes pages.yml end
+    red after the deploy"""
     if built:
         data['dataBuilt'], data['buildFails'] = stamp, 0
     else:
         data['buildFails'] = int((prev or {}).get('buildFails') or 0) + 1
         print(f"! data build failed {data['buildFails']} time(s) in a row; last good build {data.get('dataBuilt') or 'unknown'}")
-        if data['buildFails'] >= FAIL_ALARM:
+        if build_alarm(data['buildFails']):
             flag(f"data build failed {data['buildFails']} times in a row (last good build {data.get('dataBuilt') or 'unknown'}): this run ends red after the deploy")
     set_output('build_fails', data['buildFails'])
+    set_output('build_alarm', int(build_alarm(data['buildFails'])))
 
 
 def main():
