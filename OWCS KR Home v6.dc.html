@@ -1309,7 +1309,7 @@ class Component extends DCLogic {
       showMaps, mapsExpanded: showMaps ? 'true' : 'false', toggleMaps: () => this.setState({ mapsShown: !showMaps }),
       mapsHint: showMaps ? '경기 정보 접기' : '경기 정보 펼쳐보기', mapsChev: showMaps ? '▴' : '▾',
       mapsD: heroMaps, mapsM: heroMaps, mapsS: heroMaps.slice(0, 2),
-      showRes: matchDay, resHint: SP ? '스포일러 방지 중' : '결과를 눌러 ' + (sh && sh.st === 'done' ? '아래에서' : '위에서') + ' 세트별 상세 정보 확인',
+      showRes: matchDay, resHint: SP ? '스포일러 방지 중' : '결과를 눌러 경기 정보 확인',
       // all of today's matches, in order (not started yet: 0 : 0 and its start time); the POTM's face sits behind the card
       todayRes: todays.map((m) => { const wait = held && !picked && m.st === 'live', ms = wait ? 'up' : m.st;   // the next match shows as not started yet while the last result is held
         const o = orient(m.a, m.sa, m.b, m.sb), on = m === (sh && sh.st === 'done' ? picked : hero), sel = on && todays.length > 1 && ms !== 'up', done = ms === 'done' && !SP && !m.nr;
