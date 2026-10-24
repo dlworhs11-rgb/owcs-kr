@@ -47,7 +47,7 @@
   document.addEventListener('click', function (e) {
     var b = e.target.closest && e.target.closest('[data-ig-nav]'); if (!b) return;
     var t = b.parentNode.querySelector('[data-ig-track]'); if (!t) return;
-    t.scrollBy({ left: step(t) * +b.getAttribute('data-ig-nav'), behavior: 'smooth' });
+    t.scrollBy({ left: step(t) * +b.getAttribute('data-ig-nav'), behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });   // reduced motion: a jump (10-24)
   });
   document.addEventListener('scroll', function (e) {
     if (e.target.matches && e.target.matches('[data-ig-track]')) sync(e.target);
