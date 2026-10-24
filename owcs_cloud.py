@@ -10,6 +10,20 @@ ICS_FILE = 'owcs-kr-upcoming.ics'   # calendar subscription: matches not played 
 
 
 _REPLAYS = None
+_SEED = None   # {year, vods, checked}: the last deploy's list. In Actions data/soop_vods.json is gone every run, so this stands in for it (10-24)
+_READ = None   # {year, vods, checked} of the list soop_replays last used; cloud_live publishes it as owcs-vods.json for the next run
+
+
+def seed_replays(seed):
+    """give soop_replays the list of the last deploy ({year, vods, checked}); it is used when it is under 30 min old"""
+    global _SEED
+    ok = isinstance(seed, dict) and isinstance(seed.get('vods'), list) and isinstance(seed.get('checked'), (int, float))
+    _SEED = seed if ok else None
+
+
+def replays_state():
+    """{year, vods, checked (epoch s)} of the list the build used, None when SOOP was never read"""
+    return _READ
 
 
 def soop_replays(year, fresh=False):
@@ -17,18 +31,22 @@ def soop_replays(year, fresh=False):
     The list API gives 20 a page, newest first, and only the upload time (= broadcast end) and the length, so
     start = end - length. Cached 30 min in data/soop_vods.json (a stale copy is used when SOOP cannot be read);
     `fresh` reads SOOP regardless (replay_comment.py waiting for tonight's upload)."""
-    global _REPLAYS
+    global _REPLAYS, _READ
     if _REPLAYS is not None and not fresh:
         return _REPLAYS
     cache = os.path.join(HERE, 'data', 'soop_vods.json')
-    old = None
+    old, at = None, 0
     if os.path.exists(cache):
         with open(cache, encoding='utf-8') as f:
             old = json.load(f)
         if not (isinstance(old, dict) and old.get('year') == year):   # older cache format / another season
             old = None
-    if old and not fresh and time.time() - os.path.getmtime(cache) < 1800:
+        at = os.path.getmtime(cache)
+    if old is None and _SEED and _SEED.get('year') == year:
+        old, at = _SEED, _SEED['checked']
+    if old and not fresh and time.time() - at < 1800:
         _REPLAYS = old['vods']
+        _READ = dict(year=year, vods=_REPLAYS, checked=at)
         return _REPLAYS
     vods = []
     try:
@@ -45,9 +63,12 @@ def soop_replays(year, fresh=False):
                 break
         with open(cache, 'w', encoding='utf-8') as f:
             json.dump(dict(year=year, vods=vods), f)
+        _READ = dict(year=year, vods=vods, checked=time.time())
     except Exception as e:
         print('SOOP replays not read:', e)
         vods = old['vods'] if old else []
+        if old:
+            _READ = dict(year=year, vods=vods, checked=at)   # old time: the next run tries SOOP again
     _REPLAYS = vods
     return vods
 

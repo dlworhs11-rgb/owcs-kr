@@ -63,6 +63,16 @@ def fetch_prev(url):
         return None
 
 
+def fetch_vods(prev_url):
+    """owcs-vods.json of the last deploy (next to its owcs-data.js): the SOOP replay list and when it was read"""
+    try:
+        url = prev_url.rsplit('/', 1)[0] + '/owcs-vods.json?v=' + str(int(time.time()))
+        return json.loads(urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'}), timeout=15).read())
+    except Exception as e:
+        print('previous SOOP replay list not readable:', e)
+        return None
+
+
 def cache_file(title):
     return os.path.join(owcs_build.SRC, 'lp-cache', re.sub(r'[^a-z0-9]+', '_', title, flags=re.I) + '.wiki')
 
@@ -258,6 +268,8 @@ def main():
 
     now = datetime.datetime.now(b.KST)
     prev = fetch_prev(prev_url) if prev_url else None
+    if prev_url and not match_window(prev, now):   # SOOP's list again after 30 min; around matches every run (a replay is wanted fast)
+        b.seed_replays(fetch_vods(prev_url))
     data = None
     if os.path.isdir(COLLECTOR):
         try:
@@ -316,6 +328,9 @@ def main():
     ver = content_hash(data)   # owcs-ver.json: open pages poll it (owcs-datapoll.js); checked = the stream check time
     with open(os.path.join(out, 'owcs-ver.json'), 'w', encoding='utf-8') as f:
         json.dump({'v': ver, 'checked': data.get('liveChecked')}, f)
+    if b.replays_state():   # the list this build used, for the next one (see fetch_vods)
+        with open(os.path.join(out, 'owcs-vods.json'), 'w', encoding='utf-8') as f:
+            json.dump(b.replays_state(), f)
     b.write_ics(data, out)   # subscription calendar: only matches not played yet, so rebuild it on every run
     stamp_scripts(out, {'owcs-data.js': ver})   # after owcs-data.js is written: the same version goes on the pages
     print(f"live streams: {len(data['live'])} {sorted(data['live'])} · {'unchanged' if same else 'changed'} · generated {data['generated']}")
