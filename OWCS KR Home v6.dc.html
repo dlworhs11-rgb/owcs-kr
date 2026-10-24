@@ -1130,7 +1130,7 @@ const D = window.OWCS || { teams: [], players: [], matches: [], standings: [], l
 const TEAM = Object.fromEntries(D.teams.map((t) => [t.a, t]));
 const team = (a) => TEAM[a] || { a, n: a, ko: a, color: '#C9C9CF', logo: '' };
 // team logo as a transparent cut-out (no backing circle); dark = the variant drawn for dark backgrounds
-const logoBg = (a, dark) => { const t = team(a); const u = dark ? (t.logoDark || t.logo) : t.logo; return u ? "url('" + u + "') center / contain no-repeat transparent" : '#C9C9CF'; };
+const logoBg = (a, dark) => { const t = team(a); const u = dark ? (t.logoDark || t.logo) : t.logo; return u ? "url('" + u + "') center / contain no-repeat transparent" : dark ? '#4A4A55' : '#C9C9CF'; };   // no logo (TBD): the light grey glared on dark panels (10-24)
 const DOWS = ['일', '월', '화', '수', '목', '금', '토'];
 const fade = (hex, a) => { const h = hex.replace('#', ''); return 'rgba(' + [0, 2, 4].map((i) => parseInt(h.substr(i, 2), 16)).join(',') + ',' + a + ')'; };
 const pad = (n) => String(n).padStart(2, '0');
