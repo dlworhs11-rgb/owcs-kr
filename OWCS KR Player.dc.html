@@ -93,7 +93,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 </header>
 
 <section style="padding:56px 56px 80px;background:#F6F6F3">
-<div style="display:flex;gap:8px;font-size:14px;color:#6B6B72;margin-bottom:28px"><a href="OWCS KR Home v6.dc.html" style="color:#6B6B72">{{ crumb }}</a><span>/</span><a href="OWCS KR Home v6.dc.html" style="color:#6B6B72">{{ teamName }}</a><span>/</span><span style="color:#0B0B0F;font-weight:600">{{ pid }}</span></div>
+<div style="display:flex;gap:8px;font-size:14px;color:#6B6B72;margin-bottom:28px"><a href="OWCS KR Home v6.dc.html?view=teams" style="color:#6B6B72">{{ crumb }}</a><span>/</span><a href="{{ teamHref }}" style="color:#6B6B72">{{ teamName }}</a><span>/</span><span style="color:#0B0B0F;font-weight:600">{{ pid }}</span></div>
 <div style="display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:center">
 <div style="position:relative;aspect-ratio:4/5;border-radius:32px;overflow:hidden;background:{{ teamColor }}">
 <div style="position:absolute;left:-8%;right:-8%;top:-4%;height:78%;background:{{ teamMark }};opacity:.22"></div>
@@ -144,7 +144,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <div style="display:flex;gap:10px;align-items:center"><span style="background:#0B0B0F;color:#C6FF33;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;padding:4px 10px;border-radius:6px">2f</span><span style="font-size:15px;font-weight:600">선수 상세 · 모바일</span></div>
 <div data-screen-label="Player Mobile" style="width:390px;background:#fff;border-radius:36px;overflow:hidden;border:8px solid #0B0B0F">
 <header style="display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 12px 0 8px;border-bottom:1px solid #E6E6E1">
-<a href="OWCS KR Home v6.dc.html" style="width:44px;height:44px;display:grid;place-items:center;color:#0B0B0F;text-decoration:none;font-size:22px">‹</a>
+<a href="{{ teamHref }}" aria-label="{{ teamName }}" style="width:44px;height:44px;display:grid;place-items:center;color:#0B0B0F;text-decoration:none;font-size:22px">‹</a>
 <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px"><span class="owt"><b>OW</b>TICKER</span></span>
 <button style="width:44px;height:44px;border:none;background:transparent;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px"><span style="width:20px;height:2px;background:#0B0B0F"></span><span style="width:20px;height:2px;background:#0B0B0F"></span></button>
 </header>
@@ -231,6 +231,9 @@ class Component extends DCLogic {
       ],
       teamMark: (t.logoOnColor || t.logoDark || t.logo) ? "url('" + (t.logoOnColor || t.logoDark || t.logo) + "') center / contain no-repeat" : 'none',   // big team logo behind the photo
       pid: me.id, pUp: me.id.toUpperCase(), teamName: t.n, teamColor: t.color,
+      // the team's name in the crumb (and the phone's ‹) opens that team on the player list, not the home page (10-24).
+      // The address is written out whole: the deploy rewrites 'Home…?view=teams&' to 'players?' only as one piece
+      teamHref: TEAM[me.team] ? 'OWCS KR Home v6.dc.html?view=teams&team=' + encodeURIComponent(me.team) : 'OWCS KR Home v6.dc.html?view=teams',
       // team logo next to the name in the chip (owcs-dark.js: the dark-background drawing)
       teamLogo: (t.logo ? "url('" + (document.documentElement.hasAttribute('data-owcs-dark') ? t.logoDark || t.logo : t.logo) + "') center / contain no-repeat" : t.color), roleFull: me.roleFull,
       photoBg: me.photo ? "center bottom/min(100%, 440px) auto no-repeat url('" + me.photo + "')" : 'repeating-linear-gradient(135deg,rgba(255,255,255,.16) 0 8px,rgba(255,255,255,.06) 8px 16px)',
