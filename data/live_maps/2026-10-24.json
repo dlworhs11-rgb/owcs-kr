@@ -243,8 +243,128 @@
     "Cheeseburger": 1,
     "ZETA DIVISION": 0
    },
-   "winner": "Cheeseburger",
-   "winnerSource": "match end (leader)"
+   "winner": "ZETA DIVISION",
+   "winnerSource": "series score"
+  },
+  {
+   "match": "Cheeseburger vs ZETA DIVISION",
+   "matchNo": 1,
+   "game": 3,
+   "map": "Aatlis",
+   "mapTime": null,
+   "frame": "m03_table1_1792826200.png",
+   "teams": {
+    "Cheeseburger": [
+     {
+      "name": "?12",
+      "e": 10,
+      "a": 1,
+      "d": 7,
+      "dmg": 5840,
+      "heal": 1242,
+      "mit": 7719
+     },
+     {
+      "name": "?13",
+      "e": 8,
+      "a": 2,
+      "d": 7,
+      "dmg": 7344,
+      "heal": 0,
+      "mit": 235
+     },
+     {
+      "name": "?14",
+      "e": 6,
+      "a": 0,
+      "d": 7,
+      "dmg": 2885,
+      "heal": 113,
+      "mit": 0
+     },
+     {
+      "name": "TenTen",
+      "e": 6,
+      "a": 5,
+      "d": 5,
+      "dmg": 2018,
+      "heal": 4668,
+      "mit": 0
+     },
+     {
+      "name": "?15",
+      "e": 4,
+      "a": 5,
+      "d": 7,
+      "dmg": 3110,
+      "heal": 5894,
+      "mit": 0
+     }
+    ],
+    "ZETA DIVISION": [
+     {
+      "name": "Bernar",
+      "e": 21,
+      "a": 10,
+      "d": 2,
+      "dmg": 7904,
+      "heal": 600,
+      "mit": 4911
+     },
+     {
+      "name": "?16",
+      "e": 19,
+      "a": 1,
+      "d": 4,
+      "dmg": 7862,
+      "heal": 0,
+      "mit": 49
+     },
+     {
+      "name": "Proper",
+      "e": 18,
+      "a": 0,
+      "d": 0,
+      "dmg": 4473,
+      "heal": 16,
+      "mit": 150
+     },
+     {
+      "name": "Shu",
+      "e": 10,
+      "a": 11,
+      "d": 5,
+      "dmg": 2386,
+      "heal": 6620,
+      "mit": 450
+     },
+     {
+      "name": "?17",
+      "e": 16,
+      "a": 16,
+      "d": 3,
+      "dmg": 3266,
+      "heal": 5382,
+      "mit": 0
+     }
+    ]
+   },
+   "totalsVerified": false,
+   "reading": "ocr",
+   "bans": {
+    "initial": {
+     "team": "Cheeseburger",
+     "hero": "doctrine"
+    },
+    "followUp": {
+     "team": "ZETA DIVISION",
+     "hero": "dmon"
+    }
+   },
+   "seriesBefore": {
+    "Cheeseburger": 1,
+    "ZETA DIVISION": 1
+   }
   }
  ],
  "matches": [
@@ -252,7 +372,8 @@
    "match": "Cheeseburger vs ZETA DIVISION",
    "matchNo": 1,
    "mapWins": {
-    "Cheeseburger": 2
+    "Cheeseburger": 1,
+    "ZETA DIVISION": 1
    },
    "potm": null
   }
@@ -311,6 +432,36 @@
   {
    "id": "?11",
    "map": "02",
+   "row": 9
+  },
+  {
+   "id": "?12",
+   "map": "03",
+   "row": 0
+  },
+  {
+   "id": "?13",
+   "map": "03",
+   "row": 1
+  },
+  {
+   "id": "?14",
+   "map": "03",
+   "row": 2
+  },
+  {
+   "id": "?15",
+   "map": "03",
+   "row": 4
+  },
+  {
+   "id": "?16",
+   "map": "03",
+   "row": 6
+  },
+  {
+   "id": "?17",
+   "map": "03",
    "row": 9
   }
  ],
