@@ -439,6 +439,7 @@ def build_matches(stage):
         # LIVE. Over = a side has the maps to win; short of that a match from the last 12 hours is still on
         if played and max(sa or 0, sb or 0) < need and datetime.datetime.now(KST) - dt < datetime.timedelta(hours=12):
             played, live = False, True
+        from_maps = False   # series score counted from the map winners below
         if lv and lv['maps']:
             # broadcast capture: fill in maps Liquipedia does not have yet, and the live series score
             lmaps = sorted(lv['maps'], key=lambda x: x.get('game') or 0)
@@ -459,6 +460,7 @@ def build_matches(stage):
                     cur['time'] = lm['mapTime']
             maps.sort(key=lambda x: x['no'] or 0)
             if not played:
+                from_maps = True
                 sa = sum(1 for x in maps if x['winner'] == 'a')
                 sb = sum(1 for x in maps if x['winner'] == 'b')
                 live = max(sa, sb) < need
@@ -504,9 +506,20 @@ def build_matches(stage):
             sc = s.get('score') or {}
             if cur.get('sa') is None and t1 in sc and t2 in sc:   # read off the HUD; Liquipedia's score replaces it
                 cur['sa'], cur['sb'] = sc[t1], sc[t2]
+            # the broadcast's map table is the exact final score: its leader won the map, whatever a guess said
+            # (10-24 CB-ZETA map 2: table 2-3, a mid-match guess gave CB the map and the Escort rule made it 4-3)
+            if cur.get('src') == 'live' and s.get('scoreFrom') == 'table' and t1 in sc and t2 in sc and sc[t1] != sc[t2] \
+                    and MAP_MODE.get(s.get('map')) != 'Push':
+                cur['winner'] = 'a' if sc[t1] > sc[t2] else 'b'
+                cur['sa'], cur['sb'] = sc[t1], sc[t2]
             if s.get('comps'):
                 auto_comps[str(s['game'])] = {side(t, m): rows for t, rows in s['comps'].items() if side(t, m)}
         maps.sort(key=lambda x: x['no'] or 0)
+        if from_maps:   # the series again, now that a map table may have changed a winner
+            sa = sum(1 for x in maps if x['winner'] == 'a')
+            sb = sum(1 for x in maps if x['winner'] == 'b')
+            live = max(sa, sb) < need
+            played = not live
         # series score read off the broadcast break screen (score_watch.py): the fastest map winner we get
         key = (m['competition'], m['idx'])
         sc = live_scores(day).get(str(order[day].index(key) + 1)) if key in order.get(day, []) else None
