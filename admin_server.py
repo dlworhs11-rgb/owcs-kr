@@ -119,9 +119,10 @@ class H(http.server.BaseHTTPRequestHandler):
         try:
             body = json.loads(self.rfile.read(n).decode('utf-8'))
             date = body['date']
-            assert re.fullmatch(r'\d{4}-\d\d-\d\d', date)
         except Exception:
             return self.send(400, '{"error":"bad body"}')
+        if not (isinstance(date, str) and re.fullmatch(r'\d{4}-\d\d-\d\d', date)):   # not an assert: python -O drops those (10-24)
+            return self.send(400, '{"error":"bad date"}')
         body['at'] = datetime.datetime.now(KST).isoformat(timespec='seconds')
         os.makedirs(os.path.dirname(admin_file(date)), exist_ok=True)
         with open(admin_file(date), 'w', encoding='utf-8') as fh:
