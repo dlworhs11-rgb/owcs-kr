@@ -102,7 +102,57 @@
      "hero": "zenyatta"
     }
    },
-   "src": "SOOP"
+   "src": "SOOP",
+   "heroTs": 1792823826,
+   "hudLeft": "CHEESEBURGER",
+   "guessed": [],
+   "comps": {
+    "CHEESEBURGER": [
+     [
+      "Belosrea",
+      "winston"
+     ],
+     [
+      "K4NE",
+      "cassidy"
+     ],
+     [
+      "Profit",
+      "tracer"
+     ],
+     [
+      "Trest",
+      "doctrine"
+     ],
+     [
+      "TenTen",
+      "jetpack-cat"
+     ]
+    ],
+    "ZETA DIVISION": [
+     [
+      "Bernar",
+      "dva"
+     ],
+     [
+      "Knife",
+      "cassidy"
+     ],
+     [
+      "Proper",
+      "symmetra"
+     ],
+     [
+      "Viol2t",
+      "jetpack-cat"
+     ],
+     [
+      "Shu",
+      "doctrine"
+     ]
+    ]
+   },
+   "compAt": null
   }
  ]
 }
