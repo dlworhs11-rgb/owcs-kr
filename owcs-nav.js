@@ -833,7 +833,8 @@
           if (!r.selectorText || r.selectorText.indexOf(':hover') < 0) return;
           r.selectorText.split(',').forEach(function (s) {
             var i = s.indexOf(':hover'), base = i < 0 ? '' : s.slice(0, i).trim();
-            if (!base || /[>+~(]$/.test(base) || base.indexOf('::') >= 0) return;
+            // a bare tag (a:hover{color} on the dc pages) is not a control's own hover: inline colours beat it there (10-24 review)
+            if (!base || /^[a-z]+$/i.test(base) || /[>+~(]$/.test(base) || base.indexOf('::') >= 0) return;
             try { document.querySelector(base); } catch (e) { return; }
             if (own.indexOf(base) < 0) own.push(base);
           });
@@ -843,7 +844,8 @@
     var skip = ['.cc:not(.has)', '[data-owcs-nv]', '[data-owcs-skip]', '[aria-disabled="true"]', '[data-owcs-hw] *', '[data-owcs-mtop] *', '[data-owcs-tk] *', '[data-owcs-app] *'].concat(own);
     var st = document.createElement('style');
     st.setAttribute('data-owcs-hv', '');
-    st.textContent = '@media (hover:hover){:where(a[href],button:not([disabled]),[role="button"],summary):where(:not(' + skip.join(',') + ')):hover{opacity:.78}}';
+    // all inside :where(): no specificity, so a page's own opacity (a faded card, a knocked-out team) always wins
+    st.textContent = '@media (hover:hover){:where(:where(a[href],button:not([disabled]),[role="button"],summary):not(' + skip.join(',') + '):hover){opacity:.78}}';
     document.head.appendChild(st);
   }
   if (document.readyState === 'complete') hoverRule(); else window.addEventListener('load', hoverRule);
@@ -882,11 +884,14 @@
   function ringSurface(e) {
     var t = e.target;
     if (!t || t.nodeType !== 1) return;
-    var v = 'l', n;
+    // no solid surface found: the page's own mode
+    var v = document.documentElement.hasAttribute('data-owcs-dark') ? 'd' : 'l', n;
     for (n = t.parentElement; n; n = n.parentElement) {
-      var m = getComputedStyle(n).backgroundColor.match(/[\d.]+/g);
+      var bg = getComputedStyle(n).backgroundColor, m = bg.match(/[\d.]+/g);
       if (!m || (m.length > 3 && +m[3] < 0.9)) continue;
-      var lin = function (c) { c /= 255; return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); };
+      // color-mix() backgrounds come back as color(srgb r g b) with 0-1 channels, not rgb() 0-255 (10-24 review)
+      var k = /^color\(/.test(bg) ? 1 : 255;
+      var lin = function (c) { c /= k; return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); };
       v = 0.2126 * lin(+m[0]) + 0.7152 * lin(+m[1]) + 0.0722 * lin(+m[2]) < 0.3 ? 'd' : 'l';
       break;
     }
