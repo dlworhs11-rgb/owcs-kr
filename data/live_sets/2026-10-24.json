@@ -548,9 +548,10 @@
    },
    "compAt": "2026-10-24T17:50:48+09:00",
    "score": {
-    "T1": 1,
-    "Team Falcons": 2
-   }
+    "Team Falcons": 1,
+    "T1": 3
+   },
+   "scoreFrom": "table"
   }
  ]
 }
