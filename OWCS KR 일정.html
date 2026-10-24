@@ -595,7 +595,7 @@ html[data-owcs-dark] .calsec{--p3:#24242C}
       : apple ? '아이폰·아이패드·맥 캘린더에 바로 구독돼요. '
       : IOS ? '폰 구글 캘린더 앱은 링크로 구독을 추가할 수 없어요. 주소를 복사해서 PC 구글 캘린더 → 다른 캘린더 + → URL로 추가에 붙여 넣으세요. ' : '') +
       '여러 팀을 골라도 캘린더 하나로 한 번에 구독돼요. 새 일정(플레이오프 포함)이 생기면 자동으로 들어와요. 알림은 따로 울리지 않아요.';
-    return '<div class="subov" data-act="close"></div><div class="subpop"><b>' + (apple ? '애플 캘린더에 남은 경기 구독' : '구글 캘린더에 남은 경기 구독') + '</b>' +
+    return '<div class="subov" data-act="close" data-owcs-close=""></div><div class="subpop" role="dialog" aria-modal="true" aria-label="' + (apple ? '애플 캘린더에 남은 경기 구독' : '구글 캘린더에 남은 경기 구독') + '" data-owcs-modal=""><b>' + (apple ? '애플 캘린더에 남은 경기 구독' : '구글 캘린더에 남은 경기 구독') + '</b>' +
       '<div class="seg"><button data-act="all" class="' + (teamsMode ? '' : 'on') + '">전체 경기</button><button data-act="teams" class="' + (teamsMode ? 'on' : '') + '">팀 고르기</button></div>' +
       (teamsMode ? '<div class="hint">구독할 팀을 고르세요 · 여러 팀 가능</div><div class="tg5">' + D.teams.map(function (t) {
         var on = S.subTeams.indexOf(t.a) >= 0, c = t.color || '#0B0B0F';
