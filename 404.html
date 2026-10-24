@@ -40,10 +40,30 @@ try { var v = sessionStorage.getItem('owcs-dark'); if (v === '1') document.docum
 <body>
 <main>
   <p class="code">4<span>0</span>4</p>
-  <h1>페이지를 찾을 수 없어요</h1>
-  <p>주소가 바뀌었거나 없는 페이지예요. 홈에서 다시 찾아보세요.</p>
-  <a class="home" href="/">홈으로 가기</a>
-  <nav><a href="/schedule">일정</a><a href="/results">결과</a><a href="/standings">순위</a><a href="/players">선수</a><a href="/streams">방송</a><a href="/tickets">직관</a></nav>
+  <h1 data-t="h">페이지를 찾을 수 없어요</h1>
+  <p data-t="p">주소가 바뀌었거나 없는 페이지예요. 홈에서 다시 찾아보세요.</p>
+  <a class="home" href="/" data-t="home">홈으로 가기</a>
+  <nav><a href="/schedule" data-n="0">일정</a><a href="/results" data-n="1">결과</a><a href="/standings" data-n="2">순위</a><a href="/players" data-n="3">선수</a><a href="/streams" data-n="4">방송</a><a href="/tickets" data-n="5">직관</a></nav>
 </main>
+<script>
+// Korean is the page as written; the other languages follow the site's saved choice, else the browser's (same rule as owcs-nav.js)
+(function () {
+  var TX = {
+    en: { title: 'Page not found', h: 'Page not found', p: 'The address may have changed, or the page does not exist. Try finding it from the home page.', home: 'Go to home', nav: ['Schedule', 'Results', 'Standings', 'Players', 'Live', 'Tickets'] },
+    ja: { title: 'ページが見つかりません', h: 'ページが見つかりません', p: 'アドレスが変わったか、存在しないページです。ホームからもう一度探してみてください。', home: 'ホームへ', nav: ['日程', '結果', '順位', '選手', '配信', '観戦'] },
+    zh: { title: '找不到页面', h: '找不到页面', p: '地址可能已更改，或该页面不存在。请从首页重新查找。', home: '返回首页', nav: ['赛程', '结果', '排名', '选手', '直播', '现场观赛'] }
+  };
+  var saved = '';
+  try { saved = localStorage.getItem('owcs-lang') || ''; } catch (e) {}
+  var n = String((navigator.languages && navigator.languages[0]) || navigator.language || 'ko').toLowerCase();
+  var lang = /^(ko|ja|en|zh)$/.test(saved) ? saved : /^ja/.test(n) ? 'ja' : /^ko/.test(n) ? 'ko' : /^zh/.test(n) ? 'zh' : 'en';
+  var t = TX[lang];
+  if (!t) return;
+  document.documentElement.lang = lang;
+  document.title = t.title + ' \u00b7 OWticker';
+  Array.prototype.forEach.call(document.querySelectorAll('[data-t]'), function (el) { el.textContent = t[el.getAttribute('data-t')]; });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-n]'), function (el) { el.textContent = t.nav[+el.getAttribute('data-n')]; });
+})();
+</script>
 </body>
 </html>
