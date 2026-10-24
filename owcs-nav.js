@@ -772,6 +772,32 @@
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', skipLink); else skipLink();
 
+  // --- owcs-data.js missing (blocked, not deployed, a failed download): every page then draws empty. A band at the top
+  // says so, with a retry. Checked once the page has loaded, when the data script has had its chance to run (10-24)
+  function dataNotice() {
+    if (window.OWCS || !document.body || !document.querySelector('script[src*="owcs-data.js"]') || document.querySelector('[data-owcs-nodata]')) return;
+    var t = function (s) { return window.OWCSi18n ? window.OWCSi18n.t(s) : s; };
+    var st = document.createElement('style');
+    st.textContent = '[data-owcs-nodata]{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 16px;padding:12px 20px;background:var(--ink,#0B0B0F);color:var(--paper,#F1EDE5);' +
+      'font:600 15px/1.45 Pretendard,system-ui,sans-serif;text-align:center}' +
+      '[data-owcs-nodata] button{height:36px;padding:0 16px;border:0;border-radius:999px;background:#C6FF33;color:#0B0B0F;font:inherit;font-weight:800;cursor:pointer}';
+    document.head.appendChild(st);
+    var n = document.createElement('div');
+    n.setAttribute('role', 'alert');
+    n.setAttribute('data-owcs-nodata', '');
+    var msg = document.createElement('span');
+    msg.textContent = t('데이터를 불러오지 못했어요. 화면이 비어 있을 수 있어요.');
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.textContent = t('다시 시도');
+    btn.onclick = function () { location.reload(); };
+    n.appendChild(msg);
+    n.appendChild(btn);
+    var skip = document.querySelector('a[data-owcs-skip]');
+    document.body.insertBefore(n, skip ? skip.nextSibling : document.body.firstChild);
+  }
+  if (document.readyState === 'complete') dataNotice(); else window.addEventListener('load', dataNotice);
+
   // --- sheets and popovers as dialogs (10-24): the 앱 설치 guide here, the home page's share sheet and calendar
   // popover, the schedule page's calendar popover. Each marks its box [data-owcs-modal] (with role="dialog"
   // aria-modal="true") and its close control [data-owcs-close]. While one is open: focus goes into it, Tab stays in it,
