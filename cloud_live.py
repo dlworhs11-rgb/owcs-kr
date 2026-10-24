@@ -194,6 +194,18 @@ def content_hash(data):
     return hashlib.sha1(body.encode('utf-8')).hexdigest()[:8]
 
 
+def carry_over(prev_matches, matches):
+    """the last deploy's matches this build lacks (a Liquipedia page missing this run, 429): put back, not dropped.
+    A regular-season match's id carries its day (owcs_build: f"{day}-{idx}"), so a rescheduled one comes back under a new
+    id; the old one is not put back when this build has a regular-season match of the same two teams (10-24: it stayed
+    on the schedule, the results and the calendar until the stage ended). One meeting per pair in the regular season
+    (2026: 9 teams, single round robin): look again if a season plays each pair twice."""
+    ids = {m['id'] for m in matches}
+    pairs = {frozenset((m['a'], m['b'])) for m in matches if m.get('phase') == 'rs'}
+    return [m for m in prev_matches if m['id'] not in ids
+            and not (m.get('phase') == 'rs' and frozenset((m['a'], m['b'])) in pairs)]
+
+
 def stamp_scripts(out, fixed=None):
     """add ?v=<content hash> to every <script src="./x.js"> of the built pages, so a deploy is picked up at once.
     fixed: {file: version} used instead of the file's hash (owcs-data.js: content_hash, the same v as owcs-ver.json)"""
@@ -261,11 +273,10 @@ def main():
                 if prev.get(k):
                     data[k] = prev[k]
                     print('! kept from the last deploy:', k)
-        ids = {m['id'] for m in data['matches']}
-        lost = [m for m in prev.get('matches', []) if m['id'] not in ids]
+        lost = carry_over(prev.get('matches', []), data['matches'])
         if lost:
             data['matches'] += lost
-            print(f'! kept {len(lost)} matches from the last deploy')
+            print(f'! kept {len(lost)} matches from the last deploy:', ' '.join(m['id'] for m in lost))
     if data is None:
         data = prev
     if data is None and os.path.exists(os.path.join(HERE, 'owcs-data.js')):
