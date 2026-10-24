@@ -290,7 +290,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px">
 <sc-for list="{{ weekdays }}" as="w" hint-placeholder-count="7"><div style="font-size:13px;font-weight:600;color:var(--mute,#6B6B72);padding:0 8px 6px">{{ w }}</div></sc-for>
 <sc-for list="{{ cells }}" as="c" hint-placeholder-count="35">
-<div style="position:relative;min-height:96px;border-radius:12px;padding:6px 5px;display:flex;flex-direction:column;gap:4px;border:1px solid var(--line,#E6E6E1)">
+<div style="position:relative;min-height:96px;border-radius:12px;padding:6px 5px;display:flex;flex-direction:column;gap:4px;border:1px solid transparent">
 <sc-if value="{{ c.tag }}"><span style="position:absolute;top:12px;right:7px;max-width:calc(100% - 44px);font-size:11px;font-weight:800;line-height:16px;color:var(--ink,#0B0B0F);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ c.tag }}</span></sc-if><sc-if value="{{ c.today }}"><div style="width:28px;height:28px;border-radius:50%;background:#0B0B0F;color:{{ c.dfg }};display:grid;place-items:center;font-size:14px;font-weight:700;font-variant-numeric:tabular-nums">{{ c.d }}</div></sc-if>
 <sc-if value="{{ c.plain }}"><div style="height:28px;display:flex;align-items:center;padding-left:4px;font-size:14px;font-weight:600;color:{{ c.dcol }};font-variant-numeric:tabular-nums">{{ c.d }}</div></sc-if>
 <sc-if value="{{ c.pastDay }}"><div style="height:28px;display:flex;align-items:center;padding-left:4px;font-size:14px;font-weight:600;color:{{ c.dcol }};font-variant-numeric:tabular-nums">{{ c.d }}</div></sc-if>
