@@ -944,6 +944,21 @@
     "SEIJI ESPORTS": 3
    },
    "scoreFrom": "table"
+  },
+  {
+   "banTs": 1792840801,
+   "teams": [
+    "Poker Face",
+    "SEIJI ESPORTS"
+   ],
+   "game": 4,
+   "map": "Shambali Monastery",
+   "seriesBefore": {
+    "Poker Face": 2,
+    "SEIJI ESPORTS": 1
+   },
+   "bans": null,
+   "src": "SOOP"
   }
  ]
 }
