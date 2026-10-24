@@ -787,6 +787,21 @@
     "SEIJI ESPORTS": 0
    },
    "scoreFrom": "table"
+  },
+  {
+   "banTs": 1792838282,
+   "teams": [
+    "Poker Face",
+    "SEIJI ESPORTS"
+   ],
+   "game": 2,
+   "map": "Esperança",
+   "seriesBefore": {
+    "Poker Face": 1,
+    "SEIJI ESPORTS": 0
+   },
+   "bans": null,
+   "src": "SOOP"
   }
  ]
 }
