@@ -264,7 +264,8 @@
         card = '<div class="cw nop" data-s="' + esc(slug) + '" data-n="' + esc(S.champion) + '">'
           + '<div class="cb"><i ' + (lg ? 'style="background-image:url(\'' + esc(lg) + '\')"' : '') + '></i><div><span class="ck">CHAMPION · 우승</span><div class="cn">' + esc(S.champion) + '</div><div class="cs">' + esc(sub) + '</div></div></div></div>';
       }
-      const pick = all.length > 1 ? '<div class="pick">' + all.map((s, i) => '<button data-k="' + esc(s.label) + '" class="' + (s === S ? 'on' : '') + '">' + esc(s.label.replace(/스테이지 /, 'S')) + (i === 0 ? ' · 이번 시즌' : '') + '</button>').join('') + '</div>' : '';
+      // nopick: the schedule page's tabs are about this stage only, so the season pills are left out there (10-24)
+      const pick = all.length > 1 && !this.hasAttribute('nopick') ? '<div class="pick">' + all.map((s, i) => '<button data-k="' + esc(s.label) + '" class="' + (s === S ? 'on' : '') + '">' + esc(s.label.replace(/스테이지 /, 'S')) + (i === 0 ? ' · 이번 시즌' : '') + '</button>').join('') + '</div>' : '';
       // which tournament this is, big: a stage name never gets lost among the cards below
       const dates = S.start ? S.start.slice(5).replace('-', '.') + ' – ' + (S.end || '').slice(5).replace('-', '.') : '';
       const head = '<div class="top"><div><span class="tag' + (S === all[0] ? '' : ' old') + '">' + (S === all[0] ? '이번 시즌' : '지난 시즌') + '</span>'
