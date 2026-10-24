@@ -159,17 +159,19 @@
   function soon() { if (queued) return; queued = true; setTimeout(function () { queued = false; tag(); }, 60); }
   // page#standings etc.: the target only exists after the runtime renders, so scroll once it appears
   function jumpToHash() {
-    var id = decodeURIComponent(location.hash.slice(1));
+    var id;
+    try { id = decodeURIComponent(location.hash.slice(1)); } catch (e) { return; }   // a malformed %xx stopped start() (10-24)
     if (!id) return;
     var tries = 0, t = setInterval(function () {
-      var el = document.querySelector('#dc-root [id="' + id + '"]');
+      var el = document.getElementById(id);   // not a selector: a quote in the hash threw on every tick
+      if (el && !el.closest('#dc-root')) el = null;
       if (el || ++tries > 50) { clearInterval(t); if (el) el.scrollIntoView({ block: 'start' }); }
     }, 100);
   }
   function start() {
-    jumpToHash();
     tag();
     new MutationObserver(soon).observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['style'] });
+    jumpToHash();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
   else start();
