@@ -865,6 +865,21 @@
     "SEIJI ESPORTS": 22,
     "Poker Face": 66
    }
+  },
+  {
+   "banTs": 1792839347,
+   "teams": [
+    "Poker Face",
+    "SEIJI ESPORTS"
+   ],
+   "game": 3,
+   "map": "Suravasa",
+   "seriesBefore": {
+    "Poker Face": 2,
+    "SEIJI ESPORTS": 0
+   },
+   "bans": null,
+   "src": "SOOP"
   }
  ]
 }
