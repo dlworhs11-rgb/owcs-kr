@@ -371,6 +371,7 @@ function asiaRows() {
 }
 var DOWS = ['일', '월', '화', '수', '목', '금', '토'];
 var kst = function (s) { return new Date(s + ':00+09:00').getTime(); };
+var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };   // team codes and logo paths go through innerHTML (10-24)
 var md = function (s) { return s.slice(5, 7) + '.' + s.slice(8, 10); };
 var pad = function (n) { return String(n).padStart(2, '0'); };
 var ymd = function (ms) { var d = new Date(ms + 9 * 3600e3); return d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate()); };
@@ -470,8 +471,8 @@ function draw() {
     var vs = r[7] ? '<div class="vs">' + r[7].map(function (m) {
       return '<div><span class="t">' + H(r[1], m[0]) + '</span>' + m[1] + (m[2] ? '<span class="x">vs</span>' + m[2] : '') + '</div>';
     }).join('') + '</div>' : ms.length ? '<div class="vs">' + ms.map(function (m) {
-      var lg = function (c) { var x = team(c); var f = x && (dark && x.logoDark || x.logo); return f ? '<img src="' + f + '" alt="">' : ''; };
-      return '<div><span class="t">' + (m.tbd ? '' : H(m.date, m.time)) + '</span>' + lg(m.a) + m.a + '<span class="x">vs</span>' + lg(m.b) + m.b + '</div>';
+      var lg = function (c) { var x = team(c); var f = x && (dark && x.logoDark || x.logo); return f ? '<img src="' + esc(f) + '" alt="">' : ''; };
+      return '<div><span class="t">' + (m.tbd ? '' : H(m.date, m.time)) + '</span>' + lg(m.a) + esc(m.a) + '<span class="x">vs</span>' + lg(m.b) + esc(m.b) + '</div>';
     }).join('') + '</div>' : '<span style="color:var(--dim);white-space:nowrap">대진 발표 전</span>';
     var tr = document.createElement('tr');
     if (next.r === r) tr.className = 'today';
