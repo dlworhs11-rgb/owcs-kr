@@ -420,9 +420,7 @@
    "src": "SOOP",
    "heroTs": 1792830546,
    "hudLeft": "Team Falcons",
-   "guessed": [
-    "MER1T"
-   ],
+   "guessed": [],
    "comps": {
     "Team Falcons": [
      [
@@ -457,7 +455,7 @@
      ],
      [
       "ZEST",
-      "tracer"
+      "symmetra"
      ],
      [
       "Bliss",
