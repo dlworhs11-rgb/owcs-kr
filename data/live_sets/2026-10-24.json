@@ -878,7 +878,16 @@
     "Poker Face": 2,
     "SEIJI ESPORTS": 0
    },
-   "bans": null,
+   "bans": {
+    "initial": {
+     "team": "Poker Face",
+     "hero": "vendetta"
+    },
+    "followUp": {
+     "team": "SEIJI ESPORTS",
+     "hero": "dmon"
+    }
+   },
    "src": "SOOP"
   }
  ]
