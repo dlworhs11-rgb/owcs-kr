@@ -453,6 +453,7 @@ html[data-owcs-dark] .calsec{--p3:#24242C}
     // the regular season: the matches still to play, and today's played ones with their scores until the day ends
     // (earlier results are on the results page)
     season: function () {
+      if (!RS.length) return '<div class="done-note">아직 공개된 일정이 없어요.</div>';   // no data at all: not "the season is over" (10-24)
       var up = RS.filter(function (m) { return !m.played || m.day >= today; });
       return up.length ? days(up) + EMPTY
         : '<div class="done-note">정규 리그 경기가 모두 끝났어요. <a href="OWCS KR Results.dc.html">시즌 결과 보기</a></div>';

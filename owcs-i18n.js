@@ -243,6 +243,7 @@
     ['구독 주소를 복사했어요', '購読URLをコピーしました', 'Subscription URL copied', '已复制订阅地址'],
     ['팀을 하나 이상 고르면 구독 버튼이 나와요', 'チームを1つ以上選ぶと購読ボタンが表示されます', 'Pick at least one team to show the subscribe button', '至少选择一支战队后会显示订阅按钮'],
     ['이전 달', '前の月', 'Previous month', '上个月'], ['다음 달', '次の月', 'Next month', '下个月'],
+    ['아직 공개된 일정이 없어요.', '公開されている日程はまだありません。', 'No schedule has been published yet.', '赛程尚未公布。'],   // (10-24)
   ];
   // [japanese, english, chinese]
   var DOW = { '일': ['日', 'Sun', '周日'], '월': ['月', 'Mon', '周一'], '화': ['火', 'Tue', '周二'], '수': ['水', 'Wed', '周三'], '목': ['木', 'Thu', '周四'], '금': ['金', 'Fri', '周五'], '토': ['土', 'Sat', '周六'] };
