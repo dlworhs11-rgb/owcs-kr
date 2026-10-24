@@ -1557,7 +1557,7 @@ class Component extends DCLogic {
     const Y = base.getUTCFullYear(), Mo = base.getUTCMonth();
     const first = new Date(Date.UTC(Y, Mo, 1)).getUTCDay(), days = new Date(Date.UTC(Y, Mo + 1, 0)).getUTCDate();
     const cells = [];
-    for (let i = 0; i < first; i++) cells.push({ games: [] });
+    for (let i = 0; i < first; i++) cells.push({ d: null, games: [] });   // blanks before the 1st: null renders nothing; undefined made dc-runtime warn (10-24)
     for (let d = 1; d <= days; d++) {
       const ds = Y + '-' + pad(Mo + 1) + '-' + pad(d);
       // days before today (KST) show no matches at all: no score, logo or team name
