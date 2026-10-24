@@ -277,6 +277,7 @@
       if (keys.indexOf(k) < 0) return;
       if (!a.hasAttribute('data-owcs-nv')) a.setAttribute('data-owcs-nv', '');
       if (a.classList.contains('cur') !== (k === here)) a.classList.toggle('cur', k === here);
+      if (k === here) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');   // screen readers: the colour alone said which page (10-24)
     });
   }
 
@@ -361,24 +362,29 @@
     var w = document.createElement('div');
     w.setAttribute('data-owcs-hw', '');
     var cur = CODES.filter(function (x) { return x[0] === LANG; })[0] || CODES[0];
-    w.innerHTML = '<div class="w lw"><button class="lb" aria-haspopup="true" aria-label="' + T.lang + '">' + GLOBE + '<span>' + cur[1] + '</span>' + CHEV + '</button><div class="dd">' +
-      CODES.map(function (x) { return '<button class="it' + (x[0] === LANG ? ' on' : '') + '" data-l="' + x[0] + '">' + FLAGS[x[0]] + x[1] + '</button>'; }).join('') + '</div></div>' +
-      '<div class="w mw"><button class="mb" aria-haspopup="true" aria-label="' + T.more + '">' + KEBAB + '</button><div class="dd">' +
+    // menus say open / closed (aria-expanded) and the switches on / off (role=switch, aria-checked): before, only the
+    // look told (10-24)
+    w.innerHTML = '<div class="w lw"><button class="lb" aria-expanded="false" aria-label="' + T.lang + '">' + GLOBE + '<span>' + cur[1] + '</span>' + CHEV + '</button><div class="dd">' +
+      CODES.map(function (x) { return '<button class="it' + (x[0] === LANG ? ' on' : '') + '" data-l="' + x[0] + '"' + (x[0] === LANG ? ' aria-current="true"' : '') + '>' + FLAGS[x[0]] + x[1] + '</button>'; }).join('') + '</div></div>' +
+      '<div class="w mw"><button class="mb" aria-expanded="false" aria-label="' + T.more + '">' + KEBAB + '</button><div class="dd">' +
       '<div class="my"></div>' +
-      '<button class="it hsw sp"><span class="htr"><span class="hkn"></span></span>' + T.spoiler + '</button>' +
-      '<button class="it hsw dk"><span class="htr"><span class="hkn"></span></span>' + T.dark + '</button></div></div>';
+      '<button class="it hsw sp" role="switch" aria-checked="false"><span class="htr" aria-hidden="true"><span class="hkn"></span></span>' + T.spoiler + '</button>' +
+      '<button class="it hsw dk" role="switch" aria-checked="false"><span class="htr" aria-hidden="true"><span class="hkn"></span></span>' + T.dark + '</button></div></div>';
     var lw = w.querySelector('.lw'), mw = w.querySelector('.mw');
+    function open(x, on) { x.classList.toggle('open', on); x.querySelector('button').setAttribute('aria-expanded', on ? 'true' : 'false'); }
     function sync() {
       w.querySelector('.sp').classList.toggle('son', spOn());
       w.querySelector('.dk').classList.toggle('son', isDark());
+      w.querySelector('.sp').setAttribute('aria-checked', spOn() ? 'true' : 'false');
+      w.querySelector('.dk').setAttribute('aria-checked', isDark() ? 'true' : 'false');
       // 내 팀 (home page tool bar): shown at the top of the ⋮ menu
       var my = document.querySelector('[data-owcs-tools] > span');
       w.querySelector('.my').innerHTML = my ? my.innerHTML : '';
     }
-    w.querySelector('.lb').onclick = function (e) { e.stopPropagation(); mw.classList.remove('open'); lw.classList.toggle('open'); };
-    w.querySelector('.mb').onclick = function (e) { e.stopPropagation(); lw.classList.remove('open'); sync(); mw.classList.toggle('open'); };
+    w.querySelector('.lb').onclick = function (e) { e.stopPropagation(); open(mw, false); open(lw, !lw.classList.contains('open')); };
+    w.querySelector('.mb').onclick = function (e) { e.stopPropagation(); open(lw, false); sync(); open(mw, !mw.classList.contains('open')); };
     Array.prototype.forEach.call(w.querySelectorAll('[data-l]'), function (b) {
-      b.onclick = function () { lw.classList.remove('open'); setLang(b.getAttribute('data-l')); };
+      b.onclick = function () { open(lw, false); setLang(b.getAttribute('data-l')); };
     });
     w.querySelector('.sp').onclick = function (e) { e.stopPropagation(); spToggle(sync); };
     w.querySelector('.dk').onclick = function (e) { e.stopPropagation(); darkToggle(sync); };
@@ -386,9 +392,10 @@
     // a click elsewhere closes the menus (not the page's own hidden switch the ⋮ menu just pressed)
     document.addEventListener('click', function (e) {
       if (e.target.closest && e.target.closest('[data-owcs-hw],[data-owcs-tools],[data-owcs-ownsp]')) return;
-      lw.classList.remove('open'); mw.classList.remove('open');
+      open(lw, false); open(mw, false);
     });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { lw.classList.remove('open'); mw.classList.remove('open'); } });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { open(lw, false); open(mw, false); } });
+    sync();
     return (HW = w);
   }
   // put the picker (absolute) in the screen at top / right (px from the host's top and right edges)
@@ -406,19 +413,19 @@
     m.setAttribute('data-owcs-mtop', '');
     var dark = isDark();
     m.innerHTML = '<div class="hd"><div class="row"><a class="brand" href="OWCS KR Home v6.dc.html"><span class="mk"><i></i></span><span class="wm"><span class="owt"><b>OW</b>TICKER</span></span></a>' +
-      '<span class="ic"><button class="hm" aria-label="메뉴"><span></span><span></span></button></span></div>' +
+      '<span class="ic"><button class="hm" aria-label="메뉴" aria-expanded="false"><span></span><span></span></button></span></div>' +
       '<nav>' + T.nav.map(function (l, k) { return '<a href="' + HREFS[k] + '">' + l + '</a>'; }).join('') + '</nav></div>' +
       '<div class="tb">' +
-      '<button class="sw sp"><span class="tr"><span class="kn"></span></span>' + T.spoiler + '</button>' +
-      '<button class="sw dk' + (dark ? ' on' : '') + '"><span class="tr"><span class="kn"></span></span>' + T.dark + '</button></div>';
-    m.querySelector('.hm').onclick = function () { m.classList.toggle('open'); };
+      '<button class="sw sp" role="switch" aria-checked="false"><span class="tr" aria-hidden="true"><span class="kn"></span></span>' + T.spoiler + '</button>' +
+      '<button class="sw dk' + (dark ? ' on' : '') + '" role="switch" aria-checked="' + (dark ? 'true' : 'false') + '"><span class="tr" aria-hidden="true"><span class="kn"></span></span>' + T.dark + '</button></div>';
+    m.querySelector('.hm').onclick = function () { this.setAttribute('aria-expanded', m.classList.toggle('open') ? 'true' : 'false'); };
     m.querySelector('.dk').onclick = function () { try { sessionStorage.setItem('owcs-dark', isDark() ? '0' : '1'); } catch (e) {} location.reload(); };
     var spb = m.querySelector('.sp');
     spb.onclick = function () { spToggle(function () { syncSpoiler(m); }); };
     syncSpoiler(m);
     return m;
   }
-  function syncSpoiler(m) { m.querySelector('.sp').classList.toggle('on', spOn()); }
+  function syncSpoiler(m) { m.querySelector('.sp').classList.toggle('on', spOn()); m.querySelector('.sp').setAttribute('aria-checked', spOn() ? 'true' : 'false'); }
 
   // phone / tablet: the home page's top (header, menu chips, 직관 안내) at the top of the page, the picker next to ☰
   function placeMobile() {
