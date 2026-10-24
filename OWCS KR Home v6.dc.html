@@ -374,8 +374,8 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <sc-for list="{{ teams }}" as="t" hint-placeholder-count="9"><button onClick="{{ t.select }}" style="opacity:{{ t.op }};position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;gap:10px;padding:20px 8px 16px;border-radius:18px;border:{{ t.border }};background:var(--paper,#fff);cursor:pointer;font:inherit;color:var(--ink,#0B0B0F);transition:transform .15s" style-hover="transform:translateY(-3px)"><span style="position:absolute;left:0;right:0;top:0;height:4px;background:{{ t.c }}"></span><span style="width:76px;height:76px;background:{{ t.logo }}"></span><span style="font-size:14px;font-weight:700;text-align:center;line-height:1.2">{{ t.n }}</span></button></sc-for>
 </div>
 <sc-if value="{{ showDetail }}"><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));margin-bottom:20px;background:var(--paper,#fff);border:1px solid var(--line,#E6E6E1);border-radius:20px;overflow:hidden">
-<div style="background:{{ td.bg }};color:#fff;padding:24px;display:flex;flex-direction:column;justify-content:space-between;gap:24px;min-height:260px">
-<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px"><div style="width:72px;height:72px;background:{{ td.logo }};display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:11px"></div><button onClick="{{ td.fav }}" style="height:40px;padding:0 14px;border-radius:999px;border:1.5px solid #fff;background:{{ td.favBg }};color:{{ td.favFg }};font:inherit;font-size:13px;font-weight:700;cursor:pointer">{{ td.favLabel }}</button></div>
+<div style="background:{{ td.bg }};color:{{ td.ink }};padding:24px;display:flex;flex-direction:column;justify-content:space-between;gap:24px;min-height:260px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px"><div style="width:72px;height:72px;background:{{ td.logo }};display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:11px"></div><button onClick="{{ td.fav }}" style="height:40px;padding:0 14px;border-radius:999px;border:1.5px solid {{ td.ink }};background:{{ td.favBg }};color:{{ td.favFg }};font:inherit;font-size:13px;font-weight:700;cursor:pointer">{{ td.favLabel }}</button></div>
 <div><div style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:800;font-size:80px;line-height:.85">{{ td.a }}</div><div style="font-size:18px;font-weight:700;margin-top:8px">{{ td.n }}</div><div style="font-size:14px;font-weight:600;margin-top:4px">{{ td.rankLine }}</div></div>
 </div>
 <div style="padding:24px;display:flex;flex-direction:column;gap:20px;min-width:0">
@@ -574,8 +574,8 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <sc-for list="{{ teams }}" as="t" hint-placeholder-count="9"><button onClick="{{ t.select }}" style="opacity:{{ t.op }};position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;gap:5px;padding:12px 2px 9px;border-radius:14px;border:{{ t.border }};background:var(--paper,#fff);cursor:pointer;font:inherit;color:var(--ink,#0B0B0F);min-width:0"><span style="position:absolute;left:0;right:0;top:0;height:3px;background:{{ t.c }}"></span><span style="width:38px;height:38px;background:{{ t.logo }}"></span><span style="max-width:100%;font-size:11px;font-weight:800;text-align:center;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ t.a }}</span></button></sc-for>
 </div>
 <sc-if value="{{ showDetail }}"><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));margin-bottom:20px;background:var(--paper,#fff);border:1px solid var(--line,#E6E6E1);border-radius:20px;overflow:hidden">
-<div style="background:{{ td.bg }};color:#fff;padding:24px;display:flex;flex-direction:column;justify-content:space-between;gap:24px;min-height:260px">
-<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px"><div style="width:72px;height:72px;background:{{ td.logo }};display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:11px"></div><button onClick="{{ td.fav }}" style="height:40px;padding:0 14px;border-radius:999px;border:1.5px solid #fff;background:{{ td.favBg }};color:{{ td.favFg }};font:inherit;font-size:13px;font-weight:700;cursor:pointer">{{ td.favLabel }}</button></div>
+<div style="background:{{ td.bg }};color:{{ td.ink }};padding:24px;display:flex;flex-direction:column;justify-content:space-between;gap:24px;min-height:260px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px"><div style="width:72px;height:72px;background:{{ td.logo }};display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:11px"></div><button onClick="{{ td.fav }}" style="height:40px;padding:0 14px;border-radius:999px;border:1.5px solid {{ td.ink }};background:{{ td.favBg }};color:{{ td.favFg }};font:inherit;font-size:13px;font-weight:700;cursor:pointer">{{ td.favLabel }}</button></div>
 <div><div style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:800;font-size:80px;line-height:.85">{{ td.a }}</div><div style="font-size:18px;font-weight:700;margin-top:8px">{{ td.n }}</div><div style="font-size:14px;font-weight:600;margin-top:4px">{{ td.rankLine }}</div></div>
 </div>
 <div style="padding:24px;display:flex;flex-direction:column;gap:20px;min-width:0">
@@ -623,6 +623,13 @@ const team = (a) => TEAM[a] || { a, n: a, ko: a, color: '#C9C9CF', logo: '' };
 const logoBg = (a, dark) => { const t = team(a); const u = dark ? (t.logoDark || t.logo) : t.logo; return u ? "url('" + u + "') center / contain no-repeat transparent" : dark ? '#4A4A55' : '#C9C9CF'; };   // no logo (TBD): the light grey glared on dark panels (10-24)
 const DOWS = ['일', '월', '화', '수', '목', '금', '토'];
 const fade = (hex, a) => { const h = hex.replace('#', ''); return 'rgba(' + [0, 2, 4].map((i) => parseInt(h.substr(i, 2), 16)).join(',') + ',' + a + ')'; };
+// text colour on a team colour: white when it reaches WCAG 4.5:1 against that colour, else the dark ink (10-24)
+const inkOn = (hex) => {
+  const m = /^#([0-9a-f]{6})$/i.exec(hex || ''); if (!m) return '#fff';
+  const lin = [0, 2, 4].map((i) => { const c = parseInt(m[1].substr(i, 2), 16) / 255; return c <= .03928 ? c / 12.92 : Math.pow((c + .055) / 1.055, 2.4); });
+  const L = .2126 * lin[0] + .7152 * lin[1] + .0722 * lin[2];
+  return 1.05 / (L + .05) >= 4.5 ? '#fff' : '#0B0B0F';
+};
 const pad = (n) => String(n).padStart(2, '0');
 const kst = (iso) => new Date(new Date(iso).getTime() + 9 * 3600e3); // read with getUTC* = KST wall clock
 const md = (iso) => { const d = kst(iso); return pad(d.getUTCMonth() + 1) + '.' + pad(d.getUTCDate()); };
@@ -1121,6 +1128,7 @@ class Component extends DCLogic {
       M.forEach((m) => { if (m.st === 'done' && !m.nr && (m.phase === 'po' || (m.phase === 'lcq' && /하위|결승/.test(m.label || '')))) outT.add(m.sa > m.sb ? m.b : m.a); });
     }
     const sel = team(this.state.sel);
+    const tdInk = inkOn(col(sel.a));
     const ss = st[sel.a] || { rank: '–', w: 0, l: 0, diff: 0, mw: 0, ml: 0 };   // (10-24) a team with no standings row yet
     const selM = M.filter((m) => m.a === sel.a || m.b === sel.a);
     const selLast = selM.filter((m) => m.st === 'done' && !m.nr).slice(-1)[0], selNext = selM.find((m) => m.st === 'up');
@@ -1391,10 +1399,10 @@ class Component extends DCLogic {
           select: () => { try { sessionStorage.setItem('owcs-sel', t.a); } catch (e) {} this.setState({ sel: t.a }); } };
       }).sort((x, y) => (x.op < 1) - (y.op < 1)),
       showDetail: P.showTeamDetail ?? true,
-      td: { a: sel.a, n: sel.n, c: col(sel.a), logo: sel.logoOnColor ? "url('" + sel.logoOnColor + "') center / contain no-repeat transparent" : logoBg(sel.a, true),
+      td: { ink: tdInk, a: sel.a, n: sel.n, c: col(sel.a), logo: sel.logoOnColor ? "url('" + sel.logoOnColor + "') center / contain no-repeat transparent" : logoBg(sel.a, true),
         bg: sel.photo ? 'linear-gradient(0deg, ' + col(sel.a) + ' 0%, ' + col(sel.a) + ' 22%, ' + fade(col(sel.a), .55) + ' 62%, ' + fade(col(sel.a), .3) + ' 100%), url("' + sel.photo + '") center 30% / cover no-repeat' : col(sel.a), rank: ss.rank, wl: SP ? '–' : ss.w + '-' + ss.l, sd: SP ? '–' : (ss.diff > 0 ? '+' : '') + ss.diff,
         rankLine: '현재 ' + ss.rank + '위 · ' + (SP ? '–' : ss.w + '-' + ss.l) + ' · 세트 ' + (SP ? '–' : (ss.diff > 0 ? '+' : '') + ss.diff),
-        favLabel: MY === sel.a ? L.isMy : L.setMy, favBg: MY === sel.a ? '#fff' : 'transparent', favFg: MY === sel.a ? '#0B0B0F' : '#fff', fav: () => setMy(sel.a),
+        favLabel: MY === sel.a ? L.isMy : L.setMy, favBg: MY === sel.a ? tdInk : 'transparent', favFg: MY === sel.a ? (tdInk === '#fff' ? '#0B0B0F' : '#fff') : tdInk, fav: () => setMy(sel.a),
         count: playersOf(sel.a).length,
         // one text each, so the page translation (owcs-i18n.js) sees the whole phrase, not '현재 ' + '1' + '위'
         rosterTxt: '로스터 ' + playersOf(sel.a).length + '명', staffTxt: '스태프진 ' + ((D.staff || {})[sel.a] || []).length + '명',
