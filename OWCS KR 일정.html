@@ -304,10 +304,10 @@ html[data-owcs-dark] .calsec{--p3:#24242C}
     <div class="chips" id="chips"></div>
   </div>
   <div id="list"></div>
-  <div class="note">모든 시간 KST · 시간 미정 경기는 Liquipedia에 시간이 올라오면 바뀌어요.</div>
+  <div class="note">KST 기준 / 미정 경기 시각은 Liquipedia 공개 후 반영</div>
   <section class="calsec" id="cal"></section>
 </main>
-<footer class="owft"><div class="wrap ft-g"><div><div class="ft-logo"><span class="owt"><b>OW</b>TICKER</span></div><div class="ft-desc">OWCS 한국 경기의 일정, 결과, 선수 정보를 한국 팬을 위해 한곳에 모았어요.</div><div class="ft-ch"><span class="ft-k">OWCS 공식 채널</span><a href="https://x.com/OW_Esports_Asia" target="_blank" rel="noopener"><img src="assets/icons/x.png" alt="">X</a><a href="https://www.instagram.com/ow_esports_kr/" target="_blank" rel="noopener"><img src="assets/icons/instagram.png" alt="">Instagram</a><a href="https://www.sooplive.co.kr/station/owesports" target="_blank" rel="noopener"><img src="assets/icons/soop.png" alt="">SOOP 방송국</a></div></div><div><div class="ft-k">문의</div><a class="ft-mail" href="mailto:dlworhs26@gmail.com" style="display:flex;align-items:center;gap:8px;text-decoration:none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>dlworhs26@gmail.com</a><a class="ft-mail" href="https://discord.gg/EEWwKmxKA5" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;margin-left:0;padding:0;text-decoration:none"><img src="assets/icons/discord.png" alt="" style="width:22px;height:22px;border-radius:6px;margin:0;flex:none">OWticker 팬 디스코드 · 피드백</a></div><div class="ft-note">일정은 Liquipedia에서 10분마다 가져와요. 비공식 팬 사이트입니다. Blizzard Entertainment, WDG, 각 팀과 제휴하거나 승인받지 않았습니다. Overwatch®와 영웅 이미지는 Blizzard Entertainment, Inc.의 상표·저작물이고, 팀 로고와 선수 사진의 권리는 각 소유자에게 있으며 요청하면 바로 내립니다.</div></div></footer>
+<footer class="owft"><div class="wrap ft-g"><div><div class="ft-logo"><span class="owt"><b>OW</b>TICKER</span></div><div class="ft-desc">OWCS 한국 경기의 일정, 결과, 선수 정보를 한곳에</div><div class="ft-ch"><span class="ft-k">OWCS 공식 채널</span><a href="https://x.com/OW_Esports_Asia" target="_blank" rel="noopener"><img src="assets/icons/x.png" alt="">X</a><a href="https://www.instagram.com/ow_esports_kr/" target="_blank" rel="noopener"><img src="assets/icons/instagram.png" alt="">Instagram</a><a href="https://www.sooplive.co.kr/station/owesports" target="_blank" rel="noopener"><img src="assets/icons/soop.png" alt="">SOOP 방송국</a></div></div><div><div class="ft-k">문의</div><a class="ft-mail" href="mailto:dlworhs26@gmail.com" style="display:flex;align-items:center;gap:8px;text-decoration:none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>dlworhs26@gmail.com</a><a class="ft-mail" href="https://discord.gg/EEWwKmxKA5" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;margin-left:0;padding:0;text-decoration:none"><img src="assets/icons/discord.png" alt="" style="width:22px;height:22px;border-radius:6px;margin:0;flex:none">OWticker 팬 디스코드 / 피드백</a></div><div class="ft-note">일정은 Liquipedia 기준, 10분마다 갱신. 본 웹사이트는 비공식 팬 사이트로, Blizzard Entertainment, WDG, OWCS 참가팀과 제휴하거나 승인받지 않았습니다. Overwatch®와 영웅 이미지는 Blizzard Entertainment, Inc.의 상표 및 저작물이며, 팀 로고와 선수 사진의 권리는 각 소유자에게 있습니다.</div></div></footer>
 
 <script src="./owcs-data.js"></script>
 <script src="./owcs-phase.js"></script>
@@ -333,8 +333,8 @@ html[data-owcs-dark] .calsec{--p3:#24242C}
     '2027-10-09', '2027-10-11', '2027-12-25', '2027-12-27'];
   var pad = function (n) { return String(n).padStart(2, '0'); };
   var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
-  // a slot with no team yet reads 미정 on screen (the data keeps 'TBD'; filters and data-a / data-b use the data) (10-24)
-  var nm = function (a) { return a === 'TBD' ? '미정' : esc(a); };
+  // a slot with no team yet reads TBD on screen, as the copy review has it (filters and data-a / data-b use the data)
+  var nm = function (a) { return esc(a); };
   var SP = false, MY = '';
   try { SP = localStorage.getItem('owcs-spoiler') === '1'; MY = localStorage.getItem('owcs-myteam') || ''; } catch (e) {}
   // ?date=YYYY-MM-DD&time=HH:MM shows the page as on that day (same as the home page)
@@ -363,7 +363,8 @@ html[data-owcs-dark] .calsec{--p3:#24242C}
     .sort(function (x, y) { return x.start < y.start ? -1 : 1; })[0];
   var TEAMI = {};
   if (IT) (IT.teams || []).forEach(function (t) { TEAMI[t.a] = t; });
-  document.getElementById('stage').textContent = (D.stage || 'OWCS KR').replace(/^\d{4}\s*/, '') + ' · 남은 경기 일정';   // every tab lists matches still to play; earlier results are on the results page (10-24)
+  var stageShort = (D.stage || '').replace(/^\d{4}\s*/, '').replace(/^OWCS KR\s*/, '');
+  document.getElementById('stage').textContent = (D.stage || 'OWCS KR').replace(/^\d{4}\s*/, '') + ' 남은 경기 일정';   // every tab lists matches still to play; earlier results are on the results page (10-24)
 
   // a part is over as soon as its last match has a score, or at the end of its last day at the latest
   // (a score that never comes in must not hold the page on a finished part; same rule as the home page)
@@ -381,7 +382,7 @@ html[data-owcs-dark] .calsec{--p3:#24242C}
     { k: 'season', label: '시즌 일정', on: RS.length > 0, over: over(RS) },
     // 경우의 수: the last two weeks of the regular season (as on the home page), never the tab that opens first
     { k: 'cases', label: '경우의 수', on: !!CS, over: true },
-    { k: 'road', label: (D.seedName || '시드 결정전') + ' · LCQ', on: ROAD.length > 0 || cols.some(function (c) { return c.key === 'seed' || c.key === 'lcq'; }), over: over(ROAD) },
+    { k: 'road', label: (D.seedName || '시드 결정전') + ' & LCQ', on: ROAD.length > 0 || cols.some(function (c) { return c.key === 'seed' || c.key === 'lcq'; }), over: over(ROAD) },
     { k: 'po', label: '플레이오프', on: PO.length > 0 || cols.some(function (c) { return /^po-/.test(c.key); }), over: over(PO) },
     { k: 'intl', label: IT ? IT.ko.replace(/^\d{4}\s*/, '') : '', on: !!IT, over: IT ? nowMs > endOf(IT.end) : true }
   ].filter(function (t) { return t.on; });
@@ -408,7 +409,7 @@ html[data-owcs-dark] .calsec{--p3:#24242C}
       : hide ? '<span class="pill done">종료</span>'
       : '<span class="sc"><span class="' + (s[0] > s[1] ? 'w' : '') + '">' + s[0] + '</span>:<span class="' + (s[1] > s[0] ? 'w' : '') + '">' + s[1] + '</span></span>';
     if (st === 'live' && !hide) right = '<span class="sc"><span>' + s[0] + '</span>:<span>' + s[1] + '</span></span> ' + right;
-    var tm = m.tbd ? '시간 미정' : esc(window.OWCSi18n && OWCSi18n.hm ? OWCSi18n.hm(/T/.test(m.date || '') ? m.date : m.day, m.time) : m.time);   // reader's zone in ja / en / zh
+    var tm = m.tbd ? 'TBD' : esc(window.OWCSi18n && OWCSi18n.hm ? OWCSi18n.hm(/T/.test(m.date || '') ? m.date : m.day, m.time) : m.time);   // reader's zone in ja / en / zh
     var rd = intl ? [m.section, m.round].filter(Boolean).join(' ') : (m.round || m.label || '');
     var lbl = m.phase === 'rs' || !rd ? tm : esc(rd) + ' · ' + tm;
     var tag = st === 'live' ? 'a href="OWCS KR Home v6.dc.html"' : st === 'done' && !intl ? 'a href="OWCS KR Results.dc.html"' : 'div';
@@ -421,7 +422,7 @@ html[data-owcs-dark] .calsec{--p3:#24242C}
       '<div>' + right + '</div></' + tag.split(' ')[0] + '>';
   }
 
-  // one block per week (정규 리그 n주차) or per part (시드 결정전 · LCQ, 플레이오프, a world tournament), a row per day
+  // one block per week (정규 리그 n주차) or per part (시드 결정전 & LCQ, 플레이오프, a world tournament), a row per day
   function days(ms, title, TM) {
     var groups = [], byKey = {};
     ms.forEach(function (m) {
@@ -448,14 +449,14 @@ html[data-owcs-dark] .calsec{--p3:#24242C}
   function intlHead(T) {
     var ts = (T.teams || []).slice().sort(function (x, y) { return (y.kr ? 1 : 0) - (x.kr ? 1 : 0) || x.a.localeCompare(y.a); });
     var left = Math.ceil((new Date(T.start + 'T00:00:00+09:00').getTime() - nowMs) / 86400e3);
-    return '<div class="ib"><div class="k">국제대회' + (T.city ? ' · ' + esc(T.city) : '') + '</div>' +
+    return '<div class="ib"><div class="k">국제대회' + (T.city ? ' - ' + esc(T.city) : '') + '</div>' +
       '<div class="n disp">' + esc(T.ko) + '</div>' +
-      '<div class="w">' + T.start.slice(5).replace('-', '.') + ' – ' + T.end.slice(5).replace('-', '.') + ' · 모든 시간 KST' + (left > 0 ? '<span class="dd2">D-' + left + '</span>' : '') + '</div>' +
+      '<div class="w">' + T.start.slice(5).replace('-', '.') + ' – ' + T.end.slice(5).replace('-', '.') + ' KST 기준' + (left > 0 ? '<span class="dd2">D-' + left + '</span>' : '') + '</div>' +
       (ts.length ? '<div class="ts">' + ts.map(function (t) { return '<span class="' + (t.kr ? 'kr' : '') + '">' + logo(t.a, '', TEAMI) + esc(t.a) + (t.kr ? '<em>KR</em>' : '') + '</span>'; }).join('') + '</div>'
-        : '<div class="none">참가 팀은 정해지는 대로 채워요.</div>') + '</div>';
+        : '<div class="none">참가 팀 미정</div>') + '</div>';
   }
 
-  var EMPTY = '<div class="empty" hidden>조건에 맞는 경기가 없어요.</div>';
+  var EMPTY = '<div class="empty" hidden>조건에 맞는 경기 없음</div>';
   var BK = function (part) { return '<owcs-bracket part="' + part + '" nopick spoiler="' + (SP ? '1' : '') + '"></owcs-bracket>'; };
   var PANE = {
     // the regular season: the matches still to play, and today's played ones with their scores until the day ends
@@ -464,12 +465,12 @@ html[data-owcs-dark] .calsec{--p3:#24242C}
       if (!RS.length) return '<div class="done-note">아직 공개된 일정이 없어요.</div>';   // no data at all: not "the season is over" (10-24)
       var up = RS.filter(function (m) { return !m.played || m.day >= today; });
       return up.length ? days(up) + EMPTY
-        : '<div class="done-note">정규 리그 경기가 모두 끝났어요. <a href="OWCS KR Results.dc.html">시즌 결과 보기</a></div>';
+        : '<div class="done-note">' + esc((stageShort + ' 정규 리그 종료').trim()) + ' <a href="OWCS KR Results.dc.html">시즌 결과 보기</a></div>';
     },
     // the seeding deciders (4 teams, a league) over the LCQ (a bracket), then every match of those days with its score
     // every team's situation, then the matches left with what rides on each (단두대 = the loser is out)
     cases: function () {
-      if (SP) return '<div class="done-note">스포일러 방지 중이라 경우의 수를 가렸어요.</div>';
+      if (SP) return '<div class="done-note">스포일러 방지 중</div>';
       var rows = (D.standings || []).map(function (st) {
         var c = CS.caseOf(st.a);
         return '<div class="cr' + (st.a === MY ? ' mine' : '') + '">' + logo(st.a) + '<div><b>' + esc((TEAM[st.a] || { n: st.a }).n) + '</b><p>' + esc(c.note) + '</p>' +
@@ -477,18 +478,18 @@ html[data-owcs-dark] .calsec{--p3:#24242C}
       }).join('');
       var games = CS.left.map(function (m, i) {
         var ka = CS.caseOf(m.a), kb = CS.caseOf(m.b), axe = !m.live && CS.axeOf(i), hot = [ka, kb].filter(CS.racing)[0];
-        var stake = axe ? '<span class="ax2">단두대 · ' + (axe === D.lcq ? '지면 탈락' : '지면 직행 실패') + '</span>'
+        var stake = axe ? '<span class="ax2">단두대 (' + (axe === D.lcq ? '패배 시 탈락' : '패배 시 직행 실패') + ')</span>'
           : '<span class="stake">' + esc(hot ? [m.a, m.b].filter(function (a, j) { return CS.racing([ka, kb][j]); }).join('·') + ' ' + hot.tag : '순위 싸움') + '</span>';
-        var tm = m.tbd ? '시간 미정' : esc(window.OWCSi18n && OWCSi18n.hm ? OWCSi18n.hm(m.date, m.time) : m.time);
+        var tm = m.tbd ? 'TBD' : esc(window.OWCSi18n && OWCSi18n.hm ? OWCSi18n.hm(m.date, m.time) : m.time);
         return '<div class="m' + (axe ? ' axe' : '') + (MY && (m.a === MY || m.b === MY) ? ' mine' : '') + '"><div class="lb"><span>' + m.day.slice(5).replace('-', '.') + ' (' + DOWS[new Date(m.day + 'T00:00:00Z').getUTCDay()] + ') ' + tm + '</span></div>' +
           '<div class="tm"><span style="display:flex;align-items:center;gap:8px">' + logo(m.a) + '<span>' + nm(m.a) + '</span></span><span class="vs">vs</span>' +
           '<span style="display:flex;align-items:center;gap:8px"><span>' + nm(m.b) + '</span>' + logo(m.b) + '</span></div><div>' + stake + '</div></div>';
       }).join('');
       return '<section class="csbox"><h2>팀별 경우의 수<span>남은 ' + CS.left.length + '경기의 모든 ' + (CS.bySets ? '승패·세트 점수' : '승패') + ' 조합 기준</span></h2>' + rows + '</section>' +
-        '<section class="csbox"><h2>남은 경기<span>이 경기에 걸린 것</span></h2><div class="ms">' + games + '</div>' +
+        '<section class="csbox"><h2>남은 경기<span>경기별 영향</span></h2><div class="ms">' + games + '</div>' +
         (D.tiebreak ? '<div class="tie">' + esc(D.tiebreak) + '</div>' : '') + '</section>';
     },
-    road: function () { return BK('road') + (ROAD.length ? '<div class="sub">날짜별 경기</div>' + days(ROAD, (D.seedName || '시드 결정전') + ' · 라스트 찬스 예선') : '') + EMPTY; },
+    road: function () { return BK('road') + (ROAD.length ? '<div class="sub">날짜별 경기</div>' + days(ROAD, (D.seedName || '시드 결정전') + ' & LCQ') : '') + EMPTY; },
     po: function () { return BK('po') + (PO.length ? '<div class="sub">날짜별 경기</div>' + days(PO, '플레이오프') : '') + EMPTY; },
     intl: function () { var ms = (IT.matches || []).slice().sort(byDate); return intlHead(IT) + (ms.length ? days(ms, IT.ko.replace(/^\d{4}\s*/, ''), TEAMI) : '') + EMPTY; }
   };
@@ -549,7 +550,7 @@ html[data-owcs-dark] .calsec{--p3:#24242C}
     setTeam(F.team === t ? '' : t);
     // the filter left nothing in the open tab: say so (screen readers), as the page shows it (10-24)
     var em = Array.prototype.find.call(list.querySelectorAll('.empty'), function (x) { return x.offsetWidth > 0; });
-    if (em && window.owcsSay) owcsSay('조건에 맞는 경기가 없어요.');
+    if (em && window.owcsSay) owcsSay('조건에 맞는 경기 없음');
   };
   show(cur);
   setTeam(F.team);
@@ -583,7 +584,7 @@ html[data-owcs-dark] .calsec{--p3:#24242C}
   var cToday = CM.filter(function (m) { return m.day === today; });
   var mdOf = function (day) { return day.slice(5).replace('-', '.'); };
   var dowOf = function (day) { return DOWS[new Date(day + 'T00:00:00Z').getUTCDay()]; };
-  var tmOf = function (m) { return m.tbd ? '시간 미정' : (window.OWCSi18n && OWCSi18n.hm ? OWCSi18n.hm(m.date, m.time) : m.time); };
+  var tmOf = function (m) { return m.tbd ? 'TBD' : (window.OWCSi18n && OWCSi18n.hm ? OWCSi18n.hm(m.date, m.time) : m.time); };
   var hideSc = function (m) { return m.st === 'up' || SP || m.nr; };
   var APPLE = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>';
   var GCAL = '<img src="assets/icons/gcal.png" alt="">';
@@ -604,29 +605,29 @@ html[data-owcs-dark] .calsec{--p3:#24242C}
   function subPop() {
     var apple = S.subTo === 'apple', teamsMode = S.subMode === 'teams';
     var links = ANDROID ? [] : !teamsMode ? [{ label: '전체 남은 경기 구독', href: calUrl('', S.subTo), save: '"ALL"' }]
-      : S.subTeams.length ? [{ label: (S.subTeams.length === 1 ? (TEAM[S.subTeams[0]] || { n: S.subTeams[0] }).n : S.subTeams.join(' · ')) + ' 경기 한 번에 구독', href: calUrl(S.subTeams, S.subTo), save: JSON.stringify(S.subTeams) }] : [];
+      : S.subTeams.length ? [{ label: (S.subTeams.length === 1 ? (TEAM[S.subTeams[0]] || { n: S.subTeams[0] }).n : S.subTeams.join(' · ')) + ' 경기 구독', href: calUrl(S.subTeams, S.subTo), save: JSON.stringify(S.subTeams) }] : [];
     var dup = (function () {
       var prev = subPrev(); if (!prev) return '';
       var c = teamsMode ? S.subTeams : 'ALL'; if (c !== 'ALL' && !c.length) return '';
       var same = prev === c || (Array.isArray(prev) && Array.isArray(c) && prev.slice().sort().join() === c.slice().sort().join());
       var overlap = prev === 'ALL' || c === 'ALL' || prev.some(function (x) { return c.indexOf(x) >= 0; });
       if (same || !overlap) return '';
-      return '전에 ' + (prev === 'ALL' ? '전체 경기' : prev.join(' · ')) + ' 구독을 눌렀어요. 같이 구독하면 같은 경기가 두 번 보여요. 예전 캘린더를 지우고 구독하세요.';
+      return '이미 ' + (prev === 'ALL' ? '전체 경기' : prev.join(' · ')) + ' 구독 이력 있음. 함께 구독하면 같은 경기가 두 번 표시되니 기존 캘린더 삭제 후 구독';
     })();
-    var note = (ANDROID ? '안드로이드는 링크로 구독을 추가할 수 없어요. 주소를 복사해서 PC 구글 캘린더 → 다른 캘린더 + → URL로 추가에 붙여 넣으면 폰에도 보여요. '
-      : apple ? '아이폰·아이패드·맥 캘린더에 바로 구독돼요. '
-      : IOS ? '폰 구글 캘린더 앱은 링크로 구독을 추가할 수 없어요. 주소를 복사해서 PC 구글 캘린더 → 다른 캘린더 + → URL로 추가에 붙여 넣으세요. ' : '') +
-      '여러 팀을 골라도 캘린더 하나로 한 번에 구독돼요. 새 일정(플레이오프 포함)이 생기면 자동으로 들어와요. 알림은 따로 울리지 않아요.';
+    var note = (ANDROID ? '안드로이드는 링크 구독 불가. 주소 복사 후 PC 구글 캘린더 → 다른 캘린더 + → URL로 추가에 붙여 넣으면 폰에도 표시. '
+      : apple ? '아이폰, 아이패드, 맥 캘린더에 바로 구독. '
+      : IOS ? '폰 구글 캘린더 앱은 링크 구독 불가. 주소 복사 후 PC 구글 캘린더 → 다른 캘린더 + → URL로 추가에 붙여 넣기. ' : '') +
+      '여러 팀을 선택해도 캘린더 하나로 구독. 새 일정(플레이오프 포함)은 자동 추가, 알림 없음';
     return '<div class="subov" data-act="close" data-owcs-close=""></div><div class="subpop" role="dialog" aria-modal="true" aria-label="' + (apple ? '애플 캘린더에 남은 경기 구독' : '구글 캘린더에 남은 경기 구독') + '" data-owcs-modal=""><b>' + (apple ? '애플 캘린더에 남은 경기 구독' : '구글 캘린더에 남은 경기 구독') + '</b>' +
-      '<div class="seg"><button data-act="all" class="' + (teamsMode ? '' : 'on') + '">전체 경기</button><button data-act="teams" class="' + (teamsMode ? 'on' : '') + '">팀 고르기</button></div>' +
-      (teamsMode ? '<div class="hint">구독할 팀을 고르세요 · 여러 팀 가능</div><div class="tg5">' + D.teams.map(function (t) {
+      '<div class="seg"><button data-act="all" class="' + (teamsMode ? '' : 'on') + '">전체 경기</button><button data-act="teams" class="' + (teamsMode ? 'on' : '') + '">팀 선택</button></div>' +
+      (teamsMode ? '<div class="hint">구독할 팀 선택 (여러 팀 가능)</div><div class="tg5">' + D.teams.map(function (t) {
         var on = S.subTeams.indexOf(t.a) >= 0, c = t.color || '#0B0B0F';
         return '<button data-act="tm" data-t="' + esc(t.a) + '" title="' + esc(t.n) + '"' + (on ? ' style="background:color-mix(in srgb, ' + c + ' 16%, var(--panel));border:2px solid ' + c + '"' : '') + '>' + logo(t.a) + esc(t.a) + '</button>';
       }).join('') + '</div>' : '') +
       '<div class="lk">' + links.map(function (l) { return '<a href="' + esc(l.href) + '" data-save="' + esc(l.save) + '" target="_blank" rel="noopener">' + (apple ? APPLE : GCAL) + esc(l.label) + '<span>↗</span></a>'; }).join('') +
-      (!teamsMode || S.subTeams.length ? '<button data-act="copy">' + (S.copied ? '구독 주소를 복사했어요' : '구독 주소 복사') + '</button>' : '') +
+      (!teamsMode || S.subTeams.length ? '<button data-act="copy">' + (S.copied ? '구독 주소 복사 완료' : '구독 주소 복사') + '</button>' : '') +
       (dup ? '<div class="dup">' + esc(dup) + '</div>' : '') +
-      (teamsMode && !S.subTeams.length ? '<div class="none">팀을 하나 이상 고르면 구독 버튼이 나와요</div>' : '') +
+      (teamsMode && !S.subTeams.length ? '<div class="none">팀을 1개 이상 선택하면 구독 버튼 표시</div>' : '') +
       '</div><div class="sn">' + esc(note) + '</div></div>';
   }
 
@@ -653,12 +654,12 @@ html[data-owcs-dark] .calsec{--p3:#24242C}
       var g = CM.filter(function (m) { return m.day === ds && ds >= today; });
       var ko = g.filter(function (m) { return m.phase && m.phase !== 'rs'; });
       var tag = !ko.length ? '' : ko.every(function (m) { return m.phase === 'po'; })
-        ? 'PO ' + (ko.some(function (m) { return m.round === '결승'; }) ? '결승' : ko[0].round || '') : '시드전 · LCQ';
+        ? 'PO ' + (ko.some(function (m) { return m.round === '결승'; }) ? '결승' : ko[0].round || '') : '시드전 & LCQ';
       var red = (first + d - 1) % 7 === 0 || HOL.indexOf(ds) >= 0;
       var dcol = red ? (ds < today ? (DARK ? '#C9797C' : '#B4535A') : (DARK ? '#FF6B6E' : '#C8102E')) : ds < today ? '#707077' : 'var(--ink)';
       var isT = ds === today, has = g.length > 0, sel = has && ds === S.calDay;
       cells += '<button type="button" class="cc' + (has ? ' has' : '') + (sel ? ' sel' : '') + '"' + (has ? ' data-day="' + ds + '"' : ' tabindex="-1"') +
-        ' aria-label="' + (Mo + 1) + '월 ' + d + '일' + (has ? ', 경기 ' + g.length + '개' : '') + '" aria-pressed="' + sel + '">' +
+        ' aria-label="' + (Mo + 1) + '월 ' + d + '일' + (has ? ' / 경기 ' + g.length + '개' : '') + '" aria-pressed="' + sel + '">' +
         (tag ? '<span class="tg">' + esc(tag) + '</span>' : '') +
         '<div class="d' + (isT ? ' td' : '') + '" style="color:' + (isT ? (red ? '#FF6B6E' : '#fff') : dcol) + '">' + d + '</div>' +
         g.map(function (m) { return chipOf(m, ds); }).join('') + '</button>';
@@ -680,7 +681,7 @@ html[data-owcs-dark] .calsec{--p3:#24242C}
         (S.sub ? subPop() : '') + '</div><div></div></div>' +
       '<div class="calg"><div class="calbox"><div class="calbar"><b>' + Y + '. ' + pad(Mo + 1) + '</b><div><button data-act="prev" aria-label="이전 달">‹</button><button data-act="next" aria-label="다음 달">›</button></div></div>' +
         '<div class="cgrid">' + DOWS.map(function (w) { return '<div class="wd">' + w + '</div>'; }).join('') + cells + '</div></div>' +
-        '<div class="clist"><div class="hd"><b>최근 · 다가오는 경기</b><span>모든 시간 KST</span></div>' + lc + '</div></div>';
+        '<div class="clist"><div class="hd"><b>최근 경기</b><span>KST 기준</span></div>' + lc + '</div></div>';
   }
 
   if (calEl && CM.length) {
@@ -696,7 +697,7 @@ html[data-owcs-dark] .calsec{--p3:#24242C}
       else if (act === 'tm') { var k = a.getAttribute('data-t'), j = S.subTeams.indexOf(k); if (j >= 0) S.subTeams.splice(j, 1); else S.subTeams.push(k); }
       else if (act === 'copy') {
         var u = 'https://' + calFeed(S.subMode === 'all' ? '' : S.subTeams);
-        var done = function () { S.copied = true; drawCal(); if (window.owcsSay) owcsSay('구독 주소를 복사했어요'); setTimeout(function () { S.copied = false; drawCal(); }, 2500); };
+        var done = function () { S.copied = true; drawCal(); if (window.owcsSay) owcsSay('구독 주소 복사 완료'); setTimeout(function () { S.copied = false; drawCal(); }, 2500); };
         try { navigator.clipboard.writeText(u).then(done, function () { window.prompt('구독 주소', u); }); } catch (e3) { window.prompt('구독 주소', u); }
         return;
       }
