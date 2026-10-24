@@ -68,7 +68,7 @@
         liveScore: SP || !recording || push || x.sa == null || x.sb == null ? '' : m.a + ' ' + pts(x.sa) + ' : ' + pts(x.sb) + ' ' + m.b,
         liveScoreShort: SP || !recording || push || x.sa == null || x.sb == null ? '' : pts(x.sa) + ' : ' + pts(x.sb),
         done: !!w || m.st === 'done', recording, bg: mapBg(x.map), bgS: mapBg(x.map, true),
-        chev: open ? '−' : '+', isOpen: open, showBans: open && showBans && x.bans.length > 0, showComps: open && comps.length > 0,
+        chev: open ? '−' : '+', isOpen: open, expanded: open ? 'true' : 'false',   // aria-expanded on the row's button showBans: open && showBans && x.bans.length > 0, showComps: open && comps.length > 0,
         showRec: open && !comps.length && !o.noComps, comps,
         recNote: recording ? '기록 중이에요. 세트가 끝나면 양 팀 조합이 올라와요.' : '이 세트의 첫 조합 기록이 아직 없어요.',
         recNoteShort: recording ? '세트가 끝나면 조합이 올라와요.' : '첫 조합 기록 없음',
