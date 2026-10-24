@@ -496,6 +496,8 @@ html[data-owcs-dark] .calsec{--p3:#24242C}
     Array.prototype.forEach.call(tabsEl.children, function (b) { var on = b.getAttribute('data-k') === k; b.classList.toggle('on', on); b.setAttribute('aria-selected', on); });
     Array.prototype.forEach.call(list.children, function (p) { p.hidden = p.getAttribute('data-k') !== k; });
     document.getElementById('bar').hidden = k === 'cases';   // the team filter has nothing to filter there
+    // the calendar below is the season's: only the season tab shows it (10-24); a page without that tab keeps it
+    document.getElementById('cal').hidden = k !== 'season' && TABS.some(function (t) { return t.k === 'season'; });
   }
   tabsEl.onclick = function (e) {
     var b = e.target.closest('button'); if (!b) return;
