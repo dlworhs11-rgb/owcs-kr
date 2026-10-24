@@ -552,6 +552,21 @@
     "T1": 3
    },
    "scoreFrom": "table"
+  },
+  {
+   "banTs": 1792832879,
+   "teams": [
+    "Team Falcons",
+    "T1"
+   ],
+   "game": 3,
+   "map": "Eichenwalde",
+   "seriesBefore": {
+    "Team Falcons": 0,
+    "T1": 2
+   },
+   "bans": null,
+   "src": "SOOP"
   }
  ]
 }
