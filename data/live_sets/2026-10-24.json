@@ -957,7 +957,16 @@
     "Poker Face": 2,
     "SEIJI ESPORTS": 1
    },
-   "bans": null,
+   "bans": {
+    "initial": {
+     "team": "Poker Face",
+     "hero": "ana"
+    },
+    "followUp": {
+     "team": "SEIJI ESPORTS",
+     "hero": "domina"
+    }
+   },
    "src": "SOOP"
   }
  ]
