@@ -44,6 +44,17 @@ def write_data(path, data):
                 + json.dumps(data, ensure_ascii=False) + ';\n')
 
 
+def flag(msg):
+    """a yellow warning on the Actions run page and in its summary: a failed step here still deploys (the last
+    deploy's data stays), so the run is green and a broken build went unseen"""
+    if not os.environ.get('GITHUB_ACTIONS'):
+        return
+    print('::warning::' + msg.replace('%', '%25').replace('\r', '%0D').replace('\n', '%0A'))
+    if os.environ.get('GITHUB_STEP_SUMMARY'):
+        with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as f:
+            f.write('- ' + msg.replace('\n', ' ') + '\n')
+
+
 def fetch_prev(url):
     try:
         req = urllib.request.Request(url + '?v=' + str(int(datetime.datetime.now().timestamp())), headers={'User-Agent': 'Mozilla/5.0'})
@@ -196,9 +207,10 @@ def main():
         shutil.copy2(os.path.join(HERE, 'admin', 'index.html'), os.path.join(out, 'admin', 'index.html'))
         with open(os.path.join(out, 'admin', 'meta.json'), 'w', encoding='utf-8') as f:
             json.dump({'heroes': admin_server.heroes(), 'maps': admin_server.maps()}, f, ensure_ascii=False)
-    except Exception:
+    except Exception as e:
         traceback.print_exc()
         print('! admin page not copied')
+        flag(f'admin page not copied ({type(e).__name__}: {e})')
 
     now = datetime.datetime.now(b.KST)
     prev = fetch_prev(prev_url) if prev_url else None
@@ -214,9 +226,10 @@ def main():
             data = owcs_build.build(prev_live=(prev or {}).get('live'), out=out, records=False)
             print(f"built: {data['stage']} · {len(data['matches'])} matches · {sum(m['played'] for m in data['matches'])} played · "
                   f"{len(data['players'])} players · standings {[(s['a'], s['w'], s['l']) for s in data['standings']]}")
-        except Exception:
+        except Exception as e:
             traceback.print_exc()
             print('! build failed: keeping the deployed data')
+            flag(f'data build failed, the deployed data stays ({type(e).__name__}: {e})')
     if data is not None and prev and prev.get('stage') == data.get('stage'):
         # a Liquipedia page missing this run (429): keep the last deploy's brackets and playoff matches, not blank ones
         for k in ('bracket', 'lastStage', 'pastStages'):
