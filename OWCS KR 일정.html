@@ -348,7 +348,7 @@ html[data-owcs-dark] .calsec{--p3:#24242C}
     .sort(function (x, y) { return x.start < y.start ? -1 : 1; })[0];
   var TEAMI = {};
   if (IT) (IT.teams || []).forEach(function (t) { TEAMI[t.a] = t; });
-  document.getElementById('stage').textContent = (D.stage || 'OWCS KR').replace(/^\d{4}\s*/, '') + ' · 전체 경기 일정';
+  document.getElementById('stage').textContent = (D.stage || 'OWCS KR').replace(/^\d{4}\s*/, '') + ' · 남은 경기 일정';   // every tab lists matches still to play; earlier results are on the results page (10-24)
 
   // a part is over as soon as its last match has a score, or at the end of its last day at the latest
   // (a score that never comes in must not hold the page on a finished part; same rule as the home page)
