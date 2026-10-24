@@ -74,7 +74,7 @@
     ['지난 시즌', '前シーズン', 'last season', '上赛季'], ['다음 글', '次へ', 'Next', '下一篇'], ['이전 글', '前へ', 'Previous', '上一篇'], ['메뉴', 'メニュー', 'Menu', '菜单'],
     ['다음 경기일', '次の試合日', 'Next match day', '下一个比赛日'], ['이전 경기일', '前の試合日', 'Previous match day', '上一个比赛日'], ['지금', '今', 'Now', '现在'],
     ['오버워치 이스포츠 공식 유튜브 쇼츠', 'オーバーウォッチ eスポーツ公式 YouTube ショート', 'Overwatch Esports official YouTube Shorts', '守望先锋电竞官方 YouTube Shorts'],
-    ['티켓링크에서 예매', 'Ticketlinkで購入', 'Buy on Ticketlink', '在 Ticketlink 购票'], ['전체 경기 일정', '全試合日程', 'Full schedule', '全部赛程'], ['OWCS 공식 채널', 'OWCS公式チャンネル', 'Official OWCS channels', 'OWCS 官方频道'],
+    ['티켓링크에서 예매', 'Ticketlinkで購入', 'Buy on Ticketlink', '在 Ticketlink 购票'], ['전체 경기 일정', '全試合日程', 'Full schedule', '全部赛程'], ['남은 경기 일정', '残りの試合日程', 'Upcoming matches', '剩余赛程'], ['OWCS 공식 채널', 'OWCS公式チャンネル', 'Official OWCS channels', 'OWCS 官方频道'],
     ['결과를 누르면 아래에서 세트별 맵 · 밴 · 첫 조합을 볼 수 있어요', '結果をタップすると、下にセットごとのマップ · BAN · 初期構成が表示されます', 'Tap a result to see each map, the bans and the opening comps below', '点击结果，即可在下方查看每局的地图 · 禁用 · 首发阵容'],
     ['경기 승률', '試合勝率', 'Match win rate', '比赛胜率'], ['구글 캘린더 구독', 'Googleカレンダーで購読', 'Subscribe in Google Calendar', '在 Google 日历中订阅'],
     ['구글 캘린더에 전체 일정 추가', 'Googleカレンダーに全日程を追加', 'Add the full schedule to Google Calendar', '将全部赛程添加到 Google 日历'], ['날짜별 경기', '日付別の試合', 'Matches by date', '按日期查看比赛'],
