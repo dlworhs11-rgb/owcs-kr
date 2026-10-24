@@ -407,7 +407,16 @@
     "Team Falcons": 0,
     "T1": 0
    },
-   "bans": null,
+   "bans": {
+    "initial": {
+     "team": "Team Falcons",
+     "hero": "wrecking ball"
+    },
+    "followUp": {
+     "team": "T1",
+     "hero": "bastion"
+    }
+   },
    "src": "SOOP"
   }
  ]
