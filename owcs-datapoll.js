@@ -3,6 +3,8 @@
 // ~20 bytes per check instead of ~46 KB (GitHub Pages bandwidth). No owcs-ver.json (this PC, the preview site):
 // the data file is read every time, as before.
 // owcsDataPoll(done): done(true) after a new owcs-data.js ran (window.OWCS replaced), done(false) when nothing new.
+// The version leaves out liveChecked (cloud_live.content_hash), so a build that only re-checked the streams keeps it;
+// that check time comes in owcs-ver.json instead: window.owcsChecked (10-24).
 (function () {
   var cur = (function () {
     var s = document.querySelector('script[src*="owcs-data.js"]');
@@ -19,7 +21,7 @@
   window.owcsDataPoll = function (done) {
     fetch('owcs-ver.json?t=' + Date.now(), { cache: 'no-store' })
       .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-      .then(function (j) { if (j.v && j.v === cur) done(false); else load(j.v, done); },
+      .then(function (j) { if (j.checked) window.owcsChecked = j.checked; if (j.v && j.v === cur) done(false); else load(j.v, done); },
             function () { load(null, done); });
   };
 })();
