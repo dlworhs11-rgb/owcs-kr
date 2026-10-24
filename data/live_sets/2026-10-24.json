@@ -1023,6 +1023,29 @@
     "SEIJI ESPORTS": 2
    },
    "scoreFrom": "table"
+  },
+  {
+   "banTs": 1792843154,
+   "teams": [
+    "Poker Face",
+    "SEIJI ESPORTS"
+   ],
+   "game": 5,
+   "map": "Eichenwalde",
+   "seriesBefore": {
+    "Poker Face": 2,
+    "SEIJI ESPORTS": 2
+   },
+   "bans": {
+    "initial": {
+     "team": "Poker Face",
+     "hero": "kiriko"
+    },
+    "followUp": {
+     "team": "SEIJI ESPORTS",
+     "hero": "orisa"
+    }
+   }
   }
  ]
 }
