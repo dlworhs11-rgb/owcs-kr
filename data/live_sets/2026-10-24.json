@@ -810,7 +810,57 @@
      "hero": "jetpack cat"
     }
    },
-   "src": "SOOP"
+   "src": "SOOP",
+   "heroTs": 1792838491,
+   "hudLeft": "SEIJI ESPORTS",
+   "guessed": [],
+   "comps": {
+    "SEIJI ESPORTS": [
+     [
+      "SENTIER",
+      "dva"
+     ],
+     [
+      "M1nut2",
+      "sojourn"
+     ],
+     [
+      "D4RT",
+      "tracer"
+     ],
+     [
+      "OFF",
+      "lucio"
+     ],
+     [
+      "Lavender",
+      "kiriko"
+     ]
+    ],
+    "Poker Face": [
+     [
+      "SoLA",
+      "dmon"
+     ],
+     [
+      "SORI",
+      "sojourn"
+     ],
+     [
+      "F1nally",
+      "reaper"
+     ],
+     [
+      "Dumbbell",
+      "kiriko"
+     ],
+     [
+      "Caffeine",
+      "doctrine"
+     ]
+    ]
+   },
+   "compAt": null
   }
  ]
 }
