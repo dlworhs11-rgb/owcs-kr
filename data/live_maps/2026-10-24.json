@@ -1584,7 +1584,131 @@
    "seriesBefore": {
     "Poker Face": 2,
     "SEIJI ESPORTS": 1
-   }
+   },
+   "winner": "SEIJI ESPORTS",
+   "winnerSource": "series score"
+  },
+  {
+   "match": "Poker Face vs SEIJI ESPORTS",
+   "matchNo": 3,
+   "game": 5,
+   "map": "Eichenwalde",
+   "mapTime": "13:53",
+   "frame": "m14_table1_1792844319.png",
+   "teams": {
+    "Poker Face": [
+     {
+      "name": "?101",
+      "e": 18,
+      "a": 21,
+      "d": 6,
+      "dmg": 6548,
+      "heal": 12656,
+      "mit": 1134
+     },
+     {
+      "name": "?102",
+      "e": 20,
+      "a": 0,
+      "d": 6,
+      "dmg": 9043,
+      "heal": 227,
+      "mit": 236
+     },
+     {
+      "name": "?103",
+      "e": 20,
+      "a": 16,
+      "d": 7,
+      "dmg": 3918,
+      "heal": 9842,
+      "mit": 0
+     },
+     {
+      "name": "SoLA",
+      "e": 19,
+      "a": 4,
+      "d": 8,
+      "dmg": 16019,
+      "heal": 961,
+      "mit": 11328
+     },
+     {
+      "name": "Sori",
+      "e": 21,
+      "a": 2,
+      "d": 13,
+      "dmg": 12275,
+      "heal": 0,
+      "mit": 333
+     }
+    ],
+    "SEIJI ESPORTS": [
+     {
+      "name": "?104",
+      "e": 18,
+      "a": 0,
+      "d": 7,
+      "dmg": 8997,
+      "heal": 81,
+      "mit": 203
+     },
+     {
+      "name": "?105",
+      "e": 16,
+      "a": 21,
+      "d": 8,
+      "dmg": 6284,
+      "heal": 13261,
+      "mit": 1505
+     },
+     {
+      "name": "?106",
+      "e": 17,
+      "a": 1,
+      "d": 12,
+      "dmg": 11913,
+      "heal": 0,
+      "mit": 369
+     },
+     {
+      "name": "?107",
+      "e": 15,
+      "a": 24,
+      "d": 7,
+      "dmg": 3551,
+      "heal": 13102,
+      "mit": 0
+     },
+     {
+      "name": "?108",
+      "e": 24,
+      "a": 3,
+      "d": 4,
+      "dmg": 17076,
+      "heal": 420,
+      "mit": 17796
+     }
+    ]
+   },
+   "totalsVerified": false,
+   "reading": "ocr",
+   "bans": {
+    "initial": {
+     "team": "Poker Face",
+     "hero": "kiriko"
+    },
+    "followUp": {
+     "team": "SEIJI ESPORTS",
+     "hero": "orisa"
+    }
+   },
+   "seriesBefore": {
+    "Poker Face": 2,
+    "SEIJI ESPORTS": 2
+   },
+   "winner": "Poker Face",
+   "winnerSource": "match end (POTM team)"
   }
  ],
  "matches": [
@@ -1626,10 +1750,18 @@
    "match": "Poker Face vs SEIJI ESPORTS",
    "matchNo": 3,
    "mapWins": {
-    "Poker Face": 2,
-    "SEIJI ESPORTS": 1
+    "Poker Face": 3,
+    "SEIJI ESPORTS": 2
    },
-   "potm": null
+   "potm": {
+    "name": "SoLA",
+    "team": "Poker Face",
+    "elims": 82,
+    "deaths": 33,
+    "dmgPerMin": 871,
+    "screenName": "een",
+    "method": "closest elims+deaths"
+   }
   }
  ],
  "unknownNames": [
@@ -2132,6 +2264,46 @@
    "id": "?100",
    "map": "13",
    "row": 9
+  },
+  {
+   "id": "?101",
+   "map": "14",
+   "row": 0
+  },
+  {
+   "id": "?102",
+   "map": "14",
+   "row": 1
+  },
+  {
+   "id": "?103",
+   "map": "14",
+   "row": 2
+  },
+  {
+   "id": "?104",
+   "map": "14",
+   "row": 5
+  },
+  {
+   "id": "?105",
+   "map": "14",
+   "row": 6
+  },
+  {
+   "id": "?106",
+   "map": "14",
+   "row": 7
+  },
+  {
+   "id": "?107",
+   "map": "14",
+   "row": 8
+  },
+  {
+   "id": "?108",
+   "map": "14",
+   "row": 9
   }
  ],
  "unknownMaps": [
@@ -2150,6 +2322,10 @@
   {
    "map": "08",
    "frame": "m08_table1_1792834302.png"
+  },
+  {
+   "map": "14",
+   "frame": "m14_table1_1792844319.png"
   }
  ],
  "note": "reading=ocr: numbers, match/game/map read from the broadcast screen; totalsVerified = sums match the team-totals page; mapTime = damage / damage-per-minute from the totals page."
