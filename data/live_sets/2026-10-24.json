@@ -800,7 +800,16 @@
     "Poker Face": 1,
     "SEIJI ESPORTS": 0
    },
-   "bans": null,
+   "bans": {
+    "initial": {
+     "team": "SEIJI ESPORTS",
+     "hero": "cassidy"
+    },
+    "followUp": {
+     "team": "Poker Face",
+     "hero": "jetpack cat"
+    }
+   },
    "src": "SOOP"
   }
  ]
