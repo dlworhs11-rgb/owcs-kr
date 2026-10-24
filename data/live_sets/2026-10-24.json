@@ -653,7 +653,59 @@
      "hero": "ramattra"
     }
    },
-   "src": "SOOP"
+   "src": "SOOP",
+   "heroTs": 1792834425,
+   "hudLeft": "Team Falcons",
+   "guessed": [
+    "DONGHAK"
+   ],
+   "comps": {
+    "Team Falcons": [
+     [
+      "SOMEONE",
+      "dmon"
+     ],
+     [
+      "MER1T",
+      "cassidy"
+     ],
+     [
+      "Checkmate",
+      "tracer"
+     ],
+     [
+      "Fielder",
+      "doctrine"
+     ],
+     [
+      "ChiYo",
+      "brigitte"
+     ]
+    ],
+    "T1": [
+     [
+      "DONGHAK",
+      "roadhog"
+     ],
+     [
+      "Proud",
+      "hanzo"
+     ],
+     [
+      "ZEST",
+      "tracer"
+     ],
+     [
+      "Bliss",
+      "doctrine"
+     ],
+     [
+      "skewed",
+      "?"
+     ]
+    ]
+   },
+   "compAt": null
   }
  ]
 }
