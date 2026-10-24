@@ -131,7 +131,7 @@
     ['캘린더 구독', 'カレンダー登録', 'Subscribe', '订阅日历'], ['공유', '共有', 'Share', '分享'], ['☆ 내 팀 고르기', '☆ マイチームを選ぶ', '☆ Pick my team', '☆ 选择我的战队'],
     ['다시 누르면 해제돼요 · 선수 섹션의 내 팀과 같이 바뀌어요', 'もう一度押すと解除 · 選手セクションのマイチームと連動します', 'Tap again to clear · Linked with My team in the players section', '再点一次即取消 · 与选手栏目的我的战队同步'],
     ['경기 일정', '試合日程', 'Schedule', '比赛赛程'], ['일정 공유', '日程を共有', 'Share schedule', '分享赛程'], ['최근 · 다가오는 경기', '最近 · 今後の試合', 'Recent · Upcoming', '最近 · 即将进行'], ['모든 시간 KST', '時間はすべて' + ZONE_LONG, 'All times ' + ZONE, '时间均为' + ZONE_LONG], ['전체 일정 보기 →', 'すべての日程 →', 'Full schedule →', '查看全部赛程 →'],
-    ['구글 캘린더', 'Googleカレンダー', 'Google Calendar', 'Google 日历'], ['애플 캘린더', 'Appleカレンダー', 'Apple Calendar', 'Apple 日历'], ['링크 복사', 'リンクをコピー', 'Copy link', '复制链接'], ['복사됨', 'コピー済み', 'Copied', '已复制'], ['링크를 복사했어요', 'リンクをコピーしました', 'Link copied', '链接已复制'],
+    ['구글 캘린더', 'Googleカレンダー', 'Google Calendar', 'Google 日历'], ['애플 캘린더', 'Appleカレンダー', 'Apple Calendar', 'Apple 日历'], ['링크 복사', 'リンクをコピー', 'Copy link', '复制链接'], ['닫기', '閉じる', 'Close', '关闭'], ['복사됨', 'コピー済み', 'Copied', '已复制'], ['링크를 복사했어요', 'リンクをコピーしました', 'Link copied', '链接已复制'],
     ['링크 복사됨 ✓', 'リンクをコピーしました ✓', 'Link copied ✓', '链接已复制 ✓'], ['일정 링크 복사', '日程リンクをコピー', 'Copy schedule link', '复制赛程链接'],
     ['전체 경기 캘린더에 추가', '全試合をカレンダーに追加', 'Add all matches to calendar', '将全部比赛加入日历'], ['남은 경기만 캘린더에 추가', '残りの試合をカレンダーに追加', 'Add remaining matches to calendar', '将剩余比赛加入日历'],
     ['좋아하는 팀 경기만 캘린더에 추가', '好きなチームの試合だけ追加', "Add only your team's matches", '只添加喜欢战队的比赛'],

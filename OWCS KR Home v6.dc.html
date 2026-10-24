@@ -235,7 +235,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <div style="display:flex;gap:14px;align-items:flex-start;padding:6px 24px 20px">
 <div style="flex:none;width:64px;height:64px;border-radius:16px;background:#0B0B0F;box-shadow:inset 0 0 0 0.5px rgba(0,0,0,0.15), 0px 2px 16px 0px rgba(0,0,0,0.15);display:grid;place-items:center"><div style="width:22px;height:22px;border-radius:5px;background:var(--ac2,#C6FF33);color:#0B0B0F"></div></div>
 <div style="flex:1;min-width:0;padding-top:4px"><div style="font-size:17px;font-weight:600;line-height:22px">{{ shareTitle }}</div><div style="font-size:15px;line-height:20px;color:rgba(60,60,67,0.6);margin-top:2px">{{ shareSub }}</div></div>
-<button onClick="{{ closeShare }}" style="flex:none;width:44px;height:44px;border-radius:296px;border:none;background:rgba(120,120,128,0.16);font-size:17px;color:#000;cursor:pointer">✕</button>
+<button onClick="{{ closeShare }}" aria-label="닫기" style="flex:none;width:44px;height:44px;border-radius:296px;border:none;background:rgba(120,120,128,0.16);font-size:17px;color:#000;cursor:pointer">✕</button>
 </div>
 <div style="padding:0 24px"><div style="height:1px;background:rgba(60,60,67,0.18)"></div></div>
 <div style="display:flex;gap:14px;padding:14px 24px 20px">
@@ -267,7 +267,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <div style="display:var(--cal,block);background:var(--paper,#fff);border:1px solid var(--line,#E6E6E1);border-radius:20px;padding:24px">
 <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
 <div style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:700;font-size:32px">{{ calTitle }}</div>
-<div style="display:flex;gap:6px"><button onClick="{{ calPrev }}" style="width:44px;height:44px;border-radius:12px;border:1px solid var(--line,#E6E6E1);background:var(--paper,#fff);font-size:18px;cursor:pointer;color:var(--ink,#0B0B0F)">‹</button><button onClick="{{ calNext }}" style="width:44px;height:44px;border-radius:12px;border:1px solid var(--line,#E6E6E1);background:var(--paper,#fff);font-size:18px;cursor:pointer;color:var(--ink,#0B0B0F)">›</button></div>
+<div style="display:flex;gap:6px"><button onClick="{{ calPrev }}" aria-label="이전 달" style="width:44px;height:44px;border-radius:12px;border:1px solid var(--line,#E6E6E1);background:var(--paper,#fff);font-size:18px;cursor:pointer;color:var(--ink,#0B0B0F)">‹</button><button onClick="{{ calNext }}" aria-label="다음 달" style="width:44px;height:44px;border-radius:12px;border:1px solid var(--line,#E6E6E1);background:var(--paper,#fff);font-size:18px;cursor:pointer;color:var(--ink,#0B0B0F)">›</button></div>
 </div>
 <div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px">
 <sc-for list="{{ weekdays }}" as="w" hint-placeholder-count="7"><div style="font-size:13px;font-weight:600;color:var(--mute,#6B6B72);padding:0 8px 6px">{{ w }}</div></sc-for>
@@ -489,7 +489,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <div style="display:flex;gap:14px;align-items:flex-start;padding:6px 24px 20px">
 <div style="flex:none;width:64px;height:64px;border-radius:16px;background:#0B0B0F;box-shadow:inset 0 0 0 0.5px rgba(0,0,0,0.15), 0px 2px 16px 0px rgba(0,0,0,0.15);display:grid;place-items:center"><div style="width:22px;height:22px;border-radius:5px;background:var(--ac2,#C6FF33);color:#0B0B0F"></div></div>
 <div style="flex:1;min-width:0;padding-top:4px"><div style="font-size:17px;font-weight:600;line-height:22px">{{ shareTitle }}</div><div style="font-size:15px;line-height:20px;color:rgba(60,60,67,0.6);margin-top:2px">{{ shareSub }}</div></div>
-<button onClick="{{ closeShare }}" style="flex:none;width:44px;height:44px;border-radius:296px;border:none;background:rgba(120,120,128,0.16);font-size:17px;color:#000;cursor:pointer">✕</button>
+<button onClick="{{ closeShare }}" aria-label="닫기" style="flex:none;width:44px;height:44px;border-radius:296px;border:none;background:rgba(120,120,128,0.16);font-size:17px;color:#000;cursor:pointer">✕</button>
 </div>
 <div style="padding:0 24px"><div style="height:1px;background:rgba(60,60,67,0.18)"></div></div>
 <div style="display:flex;gap:14px;padding:14px 24px 20px">
@@ -520,7 +520,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <div style="display:var(--cal,block);background:var(--paper,#fff);border:1px solid var(--line,#E6E6E1);border-radius:20px;padding:24px">
 <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
 <div style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:700;font-size:32px">{{ calTitle }}</div>
-<div style="display:flex;gap:6px"><button onClick="{{ calPrev }}" style="width:44px;height:44px;border-radius:12px;border:1px solid var(--line,#E6E6E1);background:var(--paper,#fff);font-size:18px;cursor:pointer;color:var(--ink,#0B0B0F)">‹</button><button onClick="{{ calNext }}" style="width:44px;height:44px;border-radius:12px;border:1px solid var(--line,#E6E6E1);background:var(--paper,#fff);font-size:18px;cursor:pointer;color:var(--ink,#0B0B0F)">›</button></div>
+<div style="display:flex;gap:6px"><button onClick="{{ calPrev }}" aria-label="이전 달" style="width:44px;height:44px;border-radius:12px;border:1px solid var(--line,#E6E6E1);background:var(--paper,#fff);font-size:18px;cursor:pointer;color:var(--ink,#0B0B0F)">‹</button><button onClick="{{ calNext }}" aria-label="다음 달" style="width:44px;height:44px;border-radius:12px;border:1px solid var(--line,#E6E6E1);background:var(--paper,#fff);font-size:18px;cursor:pointer;color:var(--ink,#0B0B0F)">›</button></div>
 </div>
 <div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px">
 <sc-for list="{{ weekdays }}" as="w" hint-placeholder-count="7"><div style="font-size:13px;font-weight:600;color:var(--mute,#6B6B72);padding:0 8px 6px">{{ w }}</div></sc-for>
@@ -726,7 +726,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <div style="display:flex;gap:14px;align-items:flex-start;padding:6px 24px 20px">
 <div style="flex:none;width:64px;height:64px;border-radius:16px;background:#0B0B0F;box-shadow:inset 0 0 0 0.5px rgba(0,0,0,0.15), 0px 2px 16px 0px rgba(0,0,0,0.15);display:grid;place-items:center"><div style="width:22px;height:22px;border-radius:5px;background:var(--ac2,#C6FF33);color:#0B0B0F"></div></div>
 <div style="flex:1;min-width:0;padding-top:4px"><div style="font-size:17px;font-weight:600;line-height:22px">{{ shareTitle }}</div><div style="font-size:15px;line-height:20px;color:rgba(60,60,67,0.6);margin-top:2px">{{ shareSub }}</div></div>
-<button onClick="{{ closeShare }}" style="flex:none;width:44px;height:44px;border-radius:296px;border:none;background:rgba(120,120,128,0.16);font-size:17px;color:#000;cursor:pointer">✕</button>
+<button onClick="{{ closeShare }}" aria-label="닫기" style="flex:none;width:44px;height:44px;border-radius:296px;border:none;background:rgba(120,120,128,0.16);font-size:17px;color:#000;cursor:pointer">✕</button>
 </div>
 <div style="padding:0 24px"><div style="height:1px;background:rgba(60,60,67,0.18)"></div></div>
 <div style="display:flex;gap:14px;padding:14px 24px 20px">
@@ -761,7 +761,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <div style="background:var(--paper,#fff);border:1px solid var(--line,#E6E6E1);border-radius:16px;padding:10px 4px 8px">
 <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;padding:0 4px">
 <div style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:700;font-size:22px">{{ calTitle }}</div>
-<div style="display:flex;gap:6px"><button onClick="{{ calPrev }}" style="width:34px;height:34px;border-radius:10px;border:1px solid var(--line,#E6E6E1);background:var(--paper,#fff);font-size:16px;cursor:pointer;color:var(--ink,#0B0B0F)">‹</button><button onClick="{{ calNext }}" style="width:34px;height:34px;border-radius:10px;border:1px solid var(--line,#E6E6E1);background:var(--paper,#fff);font-size:16px;cursor:pointer;color:var(--ink,#0B0B0F)">›</button></div>
+<div style="display:flex;gap:6px"><button onClick="{{ calPrev }}" aria-label="이전 달" style="width:34px;height:34px;border-radius:10px;border:1px solid var(--line,#E6E6E1);background:var(--paper,#fff);font-size:16px;cursor:pointer;color:var(--ink,#0B0B0F)">‹</button><button onClick="{{ calNext }}" aria-label="다음 달" style="width:34px;height:34px;border-radius:10px;border:1px solid var(--line,#E6E6E1);background:var(--paper,#fff);font-size:16px;cursor:pointer;color:var(--ink,#0B0B0F)">›</button></div>
 </div>
 <div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px">
 <sc-for list="{{ weekdays }}" as="w" hint-placeholder-count="7"><div style="font-size:11px;font-weight:600;color:var(--mute,#6B6B72);text-align:center;padding-bottom:3px">{{ w }}</div></sc-for>
@@ -923,7 +923,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <div style="display:flex;gap:14px;align-items:flex-start;padding:6px 24px 20px">
 <div style="flex:none;width:64px;height:64px;border-radius:16px;background:#0B0B0F;box-shadow:inset 0 0 0 0.5px rgba(0,0,0,0.15), 0px 2px 16px 0px rgba(0,0,0,0.15);display:grid;place-items:center"><div style="width:22px;height:22px;border-radius:5px;background:var(--ac2,#C6FF33);color:#0B0B0F"></div></div>
 <div style="flex:1;min-width:0;padding-top:4px"><div style="font-size:17px;font-weight:600;line-height:22px">{{ shareTitle }}</div><div style="font-size:15px;line-height:20px;color:rgba(60,60,67,0.6);margin-top:2px">{{ shareSub }}</div></div>
-<button onClick="{{ closeShare }}" style="flex:none;width:44px;height:44px;border-radius:296px;border:none;background:rgba(120,120,128,0.16);font-size:17px;color:#000;cursor:pointer">✕</button>
+<button onClick="{{ closeShare }}" aria-label="닫기" style="flex:none;width:44px;height:44px;border-radius:296px;border:none;background:rgba(120,120,128,0.16);font-size:17px;color:#000;cursor:pointer">✕</button>
 </div>
 <div style="padding:0 24px"><div style="height:1px;background:rgba(60,60,67,0.18)"></div></div>
 <div style="display:flex;gap:14px;padding:14px 24px 20px">
