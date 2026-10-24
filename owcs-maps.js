@@ -68,7 +68,7 @@
       if (tgt && x.winner === 'b' && (sb == null || sb < tgt)) { sb = tgt; sa = Math.min(sa || 0, tgt - 1); }
       const score = sa != null && sb != null ? (x.winner === 'b' ? pts(sb, push) + ' : ' + pts(sa, push) : pts(sa, push) + ' : ' + pts(sb, push)) : '';
       // tank always first: a hand-entered comp came in damage, damage, tank (10-23 CB vs O2 map 1)
-      const comps = x.comps ? ['a', 'b'].map((t) => ({ team: m[t], win: !SP && x.winner === t,
+      const comps = x.comps ? ['a', 'b'].map((t) => ({ team: m[t], logo: logoOf(m[t]), win: !SP && x.winner === t,
         picks: tankFirst(x.comps[t] || []).map(([pl, h]) => ({ pl, h, bg: heroBg(h), txt: HERO_IMG[heroKey(h)] ? '' : heroCode(h) })) })) : [];
       return { no: pad(x.no), name: mapName(x.map), mode: x.mode + (x.time ? ' · ' + x.time : ''),
         winner: SP ? '?' : (w || '–'), wlogo: SP || !w ? '' : logoOf(w), score: SP || !w ? '' : score,
@@ -77,6 +77,8 @@
         // map still being played: the HUD score so far, team a first like the rows below (Control 1 : 1).
         // Not on Push: its mid-map number is a distance that swings back and forth, so the chip stands alone
         liveScore: SP || !recording || push || x.sa == null || x.sb == null ? '' : m.a + ' ' + pts(x.sa) + ' : ' + pts(x.sb) + ' ' + m.b,
+        // the same chip in parts, each team's logo beside its name (user 10-24: a team name always has its logo)
+        liveA: m.a, liveB: m.b, liveLogoA: logoOf(m.a), liveLogoB: logoOf(m.b), livePts: pts(x.sa) + ' : ' + pts(x.sb),
         liveScoreShort: SP || !recording || push || x.sa == null || x.sb == null ? '' : pts(x.sa) + ' : ' + pts(x.sb),
         done: !!w || m.st === 'done', recording, bg: mapBg(x.map), bgS: mapBg(x.map, true),
         chev: open ? '−' : '+', isOpen: open, expanded: open ? 'true' : 'false',   // expanded: aria-expanded on the row's button
@@ -86,7 +88,7 @@
         recNoteShort: recording ? '세트가 끝나면 조합이 올라와요.' : '첫 조합 기록 없음',
         // replay code (community sheet): a small copy chip at the right end of the last ban card; its own row only
         // when the map has no bans to sit beside
-        bans: x.bans.map((b, i, all) => ({ k: b.t === x.banFirst ? '선벤' : '후벤', team: m[b.t] || '?', h: b.code, name: heroName(b.h), bg: heroBg(b.h), txt: HERO_IMG[heroKey(b.h)] ? '' : b.code,
+        bans: x.bans.map((b, i, all) => ({ k: b.t === x.banFirst ? '선벤' : '후벤', team: m[b.t] || '?', logo: logoOf(m[b.t]), h: b.code, name: heroName(b.h), bg: heroBg(b.h), txt: HERO_IMG[heroKey(b.h)] ? '' : b.code,
           rc: i === all.length - 1 ? x.replay || '' : '', copy: (e) => copyReplay(e) })),
         replay: x.replay || '', hasReplay: !!x.replay, showReplay: open && !!x.replay && !(showBans && x.bans.length),
         showReplayRow: open && !!x.replay,   // phone: ban cards are too narrow, the chip gets a slim row under them
