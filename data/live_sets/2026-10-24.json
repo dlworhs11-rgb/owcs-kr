@@ -184,9 +184,7 @@
    "src": "SOOP",
    "heroTs": 1792825459,
    "hudLeft": "CHEESEBURGER",
-   "guessed": [
-    "Knife"
-   ],
+   "guessed": [],
    "comps": {
     "CHEESEBURGER": [
      [
@@ -199,7 +197,7 @@
      ],
      [
       "Profit",
-      "symmetra"
+      "tracer"
      ],
      [
       "Trest",
@@ -221,7 +219,7 @@
      ],
      [
       "Proper",
-      "symmetra"
+      "tracer"
      ],
      [
       "Viol2t",
