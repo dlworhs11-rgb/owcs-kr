@@ -13,7 +13,16 @@
     "CHEESEBURGER": 0,
     "ZETA DIVISION": 0
    },
-   "bans": null,
+   "bans": {
+    "initial": {
+     "team": "Cheeseburger",
+     "hero": "orisa"
+    },
+    "followUp": {
+     "team": "ZETA DIVISION",
+     "hero": "cassidy"
+    }
+   },
    "src": "SOOP"
   }
  ]
