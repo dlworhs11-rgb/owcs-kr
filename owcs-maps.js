@@ -49,13 +49,13 @@
       const w = x.winner ? m[x.winner] : null;
       const recording = !w && m.st === 'live';
       const key = m.id + '-' + x.no, open = !!o.isOpen(key);
-      // copy the code; the button's [data-l] label (or the button) says 복사됨 for 1.5 s
+      // copy the code; the button's [data-l] label (or the button) says 복사 완료 for 1.5 s
       const copyReplay = (e) => {
         if (e && e.stopPropagation) e.stopPropagation();
         // rapid clicks: keep the first label and restart one timer, so the label always comes back
         const b = e && e.currentTarget, l = b && (b.querySelector('[data-l]') || b);
         if (l && l._was == null) l._was = l.textContent;
-        const done = () => { if (window.owcsSay) window.owcsSay('복사됨'); if (l) { l.textContent = '복사됨'; clearTimeout(l._t);
+        const done = () => { if (window.owcsSay) window.owcsSay('복사 완료'); if (l) { l.textContent = '복사 완료'; clearTimeout(l._t);
           l._t = setTimeout(() => { l.textContent = l._was; l._was = null; }, 1500); } };
         if (navigator.clipboard) navigator.clipboard.writeText(x.replay).then(done, done); else done();
       };
@@ -84,8 +84,8 @@
         chev: open ? '−' : '+', isOpen: open, expanded: open ? 'true' : 'false',   // expanded: aria-expanded on the row's button
         showBans: open && showBans && x.bans.length > 0, showComps: open && comps.length > 0,
         showRec: open && !comps.length && !o.noComps, comps,
-        recNote: recording ? '기록 중이에요. 세트가 끝나면 양 팀 조합이 올라와요.' : '이 세트의 첫 조합 기록이 아직 없어요.',
-        recNoteShort: recording ? '세트가 끝나면 조합이 올라와요.' : '첫 조합 기록 없음',
+        recNote: recording ? '기록 중. 세트 종료 후 양 팀 조합 공개' : '이 세트의 첫 조합 기록 없음',
+        recNoteShort: recording ? '세트 종료 후 조합 공개' : '첫 조합 기록 없음',
         // replay code (community sheet): a small copy chip at the right end of the last ban card; its own row only
         // when the map has no bans to sit beside
         bans: x.bans.map((b, i, all) => ({ k: b.t === x.banFirst ? '선밴' : '후밴', team: m[b.t] || '?', logo: logoOf(m[b.t]), h: b.code, name: heroName(b.h), bg: heroBg(b.h), txt: HERO_IMG[heroKey(b.h)] ? '' : b.code,

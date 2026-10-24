@@ -98,21 +98,21 @@
     const racing = (k) => k.kind === 'maybe' || k.kind === 'lmaybe';
     // what our own remaining matches must give, e.g. "2승 하면", "져도 1세트만 따면", "1승 하고 세트 득실 +2 이상이면"
     const needText = (th, left, goal) => {
-      if (left === 1 && th.k === 0) { const s = th.d + 3; return '남은 1경기는 져도 ' + (s <= 1 ? '1세트만 따면 ' : s + '세트 이상 따면 ') + goal + ' 확정.'; }
-      if (th.plain || !BYSETS) return '남은 ' + left + '경기 중 ' + th.k + '승 하면 ' + goal + ' 확정.';
-      return '남은 ' + left + '경기 중 ' + th.k + '승 하고 세트 득실 합계 ' + (th.d > 0 ? '+' : '') + th.d + ' 이상이면 ' + goal + ' 확정.';
+      if (left === 1 && th.k === 0) { const s = th.d + 3; return '남은 1경기는 져도 ' + (s <= 1 ? '1세트만 따면 ' : s + '세트 이상 따면 ') + goal + ' 확정'; }
+      if (th.plain || !BYSETS) return '남은 ' + left + '경기 중 ' + th.k + '승 하면 ' + goal + ' 확정';
+      return '남은 ' + left + '경기 중 ' + th.k + '승, 세트 득실 합계 ' + (th.d > 0 ? '+' : '') + th.d + ' 이상이면 ' + goal + ' 확정';
     };
     const caseKind = (c, left) => {
-      if (c.unknown) return { tag: '계산 불가', kind: 'unknown', note: '남은 경기가 너무 많아 경우의 수를 계산하지 않았어요.' };
-      if (c.worst && c.worst <= D.playoffs) return { tag: '플레이오프 확정', kind: 'sure', note: '남은 경기 결과와 관계없이 1–' + D.playoffs + '위 안이에요.' };
-      if (c.best > D.lcq) return { tag: '탈락', kind: 'out', note: '남은 경기를 모두 이겨도 ' + D.lcq + '위 안에 들 수 없어요.' };
+      if (c.unknown) return { tag: '계산 불가', kind: 'unknown', note: '남은 경기가 많아 경우의 수 계산 안 함' };
+      if (c.worst && c.worst <= D.playoffs) return { tag: '플레이오프 확정', kind: 'sure', note: '남은 경기 결과와 관계없이 1–' + D.playoffs + '위 확정' };
+      if (c.best > D.lcq) return { tag: '탈락', kind: 'out', note: '남은 경기를 모두 이겨도 ' + D.lcq + '위 안 진입 불가' };
       if (c.best <= D.playoffs) {
-        const lcq = c.worst <= D.lcq ? ' 최소 라스트 찬스 예선은 확정이에요.' : '';
-        const need = c.needPO ? needText(c.needPO, left, '플레이오프') : '다른 팀 결과와 세트 득실에 따라 플레이오프가 갈려요.';
+        const lcq = c.worst <= D.lcq ? ' 최소 LCQ 확정' : '';
+        const need = c.needPO ? needText(c.needPO, left, '플레이오프') : '다른 팀 결과와 세트 득실에 따라 결정';
         return { tag: '플레이오프 경쟁', kind: 'maybe', note: need + lcq };
       }
-      if (c.worst <= D.lcq) return { tag: 'LCQ 확정', kind: 'lsure', note: '플레이오프 직행은 어렵지만 라스트 찬스 예선은 확정이에요.' };
-      return { tag: 'LCQ 경쟁', kind: 'lmaybe', note: c.needLCQ ? needText(c.needLCQ, left, D.lcq + '위 안') : '다른 팀 결과에 따라 ' + D.lcq + '위 안에 들 수 있어요.' };
+      if (c.worst <= D.lcq) return { tag: 'LCQ 확정', kind: 'lsure', note: '플레이오프 직행은 어렵지만 LCQ 확정' };
+      return { tag: 'LCQ 경쟁', kind: 'lmaybe', note: c.needLCQ ? needText(c.needLCQ, left, D.lcq + '위 안') : '다른 팀 결과에 따라 ' + D.lcq + '위 안 진입 가능' };
     };
     const caseOf = (a) => {
       const k = caseKind(CASES[a] || {}, LEFT.filter((m) => m.a === a || m.b === a).length);

@@ -41,7 +41,7 @@ h4 small{font-weight:700;color:var(--i-mute);margin-left:6px}
 .days::-webkit-scrollbar{display:none}
 .days button{flex:none;height:40px;padding:0 14px;border-radius:12px;border:1px solid var(--i-line);background:var(--i-card);color:var(--i-ink);font:inherit;font-size:13.5px;font-weight:800;cursor:pointer}
 .days button.on{background:var(--i-ink);color:var(--i-card);border-color:var(--i-ink)}
-.days button.today::after{content:' · 오늘';color:var(--i-ac)}
+.days button.today::after{content:' (오늘)';color:var(--i-ac)}
 .days button.on.today::after{color:var(--i-ac2)}
 .ms{display:flex;flex-direction:column;gap:8px;margin-top:10px;max-width:920px}
 .m{border-radius:16px;background:var(--i-card);border:1px solid var(--i-line);overflow:hidden}
@@ -176,20 +176,20 @@ h4 small{font-weight:700;color:var(--i-mute);margin-left:6px}
       } else if (!started && !over) {
         extra = '<div class="cd">' + this.countdown() + '</div>';
       }
-      const hero = '<div class="hero">' + kick + '<div class="nm">' + esc(e.ko) + '</div><div class="meta">' + esc(dates) + (city ? ' · ' + esc(city) : '') + ' · 한국 시간</div>' + extra + '</div>';
+      const hero = '<div class="hero">' + kick + '<div class="nm">' + esc(e.ko) + '</div><div class="meta">' + esc(dates) + (city ? ' / ' + esc(city) : '') + ' (KST 기준)</div>' + extra + '</div>';
 
       // teams: Korean teams first
       const teams = e.teams.slice().sort((x, y) => (y.kr - x.kr) || x.a.localeCompare(y.a));
       const teamsH = '<h4>참가 팀<small>' + (teams.length ? teams.length + '팀' : '') + '</small></h4>' + (teams.length
         ? '<div class="teams">' + teams.map((t) => '<div class="tm' + (t.kr ? ' kr' : '') + '"><i class="lg" ' + this.logo(t.a, DK) + '></i>' + esc(t.a) + (t.kr ? '<em>KR</em>' : '') + '</div>').join('') + '</div>'
-        : '<div class="tbd">참가 팀이 정해지면 여기에 나와요.</div>');
+        : '<div class="tbd">참가 팀 미정</div>');
 
       // matches of the picked day
       let dayH = '';
       if (days.length) {
         const tabs = '<div class="days">' + days.map((d) => '<button data-day="' + d + '" class="' + (d === this.day ? 'on' : '') + (d === today ? ' today' : '') + '">' + md(d) + ' (' + dow(d) + ')</button>').join('') + '</div>';
         const list = ms.filter((m) => m.day === this.day);
-        dayH = '<h4>경기</h4>' + tabs + '<div class="ms">' + (list.length ? list.map((m) => this.matchCard(m, SP, DK)).join('') : '<div class="empty">이날은 경기가 없어요.</div>') + '</div>';
+        dayH = '<h4>경기</h4>' + tabs + '<div class="ms">' + (list.length ? list.map((m) => this.matchCard(m, SP, DK)).join('') : '<div class="empty">경기 없음</div>') + '</div>';
       }
 
       // bracket like the home page's (owcs-bracket.js): one section at a time (A조 · B조 · 플레이오프), each lane a tree
@@ -205,9 +205,9 @@ h4 small{font-weight:700;color:var(--i-mute);margin-left:6px}
       const cur = secs.find((x) => x.n === this.sec);
       const bracket = cur ? '<h4>대진표</h4>' + (secs.length > 1 ? '<div class="pick">' + secs.map((x) => '<button data-sec="' + esc(x.n) + '" class="' + (x.n === this.sec ? 'on' : '') + '">' + esc(label(x.n)) + '</button>').join('') + '</div>' : '') + this.lanes(cur.ms, SP, DK) : '';
 
-      // the day tab's ' · 오늘' is CSS content, which the page translator cannot reach
+      // the day tab's ' (오늘)' is CSS content, which the page translator cannot reach
       const todayTxt = window.OWCSi18n ? window.OWCSi18n.t('오늘') : '오늘';
-      this.shadowRoot.innerHTML = '<style>' + CSS.replace("' · 오늘'", JSON.stringify(' · ' + todayTxt)) + '</style><div class="w' + (DK ? ' dark' : '') + '">' + hero + teamsH + dayH + bracket + '</div>';
+      this.shadowRoot.innerHTML = '<style>' + CSS.replace("' (오늘)'", JSON.stringify(' (' + todayTxt + ')')) + '</style><div class="w' + (DK ? ' dark' : '') + '">' + hero + teamsH + dayH + bracket + '</div>';
       this.shadowRoot.querySelectorAll('[data-sec]').forEach((b) => b.addEventListener('click', () => { this.sec = b.dataset.sec; this.render(); }));
       this.shadowRoot.querySelectorAll('[data-day]').forEach((b) => b.addEventListener('click', () => { this.day = b.dataset.day; this.render(); }));
       this.shadowRoot.querySelectorAll('[data-open]').forEach((b) => b.addEventListener('click', () => {
@@ -218,7 +218,7 @@ h4 small{font-weight:700;color:var(--i-mute);margin-left:6px}
     matchCard(m, SP, DK) {
       const shown = !SP && (m.played || m.live) && m.a !== 'TBD';
       const top = Math.max(m.sa || 0, m.sb || 0), done = m.played && !m.live;
-      const side = (a, s, cls) => '<div class="side ' + cls + (shown && done && s < top ? ' lose' : '') + '"><i class="lg" ' + this.logo(a, DK) + '></i><span>' + esc(a === 'TBD' ? '미정' : a) + '</span></div>';
+      const side = (a, s, cls) => '<div class="side ' + cls + (shown && done && s < top ? ' lose' : '') + '"><i class="lg" ' + this.logo(a, DK) + '></i><span>' + esc(a === 'TBD' ? 'TBD' : a) + '</span></div>';
       const num = (s) => '<span class="' + (shown && done && s === top ? 'win' : shown && done ? 'lo' : '') + '">' + s + '</span>';
       const sc = shown ? num(m.sa) + ' : ' + num(m.sb) : 'vs';
       const kr = this.kr(m.a) || this.kr(m.b), open = this.open.has(m.id);
@@ -231,7 +231,7 @@ h4 small{font-weight:700;color:var(--i-mute);margin-left:6px}
         return '<div class="mp" style="background:' + (MP.mapBg ? MP.mapBg(x.map, true) : '#15151B') + '"><span class="no">' + String(x.no).padStart(2, '0') + '</span><span class="nmp"><b>' + esc(MP.mapName ? MP.mapName(x.map) : x.map) + '</b><small>' + esc(x.mode) + '</small></span>'
           + '<span class="wn">' + (SP || !w ? '' : '<i class="lg" ' + this.logo(w, true) + '></i>' + esc(w)) + '</span><span class="ms2">' + esc(sc2) + '</span>'
           + (bans ? '<span class="bans">' + bans + '</span>' : '') + '</div>';
-      }).join('') : '<div class="empty">세트 정보가 아직 없어요.</div>';
+      }).join('') : '<div class="empty">세트 정보 없음</div>';
       return '<div class="m' + (kr ? ' kr' : '') + (m.live ? ' live' : '') + (open ? ' open' : '') + '"><button class="mrow" data-open="' + m.id + '">'
         + '<span class="mt">' + (m.live ? '<em>LIVE</em>' : '<b>' + esc(m.time) + '</b>') + esc(m.round) + '</span>'
         + side(m.a, m.sa, 'a') + '<span class="sc">' + sc + '<small>' + ft(m) + '</small></span>' + side(m.b, m.sb, 'b') + '</button><div class="det">' + det + '</div></div>';
@@ -262,7 +262,7 @@ h4 small{font-weight:700;color:var(--i-mute);margin-left:6px}
     box(m, SP, DK, short) {
       const shown = !SP && (m.played || m.live) && m.a !== 'TBD';
       const top = Math.max(m.sa || 0, m.sb || 0), done = m.played && !m.live;
-      const row = (a, s) => '<div class="r' + (a === 'TBD' ? ' tbd' : shown && done && s < top ? ' lose' : '') + '"><i ' + this.logo(a, DK) + '></i><b>' + esc(a === 'TBD' ? '미정' : a) + '</b><s>' + (shown ? s : '') + '</s></div>';
+      const row = (a, s) => '<div class="r' + (a === 'TBD' ? ' tbd' : shown && done && s < top ? ' lose' : '') + '"><i ' + this.logo(a, DK) + '></i><b>' + esc(a === 'TBD' ? 'TBD' : a) + '</b><s>' + (shown ? s : '') + '</s></div>';
       const kr = this.kr(m.a) || this.kr(m.b);
       const when = short ? md(m.day) : md(m.day) + ' ' + m.time;
       return '<div class="bm' + (kr ? ' kr' : '') + (m.live ? ' live' : '') + '"><div class="mh">' + (m.live ? '<em>LIVE</em>' : '<span>' + esc(when) + '</span>') + '<span>' + ft(m) + '</span></div>' + row(m.a, m.sa) + row(m.b, m.sb) + '</div>';

@@ -167,7 +167,7 @@
       const key = this.selKey(), S = all.find((s) => s.label === key) || all[0], isCur = S === all[0] && !(S.champion);
       const byId = Object.fromEntries(((window.OWCS || {}).matches || []).map((m) => [m.id, m]));
       const logo = (a) => { const t = team(a); const u = t && (dark ? (t.logoDark || t.logo) : t.logo); return u ? 'style="background-image:url(\'' + esc(u) + '\')"' : 'class="none"'; };
-      const name = (r) => { const t = team(r.a); return r.a === 'TBD' ? (r.ph || '미정') : t ? t.a : (r.n || r.a); };
+      const name = (r) => { const t = team(r.a); return r.a === 'TBD' ? (r.ph || 'TBD') : t ? t.a : (r.n || r.a); };
 
       // next postseason matches (all that start at the same time), marked once the regular season is over
       const OW = window.OWCS || {}, q = new URLSearchParams(location.search);
@@ -207,7 +207,7 @@
         if (/all-star/i.test(c.key)) { extra.push(...c.matches.map((x) => ({ ...x, round: c.title }))); return; }
         const ms = c.matches.filter((x) => !/3위/.test(x.round));
         third.push(...c.matches.filter((x) => /3위/.test(x.round)));
-        if (ms.length) poCols.push({ title: c.title.replace(/ · 3위전$/, ''), ms });
+        if (ms.length) poCols.push({ title: c.title.replace(/ (·|\/) 3위전$/, ''), ms });
       });
       const seed = S.columns.find((c) => c.key === 'seed'), lcq = S.columns.find((c) => c.key === 'lcq');
 
@@ -219,7 +219,7 @@
       if (lcq) {
         const up = lcq.matches.find((x) => /승자조 결승/.test(x.round)), semi = lcq.matches.find((x) => /패자조 준결승/.test(x.round)),
           fin = lcq.matches.find((x) => /패자조 결승/.test(x.round));
-        lcqHtml = '<div class="box pre lane">' + lane('5–8위', '라스트 찬스', '4팀 중 2팀만 플레이오프에 올라가요', '5·6위는 두 번, 7·8위는 한 번 지면 탈락 · 올라가면 6강', [['', '2팀 6강 진출'], ['ko', '2팀 탈락']])
+        lcqHtml = '<div class="box pre lane">' + lane('5–8위', 'LCQ', '4팀 중 2팀만 플레이오프 진출', '5·6위는 2패, 7·8위는 1패 시 탈락 / 진출 시 6강', [['', '2팀 6강 진출'], ['ko', '2팀 탈락']])
           + (up && semi && fin
             ? tree([{ title: '첫 경기', ms: [up, semi], opts: [{ round: true, short: true, title: '이기면 바로 진출', ph: ['5위', '6위'] }, { round: true, short: true, title: '지면 탈락', ph: ['7위', '8위'] }] },
                     { title: '마지막 한 자리', ms: [fin], opts: [{ round: true, short: true, title: '이기면 진출', ph: ['5·6위전 패자', '7·8위전 승자'] }] }])
@@ -239,9 +239,9 @@
           + sTeams.map((t, i) => { const tm = team(t.a) || {};
             return '<div class="sr"><em style="background:' + esc(tm.color || 'var(--b-wire)') + '"></em><u>' + (i + 1) + '</u><i ' + logo(t.a) + '></i><b>' + esc(t.a) + (tm.n && tm.n !== t.a ? '<small>' + esc(tm.n) + '</small>' : '') + '</b>'
               + '<span>' + (t.sw != null ? esc(t.sw + '-' + t.sl) : '–') + '</span><span>' + (carry ? esc(t.w + '-' + t.l) : '') + '</span></div>' + (i === 1 ? '<div class="cut"><span>4강 직행</span></div>' : ''); }).join('')
-          + (pre ? '<div class="pend">' + (rsOn ? '정규 리그 진행 중 · 지금 순위라 바뀔 수 있어요' : '결정전 전 · 정규 리그 최종 순위') + '</div>' : '') + '</div>' : '';
+          + (pre ? '<div class="pend">' + (rsOn ? '정규 리그 진행 중 (현재 순위 기준)' : '결정전 전 (정규 리그 최종 순위)') + '</div>' : '') + '</div>' : '';
         // the say line is the format, not a claim about the four shown: during the regular season 5th can still climb in
-        seedHtml = '<div class="box pre lane">' + lane('1–4위', carry ? '2차 라운드로빈' : '시드 결정전', '1–4위는 모두 플레이오프 진출 · 자리만 정해요', carry ? '서로 한 번씩 더 붙고, 정규 리그 승패도 합쳐서 순위 계산' : '서로 한 번씩 붙고, 결정전 결과만으로 순위 계산', [['', '1·2위 4강 직행'], ['', '3·4위 6강부터']])
+        seedHtml = '<div class="box pre lane">' + lane('1–4위', carry ? '2차 라운드로빈' : '시드 결정전', '1–4위 모두 플레이오프 진출 (시드만 결정)', carry ? '서로 한 번씩 더 붙고, 정규 리그 승패도 합쳐서 순위 계산' : '서로 한 번씩 붙고, 결정전 결과만으로 순위 계산', [['', '1·2위 4강 직행'], ['', '3·4위 6강부터']])
           + sd + '<div class="st">경기</div><div class="rr">' + seed.matches.map((x) => chip(x, { short: true })).join('') + '</div></div>';
       }
       const poHtml = poCols.length ? '<div class="box main"><div class="h"><b>플레이오프 본선</b><span>' + esc(poCols.map((c) => c.title).join(' → ')) + '</span></div>' + tree(poCols)
@@ -259,18 +259,18 @@
         if (finX) {
           const r = finM ? [[finM.a, finM.sa], [finM.b, finM.sb]] : finX.rows.map((r) => [r.a, r.s]);
           const w = r.find((x) => t && x[0] === t.a) || r[0], l = r.find((x) => x !== w);
-          sub = '결승 ' + w[1] + ' : ' + l[1] + ' ' + l[0] + ' · ' + String(finX.when || '').split(' ')[0];
+          sub = '결승 ' + w[1] + ' : ' + l[1] + ' ' + l[0] + ' (' + String(finX.when || '').split(' ')[0] + ')';
         }
         card = '<div class="cw nop" data-s="' + esc(slug) + '" data-n="' + esc(S.champion) + '">'
-          + '<div class="cb"><i ' + (lg ? 'style="background-image:url(\'' + esc(lg) + '\')"' : '') + '></i><div><span class="ck">CHAMPION · 우승</span><div class="cn">' + esc(S.champion) + '</div><div class="cs">' + esc(sub) + '</div></div></div></div>';
+          + '<div class="cb"><i ' + (lg ? 'style="background-image:url(\'' + esc(lg) + '\')"' : '') + '></i><div><span class="ck">CHAMPION</span><div class="cn">' + esc(S.champion) + '</div><div class="cs">' + esc(sub) + '</div></div></div></div>';
       }
       // nopick: the schedule page's tabs are about this stage only, so the season pills are left out there (10-24)
-      const pick = all.length > 1 && !this.hasAttribute('nopick') ? '<div class="pick">' + all.map((s, i) => '<button data-k="' + esc(s.label) + '" class="' + (s === S ? 'on' : '') + '">' + esc(s.label.replace(/스테이지 /, 'S')) + (i === 0 ? ' · 이번 시즌' : '') + '</button>').join('') + '</div>' : '';
+      const pick = all.length > 1 && !this.hasAttribute('nopick') ? '<div class="pick">' + all.map((s, i) => '<button data-k="' + esc(s.label) + '" class="' + (s === S ? 'on' : '') + '">' + esc(s.label.replace(/스테이지 /, 'S')) + (i === 0 ? ' (이번 시즌)' : '') + '</button>').join('') + '</div>' : '';
       // which tournament this is, big: a stage name never gets lost among the cards below
       const dates = S.start ? S.start.slice(5).replace('-', '.') + ' – ' + (S.end || '').slice(5).replace('-', '.') : '';
       const head = '<div class="top"><div><span class="tag' + (S === all[0] ? '' : ' old') + '">' + (S === all[0] ? '이번 시즌' : '지난 시즌') + '</span>'
-        + '<div class="ttl">' + esc(S.label) + '</div><div class="sub">플레이오프' + (dates ? ' · ' + esc(dates) : '') + '</div></div>' + '</div>';
-      const note = isCur ? '대진은 정규 리그가 끝나면 채워져요' : '';
+        + '<div class="ttl">' + esc(S.label) + '</div><div class="sub">플레이오프' + (dates ? ' ' + esc(dates) : '') + '</div></div>' + '</div>';
+      const note = isCur ? '정규 리그 종료 후 대진 공개' : '';
 
       const part = this.getAttribute('part');
       const road = seedHtml || lcqHtml ? '<div class="grid' + (part === 'road' ? ' one' : '') + '">' + seedHtml + lcqHtml + '</div>' : '';
