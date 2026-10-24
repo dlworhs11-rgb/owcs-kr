@@ -1045,7 +1045,59 @@
      "team": "SEIJI ESPORTS",
      "hero": "orisa"
     }
-   }
+   },
+   "heroTs": 1792843221,
+   "hudLeft": "Poker Face",
+   "guessed": [
+    "D4RT"
+   ],
+   "comps": {
+    "Poker Face": [
+     [
+      "SoLA",
+      "dmon"
+     ],
+     [
+      "SORI",
+      "cassidy"
+     ],
+     [
+      "F1nally",
+      "tracer"
+     ],
+     [
+      "Soae",
+      "jetpack-cat"
+     ],
+     [
+      "Caffeine",
+      "doctrine"
+     ]
+    ],
+    "SEIJI ESPORTS": [
+     [
+      "SENTIER",
+      "dmon"
+     ],
+     [
+      "M1nut2",
+      "cassidy"
+     ],
+     [
+      "D4RT",
+      "reaper"
+     ],
+     [
+      "OFF",
+      "jetpack-cat"
+     ],
+     [
+      "Lavender",
+      "doctrine"
+     ]
+    ]
+   },
+   "compAt": null
   }
  ]
 }
