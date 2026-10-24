@@ -283,6 +283,8 @@
 
   function isDark() { try { return sessionStorage.getItem('owcs-dark') === '1'; } catch (e) { return document.documentElement.hasAttribute('data-owcs-dark'); } }
 
+  // the tickets page is the 직관 안내 itself: no banner there, desktop or phone (10-24)
+  function onTickets() { return !!document.body && document.body.classList.contains('ticket-page'); }
   function ticket() {
     var s = document.createElement('section');
     s.setAttribute('data-owcs-tk', '');
@@ -457,7 +459,7 @@
     var ic = m.querySelector('.ic'), w = headerWidget();
     if (w.parentNode !== ic) ic.insertBefore(w, ic.firstChild);
     var tk = m.nextElementSibling && m.nextElementSibling.matches('[data-owcs-tk]') ? m.nextElementSibling : null;
-    if (!tk) { tk = ticket(); tk.classList.add('m'); host.insertBefore(tk, m.nextSibling); }
+    if (!tk && !onTickets()) { tk = ticket(); tk.classList.add('m'); host.insertBefore(tk, m.nextSibling); }
   }
 
   // the home page on a phone / tablet keeps its own header: the picker goes just left of its ☰ button
@@ -472,6 +474,7 @@
 
   // desktop: the 직관 안내 banner right under the header, where the home page has it
   function placeTicket(h) {
+    if (onTickets()) return;
     var n = h.nextElementSibling;
     if (n && n.matches('[data-owcs-tk]')) return;
     Array.prototype.forEach.call(document.querySelectorAll('[data-owcs-tk]:not(.m)'), function (x) { x.remove(); });
@@ -819,7 +822,7 @@
   var busy = false;
   new MutationObserver(function () {
     // until the 직관 안내 banner is in, place at once (before the first paint): put in 50 ms later it pushed the page down
-    if (!HOME && !document.querySelector('[data-owcs-tk]')) { place(); return; }
+    if (!HOME && !onTickets() && !document.querySelector('[data-owcs-tk]')) { place(); return; }
     if (busy) return;
     busy = true;
     setTimeout(function () { busy = false; place(); }, 50);   // not requestAnimationFrame: it never fires in a background tab
