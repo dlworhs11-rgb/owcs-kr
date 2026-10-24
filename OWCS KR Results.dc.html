@@ -77,7 +77,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 </header>
 <section style="padding:64px 56px 0;background:#F6F6F3">
 <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px">
-<div><div style="font-size:15px;font-weight:700;color:#55555C">결과 / 대진표</div><h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:96px;line-height:.86;margin:12px 0 0">RESULTS</h1></div>
+<div><div style="font-size:15px;font-weight:700;color:#55555C">결과 / 대진표</div><h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:72px;line-height:.86;margin:12px 0 0">RESULTS</h1></div>
 <sc-if value="{{ showStD }}"><div style="position:relative"><button onClick="{{ stToggleD }}" aria-expanded="{{ stExpD }}" style="display:flex;align-items:center;gap:10px;height:48px;padding:0 18px;border-radius:12px;border:1px solid #E6E6E1;background:#fff;font:inherit;font-size:15px;font-weight:600;color:#0B0B0F;cursor:pointer">{{ seasonLabelD }} <span>{{ stChevD }}</span></button>
 <sc-if value="{{ stOpenD }}"><div style="position:absolute;right:0;top:54px;z-index:20;min-width:100%;padding:6px;border-radius:12px;border:1px solid #E6E6E1;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,.12);display:flex;flex-direction:column;gap:2px"><sc-for list="{{ stOpts }}" as="o" hint-placeholder-count="3"><button onClick="{{ o.go }}" style="height:44px;padding:0 14px;border:none;border-radius:8px;background:{{ o.bg }};color:{{ o.fg }};font:inherit;font-size:15px;font-weight:700;text-align:left;white-space:nowrap;cursor:pointer">{{ o.label }}</button></sc-for></div></sc-if></div></sc-if>
 </div>
@@ -196,7 +196,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 </header>
 <section style="position:relative;z-index:5;padding:28px 20px 0;background:#F6F6F3">
 <div style="font-size:14px;font-weight:700;color:#55555C">결과 / 대진표</div>
-<h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:60px;line-height:.86;margin:6px 0 14px">RESULTS</h1>
+<h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:46px;line-height:.86;margin:6px 0 14px">RESULTS</h1>
 <div style="display:flex;gap:6px;margin-top:20px">
 <sc-for list="{{ tabsM }}" as="t" hint-placeholder-count="3">
 <sc-if value="{{ t.on }}"><button data-owcs-tab="" onClick="{{ t.go }}" style="flex:1;height:42px;border:1px solid #0B0B0F;border-radius:12px;background:#0B0B0F;color:#fff;font:inherit;font-size:14px;font-weight:700">{{ t.short }}</button></sc-if>
