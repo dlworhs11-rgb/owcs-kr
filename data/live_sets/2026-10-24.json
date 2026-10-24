@@ -630,6 +630,21 @@
     "T1": 1,
     "Team Falcons": 2
    }
+  },
+  {
+   "banTs": 1792834377,
+   "teams": [
+    "Team Falcons",
+    "T1"
+   ],
+   "game": 4,
+   "map": "Shambali Monastery",
+   "seriesBefore": {
+    "Team Falcons": 1,
+    "T1": 2
+   },
+   "bans": null,
+   "src": "SOOP"
   }
  ]
 }
