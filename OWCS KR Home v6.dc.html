@@ -783,9 +783,11 @@ const restand = () => {
   });
   D.standings = out;
 };
-// backup path: the files the PC pushes to GitHub (raw.githubusercontent caches them up to 5 minutes)
+// backup path: the files the PC pushes to GitHub (raw.githubusercontent caches them up to 5 minutes).
+// Only while the relay below is not connected (the caller checks): owticker.com was left out at the 10-20 move (10-24).
+// A relay that is connected but gets nothing from the PC is still covered by the fast deploy of the same files.
 const liveScores = (today, onChange) => {
-  if (!/github\.io$/.test(location.hostname)) return;
+  if (!/(github\.io|owticker\.com)$/.test(location.hostname)) return;
   const get = (sub) => fetch('https://raw.githubusercontent.com/dlworhs11-rgb/owcs-kr/main/data/' + sub + '/' + today + '.json?t=' + Date.now()).then((r) => (r.ok ? r.json() : null)).catch(() => null);
   Promise.all([get('live_scores'), get('live_cast'), get('live_sets'), get('live_admin')]).then(([sc, ca, se, ad]) => {
     if (ad && !LIVE.relay.admin) LIVE.admin = ad;
@@ -930,7 +932,7 @@ class Component extends DCLogic {
       // swapped in place, no reload: a reload reuses the browser's cached owcs-data.js (10 min), so it looked stale
       // and the page reloaded again and again
       owcsDataPoll((got) => { if (got && window.OWCS && window.OWCS.generated > D.generated) { Object.assign(D, window.OWCS); applyLive(dayOf(nowMs())); this.setState((st) => ({ rev: st.rev + 1 })); } });
-      if (on) try { liveScores(today, () => this.setState((st) => ({ rev: st.rev + 1 }))); } catch (e) {}
+      if (on && !(this.es && this.es.readyState === 1)) try { liveScores(today, () => this.setState((st) => ({ rev: st.rev + 1 }))); } catch (e) {}
     };
     this.r = setTimeout(poll, 10000);
     this.onVis = () => { if (!document.hidden) { clearTimeout(this.r); poll(); } };
