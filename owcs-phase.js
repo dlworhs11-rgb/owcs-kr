@@ -117,7 +117,7 @@
     var html = document.documentElement, name = e.ko.replace(/^\d{4}\s*/, '');
     html.setAttribute('data-owcs-intl', e.key);
     if (window.customElements && !customElements.get('owcs-intl') && !document.querySelector('script[src*="owcs-intl.js"]')) {
-      var sc = document.createElement('script'); sc.src = 'owcs-intl.js?v=' + encodeURIComponent(D.generated || ''); (document.head || html).appendChild(sc);   // only pages in this mode load it
+      var sc = document.createElement('script'); sc.src = 'owcs-intl.js?v=' + encodeURIComponent(window.__owcsIntlV || D.generated || ''); (document.head || html).appendChild(sc);   // only pages in this mode load it
     }
     var css = document.createElement('style');
     css.textContent = 'html[data-owcs-intl] #dc-root [data-today]{display:none !important}' +

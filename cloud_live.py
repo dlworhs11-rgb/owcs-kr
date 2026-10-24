@@ -209,9 +209,13 @@ def carry_over(prev_matches, matches):
 def stamp_scripts(out, fixed=None):
     """add ?v=<content hash> to every <script src="./x.js"> of the built pages, so a deploy is picked up at once.
     fixed: {file: version} used instead of the file's hash (owcs-data.js: content_hash, the same v as owcs-ver.json).
-    The owcs-test.js tag is dropped: it returns at once on the public site (10-24), so it was one wasted request."""
+    The owcs-test.js tag is dropped: it returns at once on the public site (10-24), so it was one wasted request.
+    owcs-phase.js loads owcs-intl.js by itself (international mode): window.__owcsIntlV, set before it, is that file's hash,
+    so the file is downloaded again only when it changed, not on every build (it used the build time)."""
     import hashlib
     ver = dict(fixed or {})
+    intl_p = os.path.join(out, 'owcs-intl.js')
+    intl_v = hashlib.sha1(open(intl_p, 'rb').read()).hexdigest()[:8] if os.path.isfile(intl_p) else None
     def tag(m):
         f = m.group(2)
         p = os.path.join(out, f)
@@ -224,6 +228,8 @@ def stamp_scripts(out, fixed=None):
             with open(p, encoding='utf-8') as fh:
                 text = fh.read()
             new = re.sub(r'[ \t]*<script src="(?:\./)?owcs-test\.js"></script>\r?\n?', '', text)
+            if intl_v:
+                new = re.sub(r'(<script src="(?:\./)?owcs-phase\.js")', f'<script>window.__owcsIntlV="{intl_v}"</script>\n\\1', new, count=1)
             new = re.sub(r'(<script src="(?:\./)?)([\w.-]+\.js)"', tag, new)
             if new != text:
                 with open(p, 'w', encoding='utf-8', newline='') as fh:
