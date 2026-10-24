@@ -181,7 +181,59 @@
      "hero": "dmon"
     }
    },
-   "src": "SOOP"
+   "src": "SOOP",
+   "heroTs": 1792825459,
+   "hudLeft": "CHEESEBURGER",
+   "guessed": [
+    "Knife"
+   ],
+   "comps": {
+    "CHEESEBURGER": [
+     [
+      "Belosrea",
+      "hazard"
+     ],
+     [
+      "K4NE",
+      "cassidy"
+     ],
+     [
+      "Profit",
+      "symmetra"
+     ],
+     [
+      "Trest",
+      "kiriko"
+     ],
+     [
+      "TenTen",
+      "jetpack-cat"
+     ]
+    ],
+    "ZETA DIVISION": [
+     [
+      "Bernar",
+      "orisa"
+     ],
+     [
+      "Knife",
+      "sojourn"
+     ],
+     [
+      "Proper",
+      "symmetra"
+     ],
+     [
+      "Viol2t",
+      "jetpack-cat"
+     ],
+     [
+      "Shu",
+      "ana"
+     ]
+    ]
+   },
+   "compAt": null
   }
  ]
 }
