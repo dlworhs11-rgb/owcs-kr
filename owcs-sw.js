@@ -11,10 +11,14 @@ var OFFLINE = '<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta 
   '</div></body></html>';
 
 self.addEventListener('install', function () { self.skipWaiting(); });
-self.addEventListener('activate', function (e) { e.waitUntil(self.clients.claim()); });
+// navigation preload (10-24): the page request starts while the worker boots instead of after it; still no caching
+self.addEventListener('activate', function (e) {
+  var np = self.registration.navigationPreload;
+  e.waitUntil(Promise.all([self.clients.claim(), np ? np.enable().catch(function () {}) : null]));
+});
 self.addEventListener('fetch', function (e) {
   if (e.request.mode !== 'navigate') return;   // scripts, data, images: the browser's own handling
-  e.respondWith(fetch(e.request).catch(function () {
+  e.respondWith(Promise.resolve(e.preloadResponse).then(function (r) { return r || fetch(e.request); }).catch(function () {
     return new Response(OFFLINE, { headers: { 'Content-Type': 'text/html; charset=utf-8' } });
   }));
 });
