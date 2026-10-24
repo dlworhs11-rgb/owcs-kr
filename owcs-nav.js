@@ -309,8 +309,8 @@
     s.setAttribute('data-owcs-tk', '');
     var no = (window.OWCS && window.OWCS.stageNo) || 3;
     s.innerHTML = '<a href="https://www.ticketlink.co.kr/sports/1262/631" target="_blank" rel="noopener">' +
-      '<img src="assets/qr-ticket-black.png" alt="직관 예매 QR"><span><span class="k">직관 안내 · <span class="kd">OWCS ASIA : </span>KOREA STAGE ' + no + '</span>' +
-      '<span class="v">WDG STUDIO HONGDAE에서 직관!</span><span class="s">눌러서 티켓링크에서 예매 ↗</span></span><span class="b">예매하기 ↗</span></a>';
+      '<img src="assets/qr-ticket-black.png" alt="직관 예매 QR"><span><span class="k">직관 안내 - <span class="kd">OWCS ASIA : </span>KOREA STAGE ' + no + '</span>' +
+      '<span class="v">WDG STUDIO HONGDAE에서 직관!</span><span class="s">티켓링크에서 예매 ↗</span></span><span class="b">예매하기 ↗</span></a>';
     return s;
   }
 
@@ -530,30 +530,30 @@
   // top right in Chrome / iPad. In-app browsers (KakaoTalk, Instagram ...) can't install at all: the guide sends the
   // page to the real browser. Icons: assets/app (the logo).
   var AT = {
-    ko: { add: '앱 설치', addS: '앱', ok: '알겠어요',
+    ko: { add: '앱 설치', addS: '앱', ok: '확인',
       tip: '홈 화면에 추가하는 법', more: '더보기', share: '공유', home: '홈 화면에 추가', menu: '메뉴', fin: '추가',
-      hMore: '<b>⋯</b> 버튼. 안 보이면 주소창의 <b>☰</b> 아이콘', hShareM: '열린 메뉴의 맨 위', hShareB: '네모에 위쪽 화살표 모양. 화면 위나 아래에 있어요', hShareT: '네모에 위쪽 화살표 모양. 화면 위나 아래에 있어요',
-      hHome: '목록을 아래로 조금 내리면 있어요', hFin: '오른쪽 위. 누르면 끝!', hMenu: '화면 오른쪽 위 ⋮ 버튼', hHomeA: '<b>앱 설치</b>라고 되어 있을 수도 있어요',
-      keep: '이 안내는 위에 그대로 있어요. 보면서 하나씩 따라 하세요', nohome: '공유 목록에 <b>홈 화면에 추가</b>가 없으면: 목록 속 <b>Safari에서 열기</b>를 누른 뒤 처음부터 다시 해 주세요',
-      inT: '브라우저에서 열어 주세요', inapp: '이 앱 안의 화면에서는 설치가 안 돼요. <b>⋯</b> 메뉴나 공유 버튼에서 <b>Safari에서 열기</b>(또는 <b>브라우저로 열기</b>)를 누른 뒤, 다시 <b>앱</b> 버튼을 눌러 주세요.', ext: '브라우저로 열기' },
-    en: { add: 'Get app', addS: 'App', ok: 'Got it',
+      hMore: '<b>⋯</b> 버튼. 안 보이면 주소창의 <b>☰</b> 아이콘', hShareM: '열린 메뉴의 맨 위', hShareB: '네모에 위쪽 화살표 모양 (화면 위 또는 아래)', hShareT: '네모에 위쪽 화살표 모양 (화면 위 또는 아래)',
+      hHome: '목록을 아래로 조금 내리면 있음', hFin: '오른쪽 위. 누르면 끝!', hMenu: '화면 오른쪽 위 ⋮ 버튼', hHomeA: '<b>앱 설치</b>로 표시될 수도 있음',
+      keep: '안내를 따라 등록하세요', nohome: '공유 목록에 <b>홈 화면에 추가</b>가 없으면 <b>Safari에서 열기</b> 후 처음부터 다시 진행',
+      inT: '브라우저에서 열기', inapp: '앱 안 화면에서는 설치할 수 없습니다. <b>⋯</b> 메뉴나 공유 버튼에서 <b>Safari에서 열기</b>(또는 <b>브라우저로 열기</b>)를 누른 뒤 다시 <b>앱</b> 버튼을 눌러 주세요.', ext: '브라우저로 열기' },
+    en: { add: 'Get app', addS: 'App', ok: 'OK',
       tip: 'How to add it to your home screen', more: 'More', share: 'Share', home: 'Add to Home Screen', menu: 'Menu', fin: 'Add',
-      hMore: 'The <b>⋯</b> button. If there is none, the <b>☰</b> icon in the address bar', hShareM: 'Top of the menu that opens', hShareB: 'A square with an up arrow, at the top or bottom of the screen', hShareT: 'A square with an up arrow, at the top or bottom of the screen',
-      hHome: 'Scroll the list down a little', hFin: 'Top right, and you\'re done!', hMenu: 'The ⋮ button at the top right', hHomeA: 'It may say <b>Install app</b>',
-      keep: 'This guide stays up here. Follow it step by step', nohome: 'No <b>Add to Home Screen</b> in the share list? Tap <b>Open in Safari</b> there, then start again',
-      inT: 'Open in your browser', inapp: 'Apps can\'t be installed from this in-app browser. In the <b>⋯</b> menu or the share button, choose <b>Open in Safari</b> (or <b>Open in browser</b>), then tap <b>App</b> again.', ext: 'Open in browser' },
+      hMore: 'The <b>⋯</b> button. If there is none, the <b>☰</b> icon in the address bar', hShareM: 'Top of the menu that opens', hShareB: 'A square with an up arrow (top or bottom of the screen)', hShareT: 'A square with an up arrow (top or bottom of the screen)',
+      hHome: 'Scroll the list down a little', hFin: 'Top right, and you\'re done!', hMenu: 'The ⋮ button at the top right', hHomeA: 'May show as <b>Install app</b>',
+      keep: 'Follow the guide to add it', nohome: 'No <b>Add to Home Screen</b> in the share list? <b>Open in Safari</b>, then start over',
+      inT: 'Open in browser', inapp: 'Can\'t install from this in-app screen. In the <b>⋯</b> menu or the share button, choose <b>Open in Safari</b> (or <b>Open in browser</b>), then tap <b>App</b> again.', ext: 'Open in browser' },
     ja: { add: 'アプリ', addS: 'アプリ', ok: 'OK',
       tip: 'ホーム画面への追加方法', more: 'その他', share: '共有', home: 'ホーム画面に追加', menu: 'メニュー', fin: '追加',
-      hMore: '<b>⋯</b>ボタン。なければアドレスバーの<b>☰</b>アイコン', hShareM: '開いたメニューの一番上', hShareB: '四角に上向き矢印のアイコン。画面の上か下にあります', hShareT: '四角に上向き矢印のアイコン。画面の上か下にあります',
-      hHome: 'リストを少し下にスクロール', hFin: '右上。これで完了！', hMenu: '右上の ⋮ ボタン', hHomeA: '<b>アプリをインストール</b>の場合も',
-      keep: 'この案内は上に表示されたままです', nohome: '共有リストに<b>ホーム画面に追加</b>がない場合：<b>Safariで開く</b>を押して最初からやり直してください',
-      inT: 'ブラウザで開いてください', inapp: 'このアプリ内ブラウザではインストールできません。<b>⋯</b>メニューか共有ボタンから<b>Safariで開く</b>（または<b>ブラウザで開く</b>）を選び、もう一度<b>アプリ</b>を押してください。', ext: 'ブラウザで開く' },
-    zh: { add: '安装', addS: '安装', ok: '知道了',
+      hMore: '<b>⋯</b>ボタン。なければアドレスバーの<b>☰</b>アイコン', hShareM: '開いたメニューの一番上', hShareB: '四角に上向き矢印のアイコン（画面の上または下）', hShareT: '四角に上向き矢印のアイコン（画面の上または下）',
+      hHome: 'リストを少し下にスクロール', hFin: '右上。これで完了！', hMenu: '右上の ⋮ ボタン', hHomeA: '<b>アプリをインストール</b>と表示される場合も',
+      keep: '案内に従って登録してください', nohome: '共有リストに<b>ホーム画面に追加</b>がなければ<b>Safariで開く</b>から最初からやり直し',
+      inT: 'ブラウザで開く', inapp: 'アプリ内の画面ではインストールできません。<b>⋯</b>メニューか共有ボタンから<b>Safariで開く</b>（または<b>ブラウザで開く</b>）を選び、もう一度<b>アプリ</b>を押してください。', ext: 'ブラウザで開く' },
+    zh: { add: '安装', addS: '安装', ok: '确定',
       tip: '如何添加到主屏幕', more: '更多', share: '分享', home: '添加到主屏幕', menu: '菜单', fin: '添加',
-      hMore: '<b>⋯</b>按钮。没有的话点地址栏里的<b>☰</b>图标', hShareM: '打开的菜单最上方', hShareB: '方框加向上箭头的图标，在屏幕顶部或底部', hShareT: '方框加向上箭头的图标，在屏幕顶部或底部',
+      hMore: '<b>⋯</b>按钮。没有的话点地址栏里的<b>☰</b>图标', hShareM: '打开的菜单最上方', hShareB: '方框加向上箭头的图标（屏幕顶部或底部）', hShareT: '方框加向上箭头的图标（屏幕顶部或底部）',
       hHome: '将列表向下滑一点', hFin: '右上角，完成！', hMenu: '右上角的 ⋮ 按钮', hHomeA: '也可能显示为<b>安装应用</b>',
-      keep: '此说明会一直显示在上方', nohome: '分享列表里没有<b>添加到主屏幕</b>？请点<b>在 Safari 中打开</b>，然后重新开始',
-      inT: '请在浏览器中打开', inapp: '此应用内浏览器无法安装。请在<b>⋯</b>菜单或分享按钮中选择<b>在 Safari 中打开</b>（或<b>在浏览器中打开</b>），然后再点一次<b>安装</b>。', ext: '在浏览器中打开' }
+      keep: '请按说明添加', nohome: '分享列表里没有<b>添加到主屏幕</b>时，<b>在 Safari 中打开</b>后重新开始',
+      inT: '在浏览器中打开', inapp: '应用内页面无法安装。请在<b>⋯</b>菜单或分享按钮中选择<b>在 Safari 中打开</b>（或<b>在浏览器中打开</b>），然后再点一次<b>安装</b>。', ext: '在浏览器中打开' }
   }[LANG];
   var UA = navigator.userAgent || '';
   var IPAD = /iPad/.test(UA) || (/Macintosh/.test(UA) && navigator.maxTouchPoints > 1);
@@ -805,7 +805,7 @@
     n.setAttribute('role', 'alert');
     n.setAttribute('data-owcs-nodata', '');
     var msg = document.createElement('span');
-    msg.textContent = t('데이터를 불러오지 못했어요. 화면이 비어 있을 수 있어요.');
+    msg.textContent = t('데이터 불러오기 실패. 화면이 비어 있을 수 있음');
     var btn = document.createElement('button');
     btn.type = 'button';
     btn.textContent = t('다시 시도');

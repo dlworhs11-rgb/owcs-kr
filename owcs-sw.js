@@ -3,10 +3,10 @@
 // Its only job is a page that says "no connection" when the app is opened offline, instead of the browser's error.
 // The text follows the phone's language (a worker can't read the site's saved choice): ko / ja / zh, else English (10-24)
 var TEXT = {
-  ko: ['인터넷에 연결되어 있지 않아요', '연결되면 다시 열어 주세요', '다시 시도'],
-  en: ['You\'re offline', 'Open it again once you\'re connected', 'Try again'],
-  ja: ['インターネットに接続されていません', '接続されたらもう一度開いてください', '再試行'],
-  zh: ['未连接到互联网', '连接后请重新打开', '重试']
+  ko: ['인터넷 연결 없음', '연결되면 다시 시도', '다시 시도'],
+  en: ['You\'re offline', 'Try again once you\'re connected', 'Try again'],
+  ja: ['インターネットに接続されていません', '接続されたら再試行', '再試行'],
+  zh: ['未连接到互联网', '连接后重试', '重试']
 };
 function offlinePage() {
   var n = String((self.navigator.languages && self.navigator.languages[0]) || self.navigator.language || 'en').toLowerCase();
