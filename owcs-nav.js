@@ -118,6 +118,8 @@
     F + ' .ft-ch a{display:inline-flex;align-items:center;gap:8px;height:40px;color:var(--fi);text-decoration:none;font-size:14px;font-weight:600}',
     F + ' .ft-ch img{width:28px;height:28px;border-radius:8px}',
     F + ' .ft-mail{display:block;font-size:15px;color:var(--fi);margin-top:8px;text-decoration:underline}',
+    // the mail / chat links were 22px high on phones (the 22px icon): at least a 24px target, the home page's own footer too (10-24)
+    'footer a[href^="mailto:"],footer a[href*="discord."]{min-height:24px}',
     F + ' .ft-note{font-size:13px;color:var(--fm)}',
     '@media (max-width:1180px){' + F + ' .ft-g{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px}}',
     '@media (min-width:900px) and (max-width:1180px){' + F + ' .ft-g>div:nth-child(2){border-left:1px solid color-mix(in srgb, var(--fi) 16%, transparent);padding-left:28px}' + F + ' .ft-note{grid-column:1/-1;border-top:1px solid color-mix(in srgb, var(--fi) 16%, transparent);padding-top:18px}}',
