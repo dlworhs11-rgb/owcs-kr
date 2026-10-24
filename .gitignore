@@ -16,6 +16,8 @@
 !/owcs_cloud.py
 !/owcs_build.py
 !/site_urls.py
+!/site_check.py
+!/README.md
 !/admin/
 !/admin_server.py
 !/data/

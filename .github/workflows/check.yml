@@ -1,0 +1,31 @@
+name: Check
+
+# Fast checks on every push and pull request (~30 s). Separate from pages.yml on purpose: a failure here shows a red
+# mark on the commit / PR but never stops a deploy (match-day live data must keep flowing).
+on:
+  push:
+    branches: [main]
+    paths-ignore: ['data/live_*/**']   # the PC's live data pushes: nothing to check
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - name: Python syntax
+        run: python -m py_compile *.py
+      - name: JavaScript syntax
+        run: for f in owcs-*.js support.js; do node --check "$f" || exit 1; done
+      - name: Lists agree (site_check.py)
+        run: python site_check.py

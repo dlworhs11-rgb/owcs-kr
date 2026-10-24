@@ -25,9 +25,7 @@ import owcs_cloud as b  # noqa: E402
 import owcs_build  # noqa: E402
 import site_urls  # noqa: E402
 
-SITE_FILES = ['index.html', 'OWCS KR Home v6.dc.html', 'OWCS KR Player.dc.html', 'OWCS KR Results.dc.html',
-              'OWCS KR 일정.html', 'OWCS KR 방송.html', 'OWCS KR 직관.html', 'gallery-k7x2q9.html', 'support.js', '404.html',
-              'naver47dd45ef166fd4aa1393b2a3ed899fef.html', 'favicon.ico', 'apple-touch-icon.png']   # Naver Search Advisor ownership check: keep it
+SITE_FILES = site_urls.SITE_FILES   # the one list of deployed root files lives in site_urls.py
 VOLATILE = ('generated', 'liveChecked', 'igChecked')
 COLLECTOR = os.path.dirname(owcs_build.SRC)
 LP_API = 'https://liquipedia.net/overwatch/api.php'
