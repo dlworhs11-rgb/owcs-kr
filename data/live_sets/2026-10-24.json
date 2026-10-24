@@ -721,7 +721,16 @@
     "Poker Face": 0,
     "SEIJI ESPORTS": 0
    },
-   "bans": null,
+   "bans": {
+    "initial": {
+     "team": "SEIJI ESPORTS",
+     "hero": "sierra"
+    },
+    "followUp": {
+     "team": "Poker Face",
+     "hero": "wrecking ball"
+    }
+   },
    "src": "SOOP"
   }
  ]
