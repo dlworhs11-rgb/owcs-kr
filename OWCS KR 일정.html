@@ -143,6 +143,10 @@ footer{padding:32px 0 56px;background:#0B0B0F;color:#8A8A93;font-size:13px;line-
   .bar{gap:10px;margin-bottom:16px}
   .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;width:100%;padding-bottom:2px}
   .chips::-webkit-scrollbar{display:none}
+  /* the row scrolls sideways: fade the edge that has more chips behind it (classes set by fadeChips, 10-24) */
+  .chips.fr{-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 32px),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 32px),transparent)}
+  .chips.fl{-webkit-mask-image:linear-gradient(to left,#000 calc(100% - 32px),transparent);mask-image:linear-gradient(to left,#000 calc(100% - 32px),transparent)}
+  .chips.fl.fr{-webkit-mask-image:linear-gradient(to right,transparent,#000 32px,#000 calc(100% - 32px),transparent);mask-image:linear-gradient(to right,transparent,#000 32px,#000 calc(100% - 32px),transparent)}
   .chip{flex:none}
   .wk{border-radius:18px;margin-bottom:16px}
   .wk>h2{padding:14px 14px 4px;font-size:17px}
@@ -502,6 +506,7 @@ html[data-owcs-dark] .calsec{--p3:#24242C}
     document.getElementById('bar').hidden = k === 'cases';   // the team filter has nothing to filter there
     // the calendar below is the season's: only the season tab shows it (10-24); a page without that tab keeps it
     document.getElementById('cal').hidden = k !== 'season' && TABS.some(function (t) { return t.k === 'season'; });
+    fadeChips();   // the filter row is measured only while it is shown
   }
   tabsEl.onclick = function (e) {
     var b = e.target.closest('button'); if (!b) return;
@@ -548,6 +553,16 @@ html[data-owcs-dark] .calsec{--p3:#24242C}
   };
   show(cur);
   setTeam(F.team);
+  // phone: the chip row scrolls sideways; a soft fade on the side with more chips shows it goes on
+  function fadeChips() {
+    var more = chips.scrollWidth - chips.clientWidth > 2;
+    chips.classList.toggle('fl', more && chips.scrollLeft > 2);
+    chips.classList.toggle('fr', more && chips.scrollLeft + chips.clientWidth < chips.scrollWidth - 2);
+  }
+  chips.addEventListener('scroll', fadeChips, { passive: true });
+  window.addEventListener('resize', fadeChips);
+  window.addEventListener('load', fadeChips);
+  fadeChips();
 
   // ---- calendar + list under the tabs: the home page's (same rules: no past days, live by the clock, the subscribe sheet) ----
   var calEl = document.getElementById('cal');
