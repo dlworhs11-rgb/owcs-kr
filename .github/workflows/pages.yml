@@ -35,10 +35,12 @@ jobs:
       - uses: actions/checkout@v5
         with:
           fetch-depth: 2
-      # a push that only changes data/live_scores, live_sets, live_maps or live_admin (phone admin page, the PC's live map scores, map names, first heroes, broadcast capture) takes the fast path
+      # a push that only changes data/live_scores, live_sets, live_maps, live_cast or live_admin (phone admin page, the PC's live map scores, map names, first heroes, broadcast capture, casters) takes the fast path.
+      # The whole push is compared (github.event.before); a push of several commits has no `before` in this shallow copy, so it gets the full build (2026-10-24: only the last commit was looked at)
       - id: kind
         run: |
-          if [ "${{ github.event_name }}" = "push" ] && [ -z "$(git diff --name-only HEAD^ HEAD | grep -v -E '^data/(live_scores|live_sets|live_maps|live_admin)/')" ]; then echo "fast=--fast" >> "$GITHUB_OUTPUT"; fi
+          before="${{ github.event.before }}"
+          if [ "${{ github.event_name }}" = "push" ] && git cat-file -e "$before^{commit}" 2>/dev/null && [ -z "$(git diff --name-only "$before" HEAD | grep -v -E '^data/(live_scores|live_sets|live_maps|live_cast|live_admin)/')" ]; then echo "fast=--fast" >> "$GITHUB_OUTPUT"; fi
       - uses: actions/checkout@v5
         with:
           repository: dlworhs11-rgb/OWCSKR

@@ -18,6 +18,12 @@ PAGES = {   # source file -> short name ('' = the site root, index.html)
     'OWCS KR 방송.html': 'streams',
     'OWCS KR 직관.html': 'tickets',
 }
+# every other file at the repo root that the deploy copies (owcs-*.js are picked up by name). A new page goes in PAGES
+# (or here when it keeps its own name), plus the menu in owcs-nav.js; site_check.py checks the lists agree
+OTHER_FILES = ['index.html', 'gallery-k7x2q9.html', 'support.js', '404.html',
+               'naver47dd45ef166fd4aa1393b2a3ed899fef.html',   # Naver Search Advisor ownership check: keep it
+               'favicon.ico', 'apple-touch-icon.png']
+SITE_FILES = list(PAGES) + OTHER_FILES
 VIEWS = {'standings': 'standings', 'teams': 'players'}   # home ?view= -> its own page
 SITE = 'https://owticker.com/'
 VIEW_META = {   # the home copies get their own title and description, so search and share cards don't show the home page's
