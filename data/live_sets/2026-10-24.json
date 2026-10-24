@@ -417,7 +417,59 @@
      "hero": "bastion"
     }
    },
-   "src": "SOOP"
+   "src": "SOOP",
+   "heroTs": 1792830546,
+   "hudLeft": "Team Falcons",
+   "guessed": [
+    "MER1T"
+   ],
+   "comps": {
+    "Team Falcons": [
+     [
+      "Hanbin",
+      "zarya"
+     ],
+     [
+      "MER1T",
+      "sojourn"
+     ],
+     [
+      "Checkmate",
+      "junkrat"
+     ],
+     [
+      "Fielder",
+      "doctrine"
+     ],
+     [
+      "ChiYo",
+      "lucio"
+     ]
+    ],
+    "T1": [
+     [
+      "DONGHAK",
+      "doomfist"
+     ],
+     [
+      "Proud",
+      "cassidy"
+     ],
+     [
+      "ZEST",
+      "tracer"
+     ],
+     [
+      "Bliss",
+      "doctrine"
+     ],
+     [
+      "skewed",
+      "kiriko"
+     ]
+    ]
+   },
+   "compAt": null
   }
  ]
 }
