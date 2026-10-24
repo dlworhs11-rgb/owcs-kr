@@ -197,6 +197,10 @@ const pick = () => D.players.find((p) => p.id.toLowerCase() === want)
   || STAFF.find((p) => p.id.toLowerCase() === want)
   || D.players.find((p) => D.live[p.id])
   || D.players.slice().sort((a, b) => b.awardCount - a.awardCount)[0] || { id: '?', team: '', role: '', roleFull: '', awards: [] };
+// an unknown ?p= (a typo, a handle gone after a transfer) showed some other player as if it were that one (10-24):
+// open the team list instead. The fallbacks above stay for a bare /player
+if (want && D.players.length && !D.players.some((p) => p.id.toLowerCase() === want) && !STAFF.some((p) => p.id.toLowerCase() === want))
+  location.replace('OWCS KR Home v6.dc.html?view=teams');
 const handleOf = (url) => (url || '').replace(/\/+$/, '').split('/').pop();
 const ICON = { CHZZK: 'assets/icons/chzzk.png', SOOP: 'assets/icons/soop.png', YouTube: 'assets/icons/youtube.png', Discord: 'assets/icons/discord.png',
   Instagram: 'assets/icons/instagram.png', X: 'assets/icons/x.png', Liquipedia: 'assets/icons/liquipedia.png',
