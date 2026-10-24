@@ -1,10 +1,13 @@
 """Build the public site folder for GitHub Pages: the whole data build runs here, so the site needs no PC.
 
-Runs in GitHub Actions (.github/workflows/pages.yml) every ~10 min, on every push and by hand:
+Runs in GitHub Actions (.github/workflows/pages.yml) whenever a trigger asks (README.md '빌드는 누가 일으키나'), on
+every push and by hand:
   1. collector (github.com/dlworhs11-rgb/OWCSKR, checked out in ./OWCSKR; only the raw Liquipedia copy data/lp-cache
-     is kept by actions/cache, data/lp always starts from the collector's commit): run-lp.mjs --discover (new stages,
-     events), re-read the active Liquipedia pages when the copy is older than 30 min (10 min around today's matches;
-     a run with failed pages flags them and the next run tries again), then node collector/build.mjs
+     and data/lp/_status.json are kept by actions/cache, data/lp always starts from the collector's commit):
+     run-lp.mjs --discover (new stages, events; a collector without --discover or a failed discover falls back to the
+     '|next=' stage link), re-read the active Liquipedia pages when the copy is older than 30 min (10 min around
+     today's matches; a run with failed pages flags them and the next run tries again; otherwise the active pages'
+     data/lp files are made again from the cached copy), then node collector/build.mjs
   2. owcs_build.build(): schedule, results, standings, brackets, players -> owcs-data.js
      (+ data/live_scores and data/live_maps pushed from the PC on match days); if it fails, the deployed copy stays
      with its `dataBuilt` time, and FAIL_ALARM failures in a row end the run red after the deploy (stamp_build)
@@ -17,7 +20,8 @@ Runs in GitHub Actions (.github/workflows/pages.yml) every ~10 min, on every pus
      content without those fields (content_hash), so a build that changed nothing is not downloaded again (10-24)
 
 Usage:
-  python cloud_live.py --out _site [--prev https://<user>.github.io/<repo>/owcs-data.js] [--force-lp]
+  python cloud_live.py --out _site [--prev https://<user>.github.io/<repo>/owcs-data.js] [--force-lp] [--fast]
+  --fast: a push with only data/live_* changes (pages.yml decides): no Liquipedia re-read, streams and VODs reused
 """
 import gzip, json, os, re, shutil, subprocess, sys, time, datetime, traceback, urllib.parse, urllib.request
 

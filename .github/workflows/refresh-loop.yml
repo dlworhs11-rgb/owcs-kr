@@ -29,8 +29,9 @@ jobs:
       R: ${{ github.repository }}
     steps:
       # a backup only: another trigger (cron-job.org, every 5 min since 10-19 22:35 KST) usually starts builds, and a
-      # second request would cancel the build it started. So every 5 minutes this asks for one only when no build
-      # (any trigger, any outcome) has started in the last 9 minutes.
+      # second request would only replace the run waiting behind it (pages.yml concurrency keeps one running and the
+      # newest waiting). So every 5 minutes this asks for one only when no build (any trigger, any outcome) has started
+      # in the last 9 minutes.
       - name: Ask for a site build when none has started for 9 minutes
         run: |
           for i in $(seq 1 68); do
