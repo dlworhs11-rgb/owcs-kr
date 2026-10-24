@@ -75,9 +75,10 @@
    },
    "compAt": "2026-10-24T15:19:20+09:00",
    "score": {
-    "CHEESEBURGER": 1,
+    "CHEESEBURGER": 2,
     "ZETA DIVISION": 0
-   }
+   },
+   "scoreFrom": "table"
   }
  ]
 }
