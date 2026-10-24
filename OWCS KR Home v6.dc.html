@@ -1119,6 +1119,7 @@ class Component extends DCLogic {
       M.forEach((m) => { if (m.st === 'done' && !m.nr && (m.phase === 'po' || (m.phase === 'lcq' && /하위|결승/.test(m.label || '')))) outT.add(m.sa > m.sb ? m.b : m.a); });
     }
     const sel = team(this.state.sel);
+    const ss = st[sel.a] || { rank: '–', w: 0, l: 0, diff: 0, mw: 0, ml: 0 };   // (10-24) a team with no standings row yet
     const selM = M.filter((m) => m.a === sel.a || m.b === sel.a);
     const selLast = selM.filter((m) => m.st === 'done' && !m.nr).slice(-1)[0], selNext = selM.find((m) => m.st === 'up');
     const tokens = this.state.q.split(/[,，\/]+/).map((s) => s.trim()).filter(Boolean);
@@ -1388,15 +1389,15 @@ class Component extends DCLogic {
       }).sort((x, y) => (x.op < 1) - (y.op < 1)),
       showDetail: P.showTeamDetail ?? true,
       td: { a: sel.a, n: sel.n, c: col(sel.a), logo: sel.logoOnColor ? "url('" + sel.logoOnColor + "') center / contain no-repeat transparent" : logoBg(sel.a, true),
-        bg: sel.photo ? 'linear-gradient(0deg, ' + col(sel.a) + ' 0%, ' + col(sel.a) + ' 22%, ' + fade(col(sel.a), .55) + ' 62%, ' + fade(col(sel.a), .3) + ' 100%), url("' + sel.photo + '") center 30% / cover no-repeat' : col(sel.a), rank: (st[sel.a] || {}).rank, wl: SP ? '–' : st[sel.a].w + '-' + st[sel.a].l, sd: SP ? '–' : (st[sel.a].diff > 0 ? '+' : '') + st[sel.a].diff,
-        rankLine: '현재 ' + (st[sel.a] || {}).rank + '위 · ' + (SP ? '–' : st[sel.a].w + '-' + st[sel.a].l) + ' · 세트 ' + (SP ? '–' : (st[sel.a].diff > 0 ? '+' : '') + st[sel.a].diff),
+        bg: sel.photo ? 'linear-gradient(0deg, ' + col(sel.a) + ' 0%, ' + col(sel.a) + ' 22%, ' + fade(col(sel.a), .55) + ' 62%, ' + fade(col(sel.a), .3) + ' 100%), url("' + sel.photo + '") center 30% / cover no-repeat' : col(sel.a), rank: ss.rank, wl: SP ? '–' : ss.w + '-' + ss.l, sd: SP ? '–' : (ss.diff > 0 ? '+' : '') + ss.diff,
+        rankLine: '현재 ' + ss.rank + '위 · ' + (SP ? '–' : ss.w + '-' + ss.l) + ' · 세트 ' + (SP ? '–' : (ss.diff > 0 ? '+' : '') + ss.diff),
         favLabel: MY === sel.a ? L.isMy : L.setMy, favBg: MY === sel.a ? '#fff' : 'transparent', favFg: MY === sel.a ? '#0B0B0F' : '#fff', fav: () => setMy(sel.a),
         count: playersOf(sel.a).length,
         // one text each, so the page translation (owcs-i18n.js) sees the whole phrase, not '현재 ' + '1' + '위'
         rosterTxt: '로스터 ' + playersOf(sel.a).length + '명', staffTxt: '스태프진 ' + ((D.staff || {})[sel.a] || []).length + '명',
         facts: [
           { k: '한글 이름', v: sel.ko },
-          { k: '세트', v: SP ? '–' : st[sel.a].mw + '-' + st[sel.a].ml },
+          { k: '세트', v: SP ? '–' : ss.mw + '-' + ss.ml },
           { k: '최근 경기', v: selLast ? md(selLast.date) + ' ' + (SP ? 'vs ' + (selLast.a === sel.a ? selLast.b : selLast.a) : (selLast.a === sel.a ? selLast.sa + ':' + selLast.sb + ' ' + selLast.b : selLast.sb + ':' + selLast.sa + ' ' + selLast.a)) : '–' },
           // next opponent: logo + full team name, date and time below
           selNext ? { k: '다음 경기', logo: logoBg(selNext.a === sel.a ? selNext.b : selNext.a, DM), v: 'vs ' + team(selNext.a === sel.a ? selNext.b : selNext.a).n,
