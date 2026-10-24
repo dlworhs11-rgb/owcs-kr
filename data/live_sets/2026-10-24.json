@@ -486,7 +486,16 @@
     "Team Falcons": 0,
     "T1": 1
    },
-   "bans": null,
+   "bans": {
+    "initial": {
+     "team": "Team Falcons",
+     "hero": "kiriko"
+    },
+    "followUp": {
+     "team": "T1",
+     "hero": "junkerqueen"
+    }
+   },
    "src": "SOOP"
   }
  ]
