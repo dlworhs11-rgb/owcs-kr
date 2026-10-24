@@ -496,7 +496,63 @@
      "hero": "junkerqueen"
     }
    },
-   "src": "SOOP"
+   "src": "SOOP",
+   "heroTs": 1792831798,
+   "hudLeft": "T1",
+   "guessed": [
+    "Proud",
+    "ZEST",
+    "Bliss",
+    "MER1T",
+    "Fielder"
+   ],
+   "comps": {
+    "T1": [
+     [
+      "DONGHAK",
+      "orisa"
+     ],
+     [
+      "Proud",
+      "cassidy"
+     ],
+     [
+      "ZEST",
+      "symmetra"
+     ],
+     [
+      "Bliss",
+      "doctrine"
+     ],
+     [
+      "skewed",
+      "brigitte"
+     ]
+    ],
+    "Team Falcons": [
+     [
+      "SOMEONE",
+      "orisa"
+     ],
+     [
+      "MER1T",
+      "sojourn"
+     ],
+     [
+      "Checkmate",
+      "tracer"
+     ],
+     [
+      "Fielder",
+      "doctrine"
+     ],
+     [
+      "ChiYo",
+      "wuyang"
+     ]
+    ]
+   },
+   "compAt": null
   }
  ]
 }
