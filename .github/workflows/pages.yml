@@ -32,26 +32,26 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 2
       # a push that only changes data/live_scores, live_sets, live_maps or live_admin (phone admin page, the PC's live map scores, map names, first heroes, broadcast capture) takes the fast path
       - id: kind
         run: |
           if [ "${{ github.event_name }}" = "push" ] && [ -z "$(git diff --name-only HEAD^ HEAD | grep -v -E '^data/(live_scores|live_sets|live_maps|live_admin)/')" ]; then echo "fast=--fast" >> "$GITHUB_OUTPUT"; fi
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           repository: dlworhs11-rgb/OWCSKR
           path: OWCSKR
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: '22'
       # Liquipedia copy between runs (pages + fetch time), so the collector does not re-read every 10 min.
       # lp2 (2026-10-20): fresh start, so the committed data/lp files with match section / round are not covered by an older copy
-      - uses: actions/cache/restore@v4
+      - uses: actions/cache/restore@v5
         with:
           path: |
             OWCSKR/data/lp-cache
@@ -59,18 +59,18 @@ jobs:
           key: owcskr-lp2-${{ github.run_id }}
           restore-keys: owcskr-lp2-
       - id: pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
       - id: build
         run: python cloud_live.py --out _site --prev "${{ steps.pages.outputs.base_url }}/owcs-data.js" ${{ inputs.force_lp && '--force-lp' || '' }} ${{ steps.kind.outputs.fast }}
-      - uses: actions/cache/save@v4
+      - uses: actions/cache/save@v5
         if: always() && steps.build.outputs.fetched == 'true'
         with:
           path: |
             OWCSKR/data/lp-cache
             OWCSKR/data/lp
           key: owcskr-lp2-${{ github.run_id }}
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: _site
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
