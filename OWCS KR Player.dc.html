@@ -15,18 +15,21 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- connections for the fonts (and, on the dc pages, React) opened while the page itself loads (10-24). jsdelivr twice:
+<!-- connections for the fonts opened while the page itself loads (10-24). jsdelivr twice:
      the Pretendard stylesheet is fetched without CORS, its font files with it, and each needs its own connection -->
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://unpkg.com" crossorigin>
 <!-- the same two font stylesheets as in <helmet> below, so they start now and not once React has run;
      helmet adds its copies later, which the browser serves from what it already loaded -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,800&family=JetBrains+Mono:wght@500;600&display=swap">
-<script>window.__resources = window.__resources || {};</script>
+<script>window.__resources = window.__resources || {};
+// React from this site, not unpkg (10-24): the dc runtime (support.js) loads a URL mapped here instead of the CDN
+// copy; the files are the same 18.3.1 builds (same sha384 as support.js pins). An unpkg outage left these pages blank
+window.__resources['https://unpkg.com/react@18.3.1/umd/react.production.min.js'] = 'assets/vendor/react-18.3.1.production.min.js';
+window.__resources['https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js'] = 'assets/vendor/react-dom-18.3.1.production.min.js';</script>
 <script src="./owcs-data.js"></script>
 <script src="./owcs-phase.js"></script>
 <script src="./owcs-i18n.js"></script>
