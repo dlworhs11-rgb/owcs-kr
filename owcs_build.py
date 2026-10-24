@@ -11,7 +11,7 @@ live_scores/<date>.json (score_watch.py on the PC) and live_maps/<date>.json (br
 
 OWCSKR_DATA defaults to ./OWCSKR/data (where the GitHub Actions workflow checks the collector out).
 """
-import json, os, re, sys, time, glob, datetime, urllib.request
+import json, os, re, sys, glob, datetime, urllib.request
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.environ.get('OWCSKR_DATA') or os.path.join(HERE, 'OWCSKR', 'data')

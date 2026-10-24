@@ -14,6 +14,12 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- connections for the fonts opened while the page itself loads (10-24). jsdelivr twice:
+     the Pretendard stylesheet is fetched without CORS, its font files with it, and each needs its own connection -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <title>OWticker 선수 방송</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,800&display=swap">
@@ -175,9 +181,26 @@ footer{padding:32px 0 56px;background:#0B0B0F;color:#8A8A93;font-size:13px;line-
     });
     document.getElementById('teams').innerHTML = html;
     document.getElementById('liveN').textContent = n;
-    var g = (D.liveChecked || D.generated || '').replace('T', ' ').slice(0, 16);
+    drawChecked();
+  }
+  // the data's KST time as 'YYYY-MM-DD HH:MM'; ja / en / zh in the reader's zone with its name, like the match times
+  // (OWCSi18n.hm). Date and time both move, so a US evening is not shown under the KST date (10-24)
+  function shownAt(iso) {
+    var kst = iso.replace('T', ' ').slice(0, 16), I = window.OWCSi18n, ms = Date.parse(iso);
+    if (!I || I.lang === 'ko' || !(ms > 0)) return kst;
+    try {
+      var day = new Intl.DateTimeFormat('en-CA', { timeZone: I.tz, year: 'numeric', month: '2-digit', day: '2-digit' }).format(ms);
+      var hm = new Intl.DateTimeFormat('en-GB', { timeZone: I.tz, hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).format(ms);
+      return day + ' ' + hm + ' ' + I.zone;
+    } catch (e) { return kst; }
+  }
+  // 마지막 확인: a build that only re-checked the streams keeps the same owcs-data.js, so the newer check time is the one
+  // owcs-ver.json brought (window.owcsChecked, owcs-datapoll.js); both are KST ISO strings, so the later sorts last (10-24)
+  function drawChecked() {
+    var iso = [window.owcsChecked, D.liveChecked].filter(Boolean).sort().pop() || '';
+    var g = shownAt(iso || D.generated || '');
     // warn only when the live check has stalled (no check in 30+ minutes), not every time nobody is live
-    var t = Date.parse(D.liveChecked || ''), stale = !(t > 0) || Date.now() - t > 30 * 60000;
+    var t = Date.parse(iso), stale = !(t > 0) || Date.now() - t > 30 * 60000;
     document.getElementById('checked').innerHTML = '<span>마지막 확인 ' + esc(g) + '</span>' +
       (stale ? ' · <span>방송 확인이 30분 넘게 멈춰 있어 실제와 다를 수 있어요</span>' : '');
   }
@@ -187,7 +210,10 @@ footer{padding:32px 0 56px;background:#0B0B0F;color:#8A8A93;font-size:13px;line-
   setInterval(function () {
     if (document.hidden) return;   // tab not shown: no download (GitHub Pages traffic)
     if (today() !== shownDay) render();   // midnight KST: birthday cake moves to the new day
-    owcsDataPoll(function (got) { if (got && window.OWCS && (window.OWCS.generated !== D.generated || window.OWCS.liveChecked !== D.liveChecked)) { D = window.OWCS; render(); } });
+    owcsDataPoll(function (got) {
+      if (got && window.OWCS && (window.OWCS.generated !== D.generated || window.OWCS.liveChecked !== D.liveChecked)) { D = window.OWCS; render(); }
+      else drawChecked();   // same data: only the check time (and the 30-minute warning) can move
+    });
   }, 60000);
 })();
 </script>

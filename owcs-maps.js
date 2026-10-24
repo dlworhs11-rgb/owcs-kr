@@ -16,8 +16,21 @@
     ...['New Junk City', 'Suravasa', 'Aatlis'].map((n) => [n, 3])]);   // first to this many wins the map
   const PUSH_MAPS = ['colosseo', 'esperanca', 'new queen street', 'runasapi'];
   const MAP_HAVE = 'antarctic anubis atlis blizzard-world busan circuit-royal colosseo dorado eichenwalde esperanca gibraltar gridsbolten hanaoka havana hollywood ilios junkertown kings-row lijiang-tower lunasapphire midtown nepal neon-junction new-junk-city new-queen-street numbani oasis paraiso rialto route66 samoa shambali suravasa'.split(' ');
+  // the art's right end under the 승리 label and score: shade .75 -> .55 (was .3 -> .25: the 13 px grey label measured
+  // 2.9-4.5:1 over bright maps, 10-24; now 6.3-7.3:1 median, 4.7:1 on the brightest pixel)
   const mapBg = (name, short) => { const k0 = deaccent(name).toLowerCase().replace(/[.:']/g, '').trim().replace(/\s+/g, '-'); const k = MAP_FILE[k0] || k0;
-    return MAP_HAVE.includes(k) ? "linear-gradient(90deg, #15151B 0, #15151B calc(100% - " + (short ? 215 : 330) + "px), rgba(21,21,27,.3) calc(100% - " + (short ? 90 : 140) + "px), rgba(21,21,27,.25) 100%), url('assets/maps/" + k + ".webp') right center / auto 100% no-repeat, #15151B" : 'transparent'; };
+    return MAP_HAVE.includes(k) ? "linear-gradient(90deg, #15151B 0, #15151B calc(100% - " + (short ? 215 : 330) + "px), rgba(21,21,27,.75) calc(100% - " + (short ? 90 : 140) + "px), rgba(21,21,27,.55) 100%), url('assets/maps/" + k + ".webp') right center / auto 100% no-repeat, #15151B" : 'transparent'; };
+  // Korean map names (the game's own Korean names) on the Korean pages; ja / en / zh keep the English, which the
+  // translation can't map back from Korean. Keys as mapBg's (accents dropped). A map not listed stays English (10-24)
+  const MAP_KO = { 'route-66': '66번 국도', 'watchpoint-gibraltar': '감시 기지: 지브롤터', 'dorado': '도라도', 'rialto': '리알토',
+    'shambali-monastery': '샴발리 수도원', 'circuit-royal': '서킷 로얄', 'junkertown': '쓰레기촌', 'havana': '하바나',
+    'neon-junction': '네온 교차로', 'numbani': '눔바니', 'midtown': '미드타운', 'blizzard-world': '블리자드 월드', 'eichenwalde': '아이헨발데',
+    'kings-row': '왕의 길', 'paraiso': '파라이수', 'hollywood': '할리우드', 'antarctic-peninsula': '남극 반도', 'nepal': '네팔',
+    'lijiang-tower': '리장 타워', 'samoa': '사모아', 'busan': '부산', 'oasis': '오아시스', 'ilios': '일리오스',
+    'new-queen-street': '뉴 퀸 스트리트', 'runasapi': '루나사피', 'esperanca': '이스페란사', 'colosseo': '콜로세오',
+    'new-junk-city': '뉴 정크 시티', 'suravasa': '수라바사', 'aatlis': '아틀리스', 'throne-of-anubis': '아누비스의 왕좌', 'hanaoka': '하나오카' };
+  const mapName = (name) => { if (window.OWCSi18n && window.OWCSi18n.lang !== 'ko') return name || '';
+    return MAP_KO[deaccent(name).toLowerCase().replace(/[.:']/g, '').trim().replace(/\s+/g, '-')] || name || ''; };
   const HERO_KO_K = Object.fromEntries(Object.entries(HERO_KO).map(([k, v]) => [heroKey(k), v]));   // 'torbjorn', 'soldier 76' match too
   const heroName = (h) => { const k = heroKey(h), ko = HERO_KO_K[k]; let en = h || '';
     if (ko && !/[\s.:]/.test(en) && k.includes('-')) en = k.replace(/-/g, ' ');   // 'junkerqueen' -> 'junker queen'
@@ -42,7 +55,7 @@
         // rapid clicks: keep the first label and restart one timer, so the label always comes back
         const b = e && e.currentTarget, l = b && (b.querySelector('[data-l]') || b);
         if (l && l._was == null) l._was = l.textContent;
-        const done = () => { if (l) { l.textContent = '복사됨'; clearTimeout(l._t);
+        const done = () => { if (window.owcsSay) window.owcsSay('복사됨'); if (l) { l.textContent = '복사됨'; clearTimeout(l._t);
           l._t = setTimeout(() => { l.textContent = l._was; l._was = null; }, 1500); } };
         if (navigator.clipboard) navigator.clipboard.writeText(x.replay).then(done, done); else done();
       };
@@ -57,7 +70,7 @@
       // tank always first: a hand-entered comp came in damage, damage, tank (10-23 CB vs O2 map 1)
       const comps = x.comps ? ['a', 'b'].map((t) => ({ team: m[t], win: !SP && x.winner === t,
         picks: tankFirst(x.comps[t] || []).map(([pl, h]) => ({ pl, h, bg: heroBg(h), txt: HERO_IMG[heroKey(h)] ? '' : heroCode(h) })) })) : [];
-      return { no: pad(x.no), name: x.map, mode: x.mode + (x.time ? ' · ' + x.time : ''),
+      return { no: pad(x.no), name: mapName(x.map), mode: x.mode + (x.time ? ' · ' + x.time : ''),
         winner: SP ? '?' : (w || '–'), wlogo: SP || !w ? '' : logoOf(w), score: SP || !w ? '' : score,
         // the phone row shows the winner's number in lime and the loser's in grey (winner's number first)
         scoreHi: SP || !w || !score ? '' : score.split(' : ')[0], scoreLo: SP || !w || !score ? '' : score.split(' : ')[1],
@@ -66,7 +79,8 @@
         liveScore: SP || !recording || push || x.sa == null || x.sb == null ? '' : m.a + ' ' + pts(x.sa) + ' : ' + pts(x.sb) + ' ' + m.b,
         liveScoreShort: SP || !recording || push || x.sa == null || x.sb == null ? '' : pts(x.sa) + ' : ' + pts(x.sb),
         done: !!w || m.st === 'done', recording, bg: mapBg(x.map), bgS: mapBg(x.map, true),
-        chev: open ? '−' : '+', isOpen: open, showBans: open && showBans && x.bans.length > 0, showComps: open && comps.length > 0,
+        chev: open ? '−' : '+', isOpen: open, expanded: open ? 'true' : 'false',   // expanded: aria-expanded on the row's button
+        showBans: open && showBans && x.bans.length > 0, showComps: open && comps.length > 0,
         showRec: open && !comps.length && !o.noComps, comps,
         recNote: recording ? '기록 중이에요. 세트가 끝나면 양 팀 조합이 올라와요.' : '이 세트의 첫 조합 기록이 아직 없어요.',
         recNoteShort: recording ? '세트가 끝나면 조합이 올라와요.' : '첫 조합 기록 없음',
@@ -80,5 +94,5 @@
         toggle: () => o.toggle(key) };
     });
   }
-  window.OWCSMaps = { build, heroName, heroBg, mapBg };
+  window.OWCSMaps = { build, heroName, heroBg, mapBg, mapName };
 })();

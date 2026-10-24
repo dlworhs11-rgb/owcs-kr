@@ -15,7 +15,21 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>window.__resources = window.__resources || {};</script>
+<!-- connections for the fonts opened while the page itself loads (10-24). jsdelivr twice:
+     the Pretendard stylesheet is fetched without CORS, its font files with it, and each needs its own connection -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- the same two font stylesheets as in <helmet> below, so they start now and not once React has run;
+     helmet adds its copies later, which the browser serves from what it already loaded -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,800&family=JetBrains+Mono:wght@500;600&display=swap">
+<script>window.__resources = window.__resources || {};
+// React from this site, not unpkg (10-24): the dc runtime (support.js) loads a URL mapped here instead of the CDN
+// copy; the files are the same 18.3.1 builds (same sha384 as support.js pins). An unpkg outage left these pages blank
+window.__resources['https://unpkg.com/react@18.3.1/umd/react.production.min.js'] = 'assets/vendor/react-18.3.1.production.min.js';
+window.__resources['https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js'] = 'assets/vendor/react-dom-18.3.1.production.min.js';</script>
 <script src="./owcs-data.js"></script>
 <script src="./owcs-phase.js"></script>
 <script src="./owcs-i18n.js"></script>
@@ -58,12 +72,12 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <nav style="display:flex;gap:6px">
 <sc-for list="{{ nav }}" as="n" hint-placeholder-count="7"><a href="{{ n.href }}" style="display:flex;align-items:center;height:44px;padding:0 16px;border-radius:999px;font-size:16px;font-weight:600;color:#0B0B0F" style-hover="background:#F1F1ED;color:#0B0B0F">{{ n.label }}</a></sc-for>
 </nav>
-<div style="display:flex;justify-content:flex-end;width:200px"><button onClick="{{ toggleSpoiler }}" style="display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 14px;border:1px solid #E6E6E1;border-radius:999px;background:#fff;font:inherit;font-size:14px;font-weight:600;color:#0B0B0F;cursor:pointer"><span style="position:relative;width:30px;height:18px;border-radius:999px;background:{{ spoilTrack }}"><span style="position:absolute;top:2px;left:{{ spoilKnob }};width:14px;height:14px;border-radius:50%;background:#fff"></span></span>스포일러 방지</button></div>
+<div style="display:flex;justify-content:flex-end;width:200px"><button onClick="{{ toggleSpoiler }}" role="switch" aria-checked="{{ spoilChecked }}" style="display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 14px;border:1px solid #E6E6E1;border-radius:999px;background:#fff;font:inherit;font-size:14px;font-weight:600;color:#0B0B0F;cursor:pointer"><span style="position:relative;width:30px;height:18px;border-radius:999px;background:{{ spoilTrack }}"><span style="position:absolute;top:2px;left:{{ spoilKnob }};width:14px;height:14px;border-radius:50%;background:#fff"></span></span>스포일러 방지</button></div>
 </header>
 <section style="padding:64px 56px 0;background:#F6F6F3">
 <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px">
 <div><div style="font-size:15px;font-weight:700;color:#55555C">결과 · 대진표</div><h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:96px;line-height:.86;margin:12px 0 0">RESULTS</h1></div>
-<sc-if value="{{ showStD }}"><div style="position:relative"><button onClick="{{ stToggleD }}" style="display:flex;align-items:center;gap:10px;height:48px;padding:0 18px;border-radius:12px;border:1px solid #E6E6E1;background:#fff;font:inherit;font-size:15px;font-weight:600;color:#0B0B0F;cursor:pointer">{{ seasonLabelD }} <span>{{ stChevD }}</span></button>
+<sc-if value="{{ showStD }}"><div style="position:relative"><button onClick="{{ stToggleD }}" aria-expanded="{{ stExpD }}" style="display:flex;align-items:center;gap:10px;height:48px;padding:0 18px;border-radius:12px;border:1px solid #E6E6E1;background:#fff;font:inherit;font-size:15px;font-weight:600;color:#0B0B0F;cursor:pointer">{{ seasonLabelD }} <span>{{ stChevD }}</span></button>
 <sc-if value="{{ stOpenD }}"><div style="position:absolute;right:0;top:54px;z-index:20;min-width:100%;padding:6px;border-radius:12px;border:1px solid #E6E6E1;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,.12);display:flex;flex-direction:column;gap:2px"><sc-for list="{{ stOpts }}" as="o" hint-placeholder-count="3"><button onClick="{{ o.go }}" style="height:44px;padding:0 14px;border:none;border-radius:8px;background:{{ o.bg }};color:{{ o.fg }};font:inherit;font-size:15px;font-weight:700;text-align:left;white-space:nowrap;cursor:pointer">{{ o.label }}</button></sc-for></div></sc-if></div></sc-if>
 </div>
 <div style="display:flex;gap:8px;margin-top:40px">
@@ -90,12 +104,12 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:36px;text-align:center;letter-spacing:.02em;filter:{{ blur }}"><span style="color:{{ g.ta }}">{{ g.sa }}</span> <span style="color:#B5B5BD">:</span> <span style="color:{{ g.tb }}">{{ g.sb }}</span></span>
 <span style="display:flex;align-items:center;gap:12px"><span style="width:36px;height:36px;background:{{ g.cb }};opacity:{{ g.ob }}"></span><span style="font-size:17px;font-weight:{{ g.wb }};color:{{ g.tb }}">{{ g.nb }}</span></span>
 <a href="{{ g.vod }}" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;height:26px;padding:0 10px;border-radius:999px;background:#ECECE8;color:#0B0B0F;font-size:12px;font-weight:700;text-decoration:none" style-hover="background:#C6FF33;color:#0B0B0F">다시보기 ↗</a>
-<sc-if value="{{ g.hasMaps }}"><button onClick="{{ g.toggle }}" style="font:inherit;font-size:14px;font-weight:600;color:#0B0B0F;text-align:right;background:none;border:0;padding:0;cursor:pointer">{{ g.detailLabel }}</button></sc-if>
+<sc-if value="{{ g.hasMaps }}"><button onClick="{{ g.toggle }}" aria-expanded="{{ g.expanded }}" style="font:inherit;font-size:14px;font-weight:600;color:#0B0B0F;text-align:right;background:none;border:0;padding:0;cursor:pointer">{{ g.detailLabel }}</button></sc-if>
 </div>
 <sc-if value="{{ g.open }}"><div style="margin:6px 0 14px;padding:14px;border-radius:20px;background:#0B0B0F;color:#fff;display:flex;flex-direction:column;gap:10px">
 <sc-for list="{{ g.maps }}" as="mp" hint-placeholder-count="4">
 <div style="border:1px solid #26262E;border-radius:16px;background:#15151B;overflow:hidden">
-<button onClick="{{ mp.toggle }}" style="width:100%;display:grid;grid-template-columns:34px minmax(0,1fr) auto 28px;align-items:center;gap:12px;padding:14px 18px;min-height:68px;border:none;background:{{ mp.bg }};color:#fff;font:inherit;text-align:left;cursor:pointer">
+<button onClick="{{ mp.toggle }}" aria-expanded="{{ mp.expanded }}" style="width:100%;display:grid;grid-template-columns:34px minmax(0,1fr) auto 28px;align-items:center;gap:12px;padding:14px 18px;min-height:68px;border:none;background:{{ mp.bg }};color:#fff;font:inherit;text-align:left;cursor:pointer">
 <span style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:700;font-size:22px;color:#8A8A93">{{ mp.no }}</span>
 <span style="min-width:0"><span style="display:block;font-size:17px;font-weight:700">{{ mp.name }}</span><span style="display:flex;align-items:center;gap:6px;font-size:13px;color:#B5B5BD;margin-top:2px"><span style="width:8px;height:8px;transform:rotate(45deg);border:1.5px solid #B5B5BD"></span>{{ mp.mode }}</span></span>
 <sc-if value="{{ mp.done }}"><span style="display:flex;align-items:center;gap:8px;font-size:13px;color:#B5B5BD">승리<b style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-size:22px;color:#fff">{{ mp.winner }}</b><sc-if value="{{ mp.wlogo }}"><span style="flex:none;display:inline-block;width:22px;height:22px;background:{{ mp.wlogo }};filter:drop-shadow(0 1px 2px rgba(0,0,0,.7));vertical-align:middle"></span></sc-if><b style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-size:22px;margin-left:2px;font-variant-numeric:tabular-nums;white-space:nowrap;text-shadow:0 1px 4px rgba(0,0,0,.85)"><span style="color:var(--ac2,#C6FF33)">{{ mp.scoreHi }}</span><span style="color:#D4D4DA"> : {{ mp.scoreLo }}</span></b></span></sc-if>
@@ -188,7 +202,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <sc-if value="{{ t.off }}"><button onClick="{{ t.go }}" style="flex:1;height:42px;border:1px solid #E6E6E1;border-radius:12px;background:#fff;color:#0B0B0F;font:inherit;font-size:14px;font-weight:700">{{ t.short }}</button></sc-if>
 </sc-for>
 </div>
-<sc-if value="{{ showStM }}"><div style="position:relative;display:inline-block;margin-top:14px"><button onClick="{{ stToggleM }}" style="display:flex;align-items:center;gap:8px;height:44px;padding:0 14px;border-radius:12px;border:1px solid #E6E6E1;background:#fff;font:inherit;font-size:14px;font-weight:600;color:#0B0B0F">{{ seasonLabelM }} {{ stChevM }}</button>
+<sc-if value="{{ showStM }}"><div style="position:relative;display:inline-block;margin-top:14px"><button onClick="{{ stToggleM }}" aria-expanded="{{ stExpM }}" style="display:flex;align-items:center;gap:8px;height:44px;padding:0 14px;border-radius:12px;border:1px solid #E6E6E1;background:#fff;font:inherit;font-size:14px;font-weight:600;color:#0B0B0F">{{ seasonLabelM }} {{ stChevM }}</button>
 <sc-if value="{{ stOpenM }}"><div style="position:absolute;left:0;top:50px;z-index:20;min-width:100%;padding:6px;border-radius:12px;border:1px solid #E6E6E1;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,.12);display:flex;flex-direction:column;gap:2px"><sc-for list="{{ stOpts }}" as="o" hint-placeholder-count="3"><button onClick="{{ o.go }}" style="height:44px;padding:0 14px;border:none;border-radius:8px;background:{{ o.bg }};color:{{ o.fg }};font:inherit;font-size:15px;font-weight:700;text-align:left;white-space:nowrap">{{ o.label }}</button></sc-for></div></sc-if></div></sc-if>
 </section>
 <section style="padding:24px 20px 40px;background:#fff;min-height:600px">
@@ -209,13 +223,13 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <span style="display:flex;align-items:center;gap:5px;min-width:0"><span style="flex:none;width:20px;height:20px;background:{{ g.cb }};opacity:{{ g.ob }}"></span><span style="font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;color:{{ g.tb }}">{{ g.b }}</span></span>
 </div>
 <a href="{{ g.vod }}" target="_blank" rel="noopener" style="flex:none;display:inline-flex;align-items:center;height:26px;padding:0 8px;border-radius:999px;background:#ECECE8;color:#0B0B0F;font-size:11px;font-weight:700;text-decoration:none;white-space:nowrap">다시보기</a>
-<sc-if value="{{ g.hasMaps }}"><button onClick="{{ g.toggle }}" style="flex:none;height:30px;padding:0 2px;border:none;background:none;font:inherit;font-size:12px;font-weight:600;color:#0B0B0F;white-space:nowrap;cursor:pointer">{{ g.detailLabel }}</button></sc-if>
+<sc-if value="{{ g.hasMaps }}"><button onClick="{{ g.toggle }}" aria-expanded="{{ g.expanded }}" style="flex:none;height:30px;padding:0 2px;border:none;background:none;font:inherit;font-size:12px;font-weight:600;color:#0B0B0F;white-space:nowrap;cursor:pointer">{{ g.detailLabel }}</button></sc-if>
 </div>
 </div>
 <sc-if value="{{ g.open }}"><div style="margin:4px 0 10px;padding:10px;border-radius:16px;background:#0B0B0F;color:#fff;display:flex;flex-direction:column;gap:8px">
 <sc-for list="{{ g.maps }}" as="mp" hint-placeholder-count="4">
 <div style="border:1px solid #26262E;border-radius:14px;background:#15151B;overflow:hidden">
-<button onClick="{{ mp.toggle }}" style="width:100%;display:grid;grid-template-columns:20px minmax(0,1fr) auto auto 24px;align-items:center;column-gap:8px;padding:7px 10px 7px 12px;min-height:44px;border:none;background:{{ mp.bgS }};color:#fff;font:inherit;text-align:left;cursor:pointer">
+<button onClick="{{ mp.toggle }}" aria-expanded="{{ mp.expanded }}" style="width:100%;display:grid;grid-template-columns:20px minmax(0,1fr) auto auto 24px;align-items:center;column-gap:8px;padding:7px 10px 7px 12px;min-height:44px;border:none;background:{{ mp.bgS }};color:#fff;font:inherit;text-align:left;cursor:pointer">
 <span style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-weight:700;font-size:16px;color:#8A8A93">{{ mp.no }}</span>
 <span style="min-width:0;display:flex;align-items:baseline;gap:6px;white-space:nowrap"><span style="flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;font-size:14px;font-weight:700">{{ mp.name }}</span><span style="flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;font-size:11px;color:#B5B5BD">{{ mp.mode }}</span></span>
 <span style="display:flex;align-items:center;gap:4px;justify-self:end"><sc-if value="{{ mp.done }}"><b style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-size:16px;color:#fff">{{ mp.winner }}</b><sc-if value="{{ mp.wlogo }}"><span style="flex:none;display:inline-block;width:18px;height:18px;background:{{ mp.wlogo }};filter:drop-shadow(0 1px 2px rgba(0,0,0,.7));vertical-align:middle"></span></sc-if></sc-if><sc-if value="{{ mp.recording }}"><span style="font-size:11px;font-weight:700;color:var(--ac2,#C6FF33);border:1px solid var(--ac2,#C6FF33);border-radius:999px;padding:3px 8px">기록 중</span><sc-if value="{{ mp.liveScoreShort }}"><b style="font-family:var(--disp,'Barlow Condensed'),sans-serif;font-size:16px;color:#fff;margin-left:4px;font-variant-numeric:tabular-nums;white-space:nowrap;text-shadow:0 1px 4px rgba(0,0,0,.85)">{{ mp.liveScoreShort }}</b></sc-if></sc-if></span>
@@ -351,7 +365,7 @@ class Component extends DCLogic {
           if (SP) { sa = '–'; sb = '–'; }
           return { date: mdw(m.date), dshort: md(m.date), a: SHORT(m.a), b: SHORT(m.b), na: NAME(m.a), nb: NAME(m.b), sa, sb, ca: logo(m.a), cb: logo(m.b), oa: !SP && m.played && m.sa < m.sb ? .4 : 1, ob: !SP && m.played && m.sb < m.sa ? .4 : 1, wa: A.w, ta: A.t, wb: B.w, tb: B.t,
             href: 'OWCS KR Home v6.dc.html?date=' + m.day + '#today', vod: m.vod || 'https://www.sooplive.com/station/owesports/vod/review', mine: mine(m.a, m.b),
-            hasMaps: !!(m.maps && m.maps.length), open: !!(m.maps && m.maps.length) && !!this.state.openRows[m.id], detailLabel: this.state.openRows[m.id] ? '맵 상세 ▴' : '맵 상세 ▾',
+            hasMaps: !!(m.maps && m.maps.length), open: !!(m.maps && m.maps.length) && !!this.state.openRows[m.id], expanded: this.state.openRows[m.id] ? 'true' : 'false', detailLabel: this.state.openRows[m.id] ? '맵 상세 ▴' : '맵 상세 ▾',
             toggle: () => this.setState((s) => ({ openRows: { ...s.openRows, [m.id]: !s.openRows[m.id] } })),
             maps: window.OWCSMaps.build({ ...m, st: m.live ? 'live' : 'done' }, { spoiler: SP, noComps: m.past, isOpen: (k) => this.state.openMaps[k],
               toggle: (k) => this.setState((s) => ({ openMaps: { ...s.openMaps, [k]: !s.openMaps[k] } })) }) };
@@ -392,6 +406,9 @@ class Component extends DCLogic {
       seasonLabelM: this.state.tabM === 'results' ? (D.year || '') + ' 스테이지 ' + this.state.st : this.state.tabM === 'bracket' ? ls.label : (D.year || '') + ' ' + STAGE,
       showStD: this.state.tabD === 'results', showStM: this.state.tabM === 'results',
       stOpenD: this.state.stOpen === 'd' && this.state.tabD === 'results', stOpenM: this.state.stOpen === 'm' && this.state.tabM === 'results',
+      // open / on state for screen readers, as strings ('true' / 'false') like the home page's (10-24)
+      stExpD: this.state.stOpen === 'd' && this.state.tabD === 'results' ? 'true' : 'false', stExpM: this.state.stOpen === 'm' && this.state.tabM === 'results' ? 'true' : 'false',
+      spoilChecked: SP ? 'true' : 'false',
       stChevD: this.state.tabD !== 'results' ? '' : this.state.stOpen === 'd' ? '▴' : '▾', stChevM: this.state.tabM !== 'results' ? '' : this.state.stOpen === 'm' ? '▴' : '▾',
       stToggleD: () => this.setState((s) => ({ stOpen: s.stOpen === 'd' ? null : 'd', tabD: 'results' })),
       stToggleM: () => this.setState((s) => ({ stOpen: s.stOpen === 'm' ? null : 'm', tabM: 'results' })),

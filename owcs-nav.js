@@ -427,12 +427,26 @@
   }
   function syncSpoiler(m) { m.querySelector('.sp').classList.toggle('on', spOn()); m.querySelector('.sp').setAttribute('aria-checked', spOn() ? 'true' : 'false'); }
 
-  // phone / tablet: the home page's top (header, menu chips, 직관 안내) at the top of the page, the picker next to ☰
+  // phone / tablet: the home page's top (header, menu chips, 직관 안내) at the top of the page, the picker next to ☰.
+  // A dc page (results, player) waits for its screen: put at the top of <body> first and moved into the screen once React
+  // drew it, the 211 px bar pushed the page down and back (results on a phone: CLS 0.25, 10-24). The observer below
+  // places it in the same frame the screen appears. React never coming (a failed CDN): <body> after 4 s, as before.
+  // A dc page loads support.js in its <head>, which is read by the time the body is (this script runs before both)
+  var dcWait = 0, dcLate = false;
+  function dcEarly() {
+    if (dcLate || !document.querySelector('script[src*="support.js"]')) return false;
+    if (!dcWait) dcWait = setTimeout(function () { dcLate = true; place(); }, 4000);
+    return true;
+  }
   function placeMobile() {
     var host, before;
     var scr = Array.prototype.find.call(document.querySelectorAll('#dc-root [data-screen-label]'), function (x) { return x.offsetWidth > 0; });
+    if (!scr && dcEarly()) return;
     if (scr) { host = scr; before = scr.firstElementChild; }
-    else if (document.body && document.body.firstElementChild) { host = document.body; before = document.body.firstElementChild; }
+    else if (document.body && document.body.firstElementChild) {   // after the skip link, which stays the first Tab stop
+      host = document.body; before = document.body.firstElementChild;
+      if (before.hasAttribute('data-owcs-skip')) before = before.nextElementSibling;
+    }
     if (!host) return;
     var m = host.querySelector(':scope > [data-owcs-mtop]');
     if (!m) {
@@ -635,7 +649,8 @@
       }).join('') + '</ol><p class="kp">' + AT.keep + '</p>' + (IOS ? '<p class="kp">' + AT.nohome + '</p>' : '');
     }
     s.className = 'sheet ' + (at === 'c' ? 'c' : at.charAt(0));
-    s.innerHTML = '<div class="pn"><div class="hd2">' + MARK + title + '</div>' + body + '<div class="bs2">' + ext + '<button class="ok">' + AT.ok + '</button></div></div>';
+    s.innerHTML = '<div class="pn" role="dialog" aria-modal="true" aria-labelledby="owcs-app-t" data-owcs-modal=""><div class="hd2" id="owcs-app-t">' + MARK + title + '</div>' +
+      body + '<div class="bs2">' + ext + '<button class="ok" data-owcs-close="">' + AT.ok + '</button></div></div>';
     s.onclick = function (e) {
       if (e.target === s || e.target.closest('.ok')) closeApp();
     };
@@ -679,6 +694,127 @@
     }
   }
   appInit();
+
+  // --- status messages for screen readers (검색 결과 없음, 복사됨 ...): one polite live region per page, in the page from
+  // the start (a region added together with its text is mostly not read). Pages call window.owcsSay(text) (10-24)
+  var SAY = null, sayT = 0;
+  function sayBox() {
+    if (SAY && SAY.isConnected) return SAY;
+    if (!document.body) return null;
+    SAY = document.createElement('div');
+    SAY.setAttribute('role', 'status');
+    SAY.setAttribute('data-owcs-say', '');
+    SAY.style.cssText = SAY_CSS;
+    document.body.appendChild(SAY);
+    return SAY;
+  }
+  // an open aria-modal dialog hides the rest of the page from screen readers, this region too: there the message goes to
+  // a region inside the dialog (put in when it opens, dlgSync below; again here if the dialog was drawn anew)
+  function dlgSay() {
+    var d = Array.prototype.find.call(document.querySelectorAll('[data-owcs-modal]'), function (x) { return x.offsetWidth > 0; });
+    if (!d) return null;
+    var r = d.querySelector('[data-owcs-say-dlg]');
+    if (!r) {
+      r = document.createElement('div');
+      r.setAttribute('role', 'status');
+      r.setAttribute('data-owcs-say-dlg', '');
+      r.style.cssText = SAY_CSS;
+      d.appendChild(r);
+    }
+    return r;
+  }
+  var SAY_CSS = 'position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0';
+  window.owcsSay = function (text) {
+    var t = window.OWCSi18n ? window.OWCSi18n.t(text) : text;   // already in the page's language, not Korean first
+    var box = dlgSay() || sayBox();
+    if (!box) return;
+    clearTimeout(sayT);
+    box.textContent = '';   // emptied first, so the same message twice is read twice
+    sayT = setTimeout(function () { var b2 = dlgSay() || sayBox(); if (b2) b2.textContent = t; }, 150);
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', sayBox); else sayBox();
+
+  // --- 본문 바로가기: the first Tab on every page shows a link past the header and menu to the page's content: <main>, or
+  // on the dc pages (no <main>) the first section of the screen in view (10-24)
+  function skipTarget() {
+    var vis = function (x) { return x && x.offsetWidth > 0; };
+    var main = Array.prototype.find.call(document.querySelectorAll('main'), vis);
+    if (main) return main;
+    var scr = Array.prototype.find.call(document.querySelectorAll('#dc-root [data-screen-label]'), vis);
+    // past the header, the phone top bar and the 직관 안내 banner (this script's or the home page's own)
+    return scr && (Array.prototype.find.call(scr.querySelectorAll('section'), function (x) {
+      return vis(x) && !x.closest('header,[data-owcs-mtop],[data-owcs-tk]') && !x.querySelector('a[href*="ticketlink"]');
+    }) || scr);
+  }
+  function skipLink() {
+    if (!document.body || document.querySelector('a[data-owcs-skip]')) return;
+    var st = document.createElement('style');
+    st.textContent = 'a[data-owcs-skip]{position:fixed;left:12px;top:-80px;z-index:2147483000;padding:10px 16px;border-radius:10px;' +
+      'background:#0B0B0F;color:#fff;font:700 15px/1.2 Pretendard,system-ui,sans-serif;text-decoration:none;outline:2px solid #C6FF33;outline-offset:2px}' +
+      'a[data-owcs-skip]:focus{top:12px}';
+    document.head.appendChild(st);
+    var a = document.createElement('a');
+    a.setAttribute('data-owcs-skip', '');
+    a.href = '#';
+    a.textContent = '본문 바로가기';
+    a.onclick = function (e) {
+      e.preventDefault();
+      var t = skipTarget();
+      if (!t) return;
+      if (!t.hasAttribute('tabindex')) t.setAttribute('tabindex', '-1');
+      t.focus({ preventScroll: true });
+      t.scrollIntoView({ block: 'start' });
+    };
+    document.body.insertBefore(a, document.body.firstChild);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', skipLink); else skipLink();
+
+  // --- sheets and popovers as dialogs (10-24): the 앱 설치 guide here, the home page's share sheet and calendar
+  // popover, the schedule page's calendar popover. Each marks its box [data-owcs-modal] (with role="dialog"
+  // aria-modal="true") and its close control [data-owcs-close]. While one is open: focus goes into it, Tab stays in it,
+  // Esc presses its close control, and when it goes away focus returns to the button that opened it. The boxes are
+  // drawn by the dc runtime or by innerHTML, so this watches the page instead of being called (no <dialog>.showModal())
+  var DLG = null, dlgFrom = null, dlgLast = null, focusOut = null;
+  var FOCUSABLE = 'a[href],button:not([disabled]),input:not([disabled]),select,textarea,[tabindex]:not([tabindex="-1"])';
+  function dlgItems(d) { return Array.prototype.filter.call(d.querySelectorAll(FOCUSABLE), function (x) { return x.offsetWidth > 0 || x.offsetHeight > 0; }); }
+  function dlgSync() {
+    if (!DLG && !document.querySelector('[data-owcs-modal]')) return;   // the usual case, cheap
+    var d = Array.prototype.find.call(document.querySelectorAll('[data-owcs-modal]'), function (x) { return x.offsetWidth > 0; }) || null;
+    if (d === DLG) return;
+    var redrawn = d && DLG && !DLG.isConnected;   // the same box drawn again (the schedule page redraws on every click)
+    // the opener: focused now, or (redrawn together with the box, schedule page) the last thing focused before
+    if (d && !DLG) dlgFrom = document.activeElement && document.activeElement !== document.body ? document.activeElement : focusOut;
+    DLG = d;
+    if (d) {
+      var same = redrawn && dlgLast && dlgLast.getAttribute('data-act') ? d.querySelector('[data-act="' + dlgLast.getAttribute('data-act') + '"]' +
+        (dlgLast.getAttribute('data-t') ? '[data-t="' + dlgLast.getAttribute('data-t') + '"]' : '')) : null;
+      dlgSay();   // its status region, there before any message
+      var first = same || dlgItems(d)[0];
+      if (first && !d.contains(document.activeElement)) first.focus();
+    } else if (dlgFrom && (document.activeElement === document.body || !document.activeElement)) {
+      // the opener drawn again meanwhile (schedule page): its new copy, found by data-act
+      var to = dlgFrom.isConnected ? dlgFrom : dlgFrom.getAttribute('data-act') &&
+        Array.prototype.find.call(document.querySelectorAll('[data-act="' + dlgFrom.getAttribute('data-act') + '"]'), function (x) { return x.offsetWidth > 0; });
+      if (to) to.focus();
+      dlgFrom = null;
+    }
+  }
+  document.addEventListener('focusin', function (e) { if (DLG && DLG.contains(e.target)) dlgLast = e.target; else focusOut = e.target; });
+  document.addEventListener('keydown', function (e) {
+    if (!DLG || !DLG.isConnected) return;
+    if (e.key === 'Escape') {
+      var c = DLG.querySelector('[data-owcs-close]') || Array.prototype.find.call(document.querySelectorAll('[data-owcs-close]'), function (x) { return x.offsetWidth > 0; });
+      if (c) { e.preventDefault(); c.click(); }
+      return;
+    }
+    if (e.key !== 'Tab') return;
+    var items = dlgItems(DLG);
+    if (!items.length) return;
+    var i = items.indexOf(document.activeElement);
+    if (e.shiftKey && i <= 0) { e.preventDefault(); items[items.length - 1].focus(); }
+    else if (!e.shiftKey && (i < 0 || i === items.length - 1)) { e.preventDefault(); items[0].focus(); }
+  }, true);
+  new MutationObserver(dlgSync).observe(document.documentElement, { childList: true, subtree: true });
 
   var busy = false;
   new MutationObserver(function () {

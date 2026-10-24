@@ -14,13 +14,19 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- connections for the fonts opened while the page itself loads (10-24). jsdelivr twice:
+     the Pretendard stylesheet is fetched without CORS, its font files with it, and each needs its own connection -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <title>OWticker 직관 안내</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,800&family=JetBrains+Mono:wght@500;600&display=swap">
 <style>
 :root{--bg:#0B0B0F;--panel:#15151B;--line:#26262E;--ink:#F2F2F5;--mute:#A9A9B3;--dim:#8E8E98;--ac:#7D39EB;--ac2:#C6FF33;--red:#D92D20}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: no-preference){html{scroll-behavior:smooth}}   /* jumps at once with reduced motion (10-24) */
 body{margin:0;background:var(--bg);color:var(--ink);font-family:'Pretendard Variable',Pretendard,system-ui,sans-serif;-webkit-font-smoothing:antialiased;
   background-image:radial-gradient(90% 60% at 0% 0%,color-mix(in srgb,var(--ac) 22%,transparent),transparent 60%),radial-gradient(60% 50% at 100% 40%,color-mix(in srgb,var(--red) 10%,transparent),transparent 65%),repeating-linear-gradient(135deg,rgba(255,255,255,.028) 0 1px,transparent 1px 12px);background-attachment:fixed}
 a{color:inherit}

@@ -227,7 +227,7 @@ h4 small{font-weight:700;color:var(--i-mute);margin-left:6px}
         const w = x.winner ? m[x.winner] : null;
         const sc2 = SP || x.sa == null || !w ? '' : (x.winner === 'b' ? pts(x.sb) + ' : ' + pts(x.sa) : pts(x.sa) + ' : ' + pts(x.sb));
         const bans = (x.bans || []).map((b) => '<span class="ban"><i style="background:' + (MP.heroBg ? MP.heroBg(b.h) : '#24242B') + '"></i>' + esc(b.t === 'a' ? m.a : m.b) + ' · ' + esc(MP.heroName ? MP.heroName(b.h).split(' · ')[0] : b.h) + '</span>').join('');
-        return '<div class="mp" style="background:' + (MP.mapBg ? MP.mapBg(x.map, true) : '#15151B') + '"><span class="no">' + String(x.no).padStart(2, '0') + '</span><span class="nmp"><b>' + esc(x.map) + '</b><small>' + esc(x.mode) + '</small></span>'
+        return '<div class="mp" style="background:' + (MP.mapBg ? MP.mapBg(x.map, true) : '#15151B') + '"><span class="no">' + String(x.no).padStart(2, '0') + '</span><span class="nmp"><b>' + esc(MP.mapName ? MP.mapName(x.map) : x.map) + '</b><small>' + esc(x.mode) + '</small></span>'
           + '<span class="wn">' + (SP || !w ? '' : '<i class="lg" ' + this.logo(w, true) + '></i>' + esc(w)) + '</span><span class="ms2">' + esc(sc2) + '</span>'
           + (bans ? '<span class="bans">' + bans + '</span>' : '') + '</div>';
       }).join('') : '<div class="empty">세트 정보가 아직 없어요.</div>';

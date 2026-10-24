@@ -25,6 +25,8 @@ jobs:
           node-version: '22'
       - name: Python syntax
         run: python -m py_compile *.py
+      - name: Python unused / undefined names (pyflakes rules only)
+        run: pip install --quiet ruff==0.16.8 && ruff check --select F --isolated --output-format github *.py
       - name: JavaScript syntax
         run: for f in owcs-*.js support.js; do node --check "$f" || exit 1; done
       - name: Lists agree (site_check.py)

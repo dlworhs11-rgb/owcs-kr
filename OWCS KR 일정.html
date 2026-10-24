@@ -14,6 +14,12 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- connections for the fonts opened while the page itself loads (10-24). jsdelivr twice:
+     the Pretendard stylesheet is fetched without CORS, its font files with it, and each needs its own connection -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <title>OWticker 전체 일정</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,800&display=swap">
@@ -529,6 +535,9 @@ html[data-owcs-dark] .calsec{--p3:#24242C}
     var b = e.target.closest('button'); if (!b) return;
     var t = b.getAttribute('data-t');
     setTeam(F.team === t ? '' : t);
+    // the filter left nothing in the open tab: say so (screen readers), as the page shows it (10-24)
+    var em = Array.prototype.find.call(list.querySelectorAll('.empty'), function (x) { return x.offsetWidth > 0; });
+    if (em && window.owcsSay) owcsSay('조건에 맞는 경기가 없어요.');
   };
   show(cur);
   setTeam(F.team);
@@ -586,7 +595,7 @@ html[data-owcs-dark] .calsec{--p3:#24242C}
       : apple ? '아이폰·아이패드·맥 캘린더에 바로 구독돼요. '
       : IOS ? '폰 구글 캘린더 앱은 링크로 구독을 추가할 수 없어요. 주소를 복사해서 PC 구글 캘린더 → 다른 캘린더 + → URL로 추가에 붙여 넣으세요. ' : '') +
       '여러 팀을 골라도 캘린더 하나로 한 번에 구독돼요. 새 일정(플레이오프 포함)이 생기면 자동으로 들어와요. 알림은 따로 울리지 않아요.';
-    return '<div class="subov" data-act="close"></div><div class="subpop"><b>' + (apple ? '애플 캘린더에 남은 경기 구독' : '구글 캘린더에 남은 경기 구독') + '</b>' +
+    return '<div class="subov" data-act="close" data-owcs-close=""></div><div class="subpop" role="dialog" aria-modal="true" aria-label="' + (apple ? '애플 캘린더에 남은 경기 구독' : '구글 캘린더에 남은 경기 구독') + '" data-owcs-modal=""><b>' + (apple ? '애플 캘린더에 남은 경기 구독' : '구글 캘린더에 남은 경기 구독') + '</b>' +
       '<div class="seg"><button data-act="all" class="' + (teamsMode ? '' : 'on') + '">전체 경기</button><button data-act="teams" class="' + (teamsMode ? 'on' : '') + '">팀 고르기</button></div>' +
       (teamsMode ? '<div class="hint">구독할 팀을 고르세요 · 여러 팀 가능</div><div class="tg5">' + D.teams.map(function (t) {
         var on = S.subTeams.indexOf(t.a) >= 0, c = t.color || '#0B0B0F';
@@ -665,7 +674,7 @@ html[data-owcs-dark] .calsec{--p3:#24242C}
       else if (act === 'tm') { var k = a.getAttribute('data-t'), j = S.subTeams.indexOf(k); if (j >= 0) S.subTeams.splice(j, 1); else S.subTeams.push(k); }
       else if (act === 'copy') {
         var u = 'https://' + calFeed(S.subMode === 'all' ? '' : S.subTeams);
-        var done = function () { S.copied = true; drawCal(); setTimeout(function () { S.copied = false; drawCal(); }, 2500); };
+        var done = function () { S.copied = true; drawCal(); if (window.owcsSay) owcsSay('구독 주소를 복사했어요'); setTimeout(function () { S.copied = false; drawCal(); }, 2500); };
         try { navigator.clipboard.writeText(u).then(done, function () { window.prompt('구독 주소', u); }); } catch (e3) { window.prompt('구독 주소', u); }
         return;
       }
