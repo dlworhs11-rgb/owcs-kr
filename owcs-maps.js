@@ -88,7 +88,7 @@
         recNoteShort: recording ? '세트가 끝나면 조합이 올라와요.' : '첫 조합 기록 없음',
         // replay code (community sheet): a small copy chip at the right end of the last ban card; its own row only
         // when the map has no bans to sit beside
-        bans: x.bans.map((b, i, all) => ({ k: b.t === x.banFirst ? '선벤' : '후벤', team: m[b.t] || '?', logo: logoOf(m[b.t]), h: b.code, name: heroName(b.h), bg: heroBg(b.h), txt: HERO_IMG[heroKey(b.h)] ? '' : b.code,
+        bans: x.bans.map((b, i, all) => ({ k: b.t === x.banFirst ? '선밴' : '후밴', team: m[b.t] || '?', logo: logoOf(m[b.t]), h: b.code, name: heroName(b.h), bg: heroBg(b.h), txt: HERO_IMG[heroKey(b.h)] ? '' : b.code,
           rc: i === all.length - 1 ? x.replay || '' : '', copy: (e) => copyReplay(e) })),
         replay: x.replay || '', hasReplay: !!x.replay, showReplay: open && !!x.replay && !(showBans && x.bans.length),
         showReplayRow: open && !!x.replay,   // phone: ban cards are too narrow, the chip gets a slim row under them

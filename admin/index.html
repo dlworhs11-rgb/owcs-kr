@@ -144,9 +144,9 @@ function render() {
         <label style="margin-left:10px">세트 승리</label><select data-x="winner">${opts(['a', 'b'], x.winner, (t) => m[t])}</select><span class="auto">자동: ${esc(auto.winner ? m[auto.winner] : '없음')}</span>
       </div>
       <div class="row" style="margin-top:10px">
-        <label>선벤</label><select data-x="banFirst">${opts(['a', 'b'], x.banFirst, (t) => m[t])}</select>
+        <label>선밴</label><select data-x="banFirst">${opts(['a', 'b'], x.banFirst, (t) => m[t])}</select>
         <select data-ban="0">${heroOpts(ban(0).h)}</select>
-        <label>후벤</label><select data-ban="1">${heroOpts(ban(1).h)}</select>
+        <label>후밴</label><select data-ban="1">${heroOpts(ban(1).h)}</select>
         <span class="auto">자동: ${esc([abn(0), abn(1)].filter((b) => b.h).map((b) => (m[b.t] || '?') + ' ' + heroKo(b.h)).join(' / ') || '없음')}</span>
       </div>
       ${['a', 'b'].map((t) => `<div class="team">${esc(m[t])} 첫 조합</div><div class="grid5">${[0, 1, 2, 3, 4].map((i) => `
