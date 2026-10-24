@@ -734,9 +734,7 @@
    "src": "SOOP",
    "heroTs": 1792837092,
    "hudLeft": "Poker Face",
-   "guessed": [
-    "OFF"
-   ],
+   "guessed": [],
    "comps": {
     "Poker Face": [
      [
@@ -749,7 +747,7 @@
      ],
      [
       "F1nally",
-      "symmetra"
+      "tracer"
      ],
      [
       "Soae",
