@@ -245,7 +245,8 @@ html[data-owcs-dark] .ct.out{background:#24242C}
 .lc .dt small{display:block;font-size:12px;color:var(--dim);margin-top:3px;white-space:nowrap}
 .lc .tm{display:flex;align-items:center;gap:10px;min-width:0}
 .lc .tm i.lg{width:32px;height:32px}
-.lc .tm span{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:22px}
+.lc .tm span{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:22px;white-space:nowrap}
+.lc .tm i.lg.tbd{display:none}   /* 미정 vs 미정 is wider than TBD vs TBD: no grey boxes, so the names stay on one line (10-24) */
 .lc .tm .mid{font-size:18px;color:var(--dim);padding:0 2px;white-space:nowrap}
 .lc .st{display:flex;justify-content:flex-end}
 @media (max-width:899.98px){
