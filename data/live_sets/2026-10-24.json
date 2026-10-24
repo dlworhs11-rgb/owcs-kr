@@ -1,0 +1,20 @@
+{
+ "date": "2026-10-24",
+ "sets": [
+  {
+   "banTs": 1792822638,
+   "teams": [
+    "CHEESEBURGER",
+    "ZETA DIVISION"
+   ],
+   "game": 1,
+   "map": "Nepal",
+   "seriesBefore": {
+    "CHEESEBURGER": 0,
+    "ZETA DIVISION": 0
+   },
+   "bans": null,
+   "src": "SOOP"
+  }
+ ]
+}
