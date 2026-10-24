@@ -575,7 +575,57 @@
      "hero": "vendetta"
     }
    },
-   "src": "SOOP"
+   "src": "SOOP",
+   "heroTs": 1792832963,
+   "hudLeft": "T1",
+   "guessed": [],
+   "comps": {
+    "T1": [
+     [
+      "DONGHAK",
+      "orisa"
+     ],
+     [
+      "Proud",
+      "sojourn"
+     ],
+     [
+      "ZEST",
+      "mei"
+     ],
+     [
+      "Bliss",
+      "doctrine"
+     ],
+     [
+      "skewed",
+      "kiriko"
+     ]
+    ],
+    "Team Falcons": [
+     [
+      "SOMEONE",
+      "orisa"
+     ],
+     [
+      "MER1T",
+      "cassidy"
+     ],
+     [
+      "Checkmate",
+      "tracer"
+     ],
+     [
+      "Fielder",
+      "kiriko"
+     ],
+     [
+      "ChiYo",
+      "doctrine"
+     ]
+    ]
+   },
+   "compAt": null
   }
  ]
 }
