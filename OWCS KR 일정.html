@@ -397,7 +397,7 @@ html[data-owcs-dark] .calsec{--p3:#24242C}
     var tm = m.tbd ? '시간 미정' : esc(window.OWCSi18n && OWCSi18n.hm ? OWCSi18n.hm(/T/.test(m.date || '') ? m.date : m.day, m.time) : m.time);   // reader's zone in ja / en / zh
     var rd = intl ? [m.section, m.round].filter(Boolean).join(' ') : (m.round || m.label || '');
     var lbl = m.phase === 'rs' || !rd ? tm : esc(rd) + ' · ' + tm;
-    var tag = st === 'live' ? 'a href="OWCS KR Home v6.dc.html"' : st === 'done' && !intl ? 'a href="OWCS KR Results.dc.html?q=' + encodeURIComponent(m.a) + '"' : 'div';
+    var tag = st === 'live' ? 'a href="OWCS KR Home v6.dc.html"' : st === 'done' && !intl ? 'a href="OWCS KR Results.dc.html"' : 'div';
     var mine = MY && (m.a === MY || m.b === MY) ? ' mine' : '';
     var kr = intl && ((TM[m.a] || {}).kr || (TM[m.b] || {}).kr) ? ' kr' : '';
     return '<' + tag + ' class="m' + mine + kr + '" data-st="' + st + '" data-a="' + esc(m.a) + '" data-b="' + esc(m.b) + '">' +
