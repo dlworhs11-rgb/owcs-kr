@@ -25,16 +25,12 @@
    },
    "src": "SOOP",
    "heroTs": 1792822717,
-   "hudLeft": "ZETA DIVISION",
+   "hudLeft": "CHEESEBURGER",
    "guessed": [],
    "comps": {
-    "ZETA DIVISION": [
+    "CHEESEBURGER": [
      [
-      "Bernar",
-      "jetpack-cat"
-     ],
-     [
-      "Knife",
+      "",
       "bastion"
      ],
      [
@@ -48,27 +44,31 @@
      [
       "",
       "doctrine"
+     ],
+     [
+      "",
+      "jetpack-cat"
      ]
     ],
-    "CHEESEBURGER": [
+    "ZETA DIVISION": [
      [
-      "",
-      "pharah"
-     ],
-     [
-      "",
-      "symmetra"
-     ],
-     [
-      "",
+      "Bernar",
       "dva"
      ],
      [
-      "",
-      "?"
+      "Knife",
+      "bastion"
      ],
      [
-      "",
+      "Proper",
+      "symmetra"
+     ],
+     [
+      "Viol2t",
+      "jetpack-cat"
+     ],
+     [
+      "Shu",
       "doctrine"
      ]
     ]
