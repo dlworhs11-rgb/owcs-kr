@@ -53,6 +53,7 @@
 <script>
 const $ = (s, el = document) => el.querySelector(s);
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+const num = (v) => (v !== '' && v != null && Number.isFinite(+v) ? +v : '');   // stored scores go into the page as numbers only (10-24)
 let S = null, ADM = null, TAB = {};
 const today = () => new Date(Date.now() + 9 * 3600e3).toISOString().slice(0, 10);
 $('#date').value = new URLSearchParams(location.search).get('date') || today();
@@ -128,18 +129,18 @@ function render() {
     const comp = (t, i) => ((x.comps || {})[t] || [])[i] || [], acomp = (t, i) => ((auto.comps || {})[t] || [])[i] || [];
     h += `<section class="card" data-m="${esc(m.id)}">
       <div class="row"><span class="mt">${esc(m.time)} · ${esc(m.a)} vs ${esc(m.b)}</span>
-        <span class="auto">자동 점수 ${m.sa ?? 0} : ${m.sb ?? 0}${m.potm ? ' · POTM ' + esc(m.potm) : ''}</span></div>
+        <span class="auto">자동 점수 ${num(m.sa) || 0} : ${num(m.sb) || 0}${m.potm ? ' · POTM ' + esc(m.potm) : ''}</span></div>
       <div class="row" style="margin-top:10px">
-        <label>${esc(m.a)}</label><input type="number" min="0" max="4" data-f="sa" value="${a.sa ?? ''}" class="${a.sa != null ? 'set' : ''}">
-        <span>:</span><input type="number" min="0" max="4" data-f="sb" value="${a.sb ?? ''}" class="${a.sb != null ? 'set' : ''}"><label>${esc(m.b)}</label>
+        <label>${esc(m.a)}</label><input type="number" min="0" max="4" data-f="sa" value="${num(a.sa)}" class="${a.sa != null ? 'set' : ''}">
+        <span>:</span><input type="number" min="0" max="4" data-f="sb" value="${num(a.sb)}" class="${a.sb != null ? 'set' : ''}"><label>${esc(m.b)}</label>
         <label style="margin-left:14px">POTM</label><select data-f="potm">${opts([...m.ra, ...m.rb], a.potm)}</select>
         <label style="margin-left:14px" title="자동 점수가 잘못 높게 읽혔을 때: 체크하면 적은 점수가 자동보다 낮아도 이김"><input type="checkbox" data-f="force" ${a.force ? 'checked' : ''}> 강제</label>
       </div>
       <div class="tabs">${Array.from({ length: m.bo }, (_, i) => `<button data-tab="${i + 1}" class="${i + 1 === no ? 'on' : ''}">${i + 1}세트</button>`).join('')}</div>
       <div class="row">
         <label>맵</label><select data-x="map">${opts(S.maps, x.map)}</select><span class="auto">자동: ${esc(auto.map || '없음')}</span>
-        <label style="margin-left:10px">세트 점수</label><input type="number" min="0" data-ms="sa" value="${x.sa ?? ''}" class="${x.sa != null ? 'set' : ''}"><span>:</span><input type="number" min="0" data-ms="sb" value="${x.sb ?? ''}" class="${x.sb != null ? 'set' : ''}">
-        <span class="auto">자동: ${auto.sa != null ? auto.sa + ' : ' + auto.sb : '없음'}</span>
+        <label style="margin-left:10px">세트 점수</label><input type="number" min="0" data-ms="sa" value="${num(x.sa)}" class="${x.sa != null ? 'set' : ''}"><span>:</span><input type="number" min="0" data-ms="sb" value="${num(x.sb)}" class="${x.sb != null ? 'set' : ''}">
+        <span class="auto">자동: ${auto.sa != null ? num(auto.sa) + ' : ' + num(auto.sb) : '없음'}</span>
         <label style="margin-left:10px">세트 승리</label><select data-x="winner">${opts(['a', 'b'], x.winner, (t) => m[t])}</select><span class="auto">자동: ${esc(auto.winner ? m[auto.winner] : '없음')}</span>
       </div>
       <div class="row" style="margin-top:10px">
