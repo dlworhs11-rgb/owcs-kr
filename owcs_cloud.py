@@ -207,6 +207,23 @@ def ig_reels(prev=None, checked=None, now=None):
         return prev, checked
 
 
+def fold_ics(line):
+    """RFC 5545 3.1: a content line is at most 75 octets; longer ones continue on the next line after CRLF + space.
+    Cut by UTF-8 bytes, never inside a multi-byte character."""
+    if len(line.encode('utf-8')) <= 75:
+        return line
+    out, cur, size, room = [], '', 0, 75
+    for ch in line:
+        n = len(ch.encode('utf-8'))
+        if size + n > room:
+            out.append(cur)
+            cur, size, room = '', 0, 74   # the leading space of a continuation line counts too
+        cur += ch
+        size += n
+    out.append(cur)
+    return '\r\n '.join(out)
+
+
 def upcoming_ics(data, now=None, team=None):
     """iCalendar text with every match that has not started yet, so a subscribed Google Calendar keeps itself current
     (new playoff dates appear once they are in the schedule, finished matches drop out)."""
@@ -241,7 +258,7 @@ def upcoming_ics(data, now=None, team=None):
                                        + ' · SOOP owesports 생중계 https://www.sooplive.com/station/owesports'),
                   'LOCATION:' + esc('WDG STUDIO HONGDAE · SOOP owesports'), 'END:VEVENT']
     lines.append('END:VCALENDAR')
-    return '\r\n'.join(lines) + '\r\n'
+    return '\r\n'.join(fold_ics(x) for x in lines) + '\r\n'
 
 
 # calendar file names keep the codes teams had when people subscribed (SEIJI -> SEJ, ZAN -> ROZE on 2026-10-23): the pages build the same names
