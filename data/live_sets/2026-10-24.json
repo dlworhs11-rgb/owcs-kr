@@ -473,6 +473,21 @@
     "T1": 2
    },
    "scoreFrom": "table"
+  },
+  {
+   "banTs": 1792831662,
+   "teams": [
+    "Team Falcons",
+    "T1"
+   ],
+   "game": 2,
+   "map": "New Junk City",
+   "seriesBefore": {
+    "Team Falcons": 0,
+    "T1": 1
+   },
+   "bans": null,
+   "src": "SOOP"
   }
  ]
 }
