@@ -708,6 +708,21 @@
     "Team Falcons": 0,
     "T1": 1
    }
+  },
+  {
+   "banTs": 1792837010,
+   "teams": [
+    "Poker Face",
+    "SEIJI ESPORTS"
+   ],
+   "game": 1,
+   "map": "Nepal",
+   "seriesBefore": {
+    "Poker Face": 0,
+    "SEIJI ESPORTS": 0
+   },
+   "bans": null,
+   "src": "SOOP"
   }
  ]
 }
