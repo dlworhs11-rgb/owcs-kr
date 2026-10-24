@@ -697,6 +697,21 @@ def load_insta():
     return out
 
 
+_PIL_WARNED = []
+
+
+def have_pillow():
+    """False (and one warning) when Pillow is missing, e.g. in CI: new Instagram photos cannot be saved then (10-24)"""
+    try:
+        import PIL  # noqa: F401
+        return True
+    except ImportError:
+        if not _PIL_WARNED:
+            _PIL_WARNED.append(1)
+            print('Pillow is not installed: skipping Instagram downloads. Run the build on a PC with Pillow to add new posts.')
+        return False
+
+
 def insta_post(url):
     """local copy of the post's full-size photo (assets/insta/<code>.jpg; Instagram's own embed shows a soft
     low-res preview) + caption and date from the page's link-preview tags; cached in data/insta_meta.json"""
@@ -707,6 +722,8 @@ def insta_post(url):
     img_rel = f'assets/insta/{code}.jpg'
     img = os.path.join(HERE, img_rel)
     meta = cache.get(code)
+    if not os.path.exists(img) and not have_pillow():
+        return dict(url=url, img='', text=(meta or {}).get('text', ''), date=(meta or {}).get('date', ''))
     try:
         if not os.path.exists(img):
             os.makedirs(os.path.dirname(img), exist_ok=True)
