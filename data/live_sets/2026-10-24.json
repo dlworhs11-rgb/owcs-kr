@@ -643,7 +643,16 @@
     "Team Falcons": 1,
     "T1": 2
    },
-   "bans": null,
+   "bans": {
+    "initial": {
+     "team": "T1",
+     "hero": "genji"
+    },
+    "followUp": {
+     "team": "Team Falcons",
+     "hero": "ramattra"
+    }
+   },
    "src": "SOOP"
   }
  ]
