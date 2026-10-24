@@ -888,7 +888,57 @@
      "hero": "dmon"
     }
    },
-   "src": "SOOP"
+   "src": "SOOP",
+   "heroTs": 1792839457,
+   "hudLeft": "SEIJI ESPORTS",
+   "guessed": [],
+   "comps": {
+    "SEIJI ESPORTS": [
+     [
+      "SENTIER",
+      "dva"
+     ],
+     [
+      "M1nut2",
+      "cassidy"
+     ],
+     [
+      "D4RT",
+      "bastion"
+     ],
+     [
+      "OFF",
+      "jetpack-cat"
+     ],
+     [
+      "Lavender",
+      "doctrine"
+     ]
+    ],
+    "Poker Face": [
+     [
+      "SoLA",
+      "dva"
+     ],
+     [
+      "SORI",
+      "cassidy"
+     ],
+     [
+      "F1nally",
+      "tracer"
+     ],
+     [
+      "Dumbbell",
+      "jetpack-cat"
+     ],
+     [
+      "Caffeine",
+      "doctrine"
+     ]
+    ]
+   },
+   "compAt": null
   }
  ]
 }
