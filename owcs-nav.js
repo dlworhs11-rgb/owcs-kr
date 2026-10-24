@@ -242,6 +242,10 @@
 
   var LANG = (function () {
     if (window.OWCSi18n && window.OWCSi18n.lang) return window.OWCSi18n.lang;
+    // schedule / streams / tickets load this in <head>, before owcs-i18n.js stores ?lang=: read it here too, or the
+    // picker said KOR over an English page (10-24)
+    var q = new URLSearchParams(location.search).get('lang');
+    if (/^(ko|ja|en|zh)$/.test(q || '')) return q;
     var l;
     try { l = localStorage.getItem('owcs-lang'); } catch (e) {}
     var n = (navigator.languages && navigator.languages[0] || navigator.language || 'ko').toLowerCase();
