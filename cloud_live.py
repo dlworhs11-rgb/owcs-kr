@@ -11,7 +11,8 @@ Runs in GitHub Actions (.github/workflows/pages.yml) every ~10 min, on every pus
   4b. stamp each page's own scripts with a content hash (owcs-i18n.js?v=1a2b3c4d), so a browser never mixes a new page
       with a script it cached before the deploy (GitHub Pages caches for 10 min: 10-20 "OWCSi18n.hm is not a function")
   5. set `liveChecked` = now; bump `generated` only when the content really changed,
-     so open pages reload only when there is something new
+     so open pages reload only when there is something new; owcs-ver.json and owcs-data.js?v= carry a hash of the
+     content without those fields (content_hash), so a build that changed nothing is not downloaded again (10-24)
 
 Usage:
   python cloud_live.py --out _site [--prev https://<user>.github.io/<repo>/owcs-data.js] [--force-lp]
@@ -184,10 +185,20 @@ def collect(prev, now, force=False):
     ensure_wiki([f"{owcs_build.LP_NAME}/{cur['year']}/{name}{sub}" for name, _, _ in owcs_build.INTL_EVENTS for sub in ('', '/Group Stage')])
 
 
-def stamp_scripts(out):
-    """add ?v=<content hash> to every <script src="./x.js"> of the built pages, so a deploy is picked up at once"""
+def content_hash(data):
+    """owcs-data.js's version: a hash of the data without the fields every build rewrites (VOLATILE). The file's own
+    hash changed on every run because of liveChecked, so open pages downloaded an unchanged ~48 KB (gzip) file ~13 times
+    an hour (10-24: 24 'unchanged' builds in a row, 24 new hashes). liveChecked goes to owcs-ver.json beside it."""
     import hashlib
-    ver = {}
+    body = json.dumps({k: v for k, v in data.items() if k not in VOLATILE}, sort_keys=True, ensure_ascii=False)
+    return hashlib.sha1(body.encode('utf-8')).hexdigest()[:8]
+
+
+def stamp_scripts(out, fixed=None):
+    """add ?v=<content hash> to every <script src="./x.js"> of the built pages, so a deploy is picked up at once.
+    fixed: {file: version} used instead of the file's hash (owcs-data.js: content_hash, the same v as owcs-ver.json)"""
+    import hashlib
+    ver = dict(fixed or {})
     def tag(m):
         f = m.group(2)
         p = os.path.join(out, f)
@@ -283,11 +294,11 @@ def main():
     same = prev and {k: v for k, v in prev.items() if k not in VOLATILE} == {k: v for k, v in data.items() if k not in VOLATILE}
     data['generated'] = prev['generated'] if same else stamp
     write_data(os.path.join(out, 'owcs-data.js'), data)
-    import hashlib   # owcs-ver.json: the data file's hash (same as stamp_scripts' ?v=); open pages poll it, owcs-datapoll.js
+    ver = content_hash(data)   # owcs-ver.json: open pages poll it (owcs-datapoll.js); checked = the stream check time
     with open(os.path.join(out, 'owcs-ver.json'), 'w', encoding='utf-8') as f:
-        json.dump({'v': hashlib.sha1(open(os.path.join(out, 'owcs-data.js'), 'rb').read()).hexdigest()[:8]}, f)
+        json.dump({'v': ver, 'checked': data.get('liveChecked')}, f)
     b.write_ics(data, out)   # subscription calendar: only matches not played yet, so rebuild it on every run
-    stamp_scripts(out)   # after owcs-data.js is written: its hash goes on the pages too
+    stamp_scripts(out, {'owcs-data.js': ver})   # after owcs-data.js is written: the same version goes on the pages
     print(f"live streams: {len(data['live'])} {sorted(data['live'])} · {'unchanged' if same else 'changed'} · generated {data['generated']}")
     site_urls.apply(out)   # short English addresses: owticker.com/schedule, /results ... (old names forward)
 
