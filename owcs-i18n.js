@@ -244,6 +244,10 @@
     ['팀을 하나 이상 고르면 구독 버튼이 나와요', 'チームを1つ以上選ぶと購読ボタンが表示されます', 'Pick at least one team to show the subscribe button', '至少选择一支战队后会显示订阅按钮'],
     ['이전 달', '前の月', 'Previous month', '上个月'], ['다음 달', '次の月', 'Next month', '下个月'],
     ['아직 공개된 일정이 없어요.', '公開されている日程はまだありません。', 'No schedule has been published yet.', '赛程尚未公布。'],   // (10-24)
+    // tab titles (the <title> of each page; the player page adds ' · ID' to the first one) (10-24)
+    ['OWticker · OWCS 코리아 비공식 팬 사이트', 'OWticker · OWCS韓国 非公式ファンサイト', 'OWticker · Unofficial OWCS Korea fan site', 'OWticker · OWCS 韩国非官方粉丝网站'],
+    ['OWticker 전체 일정', 'OWticker 全日程', 'OWticker Full Schedule', 'OWticker 全部赛程'], ['OWticker 경기 결과 · 대진표', 'OWticker 試合結果 · トーナメント表', 'OWticker Results · Brackets', 'OWticker 比赛结果 · 对阵图'],
+    ['OWticker 선수', 'OWticker 選手', 'OWticker Players', 'OWticker 选手'], ['OWticker 선수 방송', 'OWticker 選手配信', 'OWticker Player Streams', 'OWticker 选手直播'], ['OWticker 직관 안내', 'OWticker 観戦案内', 'OWticker Tickets', 'OWticker 现场观赛指南'],
   ];
   // [japanese, english, chinese]
   var DOW = { '일': ['日', 'Sun', '周日'], '월': ['月', 'Mon', '周一'], '화': ['火', 'Tue', '周二'], '수': ['水', 'Wed', '周三'], '목': ['木', 'Thu', '周四'], '금': ['金', 'Fri', '周五'], '토': ['土', 'Sat', '周六'] };
@@ -425,8 +429,18 @@
   window.OWCSi18n = { lang: lang, set: set, t: function (s) { return lang === 'ko' ? s : tr(s); }, hm: hm, tz: TZ, zone: ZONE };
   document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang;
 
+  // the tab title: walked once, then watched, since the player page sets its own after the data is read (10-24)
+  function doTitle() {
+    var t = document.title;
+    if (!HANGUL.test(t)) return;
+    var o = tr(t);
+    if (o !== t) document.title = o;
+  }
   function start() {
     if (lang === 'ko') return;
+    doTitle();
+    var te = document.querySelector('title');
+    if (te) new MutationObserver(doTitle).observe(te, { childList: true, characterData: true, subtree: true });
     var st = document.createElement('style');   // upright Korean role letters read sideways in other scripts
     st.textContent = '[style*="text-orientation: upright"]{text-orientation:mixed !important;transform:rotate(180deg)}';
     document.head.appendChild(st);
