@@ -1,0 +1,478 @@
+{
+ "date": "2026-10-24",
+ "sets": [
+  {
+   "banTs": 1792822638,
+   "teams": [
+    "CHEESEBURGER",
+    "ZETA DIVISION"
+   ],
+   "game": 1,
+   "map": "Nepal",
+   "seriesBefore": {
+    "CHEESEBURGER": 0,
+    "ZETA DIVISION": 0
+   },
+   "bans": {
+    "initial": {
+     "team": "Cheeseburger",
+     "hero": "orisa"
+    },
+    "followUp": {
+     "team": "ZETA DIVISION",
+     "hero": "cassidy"
+    }
+   },
+   "src": "SOOP",
+   "heroTs": 1792822717,
+   "hudLeft": "CHEESEBURGER",
+   "guessed": [],
+   "comps": {
+    "CHEESEBURGER": [
+     [
+      "Belosrea",
+      "dmon"
+     ],
+     [
+      "K4NE",
+      "bastion"
+     ],
+     [
+      "Profit",
+      "tracer"
+     ],
+     [
+      "Trest",
+      "doctrine"
+     ],
+     [
+      "TenTen",
+      "jetpack-cat"
+     ]
+    ],
+    "ZETA DIVISION": [
+     [
+      "Bernar",
+      "dva"
+     ],
+     [
+      "Knife",
+      "bastion"
+     ],
+     [
+      "Proper",
+      "tracer"
+     ],
+     [
+      "Viol2t",
+      "jetpack-cat"
+     ],
+     [
+      "Shu",
+      "doctrine"
+     ]
+    ]
+   },
+   "compAt": "2026-10-24T15:19:20+09:00",
+   "score": {
+    "CHEESEBURGER": 2,
+    "ZETA DIVISION": 0
+   },
+   "scoreFrom": "table"
+  },
+  {
+   "banTs": 1792823755,
+   "teams": [
+    "CHEESEBURGER",
+    "ZETA DIVISION"
+   ],
+   "game": 2,
+   "map": "Route 66",
+   "seriesBefore": {
+    "CHEESEBURGER": 1,
+    "ZETA DIVISION": 0
+   },
+   "bans": {
+    "initial": {
+     "team": "ZETA DIVISION",
+     "hero": "hazard"
+    },
+    "followUp": {
+     "team": "Cheeseburger",
+     "hero": "zenyatta"
+    }
+   },
+   "src": "SOOP",
+   "heroTs": 1792823826,
+   "hudLeft": "CHEESEBURGER",
+   "guessed": [],
+   "comps": {
+    "CHEESEBURGER": [
+     [
+      "Belosrea",
+      "winston"
+     ],
+     [
+      "K4NE",
+      "cassidy"
+     ],
+     [
+      "Profit",
+      "tracer"
+     ],
+     [
+      "Trest",
+      "doctrine"
+     ],
+     [
+      "TenTen",
+      "jetpack-cat"
+     ]
+    ],
+    "ZETA DIVISION": [
+     [
+      "Bernar",
+      "dva"
+     ],
+     [
+      "Knife",
+      "cassidy"
+     ],
+     [
+      "Proper",
+      "tracer"
+     ],
+     [
+      "Viol2t",
+      "jetpack-cat"
+     ],
+     [
+      "Shu",
+      "doctrine"
+     ]
+    ]
+   },
+   "compAt": "2026-10-24T15:38:04+09:00",
+   "score": {
+    "CHEESEBURGER": 2,
+    "ZETA DIVISION": 3
+   },
+   "scoreFrom": "table"
+  },
+  {
+   "banTs": 1792825396,
+   "teams": [
+    "CHEESEBURGER",
+    "ZETA DIVISION"
+   ],
+   "game": 3,
+   "map": "Aatlis",
+   "seriesBefore": {
+    "CHEESEBURGER": 1,
+    "ZETA DIVISION": 1
+   },
+   "bans": {
+    "initial": {
+     "team": "Cheeseburger",
+     "hero": "doctrine"
+    },
+    "followUp": {
+     "team": "ZETA DIVISION",
+     "hero": "dmon"
+    }
+   },
+   "src": "SOOP",
+   "heroTs": 1792825459,
+   "hudLeft": "CHEESEBURGER",
+   "guessed": [],
+   "comps": {
+    "CHEESEBURGER": [
+     [
+      "Belosrea",
+      "hazard"
+     ],
+     [
+      "K4NE",
+      "cassidy"
+     ],
+     [
+      "Profit",
+      "tracer"
+     ],
+     [
+      "Trest",
+      "kiriko"
+     ],
+     [
+      "TenTen",
+      "jetpack-cat"
+     ]
+    ],
+    "ZETA DIVISION": [
+     [
+      "Bernar",
+      "orisa"
+     ],
+     [
+      "Knife",
+      "sojourn"
+     ],
+     [
+      "Proper",
+      "tracer"
+     ],
+     [
+      "Viol2t",
+      "jetpack-cat"
+     ],
+     [
+      "Shu",
+      "ana"
+     ]
+    ]
+   },
+   "compAt": "2026-10-24T16:05:04+09:00",
+   "score": {
+    "CHEESEBURGER": 0,
+    "ZETA DIVISION": 3
+   },
+   "scoreFrom": "table"
+  },
+  {
+   "banTs": 1792826314,
+   "teams": [
+    "CHEESEBURGER",
+    "ZETA DIVISION"
+   ],
+   "game": 4,
+   "map": "Eichenwalde",
+   "seriesBefore": {
+    "CHEESEBURGER": 1,
+    "ZETA DIVISION": 2
+   },
+   "bans": {
+    "initial": {
+     "team": "Cheeseburger",
+     "hero": "kiriko"
+    },
+    "followUp": {
+     "team": "ZETA DIVISION",
+     "hero": "winston"
+    }
+   },
+   "src": "SOOP",
+   "heroTs": 1792826468,
+   "hudLeft": "ZETA DIVISION",
+   "guessed": [],
+   "comps": {
+    "ZETA DIVISION": [
+     [
+      "Bernar",
+      "dmon"
+     ],
+     [
+      "Knife",
+      "sojourn"
+     ],
+     [
+      "Proper",
+      "junkrat"
+     ],
+     [
+      "Viol2t",
+      "jetpack-cat"
+     ],
+     [
+      "Shu",
+      "doctrine"
+     ]
+    ],
+    "CHEESEBURGER": [
+     [
+      "Belosrea",
+      "dmon"
+     ],
+     [
+      "K4NE",
+      "cassidy"
+     ],
+     [
+      "Profit",
+      "tracer"
+     ],
+     [
+      "Trest",
+      "doctrine"
+     ],
+     [
+      "TenTen",
+      "jetpack-cat"
+     ]
+    ]
+   },
+   "compAt": "2026-10-24T16:22:15+09:00",
+   "score": {
+    "CHEESEBURGER": 5,
+    "ZETA DIVISION": 4
+   },
+   "scoreFrom": "table"
+  },
+  {
+   "banTs": 1792828276,
+   "teams": [
+    "CHEESEBURGER",
+    "ZETA DIVISION"
+   ],
+   "game": 5,
+   "map": "Colosseo",
+   "seriesBefore": {
+    "CHEESEBURGER": 2,
+    "ZETA DIVISION": 2
+   },
+   "bans": {
+    "initial": {
+     "team": "ZETA DIVISION",
+     "hero": "jetpack cat"
+    },
+    "followUp": {
+     "team": "Cheeseburger",
+     "hero": "dva"
+    }
+   },
+   "src": "SOOP",
+   "heroTs": 1792828331,
+   "hudLeft": "ZETA DIVISION",
+   "guessed": [],
+   "comps": {
+    "ZETA DIVISION": [
+     [
+      "Bernar",
+      "dmon"
+     ],
+     [
+      "Knife",
+      "sojourn"
+     ],
+     [
+      "Proper",
+      "tracer"
+     ],
+     [
+      "Viol2t",
+      "doctrine"
+     ],
+     [
+      "Shu",
+      "wuyang"
+     ]
+    ],
+    "CHEESEBURGER": [
+     [
+      "Belosrea",
+      "orisa"
+     ],
+     [
+      "K4NE",
+      "sojourn"
+     ],
+     [
+      "Profit",
+      "tracer"
+     ],
+     [
+      "Trest",
+      "kiriko"
+     ],
+     [
+      "TenTen",
+      "doctrine"
+     ]
+    ]
+   },
+   "compAt": "2026-10-24T16:53:38+09:00",
+   "score": {
+    "ZETA DIVISION": 6,
+    "CHEESEBURGER": 99
+   }
+  },
+  {
+   "banTs": 1792830481,
+   "teams": [
+    "Team Falcons",
+    "T1"
+   ],
+   "game": 1,
+   "map": "Busan",
+   "seriesBefore": {
+    "Team Falcons": 0,
+    "T1": 0
+   },
+   "bans": {
+    "initial": {
+     "team": "Team Falcons",
+     "hero": "wrecking ball"
+    },
+    "followUp": {
+     "team": "T1",
+     "hero": "bastion"
+    }
+   },
+   "src": "SOOP",
+   "heroTs": 1792830546,
+   "hudLeft": "Team Falcons",
+   "guessed": [],
+   "comps": {
+    "Team Falcons": [
+     [
+      "Hanbin",
+      "zarya"
+     ],
+     [
+      "MER1T",
+      "sojourn"
+     ],
+     [
+      "Checkmate",
+      "tracer"
+     ],
+     [
+      "Fielder",
+      "doctrine"
+     ],
+     [
+      "ChiYo",
+      "brigitte"
+     ]
+    ],
+    "T1": [
+     [
+      "DONGHAK",
+      "orisa"
+     ],
+     [
+      "Proud",
+      "cassidy"
+     ],
+     [
+      "ZEST",
+      "tracer"
+     ],
+     [
+      "Bliss",
+      "doctrine"
+     ],
+     [
+      "skewed",
+      "kiriko"
+     ]
+    ]
+   },
+   "compAt": "2026-10-24T17:29:46+09:00",
+   "score": {
+    "Team Falcons": 0,
+    "T1": 2
+   },
+   "scoreFrom": "table"
+  }
+ ]
+}
