@@ -152,7 +152,20 @@
     document.addEventListener('DOMContentLoaded', test);
     window.addEventListener('load', test);
   })();
-  hst.textContent = centre + '\n' + hw + '\n' + owt + '\n' + ft;
+  // one keyboard focus ring for every control (10-24): a 2px ring in the text colour, 2px off the edge. Everything sits in
+  // :where() (specificity 0), so a control with its own :focus-visible / outline keeps it and only the bare ones get this.
+  // The colour is fixed per mode instead of the page's --ink (not set on every page, flipped on some): ink on paper, light
+  // in dark mode. On focus, ringSurface() below looks at what the ring is drawn on and marks a control on a dark card
+  // (data-owcs-ring="d": lime) or on a light one (="l": ink, e.g. the white 앱 설치 card in dark mode)
+  var FC = ':where(a[href],button,input,select,textarea,summary,[role="button"],[role="tab"],[role="switch"],[role="link"]):focus-visible';
+  var fr = [
+    FC + '{outline:2px solid ' + (isDark() ? '#F2F2F5' : '#0B0B0F') + ';outline-offset:2px}',
+    ':where([data-owcs-ring="d"])' + FC + '{outline-color:#C6FF33}',
+    ':where([data-owcs-ring="l"])' + FC + '{outline-color:#0B0B0F}',
+    // the phone menu chips sit in a scroller that clips an outside ring: draw it inside
+    '@media (max-width:899.98px){:where([data-owcs-mtop] nav a,header nav a[data-owcs-nv])' + FC + '{outline-offset:-3px}}'
+  ].join('\n');
+  hst.textContent = centre + '\n' + hw + '\n' + owt + '\n' + ft + '\n' + fr;
   (document.head || document.documentElement).appendChild(hst);
   var css = HOME ? '' : [
     '@media (min-width:900px){',
@@ -830,6 +843,21 @@
       dlgFrom = null;
     }
   }
+  // the surface under a focus ring: the nearest ancestor with a solid background, dark (< 0.3 luminance) or light
+  function ringSurface(e) {
+    var t = e.target;
+    if (!t || t.nodeType !== 1) return;
+    var v = 'l', n;
+    for (n = t.parentElement; n; n = n.parentElement) {
+      var m = getComputedStyle(n).backgroundColor.match(/[\d.]+/g);
+      if (!m || (m.length > 3 && +m[3] < 0.9)) continue;
+      var lin = function (c) { c /= 255; return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); };
+      v = 0.2126 * lin(+m[0]) + 0.7152 * lin(+m[1]) + 0.0722 * lin(+m[2]) < 0.3 ? 'd' : 'l';
+      break;
+    }
+    if (t.getAttribute('data-owcs-ring') !== v) t.setAttribute('data-owcs-ring', v);
+  }
+  document.addEventListener('focusin', ringSurface);
   document.addEventListener('focusin', function (e) { if (DLG && DLG.contains(e.target)) dlgLast = e.target; else focusOut = e.target; });
   document.addEventListener('keydown', function (e) {
     if (!DLG || !DLG.isConnected) return;
