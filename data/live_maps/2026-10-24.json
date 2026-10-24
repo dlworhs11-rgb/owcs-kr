@@ -1099,6 +1099,126 @@
    },
    "winner": "T1",
    "winnerSource": "match end (leader)"
+  },
+  {
+   "match": "Poker Face vs SEIJI ESPORTS",
+   "matchNo": 3,
+   "game": 1,
+   "map": "Nepal",
+   "mapTime": "11:24",
+   "frame": "m10_table1_1792838181.png",
+   "teams": {
+    "Poker Face": [
+     {
+      "name": "?69",
+      "e": 13,
+      "a": 17,
+      "d": 3,
+      "dmg": 6788,
+      "heal": 11927,
+      "mit": 1282
+     },
+     {
+      "name": "?70",
+      "e": 18,
+      "a": 0,
+      "d": 4,
+      "dmg": 8291,
+      "heal": 0,
+      "mit": 237
+     },
+     {
+      "name": "?71",
+      "e": 23,
+      "a": 20,
+      "d": 3,
+      "dmg": 5532,
+      "heal": 10967,
+      "mit": 0
+     },
+     {
+      "name": "SoLA",
+      "e": 20,
+      "a": 5,
+      "d": 5,
+      "dmg": 14938,
+      "heal": 811,
+      "mit": 12060
+     },
+     {
+      "name": "Sori",
+      "e": 18,
+      "a": 5,
+      "d": 10,
+      "dmg": 14240,
+      "heal": 0,
+      "mit": 863
+     }
+    ],
+    "SEIJI ESPORTS": [
+     {
+      "name": "?72",
+      "e": 15,
+      "a": 0,
+      "d": 6,
+      "dmg": 7280,
+      "heal": 0,
+      "mit": 362
+     },
+     {
+      "name": "?73",
+      "e": 10,
+      "a": 15,
+      "d": 6,
+      "dmg": 5000,
+      "heal": 12878,
+      "mit": 1435
+     },
+     {
+      "name": "?74",
+      "e": 11,
+      "a": 2,
+      "d": 11,
+      "dmg": 10642,
+      "heal": 224,
+      "mit": 1737
+     },
+     {
+      "name": "?75",
+      "e": 13,
+      "a": 14,
+      "d": 5,
+      "dmg": 4181,
+      "heal": 13349,
+      "mit": 0
+     },
+     {
+      "name": "?76",
+      "e": 16,
+      "a": 6,
+      "d": 6,
+      "dmg": 12879,
+      "heal": 1238,
+      "mit": 17320
+     }
+    ]
+   },
+   "totalsVerified": false,
+   "reading": "ocr",
+   "bans": {
+    "initial": {
+     "team": "SEIJI ESPORTS",
+     "hero": "sierra"
+    },
+    "followUp": {
+     "team": "Poker Face",
+     "hero": "wrecking ball"
+    }
+   },
+   "seriesBefore": {
+    "Poker Face": 0,
+    "SEIJI ESPORTS": 0
+   }
   }
  ],
  "matches": [
@@ -1135,6 +1255,12 @@
     "screenName": "Proud",
     "method": "closest elims+deaths"
    }
+  },
+  {
+   "match": "Poker Face vs SEIJI ESPORTS",
+   "matchNo": 3,
+   "mapWins": {},
+   "potm": null
   }
  ],
  "unknownNames": [
@@ -1476,6 +1602,46 @@
   {
    "id": "?68",
    "map": "09",
+   "row": 9
+  },
+  {
+   "id": "?69",
+   "map": "10",
+   "row": 0
+  },
+  {
+   "id": "?70",
+   "map": "10",
+   "row": 1
+  },
+  {
+   "id": "?71",
+   "map": "10",
+   "row": 2
+  },
+  {
+   "id": "?72",
+   "map": "10",
+   "row": 5
+  },
+  {
+   "id": "?73",
+   "map": "10",
+   "row": 6
+  },
+  {
+   "id": "?74",
+   "map": "10",
+   "row": 7
+  },
+  {
+   "id": "?75",
+   "map": "10",
+   "row": 8
+  },
+  {
+   "id": "?76",
+   "map": "10",
    "row": 9
   }
  ],
