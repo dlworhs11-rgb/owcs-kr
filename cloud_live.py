@@ -17,7 +17,8 @@ every push and by hand:
       with a script it cached before the deploy (GitHub Pages caches for 10 min: 10-20 "OWCSi18n.hm is not a function")
   5. set `liveChecked` = now; bump `generated` only when the content really changed,
      so open pages reload only when there is something new; owcs-ver.json and owcs-data.js?v= carry a hash of the
-     content without those fields (content_hash), so a build that changed nothing is not downloaded again (10-24)
+     content without those fields (content_hash), so a build that changed nothing is not downloaded again (10-24);
+     owcs-ver.json = {v, checked, dataBuilt, buildFails} (ver_record; the collector's tools/healthcheck.py reads it)
 
 Usage:
   python cloud_live.py --out _site [--prev https://<user>.github.io/<repo>/owcs-data.js] [--force-lp] [--fast]
@@ -377,6 +378,14 @@ def content_hash(data):
     return hashlib.sha1(body.encode('utf-8')).hexdigest()[:8]
 
 
+def ver_record(data):
+    """owcs-ver.json: open pages poll it (owcs-datapoll.js), the collector's tools/healthcheck.py reads it.
+    v = content_hash (the owcs-data.js?v= version), checked = the stream check time, dataBuilt = the last data build
+    that worked, buildFails = data builds failed in a row since (both VOLATILE: they never change v)"""
+    return {'v': content_hash(data), 'checked': data.get('liveChecked'), 'dataBuilt': data.get('dataBuilt'),
+            'buildFails': int(data.get('buildFails') or 0)}
+
+
 def carry_over(prev_matches, matches):
     """the last deploy's matches this build lacks (a Liquipedia page missing this run, 429): put back, not dropped.
     A regular-season match's id carries its day (owcs_build: f"{day}-{idx}"), so a rescheduled one comes back under a new
@@ -505,11 +514,9 @@ def main():
     same = prev and {k: v for k, v in prev.items() if k not in VOLATILE} == {k: v for k, v in data.items() if k not in VOLATILE}
     data['generated'] = prev['generated'] if same else stamp
     write_data(os.path.join(out, 'owcs-data.js'), data)
-    # owcs-ver.json: open pages poll it (owcs-datapoll.js); checked = the stream check time, dataBuilt = the last data
-    # build that worked (also read by the collector's tools/healthcheck.py)
     ver = content_hash(data)
     with open(os.path.join(out, 'owcs-ver.json'), 'w', encoding='utf-8') as f:
-        json.dump({'v': ver, 'checked': data.get('liveChecked'), 'dataBuilt': data.get('dataBuilt')}, f)
+        json.dump(ver_record(data), f)
     b.write_ics(data, out)   # subscription calendar: only matches not played yet, so rebuild it on every run
     stamp_scripts(out, {'owcs-data.js': ver})   # after owcs-data.js is written: the same version goes on the pages
     print(f"live streams: {len(data['live'])} {sorted(data['live'])} · {'unchanged' if same else 'changed'} · generated {data['generated']}")

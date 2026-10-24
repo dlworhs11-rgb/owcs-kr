@@ -12,7 +12,8 @@ What it checks, and the slip each one catches:
      matchKey picks the right one of two same-day meetings (P1-06, RI-09, RA-17)
   5. a broadcast POTM is kept only for a player of the two teams (exact or close spelling)
   6. wiki pages: a commented-out {{Match}} is no match, {{HiddenSort|..}} reads as its text (collector matchPlaces)
-  7. dataBuilt / buildFails: kept and counted on a failed data build, reset on a good one (P1-04)
+  7. dataBuilt / buildFails: kept and counted on a failed data build, reset on a good one (P1-04), and both in
+     owcs-ver.json (read by the collector's tools/healthcheck.py) without changing its v
   8. ensure_wiki's age limit: 6 h near an event, 7 days otherwise (P2-07)"""
 import datetime
 import json
@@ -131,6 +132,13 @@ def check_stamp_build():   # 7
     cloud_live.stamp_build(prev, prev, False, '2026-10-24T11:00:00+09:00')
     expect('stamp_build failed', (prev['dataBuilt'], prev['buildFails']), ('2026-10-24T10:00:00+09:00', 3))
     expect('VOLATILE has the build fields', {'dataBuilt', 'buildFails'} <= set(cloud_live.VOLATILE), True)
+    # owcs-ver.json: the collector's tools/healthcheck.py reads dataBuilt and buildFails from it
+    data = {'matches': [{'id': 'x'}], 'liveChecked': '2026-10-24T11:05:00+09:00', **prev}
+    ver = cloud_live.ver_record(data)
+    expect('owcs-ver.json fields', ver, {'v': cloud_live.content_hash(data), 'checked': '2026-10-24T11:05:00+09:00',
+                                         'dataBuilt': '2026-10-24T10:00:00+09:00', 'buildFails': 3})
+    expect('owcs-ver.json v ignores buildFails', cloud_live.ver_record(dict(data, buildFails=0))['v'], ver['v'])
+    expect('owcs-ver.json buildFails before any count', cloud_live.ver_record({'matches': []})['buildFails'], 0)
 
 
 def check_wiki_age(src):   # 8
