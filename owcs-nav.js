@@ -192,6 +192,8 @@
     '[data-owcs-tk] a{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:20px;padding:12px 18px 12px 12px;border-radius:18px;background:#0B0B0F;color:#fff;text-decoration:none;font-family:"Pretendard Variable",Pretendard,system-ui,sans-serif}',
     // results / player pages turn every hovered link ink (a:hover), which hid the white text on the black banner
     '[data-owcs-tk] a:hover{color:#fff}',
+    '[data-owcs-tk] a:hover .b{background:#DAFF7A}',   // the banner had no visible hover (10-24)
+    '[data-owcs-tk] a:hover .v{text-decoration:underline;text-underline-offset:4px}',
     '[data-owcs-tk] img{display:block;width:80px;height:80px;border-radius:10px;background:#fff;padding:4px;box-sizing:border-box}',
     '[data-owcs-tk] .k{display:block;font-size:13px;font-weight:700;color:#C6FF33}',
     '[data-owcs-tk] .v{display:block;font-family:"Barlow Condensed",sans-serif;font-weight:800;font-size:30px;line-height:1;margin-top:6px}',
@@ -812,6 +814,37 @@
     document.body.insertBefore(n, skip ? skip.nextSibling : document.body.firstChild);
   }
   if (document.readyState === 'complete') dataNotice(); else window.addEventListener('load', dataNotice);
+
+  // --- hover (10-24): links and buttons with no hover change at all (footer links, logo, player cards, match rows, tabs ...)
+  // dim a little. Run once the page's styles are in: every selector that already has a :hover rule (in any style sheet
+  // of the page, this script's own included) is left out, so a control with its own hover gets nothing on top. Also left
+  // out: calendar cells with no match (.cc without .has, not clickable), disabled controls, the menu / picker / phone bar / app guide, touch screens.
+  function hoverRule() {
+    if (document.querySelector('style[data-owcs-hv]')) return;
+    var own = [];
+    Array.prototype.forEach.call(document.styleSheets, function (sh) {
+      var rs;
+      try { rs = sh.cssRules; } catch (e) { return; }
+      (function walk(list) {
+        Array.prototype.forEach.call(list, function (r) {
+          if (r.cssRules && !r.selectorText) { walk(r.cssRules); return; }
+          if (!r.selectorText || r.selectorText.indexOf(':hover') < 0) return;
+          r.selectorText.split(',').forEach(function (s) {
+            var i = s.indexOf(':hover'), base = i < 0 ? '' : s.slice(0, i).trim();
+            if (!base || /[>+~(]$/.test(base) || base.indexOf('::') >= 0) return;
+            try { document.querySelector(base); } catch (e) { return; }
+            if (own.indexOf(base) < 0) own.push(base);
+          });
+        });
+      })(rs);
+    });
+    var skip = ['.cc:not(.has)', '[data-owcs-nv]', '[data-owcs-skip]', '[aria-disabled="true"]', '[data-owcs-hw] *', '[data-owcs-mtop] *', '[data-owcs-tk] *', '[data-owcs-app] *'].concat(own);
+    var st = document.createElement('style');
+    st.setAttribute('data-owcs-hv', '');
+    st.textContent = '@media (hover:hover){:where(a[href],button:not([disabled]),[role="button"],summary):where(:not(' + skip.join(',') + ')):hover{opacity:.78}}';
+    document.head.appendChild(st);
+  }
+  if (document.readyState === 'complete') hoverRule(); else window.addEventListener('load', hoverRule);
 
   // --- sheets and popovers as dialogs (10-24): the 앱 설치 guide here, the home page's share sheet and calendar
   // popover, the schedule page's calendar popover. Each marks its box [data-owcs-modal] (with role="dialog"
