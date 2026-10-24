@@ -739,6 +739,8 @@ def build_players(socials, stage_teams):
                         team=a, role=role[0], roleFull=role[1], order=role[2],
                         name=s.get('name', ''), real=real.get(handle.lower()) or real.get(old.lower(), ''), birth=s.get('birth', ''), potm=p.get('potm') or 0,
                         photo=f'assets/players/{photo}' if photo else '', face=faces.get(os.path.splitext(photo)[0]) if photo else None,
+                        # 160 px copy for the streams page's 52 px avatars (59 x 512 px photos were 1.4 MB there, 10-24)
+                        thumb=f'assets/players-sm/{photo}' if photo and os.path.exists(os.path.join(HERE, 'assets', 'players-sm', photo)) else '',
                         soop=soop, chzzk=None if a in SOOP_ONLY or (a in SOOP_FIRST and soop) else p.get('chzzk'), discord=(s['discord'] or None) if 'discord' in s else p.get('discord'), youtube=(s.get('youtube') and 'https://youtube.com/' + s['youtube']) or p.get('youtube'),
                         instagram=s.get('instagram') and 'https://instagram.com/' + s['instagram'],
                         x=s.get('x') and 'https://x.com/' + s['x'], lp=s.get('lp'),
