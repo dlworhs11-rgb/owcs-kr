@@ -43,13 +43,13 @@ nav a{height:40px;padding:0 14px;border-radius:999px;display:flex;align-items:ce
 nav a:hover,nav a.on{background:#F1F1ED;color:#0B0B0F}
 
 /* title row: like the streams page (eyebrow + big display title, a card on the right) */
-.hero{padding:56px 0 28px;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.hero{padding:56px 0 24px;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
 .eyebrow{font-size:15px;font-weight:700;color:var(--mute)}
 h1{font-size:clamp(56px,8vw,96px);line-height:.86;margin:12px 0 0}
 @media (min-width:1200px){h1{line-height:83px}}   /* 96px x .86 = 82.56: everything below sat on a half pixel (10-24) */
 
 /* filter bar: 전체 / 예정 / 종료 + team chips with logos */
-.bar{display:flex;align-items:center;justify-content:flex-start;gap:12px 20px;flex-wrap:wrap;margin-bottom:22px}
+.bar{display:flex;align-items:center;justify-content:flex-start;gap:12px 20px;flex-wrap:wrap;margin-bottom:24px}
 .chips{display:flex;gap:6px;flex-wrap:wrap}
 .chip{display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 12px 0 8px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font:inherit;font-size:13px;font-weight:700;cursor:pointer}
 .chip i{width:22px;height:22px}
@@ -58,7 +58,7 @@ h1{font-size:clamp(56px,8vw,96px);line-height:.86;margin:12px 0 0}
 .note{font-size:13px;color:var(--dim);word-break:keep-all}   /* (10-24) */
 
 /* tabs: 시즌 일정 / 시드·LCQ / 플레이오프 / 국제대회. The one for now opens first and keeps a lime dot */
-.row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px 16px;margin-bottom:18px}
+.row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px 16px;margin-bottom:16px}
 .tabs{display:flex;gap:8px;min-width:0;max-width:100%;overflow-x:auto;scrollbar-width:none}
 .bar[hidden]{display:none}
 .tabs::-webkit-scrollbar{display:none}
@@ -66,14 +66,14 @@ h1{font-size:clamp(56px,8vw,96px);line-height:.86;margin:12px 0 0}
 .tab.on{background:var(--ink);border-color:var(--ink);color:var(--panel)}
 .tab .now{width:8px;height:8px;border-radius:50%;background:var(--ac2);box-shadow:0 0 0 1.5px #0B0B0F}
 .pane[hidden]{display:none}
-.pane owcs-bracket{margin-bottom:28px}
+.pane owcs-bracket{margin-bottom:24px}
 .pane .sub{display:flex;align-items:center;gap:10px;margin:8px 2px 14px;font-size:13px;font-weight:800;color:var(--mute)}
 .pane .sub:after{content:"";flex:1;border-top:1px solid var(--line)}
-.done-note{padding:28px 22px;border-radius:22px;background:var(--panel);font-size:15px;color:var(--mute);margin-bottom:28px}
+.done-note{padding:28px 22px;border-radius:22px;background:var(--panel);font-size:15px;color:var(--mute);margin-bottom:24px}
 .done-note a{font-weight:700;color:var(--ac)}
 
 /* 국제대회: name, place, dates, D-day, the teams (Korean teams first, marked) */
-.ib{margin-bottom:28px;padding:22px;border-radius:22px;background:#0B0B0F;color:#fff;position:relative;overflow:hidden}
+.ib{margin-bottom:24px;padding:22px;border-radius:22px;background:#0B0B0F;color:#fff;position:relative;overflow:hidden}
 .ib:before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--ac2)}
 .ib .k{font-size:13px;font-weight:700;color:var(--ac2)}
 .ib .n{font-size:44px;line-height:.95;margin:8px 0 6px}
@@ -93,7 +93,7 @@ i.lg{display:block;flex:none;background:center/contain no-repeat}
 i.lg.tbd{background:#C9C9CF;border-radius:4px}
 
 /* one block per week (정규 리그 1주차 … 플레이오프), a row per match day inside */
-.wk{margin-bottom:28px;border-radius:22px;background:var(--panel);overflow:hidden}
+.wk{margin-bottom:24px;border-radius:22px;background:var(--panel);overflow:hidden}
 .wk>h2{display:flex;align-items:baseline;gap:12px;margin:0;padding:18px 22px 6px;font-size:20px}
 .wk>h2 span{font-size:13px;font-weight:600;color:var(--mute)}
 .day{display:grid;grid-template-columns:120px minmax(0,1fr);gap:16px;padding:14px 22px;border-top:1px solid var(--line)}
@@ -131,20 +131,20 @@ footer{padding:32px 0 56px;background:#0B0B0F;color:#8A8A93;font-size:13px;line-
 @media (max-width:1180px){.ms{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:899.98px){
   .wrap{padding:0 20px}
-  .row{margin-bottom:14px}
+  .row{margin-bottom:16px}
   .tabs{gap:6px;margin:0 -16px;padding:0 16px;max-width:none;width:calc(100% + 32px)}
   .tab{height:42px;padding:0 15px;font-size:15px}
-  .ib{padding:18px 16px;border-radius:18px;margin-bottom:18px}
+  .ib{padding:18px 16px;border-radius:18px;margin-bottom:16px}
   .ib .n{font-size:34px}
-  .pane owcs-bracket{margin-bottom:18px}
-  .hero{gap:14px;padding:28px 0 18px}
+  .pane owcs-bracket{margin-bottom:16px}
+  .hero{gap:14px;padding:28px 0 16px}
   h1{font-size:60px;line-height:52px}   /* 60 x .86 = 51.6 */
   .eyebrow{font-size:13px}
   .bar{gap:10px;margin-bottom:16px}
   .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;width:100%;padding-bottom:2px}
   .chips::-webkit-scrollbar{display:none}
   .chip{flex:none}
-  .wk{border-radius:18px;margin-bottom:18px}
+  .wk{border-radius:18px;margin-bottom:16px}
   .wk>h2{padding:14px 14px 4px;font-size:17px}
   .day{grid-template-columns:minmax(0,1fr);gap:8px;padding:12px 14px}
   .dd{display:flex;align-items:baseline;gap:8px}
@@ -167,7 +167,7 @@ html[data-owcs-dark] .pill.done{background:#24242C}
 html[data-owcs-dark] .day.today .dd b{color:#B89BFF}
 html[data-owcs-dark] .eyebrow{color:#A3A3AD}
 /* 경우의 수 tab (owcs-cases.js; moved here from the results page 10-23): a card of teams, then the matches left */
-.csbox{margin-bottom:28px;border-radius:22px;background:var(--panel);overflow:hidden}
+.csbox{margin-bottom:24px;border-radius:22px;background:var(--panel);overflow:hidden}
 .csbox>h2{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:0;padding:18px 22px 10px;font-size:20px}
 .csbox>h2 span{font-size:13px;font-weight:600;color:var(--mute)}
 .cr{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:12px;align-items:start;padding:14px 22px;border-top:1px solid var(--line)}
@@ -187,12 +187,12 @@ html[data-owcs-dark] .eyebrow{color:#A3A3AD}
 .csbox .m.axe{box-shadow:inset 0 0 0 2px #C62F35}
 .csbox .stake{font-size:13px;color:var(--mute);text-align:right}
 .csbox .tie{margin:0 22px 22px;padding:12px 14px;border-radius:12px;background:var(--soft);font-size:13px;color:var(--mute);line-height:1.5}
-@media (max-width:899.98px){.csbox{border-radius:18px;margin-bottom:18px}.csbox>h2{padding:14px 14px 8px;font-size:17px}.cr{padding:12px 14px;grid-template-columns:24px minmax(0,1fr) auto}.cr i.lg{width:24px;height:24px}.cr b{font-size:15px}.cr p{font-size:13px}.ct{font-size:12px}.csbox .ms{padding:4px 14px 14px}.csbox .tie{margin:0 14px 14px}}
+@media (max-width:899.98px){.csbox{border-radius:18px;margin-bottom:16px}.csbox>h2{padding:14px 14px 8px;font-size:17px}.cr{padding:12px 14px;grid-template-columns:24px minmax(0,1fr) auto}.cr i.lg{width:24px;height:24px}.cr b{font-size:15px}.cr p{font-size:13px}.ct{font-size:12px}.csbox .ms{padding:4px 14px 14px}.csbox .tie{margin:0 14px 14px}}
 html[data-owcs-dark] .ct.out{background:#24242C}
 
 /* the home page's calendar + list under the tabs (user, 10-23: "same as the home page", without its SCHEDULE title,
    with the Apple / Google subscribe buttons). Phone: the home's small calendar, tap a day to mark it, no list */
-.calsec{--p3:#F1F1ED;margin-top:56px}
+.calsec{--p3:#F1F1ED;margin-top:56px}   /* spacing steps (10-24): 16 / 24 / 56 wide, 16 / 32 on a phone */
 .calhd,.calg{display:grid;grid-template-columns:minmax(0,2.3fr) minmax(0,1fr);gap:28px}
 .calhd{margin-bottom:16px}
 .calg{align-items:start}
@@ -251,7 +251,7 @@ html[data-owcs-dark] .ct.out{background:#24242C}
 .lc .tm .mid{font-size:18px;color:var(--dim);padding:0 2px;white-space:nowrap}
 .lc .st{display:flex;justify-content:flex-end}
 @media (max-width:899.98px){
-  .calsec{margin-top:36px}
+  .calsec{margin-top:32px}
   .calhd,.calg{grid-template-columns:minmax(0,1fr)}
   .calhd{margin-bottom:12px}
   .subs{gap:6px}
