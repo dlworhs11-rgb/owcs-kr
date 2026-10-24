@@ -89,10 +89,18 @@ def mark_fetched():
 def ensure_wiki(titles):
     """Liquipedia pages the build reads but the collector does not re-fetch (an older stage's playoff page).
     A page read here is saved with the cache too (10-20: it was not, so every run asked again until Liquipedia
-    answered 429 and the site lost its brackets); on a 429 the rest wait for the next run instead of asking again"""
+    answered 429 and the site lost its brackets); on a 429 the rest wait for the next run instead of asking again.
+    A page Liquipedia does not have yet (this year's events before they are created) is noted in lp-cache/_missing.json
+    and asked again after 6 h, not on every run (10-24: it was asked every run, and printed nothing)"""
+    seen_f = os.path.join(owcs_build.SRC, 'lp-cache', '_missing.json')
+    try:
+        with open(seen_f, encoding='utf-8') as fh:
+            missing = json.load(fh)
+    except (OSError, ValueError):
+        missing = {}
     for t in titles:
         f = cache_file(t)
-        if os.path.exists(f):
+        if os.path.exists(f) or time.time() - missing.get(t, 0) < 6 * 3600:
             continue
         url = LP_API + '?' + urllib.parse.urlencode(dict(format='json', action='query', prop='revisions', rvprop='content', rvslots='main', titles=t))
         try:
@@ -105,6 +113,13 @@ def ensure_wiki(titles):
                     fh.write(text)
                 print('fetched', t)
                 mark_fetched()
+            else:
+                missing[t] = time.time()
+                os.makedirs(os.path.dirname(seen_f), exist_ok=True)
+                with open(seen_f, 'w', encoding='utf-8') as fh:
+                    json.dump(missing, fh, ensure_ascii=False)
+                print('missing on Liquipedia, asked again in 6 h:', t)
+                mark_fetched()   # the workflow saves lp-cache (with this note) only on a run that marks it
         except Exception as e:
             print('not fetched:', t, e)
             if getattr(e, 'code', None) == 429:
