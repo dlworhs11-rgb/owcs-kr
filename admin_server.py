@@ -113,9 +113,12 @@ class H(http.server.BaseHTTPRequestHandler):
             return
         if self.headers.get('X-OWCS-Admin') != '1' or not self.path.startswith('/api/save'):
             return self.send(403, '{"error":"forbidden"}')
-        n = int(self.headers.get('Content-Length') or 0)
-        if n > 200000:
-            return self.send(413, '{}')
+        try:
+            n = int(self.headers.get('Content-Length') or 0)
+        except ValueError:
+            n = -1
+        if not 0 <= n <= 200000:
+            return self.send(413 if n > 200000 else 400, '{}')
         try:
             body = json.loads(self.rfile.read(n).decode('utf-8'))
             date = body['date']
