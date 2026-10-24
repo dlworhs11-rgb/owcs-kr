@@ -730,6 +730,128 @@
    "seriesBefore": {
     "Team Falcons": 0,
     "T1": 0
+   },
+   "winner": "T1",
+   "winnerSource": "series score"
+  },
+  {
+   "match": "Team Falcons vs T1",
+   "matchNo": 2,
+   "game": 2,
+   "map": "New Junk City",
+   "mapTime": "11:05",
+   "frame": "m07_table1_1792832737.png",
+   "teams": {
+    "Team Falcons": [
+     {
+      "name": "?39",
+      "e": 10,
+      "a": null,
+      "d": 5,
+      "dmg": 5119,
+      "heal": 195,
+      "mit": 607
+     },
+     {
+      "name": "?40",
+      "e": 9,
+      "a": 7,
+      "d": 7,
+      "dmg": 3855,
+      "heal": 9052,
+      "mit": 4769
+     },
+     {
+      "name": "?41",
+      "e": 7,
+      "a": 16,
+      "d": 6,
+      "dmg": 2916,
+      "heal": 12650,
+      "mit": 1166
+     },
+     {
+      "name": "?42",
+      "e": 10,
+      "a": null,
+      "d": 6,
+      "dmg": 8940,
+      "heal": null,
+      "mit": 44
+     },
+     {
+      "name": "?43",
+      "e": 12,
+      "a": 3,
+      "d": 8,
+      "dmg": 9550,
+      "heal": 793,
+      "mit": 9425
+     }
+    ],
+    "T1": [
+     {
+      "name": "?44",
+      "e": 12,
+      "a": 16,
+      "d": 5,
+      "dmg": 5291,
+      "heal": 9826,
+      "mit": 1223
+     },
+     {
+      "name": "?45",
+      "e": 19,
+      "a": 4,
+      "d": 4,
+      "dmg": 11308,
+      "heal": 631,
+      "mit": 8093
+     },
+     {
+      "name": "?46",
+      "e": 22,
+      "a": null,
+      "d": 2,
+      "dmg": 8874,
+      "heal": null,
+      "mit": null
+     },
+     {
+      "name": "?47",
+      "e": 13,
+      "a": 15,
+      "d": 4,
+      "dmg": 7090,
+      "heal": 6321,
+      "mit": 464
+     },
+     {
+      "name": "?48",
+      "e": 16,
+      "a": null,
+      "d": 6,
+      "dmg": 5951,
+      "heal": 41,
+      "mit": 352
+     }
+    ]
+   },
+   "totalsVerified": false,
+   "reading": "ocr",
+   "bans": {
+    "initial": {
+     "team": "Team Falcons",
+     "hero": "kiriko"
+    },
+    "followUp": {
+     "team": "T1",
+     "hero": "junkerqueen"
+    }
+   },
+   "seriesBefore": {
+    "Team Falcons": 0,
+    "T1": 1
    }
   }
  ],
@@ -754,7 +876,9 @@
   {
    "match": "Team Falcons vs T1",
    "matchNo": 2,
-   "mapWins": {},
+   "mapWins": {
+    "T1": 1
+   },
    "potm": null
   }
  ],
@@ -947,6 +1071,56 @@
   {
    "id": "?38",
    "map": "06",
+   "row": 9
+  },
+  {
+   "id": "?39",
+   "map": "07",
+   "row": 0
+  },
+  {
+   "id": "?40",
+   "map": "07",
+   "row": 1
+  },
+  {
+   "id": "?41",
+   "map": "07",
+   "row": 2
+  },
+  {
+   "id": "?42",
+   "map": "07",
+   "row": 3
+  },
+  {
+   "id": "?43",
+   "map": "07",
+   "row": 4
+  },
+  {
+   "id": "?44",
+   "map": "07",
+   "row": 5
+  },
+  {
+   "id": "?45",
+   "map": "07",
+   "row": 6
+  },
+  {
+   "id": "?46",
+   "map": "07",
+   "row": 7
+  },
+  {
+   "id": "?47",
+   "map": "07",
+   "row": 8
+  },
+  {
+   "id": "?48",
+   "map": "07",
    "row": 9
   }
  ],
