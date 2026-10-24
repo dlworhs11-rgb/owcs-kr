@@ -967,7 +967,57 @@
      "hero": "domina"
     }
    },
-   "src": "SOOP"
+   "src": "SOOP",
+   "heroTs": 1792840917,
+   "hudLeft": "Poker Face",
+   "guessed": [],
+   "comps": {
+    "Poker Face": [
+     [
+      "SoLA",
+      "dmon"
+     ],
+     [
+      "SORI",
+      "cassidy"
+     ],
+     [
+      "F1nally",
+      "tracer"
+     ],
+     [
+      "Soae",
+      "jetpack-cat"
+     ],
+     [
+      "Caffeine",
+      "doctrine"
+     ]
+    ],
+    "SEIJI ESPORTS": [
+     [
+      "SENTIER",
+      "dmon"
+     ],
+     [
+      "M1nut2",
+      "widowmaker"
+     ],
+     [
+      "D4RT",
+      "?"
+     ],
+     [
+      "OFF",
+      "jetpack-cat"
+     ],
+     [
+      "Lavender",
+      "doctrine"
+     ]
+    ]
+   },
+   "compAt": null
   }
  ]
 }
