@@ -443,7 +443,10 @@
     var scr = Array.prototype.find.call(document.querySelectorAll('#dc-root [data-screen-label]'), function (x) { return x.offsetWidth > 0; });
     if (!scr && dcEarly()) return;
     if (scr) { host = scr; before = scr.firstElementChild; }
-    else if (document.body && document.body.firstElementChild) { host = document.body; before = document.body.firstElementChild; }
+    else if (document.body && document.body.firstElementChild) {   // after the skip link, which stays the first Tab stop
+      host = document.body; before = document.body.firstElementChild;
+      if (before.hasAttribute('data-owcs-skip')) before = before.nextElementSibling;
+    }
     if (!host) return;
     var m = host.querySelector(':scope > [data-owcs-mtop]');
     if (!m) {
@@ -701,17 +704,33 @@
     SAY = document.createElement('div');
     SAY.setAttribute('role', 'status');
     SAY.setAttribute('data-owcs-say', '');
-    SAY.style.cssText = 'position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0';
+    SAY.style.cssText = SAY_CSS;
     document.body.appendChild(SAY);
     return SAY;
   }
+  // an open aria-modal dialog hides the rest of the page from screen readers, this region too: there the message goes to
+  // a region inside the dialog (put in when it opens, dlgSync below; again here if the dialog was drawn anew)
+  function dlgSay() {
+    var d = Array.prototype.find.call(document.querySelectorAll('[data-owcs-modal]'), function (x) { return x.offsetWidth > 0; });
+    if (!d) return null;
+    var r = d.querySelector('[data-owcs-say-dlg]');
+    if (!r) {
+      r = document.createElement('div');
+      r.setAttribute('role', 'status');
+      r.setAttribute('data-owcs-say-dlg', '');
+      r.style.cssText = SAY_CSS;
+      d.appendChild(r);
+    }
+    return r;
+  }
+  var SAY_CSS = 'position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0';
   window.owcsSay = function (text) {
-    var box = sayBox();
-    if (!box) return;
     var t = window.OWCSi18n ? window.OWCSi18n.t(text) : text;   // already in the page's language, not Korean first
+    var box = dlgSay() || sayBox();
+    if (!box) return;
     clearTimeout(sayT);
     box.textContent = '';   // emptied first, so the same message twice is read twice
-    sayT = setTimeout(function () { box.textContent = t; }, 150);
+    sayT = setTimeout(function () { var b2 = dlgSay() || sayBox(); if (b2) b2.textContent = t; }, 150);
   };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', sayBox); else sayBox();
 
@@ -759,6 +778,7 @@
   var FOCUSABLE = 'a[href],button:not([disabled]),input:not([disabled]),select,textarea,[tabindex]:not([tabindex="-1"])';
   function dlgItems(d) { return Array.prototype.filter.call(d.querySelectorAll(FOCUSABLE), function (x) { return x.offsetWidth > 0 || x.offsetHeight > 0; }); }
   function dlgSync() {
+    if (!DLG && !document.querySelector('[data-owcs-modal]')) return;   // the usual case, cheap
     var d = Array.prototype.find.call(document.querySelectorAll('[data-owcs-modal]'), function (x) { return x.offsetWidth > 0; }) || null;
     if (d === DLG) return;
     var redrawn = d && DLG && !DLG.isConnected;   // the same box drawn again (the schedule page redraws on every click)
@@ -768,6 +788,7 @@
     if (d) {
       var same = redrawn && dlgLast && dlgLast.getAttribute('data-act') ? d.querySelector('[data-act="' + dlgLast.getAttribute('data-act') + '"]' +
         (dlgLast.getAttribute('data-t') ? '[data-t="' + dlgLast.getAttribute('data-t') + '"]' : '')) : null;
+      dlgSay();   // its status region, there before any message
       var first = same || dlgItems(d)[0];
       if (first && !d.contains(document.activeElement)) first.focus();
     } else if (dlgFrom && (document.activeElement === document.body || !document.activeElement)) {
