@@ -940,9 +940,10 @@
    },
    "compAt": "2026-10-24T19:58:22+09:00",
    "score": {
-    "SEIJI ESPORTS": 2,
-    "Poker Face": 1
-   }
+    "Poker Face": 1,
+    "SEIJI ESPORTS": 3
+   },
+   "scoreFrom": "table"
   }
  ]
 }
