@@ -342,12 +342,7 @@
    "src": "SOOP",
    "heroTs": 1792828331,
    "hudLeft": "ZETA DIVISION",
-   "guessed": [
-    "Knife",
-    "K4NE",
-    "Profit",
-    "TenTen"
-   ],
+   "guessed": [],
    "comps": {
     "ZETA DIVISION": [
      [
@@ -364,7 +359,7 @@
      ],
      [
       "Viol2t",
-      "sombra"
+      "doctrine"
      ],
      [
       "Shu",
