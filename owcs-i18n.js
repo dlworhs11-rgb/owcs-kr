@@ -120,7 +120,7 @@
     ['방송이 시작되면 이곳에 자동으로 표시돼요', '配信が始まるとここに自動で表示されます', 'The stream appears here automatically when it starts', '直播开始后会自动显示在这里'],
     ['오늘 경기가 모두 끝났어요', '本日の試合はすべて終了しました', "All of today's matches are over", '今日比赛已全部结束'], ['다시보기는 SOOP owesports 방송국에서 볼 수 있어요', 'アーカイブはSOOP owesportsで見られます', 'Replays are on SOOP owesports', '回放请到 SOOP owesports 观看'],
     ['정규 리그 일정이 끝났어요', 'レギュラーシーズンは終了しました', 'The regular season is over', '常规赛已结束'],
-    ['세트별 상세 접기', 'セット詳細を閉じる', 'Hide map details', '收起地图详情'], ['스코어를 눌러 세트별 맵 · 밴 · 승리 팀 보기', 'スコアを押すとマップ・BAN・勝者を表示', 'Tap the score for maps, bans and winners', '点击比分查看地图 · 禁用 · 获胜队伍'],
+    ['세트별 상세 접기', 'セット詳細を閉じる', 'Hide map details', '收起地图详情'], ['경기 정보 펼쳐보기', '試合情報を開く', 'Show match details', '展开比赛信息'],
     ['SOOP · 공식 중계', 'SOOP · 公式中継', 'SOOP · official stream', 'SOOP · 官方直播'], ['SOOP owesports 방송국 ↗', 'SOOP owesports ↗', 'SOOP owesports channel ↗', 'SOOP owesports 频道 ↗'],
     ['선밴', '先BAN', '1st ban', '先禁'], ['후밴', '後BAN', '2nd ban', '后禁'], ['쟁탈', '制圧', 'Control', '占领要点'], ['플래시포인트', 'フラッシュポイント', 'Flashpoint', '闪点'], ['밀기', 'プッシュ', 'Push', '推进'], ['혼합', 'ハイブリッド', 'Hybrid', '混合'], ['호위', 'エスコート', 'Escort', '护送'], ['점령', '占領', 'Assault', '攻防'], ['격돌', 'クラッシュ', 'Clash', '交锋'],
     ['기록 중이에요. 세트가 끝나면 양 팀 조합이 올라와요.', '記録中です。セット終了後に両チームの構成が表示されます。', 'Recording. Both comps appear when the map ends.', '记录中。地图结束后会显示双方阵容。'],
