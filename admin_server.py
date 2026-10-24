@@ -13,6 +13,8 @@ sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 HERE = os.path.dirname(os.path.abspath(__file__))
 KST = datetime.timezone(datetime.timedelta(hours=9))
 PORT = 8799
+HOSTS = (f'127.0.0.1:{PORT}', f'localhost:{PORT}')   # the only names the page is opened by
+ORIGINS = tuple('http://' + h for h in HOSTS)
 
 
 def site_data():
@@ -81,11 +83,21 @@ class H(http.server.BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(b)
 
+    def blocked(self, post=False):
+        """True (403 sent) unless the request names this server: a Host of another name is a DNS-rebinding page
+        reaching 127.0.0.1, and a POST carrying an Origin must come from our own page (10-24)"""
+        if (self.headers.get('Host') or '').lower() not in HOSTS or (post and self.headers.get('Origin') not in (None, *ORIGINS)):
+            self.send(403, '{"error":"forbidden"}')
+            return True
+        return False
+
     def date(self):
         q = re.search(r'date=(\d{4}-\d\d-\d\d)', self.path)
         return q.group(1) if q else datetime.datetime.now(KST).date().isoformat()
 
     def do_GET(self):
+        if self.blocked():
+            return
         if self.path == '/' or self.path.startswith('/?'):
             return self.send(200, open(os.path.join(HERE, 'admin', 'index.html'), 'rb').read(), 'text/html; charset=utf-8')
         if self.path.startswith('/api/state'):
@@ -97,6 +109,8 @@ class H(http.server.BaseHTTPRequestHandler):
         self.send(404, '{}')
 
     def do_POST(self):
+        if self.blocked(post=True):
+            return
         if self.headers.get('X-OWCS-Admin') != '1' or not self.path.startswith('/api/save'):
             return self.send(403, '{"error":"forbidden"}')
         n = int(self.headers.get('Content-Length') or 0)
