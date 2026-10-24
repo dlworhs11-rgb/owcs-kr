@@ -10,7 +10,7 @@
   const TANKS = 'dmon domina doomfist dva hazard junker-queen mauga orisa ramattra reinhardt roadhog sigma winston wrecking-ball zarya'.split(' ');
   const tankFirst = (c) => [...c.filter((s) => TANKS.includes(heroKey(s[1]))), ...c.filter((s) => !TANKS.includes(heroKey(s[1])))];
   const heroCode = (h) => String(h || '?').replace(/[^A-Za-z]/g, '').slice(0, 3).toUpperCase();
-  const heroBg = (h) => HERO_IMG[heroKey(h)] ? "url('assets/heroes/" + heroKey(h) + ".png') center / cover no-repeat, #1B1B21" : 'repeating-linear-gradient(135deg,#24242B 0 4px,#1B1B21 4px 8px)';
+  const heroBg = (h) => HERO_IMG[heroKey(h)] ? "url('assets/heroes/" + heroKey(h) + ".webp') center / cover no-repeat, #1B1B21" : 'repeating-linear-gradient(135deg,#24242B 0 4px,#1B1B21 4px 8px)';   // 112 px WebP: the 256 px PNGs were ~160 KB each for a 36 px box (10-24)
   const MAP_FILE = { 'antarctic-peninsula': 'antarctic', 'throne-of-anubis': 'anubis', 'aatlis': 'atlis', 'watchpoint-gibraltar': 'gibraltar', 'kings-row': 'kings-row', 'route-66': 'route66', 'shambali-monastery': 'shambali' };
   const WIN_AT = Object.fromEntries([...['Antarctic Peninsula', 'Busan', 'Ilios', 'Lijiang Tower', 'Nepal', 'Oasis', 'Samoa'].map((n) => [n, 2]),
     ...['New Junk City', 'Suravasa', 'Aatlis'].map((n) => [n, 3])]);   // first to this many wins the map
