@@ -245,6 +245,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 </section>
 
 <section data-sec="sched" style="position:relative;padding:32px 56px 104px;background:var(--paper2,#F6F6F3)">
+<!-- share sheet: nothing calls openShare right now; kept on purpose, the author may wire a button back (10-24) -->
 <sc-if value="{{ shareOpen }}">
 <div onClick="{{ closeShare }}" style="position:absolute;inset:0;z-index:40;background:rgba(11,11,15,.18)"></div>
 <div role="dialog" aria-modal="true" aria-label="{{ shareTitle }}" data-owcs-modal="" style="position:absolute;top:196px;left:calc(var(--padx,56px) + (100% - 2 * var(--padx,56px) - 28px) * 0.697 - 402px);z-index:41;width:402px;max-width:calc(100% - 24px);border-radius:38px;background:#FFFFFF;box-shadow:0px 10px 100px 0px rgba(0,0,0,0.3);overflow:hidden;display:flex;flex-direction:column;font-family:-apple-system,'SF Pro Text','Pretendard Variable',Pretendard,system-ui,sans-serif;color:#000">
@@ -482,6 +483,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 </div>
 </section>
 <section data-sec="sched" style="position:relative;padding:28px 20px 32px;background:var(--paper2,#F6F6F3)">
+<!-- share sheet: nothing calls openShare right now; kept on purpose, the author may wire a button back (10-24) -->
 <sc-if value="{{ shareOpen }}">
 <div onClick="{{ closeShare }}" style="position:absolute;inset:0;z-index:40;background:rgba(11,11,15,.18)"></div>
 <div role="dialog" aria-modal="true" aria-label="{{ shareTitle }}" data-owcs-modal="" style="position:absolute;left:0;right:0;bottom:0;margin:0 auto;z-index:41;width:402px;max-width:100%;border-radius:38px 38px 0 0;background:#FFFFFF;box-shadow:0px 10px 100px 0px rgba(0,0,0,0.3);overflow:hidden;display:flex;flex-direction:column;font-family:-apple-system,'SF Pro Text','Pretendard Variable',Pretendard,system-ui,sans-serif;color:#000">
@@ -1146,8 +1148,6 @@ class Component extends DCLogic {
       weekdays: DOWS, cells, week, monthBdays, hasMonthB: monthBdays.length > 0,
       calTitle: Y + '. ' + pad(Mo + 1), calPrev: () => shiftMonth(-1), calNext: () => shiftMonth(1),
       matches: listM.map(card),
-      dayMatches: M.filter((m) => m.day === calDay && m.day >= today).map(card),
-      dayTitle: calDay ? (calDay === today ? '오늘 · ' : '') + md(calDay + 'T12:00:00+09:00') + ' (' + dow(calDay + 'T12:00:00+09:00') + ') 경기' : '경기',
       sheetMatches: listM.slice(0, 3).map(card),
       copyLink: () => this.copy('link', location.href),
       shareOpen: this.state.share, openShare: () => this.setState({ share: true, shareMsg: '' }), closeShare: () => this.setState({ share: false }),
