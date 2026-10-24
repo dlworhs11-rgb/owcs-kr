@@ -316,6 +316,30 @@
     "ZETA DIVISION": 4
    },
    "scoreFrom": "table"
+  },
+  {
+   "banTs": 1792828276,
+   "teams": [
+    "CHEESEBURGER",
+    "ZETA DIVISION"
+   ],
+   "game": 5,
+   "map": "Colosseo",
+   "seriesBefore": {
+    "CHEESEBURGER": 2,
+    "ZETA DIVISION": 2
+   },
+   "bans": {
+    "initial": {
+     "team": "ZETA DIVISION",
+     "hero": "jetpack cat"
+    },
+    "followUp": {
+     "team": "Cheeseburger",
+     "hero": "dva"
+    }
+   },
+   "src": "SOOP"
   }
  ]
 }
