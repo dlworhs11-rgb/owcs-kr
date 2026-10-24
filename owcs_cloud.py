@@ -218,11 +218,11 @@ def upcoming_ics(data, now=None, team=None):
     # Google Calendar ignores colours in subscribed files and picks its own.
     colors = {t['a']: t.get('color') for t in data['teams']}
     color = (colors.get(teams[0]) if teams else None) or '#C6FF33'
-    esc = lambda x: str(x).replace('\\', '\\\\').replace(';', '\\;').replace(',', '\\,')
+    esc = lambda x: str(x).replace('\r', '').replace('\\', '\\\\').replace(';', '\\;').replace(',', '\\,').replace('\n', '\\n')   # a newline would end the line (10-24)
     utc = lambda dt: dt.astimezone(datetime.timezone.utc).strftime('%Y%m%dT%H%M%SZ')
     stamp = utc(now)
     lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//OWCS KR fan//KO', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
-             'X-WR-CALNAME:' + title, 'X-APPLE-CALENDAR-COLOR:' + color, 'X-WR-TIMEZONE:Asia/Seoul', 'REFRESH-INTERVAL;VALUE=DURATION:PT6H', 'X-PUBLISHED-TTL:PT6H']
+             'X-WR-CALNAME:' + esc(title), 'X-APPLE-CALENDAR-COLOR:' + color, 'X-WR-TIMEZONE:Asia/Seoul', 'REFRESH-INTERVAL;VALUE=DURATION:PT6H', 'X-PUBLISHED-TTL:PT6H']
     for m in data['matches']:
         t0 = datetime.datetime.fromisoformat(m['date'])
         if m.get('played') or t0 <= now or (teams and m['a'] not in teams and m['b'] not in teams):
