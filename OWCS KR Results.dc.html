@@ -104,8 +104,8 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <span style="display:flex;align-items:center;justify-content:flex-end;gap:12px"><span style="font-size:17px;font-weight:{{ g.wa }};color:{{ g.ta }}">{{ g.na }}</span><span style="width:36px;height:36px;background:{{ g.ca }};opacity:{{ g.oa }}"></span></span>
 <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:36px;text-align:center;letter-spacing:.02em;filter:{{ blur }}"><span style="color:{{ g.ta }}">{{ g.sa }}</span> <span style="color:#B5B5BD">:</span> <span style="color:{{ g.tb }}">{{ g.sb }}</span></span>
 <span style="display:flex;align-items:center;gap:12px"><span style="width:36px;height:36px;background:{{ g.cb }};opacity:{{ g.ob }}"></span><span style="font-size:17px;font-weight:{{ g.wb }};color:{{ g.tb }}">{{ g.nb }}</span></span>
-<a href="{{ g.vod }}" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;height:26px;padding:0 10px;border-radius:999px;background:#ECECE8;color:#0B0B0F;font-size:12px;font-weight:700;text-decoration:none" style-hover="background:#C6FF33;color:#0B0B0F">다시보기 ↗</a>
-<sc-if value="{{ g.hasMaps }}"><button onClick="{{ g.toggle }}" aria-expanded="{{ g.expanded }}" style="font:inherit;font-size:14px;font-weight:600;color:#0B0B0F;text-align:right;background:none;border:0;padding:0;cursor:pointer">{{ g.detailLabel }}</button></sc-if>
+<a href="{{ g.vod }}" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;height:28px;padding:0 10px;border-radius:999px;background:#ECECE8;color:#0B0B0F;font-size:12px;font-weight:700;text-decoration:none" style-hover="background:#C6FF33;color:#0B0B0F">다시보기 ↗</a>
+<sc-if value="{{ g.hasMaps }}"><button onClick="{{ g.toggle }}" aria-expanded="{{ g.expanded }}" style="display:inline-flex;align-items:center;justify-content:flex-end;height:28px;font:inherit;font-size:14px;font-weight:600;color:#0B0B0F;text-align:right;background:none;border:0;padding:0;cursor:pointer">{{ g.detailLabel }}</button></sc-if>
 </div>
 <sc-if value="{{ g.open }}"><div style="margin:6px 0 14px;padding:14px;border-radius:20px;background:#0B0B0F;color:#fff;display:flex;flex-direction:column;gap:10px">
 <sc-for list="{{ g.maps }}" as="mp" hint-placeholder-count="4">
@@ -223,7 +223,7 @@ a{color:#7D39EB}a:hover{color:#0B0B0F}
 <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:21px;text-align:center;white-space:nowrap"><span style="color:{{ g.ta }}">{{ g.sa }}</span><span style="color:#B5B5BD">:</span><span style="color:{{ g.tb }}">{{ g.sb }}</span></span>
 <span style="display:flex;align-items:center;gap:5px;min-width:0"><span style="flex:none;width:20px;height:20px;background:{{ g.cb }};opacity:{{ g.ob }}"></span><span style="font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;color:{{ g.tb }}">{{ g.b }}</span></span>
 </div>
-<a href="{{ g.vod }}" target="_blank" rel="noopener" style="flex:none;display:inline-flex;align-items:center;height:26px;padding:0 8px;border-radius:999px;background:#ECECE8;color:#0B0B0F;font-size:11px;font-weight:700;text-decoration:none;white-space:nowrap">다시보기</a>
+<a href="{{ g.vod }}" target="_blank" rel="noopener" style="flex:none;display:inline-flex;align-items:center;height:30px;padding:0 8px;border-radius:999px;background:#ECECE8;color:#0B0B0F;font-size:11px;font-weight:700;text-decoration:none;white-space:nowrap">다시보기</a>
 <sc-if value="{{ g.hasMaps }}"><button onClick="{{ g.toggle }}" aria-expanded="{{ g.expanded }}" style="flex:none;height:30px;padding:0 2px;border:none;background:none;font:inherit;font-size:12px;font-weight:600;color:#0B0B0F;white-space:nowrap;cursor:pointer">{{ g.detailLabel }}</button></sc-if>
 </div>
 </div>
