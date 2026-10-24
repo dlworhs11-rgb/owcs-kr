@@ -237,6 +237,21 @@
     "ZETA DIVISION": 3
    },
    "scoreFrom": "table"
+  },
+  {
+   "banTs": 1792826314,
+   "teams": [
+    "CHEESEBURGER",
+    "ZETA DIVISION"
+   ],
+   "game": 4,
+   "map": "Eichenwalde",
+   "seriesBefore": {
+    "CHEESEBURGER": 1,
+    "ZETA DIVISION": 2
+   },
+   "bans": null,
+   "src": "SOOP"
   }
  ]
 }
