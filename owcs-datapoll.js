@@ -18,10 +18,17 @@
     s.onerror = function () { s.remove(); done(false); };
     document.head.appendChild(s);
   }
+  // one poll at a time (10-24): a poll asked while the last still loads answers done(false). A poll that never answers
+  // (a stalled fetch) stops blocking after 30 s.
+  var since = 0;
   window.owcsDataPoll = function (done) {
+    if (since && Date.now() - since < 30000) { done(false); return; }
+    since = Date.now();
+    var mine = since;
+    var fin = function (ok) { if (since === mine) since = 0; done(ok); };
     fetch('owcs-ver.json?t=' + Date.now(), { cache: 'no-store' })
       .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-      .then(function (j) { if (j.checked) window.owcsChecked = j.checked; if (j.v && j.v === cur) done(false); else load(j.v, done); },
-            function () { load(null, done); });
+      .then(function (j) { if (j.checked) window.owcsChecked = j.checked; if (j.v && j.v === cur) fin(false); else load(j.v, fin); },
+            function () { load(null, fin); });
   };
 })();
