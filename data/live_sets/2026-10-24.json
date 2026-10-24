@@ -171,7 +171,16 @@
     "CHEESEBURGER": 1,
     "ZETA DIVISION": 1
    },
-   "bans": null,
+   "bans": {
+    "initial": {
+     "team": "Cheeseburger",
+     "hero": "doctrine"
+    },
+    "followUp": {
+     "team": "ZETA DIVISION",
+     "hero": "dmon"
+    }
+   },
    "src": "SOOP"
   }
  ]
