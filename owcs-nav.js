@@ -309,7 +309,7 @@
     s.setAttribute('data-owcs-tk', '');
     var no = (window.OWCS && window.OWCS.stageNo) || 3;
     s.innerHTML = '<a href="https://www.ticketlink.co.kr/sports/1262/631" target="_blank" rel="noopener">' +
-      '<img src="assets/qr-ticket-black.png" alt="직관 예매 QR"><span><span class="k">직관 안내 - <span class="kd">OWCS ASIA : </span>KOREA STAGE ' + no + '</span>' +
+      '<img src="assets/qr-ticket-black.png" alt="직관 예매 QR"><span><span class="k"><span class="kd">OWCS ASIA : </span>KOREA STAGE ' + no + '</span>' +
       '<span class="v">WDG STUDIO HONGDAE에서 직관!</span><span class="s">티켓링크에서 예매 ↗</span></span><span class="b">예매하기 ↗</span></a>';
     return s;
   }
