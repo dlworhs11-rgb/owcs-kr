@@ -79,6 +79,21 @@
     "ZETA DIVISION": 0
    },
    "scoreFrom": "table"
+  },
+  {
+   "banTs": 1792823755,
+   "teams": [
+    "CHEESEBURGER",
+    "ZETA DIVISION"
+   ],
+   "game": 2,
+   "map": "Route 66",
+   "seriesBefore": {
+    "CHEESEBURGER": 1,
+    "ZETA DIVISION": 0
+   },
+   "bans": null,
+   "src": "SOOP"
   }
  ]
 }
