@@ -1,5 +1,8 @@
 name: Refresh loop
 
+# STATE (2026-10-24): turned off in the repository's Actions settings (disabled_manually), reason not written down.
+# A commit cannot turn it back on: Actions tab -> Refresh loop -> Enable workflow. README.md '빌드는 누가 일으키나'
+# lists the other build triggers.
 # Keeps the site fresh without the PC. GitHub runs pages.yml's own '*/10' schedule hours late or not at all
 # (10-19: two scheduled runs in a whole day, so streams stayed stale). This job stays up for ~5h40m, asks for a site
 # build whenever none has started for 9 minutes, then starts itself again before GitHub's 6-hour job limit. The schedule below only restarts the chain
@@ -26,8 +29,9 @@ jobs:
       R: ${{ github.repository }}
     steps:
       # a backup only: another trigger (cron-job.org, every 5 min since 10-19 22:35 KST) usually starts builds, and a
-      # second request would cancel the build it started. So every 5 minutes this asks for one only when no build
-      # (any trigger, any outcome) has started in the last 9 minutes.
+      # second request would only replace the run waiting behind it (pages.yml concurrency keeps one running and the
+      # newest waiting). So every 5 minutes this asks for one only when no build (any trigger, any outcome) has started
+      # in the last 9 minutes.
       - name: Ask for a site build when none has started for 9 minutes
         run: |
           for i in $(seq 1 68); do

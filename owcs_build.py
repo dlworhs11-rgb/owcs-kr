@@ -232,20 +232,89 @@ ROUND_KO = {'upper bracket final': '승자조 결승', 'upper bracket semifinal'
             'third place match': '3위 결정전'}
 
 
+# the wiki rules of the collector (collector/wikitext.mjs, liquipedia.mjs matchPlaces / cleanLabel), so a match's idx and
+# its heading / round here are the ones in data/lp: a commented-out {{Match}} is no match, and '{{HiddenSort|Day 1}}',
+# '{{Stage|..}}', '{{nowrap|..}}', '[[Page|Group A]]', ''bold'' read as their text
+COMMENT = re.compile(r'<!--[\s\S]*?(?:-->|\Z)')
+WRAPPER = re.compile(r'\{\{\s*(?:HiddenSort|Stage|nowrap)\s*\|([^{}|]*)(?:\|[^{}]*)?\}\}', re.I)
+MATCH_OPEN = re.compile(r'\{\{\s*Match\s*(?=[|}\n])', re.I)
+PLACE_TOKEN = re.compile(r'^(==+)\s*(.*?)\s*\1\s*$|<!--([\s\S]*?)(?:-->|\Z)', re.M)
+
+
+def clean_label(s):
+    """heading / round text without markup that only changes how it shows (collector cleanLabel)"""
+    out = COMMENT.sub('', s or '')
+    for _ in range(5):   # nested wrappers
+        new = WRAPPER.sub(r'\1', out)
+        if new == out:
+            break
+        out = new
+    out = re.sub(r'\[\[(?:[^|\]]*\|)?([^\]]*)\]\]', r'\1', re.sub(r"'{2,}", '', out))
+    return re.sub(r'\s+', ' ', out).strip()
+
+
+def match_spans(text):
+    """(start, end) of every top-level {{Match}} of a page with its comments blanked (collector templateSpans); an
+    unclosed one is skipped, one inside another is part of it"""
+    bare = COMMENT.sub(lambda c: re.sub(r'[^\n]', ' ', c.group(0)), text)
+    out, pos = [], 0
+    while True:
+        m = MATCH_OPEN.search(bare, pos)
+        if not m:
+            return out
+        depth, i, end = 0, m.start(), -1
+        while i < len(bare) - 1:
+            two = bare[i:i + 2]
+            if two == '{{':
+                depth, i = depth + 1, i + 2
+            elif two == '}}':
+                depth, i = depth - 1, i + 2
+                if depth == 0:
+                    end = i
+                    break
+            else:
+                i += 1
+        if end < 0:
+            pos = m.end()
+            continue
+        out.append((m.start(), end))
+        pos = end
+
+
+def match_places(text):
+    """per {{Match}} of a page, in page order (= the collector's idx): the headings ('h', level, text) and one-line
+    round comments ('c', text) between the previous match and this one. Headings and comments inside a comment or a
+    match do not count; a multi-line comment (commented-out matches) or one holding a template is no round label"""
+    text = (text or '').replace('\r\n', '\n').replace('\r', '\n')
+    out, pos = [], 0
+    for start, end in match_spans(text):
+        toks = []
+        t = PLACE_TOKEN.search(text, pos)
+        while t and t.start() < start:
+            if t.group(1):
+                toks.append(('h', len(t.group(1)), t.group(2)))
+            elif not re.search(r'[\n{]', t.group(3)):
+                toks.append(('c', clean_label(t.group(3))))
+            t = PLACE_TOKEN.search(text, t.end()) if t.end() > t.start() else None
+        out.append(toks)
+        pos = end
+    return out
+
+
 def playoff_layout(comp):
-    """Liquipedia match idx -> (phase key, phase name, round), read from the cached wiki page of the stage playoffs.
-    The collector numbers every {{Match}} of the page in order, so counting them here gives the same idx."""
-    out, phase, rnd, idx = {}, None, None, 0
-    for t in re.finditer(r'==+\s*\{\{Stage\|([^}]*)\}\}\s*==+|<!--\s*(.*?)\s*-->|\{\{\s*Match\s*(?=[|}\n])', lp_wiki(comp), re.I):
-        if t.group(1) is not None:
-            phase = next(((k, n) for w, k, n in PHASES if w in t.group(1).lower()), ('po', t.group(1)))
-            rnd = None
-        elif t.group(2) is not None:
-            rnd = t.group(2)
-        else:
-            p = phase or ('po', '플레이오프')
-            out[idx] = (p[0], p[1], ROUND_KO.get((rnd or '').lower(), rnd or p[1]))
-            idx += 1
+    """Liquipedia match idx -> (phase key, phase name, round), read from the cached wiki page of the stage playoffs:
+    a heading with {{Stage|..}} starts a phase, the comment above a match is its round"""
+    out, phase, rnd = {}, None, None
+    for idx, toks in enumerate(match_places(lp_wiki(comp))):
+        for t in toks:
+            if t[0] == 'h' and re.search(r'\{\{\s*Stage\s*\|', t[2], re.I):
+                name = clean_label(t[2])
+                phase = next(((k, n) for w, k, n in PHASES if w in name.lower()), ('po', name))
+                rnd = None
+            elif t[0] == 'c':
+                rnd = t[1]
+        p = phase or ('po', '플레이오프')
+        out[idx] = (p[0], p[1], ROUND_KO.get((rnd or '').lower(), rnd or p[1]))
     return out
 
 
@@ -277,21 +346,78 @@ def side(team, m):
     return 'a' if team == m['team1'] else ('b' if team == m['team2'] else None)
 
 
-def live_day(date):
-    """map winners / bans / POTM read from the broadcast for one day, keyed by 'Team1 vs Team2'"""
+def match_key(m):
+    """'<Liquipedia page title>#<idx>' of a collector match: the matchKey the broadcast capture puts on its maps"""
+    title = m.get('competitionTitle') or m['competition'].replace('OWCS ', LP_NAME + '/', 1)
+    return f"{title}#{m['idx']}"
+
+
+def norm_key(k):
+    """a matchKey in the one spelling match_key() gives ('OWCS ' short name or '_' for spaces also accepted)"""
+    if not isinstance(k, str) or '#' not in k:
+        return None
+    k = k.replace('_', ' ').strip()
+    return LP_NAME + '/' + k[5:] if k.startswith('OWCS ') else k
+
+
+def live_target(item, schedule):
+    """the scheduled match (key of `schedule`) a broadcast map / match entry belongs to, or None.
+    matchKey first (two meetings of the same pair on one day share a label, RA-17); without one the 'Team1 vs Team2'
+    label, only when exactly one match of the day has those two teams. A matchKey this day does not have (the copy of
+    the match on another Liquipedia page, which the collector's dedupe dropped) also falls back to the label, as in
+    the collector's build.mjs linkMapstat"""
+    mk = norm_key(item.get('matchKey'))
+    hit = mk and next((k for k, v in schedule.items() if v['key'] == mk), None)
+    if hit:
+        return hit
+    pair = {x.strip().lower() for x in (item.get('match') or '').split(' vs ')}
+    hits = [k for k, v in schedule.items() if len(pair) == 2 and {v['t1'].lower(), v['t2'].lower()} == pair]
+    return hits[0] if len(hits) == 1 else None
+
+
+def live_index(d, schedule, date=''):
+    """one day's broadcast mapstats -> {schedule key: {'maps': [...], 'potm': {...} or None}}.
+    Left out: maps with labelVerified False (match / game / teams not trusted: 10-23 a second 'match 1 game 1', P1-05),
+    entries of a match not on that day's schedule (10-23 'Crazy Raccoon vs Poker Face'), and a POTM without a name
+    (potm None, potmMethod 'unresolved'). Rows with name None (unknown players) are not read here."""
+    out, dropped = {}, []
+    for m in d.get('maps') or []:
+        if not isinstance(m, dict) or m.get('labelVerified') is False:
+            continue
+        k = live_target(m, schedule)
+        if k is None:
+            dropped.append(m.get('matchKey') or m.get('match'))
+            continue
+        out.setdefault(k, {'maps': [], 'potm': None})['maps'].append(m)
+    for r in d.get('matches') or []:
+        if not isinstance(r, dict):
+            continue
+        k = live_target(r, schedule)
+        p = r.get('potm')
+        if k is None:
+            dropped.append(r.get('matchKey') or r.get('match'))
+        elif isinstance(p, dict) and isinstance(p.get('name'), str) and p['name'].strip():
+            out.setdefault(k, {'maps': [], 'potm': None})['potm'] = p
+    if dropped:
+        print(f'! {date} broadcast data not linked to one scheduled match (not on the schedule, or two meetings and no matchKey), left out:', ', '.join(sorted({str(x) for x in dropped})))
+    return out
+
+
+def live_day(date, schedule):
+    """map winners / bans / POTM read from the broadcast for one day (live_index); schedule = that day's matches,
+    {key: {'key': match_key, 't1', 't2'}}"""
     f = os.path.join(HERE, 'data', 'live_maps', date + '.json')   # pushed from the PC (cloud build)
     if not os.path.exists(f):
         f = os.path.join(SRC, 'live', date, 'mapstats.json')        # the collector folder itself (PC build)
     if not os.path.exists(f):
         return None
-    with open(f, encoding='utf-8') as fh:
-        d = json.load(fh)
-    out = {}
-    for m in d.get('maps', []):
-        out.setdefault(m['match'], {'maps': [], 'potm': None})['maps'].append(m)
-    for r in d.get('matches', []):
-        out.setdefault(r['match'], {'maps': [], 'potm': None})['potm'] = r.get('potm')
-    return out
+    try:
+        with open(f, encoding='utf-8') as fh:
+            d = json.load(fh)
+    except (OSError, ValueError) as e:   # one broken file costs that day's broadcast data, not the whole build
+        print(f'! {f} not readable, broadcast data of {date} left out: {e}')
+        return None
+    return live_index(d if isinstance(d, dict) else {}, schedule, date)
 
 
 VOD_LIST = 'https://www.sooplive.com/station/owesports/vod/review'
@@ -309,6 +435,8 @@ def vod_links():
             continue
         last = -1
         for mp in d.get('maps', []):
+            if mp.get('labelVerified') is False:   # match / game not trusted: no link under that match's name
+                continue
             sec = mp.get('vodSec')
             if sec is None or sec < last:
                 break
@@ -422,6 +550,10 @@ def build_matches(stage):
     order = {}   # day -> match keys in start order = MATCH 1 / 2 / 3 on the broadcast bar
     for m in sorted(raw, key=lambda m: m['date']):
         order.setdefault(kst_day(m['date']).isoformat(), []).append((m['competition'], m['idx']))
+    sched = {}   # day -> that day's matches, for linking the broadcast data (live_day)
+    for m in raw:
+        sched.setdefault(start_of(m)[0].date().isoformat(), {})[(m['competition'], m['idx'])] = dict(
+            key=match_key(m), t1=m['team1'] or 'TBD', t2=m['team2'] or 'TBD')
     lives = {}
     out = []
     for m in raw:
@@ -429,8 +561,9 @@ def build_matches(stage):
         day = dt.date().isoformat()
         t1, t2 = m['team1'] or 'TBD', m['team2'] or 'TBD'
         if day not in lives:
-            lives[day] = live_day(day)
-        lv = (lives[day] or {}).get(f"{t1} vs {t2}") or (lives[day] or {}).get(f"{t2} vs {t1}")
+            lives[day] = live_day(day, sched[day])
+        lv = (lives[day] or {}).get((m['competition'], m['idx']))
+        live_potm = None   # the broadcast POTM: build() takes it only for a player of the two teams
         maps = lp_maps(m)
         sa, sb, played, potm, live = m['score1'], m['score2'], m['played'], m.get('potm'), False
         need = (m.get('bestof') or (7 if m['phase'] == 'po' else 5)) // 2 + 1   # maps to win the series
@@ -465,8 +598,8 @@ def build_matches(stage):
                 sb = sum(1 for x in maps if x['winner'] == 'b')
                 live = max(sa, sb) < need
                 played = not live
-            if not potm and lv.get('potm') and re.fullmatch(r'[A-Za-z0-9_]{2,}', lv['potm'].get('name') or ''):
-                potm = lv['potm']['name']   # a half-read name ('?51') stays out
+        if lv and lv['potm'] and re.fullmatch(r'[A-Za-z0-9_]{2,}', lv['potm']['name']):
+            live_potm = lv['potm']['name']   # a half-read name ('?51') stays out
         # map name as soon as the ban screen shows it, and the first heroes off the HUD (pick_watch.py)
         auto_comps = {}
         # the HUD reads names in capitals, Liquipedia does not (10-23: 'ZANSIDE GAMING' vs 'ZANSIDE Gaming' dropped
@@ -604,6 +737,8 @@ def build_matches(stage):
             a=short(t1), b=short(t2), sa=sa, sb=sb, played=played, live=live,
             potm=potm, casters=adm.get('casters') or [c for c in (m.get('casters') or []) if c] or live_cast(day),   # Liquipedia per match beats the screen read
             stream='https://play.sooplive.com/owesports/embed?autoPlay=true&mutePlay=true', maps=maps))
+        if not potm and live_potm:   # last in line, after Liquipedia, score_watch and the admin page; build() checks it
+            out[-1]['_potmLive'] = live_potm
     out.sort(key=lambda x: (x['date'], x['phase'] != 'lcq'))
     replays = soop_replays(stage['year'])
     for x in out:
@@ -1058,20 +1193,19 @@ def lp_raw(comp):
 
 def intl_layout(comp):
     """Liquipedia match idx -> (section, round) of an international event page: the section is the deepest heading
-    under ==Results== ('Group A', 'Playoffs'), the round the <!-- comment --> above the match"""
-    out, sec, rnd, idx, on = {}, None, None, 0, False
-    for t in re.finditer(r'^(==+)\s*(.*?)\s*\1\s*$|<!--\s*(.*?)\s*-->|\{\{\s*Match\s*(?=[|}\n])', lp_wiki(comp), re.M):
-        if t.group(1):
-            h = re.sub(r'\{\{Stage\|([^}]*)\}\}', r'\1', t.group(2))
-            if len(t.group(1)) == 2:
-                on = h.lower() == 'results'
-            if on and len(t.group(1)) > 2:
-                sec, rnd = h, None
-        elif t.group(3) is not None:
-            rnd = t.group(3)
-        else:
-            out[idx] = (sec or '', rnd or '')
-            idx += 1
+    under ==Results== ('Group A', 'Playoffs'), the round the <!-- comment --> above the match (collector matchPlaces)"""
+    out, sec, rnd, on = {}, '', '', False
+    for idx, toks in enumerate(match_places(lp_wiki(comp))):
+        for t in toks:
+            if t[0] == 'h':
+                h = clean_label(t[2])
+                if t[1] == 2:
+                    on = h.lower() == 'results'
+                if on and t[1] > 2:
+                    sec, rnd = h, ''
+            else:
+                rnd = t[1]
+        out[idx] = (sec if on else '', rnd)
     return out
 
 
@@ -1147,10 +1281,15 @@ def build_intl(year):
             continue
         ms, seen, names = [], set(), {t.lower(): t for t in TEAMS}
         for sub, part in ((comp + '/Group Stage', 'g'), (comp, 'p')):
-            # where each match sits: the collector stores it with the match (section / round); the wiki copy when
-            # there is one (the cloud only keeps the active pages' wiki)
-            lay, bo = intl_layout(sub), None
-            lay = lay or {m['idx']: (m.get('section') or '', m.get('round') or '') for m in lp_raw(sub)}
+            # where each match sits: the collector stores it with the match (section / round, already cleaned of
+            # {{HiddenSort|..}} and the like); the site's own reading of the wiki copy only for a collector data/lp
+            # file without them (same rules: intl_layout)
+            raw = lp_raw(sub)
+            bo = None
+            if raw and all('section' in m for m in raw):
+                lay = {m['idx']: (m.get('section') or '', m.get('round') or '') for m in raw}
+            else:
+                lay = intl_layout(sub)
             for m in sorted(lp_page(sub), key=lambda x: x['idx']):   # page order: a best-of carries on until the next one
                 bo = m.get('bestof') or bo
                 sec, rnd = lay.get(m['idx'], ('', ''))
@@ -1180,6 +1319,18 @@ def build_intl(year):
     return events
 
 
+def roster_name(name, players, m):
+    """the handle on the match's two rosters for a name read off the broadcast: the same name (any case), else the
+    closest one (difflib, 0.6: 'Violet' -> 'Viol2t'); None when neither team has such a player"""
+    import difflib
+    ids = [p['id'] for p in players if p['team'] in (m['a'], m['b'])]
+    same = next((i for i in ids if i.lower() == name.lower()), None)
+    if same:
+        return same
+    best = difflib.get_close_matches(name.lower(), [i.lower() for i in ids], 1, .6)
+    return next(i for i in ids if i.lower() == best[0]) if best else None
+
+
 def build(check_live=False, prev_live=None, out=HERE, records=True):
     """owcs-data.js + calendar files into `out`; records = also write 기록/<date>.md (PC)"""
     with open(os.path.join(HERE, 'data', 'socials.json'), encoding='utf-8') as f:
@@ -1194,13 +1345,14 @@ def build(check_live=False, prev_live=None, out=HERE, records=True):
     matches, lives = build_matches(stage)
     players = build_players(socials, STAGE_TEAMS)
     # a POTM name read off the broadcast card ('Violet') -> the closest handle on the two teams' rosters ('Viol2t')
-    import difflib
     for m in matches:
+        live_potm = m.pop('_potmLive', None)
         if m['potm'] and not any(p['id'].lower() == m['potm'].lower() for p in players):
-            ids = [p['id'] for p in players if p['team'] in (m['a'], m['b'])]
-            best = difflib.get_close_matches(m['potm'].lower(), [i.lower() for i in ids], 1, .6)
-            if best:
-                m['potm'] = next(i for i in ids if i.lower() == best[0])
+            m['potm'] = roster_name(m['potm'], players, m) or m['potm']
+        elif live_potm:   # broadcast capture (mapstats): only a player of the two teams (10-23: a Falcons player on CB-O2)
+            m['potm'] = roster_name(live_potm, players, m)
+            if not m['potm']:
+                print(f"! {m['id']} {m['a']} vs {m['b']}: broadcast POTM {live_potm!r} is on neither roster, left out")
     standings = standings_of(stage, matches)
     fill_bracket(matches, standings, playoffs, lcq, stage_carries(stage['po']))
     live =live_status(players) if check_live else (prev_live or {})
@@ -1252,7 +1404,9 @@ def build(check_live=False, prev_live=None, out=HERE, records=True):
 
 def next_stage_pages():
     """Liquipedia pages of the next Korea stage the collector does not fetch yet, read from the '|next=' field of the
-    newest stage page in lp-cache (filled by Liquipedia once the next stage is announced)"""
+    newest stage page in lp-cache (filled by Liquipedia once the next stage is announced).
+    Fallback only: cloud_live uses it when the collector has no `run-lp.mjs --discover` or discover failed, which
+    finds these pages (and the stage's other pages, international events) itself"""
     with open(os.path.join(SRC, 'competitions.json'), encoding='utf-8') as f:
         have = set(json.load(f)['core'])
     newest = find_stages()[-1]
@@ -1265,7 +1419,8 @@ def next_stage_pages():
 
 
 def add_next_stage(pages):
-    """append the pages to the collector's competitions.json (core) and the stage to active.json"""
+    """append the pages to the collector's competitions.json (core) and the stage to active.json (a short entry:
+    substring rule, see cloud_live.is_active). Fallback with next_stage_pages; only in the checkout, never committed"""
     for name, key in (('competitions.json', 'core'), ('active.json', None)):
         fp = os.path.join(SRC, name)
         with open(fp, encoding='utf-8') as f:

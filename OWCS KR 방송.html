@@ -200,9 +200,20 @@ footer{padding:32px 0 56px;background:#0B0B0F;color:#8A8A93;font-size:13px;line-
     var iso = [window.owcsChecked, D.liveChecked].filter(Boolean).sort().pop() || '';
     var g = shownAt(iso || D.generated || '');
     // warn only when the live check has stalled (no check in 30+ minutes), not every time nobody is live
-    var t = Date.parse(iso), stale = !(t > 0) || Date.now() - t > 30 * 60000;
+    var t = Date.parse(iso), stale = !(t > 0) || Date.now() - t > 30 * 60000, old = oldData();
     document.getElementById('checked').innerHTML = '<span>마지막 확인 ' + esc(g) + '</span>' +
-      (stale ? ' · <span>방송 확인 30분 이상 지연, 실제와 다를 수 있음</span>' : '');
+      (stale ? ' · <span>방송 확인 30분 이상 지연, 실제와 다를 수 있음</span>' : '') +
+      (old ? ' · <span>경기 데이터 갱신 ' + esc(shownAt(old)) + '</span> · <span>경기 결과·일정 갱신 지연</span>' : '');
+  }
+  // dataBuilt: the last site build whose data step worked (cloud_live.stamp_build; a failed build keeps the old time,
+  // while 마지막 확인 still moves). Shown when it is over 30 minutes old around today's matches (30 min before the first
+  // start to 4 h after the last, as cloud_live.match_window), over 6 hours otherwise; '' when fresh or unknown
+  function oldData() {
+    var iso = [window.owcsDataBuilt, D.dataBuilt].filter(Boolean).sort().pop() || '', t = Date.parse(iso), now = Date.now(), td = today();
+    if (!(t > 0)) return '';
+    var starts = (D.matches || []).filter(function (m) { return m.day === td; }).map(function (m) { return Date.parse(m.date); }).filter(function (x) { return x > 0; });
+    var on = starts.length && now >= Math.min.apply(null, starts) - 30 * 60000 && now <= Math.max.apply(null, starts) + 4 * 3600e3;
+    return now - t > (on ? 30 * 60000 : 6 * 3600e3) ? iso : '';
   }
   var shownDay = '';
   render();

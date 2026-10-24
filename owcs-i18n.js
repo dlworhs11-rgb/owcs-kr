@@ -180,7 +180,9 @@
     ['선수 개인 방송 · CHZZK / SOOP', '選手の個人配信 · CHZZK / SOOP', 'Player streams · CHZZK / SOOP', '选手个人直播 · CHZZK / SOOP'], ['지금 방송 중인 선수', '配信中の選手', 'players live now', '正在直播的选手'], ['방송 중 없음', '配信なし', 'Nobody live', '无人直播'],
     ['채널 없음', 'チャンネルなし', 'No channel', '无频道'], ['마지막 확인', '最終確認', 'Last checked', '最后检查'], ['방송 상태는 CHZZK·SOOP에서 몇 분마다 확인해요.', '配信状況はCHZZK・SOOPで数分ごとに確認しています。', 'Live status is checked on CHZZK and SOOP every few minutes.', '直播状态每隔几分钟从 CHZZK·SOOP 检查一次。'],
     ['방송 상태 확인이 꺼져 있으면 모두 꺼짐으로 보여요', '確認が止まっているとすべてオフライン表示になります', 'everyone shows offline while checking is off', '检查关闭时所有人都会显示为未开播'],
-    ['방송 확인이 30분 넘게 멈춰 있어 실제와 다를 수 있어요', '配信確認が30分以上止まっているため、実際と異なる場合があります', 'live check has stalled for 30+ minutes, so this may be out of date', '直播检查已停止超过 30 分钟，可能与实际不符'], ['방송 없음', '配信なし', 'Nobody live', '无人直播'],
+    ['방송 확인이 30분 넘게 멈춰 있어 실제와 다를 수 있어요', '配信確認が30分以上止まっているため、実際と異なる場合があります', 'live check has stalled for 30+ minutes, so this may be out of date', '直播检查已停止超过 30 分钟，可能与实际不符'], ['경기 결과·일정 갱신이 늦어지고 있어요', '試合結果・日程の更新が遅れています', 'match results and schedule updates are delayed', '比赛结果·赛程更新延迟'], ['방송 없음', '配信なし', 'Nobody live', '无人直播'],
+    ['방송 확인 30분 이상 지연, 실제와 다를 수 있음', '配信確認が30分以上遅延、実際と異なる場合あり', 'Live check delayed 30+ min, may be out of date', '直播检查延迟超过 30 分钟，可能与实际不符'],
+    ['경기 결과·일정 갱신 지연', '試合結果・日程の更新遅延', 'Results and schedule updates delayed', '比赛结果·赛程更新延迟'],
     // ticket page
     ['직관 안내 · 2026 OWCS ASIA KOREA STAGE 3', '観戦案内 · 2026 OWCS ASIA KOREA STAGE 3', 'Tickets · 2026 OWCS ASIA KOREA STAGE 3', '现场观赛 · 2026 OWCS ASIA KOREA STAGE 3'],
     ['서울 마포구 상수동 72-1, 홍익대학교 잔다리홀 B1. 정규 리그부터 플레이오프까지 모든 경기를 현장에서 볼 수 있어요.', 'ソウル市麻浦区上水洞72-1 弘益大学チャンダリホールB1。レギュラーシーズンからプレーオフまで全試合を会場で観戦できます。', '72-1 Sangsu-dong, Mapo-gu, Seoul (Hongik Univ. Jandari Hall B1). Every match from the regular season to the playoffs is played here in front of fans.', '首尔麻浦区上水洞 72-1，弘益大学 Jandari Hall B1。从常规赛到季后赛的所有比赛都可以在现场观看。'],
@@ -339,6 +341,7 @@
     [/^(\d+)경기 · 모든 시간 KST$/, P('$1試合 · 時間はすべて' + ZONE_LONG, '$1 matches · all times ' + ZONE, '$1场比赛 · 时间均为' + ZONE_LONG)],
     [/^판매 (오픈|마감) /, function (m, k) { return k === '오픈' ? P('販売開始 ', 'Sale opens ', '开售 ') : P('販売締切 ', 'Sale closes ', '停售 '); }],
     [/^마지막 확인 /, P('最終確認 ', 'Last checked ', '最后检查 ')],
+    [/^경기 데이터 갱신 /, P('試合データ更新 ', 'Match data updated ', '比赛数据更新 ')],
     [/^(\d+)승 (\d+)패 · /, P('$1勝 $2敗 · ', '$1W $2L · ', '$1胜 $2负 · ')],
     [/ · 대진 미정$/, P(' · 対戦未定', ' · matchup TBD', ' · 对阵待定')],
     [/^정규 리그가 끝났어요 · /, P('レギュラーシーズン終了 · ', 'Regular season over · ', '常规赛已结束 · ')],
